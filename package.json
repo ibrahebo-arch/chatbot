@@ -1,0 +1,28 @@
+{
+  "name": "vi-iraq",
+  "version": "1.0.0",
+  "description": "VI Iraq – منصة طلب فيديوهات بالذكاء الاصطناعي",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrahebo-arch/chatbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibrahebo-arch/chatbot/issues"
+  },
+  "homepage": "https://github.com/ibrahebo-arch/chatbot#readme",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "nodemailer": "^10.1.0"
+  }
+}
