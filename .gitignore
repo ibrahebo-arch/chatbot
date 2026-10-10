@@ -168,6 +168,11 @@ node_modules/
 .env.*
 !.env.example
 orders/
-public/videos/*
-!public/videos/.gitkeep
-!public/videos/README.md
+# gallery videos are published with the site (public/videos is read-only for visitors)
+
+VI-Iraq.zip
+
+uploads/
+
+# keep the example (no secrets) in the repo
+!.env.example

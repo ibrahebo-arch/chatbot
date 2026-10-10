@@ -1,0 +1,29 @@
+# Render.com blueprint – New → Blueprint → pick this repo.
+# Secrets marked sync:false are asked for once in the Render dashboard (never stored in GitHub).
+services:
+  - type: web
+    name: vi-iraq
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/config
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        value: ibrahebo@gmail.com
+      - key: MAIL_TO
+        value: ibrahim2dms@gmail.com
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: ATTACH_LIMIT
+        value: 200mb
+      - key: MAIL_ATTACH_MB
+        value: "10"
