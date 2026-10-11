@@ -15,6 +15,7 @@ const path = require("path");
 const fs = require("fs");
 const express = require("express");
 const mail = require("./mail");
+const tg = require("./telegram");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -235,6 +236,7 @@ app.get("/api/config", (_req, res) => {
     mailProvider: mail.state.provider,
     mailError: mail.state.ok ? "" : mail.state.error,
     attachLimit: ATTACH_LIMIT,
+    bot: tg.configured ? tg.username : null,
     rates: RATES,
     brand: "VI Iraq",
   });
@@ -432,7 +434,8 @@ app.post("/api/order", orderLimit, async (req, res) => {
   const attachLines = files.length
     ? `\n\nالمرفقات (${files.length}):\n${files.map((a) => `- ${a.kind} ${roleLabel(a.role)} – ${a.name} (${mb(a.size)})${linked.includes(a) ? ` – كبير، غير مرفق بالبريد: ${a.url}` : ""}`).join("\n")}`
     : "";
-  const text = `طلب جديد من منصة VI Iraq\n\n${orderSummary(full)}\n\nوصف الفيديو:\n${full.description || "-"}${attachLines}\n\nملف الإنتاج: ${briefPath ? `${requestId}.md (مرفق بالبريد باسم ${requestId}-brief.txt)` : "لم يُحفظ"}\n\n--- المحادثة ---\n${transcript(messages)}\n\nالوقت: ${full.createdAt}`;
+  const botLine = tg.configured ? `\n\nبوت التسليم: ${tg.linkFor(requestId)} (الزبون يضغط Start ليستلم الفيديو) – للتأكيد أرسل للبوت: /confirm ${requestId}` : "";
+  const text = `طلب جديد من منصة VI Iraq\n\n${orderSummary(full)}${botLine}\n\nوصف الفيديو:\n${full.description || "-"}${attachLines}\n\nملف الإنتاج: ${briefPath ? `${requestId}.md (مرفق بالبريد باسم ${requestId}-brief.txt)` : "لم يُحفظ"}\n\n--- المحادثة ---\n${transcript(messages)}\n\nالوقت: ${full.createdAt}`;
 
   // Always keep a local copy (orders/ is gitignored).
   try {
@@ -442,7 +445,17 @@ app.post("/api/order", orderLimit, async (req, res) => {
     console.error("could not save order:", e.message);
   }
 
-  const ids = { requestId, requesterId, telegram, phone };
+  // Telegram: remember the order, tell the admins, and give the customer the bot link.
+  const botLink = tg.configured ? tg.linkFor(requestId) : null;
+  if (tg.configured) {
+    tg.registerRequest(full);
+    tg.notifyAdmins(
+      `🎬 <b>طلب جديد ${requestId}</b>\n@${telegram} · ${phone}\n${full.quality}p · ${full.seconds}s · ${full.language} · ${full.characters} شخصية · $${full.price}\n${files.length ? `مرفقات: ${files.length}` : "بدون مرفقات"}\n\n${(full.description || "-").slice(0, 600)}\n\nللتأكيد: /confirm ${requestId}`,
+      briefPath ? { path: briefPath, name: `${requestId}.md`, caption: `ملف الإنتاج ${requestId}` } : null
+    ).catch((e) => console.error("telegram notify:", e.message));
+  }
+
+  const ids = { requestId, requesterId, telegram, phone, botLink };
   if (!mail.configured) {
     return res.json({ ...ids, ok: true, mailed: false, message: "تم حفظ الطلب (البريد غير مفعّل بعد – أضف BREVO_API_KEY أو RESEND_API_KEY في .env)." });
   }
@@ -463,6 +476,33 @@ app.post("/api/order", orderLimit, async (req, res) => {
   }
 });
 
+// ---------- request status / delivery (admin token) ----------
+const adminOnly = (req, res, next) => {
+  if (!ADMIN_TOKEN || req.get("x-admin-token") !== ADMIN_TOKEN) return res.status(401).json({ ok: false, error: "كلمة المرور غير صحيحة." });
+  next();
+};
+app.get("/api/requests", adminOnly, (_req, res) => {
+  const orders = tg.list().map((r) => {
+    let order = null;
+    try { order = JSON.parse(fs.readFileSync(path.join(ORDERS_DIR, `${r.id}.json`), "utf8")); } catch {}
+    return { ...r, order: order && { quality: order.quality, seconds: order.seconds, language: order.language, characters: order.characters, price: order.price, description: order.description, attachments: order.attachments }, brief: fs.existsSync(path.join(BRIEFS_DIR, `${r.id}.md`)) ? `${r.id}.md` : null };
+  });
+  res.json({ bot: tg.configured ? { username: tg.username, mode: tg.mode, admins: tg.adminsCount() } : null, requests: orders });
+});
+app.post("/api/requests/:id/confirm", adminOnly, async (req, res) => {
+  try { res.json({ ok: true, request: await tg.confirm(String(req.params.id).toUpperCase(), "api") }); }
+  catch (e) { res.status(400).json({ ok: false, error: e.message }); }
+});
+app.post("/api/requests/:id/deliver", adminOnly, async (req, res) => {
+  const { url, file, caption } = req.body || {};
+  try {
+    const media = url ? { url: String(url) } : file ? { path: path.join(UPLOADS_DIR, path.basename(String(file))), name: path.basename(String(file)) } : null;
+    if (!media) return res.status(400).json({ ok: false, error: "أرسل url أو file" });
+    if (media.path && !fs.existsSync(media.path)) return res.status(404).json({ ok: false, error: "الملف غير موجود في uploads" });
+    res.json({ ok: true, request: await tg.deliver(String(req.params.id).toUpperCase(), media, caption ? String(caption) : "") });
+  } catch (e) { res.status(400).json({ ok: false, error: e.message }); }
+});
+
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 }
@@ -474,4 +514,6 @@ app.listen(PORT, async () => {
   console.log(`AI: ${OPENAI_API_KEY ? `on (${OPENAI_MODEL})` : "OFF (set OPENAI_API_KEY in .env)"}`);
   const m = await mail.check();
   console.log(`Mail: ${m.ok ? `on (${mail.PROVIDER}: ${mail.MAIL_FROM} → ${mail.MAIL_TO})` : `OFF – ${m.error}`}`);
+  const t = await tg.init(app, PUBLIC_URL);
+  console.log(`Telegram: ${tg.configured ? `${t.mode} as @${t.username || "?"} (${t.admins ?? 0} admins)${t.error ? " – " + t.error : ""}` : "OFF (set TELEGRAM_BOT_TOKEN)"}`);
 });

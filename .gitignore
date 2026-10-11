@@ -176,3 +176,4 @@ uploads/
 
 # keep the example (no secrets) in the repo
 !.env.example
+data/

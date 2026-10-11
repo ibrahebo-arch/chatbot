@@ -27,3 +27,7 @@ services:
         value: 200mb
       - key: MAIL_ATTACH_MB
         value: "10"
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ADMIN_CHAT_IDS
+        sync: false

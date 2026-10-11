@@ -278,7 +278,9 @@
       toast(data.ok ? "تم استلام طلبك" : "حدثت مشكلة");
       if (data.requestId) {
         state.requestId = data.requestId; state.requesterId = data.requesterId;
-        addMsg("sys", `تم إرسال الطلب ✔<br>رقم الطلب <code>${data.requestId}</code> معرّفك <code>${data.requesterId}</code><br><small>أي رسالة ترسلها الآن تُضاف إلى هذا الطلب.</small>`, [], "ids ok");
+        const bot = data.botLink ? `<br><a class="botlink" href="${data.botLink}" target="_blank" rel="noopener">افتح بوت التسليم واضغط Start ليصلك الفيديو على تيليغرام</a>` : "";
+        addMsg("sys", `تم إرسال الطلب ✔<br>رقم الطلب <code>${data.requestId}</code> معرّفك <code>${data.requesterId}</code>${bot}<br><small>أي رسالة ترسلها الآن تُضاف إلى هذا الطلب.</small>`, [], "ids ok");
+        if (data.botLink) note.innerHTML = `${note.textContent}<br><a href="${data.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>`;
         state.messages.push({ role: "assistant", content: `تم إرسال الطلب. رقم الطلب ${data.requestId}، معرّف الزبون ${data.requesterId}.` });
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });

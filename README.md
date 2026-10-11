@@ -25,6 +25,9 @@ npm start                # http://localhost:3000
 | `OPENAI_MODEL` | الموديل، الافتراضي `gpt-4o-mini` |
 | `BREVO_API_KEY` أو `RESEND_API_KEY` | مفتاح مزوّد البريد (واحد فقط يكفي) |
 | `MAIL_FROM` | عنوان المرسل (Brevo: مرسل مُفعّل في حسابك – Resend: `onboarding@resend.dev` أو دومينك) |
+| `TELEGRAM_BOT_TOKEN` | توكن بوت التسليم من BotFather (@MyAIVideoDeliveryBot) |
+| `TELEGRAM_ADMIN_CHAT_IDS` | معرّفات محادثات المشرفين (اختياري؛ أو أرسل `/admin ADMIN_TOKEN` للبوت) |
+| `TELEGRAM_POLL` | `1` للتطوير المحلي فقط؛ النسخة المنشورة تستخدم Webhook تلقائياً |
 | `BRIEFS_DIR` | مجلد حفظ ملفات الإنتاج `.md` (الافتراضي `D:VI-Iraq` إن وُجد، وإلا `orders/briefs`) |
 | `MAIL_ATTACH_MB` | أقصى حجم مرفقات داخل البريد، الأكبر تُرسل كروابط (الافتراضي 10) |
 | `MAIL_TO` | بريد الاستلام: `ibrahim2dms@gmail.com` |
@@ -55,6 +58,14 @@ npm start                # http://localhost:3000
 ```bash
 curl -X POST http://localhost:3000/api/mail/test -H "x-admin-token: ADMIN_TOKEN"
 ```
+
+## بوت تيليغرام للتسليم
+
+- بعد إرسال الطلب يظهر للزبون زر **افتح بوت التسليم** (`t.me/MyAIVideoDeliveryBot?start=رقم-الطلب`). الضغط على Start يربط محادثته بالطلب؛ بدون هذه الخطوة لا يستطيع البوت مراسلته (قيد من تيليغرام).
+- المشرف يسجّل نفسه مرة واحدة بإرسال `/admin ADMIN_TOKEN` للبوت، فتصله كل الطلبات الجديدة مع ملف الإنتاج.
+- أوامر المشرف: `/pending` · `/confirm ID` (يبلّغ الزبون أن العمل بدأ) · `/deliver ID` كتعليق على فيديو أو `/deliver ID رابط` (يرسل الفيديو للزبون) · `/status ID`.
+- للأتمتة (بـ `x-admin-token`): `GET /api/requests`، `POST /api/requests/ID/confirm`، `POST /api/requests/ID/deliver` مع `{ "url": "..." }` أو `{ "file": "اسم-ملف-في-uploads" }`.
+- حد تيليغرام للبوتات: 50 MB للملف المرفوع و20 MB للفيديو عبر رابط.
 
 ## مقاطع العرض (public/loops)
 

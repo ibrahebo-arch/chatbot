@@ -93,6 +93,9 @@ button { cursor: pointer; }
 .msg.sys.ok { border-color: rgba(90,210,143,.5); color: var(--green); }
 .msg.sys.ids { color: var(--text); }
 .msg.sys.ids code { display: inline-block; direction: ltr; background: var(--card2); border: 1px solid var(--line2); border-radius: 8px; padding: 1px 8px; margin: 2px; font-size: .85rem; }
+.botlink { display: inline-block; margin: 8px 0 4px; background: #2aabee; color: #fff !important; text-decoration: none; font-weight: 600; padding: 8px 14px; border-radius: 999px; font-size: .86rem; }
+.botlink:hover { background: #3cb8f5; }
+.note a { color: var(--sand2); }
 .msg .tag { display: block; margin-top: 4px; font-size: .7rem; color: rgba(255,255,255,.55); direction: ltr; text-align: right; }
 .msg.typing { display: flex; gap: 4px; padding: 14px 16px; }
 .msg.typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1s infinite; }
