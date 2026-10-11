@@ -80,28 +80,151 @@ const attachLimit = rateLimit(20, 60 * 60 * 1000, "عدد المرفقات تج�
 const orderLimit = rateLimit(5, 60 * 60 * 1000, "تم إرسال طلبات كثيرة، حاول بعد ساعة.");
 
 // ---------- helpers ----------
-const SYSTEM_PROMPT = `أنت موظف استقبال طلبات في منصة "VI Iraq".
-تتحدث بالعربية فقط وبجمل قصيرة جداً (سطر أو سطرين).
-دورك محصور في استلام ما يكتبه الزبون وتأكيده: أعد صياغة ما فهمته من طلبه باختصار،
-وإذا نقصت معلومة أساسية (الفكرة، المدة، الدقة، اللغة، عدد الشخصيات) اسأل عنها بسؤال واحد فقط.
-ممنوع تماماً: اقتراح أفكار، إعطاء نصائح، تحسين الوصف، كتابة سيناريو أو نص، توليد أي محتوى، أو ذكر الأسعار.
-لا تُنتج أي فيديو ولا تدّعي ذلك. عندما تكتمل المعلومات قل فقط: "تمام، اضغط زر إرسال الطلب".`;
+const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي في استوديو عراقي يصنع فيديوهات بالذكاء الاصطناعي حسب الطلب.
+تتحدث بالعربية (يمكنك استخدام لمسة من اللهجة العراقية إذا كتب الزبون بها)، بأسلوب ودود وواثق، وبدون حشو.
+مهمتك:
+- فهم فكرة الزبون وتطويرها: اقترح أفكاراً، زوايا تصوير، أسلوباً بصرياً، سيناريو مختصراً أو نصاً للتعليق الصوتي عندما يكون ذلك مفيداً أو يطلبه الزبون.
+- اسأل عمّا ينقص الطلب (الفكرة، المدة، الدقة، اللغة، عدد الشخصيات، الجمهور/الهدف) بسؤال أو سؤالين كحد أقصى في كل رسالة.
+- عندما يرفق الزبون صوراً: علّق عليها باختصار (الشكل، الألوان، الأجواء) وتعامل معها حسب دورها المذكور: "شخصية 1/2/3" تعني شخصية تظهر في الفيديو، و"مرجع" يعني أسلوباً أو مكاناً أو منتجاً وليس شخصية. الفيديوهات المرفقة اعتبرها مرجعاً للأسلوب.
+- السعر التقديري معروض للزبون في اللوحة؛ إذا سأل عنه أعطِ الرقم الموجود في "خيارات الزبون الحالية" فقط، ولا تخترع أسعاراً أخرى.
+- أنت لا تُنتج الفيديو بنفسك ولا تدّعي ذلك؛ فريق VI Iraq ينتجه بعد إرسال الطلب ويتواصل مع الزبون عبر تيليغرام أو الهاتف.
+- لإرسال الطلب يجب أن يملأ الزبون معرّف تيليغرام ورقم هاتفه العراقي في اللوحة؛ ذكّره بذلك بلطف عندما تكتمل الفكرة.
+الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.`;
+
+const ROLE_LABELS = { char1: "شخصية 1", char2: "شخصية 2", char3: "شخصية 3", ref: "مرجع (ليس شخصية)" };
+const roleLabel = (r) => ROLE_LABELS[r] || ROLE_LABELS.ref;
+
+// Telegram: @name, name, t.me/name or https://t.me/name → "name" (5–32 chars, letters/digits/_).
+function parseTelegram(v) {
+  const m = String(v || "").trim().replace(/^(https?:\/\/)?(www\.)?t\.me\//i, "").replace(/^@+/, "").match(/^[A-Za-z][A-Za-z0-9_]{4,31}$/);
+  return m ? m[0] : "";
+}
+// Iraqi mobile: 07723682257 / 7723682257 / +9647723682257 / 009647723682257 → "+9647723682257".
+function parsePhone(v) {
+  let d = String(v || "").replace(/[^\d]/g, "");
+  if (d.startsWith("00964")) d = d.slice(5);
+  else if (d.startsWith("964")) d = d.slice(3);
+  if (d.startsWith("0")) d = d.slice(1);
+  return /^7\d{9}$/.test(d) ? `+964${d}` : "";
+}
+const newRequestId = () => {
+  const d = new Date();
+  const ymd = `${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+  return `VI-${ymd}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+};
+const requesterIdFor = (telegram, phone) => `${telegram}-${phone.replace("+", "")}`;
 
 function orderSummary(order) {
   return [
+    order.requestId ? `رقم الطلب (request_id): ${order.requestId}` : null,
+    order.requesterId ? `معرّف الزبون (requester_id): ${order.requesterId}` : null,
+    `تيليغرام: ${order.telegram ? "@" + order.telegram : "-"}`,
+    `الهاتف: ${order.phone || "-"}`,
     `الجودة: ${order.quality}p`,
     `المدة: ${order.seconds} ثانية`,
     `اللغة: ${order.language}`,
     `عدد الشخصيات: ${order.characters}`,
     `السعر: $${order.price}`,
-    `الاسم / التواصل: ${order.contact || "-"}`,
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 }
 
 function transcript(messages = []) {
   return messages
-    .map((m) => `${m.role === "user" ? "👤 الزبون" : "🤖 المساعد"}: ${m.content}`)
+    .map((m) => {
+      const files = (Array.isArray(m.files) ? m.files : []).map((f) => `[${f.video ? "🎬" : f.image ? "🖼️" : "📄"} ${f.name} – ${roleLabel(f.role)}]`).join(" ");
+      return `${m.role === "user" ? "👤 الزبون" : "🤖 المساعد"}: ${m.content}${files ? "\n" + files : ""}`;
+    })
     .join("\n\n");
+}
+
+async function openai(body) {
+  const r = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENAI_API_KEY}` },
+    body: JSON.stringify({ model: OPENAI_MODEL, ...body }),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data?.error?.message || `OpenAI ${r.status}`);
+  return data.choices?.[0]?.message?.content?.trim() || "";
+}
+
+// Images the customer attached (≤ 5 MB each, newest 4) are shown to the model so it can "see" them.
+const VISION_MAX = 5 * 1024 * 1024;
+const MIME = { ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp" };
+function toModelMessages(messages) {
+  let budget = 4;
+  const out = [];
+  for (const m of messages.slice(-20).reverse()) {
+    const role = m.role === "assistant" ? "assistant" : "user";
+    const files = Array.isArray(m.files) ? m.files : [];
+    let text = String(m.content || "").slice(0, 4000);
+    if (files.length) text += `\n[مرفقات: ${files.map((f) => `${f.name} (${roleLabel(f.role)})`).join("، ")}]`;
+    const parts = [{ type: "text", text }];
+    if (role === "user") {
+      for (const f of files) {
+        const stored = path.basename(String(f.stored || ""));
+        const ext = path.extname(stored).toLowerCase();
+        if (!f.image || !MIME[ext] || budget <= 0) continue;
+        const abs = path.join(UPLOADS_DIR, stored);
+        try {
+          if (fs.statSync(abs).size > VISION_MAX) continue;
+          parts.push({ type: "image_url", image_url: { url: `data:${MIME[ext]};base64,${fs.readFileSync(abs).toString("base64")}`, detail: "low" } });
+          budget--;
+        } catch {}
+      }
+    }
+    out.unshift({ role, content: parts.length === 1 ? text : parts });
+  }
+  return out;
+}
+
+// Where the per-order Markdown brief is written. Default: D:\VI-Iraq when that drive exists, else orders/briefs.
+const BRIEFS_DIR = clean(process.env.BRIEFS_DIR) || (fs.existsSync("D:\\") ? "D:\\VI-Iraq" : path.join(ORDERS_DIR, "briefs"));
+
+async function buildBrief(full, messages, files) {
+  const head = `# طلب فيديو ${full.requestId}
+
+| الحقل | القيمة |
+|---|---|
+| request_id | \`${full.requestId}\` |
+| requester_id | \`${full.requesterId}\` |
+| تيليغرام | [@${full.telegram}](https://t.me/${full.telegram}) |
+| الهاتف | ${full.phone} |
+| الجودة | ${full.quality}p |
+| المدة | ${full.seconds} ثانية |
+| اللغة | ${full.language} |
+| عدد الشخصيات | ${full.characters} |
+| السعر التقديري | $${full.price} |
+| التاريخ | ${full.createdAt} |
+
+## المرفقات
+${files.length ? files.map((a) => `- ${a.kind} **${roleLabel(a.role)}** – \`${a.f}\` (${(a.size / 1048576).toFixed(1)} MB)`).join("\n") : "- لا توجد مرفقات"}
+`;
+  let ai = "";
+  if (OPENAI_API_KEY) {
+    try {
+      ai = await openai({
+        temperature: 0.6,
+        max_tokens: 1800,
+        messages: [
+          {
+            role: "system",
+            content: `أنت منتج إبداعي في استوديو VI Iraq. اكتب "ملف إنتاج" (production brief) بصيغة Markdown بالعربية لفريق صناعة الفيديو، اعتماداً على محادثة الزبون وخياراته.
+اكتب العناوين التالية بالضبط بمستوى ##: ملخص الفكرة، الهدف والجمهور، الشخصيات (استخدم أدوار المرفقات: شخصية 1/2/3 ومرجع)، الأسلوب البصري، السيناريو مشهداً بمشهد (جدول: المشهد، المدة بالثواني، الوصف البصري، النص/الصوت) بحيث يساوي المجموع مدة الفيديو، النص الكامل للتعليق الصوتي أو الحوار بلغة الفيديو المطلوبة، الموسيقى والمؤثرات، ملاحظات ونقاط غير واضحة يجب تأكيدها مع الزبون.
+كن محدداً وعملياً، ولا تذكر أسعاراً، ولا تكتب أي مقدمة قبل أول عنوان.`,
+          },
+          {
+            role: "user",
+            content: `خيارات الزبون:\n${orderSummary(full)}\n\nالمرفقات:\n${files.map((a) => `- ${a.name}: ${roleLabel(a.role)}`).join("\n") || "-"}\n\nالمحادثة:\n${transcript(messages)}`,
+          },
+        ],
+      });
+    } catch (err) {
+      console.error("brief error:", err.message);
+      ai = `## ملاحظة\nتعذّر توليد الملف الإبداعي تلقائياً (${err.message}). راجع المحادثة أدناه.`;
+    }
+  }
+  return `${head}\n${ai}\n\n## المحادثة الكاملة\n\n${transcript(messages)}\n`;
 }
 
 // ---------- routes ----------
@@ -139,6 +262,21 @@ function listVideos() {
 }
 
 app.get("/api/videos", (_req, res) => res.json({ videos: listVideos() }));
+
+// Short muted loops for the chat showcase (public/loops/*.mp4 with a matching .jpg poster).
+const LOOPS_DIR = path.join(__dirname, "public", "loops");
+app.get("/api/loops", (_req, res) => {
+  try {
+    const loops = fs
+      .readdirSync(LOOPS_DIR)
+      .filter((f) => f.endsWith(".mp4"))
+      .sort()
+      .map((f) => ({ name: f.slice(0, -4), src: `/loops/${f}`, poster: fs.existsSync(path.join(LOOPS_DIR, f.slice(0, -4) + ".jpg")) ? `/loops/${f.slice(0, -4)}.jpg` : null }));
+    res.json({ loops });
+  } catch {
+    res.json({ loops: [] });
+  }
+});
 
 // Gallery videos are read-only: add/remove files in public/videos on the server only.
 
@@ -189,32 +327,22 @@ app.post("/api/chat", chatLimit, async (req, res) => {
         "المساعد الذكي غير مفعّل حالياً (لم يتم ضبط مفتاح OpenAI في ملف .env). اكتب وصف الفيديو واضغط إرسال الطلب وسنتواصل معك.",
     });
   }
-  const context = order.quality
-    ? `\n\nخيارات الزبون الحالية:\n${orderSummary({ ...order, price: priceFor(order.quality, order.seconds) })}`
+  const telegram = parseTelegram(order.telegram);
+  const phone = parsePhone(order.phone);
+  const ctx = order.quality
+    ? `\n\nخيارات الزبون الحالية:\n${orderSummary({ ...order, telegram, phone, price: priceFor(order.quality, order.seconds) })}` +
+      (telegram && phone ? "" : "\n(لم يكمل الزبون بعد معرّف تيليغرام ورقم الهاتف المطلوبين لإرسال الطلب.)")
+    : "";
+  const sent = order.requestId
+    ? `\n\nهذا الزبون أرسل طلباً بالفعل: request_id=${order.requestId}، requester_id=${order.requesterId}. أي رسالة الآن هي متابعة أو تعديل على هذا الطلب؛ اذكر رقم الطلب عند الحاجة وأخبره أن التعديلات تُرفق بالطلب نفسه.`
     : "";
   try {
-    const r = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: OPENAI_MODEL,
-        temperature: 0.7,
-        max_tokens: 400,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT + context },
-          ...messages.slice(-20).map((m) => ({
-            role: m.role === "assistant" ? "assistant" : "user",
-            content: String(m.content || "").slice(0, 4000),
-          })),
-        ],
-      }),
+    const reply = await openai({
+      temperature: 0.8,
+      max_tokens: 700,
+      messages: [{ role: "system", content: SYSTEM_PROMPT + ctx + sent }, ...toModelMessages(messages)],
     });
-    const data = await r.json();
-    if (!r.ok) throw new Error(data?.error?.message || `OpenAI ${r.status}`);
-    res.json({ reply: data.choices?.[0]?.message?.content?.trim() || "…" });
+    res.json({ reply: reply || "…" });
   } catch (err) {
     console.error("chat error:", err.message);
     res.status(502).json({
@@ -226,61 +354,97 @@ app.post("/api/chat", chatLimit, async (req, res) => {
 
 app.post("/api/order", orderLimit, async (req, res) => {
   const { messages = [], order = {} } = req.body || {};
+  // Hard requirement: no Telegram username + Iraqi phone → nothing is sent anywhere.
+  const telegram = parseTelegram(order.telegram);
+  const phone = parsePhone(order.phone);
+  if (!telegram || !phone) {
+    return res.status(400).json({
+      ok: false,
+      mailed: false,
+      field: !telegram ? "telegram" : "phone",
+      message: !telegram
+        ? "اكتب معرّف تيليغرام صحيح (مثال: @ahmed_vi) قبل إرسال الطلب."
+        : "اكتب رقم هاتف عراقي صحيح (مثال: 7723682257) قبل إرسال الطلب.",
+    });
+  }
+  if (!Array.isArray(messages) || !messages.some((m) => m && m.role === "user" && (String(m.content || "").trim() || (m.files || []).length))) {
+    return res.status(400).json({ ok: false, mailed: false, field: "chat", message: "اكتب وصف الفيديو في الدردشة أولاً." });
+  }
+
   const quality = Number(order.quality) || 1080;
   const seconds = Math.max(1, Number(order.seconds) || 15);
+  const requestId = newRequestId();
+  const requesterId = requesterIdFor(telegram, phone);
+  const roles = new Map();
   const full = {
+    requestId,
+    requesterId,
+    telegram,
+    phone,
     quality,
     seconds,
     language: String(order.language || "العربية").slice(0, 60),
     characters: String(order.characters || "1").slice(0, 10),
-    contact: String(order.contact || "").slice(0, 200),
     price: priceFor(quality, seconds),
     createdAt: new Date().toISOString(),
     description: String(order.description || "").slice(0, 5000),
     attachments: (Array.isArray(order.attachments) ? order.attachments : [])
-      .map((a) => path.basename(String(a.stored || "")))
+      .map((a) => {
+        const f = path.basename(String(a.stored || ""));
+        if (f) roles.set(f, ROLE_LABELS[a.role] ? a.role : "ref");
+        return f;
+      })
       .filter((f) => f && fs.existsSync(path.join(UPLOADS_DIR, f)))
       .slice(0, 30),
   };
 
-  // Attach files while they fit in Gmail's size limit; the rest are linked by URL.
+  // Attach files while they fit in the email size budget; the rest are linked by URL.
   const files = full.attachments.map((f) => {
     const abs = path.join(UPLOADS_DIR, f);
     const size = fs.statSync(abs).size;
     const name = f.replace(/^\d+-[a-z0-9]+-/, "");
-    return { f, abs, size, name, kind: isVideo("", f) ? "🎬" : isImage("", f) ? "🖼️" : "📄", url: `${PUBLIC_URL || ""}/uploads/${encodeURIComponent(f)}` };
+    return { f, abs, size, name, role: roles.get(f) || "ref", kind: isVideo("", f) ? "🎬" : isImage("", f) ? "🖼️" : "📄", url: `${PUBLIC_URL || ""}/uploads/${encodeURIComponent(f)}` };
   });
+  const mb = (b) => `${(b / 1048576).toFixed(1)} MB`;
+
+  // Production brief (.md) – written by the model, saved locally and attached to the email.
+  const brief = await buildBrief(full, messages, files);
+  let briefPath = "";
+  try {
+    fs.mkdirSync(BRIEFS_DIR, { recursive: true });
+    briefPath = path.join(BRIEFS_DIR, `${requestId}.md`);
+    fs.writeFileSync(briefPath, brief, "utf8");
+  } catch (e) {
+    console.error("could not save brief:", e.message);
+    briefPath = "";
+  }
+
   let used = 0;
   const mailed = [];
   const linked = [];
+  // Brevo rejects the .md extension, so the email copy is sent as .txt (same Markdown content).
+  if (briefPath) { mailed.push({ name: `${requestId}-brief.txt`, abs: briefPath, size: Buffer.byteLength(brief) }); used += Buffer.byteLength(brief); }
   for (const a of files) {
     if (used + a.size <= mail.ATTACH_BUDGET) { used += a.size; mailed.push(a); } else linked.push(a);
   }
-  const mb = (b) => `${(b / 1048576).toFixed(1)} MB`;
 
-  const subject = `🎬 طلب فيديو جديد – VI Iraq – ${full.quality}p / ${full.seconds}s / $${full.price}`;
+  const subject = `🎬 ${requestId} – طلب فيديو – @${telegram} – ${full.quality}p / ${full.seconds}s / $${full.price}`;
   const attachLines = files.length
-    ? `\n\nالمرفقات (${files.length}):\n${files.map((a) => `- ${a.kind} ${a.name} (${mb(a.size)})${linked.includes(a) ? ` – كبير، غير مرفق بالبريد: ${a.url}` : ""}`).join("\n")}`
+    ? `\n\nالمرفقات (${files.length}):\n${files.map((a) => `- ${a.kind} ${roleLabel(a.role)} – ${a.name} (${mb(a.size)})${linked.includes(a) ? ` – كبير، غير مرفق بالبريد: ${a.url}` : ""}`).join("\n")}`
     : "";
-  const text = `طلب جديد من منصة VI Iraq\n\n${orderSummary(full)}\n\nوصف الفيديو:\n${full.description || "-"}${attachLines}\n\n--- المحادثة ---\n${transcript(messages)}\n\nالوقت: ${full.createdAt}`;
+  const text = `طلب جديد من منصة VI Iraq\n\n${orderSummary(full)}\n\nوصف الفيديو:\n${full.description || "-"}${attachLines}\n\nملف الإنتاج: ${briefPath ? `${requestId}.md (مرفق بالبريد باسم ${requestId}-brief.txt)` : "لم يُحفظ"}\n\n--- المحادثة ---\n${transcript(messages)}\n\nالوقت: ${full.createdAt}`;
 
   // Always keep a local copy (orders/ is gitignored).
   try {
     fs.mkdirSync(ORDERS_DIR, { recursive: true });
-    fs.writeFileSync(
-      path.join(ORDERS_DIR, `${Date.now()}.json`),
-      JSON.stringify({ ...full, messages }, null, 2)
-    );
+    fs.writeFileSync(path.join(ORDERS_DIR, `${requestId}.json`), JSON.stringify({ ...full, messages }, null, 2));
   } catch (e) {
     console.error("could not save order:", e.message);
   }
 
+  const ids = { requestId, requesterId, telegram, phone };
   if (!mail.configured) {
-    return res.json({
-      ok: true,
-      mailed: false,
-      message: "تم حفظ الطلب (البريد غير مفعّل بعد – أضف BREVO_API_KEY أو RESEND_API_KEY في .env).",
-    });
+    return res.json({ ...ids, ok: true, mailed: false, message: "تم حفظ الطلب (البريد غير مفعّل بعد – أضف BREVO_API_KEY أو RESEND_API_KEY في .env)." });
   }
 
   try {
@@ -288,18 +452,14 @@ app.post("/api/order", orderLimit, async (req, res) => {
       subject,
       text,
       files: mailed,
-      html: `<div dir="rtl" style="font-family:Tahoma,Arial;line-height:1.8"><h2>🎬 طلب جديد – VI Iraq</h2><pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(text)}</pre>${
-        linked.length ? `<h3>مرفقات كبيرة (روابط)</h3><ul>${linked.map((a) => `<li><a href="${escapeHtml(a.url)}">${a.kind} ${escapeHtml(a.name)}</a> (${mb(a.size)})</li>`).join("")}</ul>` : ""
+      html: `<div dir="rtl" style="font-family:Tahoma,Arial;line-height:1.8"><h2>🎬 طلب جديد – ${requestId}</h2><p><a href="https://t.me/${telegram}">@${telegram}</a> · <a href="tel:${phone}">${phone}</a></p><pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(text)}</pre>${
+        linked.length ? `<h3>مرفقات كبيرة (روابط)</h3><ul>${linked.map((a) => `<li><a href="${escapeHtml(a.url)}">${a.kind} ${escapeHtml(a.name)}</a> – ${roleLabel(a.role)} (${mb(a.size)})</li>`).join("")}</ul>` : ""
       }</div>`,
     });
-    res.json({ ok: true, mailed: true, message: "تم إرسال طلبك بنجاح، سنتواصل معك قريباً 🎉" });
+    res.json({ ...ids, ok: true, mailed: true, message: `تم إرسال طلبك بنجاح 🎉 رقم الطلب: ${requestId} – سنتواصل معك على تيليغرام @${telegram}` });
   } catch (err) {
     console.error("mail error:", err.message);
-    res.status(502).json({
-      ok: false,
-      mailed: false,
-      message: "تم حفظ الطلب لكن تعذّر إرسال البريد، سنراجعه يدوياً.",
-    });
+    res.status(502).json({ ...ids, ok: false, mailed: false, message: "تم حفظ الطلب لكن تعذّر إرسال البريد، سنراجعه يدوياً." });
   }
 });
 

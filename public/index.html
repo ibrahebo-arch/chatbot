@@ -2,133 +2,167 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0d1117" />
-  <title>VI Iraq</title>
-  <meta name="description" content="VI Iraq – " />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1114" />
+  <title>VI Iraq — استوديو فيديو</title>
+  <meta name="description" content="VI Iraq — اطلب فيديوك: اكتب الفكرة، ارفع صورك، حدّد المدة والجودة، ونرسل لك العمل جاهزاً." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- top bar -->
-  <header class="topbar">
-    <div class="brand"><span class="logo">VI</span><span>Iraq</span><small></small></div>
-    <nav class="tabs">
-      <button class="tab on" data-tab="studio">🎬 الاستوديو</button>
-      <button class="tab" data-tab="prices">💵 الأسعار</button>
+  <header class="top">
+    <a class="brand" href="/" aria-label="VI Iraq">
+      <span class="mark">VI</span>
+      <span class="word">Iraq</span>
+    </a>
+    <nav class="nav" aria-label="الأقسام">
+      <button class="tab on" data-tab="studio">الاستوديو</button>
+      <button class="tab" data-tab="works">أعمالنا</button>
+      <button class="tab" data-tab="prices">الأسعار</button>
     </nav>
-    <div class="status">
-      <span class="pill" id="aiPill"><i class="dot"></i> المساعد</span>
-      <span class="pill" id="mailPill"><i class="dot"></i> البريد</span>
-      <span class="pill" id="vidPill"><i class="dot"></i> <b id="vidCount">0</b> فيديو</span>
-    </div>
   </header>
 
   <main class="page">
-    <!-- ======================== STUDIO TAB ======================== -->
+    <!-- ================= STUDIO ================= -->
     <section class="view on" id="view-studio">
-      <div class="banner"> اكتب طلبك في الدردشة، أرفق الصور أو الملفات التي تريدها، حدّد الدقة والمدة واللغة، ثم اضغط إرسال الطلب.</div>
-
-      <!-- CHAT BOX on top of the widgets -->
-      <section class="chatbox">
-        <div class="chat-head">
-          <div class="ai-avatar">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7ee0d6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"></path></svg>
+      <div class="studio">
+        <!-- chat -->
+        <section class="chat" aria-label="الدردشة">
+          <div class="chat-top">
+            <div class="who">
+              <span class="avatar" aria-hidden="true"></span>
+              <div><strong>مساعد الاستوديو</strong><small>يساعدك تصيغ فكرتك ويقترح عليك</small></div>
+            </div>
+            <div class="summary" id="summary"></div>
           </div>
-          <div>
-            <strong>مساعد VI Iraq</strong>
-            <small id="aiState"><i class="dot"></i> جاهز للدردشة</small>
+
+          <div class="stage" id="stage">
+            <div class="showcase" id="showcase" aria-hidden="true">
+              <div class="mosaic" id="mosaic"></div>
+              <div class="hello">
+                <h1>فكرتك… تصير فيديو</h1>
+                <p>اكتب شنو تريد، ارفع صورك أو فيديو مرجعي، وخلّي الباقي علينا.</p>
+                <div class="starters" id="starters">
+                  <button type="button">إعلان لمطعم ٣٠ ثانية</button>
+                  <button type="button">فيديو تعريفي لشركتي</button>
+                  <button type="button">قصة قصيرة بأسلوب مسلسل</button>
+                  <button type="button">مقطع ترويجي لمنتج جديد</button>
+                </div>
+              </div>
+            </div>
+            <div class="messages" id="messages" role="log" aria-live="polite"></div>
           </div>
-          <div class="chat-summary" id="summary"></div>
-        </div>
 
-        <div class="chat-body">
-          <div class="messages" id="messages"></div>
+          <div class="tray" id="tray" hidden></div>
+          <form class="composer" id="composer">
+            <input type="file" id="fileInput" multiple accept="image/*,video/*,.mp4,.mov,.webm,.pdf,.doc,.docx,.txt,.zip" hidden />
+            <button type="button" class="icon" id="attachBtn" title="إرفاق صورة أو فيديو أو ملف" aria-label="إرفاق">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5 12.6 21a5.5 5.5 0 0 1-7.8-7.8l9-9a3.5 3.5 0 0 1 5 5l-9 9a1.5 1.5 0 0 1-2.1-2.1L16 7.8"/></svg>
+            </button>
+            <textarea id="input" rows="1" placeholder="اكتب فكرتك هنا…" autocomplete="off"></textarea>
+            <button type="submit" class="icon send" id="sendMsg" title="إرسال" aria-label="إرسال">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </section>
 
-          <aside class="controls">
-            <div class="ctl">
-              <label>🎞️ الدقة (بكسل)</label>
-              <div class="segment" id="quality">
-                <button type="button" data-v="480">480p</button>
-                <button type="button" data-v="720">720p</button>
-                <button type="button" data-v="1080" class="on">1080p</button>
-              </div>
-            </div>
-            <div class="ctl">
-              <label>⏱️ المدة: <b id="secVal">15</b> ثانية</label>
-              <input id="seconds" type="range" min="5" max="120" step="5" value="15" />
-              <div class="chips" id="quick">
-                <button type="button" data-s="15">15</button>
-                <button type="button" data-s="30">30</button>
-                <button type="button" data-s="60">60</button>
-                <button type="button" data-s="120">120</button>
-              </div>
-            </div>
-            <div class="ctl two">
-              <div>
-                <label>🌍 اللغة</label>
-                <select id="language">
-                  <option>العربية</option>
-                  <option>عراقي (لهجة)</option>
-                  <option>English</option>
-                  <option>كوردي</option>
-                  <option>Türkçe</option>
-                  <option>فارسی</option>
-                  <option>بدون كلام</option>
-                </select>
-              </div>
-              <div>
-                <label>👥 الشخصيات</label>
-                <select id="characters">
-                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
-                </select>
-              </div>
-            </div>
-            <div class="ctl">
-              <label>📞 اسمك / رقمك (اختياري)</label>
-              <input id="contact" type="text" placeholder="أحمد – 07xx xxx xxxx" />
-            </div>
-            <div class="price-box">
-              <small>السعر التقديري</small>
-              <div class="amount">$<span id="priceVal">20</span></div>
-              <span class="muted" id="priceMeta">1080p · 15 ثانية</span>
-            </div>
-            <button class="order" id="sendOrder"> إرسال الطلب <span class="order-price">$<span id="ctaPrice">20</span></span></button>
-            <p class="note" id="orderNote"></p>
-          </aside>
-        </div>
+        <!-- order panel -->
+        <aside class="panel" id="panel" aria-label="تفاصيل الطلب">
+          <h2>تفاصيل الطلب</h2>
 
-        <div class="attach-tray" id="tray" hidden></div>
-        <form class="composer" id="composer">
-          <input type="file" id="fileInput" multiple accept="image/*,video/*,.mp4,.mov,.webm,.pdf,.doc,.docx,.txt,.zip" hidden />
-          <button type="button" class="clip" id="attachBtn" title="إرفاق صور أو فيديو أو ملفات">📎</button>
-          <input id="input" type="text" autocomplete="off" placeholder="اكتب رسالتك…" />
-          <button type="submit" class="send" id="sendMsg">➤</button>
-        </form>
-      </section>
+          <div class="field">
+            <label>الجودة</label>
+            <div class="seg" id="quality">
+              <button type="button" data-v="480">480p</button>
+              <button type="button" data-v="720">720p</button>
+              <button type="button" data-v="1080" class="on">1080p</button>
+            </div>
+          </div>
 
-      <!-- VIDEO WIDGETS grid -->
-      <div class="grid-head">
-        <h2>🖥️ الفيديوهات</h2>
-        <span class="muted"> <code>/videos</code> شاهد اعمالنا</span>
+          <div class="field">
+            <label>المدة <b id="secVal">15</b> ثانية</label>
+            <input id="seconds" type="range" min="5" max="120" step="5" value="15" />
+            <div class="chips" id="quick">
+              <button type="button" data-s="15" class="on">15</button>
+              <button type="button" data-s="30">30</button>
+              <button type="button" data-s="60">60</button>
+              <button type="button" data-s="120">120</button>
+            </div>
+          </div>
+
+          <div class="field two">
+            <div>
+              <label for="language">اللغة</label>
+              <select id="language">
+                <option>العربية</option>
+                <option>عراقي (لهجة)</option>
+                <option>English</option>
+                <option>كوردي</option>
+                <option>Türkçe</option>
+                <option>فارسی</option>
+                <option>بدون كلام</option>
+              </select>
+            </div>
+            <div>
+              <label for="characters">الشخصيات</label>
+              <select id="characters">
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="telegram">معرّف تيليغرام <span class="req">مطلوب</span></label>
+            <div class="prefixed"><span>@</span><input id="telegram" type="text" inputmode="latin" autocapitalize="off" spellcheck="false" placeholder="username" /></div>
+          </div>
+          <div class="field">
+            <label for="phone">رقم الهاتف <span class="req">مطلوب</span></label>
+            <div class="prefixed"><span>+964</span><input id="phone" type="tel" inputmode="numeric" placeholder="7723682257" /></div>
+            <small class="hint">نتواصل معك على تيليغرام أو الهاتف بعد استلام الطلب.</small>
+          </div>
+
+          <div class="price">
+            <small>السعر التقديري</small>
+            <div class="amount">$<span id="priceVal">20</span></div>
+            <span class="meta" id="priceMeta">1080p · 15 ثانية · العربية</span>
+          </div>
+
+          <button class="cta" id="sendOrder">إرسال الطلب <span class="cta-price">$<span id="ctaPrice">20</span></span></button>
+          <p class="note" id="orderNote"></p>
+        </aside>
       </div>
+
+      <!-- mobile sticky bar -->
+      <div class="mbar" id="mbar">
+        <div><small>السعر التقديري</small><strong>$<span id="mPrice">20</span></strong></div>
+        <button type="button" id="mGo">تفاصيل الطلب وإرساله</button>
+      </div>
+    </section>
+
+    <!-- ================= WORKS ================= -->
+    <section class="view" id="view-works">
+      <div class="section-head"><h2>من أعمالنا</h2><p>نماذج أنتجناها بأساليب مختلفة.</p></div>
       <section class="grid" id="grid"></section>
     </section>
 
-    <!-- ======================== PRICES TAB ======================== -->
+    <!-- ================= PRICES ================= -->
     <section class="view" id="view-prices">
+      <div class="section-head"><h2>الأسعار</h2><p>السعر يُحسب بالثانية. غيّر الجودة في الاستوديو لترى العمود المحدد.</p></div>
       <div class="card">
-        <h2>💵 قائمة الأسعار</h2>
         <table class="prices">
           <thead><tr><th>المدة</th><th>480p</th><th>720p</th><th>1080p</th></tr></thead>
           <tbody id="priceTable"></tbody>
         </table>
-        <p class="muted">السعر يُحسب لكل ثانية. حرّك شريط المدة داخل الدردشة لترى السعر الفوري.</p>
       </div>
     </section>
-
   </main>
+
+  <footer class="foot">
+    <span>VI Iraq © <span id="year"></span></span>
+    <a href="/loops/CREDITS.md" target="_blank" rel="noopener">مصادر المقاطع</a>
+  </footer>
 
   <div class="toast" id="toast" hidden></div>
   <script src="/app.js"></script>
