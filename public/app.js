@@ -55,15 +55,34 @@
     try { loops = (await (await fetch("/api/loops")).json()).loops || []; } catch {}
     const mosaic = $("mosaic");
     if (!loops.length) { mosaic.remove(); return; }
-    // shuffle, then fill 6 cells and rotate one cell at a time
-    loops.sort(() => Math.random() - .5);
-    let next = 0;
+    // one cell per category (by file-name prefix); each cell rotates only inside its own category,
+    // so models / movies / cars / cities / nature / games are all on screen at the same time
+    const shuffle = (a) => a.sort(() => Math.random() - .5);
+    const groupOf = (name) => {
+      const p = name.split("-")[0];
+      if (p === "model") return "model";
+      if (p === "movie") return "movie";
+      if (p === "car") return "car";
+      if (p === "city" || p === "building") return "city";
+      if (["nature", "desert", "beach", "space"].includes(p)) return "nature";
+      if (p === "gaming" || p === "game") return "game";
+      return "extra"; // ours-*, trend-*, cute-* – sprinkled into any cell now and then
+    };
+    const pools = {};
+    loops.forEach((l) => (pools[groupOf(l.name)] ||= []).push(l));
+    Object.values(pools).forEach(shuffle);
+    const order = ["model", "movie", "car", "city", "nature", "game"].filter((g) => pools[g]?.length);
+    const extra = pools.extra || [];
+    // fewer categories than cells → cycle the categories again
+    for (let i = 0; order.length && order.length < 6; i++) order.push(order[i % order.length]);
+    const idx = {};
+    const pick = (g) => { const pool = pools[g]; idx[g] = (idx[g] || 0) + 1; return pool[idx[g] % pool.length]; };
     const cells = [];
-    for (let i = 0; i < 6; i++) {
-      const cell = document.createElement("div"); cell.className = "cell";
+    for (let i = 0; i < Math.min(6, order.length); i++) {
+      const cell = document.createElement("div"); cell.className = "cell"; cell.dataset.group = order[i];
       const img = document.createElement("img"); img.alt = "";
       const v = document.createElement("video"); v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = "metadata";
-      cell.append(img, v); mosaic.appendChild(cell); cells.push({ cell, img, v });
+      cell.append(img, v); mosaic.appendChild(cell); cells.push({ cell, img, v, group: order[i] });
     }
     const load = (c, loop) => {
       c.cell.classList.remove("ready");
@@ -71,10 +90,13 @@
       c.v.src = loop.src;
       c.v.onloadeddata = () => { c.cell.classList.add("ready"); c.v.play().catch(() => {}); };
     };
-    cells.forEach((c, i) => setTimeout(() => load(c, loops[next++ % loops.length]), i * 350));
+    cells.forEach((c, i) => setTimeout(() => load(c, pick(c.group)), i * 350));
+    let tick = 0;
     const rotate = setInterval(() => {
       if (state.started) return clearInterval(rotate);
-      load(cells[Math.floor(Math.random() * cells.length)], loops[next++ % loops.length]);
+      const c = cells[tick++ % cells.length];
+      const useExtra = extra.length && tick % 5 === 0;
+      load(c, useExtra ? extra[(tick / 5) % extra.length | 0] : pick(c.group));
     }, 6500);
   }
   function startChat() {
