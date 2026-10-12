@@ -324,7 +324,7 @@
   // after sending: the order is only confirmed once the customer presses Start in the bot
   function askBot(d) {
     const dlg = $("botDialog");
-    if (!d.botLink || d.linked || !dlg?.showModal) return;
+    if (state.demo || !d.botLink || d.linked || !dlg?.showModal) return; // test stage: no blocking dialog, the video comes anyway
     $("botDlgId").textContent = d.requestId;
     $("botDlgLink").href = d.botLink;
     $("botDlgLink").onclick = () => setTimeout(() => dlg.close(), 300);
@@ -337,33 +337,47 @@
     if (tracker) clearTimeout(tracker.timer);
     const card = addMsg("sys", "", [], "ids status");
     tracker = { card, video: null, timer: null };
-    const paint = (d) => {
-      const at = stepIndex(d.status);
+    // steps light up one per second even when the server jumps ahead, so every state is seen
+    tracker.shown = -1; tracker.latest = null; tracker.anim = null;
+    const MSG = ["طلبك مسجّل ✔", "طلبك قيد المراجعة…", "جارٍ إنجاز الفيديو…", "الفيديو جاهز 🎉"];
+    const paint = () => {
+      const d = tracker.latest; if (!d) return;
       const bad = d.status === "failed" || d.status === "cancelled";
+      const at = tracker.shown;
       const steps = STEPS.map(([, label], i) => `<span class="${bad ? "" : i < at ? "done" : i === at ? "now" : ""}">${label}</span>`).join("");
-      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">👉 أكّد طلبك: افتح البوت واضغط Start</a>` : "";
+      const msg = bad || at === stepIndex(d.status) ? d.message || "" : MSG[at] || "";
+      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">${state.demo ? "👉 افتح البوت واضغط Start ليصلك الفيديو على تيليغرام أيضاً" : "👉 أكّد طلبك: افتح البوت واضغط Start"}</a>` : "";
       card.querySelector(".st")?.remove();
       const st = document.createElement("div"); st.className = "st";
-      st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${d.message || ""}</span>${bot}`;
+      st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${msg}</span>${bot}`;
       card.prepend(st);
-      if (d.videoUrl && !tracker.video) {
-        const v = document.createElement("video");
-        v.controls = true; v.playsInline = true; v.preload = "metadata"; v.src = d.videoUrl; v.className = "result";
+      if (d.videoUrl && at >= 3 && !tracker.video) {
+        const v = document.createElement("video"); // plays like a GIF; controls for sound/fullscreen
+        v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.controls = true; v.src = d.videoUrl; v.className = "result";
         card.appendChild(v); tracker.video = v;
+        v.play().catch(() => {});
         list.scrollTop = list.scrollHeight;
       }
+    };
+    const step = () => {
+      const d = tracker.latest;
+      if (d && tracker.shown < stepIndex(d.status)) { tracker.shown++; paint(); }
+      else if (d && tracker.shown === stepIndex(d.status)) paint();
+      if (tracker.video || d?.status === "failed" || d?.status === "cancelled") return;
+      tracker.anim = setTimeout(step, 1000);
     };
     const poll = async () => {
       try {
         const r = await fetch(`/api/orders/${encodeURIComponent(state.requestId)}/status`, { headers: { "x-requester-id": state.requesterId, "x-order-token": state.accessToken }, cache: "no-store" });
-        if (r.status === 404) { try { localStorage.removeItem("vi-order"); } catch {} card.remove(); return; }
+        if (r.status === 404) { try { localStorage.removeItem("vi-order"); } catch {} clearTimeout(tracker.anim); card.remove(); return; }
         const d = await r.json();
-        if (d.ok) paint(d);
-        if (["delivered", "failed", "cancelled"].includes(d.status)) return;
+        if (d.ok) { tracker.latest = d; if (tracker.shown < 0) { tracker.shown = 0; paint(); } }
+        if (["delivered", "failed", "cancelled"].includes(d.status) && tracker.video) return;
       } catch {}
-      tracker.timer = setTimeout(poll, 5000);
+      tracker.timer = setTimeout(poll, state.demo && !tracker.video ? 1000 : 5000);
     };
-    if (first && first.status) paint(first);
+    if (first && first.status) { tracker.latest = first; tracker.shown = 0; paint(); }
+    step();
     poll();
   }
 
@@ -394,6 +408,7 @@
     try {
       const cfg = await (await fetch("/api/config")).json();
       if (cfg.rates) state.rates = cfg.rates;
+      state.demo = Boolean(cfg.demo);
       const lim = String(cfg.attachLimit || "").match(/^(\d+(?:\.\d+)?)\s*(kb|mb|gb)?$/i);
       if (lim) state.attachLimit = Number(lim[1]) * ({ kb: 1024, mb: 1048576, gb: 1073741824 }[(lim[2] || "mb").toLowerCase()]);
     } catch {}

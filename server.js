@@ -22,6 +22,7 @@ const db = require("./db");
 const orders = require("./orders");
 const storage = require("./storage");
 const tg = require("./telegram");
+const mail = require("./mail");
 const { normalizeTelegram, normalizePhone } = require("./validate");
 
 const app = express();
@@ -31,6 +32,9 @@ const clean = (v) => String(v || "").trim();
 const OPENAI_API_KEY = clean(process.env.OPENAI_API_KEY);
 const OPENAI_MODEL = clean(process.env.OPENAI_MODEL) || "gpt-4o-mini";
 const ADMIN_TOKEN = clean(process.env.ADMIN_TOKEN);
+// Free test stage: every order moves one step per second and gets a random showcase loop as its "video".
+// Set DEMO_DELIVERY=false when payments start, to return to the admin /confirm flow.
+const DEMO = clean(process.env.DEMO_DELIVERY).toLowerCase() === "true";
 // Render/Railway expose the public address automatically; PUBLIC_URL in .env overrides it.
 const PUBLIC_URL = (
   clean(process.env.PUBLIC_URL) ||
@@ -78,7 +82,7 @@ function rateLimit(max, windowMs, msg) {
 const chatLimit = rateLimit(30, 10 * 60 * 1000, "رسائل كثيرة خلال وقت قصير، انتظر قليلاً ثم حاول مرة ثانية.");
 const attachLimit = rateLimit(20, 60 * 60 * 1000, "عدد المرفقات تجاوز الحد المسموح، حاول لاحقاً.");
 const orderLimit = rateLimit(5, 60 * 60 * 1000, "تم إرسال طلبات كثيرة، حاول بعد ساعة.");
-const statusLimit = rateLimit(400, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً.");
+const statusLimit = rateLimit(1500, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً.");
 
 // ---------- helpers ----------
 const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي في استوديو عراقي يصنع فيديوهات بالذكاء الاصطناعي حسب الطلب.
@@ -208,8 +212,10 @@ ${files.length ? files.map((a) => `- ${a.media_type === "video" ? "🎬" : "🖼
 app.get("/api/config", (_req, res) => {
   res.json({
     ai: Boolean(OPENAI_API_KEY),
+    mail: mail.state.ok,
     db: db.configured,
     storage: storage.mode,
+    demo: DEMO,
     attachLimit: ATTACH_LIMIT,
     bot: tg.configured ? tg.username : null,
     rates: RATES,
@@ -351,6 +357,26 @@ const STATUS_TEXT = {
   cancelled: "تم إلغاء الطلب.",
 };
 
+// Test stage (DEMO_DELIVERY=true): one status step per second, then a random showcase loop is the "video".
+// Nothing paid runs; the customer gets it in the chat, on Telegram if linked, and email 2 goes out.
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function runDemo(requestId, briefDone) {
+  for (const [from, to] of [["queued", "awaiting_admin"], ["awaiting_admin", "prompt_ready"], ["prompt_ready", "generating"]]) {
+    await sleep(1000);
+    await orders.setStatus(requestId, from, to, { by: "demo" });
+  }
+  await sleep(1000);
+  const loops = fs.readdirSync(LOOPS_DIR).filter((f) => f.endsWith(".mp4"));
+  const pick = loops[crypto.randomInt(loops.length)];
+  await orders.setVideo(requestId, `public:loops/${pick}`);
+  await orders.setStatus(requestId, "generating", "completed", { by: "demo", video: pick });
+  let o = await orders.getOrder(requestId);
+  if (o.telegram_chat_id) await tg.sendVideo(o).catch((e) => console.error("demo telegram:", e.message));
+  await briefDone.catch(() => {}); // email 2 after email 1
+  o = await orders.getOrder(requestId);
+  await mail.deliveredEmail(o, { buffer: await tg.videoBuffer(o, mail.ATTACH_BUDGET), name: pick }).catch((e) => console.error("mail delivered:", e.message));
+}
+
 function orderView(o) {
   return { requestId: o.request_id, requesterId: o.requester_id, status: o.status, message: STATUS_TEXT[o.status], linked: Boolean(o.telegram_chat_id), botLink: tg.configured ? tg.linkFor(o.request_id) : null };
 }
@@ -399,7 +425,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
 
   if (created.created) {
     // the customer gets the answer (and the bot link) right away; uploads, brief and admin notice follow
-    (async () => {
+    const briefDone = (async () => {
       try {
         // attach the draft uploads and move them under uploads/<request_id>/
         for (const mv of await orders.claimAssets(o.request_id, o.requester_id, attachments)) {
@@ -408,13 +434,16 @@ app.post("/api/order", orderLimit, async (req, res) => {
         const files = await orders.orderAssets(o.request_id);
         const brief = await buildBrief({ ...options, requestId: o.request_id, requesterId: o.requester_id, telegram, phone, createdAt: o.created_at.toISOString() }, messages, files);
         await orders.saveBrief(o.request_id, brief);
-        if (tg.configured) await tg.announceOrder(await orders.getOrder(o.request_id), brief);
+        const fresh = await orders.getOrder(o.request_id);
+        if (tg.configured) await tg.announceOrder(fresh, brief).catch((e) => console.error("telegram notify:", e.message));
+        await mail.orderEmail(fresh, brief).catch((e) => console.error("mail order:", e.message)); // email 1
       } catch (e) {
         console.error("order follow-up:", e.message);
         await orders.addEvent(null, o.request_id, "error", { step: "follow-up", message: e.message }).catch(() => {});
       }
     })();
-    await orders.advance(o.request_id); // moves on only when Telegram is already linked
+    if (DEMO) runDemo(o.request_id, briefDone).catch((e) => console.error("demo:", e.message));
+    else await orders.advance(o.request_id); // moves on only when Telegram is already linked
   }
 
   const view = orderView(await orders.getOrder(o.request_id));
@@ -433,7 +462,9 @@ app.get("/api/orders/:id/status", statusLimit, async (req, res) => {
     const o = await orders.getOwnedOrder(req.params.id, req.get("x-requester-id"), req.get("x-order-token"));
     if (!o) return res.status(404).json({ ok: false, message: "الطلب غير موجود." });
     const out = { ok: true, ...orderView(o), videoUrl: null };
-    if (o.video_key && ["completed", "delivered"].includes(o.status)) out.videoUrl = await storage.presignGet(o.video_key, 3600, { contentType: "video/mp4" });
+    if (o.video_key && ["completed", "delivered"].includes(o.status)) {
+      out.videoUrl = o.video_key.startsWith("public:") ? `/${o.video_key.slice(7)}` : await storage.presignGet(o.video_key, 3600, { contentType: "video/mp4" });
+    }
     res.set("Cache-Control", "no-store").json(out);
   } catch (e) {
     console.error("status error:", e.message);
@@ -490,7 +521,9 @@ async function start() {
   app.listen(PORT, async () => {
     console.log(`VI Iraq running → http://localhost:${PORT}`);
     console.log(`AI: ${OPENAI_API_KEY ? `on (${OPENAI_MODEL})` : "OFF (set OPENAI_API_KEY in .env)"}`);
-    console.log(`Storage: ${storage.mode}${storage.mode === "off" ? " – set R2_* to accept uploads" : ""} · AUTO_GENERATE=${orders.autoGenerate()}`);
+    console.log(`Storage: ${storage.mode}${storage.mode === "off" ? " – set R2_* to accept uploads" : ""} · AUTO_GENERATE=${orders.autoGenerate()} · DEMO_DELIVERY=${DEMO}`);
+    const m = await mail.check();
+    console.log(`Mail: ${m.ok ? `on (${mail.PROVIDER}: ${mail.MAIL_FROM} → ${mail.MAIL_TO})` : `OFF – ${m.error}`}`);
     const t = await tg.init(app, PUBLIC_URL);
     console.log(`Telegram: ${tg.configured ? `${t.mode} as @${t.username || "?"} (${t.admins ?? 0} admins)${t.error ? " – " + t.error : ""}` : "OFF (set TELEGRAM_BOT_TOKEN)"}`);
   });

@@ -16,9 +16,12 @@
  *
  * HTTP (header x-admin-token) – see server.js: GET /api/requests, POST /api/requests/:id/confirm|deliver
  */
+const fs = require("fs");
+const path = require("path");
 const crypto = require("crypto");
 const orders = require("./orders");
 const storage = require("./storage");
+const mail = require("./mail");
 
 const clean = (v) => String(v || "").trim();
 const TOKEN = clean(process.env.TELEGRAM_BOT_TOKEN);
@@ -95,6 +98,32 @@ async function confirm(requestId, by = "admin") {
   return { order: await orders.getOrder(o.request_id), changed: true };
 }
 
+/**
+ * The order's finished video as a Buffer (≤ maxBytes) or null.
+ * "public:loops/x.mp4" = a showcase loop from the repo (test mode), anything else = an R2 key.
+ */
+async function videoBuffer(o, maxBytes = 50 * 1024 * 1024) {
+  if (!o.video_key) return null;
+  try {
+    if (o.video_key.startsWith("public:")) {
+      const p = path.join(__dirname, "public", ...o.video_key.slice(7).split("/"));
+      return fs.statSync(p).size <= maxBytes ? fs.readFileSync(p) : null;
+    }
+    return await storage.getBuffer(o.video_key, maxBytes);
+  } catch { return null; }
+}
+
+/** Sends the stored video to the customer's linked chat and marks the order delivered. */
+async function sendVideo(o, caption = "") {
+  if (!configured || !o.telegram_chat_id) return false;
+  const buf = await videoBuffer(o);
+  if (!buf) return false;
+  const text = caption || `🎬 فيديوك جاهز – طلب ${o.request_id}\nشكراً لاختيارك VI Iraq. إذا تحتاج تعديلاً، رد هنا أو من الموقع بنفس رقم الطلب.\n\n${steps("delivered")}`;
+  await call("sendVideo", { chat_id: o.telegram_chat_id, caption: text, supports_streaming: true }, { field: "video", buffer: buf, name: `${o.request_id}.mp4` });
+  await orders.setStatus(o.request_id, "completed", "delivered", { by: "system", channel: "telegram" });
+  return true;
+}
+
 /** Downloads a file the admin sent to the bot (bots can download up to 20 MB). */
 async function downloadTelegramFile(fileId) {
   const f = await call("getFile", { file_id: fileId });
@@ -147,7 +176,9 @@ async function deliver(requestId, media, caption = "") {
   } else throw new Error("لا يوجد فيديو للتسليم");
 
   await orders.setStatus(id, "completed", "delivered", { by: "admin", channel: "telegram" });
-  return orders.getOrder(id);
+  const done = await orders.getOrder(id);
+  mail.deliveredEmail(done, { buffer: await videoBuffer(done, mail.ATTACH_BUDGET) }).catch((e) => console.error("mail delivered:", e.message));
+  return done;
 }
 
 /** Admins: new order + brief as a .txt document (no 4096-character limit issue). */
@@ -176,6 +207,8 @@ async function handleUpdate(u) {
     if (res.reason === "username_mismatch") return send(chatId, `هذا الطلب مسجّل باسم تيليغرام آخر. افتح الرابط من حساب @${esc(res.order.telegram_username)} أو تواصل معنا.`);
     await send(chatId, `أهلاً بك في VI Iraq 👋\n✅ تم تأكيد طلبك <b>${esc(res.order.request_id)}</b> وربطه بهذه المحادثة.\nفريقنا يراجعه الآن، وستصلك رسالة هنا عند كل خطوة، ثم الفيديو النهائي.\n\n${steps(res.order.status)}`);
     await notifyAdmins(`🔗 الزبون @${esc(username || "?")} ربط محادثته بالطلب <b>${esc(res.order.request_id)}</b> (الحالة: ${res.order.status}).`);
+    // the video may already be ready (test mode delivers without waiting for the link)
+    if (res.order.status === "completed" && res.order.video_key) await sendVideo(res.order).catch((e) => console.error("telegram video:", e.message));
   };
 
   if (c === "/start") {
@@ -270,4 +303,4 @@ async function init(app, publicUrl) {
   return { mode, username: BOT_USERNAME, admins: (await admins()).length };
 }
 
-module.exports = { configured, init, notifyAdmins, announceOrder, confirm, deliver, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };
+module.exports = { configured, init, notifyAdmins, announceOrder, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };

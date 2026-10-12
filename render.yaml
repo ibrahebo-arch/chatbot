@@ -43,6 +43,16 @@ services:
         sync: false
       - key: CLAUDE_MODEL       # used by the generation worker (next step)
         sync: false
+      - key: DEMO_DELIVERY      # free test stage: auto steps + random loop video; set false when payments start
+        value: "true"
+      - key: BREVO_API_KEY      # email 1 (new order) and email 2 (video delivered)
+        sync: false
+      - key: MAIL_FROM
+        value: ibrahebo@gmail.com
+      - key: MAIL_TO
+        value: ibrahim2dms@gmail.com
+      - key: MAIL_ATTACH_MB
+        value: "10"
       - key: AUTO_GENERATE      # "false" = an admin approves each order with /confirm
         sync: false
       - key: TELEGRAM_BOT_TOKEN
