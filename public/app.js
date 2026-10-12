@@ -304,7 +304,6 @@
       if (data.requestId) {
         state.idemKey = null;
         state.requestId = data.requestId; state.requesterId = data.requesterId; state.accessToken = data.accessToken;
-        try { localStorage.setItem("vi-order", JSON.stringify({ requestId: data.requestId, requesterId: data.requesterId, accessToken: data.accessToken })); } catch {}
         const bot = data.botLink ? `<br><a class="botlink" href="${data.botLink}" target="_blank" rel="noopener">افتح بوت التسليم واضغط Start ليصلك الفيديو على تيليغرام</a>` : "";
         addMsg("sys", `تم إرسال الطلب ✔<br>رقم الطلب <code>${data.requestId}</code> معرّفك <code>${data.requesterId}</code>${bot}<br><small>أي رسالة ترسلها الآن تُضاف إلى هذا الطلب.</small>`, [], "ids ok");
         if (data.botLink) note.innerHTML = `${note.textContent}<br><a href="${data.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>`;
@@ -418,10 +417,7 @@
     const hello = "هلا بيك 👋 احجيلي عن الفيديو اللي تريده: شنو الفكرة، ولمن موجّه؟ وإذا عندك صور للشخصيات أو مقطع مرجعي ارفعه من زر المشبك.";
     addMsg("bot", hello);
     state.messages.push({ role: "assistant", content: hello });
-    // coming back to the page: keep following the last order
-    try {
-      const saved = JSON.parse(localStorage.getItem("vi-order") || "null");
-      if (saved?.requestId && saved.accessToken) { Object.assign(state, saved); startChat(); trackOrder(null); }
-    } catch {}
+    // a refresh always opens the welcome page with the showcase loops (no previous order restored)
+    try { localStorage.removeItem("vi-order"); } catch {}
   })();
 })();
