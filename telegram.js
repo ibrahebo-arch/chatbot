@@ -1,59 +1,52 @@
 /**
- * VI Iraq – Telegram delivery bot (@MyAIVideoDeliveryBot)
+ * VI Iraq – Telegram delivery bot (@MyAIVideoDeliveryBot). State lives in Postgres (orders.js).
  *
  * Customer side
  *   - The site shows "open the bot" after an order: https://t.me/<bot>?start=<request_id>
  *   - /start <request_id> links the customer's chat to that order (Telegram bots can only
- *     message people who pressed Start, so this step is required before delivery).
+ *     message people who pressed Start). The sender's username must match the order.
  *
  * Owner (admin) side – in the bot chat
- *   - /admin <ADMIN_TOKEN>      register this chat as admin (or set TELEGRAM_ADMIN_CHAT_IDS in .env)
- *   - new orders arrive here automatically with the brief attached
- *   - /confirm <request_id>     mark confirmed, customer is told work has started
+ *   - /admin <ADMIN_TOKEN>      register this chat as admin (or set TELEGRAM_ADMIN_CHAT_IDS)
+ *   - new orders arrive here automatically with the brief as a .txt document
+ *   - /confirm <request_id>     approve the order, customer is told work has started
  *   - /deliver <request_id>     send as the caption of a video/document → forwarded to the customer
  *   - /deliver <request_id> <https://url.mp4>   deliver a video by URL
  *   - /status <request_id> · /pending
  *
- * HTTP (header x-admin-token) – used by automation
- *   GET  /api/requests                     list orders + status
- *   POST /api/requests/:id/confirm
- *   POST /api/requests/:id/deliver         { url } or { file: "<stored upload name>" }, optional caption
- *
- * .env: TELEGRAM_BOT_TOKEN, TELEGRAM_ADMIN_CHAT_IDS (optional, comma separated)
+ * HTTP (header x-admin-token) – see server.js: GET /api/requests, POST /api/requests/:id/confirm|deliver
  */
-const fs = require("fs");
-const path = require("path");
 const crypto = require("crypto");
+const orders = require("./orders");
+const storage = require("./storage");
 
 const clean = (v) => String(v || "").trim();
 const TOKEN = clean(process.env.TELEGRAM_BOT_TOKEN);
 const API = `https://api.telegram.org/bot${TOKEN}`;
-const DATA_FILE = path.join(__dirname, "data", "telegram.json");
 const ENV_ADMINS = clean(process.env.TELEGRAM_ADMIN_CHAT_IDS).split(",").map((s) => s.trim()).filter(Boolean);
+const ID_RE = /^VI-\d{6}-[A-Z0-9]{4}$/i;
 
 let BOT_USERNAME = clean(process.env.TELEGRAM_BOT_USERNAME) || "MyAIVideoDeliveryBot";
 const configured = Boolean(TOKEN);
-let mode = "off"; // off | webhook | polling
+let mode = "off"; // off | webhook | polling | idle
+let adminCount = ENV_ADMINS.length;
 
-// ---------- tiny persistent store ----------
-let db = { admins: [], users: {}, requests: {} };
-try { db = { ...db, ...JSON.parse(fs.readFileSync(DATA_FILE, "utf8")) }; } catch {}
-function save() {
-  try { fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true }); fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2)); } catch (e) { console.error("telegram store:", e.message); }
-}
-const admins = () => [...new Set([...ENV_ADMINS, ...db.admins.map(String)])];
-const isAdmin = (chatId) => admins().includes(String(chatId));
-const req = (id) => db.requests[id] || null;
-function upsert(id, patch) { db.requests[id] = { ...(db.requests[id] || { id, status: "new", createdAt: new Date().toISOString() }), ...patch }; save(); return db.requests[id]; }
+const admins = async () => {
+  const ids = [...new Set([...ENV_ADMINS, ...(await orders.telegramAdmins().catch(() => []))])];
+  adminCount = ids.length;
+  return ids;
+};
+const isAdmin = async (chatId) => (await admins()).includes(String(chatId));
 
 // ---------- Telegram API ----------
+/** file: { field, buffer, name } */
 async function call(method, body, file) {
-  if (!configured) throw new Error("TELEGRAM_BOT_TOKEN غير موجود في .env");
+  if (!configured) throw new Error("TELEGRAM_BOT_TOKEN غير موجود");
   let r;
   if (file) {
     const fd = new FormData();
     for (const [k, v] of Object.entries(body)) if (v !== undefined && v !== null) fd.append(k, String(v));
-    fd.append(file.field, new Blob([fs.readFileSync(file.path)]), file.name);
+    fd.append(file.field, new Blob([file.buffer]), file.name);
     r = await fetch(`${API}/${method}`, { method: "POST", body: fd });
   } else {
     r = await fetch(`${API}/${method}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -66,104 +59,139 @@ const send = (chatId, text, extra = {}) => call("sendMessage", { chat_id: chatId
 const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
 const linkFor = (requestId) => `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(requestId)}`;
 
+/** doc: { buffer, name, caption } – sent from memory, nothing touches the disk. */
 async function notifyAdmins(text, doc) {
-  const ids = admins();
+  const ids = await admins();
   if (!configured || !ids.length) return false;
   for (const id of ids) {
     try {
       await send(id, text);
-      if (doc && fs.existsSync(doc.path)) await call("sendDocument", { chat_id: id, caption: doc.caption || "" }, { field: "document", path: doc.path, name: doc.name });
+      if (doc && doc.buffer?.length) await call("sendDocument", { chat_id: id, caption: doc.caption || "" }, { field: "document", buffer: doc.buffer, name: doc.name });
     } catch (e) { console.error("telegram notify:", e.message); }
   }
   return true;
 }
 
 // ---------- order lifecycle ----------
-function registerRequest(order) {
-  const r = upsert(order.requestId, { username: order.telegram, phone: order.phone, requesterId: order.requesterId, status: "new" });
-  // if this customer already pressed Start before (same username), link right away
-  const known = db.users[order.telegram.toLowerCase()];
-  if (known && !r.chatId) upsert(order.requestId, { chatId: known });
-  return req(order.requestId);
-}
-
 async function confirm(requestId, by = "admin") {
-  const r = req(requestId);
-  if (!r) throw new Error(`الطلب ${requestId} غير موجود`);
-  upsert(requestId, { status: "confirmed", confirmedAt: new Date().toISOString(), confirmedBy: by });
-  if (r.chatId) {
-    await send(r.chatId, `✅ تم تأكيد طلبك <b>${esc(requestId)}</b>.\nبدأنا العمل على الفيديو، وستصلك النسخة النهائية هنا بمجرد اكتمالها.`).catch(() => {});
+  const o = await orders.getOrder(requestId);
+  if (!o) throw new Error(`الطلب ${requestId} غير موجود`);
+  if (o.status === "queued") throw new Error(`الزبون @${o.telegram_username} لم يضغط Start في البوت بعد، لا يمكن التأكيد قبل الربط. الرابط: ${linkFor(o.request_id)}`);
+  if (o.status !== "awaiting_admin") return { order: o, changed: false };
+  const r = await orders.setStatus(o.request_id, "awaiting_admin", "prompt_ready", { by, action: "confirm" });
+  if (!r) return { order: await orders.getOrder(o.request_id), changed: false };
+  if (o.telegram_chat_id) {
+    await send(o.telegram_chat_id, `✅ تم تأكيد طلبك <b>${esc(o.request_id)}</b>.\nبدأنا العمل على الفيديو، وستصلك النسخة النهائية هنا بمجرد اكتمالها.`).catch(() => {});
   }
-  return req(requestId);
+  return { order: await orders.getOrder(o.request_id), changed: true };
 }
 
-/** deliver({ url } | { path, name } | { copyFrom: {chatId, messageId} }) */
+/** Downloads a file the admin sent to the bot (bots can download up to 20 MB). */
+async function downloadTelegramFile(fileId) {
+  const f = await call("getFile", { file_id: fileId });
+  const r = await fetch(`https://api.telegram.org/file/bot${TOKEN}/${f.file_path}`);
+  if (!r.ok) throw new Error(`telegram download ${r.status}`);
+  return Buffer.from(await r.arrayBuffer());
+}
+
+/**
+ * deliver(id, { url } | { key } | { copyFrom: { chatId, messageId, fileId, fileSize } }, caption)
+ * Stores the video in R2 (videos/<id>.mp4) when possible, marks the order completed,
+ * sends it to the customer's linked chat, then marks it delivered.
+ */
 async function deliver(requestId, media, caption = "") {
-  const r = req(requestId);
-  if (!r) throw new Error(`الطلب ${requestId} غير موجود`);
-  if (!r.chatId) throw new Error(`الزبون @${r.username} لم يضغط Start في البوت بعد، أرسل له الرابط: ${linkFor(requestId)}`);
-  const text = caption || `🎬 فيديوك جاهز – طلب ${requestId}\nشكراً لاختيارك VI Iraq. إذا تحتاج تعديلاً، رد هنا أو من الموقع بنفس رقم الطلب.`;
+  const o = await orders.getOrder(requestId);
+  if (!o) throw new Error(`الطلب ${requestId} غير موجود`);
+  if (o.status === "cancelled") throw new Error(`الطلب ${o.request_id} ملغى`);
+  if (!o.telegram_chat_id) throw new Error(`الزبون @${o.telegram_username} لم يضغط Start في البوت بعد، أرسل له الرابط: ${linkFor(o.request_id)}`);
+  const id = o.request_id;
+  const videoKey = `videos/${id}.mp4`;
+
+  // 1) keep a copy in storage so the customer can also play it on the website
+  let stored = false;
+  try {
+    if (storage.ready) {
+      if (media.key) { await storage.move(String(media.key), videoKey); stored = true; }
+      else if (media.url) { await storage.putFromUrl(videoKey, String(media.url)); stored = true; }
+      else if (media.copyFrom?.fileId && (media.copyFrom.fileSize || 0) <= 20 * 1024 * 1024) {
+        await storage.put(videoKey, await downloadTelegramFile(media.copyFrom.fileId), { contentType: "video/mp4" }); stored = true;
+      }
+    }
+  } catch (e) {
+    console.error("deliver store:", e.message);
+    if (media.key) throw e; // nothing else to send in that case
+  }
+  if (stored) await orders.setVideo(id, videoKey);
+  await orders.setStatus(id, ["awaiting_admin", "prompt_ready", "generating", "failed"], "completed", { by: "admin", action: "deliver" });
+
+  // 2) send it on Telegram
+  const text = caption || `🎬 فيديوك جاهز – طلب ${id}\nشكراً لاختيارك VI Iraq. إذا تحتاج تعديلاً، رد هنا أو من الموقع بنفس رقم الطلب.`;
   if (media.copyFrom) {
-    await call("copyMessage", { chat_id: r.chatId, from_chat_id: media.copyFrom.chatId, message_id: media.copyFrom.messageId, caption: text });
+    await call("copyMessage", { chat_id: o.telegram_chat_id, from_chat_id: media.copyFrom.chatId, message_id: media.copyFrom.messageId, caption: text });
+  } else if (stored) {
+    let buf = null;
+    try { buf = await storage.getBuffer(videoKey, 50 * 1024 * 1024); } catch {}
+    if (buf) await call("sendVideo", { chat_id: o.telegram_chat_id, caption: text, supports_streaming: true }, { field: "video", buffer: buf, name: `${id}.mp4` });
+    else await call("sendVideo", { chat_id: o.telegram_chat_id, video: media.url || (await storage.presignGet(videoKey, 3600)), caption: text, supports_streaming: true });
   } else if (media.url) {
-    await call("sendVideo", { chat_id: r.chatId, video: media.url, caption: text, supports_streaming: true });
-  } else if (media.path) {
-    const size = fs.statSync(media.path).size;
-    if (size > 50 * 1024 * 1024) throw new Error("الملف أكبر من 50 MB (حد تيليغرام للبوتات) – ارفعه على رابط وأرسل الرابط");
-    await call("sendVideo", { chat_id: r.chatId, caption: text, supports_streaming: true }, { field: "video", path: media.path, name: media.name || `${requestId}.mp4` });
+    await call("sendVideo", { chat_id: o.telegram_chat_id, video: media.url, caption: text, supports_streaming: true });
   } else throw new Error("لا يوجد فيديو للتسليم");
-  upsert(requestId, { status: "delivered", deliveredAt: new Date().toISOString() });
-  return req(requestId);
+
+  await orders.setStatus(id, "completed", "delivered", { by: "admin", channel: "telegram" });
+  return orders.getOrder(id);
+}
+
+/** Admins: new order + brief as a .txt document (no 4096-character limit issue). */
+async function announceOrder(o, brief) {
+  const opt = o.options || {};
+  const linked = o.telegram_chat_id ? "" : "\n⏳ الزبون لم يضغط Start بعد – الطلب ينتظر الربط.";
+  return notifyAdmins(
+    `🎬 <b>طلب جديد ${esc(o.request_id)}</b>\n@${esc(o.telegram_username)} · ${esc(o.phone)}\n${opt.quality}p · ${opt.seconds}s · ${esc(opt.language || "")} · ${esc(opt.characters || "")} شخصية · $${opt.price}\n${opt.attachments ? `مرفقات: ${opt.attachments}` : "بدون مرفقات"}\n\n${esc((opt.description || "-").slice(0, 600))}${linked}\n\nللتأكيد: /confirm ${esc(o.request_id)}`,
+    brief ? { buffer: Buffer.from(brief, "utf8"), name: `${o.request_id}-brief.txt`, caption: `ملف الإنتاج ${o.request_id}` } : null
+  );
 }
 
 // ---------- incoming updates ----------
-let handlers = { onLinked: null };
 async function handleUpdate(u) {
   const m = u.message || u.edited_message;
   if (!m || !m.chat) return;
   const chatId = m.chat.id;
   const username = (m.from?.username || "").toLowerCase();
   const text = (m.text || m.caption || "").trim();
-  const [cmd, ...args] = text.split(/\s+/);
+  const [cmd = "", ...args] = text.split(/\s+/);
   const c = cmd.toLowerCase().replace(/@.*$/, "");
 
-  if (username) { db.users[username] = chatId; save(); }
+  const linkOne = async (id) => {
+    const res = await orders.linkTelegram(id, chatId, username);
+    if (res.reason === "not_found") return send(chatId, `لم أجد الطلب ${esc(id)}. تأكد من الرقم الموجود في الموقع.`);
+    if (res.reason === "username_mismatch") return send(chatId, `هذا الطلب مسجّل باسم تيليغرام آخر. افتح الرابط من حساب @${esc(res.order.telegram_username)} أو تواصل معنا.`);
+    await send(chatId, `أهلاً بك في VI Iraq 👋\nتم ربط هذه المحادثة بطلبك <b>${esc(res.order.request_id)}</b>.\nسنرسل لك الفيديو النهائي هنا عند اكتماله، وستصلك رسالة عند تأكيد الطلب.`);
+    await notifyAdmins(`🔗 الزبون @${esc(username || "?")} ربط محادثته بالطلب <b>${esc(res.order.request_id)}</b> (الحالة: ${res.order.status}).`);
+  };
 
   if (c === "/start") {
     const id = (args[0] || "").toUpperCase();
-    if (id && req(id)) {
-      upsert(id, { chatId, status: req(id).status === "new" ? "linked" : req(id).status });
-      await send(chatId, `أهلاً بك في VI Iraq 👋\nتم ربط هذه المحادثة بطلبك <b>${esc(id)}</b>.\nسنرسل لك الفيديو النهائي هنا عند اكتماله، وستصلك رسالة عند تأكيد الطلب.`);
-      handlers.onLinked && handlers.onLinked(id, chatId, username);
-      await notifyAdmins(`🔗 الزبون @${esc(username || "?")} ربط محادثته بالطلب <b>${esc(id)}</b> (chat_id ${chatId}).`);
-    } else {
-      // link any pending orders of this username
-      const mine = Object.values(db.requests).filter((r) => r.username?.toLowerCase() === username && !r.chatId);
-      mine.forEach((r) => upsert(r.id, { chatId }));
-      await send(chatId, mine.length
-        ? `أهلاً بك 👋 تم ربط طلباتك: ${mine.map((r) => `<b>${esc(r.id)}</b>`).join("، ")}. سنرسل لك الفيديو هنا عند اكتماله.`
-        : `أهلاً بك في بوت تسليم VI Iraq 👋\nاطلب فيديوك من الموقع ثم اضغط زر "افتح بوت التسليم"، أو أرسل هنا رقم طلبك (مثل VI-261011-K3F9).`);
-    }
+    if (id && ID_RE.test(id)) return linkOne(id);
+    const linked = await orders.linkByUsername(username, chatId);
+    await send(chatId, linked.length
+      ? `أهلاً بك 👋 تم ربط طلباتك: ${linked.map((r) => `<b>${esc(r)}</b>`).join("، ")}. سنرسل لك الفيديو هنا عند اكتماله.`
+      : `أهلاً بك في بوت تسليم VI Iraq 👋\nاطلب فيديوك من الموقع ثم اضغط زر "افتح بوت التسليم"، أو أرسل هنا رقم طلبك (مثل VI-261011-K3F9).`);
     return;
   }
 
-  if (/^VI-\d{6}-[A-Z0-9]{4}$/i.test(text)) {
-    const id = text.toUpperCase();
-    if (req(id)) { upsert(id, { chatId }); await send(chatId, `تم ربط هذه المحادثة بالطلب <b>${esc(id)}</b> ✔`); }
-    else await send(chatId, `لم أجد الطلب ${esc(id)}. تأكد من الرقم الموجود في الموقع.`);
-    return;
-  }
+  if (ID_RE.test(text)) return linkOne(text.toUpperCase());
 
   if (c === "/admin") {
     const token = clean(process.env.ADMIN_TOKEN);
-    if (token && args[0] === token) {
-      if (!db.admins.includes(chatId)) { db.admins.push(chatId); save(); }
+    const given = Buffer.from(String(args[0] || ""));
+    if (token && given.length === Buffer.byteLength(token) && crypto.timingSafeEqual(given, Buffer.from(token))) {
+      await orders.addTelegramAdmin(chatId, username);
       await send(chatId, `✅ تم تسجيلك كمشرف. ستصلك الطلبات الجديدة هنا.\nالأوامر: /pending · /confirm ID · /deliver ID (مع فيديو) · /status ID`);
     } else await send(chatId, "كلمة المرور غير صحيحة.");
     return;
   }
 
-  if (!isAdmin(chatId)) {
+  if (!(await isAdmin(chatId))) {
     await send(chatId, "هذا البوت يرسل لك فيديوك عند اكتماله. لإنشاء طلب جديد استخدم الموقع.");
     return;
   }
@@ -171,23 +199,24 @@ async function handleUpdate(u) {
   // ----- admin commands -----
   try {
     if (c === "/pending") {
-      const list = Object.values(db.requests).filter((r) => r.status !== "delivered").sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, 20);
-      await send(chatId, list.length ? list.map((r) => `• <b>${esc(r.id)}</b> – @${esc(r.username)} – ${r.status}${r.chatId ? "" : " (لم يضغط Start)"}`).join("\n") : "لا توجد طلبات معلقة.");
+      const list = await orders.listOrders({ openOnly: true, limit: 20 });
+      await send(chatId, list.length ? list.map((r) => `• <b>${esc(r.request_id)}</b> – @${esc(r.telegram_username)} – ${r.status}${r.telegram_chat_id ? "" : " (لم يضغط Start)"}`).join("\n") : "لا توجد طلبات معلقة.");
     } else if (c === "/status") {
-      const r = req((args[0] || "").toUpperCase());
-      await send(chatId, r ? `<pre>${esc(JSON.stringify(r, null, 2))}</pre>` : "غير موجود.");
+      const o = await orders.getOrder((args[0] || "").toUpperCase());
+      if (!o) return void (await send(chatId, "غير موجود."));
+      const view = { request_id: o.request_id, status: o.status, telegram: "@" + o.telegram_username, phone: o.phone, linked: Boolean(o.telegram_chat_id), options: o.options, video: Boolean(o.video_key), error: o.error, created_at: o.created_at, updated_at: o.updated_at };
+      await send(chatId, `<pre>${esc(JSON.stringify(view, null, 2))}</pre>`);
     } else if (c === "/confirm") {
-      const r = await confirm((args[0] || "").toUpperCase(), `telegram:${username || chatId}`);
-      await send(chatId, `✅ ${esc(r.id)} مؤكد${r.chatId ? " وتم إبلاغ الزبون." : " – الزبون لم يضغط Start بعد، سيُبلَّغ عند الربط."}`);
-      handlers.onConfirmed && handlers.onConfirmed(r);
+      const { order, changed } = await confirm((args[0] || "").toUpperCase(), `telegram:${username || chatId}`);
+      await send(chatId, changed ? `✅ ${esc(order.request_id)} مؤكد وتم إبلاغ الزبون.` : `ℹ️ ${esc(order.request_id)} حالته الآن: ${order.status}`);
     } else if (c === "/deliver") {
       const id = (args[0] || "").toUpperCase();
       const url = args[1];
-      const hasMedia = m.video || m.document || m.animation;
-      const r = hasMedia
-        ? await deliver(id, { copyFrom: { chatId, messageId: m.message_id } }, text.replace(/^\/deliver\s+\S+\s*/i, "") || "")
+      const file = m.video || m.document || m.animation;
+      const o = file
+        ? await deliver(id, { copyFrom: { chatId, messageId: m.message_id, fileId: file.file_id, fileSize: file.file_size } }, text.replace(/^\/deliver\s+\S+\s*/i, "") || "")
         : url ? await deliver(id, { url }) : null;
-      await send(chatId, r ? `📤 تم تسليم ${esc(r.id)} إلى @${esc(r.username)}.` : "أرسل الفيديو مع التعليق /deliver ID، أو /deliver ID رابط-الفيديو");
+      await send(chatId, o ? `📤 تم تسليم ${esc(o.request_id)} إلى @${esc(o.telegram_username)}.` : "أرسل الفيديو مع التعليق /deliver ID، أو /deliver ID رابط-الفيديو");
     } else {
       await send(chatId, "الأوامر: /pending · /confirm ID · /deliver ID (مع فيديو أو رابط) · /status ID");
     }
@@ -198,8 +227,7 @@ async function handleUpdate(u) {
 
 // ---------- transport: webhook on https, long polling otherwise ----------
 let pollTimer = null;
-async function init(app, publicUrl, h = {}) {
-  handlers = { ...handlers, ...h };
+async function init(app, publicUrl) {
   if (!configured) return { mode };
   try { BOT_USERNAME = (await call("getMe")).username || BOT_USERNAME; } catch (e) { console.error("telegram getMe:", e.message); return { mode: "error", error: e.message }; }
   const secret = crypto.createHash("sha256").update(TOKEN).digest("hex").slice(0, 40);
@@ -216,7 +244,7 @@ async function init(app, publicUrl, h = {}) {
   }
   // Local dev: poll only when TELEGRAM_POLL=1, otherwise leave the production webhook alone
   // (polling and a webhook cannot coexist on one bot token).
-  if (mode !== "webhook" && clean(process.env.TELEGRAM_POLL) !== "1") { mode = "idle"; return { mode, username: BOT_USERNAME, admins: admins().length }; }
+  if (mode !== "webhook" && clean(process.env.TELEGRAM_POLL) !== "1") { mode = "idle"; return { mode, username: BOT_USERNAME, admins: (await admins()).length }; }
   if (mode !== "webhook") {
     await call("deleteWebhook", { drop_pending_updates: false }).catch(() => {});
     mode = "polling";
@@ -230,9 +258,7 @@ async function init(app, publicUrl, h = {}) {
     };
     poll();
   }
-  return { mode, username: BOT_USERNAME, admins: admins().length };
+  return { mode, username: BOT_USERNAME, admins: (await admins()).length };
 }
 
-const list = () => Object.values(db.requests).sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
-
-module.exports = { configured, init, registerRequest, notifyAdmins, confirm, deliver, linkFor, req, list, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => admins().length };
+module.exports = { configured, init, notifyAdmins, announceOrder, confirm, deliver, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };

@@ -16,6 +16,8 @@
     attachments: [],     // every file sent, goes with the order
     requestId: null,
     requesterId: null,
+    accessToken: null,
+    idemKey: null,       // reused on retry so a double click / timeout never creates a second order
     started: false,
   };
   const price = (q = state.quality, s = state.seconds) => Math.ceil((state.rates[q] || state.rates[1080]) * s);
@@ -26,16 +28,14 @@
     clearTimeout(toast._t); toast._t = setTimeout(() => (t.hidden = true), 3400);
   };
 
-  // ---------- validation (mirrors the server) ----------
+  // ---------- validation (mirrors validate.js on the server) ----------
   const parseTelegram = (v) => {
-    const m = String(v || "").trim().replace(/^(https?:\/\/)?(www\.)?t\.me\//i, "").replace(/^@+/, "").match(/^[A-Za-z][A-Za-z0-9_]{4,31}$/);
-    return m ? m[0] : "";
+    const s = String(v || "").trim().replace(/^(https?:\/\/)?(www\.)?t\.me\//i, "").replace(/^@/, "");
+    return /^[A-Za-z0-9_]{5,32}$/.test(s) ? s.toLowerCase() : "";
   };
   const parsePhone = (v) => {
-    let d = String(v || "").replace(/\D/g, "");
-    if (d.startsWith("00964")) d = d.slice(5); else if (d.startsWith("964")) d = d.slice(3);
-    if (d.startsWith("0")) d = d.slice(1);
-    return /^7\d{9}$/.test(d) ? `+964${d}` : "";
+    const m = String(v || "").trim().replace(/[\s\-().]/g, "").match(/^(?:0|\+964|00964)?(7\d{9})$/);
+    return m ? `+964${m[1]}` : "";
   };
   const contact = () => ({ telegram: parseTelegram($("telegram").value), phone: parsePhone($("phone").value) });
   ["telegram", "phone"].forEach((id) => $(id).addEventListener("input", () => $(id).parentElement.classList.remove("bad")));
@@ -148,7 +148,7 @@
   const orderPayload = () => ({
     quality: state.quality, seconds: state.seconds, language: state.language, characters: state.characters,
     ...contact(),
-    requestId: state.requestId, requesterId: state.requesterId,
+    requestId: state.requestId, requesterId: state.requesterId, accessToken: state.accessToken,
     description: state.messages.filter((m) => m.role === "user").map((m) => m.content).filter(Boolean).join("\n"),
     attachments: state.attachments,
   });
@@ -177,7 +177,8 @@
   $("fileInput").addEventListener("change", () => {
     [...$("fileInput").files].forEach((file) => {
       const isVideo = file.type.startsWith("video/") || /\.(mp4|webm|mov|m4v)$/i.test(file.name);
-      const isImage = file.type.startsWith("image/");
+      const isImage = file.type.startsWith("image/") || /\.(png|jpe?g|webp|gif|heic)$/i.test(file.name);
+      if (!isImage && !isVideo) { toast(`الملف ${file.name} غير مدعوم – ارفع صورة أو فيديو فقط`); return; }
       if (file.size > state.attachLimit) { toast(`الملف ${file.name} أكبر من الحد المسموح (${Math.round(state.attachLimit / 1048576)} MB)`); return; }
       const item = { name: file.name, size: file.size, image: isImage, video: isVideo, role: isImage ? "char1" : "ref", preview: null, done: false, progress: 0, url: null, stored: null };
       // first picture defaults to character 1, next ones to 2, 3, then reference
@@ -185,7 +186,7 @@
       if (isImage || isVideo) item.preview = URL.createObjectURL(file);
       state.pending.push(item); renderTray();
       const xhr = new XMLHttpRequest();
-      xhr.open("PUT", `/api/attach/${encodeURIComponent(file.name)}`);
+      xhr.open("PUT", `/api/attach/${encodeURIComponent(file.name)}?role=${item.role}`);
       xhr.setRequestHeader("Content-Type", file.type || "application/octet-stream");
       xhr.upload.onprogress = (e) => { if (e.lengthComputable) { item.progress = Math.round((e.loaded / e.total) * 100); renderTray(); } };
       xhr.onload = () => {
@@ -292,25 +293,68 @@
     if (!c.phone) return fail("phone", "اكتب رقم هاتف عراقي صحيح (مثال: 7723682257).");
     const btn = $("sendOrder");
     btn.disabled = true; note.className = "note"; note.textContent = "جارٍ تجهيز الطلب وإرساله…";
+    state.idemKey ||= (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
     try {
-      const r = await fetch("/api/order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: state.messages, order: orderPayload() }) });
+      const r = await fetch("/api/order", { method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": state.idemKey }, body: JSON.stringify({ messages: state.messages, order: orderPayload() }) });
       const data = await r.json();
-      if (r.status === 400) return fail(data.field || "chat", data.message);
+      if (r.status === 400) { state.idemKey = null; return fail(data.field || "chat", data.message); }
+      if (r.status === 429) { state.idemKey = null; note.className = "note err"; note.textContent = data.message; return; }
       note.className = `note ${data.ok ? "ok" : "err"}`; note.textContent = data.message;
       toast(data.ok ? "تم استلام طلبك" : "حدثت مشكلة");
       if (data.requestId) {
-        state.requestId = data.requestId; state.requesterId = data.requesterId;
+        state.idemKey = null;
+        state.requestId = data.requestId; state.requesterId = data.requesterId; state.accessToken = data.accessToken;
+        try { localStorage.setItem("vi-order", JSON.stringify({ requestId: data.requestId, requesterId: data.requesterId, accessToken: data.accessToken })); } catch {}
         const bot = data.botLink ? `<br><a class="botlink" href="${data.botLink}" target="_blank" rel="noopener">افتح بوت التسليم واضغط Start ليصلك الفيديو على تيليغرام</a>` : "";
         addMsg("sys", `تم إرسال الطلب ✔<br>رقم الطلب <code>${data.requestId}</code> معرّفك <code>${data.requesterId}</code>${bot}<br><small>أي رسالة ترسلها الآن تُضاف إلى هذا الطلب.</small>`, [], "ids ok");
         if (data.botLink) note.innerHTML = `${note.textContent}<br><a href="${data.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>`;
         state.messages.push({ role: "assistant", content: `تم إرسال الطلب. رقم الطلب ${data.requestId}، معرّف الزبون ${data.requesterId}.` });
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
+        trackOrder(data);
       }
     } catch {
-      note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم.";
+      note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، اضغط مرة ثانية (لن يتكرر الطلب).";
     } finally { btn.disabled = false; }
   });
+
+  // ---------- order status (polls the server; plays the video when ready) ----------
+  const STEPS = [["queued", "مسجّل"], ["awaiting_admin", "مراجعة"], ["generating", "قيد الإنتاج"], ["completed", "جاهز"]];
+  const stepIndex = (s) => ({ queued: 0, awaiting_admin: 1, prompt_ready: 2, generating: 2, completed: 3, delivered: 3 })[s] ?? 0;
+  let tracker = null;
+  function trackOrder(first) {
+    if (tracker) clearTimeout(tracker.timer);
+    const card = addMsg("sys", "", [], "ids status");
+    tracker = { card, video: null, timer: null };
+    const paint = (d) => {
+      const at = stepIndex(d.status);
+      const bad = d.status === "failed" || d.status === "cancelled";
+      const steps = STEPS.map(([, label], i) => `<span class="${bad ? "" : i < at ? "done" : i === at ? "now" : ""}">${label}</span>`).join("");
+      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>` : "";
+      card.querySelector(".st")?.remove();
+      const st = document.createElement("div"); st.className = "st";
+      st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${d.message || ""}</span>${bot}`;
+      card.prepend(st);
+      if (d.videoUrl && !tracker.video) {
+        const v = document.createElement("video");
+        v.controls = true; v.playsInline = true; v.preload = "metadata"; v.src = d.videoUrl; v.className = "result";
+        card.appendChild(v); tracker.video = v;
+        list.scrollTop = list.scrollHeight;
+      }
+    };
+    const poll = async () => {
+      try {
+        const r = await fetch(`/api/orders/${encodeURIComponent(state.requestId)}/status`, { headers: { "x-requester-id": state.requesterId, "x-order-token": state.accessToken }, cache: "no-store" });
+        if (r.status === 404) { try { localStorage.removeItem("vi-order"); } catch {} card.remove(); return; }
+        const d = await r.json();
+        if (d.ok) paint(d);
+        if (["delivered", "failed", "cancelled"].includes(d.status)) return;
+      } catch {}
+      tracker.timer = setTimeout(poll, 5000);
+    };
+    if (first && first.status) paint(first);
+    poll();
+  }
 
   // ---------- works ----------
   const fmtSize = (b) => (b > 1e6 ? `${(b / 1e6).toFixed(1)} MB` : `${Math.round(b / 1e3)} KB`);
@@ -348,5 +392,10 @@
     const hello = "هلا بيك 👋 احجيلي عن الفيديو اللي تريده: شنو الفكرة، ولمن موجّه؟ وإذا عندك صور للشخصيات أو مقطع مرجعي ارفعه من زر المشبك.";
     addMsg("bot", hello);
     state.messages.push({ role: "assistant", content: hello });
+    // coming back to the page: keep following the last order
+    try {
+      const saved = JSON.parse(localStorage.getItem("vi-order") || "null");
+      if (saved?.requestId && saved.accessToken) { Object.assign(state, saved); startChat(); trackOrder(null); }
+    } catch {}
   })();
 })();

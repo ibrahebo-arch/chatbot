@@ -1,9 +1,17 @@
 # Render.com blueprint – New → Blueprint → pick this repo.
 # Secrets marked sync:false are asked for once in the Render dashboard (never stored in GitHub).
+databases:
+  - name: vi-iraq-db
+    region: oregon
+    plan: basic-256mb
+    databaseName: vi_iraq
+    user: vi_iraq
+
 services:
   - type: web
     name: vi-iraq
     runtime: node
+    region: oregon            # same region as the database so the internal URL works
     plan: free
     buildCommand: npm ci --omit=dev
     startCommand: npm start
@@ -11,23 +19,37 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
+      - key: DATABASE_URL     # internal connection string, injected by Render – never copied by hand
+        fromDatabase:
+          name: vi-iraq-db
+          property: connectionString
       - key: OPENAI_API_KEY
         sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
-      - key: BREVO_API_KEY
-        sync: false
-      - key: MAIL_FROM
-        value: ibrahebo@gmail.com
-      - key: MAIL_TO
-        value: ibrahim2dms@gmail.com
-      - key: ADMIN_TOKEN
-        generateValue: true
       - key: ATTACH_LIMIT
         value: 200mb
-      - key: MAIL_ATTACH_MB
-        value: "10"
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET
+        sync: false
+      - key: ANTHROPIC_API_KEY  # used by the generation worker (next step)
+        sync: false
+      - key: HIGGSFIELD_API_KEY # used by the generation worker (next step)
+        sync: false
+      - key: CLAUDE_MODEL       # used by the generation worker (next step)
+        sync: false
+      - key: AUTO_GENERATE      # "false" = an admin approves each order with /confirm
+        sync: false
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: TELEGRAM_ADMIN_CHAT_IDS
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false
+      - key: PUBLIC_URL
         sync: false
