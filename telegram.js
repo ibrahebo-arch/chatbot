@@ -59,6 +59,15 @@ const send = (chatId, text, extra = {}) => call("sendMessage", { chat_id: chatId
 const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
 const linkFor = (requestId) => `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(requestId)}`;
 
+// Same four steps the customer sees on the website: مسجّل › مراجعة › قيد الإنجاز › جاهز
+const STEPS = ["مسجّل", "مراجعة", "قيد الإنجاز", "جاهز"];
+const STEP_AT = { queued: 0, awaiting_admin: 1, prompt_ready: 2, generating: 2, completed: 3, delivered: 4 };
+function steps(status) {
+  if (status === "failed" || status === "cancelled") return `❌ ${status === "failed" ? "تعذّر إكمال الطلب" : "الطلب ملغى"}`;
+  const at = STEP_AT[status] ?? 0;
+  return "حالة طلبك:\n" + STEPS.map((s, i) => `${i < at ? "✅" : i === at ? "🔵" : "⚪️"} ${s}`).join("  ›  ");
+}
+
 /** doc: { buffer, name, caption } – sent from memory, nothing touches the disk. */
 async function notifyAdmins(text, doc) {
   const ids = await admins();
@@ -81,7 +90,7 @@ async function confirm(requestId, by = "admin") {
   const r = await orders.setStatus(o.request_id, "awaiting_admin", "prompt_ready", { by, action: "confirm" });
   if (!r) return { order: await orders.getOrder(o.request_id), changed: false };
   if (o.telegram_chat_id) {
-    await send(o.telegram_chat_id, `✅ تم تأكيد طلبك <b>${esc(o.request_id)}</b>.\nبدأنا العمل على الفيديو، وستصلك النسخة النهائية هنا بمجرد اكتمالها.`).catch(() => {});
+    await send(o.telegram_chat_id, `✅ تمت الموافقة على طلبك <b>${esc(o.request_id)}</b>.\nبدأنا العمل على الفيديو، وستصلك النسخة النهائية هنا بمجرد اكتمالها.\n\n${steps("prompt_ready")}`).catch(() => {});
   }
   return { order: await orders.getOrder(o.request_id), changed: true };
 }
@@ -125,7 +134,7 @@ async function deliver(requestId, media, caption = "") {
   await orders.setStatus(id, ["awaiting_admin", "prompt_ready", "generating", "failed"], "completed", { by: "admin", action: "deliver" });
 
   // 2) send it on Telegram
-  const text = caption || `🎬 فيديوك جاهز – طلب ${id}\nشكراً لاختيارك VI Iraq. إذا تحتاج تعديلاً، رد هنا أو من الموقع بنفس رقم الطلب.`;
+  const text = caption || `🎬 فيديوك جاهز – طلب ${id}\nشكراً لاختيارك VI Iraq. إذا تحتاج تعديلاً، رد هنا أو من الموقع بنفس رقم الطلب.\n\n${steps("delivered")}`;
   if (media.copyFrom) {
     await call("copyMessage", { chat_id: o.telegram_chat_id, from_chat_id: media.copyFrom.chatId, message_id: media.copyFrom.messageId, caption: text });
   } else if (stored) {
@@ -165,7 +174,7 @@ async function handleUpdate(u) {
     const res = await orders.linkTelegram(id, chatId, username);
     if (res.reason === "not_found") return send(chatId, `لم أجد الطلب ${esc(id)}. تأكد من الرقم الموجود في الموقع.`);
     if (res.reason === "username_mismatch") return send(chatId, `هذا الطلب مسجّل باسم تيليغرام آخر. افتح الرابط من حساب @${esc(res.order.telegram_username)} أو تواصل معنا.`);
-    await send(chatId, `أهلاً بك في VI Iraq 👋\nتم ربط هذه المحادثة بطلبك <b>${esc(res.order.request_id)}</b>.\nسنرسل لك الفيديو النهائي هنا عند اكتماله، وستصلك رسالة عند تأكيد الطلب.`);
+    await send(chatId, `أهلاً بك في VI Iraq 👋\n✅ تم تأكيد طلبك <b>${esc(res.order.request_id)}</b> وربطه بهذه المحادثة.\nفريقنا يراجعه الآن، وستصلك رسالة هنا عند كل خطوة، ثم الفيديو النهائي.\n\n${steps(res.order.status)}`);
     await notifyAdmins(`🔗 الزبون @${esc(username || "?")} ربط محادثته بالطلب <b>${esc(res.order.request_id)}</b> (الحالة: ${res.order.status}).`);
   };
 

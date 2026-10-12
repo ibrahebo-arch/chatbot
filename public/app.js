@@ -312,6 +312,7 @@
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
         trackOrder(data);
+        askBot(data);
       }
     } catch {
       note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، اضغط مرة ثانية (لن يتكرر الطلب).";
@@ -319,7 +320,17 @@
   });
 
   // ---------- order status (polls the server; plays the video when ready) ----------
-  const STEPS = [["queued", "مسجّل"], ["awaiting_admin", "مراجعة"], ["generating", "قيد الإنتاج"], ["completed", "جاهز"]];
+  const STEPS = [["queued", "مسجّل"], ["awaiting_admin", "مراجعة"], ["generating", "قيد الإنجاز"], ["completed", "جاهز"]];
+  // after sending: the order is only confirmed once the customer presses Start in the bot
+  function askBot(d) {
+    const dlg = $("botDialog");
+    if (!d.botLink || d.linked || !dlg?.showModal) return;
+    $("botDlgId").textContent = d.requestId;
+    $("botDlgLink").href = d.botLink;
+    $("botDlgLink").onclick = () => setTimeout(() => dlg.close(), 300);
+    $("botDlgLater").onclick = () => dlg.close();
+    if (!dlg.open) dlg.showModal();
+  }
   const stepIndex = (s) => ({ queued: 0, awaiting_admin: 1, prompt_ready: 2, generating: 2, completed: 3, delivered: 3 })[s] ?? 0;
   let tracker = null;
   function trackOrder(first) {
@@ -330,7 +341,7 @@
       const at = stepIndex(d.status);
       const bad = d.status === "failed" || d.status === "cancelled";
       const steps = STEPS.map(([, label], i) => `<span class="${bad ? "" : i < at ? "done" : i === at ? "now" : ""}">${label}</span>`).join("");
-      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>` : "";
+      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">👉 أكّد طلبك: افتح البوت واضغط Start</a>` : "";
       card.querySelector(".st")?.remove();
       const st = document.createElement("div"); st.className = "st";
       st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${d.message || ""}</span>${bot}`;

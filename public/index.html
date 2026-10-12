@@ -164,6 +164,14 @@
     <a href="/loops/CREDITS.md" target="_blank" rel="noopener">مصادر المقاطع</a>
   </footer>
 
+  <dialog class="botdlg" id="botDialog" aria-labelledby="botDlgTitle">
+    <div class="bd-icon" aria-hidden="true">✈️</div>
+    <h3 id="botDlgTitle">خطوة أخيرة: أكّد طلبك على تيليغرام</h3>
+    <p>طلبك <code id="botDlgId"></code> مسجّل. افتح بوت التسليم واضغط <b>Start</b> لتأكيده – بعدها يبدأ الفريق بالمراجعة، وتصلك كل خطوة والفيديو النهائي هناك.</p>
+    <a class="botlink big" id="botDlgLink" href="#" target="_blank" rel="noopener">افتح البوت واضغط Start</a>
+    <button type="button" class="bd-later" id="botDlgLater">لاحقاً</button>
+  </dialog>
+
   <div class="toast" id="toast" hidden></div>
   <script src="/app.js"></script>
 </body>

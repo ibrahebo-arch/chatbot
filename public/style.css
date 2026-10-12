@@ -103,6 +103,15 @@ button { cursor: pointer; }
 .msg.sys.status .steps span.now { background: var(--green); border-color: var(--green); color: #0f1114; font-weight: 600; }
 .msg.sys.status .stmsg { color: var(--text); }
 .msg.sys.status video.result { width: 100%; border-radius: 10px; background: #000; }
+/* "confirm on Telegram" dialog after sending an order */
+.botdlg { width: min(92vw, 420px); border: 1px solid var(--line2); border-radius: 18px; background: var(--card); color: var(--text); padding: 22px 20px 16px; text-align: center; }
+.botdlg::backdrop { background: rgba(5,6,8,.7); backdrop-filter: blur(3px); }
+.botdlg .bd-icon { font-size: 2rem; }
+.botdlg h3 { margin: 6px 0 8px; font-size: 1.08rem; }
+.botdlg p { margin: 0 0 12px; color: var(--muted); font-size: .9rem; line-height: 1.8; }
+.botdlg code { direction: ltr; display: inline-block; background: var(--card2); border: 1px solid var(--line2); border-radius: 8px; padding: 0 6px; color: var(--text); }
+.botlink.big { display: block; padding: 12px 16px; font-size: 1rem; }
+.botdlg .bd-later { margin-top: 6px; border: 0; background: transparent; color: var(--muted); font-size: .85rem; padding: 6px 12px; }
 .note a { color: var(--sand2); }
 .msg .tag { display: block; margin-top: 4px; font-size: .7rem; color: rgba(255,255,255,.55); direction: ltr; text-align: right; }
 .msg.typing { display: flex; gap: 4px; padding: 14px 16px; }

@@ -341,7 +341,7 @@ app.post("/api/chat", chatLimit, async (req, res) => {
 });
 
 const STATUS_TEXT = {
-  queued: "طلبك مسجّل. اضغط Start في بوت التسليم على تيليغرام حتى نبدأ.",
+  queued: "طلبك مسجّل ✔ لتأكيده افتح بوت التسليم على تيليغرام واضغط Start – لا نبدأ العمل قبل ذلك.",
   awaiting_admin: "طلبك قيد المراجعة من فريق VI Iraq.",
   prompt_ready: "تمت الموافقة على طلبك ونجهّز الفيديو الآن.",
   generating: "جارٍ إنتاج الفيديو…",
@@ -398,20 +398,23 @@ app.post("/api/order", orderLimit, async (req, res) => {
   const ids = { requestId: o.request_id, requesterId: o.requester_id, accessToken: o.access_token, telegram, phone };
 
   if (created.created) {
-    try {
-      // attach the draft uploads and move them under uploads/<request_id>/
-      for (const mv of await orders.claimAssets(o.request_id, o.requester_id, attachments)) {
-        try { await storage.move(mv.from, mv.to); await orders.setAssetKey(mv.asset.id, mv.to); } catch (e) { console.error("asset move:", e.message); }
+    // the customer gets the answer (and the bot link) right away; uploads, brief and admin notice follow
+    (async () => {
+      try {
+        // attach the draft uploads and move them under uploads/<request_id>/
+        for (const mv of await orders.claimAssets(o.request_id, o.requester_id, attachments)) {
+          try { await storage.move(mv.from, mv.to); await orders.setAssetKey(mv.asset.id, mv.to); } catch (e) { console.error("asset move:", e.message); }
+        }
+        const files = await orders.orderAssets(o.request_id);
+        const brief = await buildBrief({ ...options, requestId: o.request_id, requesterId: o.requester_id, telegram, phone, createdAt: o.created_at.toISOString() }, messages, files);
+        await orders.saveBrief(o.request_id, brief);
+        if (tg.configured) await tg.announceOrder(await orders.getOrder(o.request_id), brief);
+      } catch (e) {
+        console.error("order follow-up:", e.message);
+        await orders.addEvent(null, o.request_id, "error", { step: "follow-up", message: e.message }).catch(() => {});
       }
-      const files = await orders.orderAssets(o.request_id);
-      const brief = await buildBrief({ ...options, requestId: o.request_id, requesterId: o.requester_id, telegram, phone, createdAt: o.created_at.toISOString() }, messages, files);
-      await orders.saveBrief(o.request_id, brief);
-      await orders.advance(o.request_id); // moves on only when Telegram is already linked
-      if (tg.configured) tg.announceOrder(await orders.getOrder(o.request_id), brief).catch((e) => console.error("telegram notify:", e.message));
-    } catch (e) {
-      console.error("order follow-up:", e.message);
-      await orders.addEvent(null, o.request_id, "error", { step: "follow-up", message: e.message }).catch(() => {});
-    }
+    })();
+    await orders.advance(o.request_id); // moves on only when Telegram is already linked
   }
 
   const view = orderView(await orders.getOrder(o.request_id));
@@ -420,7 +423,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
     ...view,
     ok: true,
     duplicate: !created.created,
-    message: `تم إرسال طلبك بنجاح 🎉 رقم الطلب: ${o.request_id} – ${view.linked ? "سنتواصل معك على تيليغرام @" + telegram : "اضغط Start في بوت التسليم ليصلك الفيديو"}`,
+    message: `تم تسجيل طلبك 🎉 رقم الطلب: ${o.request_id} – ${view.linked ? "سنتواصل معك على تيليغرام @" + telegram : "خطوة أخيرة: افتح بوت التسليم واضغط Start لتأكيد الطلب"}`,
   });
 });
 
