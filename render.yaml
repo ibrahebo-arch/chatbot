@@ -45,6 +45,8 @@ services:
         sync: false
       - key: DEMO_DELIVERY      # free test stage: auto steps + random loop video; set false when payments start
         value: "true"
+      - key: ORDER_COOLDOWN_MINUTES # wait between two orders while one is in progress
+        value: "20"
       - key: BREVO_API_KEY      # email 1 (new order) and email 2 (video delivered)
         sync: false
       - key: MAIL_FROM

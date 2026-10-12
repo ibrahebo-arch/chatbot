@@ -41,17 +41,24 @@ test("07501234567 and +9647501234567 are the same requester", { skip }, async ()
   assert.equal((await db.query("SELECT count(*)::int n FROM requesters WHERE phone = '+9647501234567'")).rows[0].n, 1);
 });
 
-test("second order inside one hour is rejected (same requester, same phone, same username)", { skip }, async () => {
+test("second order inside 20 minutes is rejected while the first is in progress (same requester, phone, username)", { skip }, async () => {
   const first = await orders.createOrder({ telegram: "rate_user1", phone: "+9647701112233", options: opts });
   assert.equal(first.created, true);
   const again = orders.createOrder({ telegram: "rate_user1", phone: "+9647701112233", options: opts });
-  await assert.rejects(again, (e) => e.code === "rate_limited" && e.retryAfterSec > 3500);
+  await assert.rejects(again, (e) => e.code === "rate_limited" && e.retryAfterSec > 1100 && e.retryAfterSec <= 1200);
   // a new requester_id with the same phone or the same username is still limited
   await assert.rejects(orders.createOrder({ telegram: "other_name1", phone: "+9647701112233", options: opts }), { code: "rate_limited" });
   await assert.rejects(orders.createOrder({ telegram: "rate_user1", phone: "+9647709998877", options: opts }), { code: "rate_limited" });
-  // an hour later it is allowed again
-  await db.query("UPDATE orders SET created_at = now() - interval '61 minutes' WHERE request_id = $1", [first.order.request_id]);
+  // 20 minutes later it is allowed again
+  await db.query("UPDATE orders SET created_at = now() - interval '21 minutes' WHERE request_id = $1", [first.order.request_id]);
   assert.equal((await orders.createOrder({ telegram: "rate_user1", phone: "+9647701112233", options: opts })).created, true);
+});
+
+test("after the video is received the customer can order again right away", { skip }, async () => {
+  const first = await orders.createOrder({ telegram: "again_user1", phone: "+9647722223333", options: opts });
+  await assert.rejects(orders.createOrder({ telegram: "again_user1", phone: "+9647722223333", options: opts }), { code: "rate_limited" });
+  await db.query("UPDATE orders SET status = 'delivered' WHERE request_id = $1", [first.order.request_id]);
+  assert.equal((await orders.createOrder({ telegram: "again_user1", phone: "+9647722223333", options: opts })).created, true);
 });
 
 test("idempotency key returns the same order instead of a second one", { skip }, async () => {

@@ -12,7 +12,9 @@ const crypto = require("crypto");
 const db = require("./db");
 const { requesterIdFor } = require("./validate");
 
-const HOUR_MS = 60 * 60 * 1000;
+// Wait between two orders of the same customer (default 20 min). An order that is already
+// completed/delivered (or failed/cancelled) does not block: after receiving the video they can order again.
+const cooldownMs = () => (Number(process.env.ORDER_COOLDOWN_MINUTES) || 20) * 60 * 1000;
 const ROLE_DB = { char1: "character1", char2: "character2", char3: "character3", ref: "reference" };
 const ROLE_UI = Object.fromEntries(Object.entries(ROLE_DB).map(([k, v]) => [v, k]));
 const autoGenerate = () => String(process.env.AUTO_GENERATE || "false").trim().toLowerCase() === "true";
@@ -66,14 +68,14 @@ async function createOrder({ telegram, phone, idempotencyKey = null, options = {
       const last = (await c.query(
         `SELECT max(o.created_at) AS at FROM orders o JOIN requesters r ON r.id = o.requester_id
           WHERE (r.id = $1 OR r.phone = $2 OR r.telegram_username = $3)
-            AND o.status NOT IN ('cancelled', 'failed')`,
+            AND o.status NOT IN ('cancelled', 'failed', 'completed', 'delivered')`,
         [requesterId, phone, telegram]
       )).rows[0].at;
       if (last) {
-        const waitMs = new Date(last).getTime() + HOUR_MS - Date.now();
+        const waitMs = new Date(last).getTime() + cooldownMs() - Date.now();
         if (waitMs > 0) {
           const minutes = Math.ceil(waitMs / 60000);
-          throw new OrderError("rate_limited", `يمكنك إرسال طلب واحد كل ساعة. حاول بعد ${minutes} دقيقة.`, { retryAfterSec: Math.ceil(waitMs / 1000), minutes });
+          throw new OrderError("rate_limited", `لديك طلب قيد التنفيذ. يمكنك إرسال طلب جديد بعد استلام الفيديو أو بعد ${minutes} دقيقة.`, { retryAfterSec: Math.ceil(waitMs / 1000), minutes });
         }
       }
 
