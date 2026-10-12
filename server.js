@@ -452,7 +452,10 @@ app.post("/api/order", orderLimit, async (req, res) => {
     ...view,
     ok: true,
     duplicate: !created.created,
-    message: `تم تسجيل طلبك 🎉 رقم الطلب: ${o.request_id} – ${view.linked ? "سنتواصل معك على تيليغرام @" + telegram : "خطوة أخيرة: افتح بوت التسليم واضغط Start لتأكيد الطلب"}`,
+    message: `تم تسجيل طلبك 🎉 رقم الطلب: ${o.request_id} – ${
+      DEMO ? "تابع الحالة في الدردشة، سيظهر الفيديو خلال ثوانٍ"
+      : view.linked || !tg.configured ? "سنتواصل معك على تيليغرام @" + telegram
+      : "خطوة أخيرة: افتح بوت التسليم واضغط Start لتأكيد الطلب"}`,
   });
 });
 
