@@ -83,6 +83,10 @@ systemctl enable vi-iraq >/dev/null
 systemctl restart vi-iraq
 
 log "nginx reverse proxy (port 80 -> $PORT)"
+# once certbot has added HTTPS to the site, leave the config alone (rewriting it drops the 443 block)
+if grep -q "managed by Certbot" /etc/nginx/sites-available/vi-iraq 2>/dev/null; then
+  echo "HTTPS config present - keeping it."
+else
 cat > /etc/nginx/sites-available/vi-iraq <<EOF
 server {
     listen 80 default_server;
@@ -101,6 +105,7 @@ server {
     }
 }
 EOF
+fi
 ln -sf /etc/nginx/sites-available/vi-iraq /etc/nginx/sites-enabled/vi-iraq
 rm -f /etc/nginx/sites-enabled/default
 nginx -t -q && systemctl reload nginx
@@ -112,7 +117,9 @@ ufw --force enable >/dev/null
 log "HTTPS"
 # certbot can only succeed once the domain's DNS points at this server
 SERVER_IP=$(curl -fsS4 https://api.ipify.org || true)
-if [ -n "$SERVER_IP" ] && getent ahostsv4 "www.$DOMAIN" | grep -q "$SERVER_IP" && getent ahostsv4 "$DOMAIN" | grep -q "$SERVER_IP"; then
+if [ -d "/etc/letsencrypt/live/$DOMAIN" ]; then
+  echo "Certificate already present (auto-renews via certbot.timer)."
+elif [ -n "$SERVER_IP" ] && getent ahostsv4 "www.$DOMAIN" | grep -q "$SERVER_IP" && getent ahostsv4 "$DOMAIN" | grep -q "$SERVER_IP"; then
   certbot --nginx -n --agree-tos --register-unsafely-without-email --redirect -d "$DOMAIN" -d "www.$DOMAIN" || echo "certbot failed - site stays on HTTP"
 else
   echo "DNS for $DOMAIN does not point to $SERVER_IP yet - skipping HTTPS (re-run this script after updating DNS)."
