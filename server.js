@@ -71,7 +71,21 @@ const priceFor = (quality, seconds) =>
 // Behind a tunnel / hosting proxy the real visitor IP is in X-Forwarded-For.
 app.set("trust proxy", true);
 app.use(express.json({ limit: "1mb" }));
-app.use(express.static(path.join(__dirname, "public")));
+
+// Cache busting: index.html asks for /app.js?v=<content hash> and /style.css?v=<hash>, so after a deploy
+// every browser (and Cloudflare's 4-hour cache) loads the new files. The page itself is never cached.
+const PUBLIC_DIR = path.join(__dirname, "public");
+const ASSET_V = crypto.createHash("sha1").update(fs.readFileSync(path.join(PUBLIC_DIR, "app.js"))).update(fs.readFileSync(path.join(PUBLIC_DIR, "style.css"))).digest("hex").slice(0, 10);
+const INDEX_HTML = fs.readFileSync(path.join(PUBLIC_DIR, "index.html"), "utf8")
+  .replace('src="/app.js"', `src="/app.js?v=${ASSET_V}"`)
+  .replace('href="/style.css"', `href="/style.css?v=${ASSET_V}"`);
+const sendIndex = (_req, res) => res.set("Cache-Control", "no-cache").type("html").send(INDEX_HTML);
+app.get(["/", "/index.html"], sendIndex);
+app.use(express.static(PUBLIC_DIR, {
+  setHeaders: (res, file) => {
+    if (/\.(js|css)$/.test(file)) res.set("Cache-Control", res.req.query.v ? "public, max-age=31536000, immutable" : "no-cache");
+  },
+}));
 
 // Simple in-memory rate limit per visitor IP (protects the OpenAI bill and storage).
 function rateLimit(max, windowMs, msg) {
@@ -579,7 +593,7 @@ app.post("/api/requests/:id/deliver", adminOnly, async (req, res) => {
   catch (e) { res.status(400).json({ ok: false, error: e.message }); }
 });
 
-app.get("/{*path}", (_req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
+app.get("/{*path}", sendIndex);
 
 async function start() {
   try {
