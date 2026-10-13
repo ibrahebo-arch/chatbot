@@ -29,7 +29,9 @@ node -v
 log "App user and code"
 id "$APP_USER" >/dev/null 2>&1 || useradd --system --create-home --shell /usr/sbin/nologin "$APP_USER"
 if [ -d "$APP_DIR/.git" ]; then
-  git -C "$APP_DIR" fetch -q origin main && git -C "$APP_DIR" reset -q --hard origin/main
+  # git runs as the app user: the checkout belongs to it (root would hit "dubious ownership")
+  sudo -u "$APP_USER" -H git -C "$APP_DIR" fetch -q --depth 1 origin main
+  sudo -u "$APP_USER" -H git -C "$APP_DIR" reset -q --hard origin/main
 else
   git clone -q --depth 1 "$REPO" "$APP_DIR"
 fi
