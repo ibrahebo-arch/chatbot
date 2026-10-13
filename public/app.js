@@ -311,7 +311,7 @@
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
         trackOrder(data);
-        if (state.payments && data.payment && !data.payment.paid) askPay(data); else askBot(data);
+        if (state.payments && data.payment && !data.payment.paid) { rememberOrder(); askPay(data); } else askBot(data);
       }
     } catch {
       note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، اضغط مرة ثانية (لن يتكرر الطلب).";
@@ -387,10 +387,15 @@
         : p && p.paid ? `<span class="paid">✔ مدفوع${p.method ? ` (${p.method})` : ""}</span>` : "";
       const botText = state.demo || p ? "👉 اختياري: افتح البوت واضغط Start ليصلك الفيديو على تيليغرام أيضاً" : "👉 أكّد طلبك: افتح البوت واضغط Start";
       const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">${botText}</a>` : "";
-      card.querySelector(".st")?.remove();
-      const st = document.createElement("div"); st.className = "st";
-      st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${msg}</span>${payBox}${bot}`;
-      card.prepend(st);
+      // rebuild only on a real change: replacing the card every second swallowed clicks on «ادفع»
+      const html = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${msg}</span>${payBox}${bot}`;
+      if (html !== tracker.html) {
+        tracker.html = html;
+        card.querySelector(".st")?.remove();
+        const st = document.createElement("div"); st.className = "st";
+        st.innerHTML = html;
+        card.prepend(st);
+      }
       if (d.videoUrl && at >= 3 && !tracker.video) {
         const v = document.createElement("video"); // plays like a GIF; controls for sound/fullscreen
         v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.controls = true; v.src = d.videoUrl; v.className = "result";
