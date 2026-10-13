@@ -311,7 +311,7 @@
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
         trackOrder(data);
-        askBot(data);
+        if (state.payments && data.payment && !data.payment.paid) askPay(data); else askBot(data);
       }
     } catch {
       note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، اضغط مرة ثانية (لن يتكرر الطلب).";
@@ -330,6 +330,41 @@
     $("botDlgLater").onclick = () => dlg.close();
     if (!dlg.open) dlg.showModal();
   }
+  // ---------- payment (Wayl) ----------
+  const iqd = (n) => Number(n || 0).toLocaleString("en-US");
+  const ownerHeaders = () => ({ "x-requester-id": state.requesterId, "x-order-token": state.accessToken });
+  // remembered for the return from the payment page (/paid), which reloads the site
+  const rememberOrder = () => { try { localStorage.setItem("vi-pay", JSON.stringify({ requestId: state.requestId, requesterId: state.requesterId, accessToken: state.accessToken, at: Date.now() })); } catch {} };
+  async function pay(btn) {
+    if (!state.requestId) return;
+    // open the tab inside the click so the browser does not block it; the address comes after the request
+    const win = window.open("", "_blank");
+    if (win) win.document.write('<p dir="rtl" style="font:16px system-ui;padding:24px">جارٍ فتح صفحة الدفع…</p>');
+    if (btn) btn.disabled = true;
+    try {
+      const r = await fetch(`/api/orders/${encodeURIComponent(state.requestId)}/pay`, { method: "POST", headers: ownerHeaders() });
+      const d = await r.json();
+      if (d.paid) { win?.close(); toast("تم الدفع مسبقاً ✔"); return; }
+      if (!r.ok || !d.url) { win?.close(); toast(d.message || "تعذّر فتح صفحة الدفع"); return; }
+      rememberOrder();
+      if (win) { win.location.href = d.url; toast("أكمل الدفع في الصفحة الجديدة – تتحدث الحالة هنا تلقائياً"); }
+      else location.href = d.url;
+    } catch {
+      win?.close(); toast("تعذّر الاتصال بالخادم، حاول مرة ثانية.");
+    } finally { if (btn) btn.disabled = false; }
+  }
+  list.addEventListener("click", (e) => { const b = e.target.closest(".paybtn"); if (b) pay(b); });
+  function askPay(d) {
+    const dlg = $("payDialog");
+    if (!dlg?.showModal) return;
+    $("payDlgId").textContent = d.requestId;
+    $("payDlgAmount").textContent = iqd(d.payment.amountIqd);
+    $("payDlgUsd").textContent = `≈ $${price()}${d.payment.env === "test" ? " · وضع الاختبار" : ""}`;
+    $("payDlgBtn").onclick = () => { pay($("payDlgBtn")); dlg.close(); };
+    $("payDlgLater").onclick = () => dlg.close();
+    if (!dlg.open) dlg.showModal();
+  }
+
   const stepIndex = (s) => ({ queued: 0, awaiting_admin: 1, prompt_ready: 2, generating: 2, completed: 3, delivered: 3 })[s] ?? 0;
   let tracker = null;
   function trackOrder(first) {
@@ -338,17 +373,23 @@
     tracker = { card, video: null, timer: null };
     // steps light up one per second even when the server jumps ahead, so every state is seen
     tracker.shown = -1; tracker.latest = null; tracker.anim = null;
-    const MSG = ["طلبك مسجّل ✔", "طلبك قيد المراجعة…", "جارٍ إنجاز الفيديو…", "الفيديو جاهز 🎉"];
+    const MSG = ["طلبك مسجّل ✔", state.payments ? "تم استلام الدفع ✔ طلبك قيد المراجعة…" : "طلبك قيد المراجعة…", "جارٍ إنجاز الفيديو…", "الفيديو جاهز 🎉"];
     const paint = () => {
       const d = tracker.latest; if (!d) return;
       const bad = d.status === "failed" || d.status === "cancelled";
       const at = tracker.shown;
       const steps = STEPS.map(([, label], i) => `<span class="${bad ? "" : i < at ? "done" : i === at ? "now" : ""}">${label}</span>`).join("");
       const msg = bad || at === stepIndex(d.status) ? d.message || "" : MSG[at] || "";
-      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">${state.demo ? "👉 افتح البوت واضغط Start ليصلك الفيديو على تيليغرام أيضاً" : "👉 أكّد طلبك: افتح البوت واضغط Start"}</a>` : "";
+      const p = d.payment;
+      const unpaid = p && !p.paid && d.status === "queued";
+      const payBox = unpaid
+        ? `<div class="pay"><span class="amt">${iqd(p.amountIqd)} د.ع</span><button type="button" class="paybtn">ادفع</button></div>`
+        : p && p.paid ? `<span class="paid">✔ مدفوع${p.method ? ` (${p.method})` : ""}</span>` : "";
+      const botText = state.demo || p ? "👉 اختياري: افتح البوت واضغط Start ليصلك الفيديو على تيليغرام أيضاً" : "👉 أكّد طلبك: افتح البوت واضغط Start";
+      const bot = !d.linked && d.botLink ? `<br><a class="botlink" href="${d.botLink}" target="_blank" rel="noopener">${botText}</a>` : "";
       card.querySelector(".st")?.remove();
       const st = document.createElement("div"); st.className = "st";
-      st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${msg}</span>${bot}`;
+      st.innerHTML = `<b>طلب ${d.requestId}</b><div class="steps">${steps}</div><span class="stmsg">${msg}</span>${payBox}${bot}`;
       card.prepend(st);
       if (d.videoUrl && at >= 3 && !tracker.video) {
         const v = document.createElement("video"); // plays like a GIF; controls for sound/fullscreen
@@ -373,7 +414,9 @@
         if (d.ok) { tracker.latest = d; if (tracker.shown < 0) { tracker.shown = 0; paint(); } }
         if (["delivered", "failed", "cancelled"].includes(d.status) && tracker.video) return;
       } catch {}
-      tracker.timer = setTimeout(poll, state.demo && !tracker.video ? 1000 : 5000);
+      // quicker while a payment or the test-stage steps are under way
+      const waitingPay = tracker.latest?.payment && !tracker.latest.payment.paid;
+      tracker.timer = setTimeout(poll, (state.demo && !tracker.video) || waitingPay ? 2000 : 5000);
     };
     if (first && first.status) { tracker.latest = first; tracker.shown = 0; paint(); }
     step();
@@ -408,6 +451,7 @@
       const cfg = await (await fetch("/api/config")).json();
       if (cfg.rates) state.rates = cfg.rates;
       state.demo = Boolean(cfg.demo);
+      state.payments = cfg.payments || null;
       const lim = String(cfg.attachLimit || "").match(/^(\d+(?:\.\d+)?)\s*(kb|mb|gb)?$/i);
       if (lim) state.attachLimit = Number(lim[1]) * ({ kb: 1024, mb: 1048576, gb: 1073741824 }[(lim[2] || "mb").toLowerCase()]);
     } catch {}
@@ -419,5 +463,20 @@
     state.messages.push({ role: "assistant", content: hello });
     // a refresh always opens the welcome page with the showcase loops (no previous order restored)
     try { localStorage.removeItem("vi-order"); } catch {}
+    // …except the return from the payment page: Wayl sends the customer to /paid/?referenceId=<order>-P1&orderid=…
+    if (location.pathname.startsWith("/paid")) {
+      const ref = new URLSearchParams(location.search).get("referenceId") || "";
+      let back = null;
+      try { back = JSON.parse(localStorage.getItem("vi-pay") || "null"); } catch {}
+      history.replaceState(null, "", "/");
+      if (back?.requestId && Date.now() - back.at < 3 * 86400e3 && (!ref || ref.startsWith(back.requestId))) {
+        Object.assign(state, { requestId: back.requestId, requesterId: back.requesterId, accessToken: back.accessToken });
+        startChat();
+        addMsg("sys", `رجعت من صفحة الدفع – نتحقق من دفع الطلب ${back.requestId}…`);
+        trackOrder(null);
+      } else if (ref) {
+        addMsg("sys", `رجعت من صفحة الدفع (${ref}). إذا أكملت الدفع سيصلك التأكيد على تيليغرام وبالبريد.`);
+      }
+    }
   })();
 })();

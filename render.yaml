@@ -57,6 +57,14 @@ services:
         value: "10"
       - key: AUTO_GENERATE      # "false" = an admin approves each order with /confirm
         sync: false
+      - key: WAYL_API_KEY       # Wayl: creates payment links (empty = payments off)
+        sync: false
+      - key: WAYL_VERIFY_KEY    # Wayl: confirms a link was paid
+        sync: false
+      - key: WAYL_ENV           # test = test links · live = real payments
+        value: test
+      - key: PAY_IQD_PER_USD    # USD price → IQD amount (rounded up to 250)
+        value: "1310"
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: TELEGRAM_ADMIN_CHAT_IDS

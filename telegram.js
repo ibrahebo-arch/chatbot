@@ -88,7 +88,10 @@ async function notifyAdmins(text, doc) {
 async function confirm(requestId, by = "admin") {
   const o = await orders.getOrder(requestId);
   if (!o) throw new Error(`الطلب ${requestId} غير موجود`);
-  if (o.status === "queued") throw new Error(`الزبون @${o.telegram_username} لم يضغط Start في البوت بعد، لا يمكن التأكيد قبل الربط. الرابط: ${linkFor(o.request_id)}`);
+  if (o.status === "queued") {
+    if (orders.paymentsRequired()) throw new Error(`الطلب ${o.request_id} لم يُدفع بعد – لا يمكن التأكيد قبل الدفع.`);
+    throw new Error(`الزبون @${o.telegram_username} لم يضغط Start في البوت بعد، لا يمكن التأكيد قبل الربط. الرابط: ${linkFor(o.request_id)}`);
+  }
   if (o.status !== "awaiting_admin") return { order: o, changed: false };
   const r = await orders.setStatus(o.request_id, "awaiting_admin", "prompt_ready", { by, action: "confirm" });
   if (!r) return { order: await orders.getOrder(o.request_id), changed: false };
@@ -184,11 +187,21 @@ async function deliver(requestId, media, caption = "") {
 /** Admins: new order + brief as a .txt document (no 4096-character limit issue). */
 async function announceOrder(o, brief) {
   const opt = o.options || {};
-  const linked = o.telegram_chat_id ? "" : "\n⏳ الزبون لم يضغط Start بعد – الطلب ينتظر الربط.";
+  const linked = orders.paymentsRequired() && !o.paid_at ? "\n💳 بانتظار الدفع – ستصلك رسالة عند تأكيد الدفع."
+    : o.telegram_chat_id ? "" : "\n⏳ الزبون لم يضغط Start بعد – الطلب ينتظر الربط.";
   return notifyAdmins(
     `🎬 <b>طلب جديد ${esc(o.request_id)}</b>\n@${esc(o.telegram_username)} · ${esc(o.phone)}\n${opt.quality}p · ${opt.seconds}s · ${esc(opt.language || "")} · ${esc(opt.characters || "")} شخصية · $${opt.price}\n${opt.attachments ? `مرفقات: ${opt.attachments}` : "بدون مرفقات"}\n\n${esc((opt.description || "-").slice(0, 600))}${linked}\n\nللتأكيد: /confirm ${esc(o.request_id)}`,
     brief ? { buffer: Buffer.from(brief, "utf8"), name: `${o.request_id}-brief.txt`, caption: `ملف الإنتاج ${o.request_id}` } : null
   );
+}
+
+/** Payment confirmed by Wayl: tell the admins (with the /confirm command) and the customer if linked. */
+async function announcePaid(o, payment) {
+  const amount = payment ? `${Number(payment.amount_iqd).toLocaleString("en-US")} د.ع${payment.payment_method ? ` · ${esc(payment.payment_method)}` : ""}${payment.env === "test" ? " · (اختبار)" : ""}` : "";
+  await notifyAdmins(`💰 <b>تم الدفع ${esc(o.request_id)}</b>\n@${esc(o.telegram_username)} · ${esc(o.phone)}\n${amount}\n\n${o.status === "awaiting_admin" ? `للبدء: /confirm ${esc(o.request_id)}` : `الحالة: ${o.status}`}`);
+  if (configured && o.telegram_chat_id) {
+    await send(o.telegram_chat_id, `✅ استلمنا دفعتك لطلب <b>${esc(o.request_id)}</b>${amount ? ` (${amount})` : ""}.\nطلبك الآن قيد المراجعة، وستصلك هنا كل خطوة ثم الفيديو النهائي.\n\n${steps(o.status)}`).catch(() => {});
+  }
 }
 
 // ---------- incoming updates ----------
@@ -205,7 +218,10 @@ async function handleUpdate(u) {
     const res = await orders.linkTelegram(id, chatId, username);
     if (res.reason === "not_found") return send(chatId, `لم أجد الطلب ${esc(id)}. تأكد من الرقم الموجود في الموقع.`);
     if (res.reason === "username_mismatch") return send(chatId, `هذا الطلب مسجّل باسم تيليغرام آخر. افتح الرابط من حساب @${esc(res.order.telegram_username)} أو تواصل معنا.`);
-    await send(chatId, `أهلاً بك في VI Iraq 👋\n✅ تم تأكيد طلبك <b>${esc(res.order.request_id)}</b> وربطه بهذه المحادثة.\nفريقنا يراجعه الآن، وستصلك رسالة هنا عند كل خطوة، ثم الفيديو النهائي.\n\n${steps(res.order.status)}`);
+    const unpaid = orders.paymentsRequired() && !res.order.paid_at;
+    await send(chatId, unpaid
+      ? `أهلاً بك في VI Iraq 👋\n🔗 تم ربط طلبك <b>${esc(res.order.request_id)}</b> بهذه المحادثة.\n💳 الخطوة التالية: ادفع من الموقع (زر «ادفع») لتأكيد الطلب، وستصلك هنا كل خطوة ثم الفيديو النهائي.\n\n${steps(res.order.status)}`
+      : `أهلاً بك في VI Iraq 👋\n✅ تم تأكيد طلبك <b>${esc(res.order.request_id)}</b> وربطه بهذه المحادثة.\nفريقنا يراجعه الآن، وستصلك رسالة هنا عند كل خطوة، ثم الفيديو النهائي.\n\n${steps(res.order.status)}`);
     await notifyAdmins(`🔗 الزبون @${esc(username || "?")} ربط محادثته بالطلب <b>${esc(res.order.request_id)}</b> (الحالة: ${res.order.status}).`);
     // the video may already be ready (test mode delivers without waiting for the link)
     if (res.order.status === "completed" && res.order.video_key) await sendVideo(res.order).catch((e) => console.error("telegram video:", e.message));
@@ -303,4 +319,4 @@ async function init(app, publicUrl) {
   return { mode, username: BOT_USERNAME, admins: (await admins()).length };
 }
 
-module.exports = { configured, init, notifyAdmins, announceOrder, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };
+module.exports = { configured, init, notifyAdmins, announceOrder, announcePaid, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };

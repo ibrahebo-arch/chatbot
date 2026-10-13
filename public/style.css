@@ -112,6 +112,18 @@ button { cursor: pointer; }
 .botdlg code { direction: ltr; display: inline-block; background: var(--card2); border: 1px solid var(--line2); border-radius: 8px; padding: 0 6px; color: var(--text); }
 .botlink.big { display: block; padding: 12px 16px; font-size: 1rem; }
 .botdlg .bd-later { margin-top: 6px; border: 0; background: transparent; color: var(--muted); font-size: .85rem; padding: 6px 12px; }
+/* payment: "ادفع" button (status card + dialog) */
+.paybtn { display: inline-block; border: 0; border-radius: 999px; padding: 8px 18px; background: var(--sand); color: #1a1205; font: inherit; font-weight: 700; font-size: .9rem; cursor: pointer; }
+.paybtn:hover { background: var(--sand2); }
+.paybtn:disabled { opacity: .6; cursor: wait; }
+.paybtn.big { display: block; width: 100%; padding: 13px 16px; font-size: 1.05rem; border-radius: 14px; }
+.msg.sys.status .pay { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 8px 10px; border: 1px solid rgba(228,179,99,.35); border-radius: 12px; background: rgba(228,179,99,.07); }
+.msg.sys.status .pay .amt { color: var(--sand2); font-weight: 700; direction: rtl; }
+.msg.sys.status .paid { color: var(--green); font-size: .82rem; }
+.paydlg .pd-amount { margin: 2px 0 14px; font-size: 1.7rem; font-weight: 700; color: var(--sand2); }
+.paydlg .pd-amount span { font-size: 1rem; color: var(--text); }
+.paydlg .pd-amount small { display: block; font-size: .8rem; font-weight: 400; color: var(--muted); }
+.paydlg .pd-note { margin: 10px 0 0; font-size: .78rem; }
 .note a { color: var(--sand2); }
 .msg .tag { display: block; margin-top: 4px; font-size: .7rem; color: rgba(255,255,255,.55); direction: ltr; text-align: right; }
 .msg.typing { display: flex; gap: 4px; padding: 14px 16px; }

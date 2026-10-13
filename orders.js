@@ -2,9 +2,11 @@
  * VI Iraq – order data access (Postgres).
  *
  * Status flow
- *   queued ──(customer linked Telegram via /start)──▶ awaiting_admin ──/confirm──▶ prompt_ready
- *                                         └─(AUTO_GENERATE=true)──────────────────▶ prompt_ready
+ *   queued ──(paid: Wayl confirms the link, when WAYL_API_KEY is set)──▶ awaiting_admin ──/confirm──▶ prompt_ready
+ *          ──(otherwise: customer linked Telegram via /start)──────────▶ awaiting_admin
+ *                                         └─(AUTO_GENERATE=true)──────────────────────────────────▶ prompt_ready
  *   prompt_ready → generating → completed → delivered          (failed / cancelled on errors)
+ *   Customer labels: queued = مسجّل · awaiting_admin = مراجعة · prompt_ready/generating = قيد الإنجاز · completed/delivered = جاهز
  *
  * Every status change writes an events row.
  */
@@ -18,6 +20,8 @@ const cooldownMs = () => (Number(process.env.ORDER_COOLDOWN_MINUTES) || 20) * 60
 const ROLE_DB = { char1: "character1", char2: "character2", char3: "character3", ref: "reference" };
 const ROLE_UI = Object.fromEntries(Object.entries(ROLE_DB).map(([k, v]) => [v, k]));
 const autoGenerate = () => String(process.env.AUTO_GENERATE || "false").trim().toLowerCase() === "true";
+// with a payment provider configured, payment (not the Telegram link) is what confirms an order
+const paymentsRequired = () => Boolean(String(process.env.WAYL_API_KEY || "").trim());
 
 class OrderError extends Error {
   constructor(code, message, extra = {}) { super(message); this.code = code; Object.assign(this, extra); }
@@ -118,18 +122,18 @@ async function setStatus(requestId, from, to, detail = {}, client = null) {
 }
 
 /**
- * Moves a queued order forward when allowed: both contact values present and Telegram linked.
+ * Moves a queued order forward when allowed: paid (payments on) or Telegram linked (payments off).
  * AUTO_GENERATE=false → awaiting_admin (an admin approves spending credits with /confirm).
  */
 async function advance(requestId) {
   const o = (await db.query(
-    `SELECT o.status, r.telegram_username, r.phone, r.telegram_chat_id
+    `SELECT o.status, o.paid_at, r.telegram_username, r.phone, r.telegram_chat_id
        FROM orders o JOIN requesters r ON r.id = o.requester_id WHERE o.request_id = $1`,
     [requestId]
   )).rows[0];
   if (!o || o.status !== "queued") return null;
-  if (!o.telegram_username || !o.phone || !o.telegram_chat_id) return null;
-  return setStatus(requestId, "queued", autoGenerate() ? "prompt_ready" : "awaiting_admin", { by: "system", reason: "telegram linked" });
+  if (paymentsRequired() ? !o.paid_at : !o.telegram_username || !o.phone || !o.telegram_chat_id) return null;
+  return setStatus(requestId, "queued", autoGenerate() ? "prompt_ready" : "awaiting_admin", { by: "system", reason: paymentsRequired() ? "paid" : "telegram linked" });
 }
 
 const getOrder = async (requestId) =>
@@ -150,7 +154,7 @@ async function getOwnedOrder(requestId, requesterId, token) {
 
 const listOrders = async ({ openOnly = false, limit = 100 } = {}) =>
   (await db.query(
-    `SELECT o.request_id, o.requester_id, o.status, o.options, o.video_key, o.error, o.created_at, o.updated_at, o.completed_at,
+    `SELECT o.request_id, o.requester_id, o.status, o.options, o.video_key, o.error, o.created_at, o.updated_at, o.completed_at, o.paid_at,
             (o.brief_md IS NOT NULL) AS has_brief, r.telegram_username, r.phone, r.telegram_chat_id
        FROM orders o JOIN requesters r ON r.id = o.requester_id
       ${openOnly ? "WHERE o.status NOT IN ('delivered','cancelled')" : ""}
@@ -249,7 +253,7 @@ async function addTelegramAdmin(chatId, username) {
 }
 
 module.exports = {
-  OrderError, ROLE_DB, ROLE_UI, autoGenerate,
+  OrderError, ROLE_DB, ROLE_UI, autoGenerate, paymentsRequired,
   createOrder, setStatus, advance, getOrder, getOwnedOrder, listOrders, saveBrief, saveMessages, setVideo, addEvent,
   linkTelegram, linkByUsername,
   createPendingAsset, getAsset, orderAssets, claimAssets, setAssetKey,

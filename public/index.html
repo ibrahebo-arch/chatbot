@@ -172,6 +172,16 @@
     <button type="button" class="bd-later" id="botDlgLater">لاحقاً</button>
   </dialog>
 
+  <dialog class="botdlg paydlg" id="payDialog" aria-labelledby="payDlgTitle">
+    <div class="bd-icon" aria-hidden="true">💳</div>
+    <h3 id="payDlgTitle">مسجّل طلب <code id="payDlgId"></code></h3>
+    <p>ادفع لتأكيد طلبك – نبدأ المراجعة مباشرة بعد تأكيد الدفع، وتتابع كل خطوة هنا في الدردشة.</p>
+    <div class="pd-amount"><b id="payDlgAmount"></b> <span>د.ع</span><small id="payDlgUsd"></small></div>
+    <button type="button" class="paybtn big" id="payDlgBtn">ادفع</button>
+    <p class="pd-note" id="payDlgNote">الدفع عبر Wayl: بطاقة كي، FIB، زين كاش وغيرها.</p>
+    <button type="button" class="bd-later" id="payDlgLater">لاحقاً</button>
+  </dialog>
+
   <div class="toast" id="toast" hidden></div>
   <script src="/app.js"></script>
 </body>

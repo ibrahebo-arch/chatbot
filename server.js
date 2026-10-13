@@ -6,7 +6,9 @@
  * - /api/attach → customer upload (image/video) → Cloudflare R2 + assets row
  * - /api/order  → validates contact, creates the order in Postgres (1/hour, idempotent),
  *                 writes the production brief into orders.brief_md and tells admins on Telegram
- * - /api/orders/:id/status → the customer's own order status + presigned video link
+ * - /api/orders/:id/status → the customer's own order status (+ payment state) + presigned video link
+ * - /api/orders/:id/pay → Wayl payment link for the customer's unpaid order (payments.js)
+ * - /api/wayl/webhook → Wayl status callback; triggers a check with the verification key
  * - /api/videos → lists background videos found in /public/videos
  *
  * All secrets live in the environment (.env locally, Render dashboard in production).
@@ -23,6 +25,7 @@ const orders = require("./orders");
 const storage = require("./storage");
 const tg = require("./telegram");
 const mail = require("./mail");
+const payments = require("./payments");
 const { normalizeTelegram, normalizePhone } = require("./validate");
 
 const app = express();
@@ -41,6 +44,9 @@ const PUBLIC_URL = (
   clean(process.env.RENDER_EXTERNAL_URL) ||
   (process.env.RAILWAY_PUBLIC_DOMAIN ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}` : "")
 ).replace(/\/+$/, "");
+// Wayl calls back (webhook) and returns the customer (redirect) to this address – the store's registered domain.
+const PAY_PUBLIC_URL = (clean(process.env.PAY_PUBLIC_URL) || PUBLIC_URL).replace(/\/+$/, "");
+const publicBase = (req) => PAY_PUBLIC_URL || `${req.protocol}://${req.get("host")}`;
 
 const VIDEOS_DIR = path.join(__dirname, "public", "videos");
 const ATTACH_LIMIT = process.env.ATTACH_LIMIT || "200mb";
@@ -218,6 +224,7 @@ app.get("/api/config", (_req, res) => {
     demo: DEMO,
     attachLimit: ATTACH_LIMIT,
     bot: tg.configured ? tg.username : null,
+    payments: payments.configured ? { provider: "wayl", env: payments.ENV, iqdPerUsd: payments.IQD_PER_USD } : null,
     rates: RATES,
     brand: "VI Iraq",
   });
@@ -347,8 +354,10 @@ app.post("/api/chat", chatLimit, async (req, res) => {
 });
 
 const STATUS_TEXT = {
-  queued: "طلبك مسجّل ✔ لتأكيده افتح بوت التسليم على تيليغرام واضغط Start – لا نبدأ العمل قبل ذلك.",
-  awaiting_admin: "طلبك قيد المراجعة من فريق VI Iraq.",
+  queued: payments.configured
+    ? "طلبك مسجّل ✔ اضغط «ادفع» لتأكيده – نبدأ المراجعة مباشرة بعد تأكيد الدفع."
+    : "طلبك مسجّل ✔ لتأكيده افتح بوت التسليم على تيليغرام واضغط Start – لا نبدأ العمل قبل ذلك.",
+  awaiting_admin: payments.configured ? "تم استلام الدفع ✔ طلبك قيد المراجعة من فريق VI Iraq." : "طلبك قيد المراجعة من فريق VI Iraq.",
   prompt_ready: "تمت الموافقة على طلبك ونجهّز الفيديو الآن.",
   generating: "جارٍ إنتاج الفيديو…",
   completed: "الفيديو جاهز 🎉",
@@ -377,9 +386,28 @@ async function runDemo(requestId, briefDone) {
   await mail.deliveredEmail(o, { buffer: await tg.videoBuffer(o, mail.ATTACH_BUDGET), name: pick }).catch((e) => console.error("mail delivered:", e.message));
 }
 
-function orderView(o) {
-  return { requestId: o.request_id, requesterId: o.requester_id, status: o.status, message: STATUS_TEXT[o.status], linked: Boolean(o.telegram_chat_id), botLink: tg.configured ? tg.linkFor(o.request_id) : null };
+function orderView(o, payment = null) {
+  const view = { requestId: o.request_id, requesterId: o.requester_id, status: o.status, message: STATUS_TEXT[o.status], linked: Boolean(o.telegram_chat_id), botLink: tg.configured ? tg.linkFor(o.request_id) : null };
+  if (payments.configured) {
+    const p = payments.view(payment);
+    view.payment = {
+      required: true,
+      paid: Boolean(o.paid_at),
+      amountIqd: p?.amountIqd || payments.iqdFor(o.options?.price),
+      status: p?.status || null,
+      method: p?.method || null,
+      env: payments.ENV,
+    };
+  }
+  return view;
 }
+
+// Payment confirmed by Wayl (payments.check): notify, then in the test stage run the automatic steps.
+payments.setOnPaid(async (o) => {
+  const p = await payments.latestPayment(o.request_id);
+  if (tg.configured) await tg.announcePaid(o, p).catch((e) => console.error("telegram paid:", e.message));
+  if (DEMO) runDemo(o.request_id, Promise.resolve()).catch((e) => console.error("demo:", e.message));
+});
 
 app.post("/api/order", orderLimit, async (req, res) => {
   const { messages = [], order = {} } = req.body || {};
@@ -442,29 +470,69 @@ app.post("/api/order", orderLimit, async (req, res) => {
         await orders.addEvent(null, o.request_id, "error", { step: "follow-up", message: e.message }).catch(() => {});
       }
     })();
-    if (DEMO) runDemo(o.request_id, briefDone).catch((e) => console.error("demo:", e.message));
-    else await orders.advance(o.request_id); // moves on only when Telegram is already linked
+    // with payments on, nothing moves until Wayl confirms the payment (payments.setOnPaid above)
+    if (!payments.configured) {
+      if (DEMO) runDemo(o.request_id, briefDone).catch((e) => console.error("demo:", e.message));
+      else await orders.advance(o.request_id); // moves on only when Telegram is already linked
+    }
   }
 
-  const view = orderView(await orders.getOrder(o.request_id));
+  const fresh = await orders.getOrder(o.request_id);
+  const view = orderView(fresh, payments.configured ? await payments.latestPayment(o.request_id) : null);
   res.json({
     ...ids,
     ...view,
     ok: true,
     duplicate: !created.created,
     message: `تم تسجيل طلبك 🎉 رقم الطلب: ${o.request_id} – ${
-      DEMO ? "تابع الحالة في الدردشة، سيظهر الفيديو خلال ثوانٍ"
+      payments.configured ? (fresh.paid_at ? "تم استلام الدفع ✔" : "اضغط «ادفع» لتأكيد الطلب")
+      : DEMO ? "تابع الحالة في الدردشة، سيظهر الفيديو خلال ثوانٍ"
       : view.linked || !tg.configured ? "سنتواصل معك على تيليغرام @" + telegram
       : "خطوة أخيرة: افتح بوت التسليم واضغط Start لتأكيد الطلب"}`,
   });
 });
 
-// The customer's own order: request id + requester id + access token (headers) must match.
-app.get("/api/orders/:id/status", statusLimit, async (req, res) => {
+// Payment link for the customer's own unpaid order (same owner check as the status route).
+app.post("/api/orders/:id/pay", statusLimit, async (req, res) => {
+  if (!payments.configured) return res.status(404).json({ ok: false, message: "الدفع الإلكتروني غير مفعّل حالياً." });
   try {
     const o = await orders.getOwnedOrder(req.params.id, req.get("x-requester-id"), req.get("x-order-token"));
     if (!o) return res.status(404).json({ ok: false, message: "الطلب غير موجود." });
-    const out = { ok: true, ...orderView(o), videoUrl: null };
+    if (o.paid_at) return res.json({ ok: true, paid: true });
+    if (o.status !== "queued") return res.status(409).json({ ok: false, message: "لا يمكن دفع هذا الطلب الآن." });
+    const link = await payments.linkFor(o, publicBase(req));
+    res.set("Cache-Control", "no-store").json({ ok: true, paid: false, url: link.url, amountIqd: link.amountIqd });
+  } catch (e) {
+    console.error("pay link:", e.message);
+    res.status(502).json({ ok: false, message: "تعذّر تجهيز رابط الدفع، حاول مرة ثانية بعد قليل." });
+  }
+});
+
+// Wayl status callback. The body is never trusted for the status: payments.webhook re-reads the link
+// with the verification key, so a forged call can at most cause a harmless extra check.
+app.post("/api/wayl/webhook", async (req, res) => {
+  if (!payments.configured) return res.sendStatus(404);
+  try {
+    const r = await payments.webhook(req.body);
+    res.json({ ok: true, ...r });
+  } catch (e) {
+    console.error("wayl webhook:", e.message);
+    res.status(500).json({ ok: false });
+  }
+});
+
+// The customer's own order: request id + requester id + access token (headers) must match.
+app.get("/api/orders/:id/status", statusLimit, async (req, res) => {
+  try {
+    let o = await orders.getOwnedOrder(req.params.id, req.get("x-requester-id"), req.get("x-order-token"));
+    if (!o) return res.status(404).json({ ok: false, message: "الطلب غير موجود." });
+    let payment = null;
+    if (payments.configured) {
+      // while the customer waits on this page, ask Wayl (throttled) whether the payment went through
+      payment = o.paid_at ? await payments.latestPayment(o.request_id) : await payments.checkOrder(o.request_id);
+      if (!o.paid_at && payment?.paid_at) o = await orders.getOrder(o.request_id);
+    }
+    const out = { ok: true, ...orderView(o, payment), videoUrl: null };
     if (o.video_key && ["completed", "delivered"].includes(o.status)) {
       out.videoUrl = o.video_key.startsWith("public:") ? `/${o.video_key.slice(7)}` : await storage.presignGet(o.video_key, 3600, { contentType: "video/mp4" });
     }
@@ -489,7 +557,7 @@ app.get("/api/requests", adminOnly, async (_req, res) => {
     bot: tg.configured ? { username: tg.username, mode: tg.mode, admins: tg.adminsCount() } : null,
     requests: rows.map((r) => ({
       id: r.request_id, requesterId: r.requester_id, status: r.status, username: r.telegram_username, phone: r.phone,
-      chatId: r.telegram_chat_id, createdAt: r.created_at, updatedAt: r.updated_at, completedAt: r.completed_at,
+      chatId: r.telegram_chat_id, createdAt: r.created_at, updatedAt: r.updated_at, completedAt: r.completed_at, paidAt: r.paid_at,
       order: r.options, brief: r.has_brief, video: Boolean(r.video_key), error: r.error,
     })),
   });
@@ -529,6 +597,11 @@ async function start() {
     console.log(`Mail: ${m.ok ? `on (${mail.PROVIDER}: ${mail.MAIL_FROM} → ${mail.MAIL_TO})` : `OFF – ${m.error}`}`);
     const t = await tg.init(app, PUBLIC_URL);
     console.log(`Telegram: ${tg.configured ? `${t.mode} as @${t.username || "?"} (${t.admins ?? 0} admins)${t.error ? " – " + t.error : ""}` : "OFF (set TELEGRAM_BOT_TOKEN)"}`);
+    if (payments.configured) {
+      const k = await payments.verifyKeys();
+      console.log(`Payments: wayl ${payments.ENV} · ${payments.IQD_PER_USD} IQD/USD · callbacks → ${PAY_PUBLIC_URL || "(request host)"} · keys ${k.ok ? "valid" : "INVALID – " + k.error}`);
+      payments.startSweeper();
+    } else console.log("Payments: OFF (set WAYL_API_KEY)");
   });
 }
 
