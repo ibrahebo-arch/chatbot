@@ -167,11 +167,12 @@
     const ul = el("ul"); s.items.forEach((i) => ul.append(el("li", "", i))); box.append(ul);
     return box;
   };
-  // Nothing is blocked: a request that may conflict with the terms shows the FULL terms once, in the
-  // customer's language, with the note that continuing means accepting them; later ones get a one-line reminder.
+  // Nothing is blocked. A request that may conflict with the terms shows the rule(s) it conflicts with,
+  // in the customer's language, the note that continuing means accepting the terms, and a
+  // "read the rest" button that opens the remaining sections inside the same card.
   const ACCEPT = {
-    ar: { head: "📜 شروط وأحكام VI Iraq", accept: "بمتابعتك المحادثة وإرسال الطلب فأنت توافق على هذه الشروط والأحكام وتتحمل مسؤولية استخدام المخرجات.", remind: "📜 تذكير: بمتابعتك وإرسال الطلب فأنت توافق على شروط وأحكام VI Iraq.", more: "عرض الشروط كاملة" },
-    en: { head: "📜 VI Iraq Terms & Conditions", accept: "By continuing the chat and sending your order, you accept these terms and conditions and take responsibility for how the outputs are used.", remind: "📜 Reminder: by continuing and sending your order, you accept VI Iraq's terms and conditions.", more: "View the full terms" },
+    ar: { head: "⚠️ طلبك قد يخالف شروط VI Iraq", accept: "بمتابعتك المحادثة وإرسال الطلب فأنت توافق على شروط وأحكام VI Iraq وتتحمل مسؤولية استخدام المخرجات.", more: "اقرأ باقي الشروط ▾", less: "إخفاء باقي الشروط ▴" },
+    en: { head: "⚠️ Your request may conflict with VI Iraq's terms", accept: "By continuing the chat and sending your order, you accept VI Iraq's terms and conditions and take responsibility for how the outputs are used.", more: "Read the rest of the terms ▾", less: "Hide the rest of the terms ▴" },
   };
   function policyCard(sections, lang = customerLang()) {
     const doc = state.policy?.[lang];
@@ -179,17 +180,14 @@
     const t = ACCEPT[lang];
     const card = el("div", "msg sys policy");
     card.dir = lang === "ar" ? "rtl" : "ltr"; card.lang = lang;
-    if ((state.termsShown ||= {})[lang]) {
-      card.classList.add("short");
-      card.append(el("span", "pa", t.remind));
-      const more = el("button", "pl", t.more); more.type = "button"; more.onclick = () => openTerms(lang, sections[0]);
-      card.append(more);
-    } else {
-      state.termsShown[lang] = true;
-      card.append(el("span", "ph", t.head));
-      doc.sections.forEach((s) => { const sec = sectionEl(s, "div"); if (sections.includes(s.n)) sec.classList.add("hit"); card.append(sec); });
-      card.append(el("p", "pa", t.accept));
-    }
+    card.append(el("span", "ph", t.head));
+    doc.sections.filter((s) => sections.includes(s.n)).forEach((s) => { const sec = sectionEl(s, "div"); sec.classList.add("hit"); card.append(sec); });
+    card.append(el("p", "pa", t.accept));
+    const rest = el("div", "rest"); rest.hidden = true;
+    doc.sections.filter((s) => !sections.includes(s.n)).forEach((s) => rest.append(sectionEl(s, "div")));
+    const more = el("button", "pl", t.more); more.type = "button";
+    more.onclick = () => { rest.hidden = !rest.hidden; more.textContent = rest.hidden ? t.more : t.less; };
+    card.append(more, rest);
     list.appendChild(card); list.scrollTop = list.scrollHeight;
   }
   function renderTerms(lang) {

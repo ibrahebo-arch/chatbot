@@ -125,13 +125,13 @@ button { cursor: pointer; }
 .paydlg .pd-amount small { display: block; font-size: .8rem; font-weight: 400; color: var(--muted); }
 .paydlg .pd-note { margin: 10px 0 0; font-size: .78rem; }
 /* terms violation card in the chat (Arabic or English, matching the customer) */
-.msg.sys.policy { width: min(92%, 540px); text-align: start; border-style: solid; border-color: rgba(228,179,99,.45); background: rgba(228,179,99,.06); color: var(--text); display: grid; gap: 6px; max-height: 60vh; overflow-y: auto; }
-.msg.sys.policy.short { max-height: none; }
+.msg.sys.policy { width: min(92%, 540px); text-align: start; border-style: solid; border-color: rgba(255,107,107,.45); background: rgba(255,107,107,.06); color: var(--text); display: grid; gap: 6px; }
 .msg.sys.policy[dir="ltr"] { text-align: left; }
-.msg.sys.policy .ph { font-weight: 700; color: var(--sand2); font-size: .95rem; }
+.msg.sys.policy .ph { font-weight: 700; color: var(--red); }
 .msg.sys.policy .hit h4 { color: var(--red); }
-.msg.sys.policy .pa { margin: 6px 0 0; padding-top: 8px; border-top: 1px solid var(--line2); font-weight: 600; color: var(--text); font-size: .84rem; line-height: 1.7; }
-.msg.sys.policy.short .pa { margin: 0; padding: 0; border: 0; }
+.msg.sys.policy .pa { margin: 4px 0 0; padding-top: 8px; border-top: 1px solid var(--line2); font-weight: 600; color: var(--text); font-size: .84rem; line-height: 1.7; }
+.msg.sys.policy .rest { display: grid; gap: 6px; padding-top: 6px; border-top: 1px dashed var(--line2); }
+.msg.sys.policy .rest[hidden] { display: none; }
 .msg.sys.policy h4 { margin: 6px 0 2px; font-size: .86rem; color: var(--sand2); }
 .msg.sys.policy ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 4px; font-size: .82rem; line-height: 1.7; color: var(--text); }
 .msg.sys.policy .pl { justify-self: start; background: none; border: 0; padding: 0; color: var(--sand2); font: inherit; font-size: .8rem; text-decoration: underline; cursor: pointer; }
