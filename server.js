@@ -84,12 +84,12 @@ app.disable("x-powered-by");
 // videos and pictures can also come from short-lived storage links (https).
 const CSP = [
   "default-src 'self'",
-  "script-src 'self'",
+  "script-src 'self' https://static.cloudflareinsights.com", // Cloudflare Web Analytics, injected by Cloudflare
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https:",
   "media-src 'self' blob: https:",
-  "connect-src 'self'",
+  "connect-src 'self' https://cloudflareinsights.com",
   "frame-ancestors 'none'",
   "form-action 'self'",
   "base-uri 'self'",

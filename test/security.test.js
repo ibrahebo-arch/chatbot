@@ -22,7 +22,7 @@ test("security headers are sent and Express is not announced", async () => {
   const r = await fetch(`${base}/`);
   assert.equal(r.headers.get("x-powered-by"), null);
   assert.match(r.headers.get("content-security-policy"), /frame-ancestors 'none'/);
-  assert.match(r.headers.get("content-security-policy"), /script-src 'self'(;|$)/);
+  assert.match(r.headers.get("content-security-policy"), /script-src 'self' https:\/\/static\.cloudflareinsights\.com(;|$)/, "own scripts + Cloudflare analytics only");
   assert.equal(r.headers.get("x-frame-options"), "DENY");
   assert.equal(r.headers.get("x-content-type-options"), "nosniff");
   assert.match(r.headers.get("strict-transport-security"), /max-age=\d+/);
