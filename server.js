@@ -35,6 +35,8 @@ const clean = (v) => String(v || "").trim();
 const OPENAI_API_KEY = clean(process.env.OPENAI_API_KEY);
 const OPENAI_MODEL = clean(process.env.OPENAI_MODEL) || "gpt-4o-mini";
 const ADMIN_TOKEN = clean(process.env.ADMIN_TOKEN);
+// Public WhatsApp contact (digits only, international format) – floating button + contact tab.
+const WHATSAPP = (clean(process.env.WHATSAPP_NUMBER) || "9647723682289").replace(/\D/g, "");
 // Free test stage: every order moves one step per second and gets a random showcase loop as its "video".
 // Set DEMO_DELIVERY=false when payments start, to return to the admin /confirm flow.
 const DEMO = clean(process.env.DEMO_DELIVERY).toLowerCase() === "true";
@@ -144,7 +146,7 @@ const statusLimit = rateLimit(1500, 10 * 60 * 1000, "طلبات كثيرة، ا�
 
 // ---------- helpers ----------
 const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي في استوديو عراقي يصنع فيديوهات بالذكاء الاصطناعي حسب الطلب.
-تتحدث بالعربية (يمكنك استخدام لمسة من اللهجة العراقية إذا كتب الزبون بها)، بأسلوب ودود وواثق، وبدون حشو.
+تتحدث بلغة الزبون: بالعربية (يمكنك استخدام لمسة من اللهجة العراقية إذا كتب الزبون بها)، أو بالإنجليزية إذا كتب بالإنجليزية، بأسلوب ودود وواثق، وبدون حشو.
 مهمتك:
 - فهم فكرة الزبون وتطويرها: اقترح أفكاراً، زوايا تصوير، أسلوباً بصرياً، سيناريو مختصراً أو نصاً للتعليق الصوتي عندما يكون ذلك مفيداً أو يطلبه الزبون.
 - اسأل عمّا ينقص الطلب (الفكرة، المدة، الدقة، اللغة، عدد الشخصيات، الجمهور/الهدف) بسؤال أو سؤالين كحد أقصى في كل رسالة.
@@ -152,7 +154,58 @@ const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي �
 - السعر التقديري معروض للزبون في اللوحة؛ إذا سأل عنه أعطِ الرقم الموجود في "خيارات الزبون الحالية" فقط، ولا تخترع أسعاراً أخرى.
 - أنت لا تُنتج الفيديو بنفسك ولا تدّعي ذلك؛ فريق VI Iraq ينتجه بعد إرسال الطلب ويتواصل مع الزبون عبر تيليغرام أو الهاتف.
 - لإرسال الطلب يجب أن يملأ الزبون معرّف تيليغرام ورقم هاتفه العراقي في اللوحة؛ ذكّره بذلك بلطف عندما تكتمل الفكرة.
-الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.`;
+الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.
+LANGUAGE RULE (highest priority): always reply in the language of the customer's LAST message – Arabic (Iraqi touch welcome) if it is Arabic, English if it is English.`;
+
+// Terms (public/policy.json): sections 1–2 say which requests are refused. The chat model refuses them and
+// tags its reply with [[POLICY:n]]; the page then shows those sections in the customer's language.
+const POLICY = JSON.parse(fs.readFileSync(path.join(__dirname, "public", "policy.json"), "utf8"));
+const FORBIDDEN_SECTIONS = [1, 2];
+const policyRules = POLICY.en.sections
+  .filter((s) => FORBIDDEN_SECTIONS.includes(s.n))
+  .map((s) => `Section ${s.n} – ${s.title}:\n${s.items.map((i) => `- ${i}`).join("\n")}`)
+  .join("\n");
+const POLICY_PROMPT = `
+
+قواعد المحتوى (إلزامية):
+${policyRules}
+إذا طلب الزبون شيئاً يخالف هذه القواعد: اعتذر بلطف وباختصار بلغة الزبون، اذكر أن الطلب يخالف شروط VI Iraq، واقترح بديلاً مقبولاً إن أمكن، ولا تساعد في تنفيذ الجزء المخالف.
+وفي هذه الحالة فقط أضف في آخر ردك العلامة [[POLICY:رقم]] بأرقام الأقسام المخالَفة (مثال: [[POLICY:1]] أو [[POLICY:1,2]]). لا تضع العلامة أبداً في أي رد آخر.
+تصوير تردّي الخدمات أو الظروف المعيشية مسموح ما دام بدون إساءة أو تحريض.`;
+const POLICY_TAG = /\s*\[\[POLICY:\s*([\d,\s]*)\]\]\s*/gi;
+function takePolicyTag(reply) {
+  const sections = new Set();
+  const text = reply.replace(POLICY_TAG, (_m, list) => { list.split(",").map(Number).filter((n) => FORBIDDEN_SECTIONS.includes(n)).forEach((n) => sections.add(n)); return " "; }).trim();
+  return { text, sections: [...sections].sort() };
+}
+
+/**
+ * Order gate: one short check of the customer's own messages against sections 1–2.
+ * Returns the violated section numbers ([] = allowed). Fails open (logs) if the model is unavailable,
+ * so an outage never blocks normal orders – the chat assistant and the admin review still apply.
+ */
+async function policyCheck(messages, { lastOnly = false } = {}) {
+  if (!OPENAI_API_KEY) return [];
+  const own = (Array.isArray(messages) ? messages : []).filter((m) => m && m.role === "user");
+  const text = (lastOnly ? own.slice(-1) : own).map((m) => String(m.content || "")).join("\n").slice(-6000);
+  if (!text.trim()) return [];
+  try {
+    const out = await openai({
+      temperature: 0,
+      max_tokens: 60,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: `You review video requests for VI Iraq against these rules:\n${policyRules}\nDepicting poor public services or living conditions is allowed when it is not abusive. Answer only JSON: {"violates": [section numbers]} – an empty array when the request is acceptable. Judge the request itself, not the language it is written in.` },
+        { role: "user", content: text },
+      ],
+    });
+    const v = JSON.parse(out).violates;
+    return Array.isArray(v) ? [...new Set(v.map(Number).filter((n) => FORBIDDEN_SECTIONS.includes(n)))].sort() : [];
+  } catch (e) {
+    console.error("policy check:", e.message);
+    return [];
+  }
+}
 
 const ROLE_LABELS = { char1: "شخصية 1", char2: "شخصية 2", char3: "شخصية 3", ref: "مرجع (ليس شخصية)" };
 const roleLabel = (r) => ROLE_LABELS[r] || ROLE_LABELS[orders.ROLE_UI[r]] || ROLE_LABELS.ref;
@@ -277,6 +330,7 @@ app.get("/api/config", (_req, res) => {
     attachLimit: ATTACH_LIMIT,
     bot: tg.configured ? tg.username : null,
     payments: payments.configured ? { provider: "wayl", env: payments.ENV, iqdPerUsd: payments.IQD_PER_USD } : null,
+    whatsapp: WHATSAPP,
     rates: RATES,
     brand: "VI Iraq",
   });
@@ -385,16 +439,33 @@ app.post("/api/chat", chatLimit, async (req, res) => {
     ? `\n\nهذا الزبون أرسل طلباً بالفعل: request_id=${order.requestId}، requester_id=${order.requesterId}. أي رسالة الآن هي متابعة أو تعديل على هذا الطلب؛ اذكر رقم الطلب عند الحاجة وأخبره أن التعديلات تُرفق بالطلب نفسه.`
     : "";
   try {
-    const reply = await openai({
-      temperature: 0.8,
-      max_tokens: 700,
-      messages: [{ role: "system", content: SYSTEM_PROMPT + ctx + sent }, ...(await toModelMessages(messages))],
-    });
-    res.json({ reply: reply || "…" });
+    // reply language follows the customer's newest message: Latin letters and no Arabic → English
+    const lastText = String([...messages].reverse().find((m) => m && m.role === "user")?.content || "");
+    const english = !/[؀-ۿ]/.test(lastText) && /[A-Za-z]/.test(lastText);
+    const langRule = english ? "\n\nThe customer wrote in English: reply ONLY in English." : "\n\nالزبون كتب بالعربية: رد بالعربية فقط.";
+    // the reply and a strict terms check of the newest message run side by side (no extra wait)
+    const [reply, flagged] = await Promise.all([
+      openai({
+        temperature: 0.8,
+        max_tokens: 700,
+        messages: [{ role: "system", content: SYSTEM_PROMPT + POLICY_PROMPT + ctx + sent + langRule }, ...(await toModelMessages(messages))],
+      }),
+      policyCheck(messages, { lastOnly: true }),
+    ]);
+    const tagged = takePolicyTag(reply);
+    const sections = [...new Set([...tagged.sections, ...flagged])].sort();
+    let text = tagged.text;
+    // flagged by the check but the assistant did not refuse on its own → never send its answer
+    if (flagged.length && !tagged.sections.length && !/(آسف|أعتذر|اعتذر|لا يمكن|sorry|can't|cannot|unable|not able)/i.test(text)) {
+      text = english
+        ? "Sorry, we can't make this request because it breaks VI Iraq's terms of use. We'd be glad to help with a different idea 🙏"
+        : "عذراً، لا يمكننا تنفيذ هذا الطلب لأنه يخالف شروط استخدام VI Iraq. يسعدنا مساعدتك بفكرة أخرى 🙏";
+    }
+    res.json({ reply: text || "…", ...(sections.length ? { policy: { sections } } : {}) });
     // follow-up messages after an order are kept on that order
     if (order.requestId && order.accessToken && Array.isArray(messages)) {
       const owned = await orders.getOwnedOrder(order.requestId, order.requesterId, order.accessToken).catch(() => null);
-      if (owned) orders.saveMessages(owned.request_id, [...messages, { role: "assistant", content: reply }]).catch(() => {});
+      if (owned) orders.saveMessages(owned.request_id, [...messages, { role: "assistant", content: text }]).catch(() => {});
     }
   } catch (err) {
     console.error("chat error:", err.message);
@@ -490,6 +561,13 @@ app.post("/api/order", orderLimit, async (req, res) => {
     attachments: Math.min(attachments.length, 30),
   };
   const idempotencyKey = clean(req.get("idempotency-key") || order.idempotencyKey) || null;
+
+  // forbidden requests (terms sections 1–2) never become orders, even if the chat was skipped
+  const violates = await policyCheck(messages);
+  if (violates.length) {
+    return res.status(422).json({ ok: false, field: "policy", policy: { sections: violates },
+      message: "لا يمكننا تنفيذ هذا الطلب لأنه يخالف شروط استخدام VI Iraq. عدّل الفكرة ثم أرسلها من جديد." });
+  }
 
   let created;
   try {

@@ -153,6 +153,61 @@
     attachments: state.attachments,
   });
 
+  // ---------- terms (public/policy.json) ----------
+  // The card follows the customer's language: Arabic letters in their last message → Arabic, otherwise English.
+  const isArabic = (s) => /[؀-ۿ]/.test(String(s || ""));
+  const customerLang = () => {
+    const last = [...state.messages].reverse().find((m) => m.role === "user" && String(m.content || "").trim());
+    return !last || isArabic(last.content) ? "ar" : "en";
+  };
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const sectionEl = (s, Tag = "section") => {
+    const box = el(Tag); box.dataset.n = s.n;
+    box.append(el("h4", "", `${s.n}. ${s.title}`));
+    const ul = el("ul"); s.items.forEach((i) => ul.append(el("li", "", i))); box.append(ul);
+    return box;
+  };
+  function policyCard(sections, lang = customerLang()) {
+    const doc = state.policy?.[lang];
+    if (!doc) return;
+    const card = el("div", "msg sys policy");
+    card.dir = lang === "ar" ? "rtl" : "ltr"; card.lang = lang;
+    card.append(el("span", "ph", lang === "ar" ? "⚠️ لا يمكننا تنفيذ هذا الطلب – يخالف شروط VI Iraq" : "⚠️ We can't make this request – it is not allowed under VI Iraq's terms"));
+    doc.sections.filter((s) => sections.includes(s.n)).forEach((s) => card.append(sectionEl(s, "div")));
+    const more = el("button", "pl", lang === "ar" ? "عرض كل الشروط وإخلاء المسؤولية" : "View all terms and the disclaimer");
+    more.type = "button"; more.onclick = () => openTerms(lang, sections[0]);
+    card.append(more);
+    list.appendChild(card); list.scrollTop = list.scrollHeight;
+  }
+  function renderTerms(lang) {
+    const doc = state.policy?.[lang]; if (!doc) return;
+    $("termsTitle").textContent = doc.title; $("termsPlatform").textContent = doc.platform;
+    const body = $("termsBody"); body.innerHTML = ""; body.dir = lang === "ar" ? "rtl" : "ltr"; body.lang = lang;
+    doc.sections.forEach((s) => body.append(sectionEl(s)));
+    document.querySelectorAll("#termsLang button").forEach((b) => b.classList.toggle("on", b.dataset.l === lang));
+  }
+  function openTerms(lang = "ar", n = null) {
+    renderTerms(lang); showTab("contact");
+    if (n) { const s = document.querySelector(`#termsBody section[data-n="${n}"]`); if (s) { s.scrollIntoView({ behavior: "smooth", block: "center" }); s.classList.add("flash"); setTimeout(() => s.classList.remove("flash"), 1700); } }
+  }
+  $("termsLang").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) renderTerms(b.dataset.l); });
+  $("footTerms").addEventListener("click", (e) => { e.preventDefault(); openTerms(customerLang()); });
+
+  // ---------- WhatsApp (floating button on every tab + contact tab) ----------
+  const waLink = () => {
+    const text = state.requestId ? `مرحباً VI Iraq، بخصوص طلبي ${state.requestId}` : "مرحباً VI Iraq 👋";
+    return `https://wa.me/${state.whatsapp}?text=${encodeURIComponent(text)}`;
+  };
+  function setupWhatsApp() {
+    if (!state.whatsapp) return;
+    const n = state.whatsapp;
+    $("waNumber").textContent = `+${n.slice(0, 3)} ${n.slice(3, 6)} ${n.slice(6, 9)} ${n.slice(9)}`;
+    for (const id of ["waFloat", "waContact"]) {
+      const a = $(id); a.href = waLink(); a.hidden = false;
+      a.addEventListener("click", () => { a.href = waLink(); }); // picks up the order number once there is one
+    }
+  }
+
   // ---------- attachments ----------
   const tray = $("tray");
   function renderTray() {
@@ -248,6 +303,7 @@
       t.remove();
       addMsg("bot", data.reply || "…");
       if (data.reply) state.messages.push({ role: "assistant", content: data.reply });
+      if (data.policy?.sections?.length) policyCard(data.policy.sections, isArabic(text) || !text ? "ar" : "en");
     } catch {
       t.remove(); addMsg("bot", "تعذّر الاتصال بالخادم، حاول مرة ثانية.");
     } finally { state.sending = false; }
@@ -298,6 +354,15 @@
       const r = await fetch("/api/order", { method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": state.idemKey }, body: JSON.stringify({ messages: state.messages, order: orderPayload() }) });
       const data = await r.json();
       if (r.status === 400) { state.idemKey = null; return fail(data.field || "chat", data.message); }
+      if (r.status === 422 && data.policy) {
+        state.idemKey = null;
+        const lang = customerLang();
+        note.className = "note err";
+        note.textContent = lang === "ar" ? data.message : "We can't make this request because it breaks VI Iraq's terms. Change the idea and send it again.";
+        policyCard(data.policy.sections, lang);
+        if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
+        return;
+      }
       if (r.status === 429) { state.idemKey = null; note.className = "note err"; note.textContent = data.message; return; }
       note.className = `note ${data.ok ? "ok" : "err"}`; note.textContent = data.message;
       toast(data.ok ? "تم استلام طلبك" : "حدثت مشكلة");
@@ -457,9 +522,12 @@
       if (cfg.rates) state.rates = cfg.rates;
       state.demo = Boolean(cfg.demo);
       state.payments = cfg.payments || null;
+      state.whatsapp = cfg.whatsapp || null;
       const lim = String(cfg.attachLimit || "").match(/^(\d+(?:\.\d+)?)\s*(kb|mb|gb)?$/i);
       if (lim) state.attachLimit = Number(lim[1]) * ({ kb: 1024, mb: 1048576, gb: 1073741824 }[(lim[2] || "mb").toLowerCase()]);
     } catch {}
+    try { state.policy = await (await fetch("/policy.json")).json(); renderTerms("ar"); } catch {}
+    setupWhatsApp();
     render();
     showcase();
     loadVideos();
