@@ -157,32 +157,21 @@ const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي �
 الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.
 LANGUAGE RULE (highest priority): always reply in the language of the customer's LAST message – Arabic (Iraqi touch welcome) if it is Arabic, English if it is English.`;
 
-// Terms (public/policy.json): sections 1–2 say which requests are refused. The chat model refuses them and
-// tags its reply with [[POLICY:n]]; the page then shows those sections in the customer's language.
+// Terms (public/policy.json). Requests are NOT blocked: when a message may conflict with the content rules
+// (sections 1–2), the page shows the full terms in the customer's language with a note that continuing
+// means accepting them; the order keeps a record (options.termsNotice + a "terms_notice" event) and the
+// admins see a ⚠️ line in the Telegram alert before /confirm.
 const POLICY = JSON.parse(fs.readFileSync(path.join(__dirname, "public", "policy.json"), "utf8"));
 const FORBIDDEN_SECTIONS = [1, 2];
 const policyRules = POLICY.en.sections
   .filter((s) => FORBIDDEN_SECTIONS.includes(s.n))
   .map((s) => `Section ${s.n} – ${s.title}:\n${s.items.map((i) => `- ${i}`).join("\n")}`)
   .join("\n");
-const POLICY_PROMPT = `
-
-قواعد المحتوى (إلزامية):
-${policyRules}
-إذا طلب الزبون شيئاً يخالف هذه القواعد: اعتذر بلطف وباختصار بلغة الزبون، اذكر أن الطلب يخالف شروط VI Iraq، واقترح بديلاً مقبولاً إن أمكن، ولا تساعد في تنفيذ الجزء المخالف.
-وفي هذه الحالة فقط أضف في آخر ردك العلامة [[POLICY:رقم]] بأرقام الأقسام المخالَفة (مثال: [[POLICY:1]] أو [[POLICY:1,2]]). لا تضع العلامة أبداً في أي رد آخر.
-تصوير تردّي الخدمات أو الظروف المعيشية مسموح ما دام بدون إساءة أو تحريض.`;
-const POLICY_TAG = /\s*\[\[POLICY:\s*([\d,\s]*)\]\]\s*/gi;
-function takePolicyTag(reply) {
-  const sections = new Set();
-  const text = reply.replace(POLICY_TAG, (_m, list) => { list.split(",").map(Number).filter((n) => FORBIDDEN_SECTIONS.includes(n)).forEach((n) => sections.add(n)); return " "; }).trim();
-  return { text, sections: [...sections].sort() };
-}
 
 /**
- * Order gate: one short check of the customer's own messages against sections 1–2.
- * Returns the violated section numbers ([] = allowed). Fails open (logs) if the model is unavailable,
- * so an outage never blocks normal orders – the chat assistant and the admin review still apply.
+ * One short check of the customer's own messages against sections 1–2.
+ * Returns the section numbers the request may conflict with ([] = none). Never blocks anything;
+ * returns [] (and logs) if the model is unavailable.
  */
 async function policyCheck(messages, { lastOnly = false } = {}) {
   if (!OPENAI_API_KEY) return [];
@@ -443,24 +432,16 @@ app.post("/api/chat", chatLimit, async (req, res) => {
     const lastText = String([...messages].reverse().find((m) => m && m.role === "user")?.content || "");
     const english = !/[؀-ۿ]/.test(lastText) && /[A-Za-z]/.test(lastText);
     const langRule = english ? "\n\nThe customer wrote in English: reply ONLY in English." : "\n\nالزبون كتب بالعربية: رد بالعربية فقط.";
-    // the reply and a strict terms check of the newest message run side by side (no extra wait)
-    const [reply, flagged] = await Promise.all([
+    // the reply and a terms check of the newest message run side by side (no extra wait). The check never
+    // changes the reply: it only tells the page to show the terms with the "you accept them" note.
+    const [text, sections] = await Promise.all([
       openai({
         temperature: 0.8,
         max_tokens: 700,
-        messages: [{ role: "system", content: SYSTEM_PROMPT + POLICY_PROMPT + ctx + sent + langRule }, ...(await toModelMessages(messages))],
+        messages: [{ role: "system", content: SYSTEM_PROMPT + ctx + sent + langRule }, ...(await toModelMessages(messages))],
       }),
       policyCheck(messages, { lastOnly: true }),
     ]);
-    const tagged = takePolicyTag(reply);
-    const sections = [...new Set([...tagged.sections, ...flagged])].sort();
-    let text = tagged.text;
-    // flagged by the check but the assistant did not refuse on its own → never send its answer
-    if (flagged.length && !tagged.sections.length && !/(آسف|أعتذر|اعتذر|لا يمكن|sorry|can't|cannot|unable|not able)/i.test(text)) {
-      text = english
-        ? "Sorry, we can't make this request because it breaks VI Iraq's terms of use. We'd be glad to help with a different idea 🙏"
-        : "عذراً، لا يمكننا تنفيذ هذا الطلب لأنه يخالف شروط استخدام VI Iraq. يسعدنا مساعدتك بفكرة أخرى 🙏";
-    }
     res.json({ reply: text || "…", ...(sections.length ? { policy: { sections } } : {}) });
     // follow-up messages after an order are kept on that order
     if (order.requestId && order.accessToken && Array.isArray(messages)) {
@@ -562,11 +543,12 @@ app.post("/api/order", orderLimit, async (req, res) => {
   };
   const idempotencyKey = clean(req.get("idempotency-key") || order.idempotencyKey) || null;
 
-  // forbidden requests (terms sections 1–2) never become orders, even if the chat was skipped
-  const violates = await policyCheck(messages);
-  if (violates.length) {
-    return res.status(422).json({ ok: false, field: "policy", policy: { sections: violates },
-      message: "لا يمكننا تنفيذ هذا الطلب لأنه يخالف شروط استخدام VI Iraq. عدّل الفكرة ثم أرسلها من جديد." });
+  // requests that may conflict with the terms go through; the order records that the terms were shown
+  // and accepted, and the admins see it in the Telegram alert
+  const termsSections = await policyCheck(messages);
+  if (termsSections.length) {
+    const lastText = String([...messages].reverse().find((m) => m && m.role === "user")?.content || "");
+    options.termsNotice = { sections: termsSections, lang: /[؀-ۿ]/.test(lastText) ? "ar" : "en", accepted: true, at: new Date().toISOString() };
   }
 
   let created;
@@ -580,6 +562,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
   }
   const o = created.order;
   const ids = { requestId: o.request_id, requesterId: o.requester_id, accessToken: o.access_token, telegram, phone };
+  if (created.created && options.termsNotice) orders.addEvent(null, o.request_id, "terms_notice", options.termsNotice).catch(() => {});
 
   if (created.created) {
     // the customer gets the answer (and the bot link) right away; uploads, brief and admin notice follow
@@ -614,6 +597,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
     ...view,
     ok: true,
     duplicate: !created.created,
+    ...(o.options?.termsNotice ? { policy: { sections: o.options.termsNotice.sections } } : {}),
     message: `تم تسجيل طلبك 🎉 رقم الطلب: ${o.request_id} – ${
       payments.configured ? (fresh.paid_at ? "تم استلام الدفع ✔" : "اضغط «ادفع» لتأكيد الطلب")
       : DEMO ? "تابع الحالة في الدردشة، سيظهر الفيديو خلال ثوانٍ"

@@ -167,16 +167,29 @@
     const ul = el("ul"); s.items.forEach((i) => ul.append(el("li", "", i))); box.append(ul);
     return box;
   };
+  // Nothing is blocked: a request that may conflict with the terms shows the FULL terms once, in the
+  // customer's language, with the note that continuing means accepting them; later ones get a one-line reminder.
+  const ACCEPT = {
+    ar: { head: "📜 شروط وأحكام VI Iraq", accept: "بمتابعتك المحادثة وإرسال الطلب فأنت توافق على هذه الشروط والأحكام وتتحمل مسؤولية استخدام المخرجات.", remind: "📜 تذكير: بمتابعتك وإرسال الطلب فأنت توافق على شروط وأحكام VI Iraq.", more: "عرض الشروط كاملة" },
+    en: { head: "📜 VI Iraq Terms & Conditions", accept: "By continuing the chat and sending your order, you accept these terms and conditions and take responsibility for how the outputs are used.", remind: "📜 Reminder: by continuing and sending your order, you accept VI Iraq's terms and conditions.", more: "View the full terms" },
+  };
   function policyCard(sections, lang = customerLang()) {
     const doc = state.policy?.[lang];
     if (!doc) return;
+    const t = ACCEPT[lang];
     const card = el("div", "msg sys policy");
     card.dir = lang === "ar" ? "rtl" : "ltr"; card.lang = lang;
-    card.append(el("span", "ph", lang === "ar" ? "⚠️ لا يمكننا تنفيذ هذا الطلب – يخالف شروط VI Iraq" : "⚠️ We can't make this request – it is not allowed under VI Iraq's terms"));
-    doc.sections.filter((s) => sections.includes(s.n)).forEach((s) => card.append(sectionEl(s, "div")));
-    const more = el("button", "pl", lang === "ar" ? "عرض كل الشروط وإخلاء المسؤولية" : "View all terms and the disclaimer");
-    more.type = "button"; more.onclick = () => openTerms(lang, sections[0]);
-    card.append(more);
+    if ((state.termsShown ||= {})[lang]) {
+      card.classList.add("short");
+      card.append(el("span", "pa", t.remind));
+      const more = el("button", "pl", t.more); more.type = "button"; more.onclick = () => openTerms(lang, sections[0]);
+      card.append(more);
+    } else {
+      state.termsShown[lang] = true;
+      card.append(el("span", "ph", t.head));
+      doc.sections.forEach((s) => { const sec = sectionEl(s, "div"); if (sections.includes(s.n)) sec.classList.add("hit"); card.append(sec); });
+      card.append(el("p", "pa", t.accept));
+    }
     list.appendChild(card); list.scrollTop = list.scrollHeight;
   }
   function renderTerms(lang) {
@@ -354,15 +367,6 @@
       const r = await fetch("/api/order", { method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": state.idemKey }, body: JSON.stringify({ messages: state.messages, order: orderPayload() }) });
       const data = await r.json();
       if (r.status === 400) { state.idemKey = null; return fail(data.field || "chat", data.message); }
-      if (r.status === 422 && data.policy) {
-        state.idemKey = null;
-        const lang = customerLang();
-        note.className = "note err";
-        note.textContent = lang === "ar" ? data.message : "We can't make this request because it breaks VI Iraq's terms. Change the idea and send it again.";
-        policyCard(data.policy.sections, lang);
-        if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
-        return;
-      }
       if (r.status === 429) { state.idemKey = null; note.className = "note err"; note.textContent = data.message; return; }
       note.className = `note ${data.ok ? "ok" : "err"}`; note.textContent = data.message;
       toast(data.ok ? "تم استلام طلبك" : "حدثت مشكلة");
@@ -375,6 +379,7 @@
         state.messages.push({ role: "assistant", content: `تم إرسال الطلب. رقم الطلب ${data.requestId}، معرّف الزبون ${data.requesterId}.` });
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
+        if (data.policy?.sections?.length) policyCard(data.policy.sections);
         trackOrder(data);
         if (state.payments && data.payment && !data.payment.paid) { rememberOrder(); askPay(data); } else askBot(data);
       }

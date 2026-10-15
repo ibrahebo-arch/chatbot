@@ -187,8 +187,9 @@ async function deliver(requestId, media, caption = "") {
 /** Admins: new order + brief as a .txt document (no 4096-character limit issue). */
 async function announceOrder(o, brief) {
   const opt = o.options || {};
-  const linked = orders.paymentsRequired() && !o.paid_at ? "\n💳 بانتظار الدفع – ستصلك رسالة عند تأكيد الدفع."
-    : o.telegram_chat_id ? "" : "\n⏳ الزبون لم يضغط Start بعد – الطلب ينتظر الربط.";
+  const linked = (orders.paymentsRequired() && !o.paid_at ? "\n💳 بانتظار الدفع – ستصلك رسالة عند تأكيد الدفع."
+    : o.telegram_chat_id ? "" : "\n⏳ الزبون لم يضغط Start بعد – الطلب ينتظر الربط.")
+    + (opt.termsNotice ? `\n⚠️ قد يخالف شروط الاستخدام (القسم ${opt.termsNotice.sections.join(" و ")}) – عُرضت الشروط على الزبون ووافق عليها بإرسال الطلب. راجعه قبل /confirm.` : "");
   return notifyAdmins(
     `🎬 <b>طلب جديد ${esc(o.request_id)}</b>\n@${esc(o.telegram_username)} · ${esc(o.phone)}\n${opt.quality}p · ${opt.seconds}s · ${esc(opt.language || "")} · ${esc(opt.characters || "")} شخصية · $${opt.price}\n${opt.attachments ? `مرفقات: ${opt.attachments}` : "بدون مرفقات"}\n\n${esc((opt.description || "-").slice(0, 600))}${linked}\n\nللتأكيد: /confirm ${esc(o.request_id)}`,
     brief ? { buffer: Buffer.from(brief, "utf8"), name: `${o.request_id}-brief.txt`, caption: `ملف الإنتاج ${o.request_id}` } : null
