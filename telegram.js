@@ -205,6 +205,7 @@ async function announcePaid(o, payment) {
 }
 
 // ---------- incoming updates ----------
+const adminTries = new Map(); // chatId → { t, n } wrong /admin tokens in the current hour
 async function handleUpdate(u) {
   const m = u.message || u.edited_message;
   if (!m || !m.chat) return;
@@ -240,9 +241,17 @@ async function handleUpdate(u) {
   if (ID_RE.test(text)) return linkOne(text.toUpperCase());
 
   if (c === "/admin") {
+    // 5 wrong tokens per chat per hour, then /admin is refused for that chat until the hour is over
+    const f = adminTries.get(chatId);
+    if (f && f.n >= 5 && Date.now() - f.t < 3600e3) return send(chatId, "محاولات كثيرة، حاول بعد ساعة.");
     const token = clean(process.env.ADMIN_TOKEN);
     const given = Buffer.from(String(args[0] || ""));
-    if (token && given.length === Buffer.byteLength(token) && crypto.timingSafeEqual(given, Buffer.from(token))) {
+    const ok = token && given.length === Buffer.byteLength(token) && crypto.timingSafeEqual(given, Buffer.from(token));
+    if (!ok) {
+      if (!f || Date.now() - f.t >= 3600e3) adminTries.set(chatId, { t: Date.now(), n: 1 }); else f.n++;
+      notifyAdmins(`⚠️ محاولة /admin بكلمة مرور خاطئة من @${esc(username || "?")} (chat ${esc(chatId)}).`).catch(() => {});
+    }
+    if (ok) {
       await orders.addTelegramAdmin(chatId, username);
       await send(chatId, `✅ تم تسجيلك كمشرف. ستصلك الطلبات الجديدة هنا.\nالأوامر: /pending · /confirm ID · /deliver ID (مع فيديو) · /status ID`);
     } else await send(chatId, "كلمة المرور غير صحيحة.");

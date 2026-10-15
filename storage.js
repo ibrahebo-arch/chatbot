@@ -9,9 +9,10 @@
  *   uploads/<request_id>/<role>-<upload_id>.<ext>  after the order is created
  *   videos/<request_id>.mp4                        finished video
  *
- * Local development only (R2 not configured AND not running on Render): objects go to a temp
- * folder and are served by /api/dev-storage with a signed, expiring link. On Render a missing
- * R2 config is an error – nothing customer-related is ever kept on the instance disk.
+ * Without R2 (and not on Render): objects go to a local folder and are served by /api/dev-storage
+ * with a signed, expiring link. STORAGE_DIR sets that folder – on a VPS point it at a permanent
+ * path (the default temp folder is wiped on reboot). On Render a missing R2 config is an error –
+ * nothing customer-related is ever kept on the instance disk.
  */
 const fs = require("fs");
 const os = require("os");
@@ -41,7 +42,7 @@ if (r2) {
 }
 
 // ---------- local-dev fallback ----------
-const DEV_DIR = path.join(os.tmpdir(), "vi-iraq-dev-storage");
+const DEV_DIR = path.resolve(clean(process.env.STORAGE_DIR) || path.join(os.tmpdir(), "vi-iraq-dev-storage"));
 const DEV_SECRET = crypto.randomBytes(32);
 const devPath = (key) => {
   const p = path.join(DEV_DIR, ...String(key).split("/"));

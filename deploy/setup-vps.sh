@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # One-time VPS setup for VI Iraq (Ubuntu/Debian). Safe to re-run: every step checks before acting.
 #   Node 22 + Postgres (local) + the app as a systemd service + nginx reverse proxy on port 80.
+#   Hardening: SSH key-only + fail2ban, automatic security updates, website ports open to Cloudflare
+#   only (CLOUDFLARE_ONLY=false while the DNS records are "DNS only"), uploads in a permanent folder.
 # Usage (as root on the VPS):  bash setup-vps.sh
 set -euo pipefail
 
@@ -11,13 +13,15 @@ DB_NAME=vi_iraq
 DB_USER=vi_iraq
 PORT=3000
 DOMAIN=vi-iraq.com
+STORAGE_DIR=/var/lib/vi-iraq/storage
+CLOUDFLARE_ONLY=${CLOUDFLARE_ONLY:-true}
 
 export DEBIAN_FRONTEND=noninteractive
 log() { printf '\n== %s\n' "$*"; }
 
 log "Base packages"
 apt-get update -qq
-apt-get install -y -qq curl git ca-certificates gnupg nginx postgresql ufw certbot python3-certbot-nginx >/dev/null
+apt-get install -y -qq curl git ca-certificates gnupg nginx postgresql ufw certbot python3-certbot-nginx fail2ban unattended-upgrades >/dev/null
 
 log "Node.js 22"
 if ! command -v node >/dev/null || [ "$(node -p 'process.versions.node.split(".")[0]')" -lt 22 ]; then
@@ -59,6 +63,10 @@ set_env() { grep -q "^$1=" "$ENV_FILE" && sed -i "s|^$1=.*|$1=$2|" "$ENV_FILE" |
 set_env DATABASE_URL "$DB_URL"
 set_env PORT "$PORT"
 set_env TELEGRAM_POLL ""
+# customer uploads: a permanent folder (the default temp folder is wiped on every reboot)
+mkdir -p "$STORAGE_DIR"; chown -R "$APP_USER:$APP_USER" "$(dirname "$STORAGE_DIR")"; chmod 700 "$(dirname "$STORAGE_DIR")" "$STORAGE_DIR"
+for old in /tmp/vi-iraq-dev-storage/*; do [ -e "$old" ] && cp -an "$old" "$STORAGE_DIR"/ || true; done
+set_env STORAGE_DIR "$STORAGE_DIR"
 chown "$APP_USER:$APP_USER" "$ENV_FILE"; chmod 600 "$ENV_FILE"
 
 log "systemd service"
@@ -74,6 +82,10 @@ ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=3
 Environment=NODE_ENV=production
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectHome=yes
 
 [Install]
 WantedBy=multi-user.target
@@ -108,11 +120,60 @@ EOF
 fi
 ln -sf /etc/nginx/sites-available/vi-iraq /etc/nginx/sites-enabled/vi-iraq
 rm -f /etc/nginx/sites-enabled/default
+
+# Cloudflare's address ranges (fallback list if the download fails)
+CF_V4=$(curl -fsS --max-time 10 https://www.cloudflare.com/ips-v4 || echo "173.245.48.0/20 103.21.244.0/22 103.22.200.0/22 103.31.4.0/22 141.101.64.0/18 108.162.192.0/18 190.93.240.0/20 188.114.96.0/20 197.234.240.0/22 198.41.128.0/17 162.158.0.0/15 104.16.0.0/13 104.24.0.0/14 172.64.0.0/13 131.0.72.0/22")
+CF_V6=$(curl -fsS --max-time 10 https://www.cloudflare.com/ips-v6 || echo "2400:cb00::/32 2606:4700::/32 2803:f800::/32 2405:b500::/32 2405:8100::/32 2a06:98c0::/29 2c0f:f248::/32")
+# nginx: no version in headers; the visitor address comes from Cloudflare's CF-Connecting-IP
+{
+  echo "# managed by setup-vps.sh"
+  echo "server_tokens off;"
+  for r in $CF_V4 $CF_V6; do echo "set_real_ip_from $r;"; done
+  echo "real_ip_header CF-Connecting-IP;"
+} > /etc/nginx/conf.d/vi-iraq-hardening.conf
 nginx -t -q && systemctl reload nginx
 
-log "Firewall (SSH + HTTP + HTTPS)"
-ufw allow OpenSSH >/dev/null; ufw allow 'Nginx Full' >/dev/null
+log "Firewall (SSH + website)"
+ufw allow OpenSSH >/dev/null
+if [ "$CLOUDFLARE_ONLY" = "true" ]; then
+  # the website is only reachable through Cloudflare (no bypassing its protection by calling the IP)
+  ufw delete allow 'Nginx Full' >/dev/null 2>&1 || true
+  for r in $CF_V4 $CF_V6; do ufw allow proto tcp from "$r" to any port 80,443 comment cloudflare >/dev/null; done
+else
+  ufw allow 'Nginx Full' >/dev/null
+fi
 ufw --force enable >/dev/null
+
+log "SSH: key-only login + fail2ban"
+if [ -s /root/.ssh/authorized_keys ]; then
+  cat > /etc/ssh/sshd_config.d/00-vi-iraq-hardening.conf <<EOF
+# managed by setup-vps.sh – keys only, no passwords
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PermitRootLogin prohibit-password
+MaxAuthTries 3
+X11Forwarding no
+EOF
+  sshd -t && systemctl reload ssh
+else
+  echo "No SSH key in /root/.ssh/authorized_keys - keeping password login so you are not locked out."
+fi
+cat > /etc/fail2ban/jail.d/vi-iraq.local <<EOF
+[sshd]
+enabled = true
+backend = systemd
+maxretry = 5
+findtime = 10m
+bantime = 1h
+EOF
+systemctl enable --now fail2ban >/dev/null 2>&1; systemctl restart fail2ban
+
+log "Automatic security updates"
+cat > /etc/apt/apt.conf.d/20auto-upgrades <<EOF
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+systemctl enable --now unattended-upgrades >/dev/null 2>&1 || true
 
 log "HTTPS"
 # certbot can only succeed once the domain's DNS points at this server

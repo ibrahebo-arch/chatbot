@@ -68,8 +68,45 @@ const RATES = { 1080: 80 / 60, 720: 44 / 60, 480: 22 / 60 };
 const priceFor = (quality, seconds) =>
   Math.ceil((RATES[quality] || RATES[1080]) * seconds);
 
-// Behind a tunnel / hosting proxy the real visitor IP is in X-Forwarded-For.
-app.set("trust proxy", true);
+// Visitor IP for rate limits. Both sites sit behind Cloudflare, which always overwrites CF-Connecting-IP
+// with the real client address (the VPS firewall only lets Cloudflare reach nginx). X-Forwarded-For is
+// NOT trusted beyond the local proxy: its first value is whatever the client typed, which let anyone
+// skip every rate limit by sending a different fake IP. TRUST_PROXY can override (express "trust proxy").
+app.set("trust proxy", clean(process.env.TRUST_PROXY) || "loopback");
+const net = require("net");
+const clientIp = (req) => {
+  const cf = clean(req.get("cf-connecting-ip"));
+  return net.isIP(cf) ? cf : req.ip;
+};
+app.disable("x-powered-by");
+
+// Security headers for every response (both sites). The page loads its own script/styles plus Google Fonts;
+// videos and pictures can also come from short-lived storage links (https).
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: blob: https:",
+  "media-src 'self' blob: https:",
+  "connect-src 'self'",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+].join("; ");
+app.use((_req, res, next) => {
+  res.set({
+    "Content-Security-Policy": CSP,
+    "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+    "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+  });
+  next();
+});
 app.use(express.json({ limit: "1mb" }));
 
 // Cache busting: index.html asks for /app.js?v=<content hash> and /style.css?v=<hash>, so after a deploy
@@ -93,8 +130,9 @@ function rateLimit(max, windowMs, msg) {
   setInterval(() => { const now = Date.now(); for (const [k, v] of hits) if (now - v.t > windowMs) hits.delete(k); }, windowMs).unref();
   return (req, res, next) => {
     const now = Date.now();
-    const h = hits.get(req.ip);
-    if (!h || now - h.t > windowMs) { hits.set(req.ip, { t: now, n: 1 }); return next(); }
+    const ip = clientIp(req);
+    const h = hits.get(ip);
+    if (!h || now - h.t > windowMs) { hits.set(ip, { t: now, n: 1 }); return next(); }
     if (++h.n > max) return res.status(429).json({ ok: false, error: msg, reply: msg, message: msg });
     next();
   };
@@ -558,9 +596,16 @@ app.get("/api/orders/:id/status", statusLimit, async (req, res) => {
 });
 
 // ---------- request status / delivery (admin token) ----------
+// Wrong admin tokens: 10 per hour per visitor, then everything (even the right token) is refused for the hour.
+const adminFails = new Map();
+setInterval(() => { const now = Date.now(); for (const [k, v] of adminFails) if (now - v.t > 3600e3) adminFails.delete(k); }, 600e3).unref();
 const adminOnly = (req, res, next) => {
+  const ip = clientIp(req);
+  const f = adminFails.get(ip);
+  if (f && f.n >= 10 && Date.now() - f.t < 3600e3) return res.status(429).json({ ok: false, error: "محاولات كثيرة، حاول بعد ساعة." });
   const given = Buffer.from(String(req.get("x-admin-token") || ""));
   if (!ADMIN_TOKEN || given.length !== Buffer.byteLength(ADMIN_TOKEN) || !crypto.timingSafeEqual(given, Buffer.from(ADMIN_TOKEN))) {
+    if (!f || Date.now() - f.t >= 3600e3) adminFails.set(ip, { t: Date.now(), n: 1 }); else f.n++;
     return res.status(401).json({ ok: false, error: "كلمة المرور غير صحيحة." });
   }
   next();
@@ -611,6 +656,15 @@ async function start() {
     console.log(`Mail: ${m.ok ? `on (${mail.PROVIDER}: ${mail.MAIL_FROM} → ${mail.MAIL_TO})` : `OFF – ${m.error}`}`);
     const t = await tg.init(app, PUBLIC_URL);
     console.log(`Telegram: ${tg.configured ? `${t.mode} as @${t.username || "?"} (${t.admins ?? 0} admins)${t.error ? " – " + t.error : ""}` : "OFF (set TELEGRAM_BOT_TOKEN)"}`);
+    // abandoned uploads (never attached to an order) are deleted after 24 h, so the disk cannot fill up
+    const sweepUploads = async () => {
+      if (!storage.ready) return;
+      for (const a of await orders.staleDraftAssets(24)) {
+        try { await storage.remove(a.r2_key); await orders.deleteAsset(a.id); } catch (e) { console.error("upload cleanup:", e.message); }
+      }
+    };
+    sweepUploads().catch((e) => console.error("upload cleanup:", e.message));
+    setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();
     if (payments.configured) {
       const k = await payments.verifyKeys();
       console.log(`Payments: wayl ${payments.ENV} · ${payments.IQD_PER_USD} IQD/USD · callbacks → ${PAY_PUBLIC_URL || "(request host)"} · keys ${k.ok ? "valid" : "INVALID – " + k.error}`);

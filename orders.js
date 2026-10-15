@@ -246,6 +246,14 @@ async function setAssetKey(id, key) {
   await db.query("UPDATE assets SET r2_key = $2 WHERE id = $1", [id, key]);
 }
 
+/** Uploads never attached to an order (chat abandoned) older than `hours`. */
+const staleDraftAssets = async (hours = 24, limit = 200) =>
+  (await db.query(
+    "SELECT id, r2_key FROM assets WHERE request_id IS NULL AND created_at < now() - make_interval(hours => $1) ORDER BY id LIMIT $2",
+    [hours, limit]
+  )).rows;
+const deleteAsset = async (id) => db.query("DELETE FROM assets WHERE id = $1 AND request_id IS NULL", [id]);
+
 // ---------- telegram admins ----------
 const telegramAdmins = async () => (await db.query("SELECT chat_id FROM telegram_admins")).rows.map((r) => String(r.chat_id));
 async function addTelegramAdmin(chatId, username) {
@@ -256,6 +264,6 @@ module.exports = {
   OrderError, ROLE_DB, ROLE_UI, autoGenerate, paymentsRequired,
   createOrder, setStatus, advance, getOrder, getOwnedOrder, listOrders, saveBrief, saveMessages, setVideo, addEvent,
   linkTelegram, linkByUsername,
-  createPendingAsset, getAsset, orderAssets, claimAssets, setAssetKey,
+  createPendingAsset, getAsset, orderAssets, claimAssets, setAssetKey, staleDraftAssets, deleteAsset,
   telegramAdmins, addTelegramAdmin,
 };
