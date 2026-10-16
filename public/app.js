@@ -174,7 +174,7 @@
     ar: { head: "⚠️ طلبك قد يخالف شروط VI Iraq", accept: "بمتابعتك المحادثة وإرسال الطلب فأنت توافق على شروط وأحكام VI Iraq وتتحمل مسؤولية استخدام المخرجات.", more: "اقرأ باقي الشروط ▾", less: "إخفاء باقي الشروط ▴" },
     en: { head: "⚠️ Your request may conflict with VI Iraq's terms", accept: "By continuing the chat and sending your order, you accept VI Iraq's terms and conditions and take responsibility for how the outputs are used.", more: "Read the rest of the terms ▾", less: "Hide the rest of the terms ▴" },
   };
-  function policyCard(sections, lang = customerLang()) {
+  function policyCard(sections, lang = customerLang(), target = null) {
     const doc = state.policy?.[lang];
     if (!doc) return;
     const t = ACCEPT[lang];
@@ -188,6 +188,7 @@
     const more = el("button", "pl", t.more); more.type = "button";
     more.onclick = () => { rest.hidden = !rest.hidden; more.textContent = rest.hidden ? t.more : t.less; };
     card.append(more, rest);
+    if (target) { target.prepend(card); return; }
     list.appendChild(card); list.scrollTop = list.scrollHeight;
   }
   function renderTerms(lang) {
@@ -496,6 +497,109 @@
     poll();
   }
 
+  // ---------- free trial (no account, no payment; limits per IP on the server) ----------
+  const trial = { style: "realistic", kind: "image", info: null, jobs: [] }; // jobs: [{ id, token, ...view }]
+  const TRIAL_KEY = "vi-trial";
+  const saveTrial = () => { try { localStorage.setItem(TRIAL_KEY, JSON.stringify(trial.jobs.slice(0, 12))); } catch {} };
+  ["trialStyle", "trialKind"].forEach((id) => $(id).addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    trial[id === "trialStyle" ? "style" : "kind"] = b.dataset.v;
+    $(id).querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+  }));
+  function renderTrialLeft(s) {
+    if (!s || !s.enabled) return;
+    trial.info = s;
+    $("trialSecs").textContent = s.videoSeconds;
+    $("trialLeft").innerHTML = s.paused
+      ? "التجربة المجانية متوقفة لليوم – جرّب غداً 🙏"
+      : `متبقي لك: <b>${s.left.image}</b> ${s.left.image === 1 ? "صورة" : "صور"} · <b>${s.left.video}</b> فيديو`;
+    $("trialGo").disabled = Boolean(s.paused);
+    document.querySelectorAll(".tjob .animate").forEach((b) => (b.hidden = !s.left.video));
+  }
+  async function loadTrial() {
+    try { renderTrialLeft(await (await fetch("/api/trial", { cache: "no-store" })).json()); } catch {}
+  }
+  function trialCard(j) {
+    let card = document.querySelector(`.tjob[data-id="${j.id}"]`);
+    if (!card) {
+      card = el("div", `tjob ${j.kind}`); card.dataset.id = j.id;
+      $("trialResults").prepend(card);
+    }
+    const busy = j.status === "queued" || j.status === "running";
+    const media = el("div", "media");
+    if (busy) {
+      const w = el("div", "wait"); w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ إنشاء الفيديو… عادةً 1–3 دقائق" : "جارٍ إنشاء الصورة…")); media.append(w);
+    } else if (j.status === "done" && j.url) {
+      const m = el(j.kind === "video" ? "video" : "img");
+      if (j.kind === "video") Object.assign(m, { muted: true, loop: true, autoplay: true, playsInline: true, controls: true });
+      else m.alt = j.prompt;
+      m.src = j.url; media.append(m);
+    } else {
+      const w = el("div", "wait"); w.append(el("span", "err", "تعذّر الإنشاء – لم يُحتسب من رصيدك، جرّب وصفاً آخر.")); media.append(w);
+    }
+    const info = el("div", "info");
+    info.append(el("span", "p", j.prompt));
+    const meta = el("div", "meta"); meta.append(el("span", "", `${j.style === "cartoon" ? "🎨 كرتون" : "📷 واقعي"} · ${j.kind === "video" ? "🎬 فيديو" : "🖼️ صورة"}`));
+    const acts = el("div", "acts");
+    if (j.status === "done" && j.url) {
+      const dl = el("a", "", "فتح / تنزيل"); dl.href = j.url; dl.target = "_blank"; dl.rel = "noopener"; acts.append(dl);
+      if (j.kind === "image") {
+        const an = el("button", "animate", "🎬 حرّكها فيديو"); an.type = "button";
+        an.hidden = !(trial.info?.left?.video > 0);
+        an.onclick = () => startTrial({ kind: "video", style: j.style, prompt: j.prompt, sourceJob: j.id, sourceToken: j.token });
+        acts.append(an);
+      }
+      const order = el("button", "", "اطلب نسخة كاملة"); order.type = "button";
+      order.onclick = () => { showTab("studio"); $("input").value = j.prompt; $("input").focus(); autoGrow(); };
+      acts.append(order);
+    }
+    meta.append(acts); info.append(meta);
+    card.replaceChildren(media, info);
+  }
+  function pollTrial(j) {
+    if (j.status !== "queued" && j.status !== "running") return;
+    setTimeout(async () => {
+      try {
+        const r = await fetch(`/api/trial/jobs/${encodeURIComponent(j.id)}`, { headers: { "x-trial-token": j.token }, cache: "no-store" });
+        if (r.status === 404) return;
+        const d = await r.json();
+        if (d.ok) {
+          Object.assign(j, d.job); saveTrial(); trialCard(j);
+          if (j.status === "done" || j.status === "failed") loadTrial(); // a failed job gives the slot back
+        }
+      } catch {}
+      pollTrial(j);
+    }, j.kind === "video" ? 5000 : 2500);
+  }
+  async function startTrial({ kind, style, prompt, sourceJob = null, sourceToken = null }) {
+    const note = $("trialNote"), btn = $("trialGo");
+    note.className = "note"; note.textContent = kind === "video" ? "نرسل طلب الفيديو…" : "نرسل طلب الصورة…";
+    btn.disabled = true;
+    try {
+      const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken }) });
+      const d = await r.json();
+      if (!d.ok) { note.className = "note err"; note.textContent = d.message || "حدثت مشكلة، حاول مرة ثانية."; return; }
+      note.textContent = "";
+      if (d.policy?.sections?.length) policyCard(d.policy.sections, isArabic(prompt) ? "ar" : "en", $("trialResults"));
+      const j = { ...d.job, token: d.token };
+      trial.jobs.unshift(j); saveTrial(); trialCard(j); renderTrialLeft(d); pollTrial(j);
+      $("trialResults").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch {
+      note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، حاول مرة ثانية.";
+    } finally { btn.disabled = Boolean(trial.info?.paused); }
+  }
+  $("trialGo").addEventListener("click", () => {
+    const prompt = $("trialPrompt").value.trim();
+    if (prompt.length < 3) { $("trialNote").className = "note err"; $("trialNote").textContent = "اكتب وصفاً لما تريد إنشاءه."; $("trialPrompt").focus(); return; }
+    startTrial({ kind: trial.kind, style: trial.style, prompt });
+  });
+  function initTrial() {
+    $("trialTab").hidden = false;
+    try { trial.jobs = JSON.parse(localStorage.getItem(TRIAL_KEY) || "[]"); } catch { trial.jobs = []; }
+    [...trial.jobs].reverse().forEach((j) => { trialCard(j); pollTrial(j); });
+    loadTrial();
+  }
+
   // ---------- works ----------
   const fmtSize = (b) => (b > 1e6 ? `${(b / 1e6).toFixed(1)} MB` : `${Math.round(b / 1e3)} KB`);
   async function loadVideos() {
@@ -526,6 +630,7 @@
       state.demo = Boolean(cfg.demo);
       state.payments = cfg.payments || null;
       state.whatsapp = cfg.whatsapp || null;
+      if (cfg.trial) initTrial();
       const lim = String(cfg.attachLimit || "").match(/^(\d+(?:\.\d+)?)\s*(kb|mb|gb)?$/i);
       if (lim) state.attachLimit = Number(lim[1]) * ({ kb: 1024, mb: 1048576, gb: 1073741824 }[(lim[2] || "mb").toLowerCase()]);
     } catch {}

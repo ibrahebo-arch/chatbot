@@ -65,6 +65,10 @@ services:
         value: test
       - key: PAY_IQD_PER_USD    # USD price → IQD amount (rounded up to 250)
         value: "1310"
+      - key: FAL_KEY            # free trial (images/video) – empty = trial off
+        sync: false
+      - key: TRIAL_DAILY_BUDGET_USD
+        value: "5"
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: TELEGRAM_ADMIN_CHAT_IDS

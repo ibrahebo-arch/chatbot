@@ -26,6 +26,8 @@ const storage = require("./storage");
 const tg = require("./telegram");
 const mail = require("./mail");
 const payments = require("./payments");
+const media = require("./media");
+const trial = require("./trial");
 const { normalizeTelegram, normalizePhone } = require("./validate");
 
 const app = express();
@@ -320,6 +322,7 @@ app.get("/api/config", (_req, res) => {
     bot: tg.configured ? tg.username : null,
     payments: payments.configured ? { provider: "wayl", env: payments.ENV, iqdPerUsd: payments.IQD_PER_USD } : null,
     whatsapp: WHATSAPP,
+    trial: trial.enabled(),
     rates: RATES,
     brand: "VI Iraq",
   });
@@ -606,6 +609,64 @@ app.post("/api/order", orderLimit, async (req, res) => {
   });
 });
 
+// ---------- free trial (no account, no payment; limits per visitor IP – see trial.js) ----------
+const trialLimit = rateLimit(12, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً ثم حاول مرة ثانية.");
+
+/** The visitor's idea (any language) → a short English prompt for the media model; style is added later. */
+async function visualPrompt(text, kind) {
+  if (!OPENAI_API_KEY) return text;
+  try {
+    const out = await openai({
+      temperature: 0.4,
+      max_tokens: 160,
+      messages: [
+        { role: "system", content: `Rewrite the user's idea as one concise English prompt (max 70 words) for an AI ${kind === "video" ? "video" : "image"} generation model. Keep their subject, people, place, action and mood; describe it visually and concretely${kind === "video" ? ", including the camera and the motion" : ""}. Do not add art-style words (the style is added separately). Output only the prompt.` },
+        { role: "user", content: text },
+      ],
+    });
+    return out.replace(/^["'\s]+|["'\s]+$/g, "").slice(0, 900) || text;
+  } catch (e) {
+    console.error("trial prompt:", e.message);
+    return text;
+  }
+}
+
+app.get("/api/trial", statusLimit, async (req, res) => {
+  try { res.set("Cache-Control", "no-store").json({ ok: true, ...(await trial.status(clientIp(req))) }); }
+  catch (e) { console.error("trial status:", e.message); res.status(500).json({ ok: false, enabled: false }); }
+});
+
+app.post("/api/trial/jobs", trialLimit, async (req, res) => {
+  if (!trial.enabled()) return res.status(404).json({ ok: false, message: "التجربة المجانية غير متاحة حالياً." });
+  if (!db.configured) return res.status(503).json({ ok: false, message: "الخدمة غير متاحة حالياً، حاول لاحقاً." });
+  const { kind, style, prompt, sourceJob, sourceToken } = req.body || {};
+  const text = clean(prompt).slice(0, 800);
+  try {
+    // terms are shown (never blocking) exactly like in the chat
+    const [modelPrompt, sections] = await Promise.all([
+      visualPrompt(text, kind),
+      policyCheck([{ role: "user", content: text }]),
+    ]);
+    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text, modelPrompt, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
+    res.json({ ok: true, job: trial.view(job), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
+  } catch (e) {
+    if (e instanceof trial.TrialError) return res.status(e.code === "limit" || e.code === "paused" ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });
+    console.error("trial start:", e.message);
+    res.status(500).json({ ok: false, message: "تعذّر بدء الإنشاء، حاول مرة ثانية." });
+  }
+});
+
+app.get("/api/trial/jobs/:id", statusLimit, async (req, res) => {
+  try {
+    const j = await trial.get(req.params.id, req.get("x-trial-token"));
+    if (!j) return res.status(404).json({ ok: false, message: "غير موجود." });
+    res.set("Cache-Control", "no-store").json({ ok: true, job: trial.view(j) });
+  } catch (e) {
+    console.error("trial job:", e.message);
+    res.status(500).json({ ok: false });
+  }
+});
+
 // Payment link for the customer's own unpaid order (same owner check as the status route).
 app.post("/api/orders/:id/pay", statusLimit, async (req, res) => {
   if (!payments.configured) return res.status(404).json({ ok: false, message: "الدفع الإلكتروني غير مفعّل حالياً." });
@@ -727,6 +788,10 @@ async function start() {
     };
     sweepUploads().catch((e) => console.error("upload cleanup:", e.message));
     setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();
+    if (trial.enabled()) {
+      console.log(`Free trial: on (fal · image ${media.MODELS.image} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
+      trial.startSweeper();
+    } else console.log("Free trial: OFF (set FAL_KEY)");
     if (payments.configured) {
       const k = await payments.verifyKeys();
       console.log(`Payments: wayl ${payments.ENV} · ${payments.IQD_PER_USD} IQD/USD · callbacks → ${PAY_PUBLIC_URL || "(request host)"} · keys ${k.ok ? "valid" : "INVALID – " + k.error}`);

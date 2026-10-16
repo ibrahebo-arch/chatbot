@@ -19,6 +19,7 @@
     </a>
     <nav class="nav" aria-label="الأقسام">
       <button class="tab on" data-tab="studio">الاستوديو</button>
+      <button class="tab trial-tab" data-tab="trial" id="trialTab" hidden>🎁 جرّب مجاناً</button>
       <button class="tab" data-tab="works">أعمالنا</button>
       <button class="tab" data-tab="prices">الأسعار</button>
       <button class="tab" data-tab="contact">تواصل</button>
@@ -140,6 +141,42 @@
         <div><small>السعر التقديري</small><strong>$<span id="mPrice">20</span></strong></div>
         <button type="button" id="mGo">تفاصيل الطلب وإرساله</button>
       </div>
+    </section>
+
+    <!-- ================= FREE TRIAL ================= -->
+    <section class="view" id="view-trial">
+      <div class="section-head">
+        <h2>جرّب مجاناً 🎁</h2>
+        <p>بدون تسجيل ولا دفع: أنشئ صوراً وفيديو قصيراً بالذكاء الاصطناعي لترى الجودة بنفسك.</p>
+      </div>
+      <div class="card trial">
+        <div class="trial-row">
+          <div class="field">
+            <label>الأسلوب</label>
+            <div class="seg" id="trialStyle">
+              <button type="button" data-v="realistic" class="on">📷 واقعي</button>
+              <button type="button" data-v="cartoon">🎨 كرتون</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>النوع</label>
+            <div class="seg" id="trialKind">
+              <button type="button" data-v="image" class="on">🖼️ صورة</button>
+              <button type="button" data-v="video">🎬 فيديو <small id="trialSecs">5</small>ث</button>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="trialPrompt">صف ما تريد</label>
+          <textarea id="trialPrompt" rows="3" maxlength="800" placeholder="مثال: قطة صغيرة تلبس نظارة شمسية على شاطئ البصرة وقت الغروب"></textarea>
+        </div>
+        <div class="trial-go">
+          <button type="button" class="cta" id="trialGo">أنشئ مجاناً</button>
+          <span class="trial-left" id="trialLeft"></span>
+        </div>
+        <p class="note" id="trialNote"></p>
+      </div>
+      <div class="trial-results" id="trialResults"></div>
     </section>
 
     <!-- ================= WORKS ================= -->

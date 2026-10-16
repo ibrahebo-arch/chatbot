@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 process.env.DATABASE_URL = "";
+process.env.FAL_KEY = "";
 const { app } = require("../server");
 const policy = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "public", "policy.json"), "utf8"));
 
@@ -30,6 +31,13 @@ test("terms file is served and the WhatsApp number reaches the page", async () =
   assert.equal((await p.json()).en.sections.length, 6);
   const cfg = await (await fetch(`${base}/api/config`)).json();
   assert.match(cfg.whatsapp, /^964\d{10}$/);
+});
+
+test("without FAL_KEY the free trial is off: tab hidden by config, start route 404", async () => {
+  const cfg = await (await fetch(`${base}/api/config`)).json();
+  assert.equal(cfg.trial, false);
+  assert.equal((await (await fetch(`${base}/api/trial`)).json()).enabled, false);
+  assert.equal((await fetch(`${base}/api/trial/jobs`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" })).status, 404);
 });
 
 test("the page has the contact tab, the terms area and the floating WhatsApp button", async () => {
