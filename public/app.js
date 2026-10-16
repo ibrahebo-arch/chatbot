@@ -680,6 +680,10 @@
   // free results from before a reload come back into the chat (after the welcome message) and keep updating
   function restoreTrial() {
     try { trial.jobs = JSON.parse(localStorage.getItem(TRIAL_KEY) || "[]").filter((j) => j && j.id && j.token); } catch { trial.jobs = []; }
+    // a refresh renews the chat: finished results are not brought back (the limits per visitor stay on the server);
+    // only a result still being made returns, so a reload during the wait still delivers it
+    trial.jobs = trial.jobs.filter(pending);
+    saveTrialJobs();
     if (!trial.jobs.length) return;
     // the welcome page with the showcase loops stays as before; the chat opens only when something is still being made
     // (or when the visitor sends something – the finished results are already waiting in the list)
