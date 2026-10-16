@@ -676,14 +676,16 @@ app.post("/api/trial/jobs", trialLimit, async (req, res) => {
   const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content) || (refs.length ? "من صوري المرفقة" : "");
   if (text.length < 3) return res.status(400).json({ ok: false, code: "invalid", message: "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً»." });
   try {
-    // ChatGPT writes the full plan from the chat and the pictures (Claude reviews it); terms are shown (never blocking) like in the chat
-    const [{ plan, by }, sections] = await Promise.all([
-      planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob), refs }),
-      policyCheck([{ role: "user", content: userText }], { lastOnly: true }),
-    ]);
-    if (refs.length) plan.refs = refs.map((r) => r.role);
-    console.log(`trial plan by ${by}: ${kind}/${style}${refs.length ? ` · ${refs.length} chat picture(s)` : ""}${plan.speech ? ` · speech ${plan.speech.lang} "${plan.speech.text.slice(0, 60)}"` : ""}${plan.onScreenText ? ` · text "${plan.onScreenText.text}"` : ""}`);
-    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: plan.prompt, plan, speech: plan.speech, refs, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
+    // the visitor gets the card at once; the plan is written from the chat and the pictures in the background.
+    // Terms are shown (never blocking) like in the chat.
+    const sections = await policyCheck([{ role: "user", content: userText }], { lastOnly: true });
+    const planFn = async () => {
+      const { plan, by } = await planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob), refs });
+      if (refs.length) plan.refs = refs.map((r) => r.role);
+      console.log(`trial plan by ${by}: ${kind}/${style}${refs.length ? ` · ${refs.length} chat picture(s)` : ""}${plan.speech ? ` · speech ${plan.speech.lang} "${plan.speech.text.slice(0, 60)}"` : ""}${plan.onScreenText ? ` · text "${plan.onScreenText.text}"` : ""}`);
+      return { plan };
+    };
+    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: text.slice(0, 800), refs, sourceJobId: sourceJob || null, sourceToken, termsSections: sections, planFn });
     res.json({ ok: true, job: trial.view(job, token), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
   } catch (e) {
     if (e instanceof trial.TrialError) return res.status(["limit", "paused", "video_off"].includes(e.code) ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });

@@ -219,7 +219,7 @@ async function startOpenAI(job, refs = []) {
  * Reserves a slot and starts the job.
  * opts: { ip, kind: "image"|"video", style, prompt, modelPrompt, sourceJobId, sourceToken, termsSections }
  */
-async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, refs = [], sourceJobId = null, sourceToken = null, termsSections = [] }) {
+async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, refs = [], sourceJobId = null, sourceToken = null, termsSections = [], planFn = null }) {
   if (!enabled()) throw new TrialError("off", "التجربة المجانية غير متاحة حالياً.");
   if (!["image", "video"].includes(kind)) throw new TrialError("invalid", "نوع غير معروف.");
   if (!["realistic", "cartoon"].includes(style)) throw new TrialError("invalid", "اختر واقعي أو كرتون.");
@@ -233,8 +233,12 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const useRefs = !sourceJobId && refs.length > 0;
   const editImage = kind === "image" && useRefs && openaiOk();
   // pictures with writing in them go to the ChatGPT image model too (fal's FLUX misspells Arabic text)
-  const viaOpenAI = kind === "image" && openaiOk() && (editImage || media.useOpenAIImage(style) || Boolean(plan?.onScreenText));
-  const cost = (editImage ? media.COST.openaiEdit : viaOpenAI ? media.COST.openaiImage : media.COST[kind]) + (speech ? media.COST.speech : 0);
+  const routeOf = (pl) => kind === "image" && openaiOk() && (editImage || media.useOpenAIImage(style) || Boolean(pl?.onScreenText));
+  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit : routeOf(pl) ? media.COST.openaiImage : media.COST[kind]) + (sp ? media.COST.speech : 0);
+  // with planFn the plan is written after the visitor already has the job: reserve the highest possible cost
+  const cost = planFn
+    ? (kind === "video" ? media.COST.video + media.COST.speech : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image))
+    : costOf(plan, speech);
 
   // "animate this image": only one of this visitor's own finished images
   let imageUrl = null;
@@ -276,36 +280,55 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
     )).rows[0];
   });
 
-  if (viaOpenAI) return { job: await startOpenAI(job, editImage ? refs : []), token: job.token };
-  try {
-    // the voice track first (Iraqi by default), then the video with it as the soundtrack
-    let audioUrl = null;
-    if (kind === "video" && speech?.text) {
-      try {
-        const mp3 = await media.speak(speech);
-        audioUrl = media.audioDataUri(mp3);
-        if (storage.ready) {
-          const akey = `trial/${job.ticket}.mp3`;
-          await storage.put(akey, mp3, { contentType: "audio/mpeg" });
-          await db.query("UPDATE trial_jobs SET audio_key = $2 WHERE id = $1", [job.id, akey]);
-        }
-      } catch (e) { console.error(`trial ${job.ticket}: voice failed (${e.message.slice(0, 120)}) – video without voice`); }
+  const launch = async (job, plan, speech, modelPrompt) => {
+    if (routeOf(plan)) return { job: await startOpenAI(job, editImage ? refs : []), token: job.token };
+    try {
+      // the voice track first (Iraqi by default), then the video with it as the soundtrack
+      let audioUrl = null;
+      if (kind === "video" && speech?.text) {
+        try {
+          const mp3 = await media.speak(speech);
+          audioUrl = media.audioDataUri(mp3);
+          if (storage.ready) {
+            const akey = `trial/${job.ticket}.mp3`;
+            await storage.put(akey, mp3, { contentType: "audio/mpeg" });
+            await db.query("UPDATE trial_jobs SET audio_key = $2 WHERE id = $1", [job.id, akey]);
+          }
+        } catch (e) { console.error(`trial ${job.ticket}: voice failed (${e.message.slice(0, 120)}) – video without voice`); }
+      }
+      const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "" });
+      const row = (await db.query(
+        "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running' WHERE id = $1 RETURNING *",
+        [job.id, r.provider, r.model, r.jobId, r.cost]
+      )).rows[0];
+      return { job: row, token: job.token };
+    } catch (e) {
+      // fal out of credit / failing: pictures switch to ChatGPT automatically
+      if (kind === "image" && openaiOk()) {
+        console.error(`trial ${job.id}: fal failed (${e.message.slice(0, 120)}) – using ChatGPT image`);
+        return { job: await startOpenAI(job, useRefs ? refs : []), token: job.token };
+      }
+      await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1", [job.id, e.message.slice(0, 300)]);
+      throw new TrialError("provider", "تعذّر بدء الإنشاء، حاول مرة ثانية بعد قليل (لم تُحتسب من رصيدك).");
     }
-    const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "" });
-    const row = (await db.query(
-      "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running' WHERE id = $1 RETURNING *",
-      [job.id, r.provider, r.model, r.jobId, r.cost]
-    )).rows[0];
-    return { job: row, token: job.token };
-  } catch (e) {
-    // fal out of credit / failing: pictures switch to ChatGPT automatically
-    if (kind === "image" && openaiOk()) {
-      console.error(`trial ${job.id}: fal failed (${e.message.slice(0, 120)}) – using ChatGPT image`);
-      return { job: await startOpenAI(job, useRefs ? refs : []), token: job.token };
+  };
+
+  if (!planFn) return launch(job, plan, speech, modelPrompt);
+  // the visitor gets the job (and sees it in the chat) at once; the plan is written and the job started in the background
+  (async () => {
+    try {
+      const p = await planFn();
+      await db.query(
+        "UPDATE trial_jobs SET model_prompt = $2, plan = $3, speech_text = $4, speech_lang = $5, cost_usd = $6 WHERE id = $1",
+        [job.id, p.plan.prompt || text, JSON.stringify(p.plan), p.plan.speech?.text || null, p.plan.speech?.lang || null, costOf(p.plan, p.plan.speech)]
+      );
+      await launch(job, p.plan, p.plan.speech, p.plan.prompt);
+    } catch (e) {
+      console.error(`trial ${job.ticket}: start failed (${String(e.message).slice(0, 160)})`);
+      await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1 AND provider_job_id IS NULL", [job.id, String(e.message).slice(0, 300)]).catch(() => {});
     }
-    await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1", [job.id, e.message.slice(0, 300)]);
-    throw new TrialError("provider", "تعذّر بدء الإنشاء، حاول مرة ثانية بعد قليل (لم تُحتسب من رصيدك).");
-  }
+  })();
+  return { job, token: job.token };
 }
 
 const safeEqual = (a, b) => {
@@ -315,7 +338,11 @@ const safeEqual = (a, b) => {
 
 /** Asks the provider (at most every 3 s per job) and stores the outcome. */
 async function refresh(job) {
-  if (!["queued", "running"].includes(job.status) || !job.provider_job_id) return job;
+  if (!["queued", "running"].includes(job.status)) return job;
+  if (!job.provider_job_id) {
+    if (Date.now() - new Date(job.created_at).getTime() < 3 * 60e3) return job;
+    return (await db.query("UPDATE trial_jobs SET status = 'failed', error = 'not started', finished_at = now() WHERE id = $1 AND provider_job_id IS NULL RETURNING *", [job.id])).rows[0] || job;
+  }
   if (job.provider === "openai") {
     // generated in this process; if the server restarted meanwhile, close it after 5 minutes (not counted)
     if (Date.now() - new Date(job.created_at).getTime() < 5 * 60e3) return job;
