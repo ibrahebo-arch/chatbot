@@ -29,6 +29,42 @@ const COST = {
 };
 const configured = Boolean(FAL_KEY);
 
+// ChatGPT image model (OpenAI Images API, returns the picture itself as base64):
+//   used for the styles in TRIAL_OPENAI_STYLES (default "cartoon" – clearly better there), and
+//   automatically for every picture while fal is out of credit / failing. There is no OpenAI video
+//   fallback: the Sora video API was shut down on 2026-09-24, so videos need fal.
+const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
+const OPENAI_IMAGE_MODEL = clean(process.env.OPENAI_IMAGE_MODEL) || "chatgpt-image-latest";
+const OPENAI_IMAGE_QUALITY = clean(process.env.OPENAI_IMAGE_QUALITY) || "medium";
+const OPENAI_STYLES = (process.env.TRIAL_OPENAI_STYLES ?? "cartoon").split(",").map((s) => s.trim()).filter(Boolean);
+COST.openaiImage = Number(process.env.OPENAI_IMAGE_COST_USD) || 0.04;
+const openaiReady = Boolean(OPENAI_KEY);
+
+// fal out of credit (or failing) → skip it for 10 minutes: pictures go to ChatGPT, videos are paused
+let falDownUntil = 0;
+const falUp = () => configured && Date.now() > falDownUntil;
+function markFalDown(err) {
+  falDownUntil = Date.now() + 10 * 60e3;
+  console.error(`fal unavailable for 10 min (${String(err?.message || err).slice(0, 160)})`);
+}
+const useOpenAIImage = (style) => openaiReady && (!falUp() || OPENAI_STYLES.includes(style));
+
+/** One picture from the ChatGPT image model → JPEG Buffer. */
+async function openaiImage(prompt, style) {
+  const s = STYLE[style] || STYLE.realistic;
+  const r = await fetch(`${(clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "")}/v1/images/generations`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENAI_KEY}` },
+    body: JSON.stringify({ model: OPENAI_IMAGE_MODEL, prompt: `${s.image} ${prompt}`, size: "1024x1024", quality: OPENAI_IMAGE_QUALITY, output_format: "jpeg", n: 1 }),
+    signal: AbortSignal.timeout(120000),
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(`openai image ${r.status} ${String(j.error?.message || "").slice(0, 200)}`);
+  const b64 = j.data?.[0]?.b64_json;
+  if (!b64) throw new Error("openai image: nothing returned");
+  return Buffer.from(b64, "base64");
+}
+
 // Style is added in English (models follow English prompts best); the visitor's idea comes after it.
 const STYLE = {
   realistic: {
@@ -71,7 +107,13 @@ async function submit(kind, { prompt, style, imageUrl = null }) {
     model = MODELS.video;
     input = { prompt: `${s.video} ${prompt}`, duration: VIDEO_SECONDS, resolution: "768P", aspect_ratio: "16:9", enable_safety_checker: true, prompt_expansion_mode: "balanced" };
   }
-  const r = await fal("POST", model, input);
+  let r;
+  try {
+    r = await fal("POST", model, input);
+  } catch (e) {
+    markFalDown(e); // out of credit, locked or down: stop sending work there for a while
+    throw e;
+  }
   if (!r.request_id) throw new Error("fal: no request_id");
   return { provider: "fal", model, jobId: r.request_id, cost: COST[kind] };
 }
@@ -97,4 +139,8 @@ async function poll({ model, provider_job_id: id, kind }) {
   return out.video?.url ? { status: "done", url: out.video.url } : { status: "failed", error: "no video returned" };
 }
 
-module.exports = { configured, submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE };
+module.exports = {
+  configured, openaiReady, falUp, useOpenAIImage, openaiImage, OPENAI_IMAGE_MODEL,
+  resetFal: () => { falDownUntil = 0; },
+  submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE,
+};

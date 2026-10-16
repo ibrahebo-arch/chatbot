@@ -225,10 +225,17 @@ function transcript(messages = []) {
 }
 
 async function openai(body) {
+  const model = body.model || OPENAI_MODEL;
+  const req = { ...body, model };
+  // GPT-5/6 and o-series take max_completion_tokens (which includes their reasoning) and no temperature
+  if (/^(gpt-[5-9]|o\d)/.test(model)) {
+    if (req.max_tokens) req.max_completion_tokens = Math.max(800, req.max_tokens * 4);
+    delete req.max_tokens; delete req.temperature;
+  }
   const r = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENAI_API_KEY}` },
-    body: JSON.stringify({ model: OPENAI_MODEL, ...body }),
+    body: JSON.stringify(req),
   });
   const data = await r.json();
   if (!r.ok) throw new Error(data?.error?.message || `OpenAI ${r.status}`);
@@ -612,23 +619,42 @@ app.post("/api/order", orderLimit, async (req, res) => {
 // ---------- free trial (no account, no payment; limits per visitor IP – see trial.js) ----------
 const trialLimit = rateLimit(12, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً ثم حاول مرة ثانية.");
 
-/** The visitor's idea (any language) → a short English prompt for the media model; style is added later. */
-async function visualPrompt(text, kind) {
-  if (!OPENAI_API_KEY) return text;
-  try {
-    const out = await openai({
-      temperature: 0.4,
-      max_tokens: 160,
-      messages: [
-        { role: "system", content: `Rewrite the user's idea as one concise English prompt (max 70 words) for an AI ${kind === "video" ? "video" : "image"} generation model. Keep their subject, people, place, action and mood; describe it visually and concretely${kind === "video" ? ", including the camera and the motion" : ""}. Do not add art-style words (the style is added separately). Output only the prompt.` },
-        { role: "user", content: text },
-      ],
-    });
-    return out.replace(/^["'\s]+|["'\s]+$/g, "").slice(0, 900) || text;
-  } catch (e) {
-    console.error("trial prompt:", e.message);
-    return text;
+// Prompt builder for the free trial: the strongest ChatGPT model, writing from the customer's chat.
+const PROMPT_MODEL = clean(process.env.PROMPT_MODEL) || "gpt-6-sol";
+
+/**
+ * The customer's chat (any language) → one English prompt for the media model; the style words are added later.
+ * Falls back to the chat model, then to the customer's own words, so a model outage never blocks the trial.
+ */
+async function visualPrompt(conversation, kind) {
+  const text = conversation.map((m) => `${m.role === "user" ? "Customer" : "Assistant"}: ${String(m.content || "").slice(0, 1500)}`).join("\n").slice(-6000);
+  const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n");
+  if (!OPENAI_API_KEY) return own;
+  const ask = (model) => openai({
+    model,
+    max_tokens: 200,
+    messages: [
+      { role: "system", content: `You are the prompt writer of a video studio. From the conversation, take the customer's latest idea (and details agreed with the assistant) and write ONE concise English prompt (max 80 words) for an AI ${kind === "video" ? "video" : "image"} generation model. Keep their subject, people, place, action and mood; describe it visually and concretely${kind === "video" ? ", including camera movement and the motion in the scene" : ""}. Do not add art-style words (the style is added separately). Output only the prompt.` },
+      { role: "user", content: text },
+    ],
+  });
+  for (const model of [PROMPT_MODEL, OPENAI_MODEL]) {
+    try {
+      const out = (await ask(model)).replace(/^["'\s]+|["'\s]+$/g, "").slice(0, 900);
+      if (out) return out;
+    } catch (e) { console.error(`trial prompt (${model}):`, e.message); }
   }
+  return own;
+}
+
+/** The customer's conversation for the trial: chat messages, or a single typed idea. */
+function trialConversation(body) {
+  const msgs = (Array.isArray(body.messages) ? body.messages : [])
+    .filter((m) => m && (m.role === "user" || m.role === "assistant") && String(m.content || "").trim())
+    .slice(-12)
+    .map((m) => ({ role: m.role, content: String(m.content).slice(0, 2000) }));
+  if (!msgs.some((m) => m.role === "user") && clean(body.prompt)) msgs.push({ role: "user", content: clean(body.prompt).slice(0, 800) });
+  return msgs;
 }
 
 app.get("/api/trial", statusLimit, async (req, res) => {
@@ -639,18 +665,23 @@ app.get("/api/trial", statusLimit, async (req, res) => {
 app.post("/api/trial/jobs", trialLimit, async (req, res) => {
   if (!trial.enabled()) return res.status(404).json({ ok: false, message: "التجربة المجانية غير متاحة حالياً." });
   if (!db.configured) return res.status(503).json({ ok: false, message: "الخدمة غير متاحة حالياً، حاول لاحقاً." });
-  const { kind, style, prompt, sourceJob, sourceToken } = req.body || {};
-  const text = clean(prompt).slice(0, 800);
+  const body = req.body || {};
+  const { kind, style, sourceJob, sourceToken } = body;
+  const conversation = trialConversation(body);
+  const userText = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n");
+  // what the visitor sees on the card: their own newest message (or the animate instruction)
+  const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content);
+  if (text.length < 3) return res.status(400).json({ ok: false, code: "invalid", message: "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً»." });
   try {
-    // terms are shown (never blocking) exactly like in the chat
+    // ChatGPT writes the prompt from the chat; terms are shown (never blocking) exactly like in the chat
     const [modelPrompt, sections] = await Promise.all([
-      visualPrompt(text, kind),
-      policyCheck([{ role: "user", content: text }]),
+      visualPrompt(conversation, kind),
+      policyCheck([{ role: "user", content: userText }], { lastOnly: true }),
     ]);
-    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text, modelPrompt, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
-    res.json({ ok: true, job: trial.view(job), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
+    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
+    res.json({ ok: true, job: trial.view(job, token), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
   } catch (e) {
-    if (e instanceof trial.TrialError) return res.status(e.code === "limit" || e.code === "paused" ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });
+    if (e instanceof trial.TrialError) return res.status(["limit", "paused", "video_off"].includes(e.code) ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });
     console.error("trial start:", e.message);
     res.status(500).json({ ok: false, message: "تعذّر بدء الإنشاء، حاول مرة ثانية." });
   }
@@ -658,14 +689,48 @@ app.post("/api/trial/jobs", trialLimit, async (req, res) => {
 
 app.get("/api/trial/jobs/:id", statusLimit, async (req, res) => {
   try {
-    const j = await trial.get(req.params.id, req.get("x-trial-token"));
+    const token = req.get("x-trial-token");
+    const j = await trial.get(req.params.id, token);
     if (!j) return res.status(404).json({ ok: false, message: "غير موجود." });
-    res.set("Cache-Control", "no-store").json({ ok: true, job: trial.view(j) });
+    res.set("Cache-Control", "no-store").json({ ok: true, job: trial.view(j, token) });
   } catch (e) {
     console.error("trial job:", e.message);
     res.status(500).json({ ok: false });
   }
 });
+
+// Trial media for the visitor's own job (id + token in the link, so <img>/<video> can load it):
+//   /media    → shows it (our storage, or the provider's link)
+//   /download → saves it ("Content-Disposition: attachment"), streamed through this server because
+//               browsers ignore the download attribute on other sites' links.
+const TRIAL_MEDIA_HOSTS = /(^|\.)fal\.media$|(^|\.)fal\.run$|(^|\.)fal\.ai$/i;
+async function trialMedia(req, res, download) {
+  const j = await trial.own(req.params.id, req.query.token).catch(() => null);
+  if (!j || j.status !== "done" || !j.result_url) return res.sendStatus(404);
+  const name = `vi-iraq-${j.id}.${j.kind === "video" ? "mp4" : "jpg"}`;
+  const type = j.kind === "video" ? "video/mp4" : "image/jpeg";
+  try {
+    if (j.result_url.startsWith("store:")) {
+      const key = j.result_url.slice(6);
+      if (!download) return res.redirect(302, await storage.presignGet(key, 3600, { contentType: type }));
+      const buf = await storage.getBuffer(key, 80 * 1048576);
+      return res.set({ "Content-Type": type, "Content-Disposition": `attachment; filename="${name}"`, "Cache-Control": "private, max-age=3600" }).send(buf);
+    }
+    const url = new URL(j.result_url);
+    if (url.protocol !== "https:" || !TRIAL_MEDIA_HOSTS.test(url.hostname)) return res.sendStatus(404);
+    if (!download) return res.redirect(302, url.href);
+    const r = await fetch(url, { signal: AbortSignal.timeout(60000) });
+    if (!r.ok || !r.body) return res.sendStatus(502);
+    res.set({ "Content-Type": r.headers.get("content-type") || type, "Content-Disposition": `attachment; filename="${name}"`, "Cache-Control": "private, max-age=3600" });
+    if (r.headers.get("content-length")) res.set("Content-Length", r.headers.get("content-length"));
+    require("stream").Readable.fromWeb(r.body).pipe(res);
+  } catch (e) {
+    console.error("trial media:", e.message);
+    if (!res.headersSent) res.sendStatus(502);
+  }
+}
+app.get("/api/trial/jobs/:id/media", statusLimit, (req, res) => trialMedia(req, res, false));
+app.get("/api/trial/jobs/:id/download", statusLimit, (req, res) => trialMedia(req, res, true));
 
 // Payment link for the customer's own unpaid order (same owner check as the status route).
 app.post("/api/orders/:id/pay", statusLimit, async (req, res) => {
@@ -789,7 +854,7 @@ async function start() {
     sweepUploads().catch((e) => console.error("upload cleanup:", e.message));
     setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();
     if (trial.enabled()) {
-      console.log(`Free trial: on (fal · image ${media.MODELS.image} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
+      console.log(`Free trial: on (prompts ${PROMPT_MODEL} · pictures: fal ${media.MODELS.image}${media.openaiReady && storage.ready ? ` + ChatGPT ${media.OPENAI_IMAGE_MODEL} for ${process.env.TRIAL_OPENAI_STYLES ?? "cartoon"} and when fal is out` : ""} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
       trial.startSweeper();
     } else console.log("Free trial: OFF (set FAL_KEY)");
     if (payments.configured) {

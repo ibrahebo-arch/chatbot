@@ -19,7 +19,6 @@
     </a>
     <nav class="nav" aria-label="الأقسام">
       <button class="tab on" data-tab="studio">الاستوديو</button>
-      <button class="tab trial-tab" data-tab="trial" id="trialTab" hidden>🎁 جرّب مجاناً</button>
       <button class="tab" data-tab="works">أعمالنا</button>
       <button class="tab" data-tab="prices">الأسعار</button>
       <button class="tab" data-tab="contact">تواصل</button>
@@ -72,9 +71,36 @@
 
         <!-- order panel -->
         <aside class="panel" id="panel" aria-label="تفاصيل الطلب">
-          <h2>تفاصيل الطلب</h2>
+          <div class="seg mode" id="modeSeg" hidden>
+            <button type="button" data-m="order" class="on">طلب فيديو كامل</button>
+            <button type="button" data-m="free">🎁 جرّب مجاناً</button>
+          </div>
+          <h2 class="full-only">تفاصيل الطلب</h2>
 
-          <div class="field">
+          <!-- free trial: no price, no contact details -->
+          <div class="free-only freebox">
+            <h2>تجربة مجانية 🎁</h2>
+            <p class="hint">اكتب فكرتك في الدردشة، ونحوّلها لك إلى صورة أو فيديو قصير مجاناً – بدون تسجيل ولا دفع.</p>
+            <div class="field">
+              <label>الأسلوب</label>
+              <div class="seg" id="trialStyle">
+                <button type="button" data-v="realistic" class="on">📷 واقعي</button>
+                <button type="button" data-v="cartoon">🎨 كرتون</button>
+              </div>
+            </div>
+            <div class="field">
+              <label>النوع</label>
+              <div class="seg" id="trialKind">
+                <button type="button" data-v="image" class="on">🖼️ صورة</button>
+                <button type="button" data-v="video">🎬 فيديو <small id="trialSecs">5</small>ث</button>
+              </div>
+            </div>
+            <button class="cta free-cta" id="trialGo">🎁 أنشئ مجاناً من فكرتك</button>
+            <span class="trial-left" id="trialLeft"></span>
+            <p class="note" id="trialNote"></p>
+          </div>
+
+          <div class="field full-only">
             <label>الجودة</label>
             <div class="seg" id="quality">
               <button type="button" data-v="480">480p</button>
@@ -83,7 +109,7 @@
             </div>
           </div>
 
-          <div class="field">
+          <div class="field full-only">
             <label>المدة <b id="secVal">15</b> ثانية</label>
             <input id="seconds" type="range" min="5" max="120" step="5" value="15" />
             <div class="chips" id="quick">
@@ -94,7 +120,7 @@
             </div>
           </div>
 
-          <div class="field two">
+          <div class="field two full-only">
             <div>
               <label for="language">اللغة</label>
               <select id="language">
@@ -115,68 +141,33 @@
             </div>
           </div>
 
-          <div class="field">
+          <div class="field full-only">
             <label for="telegram">معرّف تيليغرام <span class="req">مطلوب</span></label>
             <div class="prefixed"><span>@</span><input id="telegram" type="text" inputmode="latin" autocapitalize="off" spellcheck="false" placeholder="username" /></div>
           </div>
-          <div class="field">
+          <div class="field full-only">
             <label for="phone">رقم الهاتف <span class="req">مطلوب</span></label>
             <div class="prefixed"><span>+964</span><input id="phone" type="tel" inputmode="numeric" placeholder="07501234567" /></div>
             <small class="hint">نتواصل معك على تيليغرام أو الهاتف بعد استلام الطلب.</small>
           </div>
 
-          <div class="price">
+          <div class="price full-only">
             <small>السعر التقديري</small>
             <div class="amount">$<span id="priceVal">20</span></div>
             <span class="meta" id="priceMeta">1080p · 15 ثانية · العربية</span>
           </div>
 
-          <button class="cta" id="sendOrder">إرسال الطلب <span class="cta-price">$<span id="ctaPrice">20</span></span></button>
-          <p class="note" id="orderNote"></p>
+          <button class="cta full-only" id="sendOrder">إرسال الطلب <span class="cta-price">$<span id="ctaPrice">20</span></span></button>
+          <p class="note full-only" id="orderNote"></p>
         </aside>
       </div>
 
       <!-- mobile sticky bar -->
       <div class="mbar" id="mbar">
-        <div><small>السعر التقديري</small><strong>$<span id="mPrice">20</span></strong></div>
+        <div class="m-full"><small>السعر التقديري</small><strong>$<span id="mPrice">20</span></strong></div>
+        <div class="m-free"><small>تجربة مجانية</small><strong>🎁 مجاناً</strong></div>
         <button type="button" id="mGo">تفاصيل الطلب وإرساله</button>
       </div>
-    </section>
-
-    <!-- ================= FREE TRIAL ================= -->
-    <section class="view" id="view-trial">
-      <div class="section-head">
-        <h2>جرّب مجاناً 🎁</h2>
-        <p>بدون تسجيل ولا دفع: أنشئ صوراً وفيديو قصيراً بالذكاء الاصطناعي لترى الجودة بنفسك.</p>
-      </div>
-      <div class="card trial">
-        <div class="trial-row">
-          <div class="field">
-            <label>الأسلوب</label>
-            <div class="seg" id="trialStyle">
-              <button type="button" data-v="realistic" class="on">📷 واقعي</button>
-              <button type="button" data-v="cartoon">🎨 كرتون</button>
-            </div>
-          </div>
-          <div class="field">
-            <label>النوع</label>
-            <div class="seg" id="trialKind">
-              <button type="button" data-v="image" class="on">🖼️ صورة</button>
-              <button type="button" data-v="video">🎬 فيديو <small id="trialSecs">5</small>ث</button>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label for="trialPrompt">صف ما تريد</label>
-          <textarea id="trialPrompt" rows="3" maxlength="800" placeholder="مثال: قطة صغيرة تلبس نظارة شمسية على شاطئ البصرة وقت الغروب"></textarea>
-        </div>
-        <div class="trial-go">
-          <button type="button" class="cta" id="trialGo">أنشئ مجاناً</button>
-          <span class="trial-left" id="trialLeft"></span>
-        </div>
-        <p class="note" id="trialNote"></p>
-      </div>
-      <div class="trial-results" id="trialResults"></div>
     </section>
 
     <!-- ================= WORKS ================= -->

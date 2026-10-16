@@ -155,35 +155,37 @@ button { cursor: pointer; }
 @keyframes flash { 0%, 40% { background: rgba(228,179,99,.12); } 100% { background: transparent; } }
 #termsBody[dir="ltr"] { text-align: left; }
 
-/* free trial */
-.tab.trial-tab { color: var(--sand2); }
-.tab.trial-tab.on { background: var(--sand); color: #1a1205; }
-.tab[hidden] { display: none; }
-.trial { display: grid; gap: 14px; margin-bottom: 16px; }
-.trial-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.trial textarea { width: 100%; resize: vertical; background: var(--bg2); color: var(--text); border: 1px solid var(--line2); border-radius: 12px; padding: 10px 12px; font: inherit; }
-.trial .seg small { font-size: .75em; }
-.trial-go { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.trial-go .cta { min-width: 180px; justify-content: center; }
-.trial-left { color: var(--muted); font-size: .86rem; }
+/* free trial: a mode of the studio panel – no price, no contact fields; results appear in the chat */
+.seg.mode { margin-bottom: 16px; }
+.seg.mode[hidden] { display: none; }
+.panel:not(.free) .free-only { display: none; }
+.panel.free .full-only { display: none; }
+.freebox { display: grid; gap: 12px; }
+.freebox h2 { margin: 0; }
+.freebox .hint { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.7; }
+.freebox .seg small { font-size: .75em; }
+.free-cta { justify-content: center; }
+.trial-left { color: var(--muted); font-size: .86rem; text-align: center; }
 .trial-left b { color: var(--sand2); }
-.trial-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
-.tjob { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; }
-.tjob .media { aspect-ratio: 4 / 3; background: #000; display: grid; place-items: center; position: relative; }
+.mbar .m-free { display: none; }
+body.free-mode .mbar .m-full { display: none; }
+body.free-mode .mbar .m-free { display: block; }
+.msg.sys.tjob { width: min(92%, 460px); padding: 0; overflow: hidden; text-align: start; border-style: solid; color: var(--text); display: grid; }
+.tjob .media { aspect-ratio: 4 / 3; background: #000; display: grid; place-items: center; }
+.tjob.square .media { aspect-ratio: 1 / 1; }
 .tjob.video .media { aspect-ratio: 16 / 9; }
 .tjob .media img, .tjob .media video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .tjob .wait { display: grid; justify-items: center; gap: 8px; color: var(--muted); font-size: .84rem; text-align: center; padding: 12px; }
 .tjob .spin { width: 30px; height: 30px; border-radius: 50%; border: 3px solid var(--line2); border-top-color: var(--sand); animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.tjob .info { padding: 10px 12px; display: grid; gap: 6px; }
-.tjob .info .p { font-size: .84rem; color: var(--text); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.tjob .info .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--muted); font-size: .75rem; }
+.tjob .info { padding: 10px 12px; display: grid; gap: 8px; }
+.tjob .info .p { font-size: .84rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.tjob .info .tag2 { color: var(--muted); font-size: .75rem; }
 .tjob .acts { display: flex; gap: 8px; flex-wrap: wrap; }
-.tjob .acts a, .tjob .acts button { border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: .78rem; text-decoration: none; cursor: pointer; }
+.tjob .acts a, .tjob .acts button { border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: .8rem; text-decoration: none; cursor: pointer; }
+.tjob .acts a.dl { background: var(--sand); border-color: var(--sand); color: #1a1205; font-weight: 700; }
 .tjob .acts button.animate { border-color: rgba(228,179,99,.5); color: var(--sand2); }
 .tjob .err { color: var(--red); }
-#view-trial .msg.sys.policy { width: 100%; margin-bottom: 12px; }
-@media (max-width: 600px) { .trial-row { grid-template-columns: 1fr; } }
 
 /* floating WhatsApp button, on every tab */
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }

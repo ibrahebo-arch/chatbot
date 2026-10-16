@@ -14,10 +14,15 @@ const ssl = () => { try { return new URL(URL_).hostname.includes(".render.com") 
 // ---- fake fal queue: jobs finish when the test says so ----
 const jobs = new Map(); // request_id → { model, input, state: "IN_QUEUE"|"COMPLETED", output, error, fail }
 let failNextSubmit = false;
+const openaiCalls = [];
 const fake = http.createServer((req, res) => {
   let body = "";
   req.on("data", (c) => (body += c)).on("end", () => {
     const send = (code, data) => { res.writeHead(code, { "Content-Type": "application/json" }); res.end(JSON.stringify(data)); };
+    if (req.url === "/v1/images/generations") {
+      openaiCalls.push(JSON.parse(body));
+      return send(200, { data: [{ b64_json: Buffer.from("fake-jpeg-bytes").toString("base64") }] });
+    }
     if (req.headers.authorization !== "Key test-fal-key") return send(401, { detail: "bad key" });
     // like fal: status/result live under the app id (first two parts of the model id) only
     const st = req.url.match(/^\/[^/]+\/[^/]+\/requests\/([^/]+)\/status$/);
@@ -43,6 +48,8 @@ test.before(async () => {
   Object.assign(process.env, {
     FAL_KEY: "test-fal-key", FAL_QUEUE_URL: `http://127.0.0.1:${fake.address().port}`,
     TRIAL_IMAGES: "3", TRIAL_VIDEOS: "1", TRIAL_DAILY_BUDGET_USD: "0.3", TRIAL_SALT: "test-salt",
+    OPENAI_API_KEY: "test-openai-key", OPENAI_BASE_URL: `http://127.0.0.1:${fake.address().port}`, OPENAI_IMAGE_COST_USD: "0.04",
+    STORAGE_DIR: require("path").join(require("os").tmpdir(), `vi-trial-test-${process.pid}`),
   });
   admin = new Client({ connectionString: URL_, ssl: ssl() });
   await admin.connect();
@@ -70,16 +77,17 @@ test("3 images per IP; the 4th is refused; another IP has its own allowance", { 
   assert.equal((await trial.status("198.51.100.2")).left.image, 3);
 });
 
-test("a job the provider cannot start is not counted", { skip }, async () => {
+test("a video the provider cannot start is not counted", { skip }, async () => {
   failNextSubmit = true;
-  await assert.rejects(start("198.51.100.3"), { code: "provider" });
-  assert.equal((await trial.status("198.51.100.3")).left.image, 3);
+  await assert.rejects(trial.start({ ip: "198.51.100.3", kind: "video", style: "realistic", prompt: "waves at night" }), { code: "provider" });
+  assert.equal((await trial.status("198.51.100.3")).left.video, 1);
+  require("../media").resetFal(); // the failure marked fal as down for 10 minutes
 });
 
 test("finished image: the visitor gets the URL; style text and safety checker are sent", { skip }, async () => {
-  const { job, token } = await start("198.51.100.4", { style: "cartoon" });
+  const { job, token } = await start("198.51.100.4", { style: "realistic" });
   const sent = jobs.get(job.provider_job_id);
-  assert.match(sent.input.prompt, /cartoon/i);
+  assert.match(sent.input.prompt, /photorealistic/i);
   assert.equal(sent.input.enable_safety_checker, true);
   assert.equal(trial.view(await trial.get(job.id, token)).status, "running");
   finish(job.provider_job_id, { images: [{ url: "https://cdn.example/cat.jpg" }], has_nsfw_concepts: [false] });
@@ -114,10 +122,37 @@ test("animate: only the visitor's own finished image, sent as the first frame", 
 });
 
 test("the daily budget pauses the trial for everyone", { skip }, async () => {
-  // budget 0.30 USD: so far ≈ 0.14 (images + one video) → one more 0.125 video fits, the next does not
-  await trial.start({ ip: "198.51.100.8", kind: "video", style: "cartoon", prompt: "dancing robot" });
-  await assert.rejects(trial.start({ ip: "198.51.100.9", kind: "video", style: "cartoon", prompt: "dancing robot" }), { code: "paused" });
+  // budget 0.30 USD, starting from 0 today: two 0.125 videos fit (0.25), a third would pass the cap
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  await trial.start({ ip: "198.51.100.8", kind: "video", style: "realistic", prompt: "dancing robot" });
+  await trial.start({ ip: "198.51.100.11", kind: "video", style: "realistic", prompt: "dancing robot" });
+  await assert.rejects(trial.start({ ip: "198.51.100.9", kind: "video", style: "realistic", prompt: "dancing robot" }), { code: "paused" });
   assert.equal((await trial.status("198.51.100.10")).paused, false, "cheap images still fit");
+});
+
+test("cartoon pictures are made by the ChatGPT image model and kept on our storage", { skip }, async () => {
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  const storage = require("../storage");
+  const { job, token } = await trial.start({ ip: "198.51.100.20", kind: "image", style: "cartoon", prompt: "a cat", modelPrompt: "a small cat" });
+  assert.equal(job.provider, "openai");
+  await new Promise((r) => setTimeout(r, 100));
+  const j = await trial.get(job.id, token);
+  assert.equal(j.status, "done");
+  assert.equal(j.result_url, `store:trial/${job.id}.jpg`);
+  assert.equal((await storage.getBuffer(`trial/${job.id}.jpg`)).toString(), "fake-jpeg-bytes");
+  assert.match(openaiCalls.at(-1).prompt, /cartoon/i);
+  const v = trial.view(j, token);
+  assert.ok(v.url.startsWith(`/api/trial/jobs/${job.id}/media?token=`), v.url);
+  assert.ok(v.download.startsWith(`/api/trial/jobs/${job.id}/download?token=`), v.download);
+});
+
+test("fal out of credit: pictures switch to ChatGPT automatically, the free video is paused", { skip }, async () => {
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  failNextSubmit = true; // fal refuses (e.g. balance exhausted)
+  const { job } = await trial.start({ ip: "198.51.100.21", kind: "image", style: "realistic", prompt: "a street in Erbil" });
+  assert.equal(job.provider, "openai", "fell back to ChatGPT");
+  assert.equal((await trial.status("198.51.100.21")).videoAvailable, false);
+  await assert.rejects(trial.start({ ip: "198.51.100.22", kind: "video", style: "realistic", prompt: "waves" }), { code: "video_off" });
 });
 
 test("the visitor IP is never stored, only a salted hash", { skip }, async () => {
