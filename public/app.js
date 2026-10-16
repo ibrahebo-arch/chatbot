@@ -555,10 +555,18 @@
     const busy = j.status === "queued" || j.status === "running";
     const box = el("div", "media");
     if (busy) {
-      const w = el("div", "wait"); w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ تسجيل الصوت وإنشاء الفيديو… عادةً 1–3 دقائق" : "جارٍ إنشاء الصورة…")); box.append(w);
+      const w = el("div", "wait"); const secs = Math.max(0, Math.round((Date.now() - new Date(j.createdAt || Date.now()).getTime()) / 1000));
+      w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ تسجيل الصوت وإنشاء الفيديو… عادةً 1–3 دقائق" : "جارٍ إنشاء الصورة…"), el("span", "secs", `⏱️ ${secs} ث – تظهر هنا تلقائياً عند الانتهاء`)); box.append(w);
     } else if (j.status === "done" && j.url) {
       const m = el(j.kind === "video" ? "video" : "img");
-      if (j.kind === "video") Object.assign(m, { muted: true, loop: true, autoplay: true, playsInline: true, controls: true });
+      if (j.kind === "video") {
+        Object.assign(m, { muted: true, loop: true, autoplay: true, playsInline: true, controls: true, preload: "auto" });
+        let retried = false;
+        m.onerror = () => { // the phone dropped the file: try once more, then point to the download button
+          if (!retried) { retried = true; m.src = j.url + (j.url.includes("?") ? "&" : "?") + "r=" + Date.now(); m.load(); return; }
+          const note = el("div", "wait"); note.append(el("span", "err", "تعذّر تشغيل الفيديو هنا – استخدم زر التنزيل بالأسفل ⬇️")); box.replaceChildren(note);
+        };
+      }
       else { m.alt = j.prompt; m.onload = () => card.classList.toggle("square", Math.abs(m.naturalWidth - m.naturalHeight) < 10); }
       m.src = j.url; box.append(m);
     } else {
@@ -589,6 +597,7 @@
   const pending = (j) => j.status === "queued" || j.status === "running";
   async function checkTrial(j) {
     const ctl = new AbortController();
+    j.lastCheck = Date.now();
     const stop = setTimeout(() => ctl.abort(), 12000); // a request frozen by the phone is dropped and retried
     try {
       const r = await fetch(`/api/trial/jobs/${encodeURIComponent(j.id)}`, { headers: { "x-trial-token": j.token }, cache: "no-store", signal: ctl.signal });
@@ -612,6 +621,14 @@
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") trial.jobs.filter(pending).forEach((j) => pollTrial(j, 0));
   });
+  // safety net: every unfinished result is checked again if its timer ever stopped, and the counter keeps ticking
+  setInterval(() => {
+    trial.jobs.filter(pending).forEach((j) => {
+      if (!trial.timers[j.id] || Date.now() - (j.lastCheck || 0) > 15000) pollTrial(j, 0);
+      const card = document.querySelector('.tjob[data-id="' + j.id + '"] .secs');
+      if (card) card.textContent = "⏱️ " + Math.round((Date.now() - new Date(j.createdAt || Date.now()).getTime()) / 1000) + " ث – تظهر هنا تلقائياً عند الانتهاء";
+    });
+  }, 1000);
   window.addEventListener("pageshow", () => trial.jobs.filter(pending).forEach((j) => pollTrial(j, 0)));
 
   async function startTrial({ kind, style, prompt = null, sourceJob = null, sourceToken = null }) {
@@ -627,9 +644,13 @@
     startChat();
     note.className = "note"; note.textContent = "ChatGPT يكتب الوصف من محادثتك…";
     btn.disabled = true;
+    const temp = el("div", "msg sys tjob temp " + kind);
+    const tw = el("div", "wait"); tw.append(el("span", "spin"), el("span", "", "ChatGPT يكتب الوصف من محادثتك… ثم يبدأ الإنشاء"));
+    const tbox = el("div", "media"); tbox.append(tw); temp.append(tbox); list.appendChild(temp); list.scrollTop = list.scrollHeight;
     try {
       const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken, voice: $("trialVoice").value, messages: state.messages }) });
       const d = await r.json();
+      temp.remove();
       if (!d.ok) { note.className = "note err"; note.textContent = d.message || "حدثت مشكلة، حاول مرة ثانية."; return; }
       note.textContent = "";
       if (d.policy?.sections?.length) policyCard(d.policy.sections);
@@ -638,6 +659,7 @@
       trialCard(j); renderTrialLeft(d); pollTrial(j);
       if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
     } catch {
+      temp.remove();
       note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، حاول مرة ثانية.";
     } finally { btn.disabled = Boolean(trial.info?.paused); }
   }
