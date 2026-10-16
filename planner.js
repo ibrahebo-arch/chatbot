@@ -16,6 +16,8 @@ const path = require("path");
 
 const clean = (v) => String(v || "").trim();
 const GUIDE = fs.readFileSync(path.join(__dirname, "prompts", "media-prompt-guide.md"), "utf8");
+const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), Iraqi places (5), speech length and dialect (6), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
+const RULES_END = "\n\n---\nFINAL CHECK before you answer: go through section 9 line by line; the prompt is English, follows the section 2 order, has concrete motion beats for video, keeps the customer's exact words for on-screen text, and the speech is short natural dialect that fits the clip length. Fix anything that fails, then output the JSON only.";
 const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
 const OPENAI_BASE = (clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "");
 const PROMPT_MODEL = clean(process.env.PROMPT_MODEL) || "gpt-6-sol";
@@ -94,7 +96,7 @@ async function draft(conversation, opts) {
   const user = userContent(`${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}`, opts.refs);
   for (const model of [PROMPT_MODEL, FALLBACK_MODEL]) {
     try {
-      const plan = parsePlan(await chatgpt(model, GUIDE, user));
+      const plan = parsePlan(await chatgpt(model, RULES + GUIDE + RULES_END, user));
       if (plan) return { plan, by: model };
     } catch (e) { console.error(`planner draft (${model}):`, e.message); }
   }
@@ -103,6 +105,22 @@ async function draft(conversation, opts) {
 
 /** Step 2 – Claude corrects the plan against the guide (only when a key is set). */
 let anthropic = null;
+/** Without a Claude key the same prompt model re-reads the guide and corrects its own draft. */
+async function selfReview(plan, conversation, opts, model) {
+  try {
+    const user = userContent(`${task(opts)}
+
+CONVERSATION:
+${conversationText(conversation)}
+
+DRAFT PLAN (written by you a moment ago):
+${JSON.stringify(plan)}
+
+You are now the REVIEWER. Check the draft against every numbered section of the guide, one by one, and against the customer's words. Fix what fails (dialect, speech length, motion beats, camera, Iraqi place detail, on-screen text spelling, contradictions, quality lines). Return the corrected plan as the same JSON object only.`, opts.refs);
+    return parsePlan(await chatgpt(model, RULES + GUIDE + RULES_END, user));
+  } catch (e) { console.error(`planner self-review (${model}):`, e.message); return null; }
+}
+
 async function review(plan, conversation, opts) {
   if (!ANTHROPIC_KEY) return null;
   try {
@@ -133,10 +151,12 @@ async function plan(conversation, opts) {
   if (!OPENAI_KEY) return { plan: { prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, by: "customer" };
   const d = await draft(conversation, o);
   if (!d) return { plan: { prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, by: "customer" };
-  const fixed = await review(d.plan, conversation, o);
+  const claude = await review(d.plan, conversation, o);
+  const second = claude ? null : (ANTHROPIC_KEY ? null : await selfReview(d.plan, conversation, o, d.by));
+  const fixed = claude || second;
   const p = fixed || d.plan;
   if (o.kind !== "video" || o.voiceLang === "none") p.speech = null;
-  return { plan: p, by: fixed ? `${d.by}+${CLAUDE_MODEL}` : d.by };
+  return { plan: p, by: claude ? `${d.by}+${CLAUDE_MODEL}` : second ? `${d.by}+review` : d.by };
 }
 
 module.exports = { plan, parsePlan, userContent, task, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };
