@@ -119,7 +119,7 @@ async function refresh(job) {
   if (!["queued", "running"].includes(job.status) || !job.provider_job_id) return job;
   if (job.checked_at && Date.now() - new Date(job.checked_at).getTime() < 3000) return job;
   let r;
-  try { r = await media.poll(job); } catch (e) { r = { status: "running", note: e.message }; }
+  try { r = await media.poll(job); } catch (e) { console.error(`trial poll ${job.id}:`, e.message); r = { status: "running" }; }
   // a job that never finishes is closed after 30 minutes (and not counted)
   if (r.status === "running" && Date.now() - new Date(job.created_at).getTime() > 30 * 60e3) r = { status: "failed", error: "timed out" };
   return (await db.query(

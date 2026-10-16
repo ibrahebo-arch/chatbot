@@ -76,13 +76,18 @@ async function submit(kind, { prompt, style, imageUrl = null }) {
   return { provider: "fal", model, jobId: r.request_id, cost: COST[kind] };
 }
 
+// Status/result URLs use the app id – the first two parts of the model id
+// ("fal-ai/flux/schnell" → "fal-ai/flux"); the full model id answers 405 there.
+const appOf = (model) => model.split("/").slice(0, 2).join("/");
+
 /** Status of a submitted job; on completion returns the media URL. */
 async function poll({ model, provider_job_id: id, kind }) {
-  const st = await fal("GET", `${model}/requests/${encodeURIComponent(id)}/status`);
+  const base = `${appOf(model)}/requests/${encodeURIComponent(id)}`;
+  const st = await fal("GET", `${base}/status`);
   if (st.status === "IN_QUEUE" || st.status === "IN_PROGRESS") return { status: "running" };
   if (st.status !== "COMPLETED") return { status: "running" };
   if (st.error) return { status: "failed", error: String(st.error).slice(0, 300) };
-  const out = await fal("GET", `${model}/requests/${encodeURIComponent(id)}`);
+  const out = await fal("GET", base);
   if (kind === "image") {
     const img = out.images?.[0];
     if (!img?.url) return { status: "failed", error: "no image returned" };

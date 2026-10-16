@@ -19,16 +19,18 @@ const fake = http.createServer((req, res) => {
   req.on("data", (c) => (body += c)).on("end", () => {
     const send = (code, data) => { res.writeHead(code, { "Content-Type": "application/json" }); res.end(JSON.stringify(data)); };
     if (req.headers.authorization !== "Key test-fal-key") return send(401, { detail: "bad key" });
-    const st = req.url.match(/^\/(.+)\/requests\/([^/]+)\/status$/);
-    const rs = req.url.match(/^\/(.+)\/requests\/([^/]+)$/);
+    // like fal: status/result live under the app id (first two parts of the model id) only
+    const st = req.url.match(/^\/[^/]+\/[^/]+\/requests\/([^/]+)\/status$/);
+    const rs = req.url.match(/^\/[^/]+\/[^/]+\/requests\/([^/]+)$/);
+    if (req.method === "GET" && /\/requests\//.test(req.url) && !st && !rs) return send(405, { detail: "Method Not Allowed" });
     if (req.method === "POST") {
       if (failNextSubmit) { failNextSubmit = false; return send(500, { detail: "boom" }); }
       const id = "r" + crypto.randomBytes(4).toString("hex");
       jobs.set(id, { model: req.url.slice(1), input: JSON.parse(body), state: "IN_QUEUE" });
       return send(200, { request_id: id, status_url: "x", response_url: "y" });
     }
-    if (st) { const j = jobs.get(st[2]); return j ? send(200, { status: j.state, ...(j.error ? { error: j.error } : {}) }) : send(404, {}); }
-    if (rs) { const j = jobs.get(rs[2]); return j ? send(200, j.output) : send(404, {}); }
+    if (st) { const j = jobs.get(st[1]); return j ? send(200, { status: j.state, ...(j.error ? { error: j.error } : {}) }) : send(404, {}); }
+    if (rs) { const j = jobs.get(rs[1]); return j ? send(200, j.output) : send(404, {}); }
     send(404, {});
   });
 });
