@@ -255,6 +255,11 @@ async function sweep() {
     "SELECT * FROM trial_jobs WHERE status IN ('queued','running') AND (checked_at IS NULL OR checked_at < now() - interval '20 seconds') ORDER BY created_at LIMIT 20"
   )).rows;
   for (const j of open) await refresh(j).catch((e) => console.error("trial sweep:", e.message));
+  // finished results not yet copied / reported (older jobs, or a restart in between)
+  const unsaved = (await db.query(
+    "SELECT * FROM trial_jobs WHERE status = 'done' AND notified_at IS NULL AND finished_at < now() - interval '1 minute' ORDER BY created_at LIMIT 10"
+  )).rows;
+  for (const j of unsaved) await archive(j).catch((e) => console.error("trial archive:", e.message));
 }
 function startSweeper() {
   if (enabled()) setInterval(() => sweep().catch((e) => console.error("trial sweep:", e.message)), 30e3).unref();
