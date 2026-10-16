@@ -5,7 +5,8 @@ const fs = require("fs");
 const path = require("path");
 
 process.env.DATABASE_URL = "";
-process.env.FAL_KEY = "";
+// the trial can run on fal or on ChatGPT alone; this is its explicit off switch (not set in .env files)
+process.env.TRIAL_ENABLED = "false";
 const { app } = require("../server");
 const policy = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "public", "policy.json"), "utf8"));
 
@@ -33,7 +34,7 @@ test("terms file is served and the WhatsApp number reaches the page", async () =
   assert.match(cfg.whatsapp, /^964\d{10}$/);
 });
 
-test("without FAL_KEY the free trial is off: tab hidden by config, start route 404", async () => {
+test("TRIAL_ENABLED=false turns the free trial off: switch hidden by config, start route 404", async () => {
   const cfg = await (await fetch(`${base}/api/config`)).json();
   assert.equal(cfg.trial, false);
   assert.equal((await (await fetch(`${base}/api/trial`)).json()).enabled, false);
