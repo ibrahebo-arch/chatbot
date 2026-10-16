@@ -546,6 +546,12 @@
   async function loadTrial() {
     try { renderTrialLeft(await (await fetch("/api/trial", { cache: "no-store" })).json()); } catch {}
   }
+  // on a phone the free box sits below the chat: bring the card into view so the visitor sees it appear
+  function bringIntoView(card) {
+    if (!card || window.innerWidth > 820) return;
+    const r = card.getBoundingClientRect();
+    if (r.top < 60 || r.bottom > window.innerHeight - 20) card.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
   function trialCard(j) {
     let card = document.querySelector(`.tjob[data-id="${j.id}"]`);
     if (!card) {
@@ -593,6 +599,8 @@
     info.append(acts);
     card.replaceChildren(box, info);
     list.scrollTop = list.scrollHeight;
+    const phase = busy ? "busy" : j.status;
+    if (card.dataset.phase !== phase) { card.dataset.phase = phase; bringIntoView(card); } // new card, and again when it is finished
   }
   const pending = (j) => j.status === "queued" || j.status === "running";
   async function checkTrial(j) {
@@ -646,7 +654,7 @@
     btn.disabled = true;
     const temp = el("div", "msg sys tjob temp " + kind);
     const tw = el("div", "wait"); tw.append(el("span", "spin"), el("span", "", "جارٍ تحضير فكرتك من محادثتك… ثم يبدأ الإنشاء"));
-    const tbox = el("div", "media"); tbox.append(tw); temp.append(tbox); list.appendChild(temp); list.scrollTop = list.scrollHeight;
+    const tbox = el("div", "media"); tbox.append(tw); temp.append(tbox); list.appendChild(temp); list.scrollTop = list.scrollHeight; bringIntoView(temp);
     try {
       const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken, voice: $("trialVoice").value, messages: state.messages }) });
       const d = await r.json();
