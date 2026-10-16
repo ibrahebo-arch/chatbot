@@ -100,6 +100,7 @@ const view = (j, token = null) => {
   const q = token ? `?token=${encodeURIComponent(token)}` : "";
   return {
     id: j.id, ticket: j.ticket, kind: j.kind, style: j.style, prompt: j.prompt, status: j.status,
+    speech: j.speech_text ? { text: j.speech_text, lang: j.speech_lang } : null,
     url: done ? (own ? `/api/trial/jobs/${j.id}/media${q}` : j.result_url) : null,
     download: done && token ? `/api/trial/jobs/${j.id}/download${q}` : null,
     error: j.status === "failed" ? j.error : null,
@@ -137,7 +138,7 @@ async function startOpenAI(job) {
  * Reserves a slot and starts the job.
  * opts: { ip, kind: "image"|"video", style, prompt, modelPrompt, sourceJobId, sourceToken, termsSections }
  */
-async function start({ ip, kind, style, prompt, modelPrompt, sourceJobId = null, sourceToken = null, termsSections = [] }) {
+async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, sourceJobId = null, sourceToken = null, termsSections = [] }) {
   if (!enabled()) throw new TrialError("off", "التجربة المجانية غير متاحة حالياً.");
   if (!["image", "video"].includes(kind)) throw new TrialError("invalid", "نوع غير معروف.");
   if (!["realistic", "cartoon"].includes(style)) throw new TrialError("invalid", "اختر واقعي أو كرتون.");
@@ -145,8 +146,9 @@ async function start({ ip, kind, style, prompt, modelPrompt, sourceJobId = null,
   if (text.length < 3) throw new TrialError("invalid", "اكتب وصفاً لما تريد إنشاءه.");
   const hash = ipHash(ip);
   if (kind === "video" && !media.falUp()) throw new TrialError("video_off", "الفيديو المجاني غير متاح حالياً، جرّب صورة 🙏");
-  const viaOpenAI = kind === "image" && openaiOk() && media.useOpenAIImage(style);
-  const cost = viaOpenAI ? media.COST.openaiImage : media.COST[kind];
+  // pictures with writing in them go to the ChatGPT image model (fal's FLUX misspells Arabic text)
+  const viaOpenAI = kind === "image" && openaiOk() && (media.useOpenAIImage(style) || Boolean(plan?.onScreenText));
+  const cost = (viaOpenAI ? media.COST.openaiImage : media.COST[kind]) + (speech ? media.COST.speech : 0);
 
   // "animate this image": only one of this visitor's own finished images
   let imageUrl = null;
@@ -172,15 +174,29 @@ async function start({ ip, kind, style, prompt, modelPrompt, sourceJobId = null,
     let ticket = newTicket();
     for (let i = 0; i < 5 && (await c.query("SELECT 1 FROM trial_jobs WHERE ticket = $1", [ticket])).rowCount; i++) ticket = newTicket();
     return (await c.query(
-      `INSERT INTO trial_jobs (id, token, ticket, ip_hash, kind, style, prompt, model_prompt, source_job, model, cost_usd, terms_sections)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'pending', $10, $11) RETURNING *`,
-      [id, token, ticket, hash, kind, style, text, modelPrompt || text, sourceJobId, cost, termsSections.length ? termsSections : null]
+      `INSERT INTO trial_jobs (id, token, ticket, ip_hash, kind, style, prompt, model_prompt, source_job, model, cost_usd, terms_sections, speech_text, speech_lang, plan)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'pending', $10, $11, $12, $13, $14) RETURNING *`,
+      [id, token, ticket, hash, kind, style, text, modelPrompt || text, sourceJobId, cost, termsSections.length ? termsSections : null,
+       speech?.text || null, speech?.lang || null, plan ? JSON.stringify(plan) : null]
     )).rows[0];
   });
 
   if (viaOpenAI) return { job: await startOpenAI(job), token: job.token };
   try {
-    const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl });
+    // the voice track first (Iraqi by default), then the video with it as the soundtrack
+    let audioUrl = null;
+    if (kind === "video" && speech?.text) {
+      try {
+        const mp3 = await media.speak(speech);
+        audioUrl = media.audioDataUri(mp3);
+        if (storage.ready) {
+          const akey = `trial/${job.ticket}.mp3`;
+          await storage.put(akey, mp3, { contentType: "audio/mpeg" });
+          await db.query("UPDATE trial_jobs SET audio_key = $2 WHERE id = $1", [job.id, akey]);
+        }
+      } catch (e) { console.error(`trial ${job.ticket}: voice failed (${e.message.slice(0, 120)}) – video without voice`); }
+    }
+    const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "" });
     const row = (await db.query(
       "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running' WHERE id = $1 RETURNING *",
       [job.id, r.provider, r.model, r.jobId, r.cost]
@@ -231,7 +247,7 @@ async function refresh(job) {
 /** Recent free tickets for the team (admin API / Telegram). */
 const list = async (limit = 50) =>
   (await db.query(
-    `SELECT id, ticket, kind, style, prompt, status, provider, model, cost_usd, error, stored_key, result_url,
+    `SELECT id, ticket, kind, style, prompt, speech_text, speech_lang, status, provider, model, cost_usd, error, stored_key, result_url,
             left(ip_hash, 8) AS visitor, created_at, finished_at
        FROM trial_jobs ORDER BY created_at DESC LIMIT $1`,
     [Math.min(500, Math.max(1, Number(limit) || 50))]

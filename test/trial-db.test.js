@@ -15,10 +15,15 @@ const ssl = () => { try { return new URL(URL_).hostname.includes(".render.com") 
 const jobs = new Map(); // request_id → { model, input, state: "IN_QUEUE"|"COMPLETED", output, error, fail }
 let failNextSubmit = false;
 const openaiCalls = [];
+const ttsCalls = [];
 const fake = http.createServer((req, res) => {
   let body = "";
   req.on("data", (c) => (body += c)).on("end", () => {
     const send = (code, data) => { res.writeHead(code, { "Content-Type": "application/json" }); res.end(JSON.stringify(data)); };
+    if (req.url === "/v1/audio/speech") {
+      ttsCalls.push(JSON.parse(body));
+      res.writeHead(200, { "Content-Type": "audio/mpeg" }); return res.end(Buffer.alloc(4000, 1)); // 4 KB of "mp3"
+    }
     if (req.url === "/v1/images/generations") {
       openaiCalls.push(JSON.parse(body));
       return send(200, { data: [{ b64_json: Buffer.from("fake-jpeg-bytes").toString("base64") }] });
@@ -47,7 +52,7 @@ test.before(async () => {
   await new Promise((r) => fake.listen(0, "127.0.0.1", r));
   Object.assign(process.env, {
     FAL_KEY: "test-fal-key", FAL_QUEUE_URL: `http://127.0.0.1:${fake.address().port}`,
-    TRIAL_IMAGES: "3", TRIAL_VIDEOS: "1", TRIAL_DAILY_BUDGET_USD: "0.3", TRIAL_SALT: "test-salt",
+    TRIAL_IMAGES: "3", TRIAL_VIDEOS: "1", TRIAL_DAILY_BUDGET_USD: "0.55", TRIAL_SALT: "test-salt",
     OPENAI_API_KEY: "test-openai-key", OPENAI_BASE_URL: `http://127.0.0.1:${fake.address().port}`, OPENAI_IMAGE_COST_USD: "0.04",
     STORAGE_DIR: require("path").join(require("os").tmpdir(), `vi-trial-test-${process.pid}`),
   });
@@ -122,7 +127,7 @@ test("animate: only the visitor's own finished image, sent as the first frame", 
 });
 
 test("the daily budget pauses the trial for everyone", { skip }, async () => {
-  // budget 0.30 USD, starting from 0 today: two 0.125 videos fit (0.25), a third would pass the cap
+  // budget 0.55 USD, starting from 0 today: two 10 s videos fit (2 × 0.25), a third would pass the cap
   await db.query("UPDATE trial_jobs SET cost_usd = 0");
   await trial.start({ ip: "198.51.100.8", kind: "video", style: "realistic", prompt: "dancing robot" });
   await trial.start({ ip: "198.51.100.11", kind: "video", style: "realistic", prompt: "dancing robot" });
@@ -157,6 +162,35 @@ test("fal out of credit: pictures switch to ChatGPT automatically, the free vide
   assert.equal((await trial.get(job.id, token)).status, "done");
   assert.equal((await trial.status("198.51.100.21")).videoAvailable, false);
   await assert.rejects(trial.start({ ip: "198.51.100.22", kind: "video", style: "realistic", prompt: "waves" }), { code: "video_off" });
+});
+
+test("video with a spoken line: Iraqi voice is recorded, saved, and sent as the soundtrack of a 10 s video", { skip }, async () => {
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  require("../media").resetFal();
+  const storage = require("../storage");
+  const speech = { lang: "ar-IQ", text: "هلا بيكم بمطعمنا، تعالوا جرّبوا المشاوي", voice: "male", tone: "warm" };
+  const plan = { prompt: "A man speaks to the camera", negative: "blurry", speech, onScreenText: null, shots: [] };
+  const { job, token } = await trial.start({ ip: "198.51.100.30", kind: "video", style: "realistic", prompt: "اعلان مطعم", modelPrompt: plan.prompt, plan, speech });
+  const sent = jobs.get(job.provider_job_id);
+  assert.equal(sent.input.duration, 10);
+  assert.ok(sent.input.target_audio_url.startsWith("data:audio/mpeg;base64,"), "voice track sent as a data URI");
+  assert.equal(sent.input.prompt_expansion_mode, "disabled", "our own prompt is sent as written");
+  assert.match(ttsCalls.at(-1).instructions, /Iraqi/);
+  assert.equal(ttsCalls.at(-1).input, speech.text);
+  const row = (await db.query("SELECT speech_text, speech_lang, audio_key, plan FROM trial_jobs WHERE id = $1", [job.id])).rows[0];
+  assert.equal(row.speech_text, speech.text);
+  assert.equal(row.speech_lang, "ar-IQ");
+  assert.equal(row.audio_key, `trial/${job.ticket}.mp3`);
+  assert.equal((await storage.getBuffer(row.audio_key)).length, 4000);
+  assert.equal(row.plan.negative, "blurry");
+  assert.equal(trial.view(await trial.get(job.id, token), token).speech.text, speech.text);
+});
+
+test("a picture with writing in it goes to the ChatGPT image model", { skip }, async () => {
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  const plan = { prompt: 'a shop sign that reads exactly "مرحباً"', negative: "", speech: null, onScreenText: { text: "مرحباً", lang: "ar", placement: "sign" }, shots: [] };
+  const { job } = await trial.start({ ip: "198.51.100.31", kind: "image", style: "realistic", prompt: "لافتة", modelPrompt: plan.prompt, plan });
+  assert.equal(job.provider, "openai");
 });
 
 test("the visitor IP is never stored, only a salted hash", { skip }, async () => {

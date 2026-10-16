@@ -92,8 +92,20 @@
               <label>النوع</label>
               <div class="seg" id="trialKind">
                 <button type="button" data-v="image" class="on">🖼️ صورة</button>
-                <button type="button" data-v="video">🎬 فيديو <span id="trialSecs">5</span> ث</button>
+                <button type="button" data-v="video">🎬 فيديو <span id="trialSecs">10</span> ث بصوت</button>
               </div>
+            </div>
+            <div class="field free-voice" id="voiceField">
+              <label for="trialVoice">صوت الفيديو</label>
+              <select id="trialVoice">
+                <option value="ar-IQ">🇮🇶 عراقي</option>
+                <option value="ar">فصحى</option>
+                <option value="en">English</option>
+                <option value="ku">كوردي</option>
+                <option value="tr">Türkçe</option>
+                <option value="fa">فارسی</option>
+                <option value="none">بدون صوت</option>
+              </select>
             </div>
             <button class="cta free-cta" id="trialGo">🎁 أنشئ مجاناً من فكرتك</button>
             <span class="trial-left" id="trialLeft"></span>

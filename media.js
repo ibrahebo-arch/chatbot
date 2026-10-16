@@ -22,7 +22,7 @@ const MODELS = {
   video: clean(process.env.FAL_VIDEO_MODEL) || "minimax/h3-max-turbo/text-to-video",
   i2v: clean(process.env.FAL_I2V_MODEL) || "minimax/h3-max-turbo/image-to-video",
 };
-const VIDEO_SECONDS = Math.min(10, Math.max(2, Number(process.env.TRIAL_VIDEO_SECONDS) || 5));
+const VIDEO_SECONDS = Math.min(10, Math.max(2, Number(process.env.TRIAL_VIDEO_SECONDS) || 10));
 const COST = {
   image: Number(process.env.TRIAL_IMAGE_COST_USD) || 0.003,
   video: (Number(process.env.FAL_VIDEO_COST_PER_SEC) || 0.025) * VIDEO_SECONDS,
@@ -38,6 +38,41 @@ const OPENAI_IMAGE_MODEL = clean(process.env.OPENAI_IMAGE_MODEL) || "chatgpt-ima
 const OPENAI_IMAGE_QUALITY = clean(process.env.OPENAI_IMAGE_QUALITY) || "medium";
 const OPENAI_STYLES = (process.env.TRIAL_OPENAI_STYLES ?? "cartoon").split(",").map((s) => s.trim()).filter(Boolean);
 COST.openaiImage = Number(process.env.OPENAI_IMAGE_COST_USD) || 0.04;
+COST.speech = Number(process.env.TTS_COST_USD) || 0.01;
+const OPENAI_BASE = (clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "");
+const TTS_MODEL = clean(process.env.TTS_MODEL) || "gpt-4o-mini-tts";
+// voice per speaker; the dialect/accent comes from the instructions and from the words themselves
+const TTS_VOICES = { male: clean(process.env.TTS_VOICE_MALE) || "onyx", female: clean(process.env.TTS_VOICE_FEMALE) || "nova", child: clean(process.env.TTS_VOICE_CHILD) || "coral" };
+const ACCENT = {
+  "ar-IQ": "Speak in natural Iraqi Arabic (Baghdadi accent): relaxed, conversational, with Iraqi pronunciation (ق as 'g' where Iraqis say it, چ for ك where natural). Not formal, not Egyptian, not Gulf.",
+  ar: "Speak clear Modern Standard Arabic, natural news-presenter pace.",
+  en: "Speak natural conversational English.",
+  ku: "Speak Kurdish (Sorani) naturally.",
+  tr: "Speak natural Turkish.",
+  fa: "Speak natural Persian (Farsi).",
+};
+
+/**
+ * Spoken line → MP3 Buffer (OpenAI TTS). lang picks the accent instructions; voice: male | female | child.
+ * The result is passed to the video model as the soundtrack (data URI), so the mouth follows the words.
+ */
+async function speak({ text, lang = "ar-IQ", voice = "male", tone = "" }) {
+  if (!OPENAI_KEY) throw new Error("OPENAI_API_KEY is not set");
+  const r = await fetch(`${OPENAI_BASE}/v1/audio/speech`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENAI_KEY}` },
+    body: JSON.stringify({
+      model: TTS_MODEL, voice: TTS_VOICES[voice] || TTS_VOICES.male, input: String(text).slice(0, 400), response_format: "mp3", speed: 1.0,
+      instructions: `${ACCENT[lang] || ACCENT["ar-IQ"]} ${tone ? "Tone: " + tone + "." : ""} Speak the text exactly as written, no additions.`,
+    }),
+    signal: AbortSignal.timeout(60000),
+  });
+  if (!r.ok) throw new Error(`openai tts ${r.status} ${String((await r.json().catch(() => ({}))).error?.message || "").slice(0, 160)}`);
+  const buf = Buffer.from(await r.arrayBuffer());
+  if (buf.length < 1000) throw new Error("openai tts: empty audio");
+  return buf;
+}
+const audioDataUri = (buf) => `data:audio/mpeg;base64,${buf.toString("base64")}`;
 const openaiReady = Boolean(OPENAI_KEY);
 
 // fal out of credit (or failing) → skip it for 10 minutes: pictures go to ChatGPT, videos are paused
@@ -93,7 +128,7 @@ async function fal(method, path, body) {
 }
 
 /** Starts a job; returns the provider job id and the cost estimate counted against the trial budget. */
-async function submit(kind, { prompt, style, imageUrl = null }) {
+async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, negative = "" }) {
   if (!configured) throw new Error("FAL_KEY is not set");
   const s = STYLE[style] || STYLE.realistic;
   let model, input;
@@ -102,11 +137,14 @@ async function submit(kind, { prompt, style, imageUrl = null }) {
     input = { prompt: `${s.image} ${prompt}`, image_size: "landscape_4_3", num_images: 1, enable_safety_checker: true, output_format: "jpeg" };
   } else if (imageUrl) {
     model = MODELS.i2v;
-    input = { prompt: `${s.video} ${prompt}`, image_url: imageUrl, duration: VIDEO_SECONDS, resolution: "768P", enable_safety_checker: true, prompt_expansion_mode: "balanced" };
+    input = { prompt: `${s.video} ${prompt}`, image_url: imageUrl, duration: VIDEO_SECONDS, resolution: "768P", enable_safety_checker: true, prompt_expansion_mode: "disabled" };
   } else {
     model = MODELS.video;
-    input = { prompt: `${s.video} ${prompt}`, duration: VIDEO_SECONDS, resolution: "768P", aspect_ratio: "16:9", enable_safety_checker: true, prompt_expansion_mode: "balanced" };
+    input = { prompt: `${s.video} ${prompt}`, duration: VIDEO_SECONDS, resolution: "768P", aspect_ratio: "16:9", enable_safety_checker: true, prompt_expansion_mode: "disabled" };
   }
+  // the spoken line as the soundtrack: the model animates the mouth to it (MiniMax target_audio_url, ≥ 2 s, ≤ 15 MB)
+  if (kind === "video" && audioUrl) input.target_audio_url = audioUrl;
+  if (negative && kind === "image") input.prompt += `. Avoid: ${negative}`;
   let r;
   try {
     r = await fal("POST", model, input);
@@ -140,7 +178,7 @@ async function poll({ model, provider_job_id: id, kind }) {
 }
 
 module.exports = {
-  configured, openaiReady, falUp, useOpenAIImage, openaiImage, OPENAI_IMAGE_MODEL,
+  configured, openaiReady, falUp, useOpenAIImage, openaiImage, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL,
   resetFal: () => { falDownUntil = 0; },
   submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE,
 };

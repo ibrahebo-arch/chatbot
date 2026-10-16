@@ -28,6 +28,7 @@ const mail = require("./mail");
 const payments = require("./payments");
 const media = require("./media");
 const trial = require("./trial");
+const planner = require("./planner");
 const { normalizeTelegram, normalizePhone } = require("./validate");
 
 const app = express();
@@ -619,33 +620,9 @@ app.post("/api/order", orderLimit, async (req, res) => {
 // ---------- free trial (no account, no payment; limits per visitor IP – see trial.js) ----------
 const trialLimit = rateLimit(12, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً ثم حاول مرة ثانية.");
 
-// Prompt builder for the free trial: the strongest ChatGPT model, writing from the customer's chat.
-const PROMPT_MODEL = clean(process.env.PROMPT_MODEL) || "gpt-6-sol";
-
-/**
- * The customer's chat (any language) → one English prompt for the media model; the style words are added later.
- * Falls back to the chat model, then to the customer's own words, so a model outage never blocks the trial.
- */
-async function visualPrompt(conversation, kind) {
-  const text = conversation.map((m) => `${m.role === "user" ? "Customer" : "Assistant"}: ${String(m.content || "").slice(0, 1500)}`).join("\n").slice(-6000);
-  const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n");
-  if (!OPENAI_API_KEY) return own;
-  const ask = (model) => openai({
-    model,
-    max_tokens: 200,
-    messages: [
-      { role: "system", content: `You are the prompt writer of a video studio. From the conversation, take the customer's latest idea (and details agreed with the assistant) and write ONE concise English prompt (max 80 words) for an AI ${kind === "video" ? "video" : "image"} generation model. Keep their subject, people, place, action and mood; describe it visually and concretely${kind === "video" ? ", including camera movement and the motion in the scene" : ""}. Do not add art-style words (the style is added separately). Output only the prompt.` },
-      { role: "user", content: text },
-    ],
-  });
-  for (const model of [PROMPT_MODEL, OPENAI_MODEL]) {
-    try {
-      const out = (await ask(model)).replace(/^["'\s]+|["'\s]+$/g, "").slice(0, 900);
-      if (out) return out;
-    } catch (e) { console.error(`trial prompt (${model}):`, e.message); }
-  }
-  return own;
-}
+// Prompt builder for the free trial: planner.js (ChatGPT gpt-6-sol writes the plan from the chat with
+// prompts/media-prompt-guide.md, Claude reviews it when ANTHROPIC_API_KEY is set).
+const PROMPT_MODEL = planner.PROMPT_MODEL;
 
 /** The customer's conversation for the trial: chat messages, or a single typed idea. */
 function trialConversation(body) {
@@ -667,18 +644,20 @@ app.post("/api/trial/jobs", trialLimit, async (req, res) => {
   if (!db.configured) return res.status(503).json({ ok: false, message: "الخدمة غير متاحة حالياً، حاول لاحقاً." });
   const body = req.body || {};
   const { kind, style, sourceJob, sourceToken } = body;
+  const voiceLang = body.voice === "none" ? "none" : planner.normLang(clean(body.voice) || "ar-IQ");
   const conversation = trialConversation(body);
   const userText = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n");
   // what the visitor sees on the card: their own newest message (or the animate instruction)
   const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content);
   if (text.length < 3) return res.status(400).json({ ok: false, code: "invalid", message: "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً»." });
   try {
-    // ChatGPT writes the prompt from the chat; terms are shown (never blocking) exactly like in the chat
-    const [modelPrompt, sections] = await Promise.all([
-      visualPrompt(conversation, kind),
+    // ChatGPT writes the full plan from the chat (Claude reviews it); terms are shown (never blocking) like in the chat
+    const [{ plan, by }, sections] = await Promise.all([
+      planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob) }),
       policyCheck([{ role: "user", content: userText }], { lastOnly: true }),
     ]);
-    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
+    console.log(`trial plan by ${by}: ${kind}/${style}${plan.speech ? ` · speech ${plan.speech.lang} "${plan.speech.text.slice(0, 60)}"` : ""}${plan.onScreenText ? ` · text "${plan.onScreenText.text}"` : ""}`);
+    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: plan.prompt, plan, speech: plan.speech, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
     res.json({ ok: true, job: trial.view(job, token), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
   } catch (e) {
     if (e instanceof trial.TrialError) return res.status(["limit", "paused", "video_off"].includes(e.code) ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });
@@ -879,7 +858,7 @@ async function start() {
     sweepUploads().catch((e) => console.error("upload cleanup:", e.message));
     setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();
     if (trial.enabled()) {
-      console.log(`Free trial: on (prompts ${PROMPT_MODEL} · pictures: fal ${media.MODELS.image}${media.openaiReady && storage.ready ? ` + ChatGPT ${media.OPENAI_IMAGE_MODEL} for ${process.env.TRIAL_OPENAI_STYLES ?? "cartoon"} and when fal is out` : ""} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
+      console.log(`Free trial: on (prompts ${PROMPT_MODEL}${planner.reviewEnabled ? " + review " + planner.CLAUDE_MODEL : ""} · voice ${media.TTS_MODEL} · pictures: fal ${media.MODELS.image}${media.openaiReady && storage.ready ? ` + ChatGPT ${media.OPENAI_IMAGE_MODEL} for ${process.env.TRIAL_OPENAI_STYLES ?? "cartoon"} and when fal is out` : ""} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
       trial.startSweeper();
     } else console.log("Free trial: OFF (set FAL_KEY)");
     if (payments.configured) {

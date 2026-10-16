@@ -181,6 +181,8 @@ body.free-mode .mbar .m-free { display: block; }
 .tjob .info { padding: 10px 12px; display: grid; gap: 8px; }
 .tjob .info .p { font-size: .84rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .tjob .info .tag2 { color: var(--muted); font-size: .75rem; }
+.tjob .info .say { font-size: .82rem; color: var(--sand2); line-height: 1.6; }
+.free-voice select { width: 100%; }
 .tjob .acts { display: flex; gap: 8px; flex-wrap: wrap; }
 .tjob .acts a, .tjob .acts button { border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: .8rem; text-decoration: none; cursor: pointer; }
 .tjob .acts a.dl { background: var(--sand); border-color: var(--sand); color: #1a1205; font-weight: 700; }

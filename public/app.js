@@ -508,7 +508,9 @@
     const b = e.target.closest("button"); if (!b || b.disabled) return;
     trial[id === "trialStyle" ? "style" : "kind"] = b.dataset.v;
     $(id).querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+    if (id === "trialKind") $("voiceField").hidden = b.dataset.v !== "video"; // the voice choice only matters for videos
   }));
+  $("voiceField").hidden = true;
   function setMode(m) {
     trial.mode = m;
     $("panel").classList.toggle("free", m === "free");
@@ -544,7 +546,7 @@
     const busy = j.status === "queued" || j.status === "running";
     const box = el("div", "media");
     if (busy) {
-      const w = el("div", "wait"); w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ إنشاء الفيديو… عادةً أقل من دقيقتين" : "جارٍ إنشاء الصورة…")); box.append(w);
+      const w = el("div", "wait"); w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ تسجيل الصوت وإنشاء الفيديو… عادةً 1–3 دقائق" : "جارٍ إنشاء الصورة…")); box.append(w);
     } else if (j.status === "done" && j.url) {
       const m = el(j.kind === "video" ? "video" : "img");
       if (j.kind === "video") Object.assign(m, { muted: true, loop: true, autoplay: true, playsInline: true, controls: true });
@@ -555,6 +557,7 @@
     }
     const info = el("div", "info");
     info.append(el("span", "p", j.prompt));
+    if (j.speech?.text) info.append(el("span", "say", `🗣️ ${j.speech.text}`));
     info.append(el("span", "tag2", `🎁 مجاناً${j.ticket ? ` · 🎟️ ${j.ticket}` : ""} · ${j.style === "cartoon" ? "🎨 كرتون" : "📷 واقعي"} · ${j.kind === "video" ? "🎬 فيديو" : "🖼️ صورة"}`));
     const acts = el("div", "acts");
     if (j.status === "done" && j.url) {
@@ -612,7 +615,7 @@
     note.className = "note"; note.textContent = "ChatGPT يكتب الوصف من محادثتك…";
     btn.disabled = true;
     try {
-      const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken, messages: state.messages }) });
+      const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken, voice: $("trialVoice").value, messages: state.messages }) });
       const d = await r.json();
       if (!d.ok) { note.className = "note err"; note.textContent = d.message || "حدثت مشكلة، حاول مرة ثانية."; return; }
       note.textContent = "";
