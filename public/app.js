@@ -378,7 +378,7 @@
         if (data.botLink) note.innerHTML = `${note.textContent}<br><a href="${data.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>`;
         state.messages.push({ role: "assistant", content: `تم إرسال الطلب. رقم الطلب ${data.requestId}، معرّف الزبون ${data.requesterId}.` });
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
-        if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
+        
         if (data.policy?.sections?.length) policyCard(data.policy.sections);
         trackOrder(data);
         if (state.payments && data.payment && !data.payment.paid) { rememberOrder(); askPay(data); } else askBot(data);
@@ -550,7 +550,7 @@
   function bringIntoView(card) {
     if (!card || window.innerWidth > 820) return;
     const r = card.getBoundingClientRect();
-    if (r.top < 60 || r.bottom > window.innerHeight - 20) card.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (r.top < 60 || r.bottom > window.innerHeight - 20) card.scrollIntoView({ behavior: "auto", block: "center" });
   }
   function trialCard(j) {
     let card = document.querySelector(`.tjob[data-id="${j.id}"]`);
@@ -665,7 +665,7 @@
       const j = { ...d.job, token: d.token };
       trial.jobs.push(j); saveTrialJobs();
       trialCard(j); renderTrialLeft(d); pollTrial(j);
-      if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
+      
     } catch {
       temp.remove();
       note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، حاول مرة ثانية.";
