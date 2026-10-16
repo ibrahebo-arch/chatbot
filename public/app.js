@@ -81,7 +81,7 @@
     for (let i = 0; i < Math.min(6, order.length); i++) {
       const cell = document.createElement("div"); cell.className = "cell"; cell.dataset.group = order[i];
       const img = document.createElement("img"); img.alt = "";
-      const v = document.createElement("video"); v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = "metadata";
+      const v = document.createElement("video"); v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = "metadata";
       cell.append(img, v); mosaic.appendChild(cell); cells.push({ cell, img, v, group: order[i] });
     }
     const load = (c, loop) => {
@@ -673,8 +673,9 @@
   function restoreTrial() {
     try { trial.jobs = JSON.parse(localStorage.getItem(TRIAL_KEY) || "[]").filter((j) => j && j.id && j.token); } catch { trial.jobs = []; }
     if (!trial.jobs.length) return;
-    startChat();
-    setMode("free");
+    // the welcome page with the showcase loops stays as before; the chat opens only when something is still being made
+    // (or when the visitor sends something – the finished results are already waiting in the list)
+    if (trial.jobs.some(pending)) { startChat(); setMode("free"); }
     trial.jobs.forEach((j) => { trialCard(j); pollTrial(j, 0); });
   }
 
