@@ -40,3 +40,14 @@ test("without an OpenAI key the customer's own words become the prompt", async (
   assert.equal(plan.prompt, "اعلان لمطعم");
   assert.equal(plan.speech, null);
 });
+
+test("places the customer names bring their real look into the request", () => {
+  const ids = (t) => planner.locationsIn(t).map((l) => l.id);
+  assert.ok(ids("فيديو لشخص يمشي في الكرادة قرب نهر دجلة").includes("karrada"));
+  assert.ok(ids("a man in Erbil near the citadel").includes("erbil"));
+  assert.deepEqual(ids("your car is red"), [], "a latin alias only matches as a whole word");
+  const note = planner.locationNote([{ role: "user", content: "اعلان في شارع المتنبي" }]);
+  assert.match(note, /LOCATION REFERENCE/);
+  assert.match(note, /bookshops/);
+  assert.equal(planner.locationNote([{ role: "user", content: "hello" }]), "");
+});

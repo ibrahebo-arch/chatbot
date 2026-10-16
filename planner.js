@@ -16,7 +16,7 @@ const path = require("path");
 
 const clean = (v) => String(v || "").trim();
 const GUIDE = fs.readFileSync(path.join(__dirname, "prompts", "media-prompt-guide.md"), "utf8");
-const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), Iraqi places (5), speech length and dialect (6), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
+const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), living humanoid presence – breathing, blinking, facial reactions (4b), Iraqi places (5), named places and the LOCATION REFERENCE (5b), speech length and dialect (6), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
 const RULES_END = "\n\n---\nFINAL CHECK before you answer: go through section 9 line by line; the prompt is English, follows the section 2 order, has concrete motion beats for video, keeps the customer's exact words for on-screen text, and the speech is short natural dialect that fits the clip length. Fix anything that fails, then output the JSON only.";
 const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
 const OPENAI_BASE = (clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "");
@@ -51,6 +51,28 @@ function task({ kind, style, seconds, voiceLang, hasReferenceImage, refs = [] })
 function userContent(text, refs = []) {
   if (!refs.length) return text;
   return [{ type: "text", text }, ...refs.map((r) => ({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${r.buf.toString("base64")}`, detail: "auto" } }))];
+}
+
+/**
+ * Real places the customer names (Arabic or English). Their typical look is added to the request so the picture or
+ * video shows that place and not a generic street; places that are not in the list are handled by the guide (§5b).
+ */
+const LOCATIONS = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "prompts", "locations.json"), "utf8")); } catch { return []; } })();
+const normAr = (s) => String(s || "").toLowerCase().replace(/[ً-ْـ]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
+function locationsIn(text, max = 3) {
+  const t = normAr(text);
+  const hits = LOCATIONS.filter((l) => l.names.some((n) => {
+    const k = normAr(n);
+    return /^[a-z0-9 .'-]+$/.test(k) ? new RegExp("(^|[^a-z])" + k.split(".").join("[.]") + "([^a-z]|$)").test(t) : t.includes(k);
+  }));
+  hits.sort((a, b) => b.look.length - a.look.length); // the most specific places first (a district before its city)
+  return hits.slice(0, max);
+}
+function locationNote(conversation) {
+  const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n");
+  const hits = locationsIn(own);
+  if (!hits.length) return "";
+  return "\n\nLOCATION REFERENCE – the customer named these real places. Show them as they really look (landmarks, architecture, street life) and keep these details in the prompt:\n" + hits.map((l) => "- " + l.look).join("\n");
 }
 
 function conversationText(conversation) {
@@ -93,7 +115,7 @@ async function chatgpt(model, system, user) {
 
 /** Step 1 – ChatGPT writes the plan. */
 async function draft(conversation, opts) {
-  const user = userContent(`${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}`, opts.refs);
+  const user = userContent(`${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}${locationNote(conversation)}`, opts.refs);
   for (const model of [PROMPT_MODEL, FALLBACK_MODEL]) {
     try {
       const plan = parsePlan(await chatgpt(model, RULES + GUIDE + RULES_END, user));
@@ -111,7 +133,7 @@ async function selfReview(plan, conversation, opts, model) {
     const user = userContent(`${task(opts)}
 
 CONVERSATION:
-${conversationText(conversation)}
+${conversationText(conversation)}${locationNote(conversation)}
 
 DRAFT PLAN (written by you a moment ago):
 ${JSON.stringify(plan)}
@@ -130,7 +152,7 @@ async function review(plan, conversation, opts) {
       max_tokens: 4000,
       output_config: { effort: "medium" },
       system: [{ type: "text", text: GUIDE + "\n\nYou are the REVIEWER. You receive a draft plan written by another model. Check it against every section of the guide and against the customer's conversation, fix everything that is wrong or missing (dialect, motion beats, camera, Iraqi place detail, speech length, on-screen text spelling, contradictions, anatomy/quality lines) and return the corrected plan as the same JSON object only.", cache_control: { type: "ephemeral" } }],
-      messages: [{ role: "user", content: `${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}\n\nDRAFT PLAN:\n${JSON.stringify(plan)}` }],
+      messages: [{ role: "user", content: `${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}${locationNote(conversation)}\n\nDRAFT PLAN:\n${JSON.stringify(plan)}` }],
     });
     if (r.stop_reason === "refusal") return null;
     const text = r.content.filter((b) => b.type === "text").map((b) => b.text).join("");
@@ -156,7 +178,8 @@ async function plan(conversation, opts) {
   const fixed = claude || second;
   const p = fixed || d.plan;
   if (o.kind !== "video" || o.voiceLang === "none") p.speech = null;
+  if (o.kind === "video" && !/frozen|mannequin/i.test(p.negative || "")) p.negative = [p.negative, "frozen face, mannequin stillness, statue-like pose, no blinking, dead eyes, rigid stare"].filter(Boolean).join(", ");
   return { plan: p, by: claude ? `${d.by}+${CLAUDE_MODEL}` : second ? `${d.by}+review` : d.by };
 }
 
-module.exports = { plan, parsePlan, userContent, task, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };
+module.exports = { locationsIn, locationNote, plan, parsePlan, userContent, task, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };

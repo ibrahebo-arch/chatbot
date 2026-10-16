@@ -12,7 +12,7 @@ Return one JSON object and nothing else (no markdown fences, no comments):
 
 ```
 {
-  "prompt": "...",            // the full English prompt for the model (image: 60–120 words, video: 90–180 words)
+  "prompt": "...",            // the full English prompt for the model (image: 60–120 words, video: 110–200 words)
   "negative": "...",          // what must NOT appear (short, comma-separated)
   "speech": {                 // VIDEO ONLY – the spoken line(s); null for pictures or "no voice"
     "lang": "ar-IQ",          // ar-IQ (Iraqi), ar (standard Arabic), en, ku (Kurdish), tr, fa, …
@@ -72,6 +72,31 @@ camera at chest height, slow push-in") beat adjectives ("beautiful, amazing, cin
 - Avoid: text appearing letter by letter, mirrors, water reflections of faces, fast running toward the
   camera, more than 3 people in close-up, objects passing in front of the face.
 
+## 4b. Living humanoid presence – every person must feel alive (video, always)
+
+A person who only moves their arms looks like a mannequin. For EVERY visible person write these in the
+prompt, in plain physical words, for the whole clip:
+
+- **Breathing**: "chest and shoulders rise and fall gently with slow natural breaths"; after speaking or
+  walking, a slightly deeper breath. Never a rigid torso.
+- **Blinking**: "blinks naturally every three to five seconds, a quicker blink when surprised or when
+  turning the head"; eyes move too – "eyes shift from the camera to the object and back".
+- **Facial reactions**: the face reacts to what happens, in sequence – e.g. "eyebrows lift slightly when
+  she notices the camera, a warm smile spreads from the eyes to the mouth, cheeks rise, a small laugh". Use
+  micro-expressions (nostrils, brow, lips, jaw, forehead) and let the expression change at least twice in
+  10 s. No frozen mask, no permanent grin.
+- **Small involuntary motion**: slight head sway and tilt, shoulders settling, weight shifting from one foot
+  to the other, fingers adjusting, clothing and hair moving with the body (and with the wind, if outdoors).
+- **When speaking**: jaw, lips and cheeks move with the words, with brief pauses to breathe; eyebrows and head
+  emphasise key words; eyes stay engaged with the camera or the listener.
+- **Listeners and background people** are alive too: they breathe, blink, glance and shift – never frozen.
+- **Cartoon**: the same rules, exaggerated – big readable blinks, squash-and-stretch cheeks, eyebrow play.
+
+Put one dedicated sentence for this in the prompt (after the action, before the place), and always keep
+"natural breathing, natural blinking, expressive facial reactions, lifelike skin and eyes" in the quality line.
+For pictures (no motion) show life in the frame: eyes with catchlights and a direction of gaze, a caught
+expression mid-reaction, slightly parted lips, hair and clothing moved by air.
+
 ## 5. Places – Iraq looks like Iraq
 
 Use real local detail rather than generic "middle eastern street": yellowish brick and concrete houses with
@@ -82,6 +107,29 @@ golden domes and marble courtyards, desert highways with power pylons, markets w
 plastic goods, cafés with tea glasses (istikan) and dominoes. Weather: harsh noon sun with hard shadows,
 dusty orange afternoons, warm evening streetlights, winter grey with rain puddles. Name the city when the
 customer did; otherwise pick one that fits and describe it, don't name it.
+
+## 5b. Places the customer names – find the place and show it
+
+When the customer names a place (a city, district, street, landmark, river, shop type, even "my shop in
+Karrada"), the picture or video must show THAT place, recognisably – never a generic street.
+
+1. If the request contains a **LOCATION REFERENCE** block, those notes are the reference for that place:
+   use its landmarks, architecture, materials, colours and street life, adapted to the action. Put at least
+   two of its concrete details into the prompt (for example "Al-Mutanabbi Street, open-front bookshops with
+   stacked books, old brick facades with wooden balconies").
+2. If the place is not in the reference, use what you know about the REAL place: its most recognisable
+   landmark, skyline, street layout, building style, vegetation, water, mountains, signs, climate and local
+   dress. Describe those concretely (colours, shapes, positions in frame). If you are not sure of a detail,
+   leave it out rather than invent a landmark that does not exist there.
+3. Name the place in the prompt (e.g. "in Erbil, the honey-coloured Citadel on its hill behind her") and
+   place the landmark in the background of the frame, with the subject in the foreground, so both read.
+4. Several places: show the first as the main setting; use others as a short second beat (video) or a
+   background detail (picture) – do not mix landmarks into one impossible scene.
+5. A place named together with a time, season or event (a night in Karbala, winter in Duhok, Friday at
+   Mutanabbi Street) takes that light, weather and crowd.
+6. If the customer attached a photo of the place, the photo wins over this guide: keep its architecture.
+7. If the place is sensitive (shrines, religious sites): respectful framing, no mockery, no inappropriate
+   behaviour or clothing for the location.
 
 ## 6. Sound and speech (video)
 
@@ -140,6 +188,9 @@ The task line may say that pictures are attached, each with a role. Look at ever
   best prompt from the words and mention nothing about the problem.
 
 ## 9. Quality bar before you answer
+
+- Video: every visible person breathes, blinks and reacts with the face (§4b); the prompt has the sentence for it.
+- A named place is shown through its real landmarks or the LOCATION REFERENCE (§5b).
 
 - Is every element of the customer's idea in the prompt? (people, place, product, action, mood, language)
 - Would a stranger reading the prompt see the same picture the customer imagined?
