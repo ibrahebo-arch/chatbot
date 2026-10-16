@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One-time VPS setup for VI Iraq (Ubuntu/Debian). Safe to re-run: every step checks before acting.
 #   Node 22 + Postgres (local) + the app as a systemd service + nginx reverse proxy on port 80.
-#   Hardening: SSH key-only + fail2ban, automatic security updates, website ports open to Cloudflare
+#   Hardening: SSH key-only on port 2222 + fail2ban, automatic security updates, website ports open to Cloudflare
 #   only (CLOUDFLARE_ONLY=false while the DNS records are "DNS only"), uploads in a permanent folder.
 # Usage (as root on the VPS):  bash setup-vps.sh
 set -euo pipefail
@@ -15,6 +15,7 @@ PORT=3000
 DOMAIN=vi-iraq.com
 STORAGE_DIR=/var/lib/vi-iraq/storage
 CLOUDFLARE_ONLY=${CLOUDFLARE_ONLY:-true}
+SSH_PORT=2222   # port 22 is closed: almost all SSH bots only try 22
 
 export DEBIAN_FRONTEND=noninteractive
 log() { printf '\n== %s\n' "$*"; }
@@ -133,8 +134,8 @@ CF_V6=$(curl -fsS --max-time 10 https://www.cloudflare.com/ips-v6 || echo "2400:
 } > /etc/nginx/conf.d/vi-iraq-hardening.conf
 nginx -t -q && systemctl reload nginx
 
-log "Firewall (SSH + website)"
-ufw allow OpenSSH >/dev/null
+log "Firewall (SSH on $SSH_PORT + website)"
+ufw allow "$SSH_PORT/tcp" comment ssh >/dev/null
 if [ "$CLOUDFLARE_ONLY" = "true" ]; then
   # the website is only reachable through Cloudflare (no bypassing its protection by calling the IP)
   ufw delete allow 'Nginx Full' >/dev/null 2>&1 || true
@@ -158,13 +159,31 @@ EOF
 else
   echo "No SSH key in /root/.ssh/authorized_keys - keeping password login so you are not locked out."
 fi
+# SSH listens on $SSH_PORT only (Ubuntu 24.04 starts sshd from ssh.socket, so the port is set there).
+# The new port is opened in ufw above before 22 is closed, so a running session is never cut off.
+mkdir -p /etc/systemd/system/ssh.socket.d
+printf "%s\n" "[Socket]" "ListenStream=" "ListenStream=0.0.0.0:$SSH_PORT" "ListenStream=[::]:$SSH_PORT" > /etc/systemd/system/ssh.socket.d/listen.conf
+systemctl daemon-reload
+systemctl is-active -q ssh.socket && systemctl restart ssh.socket
+ufw delete allow OpenSSH >/dev/null 2>&1 || true
+ufw delete allow 22/tcp >/dev/null 2>&1 || true
 cat > /etc/fail2ban/jail.d/vi-iraq.local <<EOF
 [sshd]
 enabled = true
 backend = systemd
-maxretry = 5
-findtime = 10m
-bantime = 1h
+port = $SSH_PORT
+maxretry = 3
+findtime = 1h
+bantime = 24h
+
+# banned 3 times within a day -> banned for a week
+[recidive]
+enabled = true
+logpath = /var/log/fail2ban.log
+banaction = %(banaction_allports)s
+findtime = 1d
+maxretry = 3
+bantime = 1w
 EOF
 systemctl enable --now fail2ban >/dev/null 2>&1; systemctl restart fail2ban
 
