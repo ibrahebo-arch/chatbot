@@ -323,3 +323,4 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 @media (max-width: 400px) { .tab { padding: 7px 11px; font-size: .86rem; } .field.two { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 .tjob .secs { font-size: .75rem; opacity: .8; }
+.messages > * { flex-shrink: 0; } /* cards must keep their height inside the scrolling chat (they were squashed to thin strips on phones) */
