@@ -706,12 +706,17 @@ app.get("/api/trial/jobs/:id", statusLimit, async (req, res) => {
 const TRIAL_MEDIA_HOSTS = /(^|\.)fal\.media$|(^|\.)fal\.run$|(^|\.)fal\.ai$/i;
 async function trialMedia(req, res, download) {
   const j = await trial.own(req.params.id, req.query.token).catch(() => null);
+  return sendTrialFile(j, res, download);
+}
+async function sendTrialFile(j, res, download) {
   if (!j || j.status !== "done" || !j.result_url) return res.sendStatus(404);
-  const name = `vi-iraq-${j.id}.${j.kind === "video" ? "mp4" : "jpg"}`;
+  const name = `vi-iraq-${j.ticket || j.id}.${j.kind === "video" ? "mp4" : "jpg"}`;
   const type = j.kind === "video" ? "video/mp4" : "image/jpeg";
   try {
-    if (j.result_url.startsWith("store:")) {
-      const key = j.result_url.slice(6);
+    // our own copy first (provider links can expire), then the provider link
+    const ownKey = j.stored_key || (j.result_url.startsWith("store:") ? j.result_url.slice(6) : null);
+    if (ownKey) {
+      const key = ownKey;
       if (!download) return res.redirect(302, await storage.presignGet(key, 3600, { contentType: type }));
       const buf = await storage.getBuffer(key, 80 * 1048576);
       return res.set({ "Content-Type": type, "Content-Disposition": `attachment; filename="${name}"`, "Cache-Control": "private, max-age=3600" }).send(buf);
@@ -731,6 +736,19 @@ async function trialMedia(req, res, download) {
 }
 app.get("/api/trial/jobs/:id/media", statusLimit, (req, res) => trialMedia(req, res, false));
 app.get("/api/trial/jobs/:id/download", statusLimit, (req, res) => trialMedia(req, res, true));
+
+// Every finished free job → the Telegram admins get its ticket, the idea and the file.
+trial.setOnDone(async (j) => {
+  console.log(`free ticket ${j.ticket}: ${j.kind} ${j.style} via ${j.provider} – done`);
+  if (!tg.configured) return;
+  let buffer = null;
+  if (j.stored_key) { try { buffer = await storage.getBuffer(j.stored_key, 45 * 1048576); } catch {} }
+  const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+  await tg.notifyAdmins(
+    `🎁 <b>تذكرة مجانية ${esc(j.ticket)}</b>\n${j.kind === "video" ? "🎬 فيديو" : "🖼️ صورة"} · ${j.style === "cartoon" ? "🎨 كرتون" : "📷 واقعي"} · ${esc(j.provider)}\n${esc(String(j.prompt).slice(0, 500))}${j.terms_sections?.length ? `\n⚠️ قد يخالف الشروط (القسم ${j.terms_sections.join(" و ")})` : ""}`,
+    buffer ? { buffer, name: `${j.ticket}.${j.kind === "video" ? "mp4" : "jpg"}`, caption: j.ticket } : null
+  );
+});
 
 // Payment link for the customer's own unpaid order (same owner check as the status route).
 app.post("/api/orders/:id/pay", statusLimit, async (req, res) => {
@@ -808,6 +826,13 @@ app.get("/api/requests", adminOnly, async (_req, res) => {
       order: r.options, brief: r.has_brief, video: Boolean(r.video_key), error: r.error,
     })),
   });
+});
+// The team: free tickets and each ticket's file.
+app.get("/api/trials", adminOnly, async (req, res) => {
+  res.json({ ok: true, tickets: await trial.list(req.query.limit) });
+});
+app.get("/api/trials/:ticket/file", adminOnly, async (req, res) => {
+  sendTrialFile(await trial.byTicket(req.params.ticket), res, true);
 });
 app.get("/api/requests/:id/brief", adminOnly, async (req, res) => {
   const o = await orders.getOrder(req.params.id);

@@ -28,6 +28,47 @@ class TrialError extends Error {
 
 const ipHash = (ip) => crypto.createHmac("sha256", SALT).update(String(ip || "?")).digest("hex").slice(0, 32);
 
+// Free ticket, e.g. FT-261016-K3F9 – the number the team uses to track a free result.
+function newTicket() {
+  const d = new Date();
+  const ymd = `${String(d.getUTCFullYear()).slice(2)}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
+  const abc = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  return `FT-${ymd}-${[...crypto.randomBytes(4)].map((b) => abc[b % abc.length]).join("")}`;
+}
+
+// called once per finished free job (the server sends it to the Telegram admins)
+let onDone = async () => {};
+const setOnDone = (fn) => { onDone = fn; };
+
+/**
+ * Keeps our own copy of a finished result (provider links can expire) as trial/<ticket>.<ext>,
+ * then reports the job once (notified_at) – used for both providers.
+ */
+async function archive(job) {
+  let j = job;
+  try {
+    if (!j.stored_key && storage.ready) {
+      let key = null;
+      if (String(j.result_url).startsWith("store:")) key = j.result_url.slice(6);
+      else {
+        const url = new URL(j.result_url);
+        if (url.protocol === "https:" && /(^|\.)fal\.(media|run|ai)$/i.test(url.hostname)) {
+          const r = await fetch(url, { signal: AbortSignal.timeout(120000) });
+          if (r.ok) {
+            const buf = Buffer.from(await r.arrayBuffer());
+            key = `trial/${j.ticket}.${j.kind === "video" ? "mp4" : "jpg"}`;
+            await storage.put(key, buf, { contentType: j.kind === "video" ? "video/mp4" : "image/jpeg" });
+          }
+        }
+      }
+      if (key) j = (await db.query("UPDATE trial_jobs SET stored_key = $2 WHERE id = $1 RETURNING *", [j.id, key])).rows[0] || j;
+    }
+  } catch (e) { console.error(`trial archive ${j.ticket}:`, e.message); }
+  const first = (await db.query("UPDATE trial_jobs SET notified_at = now() WHERE id = $1 AND notified_at IS NULL RETURNING id", [j.id])).rows[0];
+  if (first) await onDone(j).catch((e) => console.error("trial notify:", e.message));
+  return j;
+}
+
 async function usage(hash, client = db) {
   const rows = (await client.query(
     `SELECT kind, count(*)::int AS n FROM trial_jobs
@@ -55,10 +96,10 @@ async function status(ip) {
 /** Pictures kept on our storage are served through the job (id + token); provider links are used as they are. */
 const view = (j, token = null) => {
   const done = j.status === "done";
-  const own = done && String(j.result_url || "").startsWith("store:");
+  const own = done && (j.stored_key || String(j.result_url || "").startsWith("store:"));
   const q = token ? `?token=${encodeURIComponent(token)}` : "";
   return {
-    id: j.id, kind: j.kind, style: j.style, prompt: j.prompt, status: j.status,
+    id: j.id, ticket: j.ticket, kind: j.kind, style: j.style, prompt: j.prompt, status: j.status,
     url: done ? (own ? `/api/trial/jobs/${j.id}/media${q}` : j.result_url) : null,
     download: done && token ? `/api/trial/jobs/${j.id}/download${q}` : null,
     error: j.status === "failed" ? j.error : null,
@@ -70,12 +111,17 @@ const view = (j, token = null) => {
 async function runOpenAI(job) {
   try {
     const buf = await media.openaiImage(job.model_prompt || job.prompt, job.style);
-    const key = `trial/${job.id}.jpg`;
+    const key = `trial/${job.ticket || job.id}.jpg`;
     await storage.put(key, buf, { contentType: "image/jpeg" });
-    await db.query("UPDATE trial_jobs SET status = 'done', result_url = $2, finished_at = now() WHERE id = $1 AND status = 'running'", [job.id, `store:${key}`]);
+    const done = (await db.query(
+      "UPDATE trial_jobs SET status = 'done', result_url = $2, stored_key = $3, finished_at = now() WHERE id = $1 AND status = 'running' RETURNING *",
+      [job.id, `store:${key}`, key]
+    )).rows[0];
+    if (done) await archive(done);
   } catch (e) {
     console.error(`trial openai ${job.id}:`, e.message);
-    await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1 AND status = 'running'", [job.id, e.message.slice(0, 300)]);
+    await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1 AND status = 'running'", [job.id, e.message.slice(0, 300)])
+      .catch((e2) => console.error(`trial openai ${job.id} (saving the failure):`, e2.message)); // e.g. during a shutdown
   }
 }
 async function startOpenAI(job) {
@@ -83,7 +129,7 @@ async function startOpenAI(job) {
     "UPDATE trial_jobs SET provider = 'openai', model = $2, provider_job_id = $3, cost_usd = $4, status = 'running' WHERE id = $1 RETURNING *",
     [job.id, media.OPENAI_IMAGE_MODEL, `openai:${job.id}`, media.COST.openaiImage]
   )).rows[0];
-  runOpenAI(row); // not awaited: the visitor's page polls the job
+  runOpenAI(row).catch(() => {}); // not awaited: the visitor's page polls the job
   return row;
 }
 
@@ -123,10 +169,12 @@ async function start({ ip, kind, style, prompt, modelPrompt, sourceJobId = null,
     if ((await spentToday(c)) + cost > DAILY_BUDGET) throw new TrialError("paused", "التجربة المجانية متوقفة لليوم بسبب الضغط الكبير، جرّب غداً 🙏");
     const id = "T" + crypto.randomBytes(9).toString("base64url");
     const token = crypto.randomBytes(18).toString("base64url");
+    let ticket = newTicket();
+    for (let i = 0; i < 5 && (await c.query("SELECT 1 FROM trial_jobs WHERE ticket = $1", [ticket])).rowCount; i++) ticket = newTicket();
     return (await c.query(
-      `INSERT INTO trial_jobs (id, token, ip_hash, kind, style, prompt, model_prompt, source_job, model, cost_usd, terms_sections)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'pending', $9, $10) RETURNING *`,
-      [id, token, hash, kind, style, text, modelPrompt || text, sourceJobId, cost, termsSections.length ? termsSections : null]
+      `INSERT INTO trial_jobs (id, token, ticket, ip_hash, kind, style, prompt, model_prompt, source_job, model, cost_usd, terms_sections)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 'pending', $10, $11) RETURNING *`,
+      [id, token, ticket, hash, kind, style, text, modelPrompt || text, sourceJobId, cost, termsSections.length ? termsSections : null]
     )).rows[0];
   });
 
@@ -169,13 +217,26 @@ async function refresh(job) {
   try { r = await media.poll(job); } catch (e) { console.error(`trial poll ${job.id}:`, e.message); r = { status: "running" }; }
   // a job that never finishes is closed after 30 minutes (and not counted)
   if (r.status === "running" && Date.now() - new Date(job.created_at).getTime() > 30 * 60e3) r = { status: "failed", error: "timed out" };
-  return (await db.query(
+  const row = (await db.query(
     `UPDATE trial_jobs SET checked_at = now(), status = $2, result_url = coalesce($3, result_url), error = $4,
             finished_at = CASE WHEN $2 IN ('done','failed') THEN now() ELSE finished_at END
       WHERE id = $1 AND status IN ('queued','running') RETURNING *`,
     [job.id, r.status, r.url || null, r.error || null]
-  )).rows[0] || job;
+  )).rows[0];
+  // finished: keep our copy and tell the team (in the background – the visitor sees the provider link at once)
+  if (row?.status === "done") archive(row).catch(() => {});
+  return row || job;
 }
+
+/** Recent free tickets for the team (admin API / Telegram). */
+const list = async (limit = 50) =>
+  (await db.query(
+    `SELECT id, ticket, kind, style, prompt, status, provider, model, cost_usd, error, stored_key, result_url,
+            left(ip_hash, 8) AS visitor, created_at, finished_at
+       FROM trial_jobs ORDER BY created_at DESC LIMIT $1`,
+    [Math.min(500, Math.max(1, Number(limit) || 50))]
+  )).rows;
+const byTicket = async (ticket) => (await db.query("SELECT * FROM trial_jobs WHERE ticket = $1", [String(ticket || "").toUpperCase()])).rows[0] || null;
 
 /** The visitor's own job (id + token), without asking the provider. */
 async function own(id, token) {
@@ -199,4 +260,4 @@ function startSweeper() {
   if (enabled()) setInterval(() => sweep().catch((e) => console.error("trial sweep:", e.message)), 30e3).unref();
 }
 
-module.exports = { enabled, status, start, get, own, view, sweep, startSweeper, ipHash, TrialError, LIMIT, DAILY_BUDGET };
+module.exports = { enabled, status, start, get, own, view, list, byTicket, setOnDone, sweep, startSweeper, ipHash, TrialError, LIMIT, DAILY_BUDGET };

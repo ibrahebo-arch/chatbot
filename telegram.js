@@ -254,7 +254,7 @@ async function handleUpdate(u) {
     }
     if (ok) {
       await orders.addTelegramAdmin(chatId, username);
-      await send(chatId, `✅ تم تسجيلك كمشرف. ستصلك الطلبات الجديدة هنا.\nالأوامر: /pending · /confirm ID · /deliver ID (مع فيديو) · /status ID`);
+      await send(chatId, `✅ تم تسجيلك كمشرف. ستصلك الطلبات الجديدة هنا.\nالأوامر: /pending · /confirm ID · /deliver ID (مع فيديو) · /status ID · /free (التذاكر المجانية)`);
     } else await send(chatId, "كلمة المرور غير صحيحة.");
     return;
   }
@@ -277,6 +277,21 @@ async function handleUpdate(u) {
     } else if (c === "/confirm") {
       const { order, changed } = await confirm((args[0] || "").toUpperCase(), `telegram:${username || chatId}`);
       await send(chatId, changed ? `✅ ${esc(order.request_id)} مؤكد وتم إبلاغ الزبون.` : `ℹ️ ${esc(order.request_id)} حالته الآن: ${order.status}`);
+    } else if (c === "/free") {
+      // free trial tickets: /free (latest 10) or /free FT-… (that ticket with its file)
+      const trial = require("./trial");
+      if (args[0]) {
+        const t = await trial.byTicket(args[0]);
+        if (!t) return void (await send(chatId, "غير موجود."));
+        await send(chatId, `🎁 <b>${esc(t.ticket)}</b> · ${t.kind} · ${t.style} · ${t.status} · ${esc(t.provider)} · $${Number(t.cost_usd).toFixed(3)}\n${esc(String(t.prompt).slice(0, 600))}`);
+        if (t.stored_key) {
+          const buf = await storage.getBuffer(t.stored_key, 45 * 1048576).catch(() => null);
+          if (buf) await call("sendDocument", { chat_id: chatId, caption: t.ticket }, { field: "document", buffer: buf, name: `${t.ticket}.${t.kind === "video" ? "mp4" : "jpg"}` });
+        }
+      } else {
+        const rows = await trial.list(10);
+        await send(chatId, rows.length ? rows.map((t) => `• <b>${esc(t.ticket)}</b> – ${t.kind === "video" ? "🎬" : "🖼️"} ${t.style} – ${t.status} – ${esc(String(t.prompt).slice(0, 50))}`).join("\n") : "لا توجد تذاكر مجانية بعد.");
+      }
     } else if (c === "/deliver") {
       const id = (args[0] || "").toUpperCase();
       const url = args[1];
@@ -286,7 +301,7 @@ async function handleUpdate(u) {
         : url ? await deliver(id, { url }) : null;
       await send(chatId, o ? `📤 تم تسليم ${esc(o.request_id)} إلى @${esc(o.telegram_username)}.` : "أرسل الفيديو مع التعليق /deliver ID، أو /deliver ID رابط-الفيديو");
     } else {
-      await send(chatId, "الأوامر: /pending · /confirm ID · /deliver ID (مع فيديو أو رابط) · /status ID");
+      await send(chatId, "الأوامر: /pending · /confirm ID · /deliver ID (مع فيديو أو رابط) · /status ID · /free [FT-…]");
     }
   } catch (e) {
     await send(chatId, `⚠️ ${esc(e.message)}`).catch(() => {});

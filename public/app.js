@@ -500,7 +500,10 @@
   // ---------- free trial: a mode of the studio (no price, no contact details) ----------
   // The customer writes the idea in the chat; the server has ChatGPT turn the chat into the prompt.
   // Results appear in the chat with a download button (pictures and videos).
-  const trial = { on: false, mode: "order", style: "realistic", kind: "image", info: null };
+  const trial = { on: false, mode: "order", style: "realistic", kind: "image", info: null, jobs: [], timers: {} };
+  // results survive a reload (iPhone Safari often reloads a tab after switching apps): kept for 24 h
+  const TRIAL_KEY = "vi-trial-jobs";
+  const saveTrialJobs = () => { try { localStorage.setItem(TRIAL_KEY, JSON.stringify(trial.jobs.filter((j) => Date.now() - new Date(j.createdAt).getTime() < 86400e3).slice(-8))); } catch {} };
   ["trialStyle", "trialKind"].forEach((id) => $(id).addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b || b.disabled) return;
     trial[id === "trialStyle" ? "style" : "kind"] = b.dataset.v;
@@ -552,7 +555,7 @@
     }
     const info = el("div", "info");
     info.append(el("span", "p", j.prompt));
-    info.append(el("span", "tag2", `🎁 مجاناً · ${j.style === "cartoon" ? "🎨 كرتون" : "📷 واقعي"} · ${j.kind === "video" ? "🎬 فيديو" : "🖼️ صورة"}`));
+    info.append(el("span", "tag2", `🎁 مجاناً${j.ticket ? ` · 🎟️ ${j.ticket}` : ""} · ${j.style === "cartoon" ? "🎨 كرتون" : "📷 واقعي"} · ${j.kind === "video" ? "🎬 فيديو" : "🖼️ صورة"}`));
     const acts = el("div", "acts");
     if (j.status === "done" && j.url) {
       const dl = el("a", "dl", j.kind === "video" ? "⬇️ تنزيل الفيديو" : "⬇️ تنزيل الصورة");
@@ -571,21 +574,34 @@
     card.replaceChildren(box, info);
     list.scrollTop = list.scrollHeight;
   }
-  function pollTrial(j) {
-    if (j.status !== "queued" && j.status !== "running") return;
-    setTimeout(async () => {
-      try {
-        const r = await fetch(`/api/trial/jobs/${encodeURIComponent(j.id)}`, { headers: { "x-trial-token": j.token }, cache: "no-store" });
-        if (r.status === 404) return;
-        const d = await r.json();
-        if (d.ok) {
-          Object.assign(j, d.job); trialCard(j);
-          if (j.status === "done" || j.status === "failed") loadTrial(); // a failed job gives the slot back
-        }
-      } catch {}
-      pollTrial(j);
-    }, j.kind === "video" ? 5000 : 2500);
+  const pending = (j) => j.status === "queued" || j.status === "running";
+  async function checkTrial(j) {
+    const ctl = new AbortController();
+    const stop = setTimeout(() => ctl.abort(), 12000); // a request frozen by the phone is dropped and retried
+    try {
+      const r = await fetch(`/api/trial/jobs/${encodeURIComponent(j.id)}`, { headers: { "x-trial-token": j.token }, cache: "no-store", signal: ctl.signal });
+      if (r.status === 404) { j.status = "gone"; return; }
+      const d = await r.json();
+      if (d.ok) {
+        Object.assign(j, d.job); saveTrialJobs(); trialCard(j);
+        if (!pending(j)) loadTrial(); // a failed job gives the slot back
+      }
+    } catch {} finally { clearTimeout(stop); }
   }
+  function pollTrial(j, delay = null) {
+    clearTimeout(trial.timers[j.id]);
+    if (!pending(j)) return;
+    trial.timers[j.id] = setTimeout(async () => {
+      await checkTrial(j);
+      pollTrial(j);
+    }, delay ?? (j.kind === "video" ? 5000 : 2500));
+  }
+  // back in Safari after switching apps / unlocking: check every unfinished result right away
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") trial.jobs.filter(pending).forEach((j) => pollTrial(j, 0));
+  });
+  window.addEventListener("pageshow", () => trial.jobs.filter(pending).forEach((j) => pollTrial(j, 0)));
+
   async function startTrial({ kind, style, prompt = null, sourceJob = null, sourceToken = null }) {
     const note = $("trialNote"), btn = $("trialGo");
     if (!sourceJob && !state.messages.some((m) => m.role === "user" && String(m.content || "").trim())) {
@@ -602,6 +618,7 @@
       note.textContent = "";
       if (d.policy?.sections?.length) policyCard(d.policy.sections);
       const j = { ...d.job, token: d.token };
+      trial.jobs.push(j); saveTrialJobs();
       trialCard(j); renderTrialLeft(d); pollTrial(j);
       if (window.innerWidth <= 820) list.scrollIntoView({ behavior: "smooth", block: "end" });
     } catch {
@@ -613,6 +630,14 @@
     trial.on = true;
     $("modeSeg").hidden = false;
     loadTrial();
+  }
+  // free results from before a reload come back into the chat (after the welcome message) and keep updating
+  function restoreTrial() {
+    try { trial.jobs = JSON.parse(localStorage.getItem(TRIAL_KEY) || "[]").filter((j) => j && j.id && j.token); } catch { trial.jobs = []; }
+    if (!trial.jobs.length) return;
+    startChat();
+    setMode("free");
+    trial.jobs.forEach((j) => { trialCard(j); pollTrial(j, 0); });
   }
 
   // ---------- works ----------
@@ -657,6 +682,7 @@
     const hello = "هلا بيك 👋 احجيلي عن الفيديو اللي تريده: شنو الفكرة، ولمن موجّه؟ وإذا عندك صور للشخصيات أو مقطع مرجعي ارفعه من زر المشبك.";
     addMsg("bot", hello);
     state.messages.push({ role: "assistant", content: hello });
+    if (trial.on) restoreTrial();
     // a refresh always opens the welcome page with the showcase loops (no previous order restored)
     try { localStorage.removeItem("vi-order"); } catch {}
     // …except the return from the payment page: Wayl sends the customer to /paid/?referenceId=<order>-P1&orderid=…

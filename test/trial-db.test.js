@@ -138,8 +138,10 @@ test("cartoon pictures are made by the ChatGPT image model and kept on our stora
   await new Promise((r) => setTimeout(r, 100));
   const j = await trial.get(job.id, token);
   assert.equal(j.status, "done");
-  assert.equal(j.result_url, `store:trial/${job.id}.jpg`);
-  assert.equal((await storage.getBuffer(`trial/${job.id}.jpg`)).toString(), "fake-jpeg-bytes");
+  assert.match(job.ticket, /^FT-\d{6}-[A-Z2-9]{4}$/, "every free job gets a ticket");
+  assert.equal(j.result_url, `store:trial/${job.ticket}.jpg`);
+  assert.equal(j.stored_key, `trial/${job.ticket}.jpg`);
+  assert.equal((await storage.getBuffer(`trial/${job.ticket}.jpg`)).toString(), "fake-jpeg-bytes");
   assert.match(openaiCalls.at(-1).prompt, /cartoon/i);
   const v = trial.view(j, token);
   assert.ok(v.url.startsWith(`/api/trial/jobs/${job.id}/media?token=`), v.url);
@@ -149,8 +151,10 @@ test("cartoon pictures are made by the ChatGPT image model and kept on our stora
 test("fal out of credit: pictures switch to ChatGPT automatically, the free video is paused", { skip }, async () => {
   await db.query("UPDATE trial_jobs SET cost_usd = 0");
   failNextSubmit = true; // fal refuses (e.g. balance exhausted)
-  const { job } = await trial.start({ ip: "198.51.100.21", kind: "image", style: "realistic", prompt: "a street in Erbil" });
+  const { job, token } = await trial.start({ ip: "198.51.100.21", kind: "image", style: "realistic", prompt: "a street in Erbil" });
   assert.equal(job.provider, "openai", "fell back to ChatGPT");
+  for (let i = 0; i < 40 && (await trial.get(job.id, token)).status === "running"; i++) await new Promise((r) => setTimeout(r, 50));
+  assert.equal((await trial.get(job.id, token)).status, "done");
   assert.equal((await trial.status("198.51.100.21")).videoAvailable, false);
   await assert.rejects(trial.start({ ip: "198.51.100.22", kind: "video", style: "realistic", prompt: "waves" }), { code: "video_off" });
 });
