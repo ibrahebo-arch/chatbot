@@ -26,12 +26,29 @@ const CLAUDE_MODEL = clean(process.env.CLAUDE_MODEL) || "claude-opus-5-5";
 const LANG_NAMES = { "ar-IQ": "Iraqi Arabic dialect", ar: "Modern Standard Arabic", en: "English", ku: "Kurdish", tr: "Turkish", fa: "Persian", none: "no voice" };
 const normLang = (l) => (LANG_NAMES[l] ? l : "ar-IQ");
 
-function task({ kind, style, seconds, voiceLang, hasReferenceImage }) {
+const ROLE_NAMES = { char1: "Character 1 (a person who must appear)", char2: "Character 2 (a person who must appear)", char3: "Character 3 (a person who must appear)", ref: "a reference for style, place or product (not a person to copy)" };
+
+/** What to tell the model about the pictures the customer sent in the chat (they are attached as images). */
+function picturesNote(kind, refs) {
+  if (!refs?.length) return "";
+  const list = refs.map((r, i) => `Picture ${i + 1} = ${ROLE_NAMES[r.role] || ROLE_NAMES.ref}`).join("; ");
+  return kind === "video"
+    ? ` CUSTOMER PICTURES (attached, in this order): ${list}. Picture 1 is used as the FIRST FRAME of the video (image-to-video): describe exactly what you see in it (face, hair, clothes, place) so nothing changes, and write only the motion, the camera and the sound. Do not ask for a different person or place.`
+    : ` CUSTOMER PICTURES (attached, in this order): ${list}. The result is an edit that puts the people from the character pictures into the new scene: say who from which picture appears, with the face, hair and clothes exactly as in their picture. Reference pictures only give style, place or product.`;
+}
+
+function task({ kind, style, seconds, voiceLang, hasReferenceImage, refs = [] }) {
   const voice = voiceLang === "none" ? "The customer wants NO voice: speech must be null; describe ambient sound only."
     : `Spoken language for speech.text: ${LANG_NAMES[voiceLang]} (${voiceLang}).`;
   return kind === "video"
-    ? `TASK: a ${seconds}-second ${style} VIDEO.${hasReferenceImage ? " The first frame is the customer's own picture (image-to-video): keep that exact scene, character and clothes, and describe only the motion, camera and sound." : ""} ${voice} Fit the action and the speech into ${seconds} seconds.`
-    : `TASK: one ${style} PICTURE (no video, no speech: speech must be null).`;
+    ? `TASK: a ${seconds}-second ${style} VIDEO.${hasReferenceImage ? " The first frame is the customer's own picture (image-to-video): keep that exact scene, character and clothes, and describe only the motion, camera and sound." : ""}${picturesNote(kind, refs)} ${voice} Fit the action and the speech into ${seconds} seconds.`
+    : `TASK: one ${style} PICTURE (no video, no speech: speech must be null).${picturesNote(kind, refs)}`;
+}
+
+/** The user message for the planner: text, plus the customer's pictures as images when there are any. */
+function userContent(text, refs = []) {
+  if (!refs.length) return text;
+  return [{ type: "text", text }, ...refs.map((r) => ({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${r.buf.toString("base64")}`, detail: "auto" } }))];
 }
 
 function conversationText(conversation) {
@@ -74,7 +91,7 @@ async function chatgpt(model, system, user) {
 
 /** Step 1 – ChatGPT writes the plan. */
 async function draft(conversation, opts) {
-  const user = `${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}`;
+  const user = userContent(`${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}`, opts.refs);
   for (const model of [PROMPT_MODEL, FALLBACK_MODEL]) {
     try {
       const plan = parsePlan(await chatgpt(model, GUIDE, user));
@@ -122,4 +139,4 @@ async function plan(conversation, opts) {
   return { plan: p, by: fixed ? `${d.by}+${CLAUDE_MODEL}` : d.by };
 }
 
-module.exports = { plan, parsePlan, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };
+module.exports = { plan, parsePlan, userContent, task, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };

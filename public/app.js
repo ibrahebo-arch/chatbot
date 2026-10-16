@@ -304,6 +304,7 @@
     state.pending = []; renderTray();
     const sent = files.map((f) => ({ name: f.name, stored: f.stored, url: f.url, image: f.image, video: f.video, role: f.role }));
     state.attachments.push(...sent);
+    updateTrialRefs();
     state.messages.push({ role: "user", content: text, files: sent });
     addMsg("user", text, sent);
     if (text) applyFromText(text);
@@ -511,8 +512,16 @@
     if (id === "trialKind") $("voiceField").hidden = b.dataset.v !== "video"; // the voice choice only matters for videos
   }));
   $("voiceField").hidden = true;
+  // pictures sent in the chat are used by the free trial too: characters keep their faces and clothes
+  function updateTrialRefs() {
+    const n = state.attachments.filter((a) => a.image).length;
+    const p = $("trialRefs");
+    p.hidden = !n;
+    if (n) p.textContent = `📎 ${n} ${n === 1 ? "صورة" : "صور"} من الدردشة ستُستخدم: الشخصيات تظهر بنفس ملامحها وملابسها، وصور المرجع للأسلوب أو المكان.`;
+  }
   function setMode(m) {
     trial.mode = m;
+    if (m === "free") updateTrialRefs();
     $("panel").classList.toggle("free", m === "free");
     document.body.classList.toggle("free-mode", m === "free");
     $("modeSeg").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.m === m));
@@ -607,6 +616,10 @@
 
   async function startTrial({ kind, style, prompt = null, sourceJob = null, sourceToken = null }) {
     const note = $("trialNote"), btn = $("trialGo");
+    if (!sourceJob && state.pending.length) { // a picture waiting in the tray is not part of the chat yet
+      note.className = "note err"; note.textContent = "أرسل الصورة أولاً بزر الإرسال في الدردشة (يمكنك كتابة فكرتك معها)، ثم اضغط «أنشئ مجاناً».";
+      input.focus(); return;
+    }
     if (!sourceJob && !state.messages.some((m) => m.role === "user" && String(m.content || "").trim())) {
       note.className = "note err"; note.textContent = "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً».";
       input.focus(); return;

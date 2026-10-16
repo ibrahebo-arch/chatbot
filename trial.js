@@ -12,6 +12,8 @@ const crypto = require("crypto");
 const db = require("./db");
 const media = require("./media");
 const storage = require("./storage");
+const watermark = require("./watermark");
+const orders = require("./orders");
 
 const clean = (v) => String(v || "").trim();
 const LIMIT = { image: Number(process.env.TRIAL_IMAGES ?? 3), video: Number(process.env.TRIAL_VIDEOS ?? 1) };
@@ -20,7 +22,10 @@ const DAILY_BUDGET = Number(process.env.TRIAL_DAILY_BUDGET_USD ?? 5);
 const SALT = clean(process.env.TRIAL_SALT) || clean(process.env.ADMIN_TOKEN) || "vi-iraq-trial";
 // ChatGPT pictures come back as files, so they need storage (the VPS has it; Render without R2 does not)
 const openaiOk = () => media.openaiReady && storage.ready;
-const enabled = () => (media.configured || openaiOk()) && clean(process.env.TRIAL_ENABLED).toLowerCase() !== "false";
+// Every free result is stamped with the VI-Iraq mark and kept on our storage before the visitor sees it,
+// so the trial needs storage and ffmpeg – without them it stays off rather than hand out unmarked files.
+const enabled = () =>
+  storage.ready && watermark.ready && (media.configured || media.openaiReady) && clean(process.env.TRIAL_ENABLED).toLowerCase() !== "false";
 
 class TrialError extends Error {
   constructor(code, message) { super(message); this.code = code; }
@@ -40,33 +45,111 @@ function newTicket() {
 let onDone = async () => {};
 const setOnDone = (fn) => { onDone = fn; };
 
-/**
- * Keeps our own copy of a finished result (provider links can expire) as trial/<ticket>.<ext>,
- * then reports the job once (notified_at) – used for both providers.
- */
+/** Reports a finished job once (notified_at): the team gets its ticket and the stamped file. */
 async function archive(job) {
-  let j = job;
-  try {
-    if (!j.stored_key && storage.ready) {
-      let key = null;
-      if (String(j.result_url).startsWith("store:")) key = j.result_url.slice(6);
-      else {
-        const url = new URL(j.result_url);
-        if (url.protocol === "https:" && /(^|\.)fal\.(media|run|ai)$/i.test(url.hostname)) {
-          const r = await fetch(url, { signal: AbortSignal.timeout(120000) });
-          if (r.ok) {
-            const buf = Buffer.from(await r.arrayBuffer());
-            key = `trial/${j.ticket}.${j.kind === "video" ? "mp4" : "jpg"}`;
-            await storage.put(key, buf, { contentType: j.kind === "video" ? "video/mp4" : "image/jpeg" });
-          }
-        }
-      }
-      if (key) j = (await db.query("UPDATE trial_jobs SET stored_key = $2 WHERE id = $1 RETURNING *", [j.id, key])).rows[0] || j;
+  const first = (await db.query("UPDATE trial_jobs SET notified_at = now() WHERE id = $1 AND notified_at IS NULL RETURNING id", [job.id])).rows[0];
+  if (first) await onDone(job).catch((e) => console.error("trial notify:", e.message));
+  return job;
+}
+
+const ROLE_ORDER = ["char1", "char2", "char3", "ref"];
+/**
+ * The pictures the customer sent in the chat (the same uploads the paid order uses): Character 1, 2, 3 first,
+ * then references, at most `max`, each shrunk to a JPEG ≤ 1280 px. A picture that cannot be read (HEIC…) is skipped.
+ * messages: the chat as the page keeps it – user messages carry files: [{ image, stored, role }].
+ */
+async function refsFrom(messages, max = 3) {
+  const seen = new Set();
+  const found = [];
+  for (const m of Array.isArray(messages) ? messages : []) {
+    if (!m || m.role !== "user") continue;
+    for (const f of Array.isArray(m.files) ? m.files : []) {
+      if (!f || !f.image || !f.stored || seen.has(f.stored)) continue;
+      seen.add(f.stored);
+      found.push({ stored: String(f.stored), role: ROLE_ORDER.includes(f.role) ? f.role : "ref" });
     }
-  } catch (e) { console.error(`trial archive ${j.ticket}:`, e.message); }
-  const first = (await db.query("UPDATE trial_jobs SET notified_at = now() WHERE id = $1 AND notified_at IS NULL RETURNING id", [j.id])).rows[0];
-  if (first) await onDone(j).catch((e) => console.error("trial notify:", e.message));
-  return j;
+  }
+  found.sort((a, b) => ROLE_ORDER.indexOf(a.role) - ROLE_ORDER.indexOf(b.role));
+  const out = [];
+  for (const f of found) {
+    if (out.length >= max) break;
+    try {
+      const a = await orders.getAsset(f.stored);
+      if (!a || a.media_type !== "image" || Number(a.size_bytes) > 15 * 1048576) continue;
+      out.push({ role: f.role, buf: await watermark.resize(await storage.getBuffer(a.r2_key, 15 * 1048576)) });
+    } catch (e) { console.error("trial: a chat picture was skipped:", e.message); }
+  }
+  return out;
+}
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const EXT = { image: "jpg", video: "mp4" };
+const MIME = { image: "image/jpeg", video: "video/mp4" };
+
+/** The provider's result file (only from addresses we trust). */
+async function download(url, maxBytes = 150 * 1048576) {
+  if (!media.isProviderUrl(url)) throw new Error("unexpected result address");
+  const r = await fetch(url, { signal: AbortSignal.timeout(120000) });
+  if (!r.ok) throw new Error(`download ${r.status}`);
+  if ((Number(r.headers.get("content-length")) || 0) > maxBytes) throw new Error("result too large");
+  const buf = Buffer.from(await r.arrayBuffer());
+  if (buf.length > maxBytes) throw new Error("result too large");
+  return buf;
+}
+
+/** The stamped copy of an original picture/video (kept as trial/<ticket>.<ext>). */
+async function stampAndStore(job, original) {
+  const marked = await watermark.apply(original, job.kind);
+  const key = `trial/${job.ticket}.${EXT[job.kind]}`;
+  await storage.put(key, marked, { contentType: MIME[job.kind] });
+  return key;
+}
+
+/**
+ * Last step of every free job: the original (from the provider, or ChatGPT's picture in memory) is stamped
+ * with the VI-Iraq mark and stored; only then the job turns "done" and the visitor can see it. A picture's
+ * clean original is kept privately (trial/src/) – only to animate it, so the mark is never baked in twice.
+ * If stamping fails twice the job fails (and is not counted) – an unstamped file is never shown.
+ */
+async function finalize(job, original = null) {
+  let lastError;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const buf = original || (await download(job.raw_url));
+      if (job.kind === "image") await storage.put(`trial/src/${job.ticket}.jpg`, buf, { contentType: "image/jpeg" });
+      const key = await stampAndStore(job, buf);
+      const done = (await db.query(
+        `UPDATE trial_jobs SET status = 'done', result_url = $2, stored_key = $3, watermarked = true, finished_at = now()
+          WHERE id = $1 AND status IN ('queued','running') RETURNING *`,
+        [job.id, `store:${key}`, key]
+      )).rows[0];
+      if (done) await archive(done);
+      return;
+    } catch (e) {
+      lastError = e;
+      console.error(`trial finalize ${job.ticket} (try ${attempt}):`, e.message);
+      if (attempt < 2) await sleep(1500);
+    }
+  }
+  await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1 AND status IN ('queued','running')", [job.id, `could not finish: ${lastError.message}`.slice(0, 300)])
+    .catch((e2) => console.error(`trial finalize ${job.ticket} (saving the failure):`, e2.message)); // e.g. during a shutdown
+}
+
+/** Results made before the mark existed: stamp the stored copy in place (and keep the clean original). */
+async function backfill(limit = 3) {
+  const rows = (await db.query(
+    "SELECT * FROM trial_jobs WHERE status = 'done' AND watermarked = false AND stored_key IS NOT NULL ORDER BY created_at LIMIT $1", [limit]
+  )).rows;
+  for (const j of rows) {
+    try {
+      const original = await storage.getBuffer(j.stored_key, 150 * 1048576);
+      if (j.kind === "image") await storage.put(`trial/src/${j.ticket}.jpg`, original, { contentType: "image/jpeg" });
+      const marked = await watermark.apply(original, j.kind);
+      await storage.put(j.stored_key, marked, { contentType: MIME[j.kind] });
+      await db.query("UPDATE trial_jobs SET watermarked = true, result_url = $2 WHERE id = $1", [j.id, `store:${j.stored_key}`]);
+      console.log(`trial ${j.ticket}: stamped the stored result`);
+    } catch (e) { console.error(`trial backfill ${j.ticket}:`, e.message); }
+  }
 }
 
 async function usage(hash, client = db) {
@@ -93,44 +176,42 @@ async function status(ip) {
   return { enabled: true, paused, videoAvailable: media.falUp(), left: u.left, limit: LIMIT, windowDays: WINDOW_DAYS, videoSeconds: media.VIDEO_SECONDS };
 }
 
-/** Pictures kept on our storage are served through the job (id + token); provider links are used as they are. */
+/**
+ * What the visitor's page gets. Only the stamped copy on our storage is ever linked (through the job's
+ * id + token); a finished job whose stamped copy is not stored yet still reads as "running".
+ */
 const view = (j, token = null) => {
-  const done = j.status === "done";
-  const own = done && (j.stored_key || String(j.result_url || "").startsWith("store:"));
+  const ready = j.status === "done" && j.watermarked;
   const q = token ? `?token=${encodeURIComponent(token)}` : "";
   return {
-    id: j.id, ticket: j.ticket, kind: j.kind, style: j.style, prompt: j.prompt, status: j.status,
+    id: j.id, ticket: j.ticket, kind: j.kind, style: j.style, prompt: j.prompt,
+    status: j.status === "done" && !ready ? "running" : j.status,
     speech: j.speech_text ? { text: j.speech_text, lang: j.speech_lang } : null,
-    url: done ? (own ? `/api/trial/jobs/${j.id}/media${q}` : j.result_url) : null,
-    download: done && token ? `/api/trial/jobs/${j.id}/download${q}` : null,
+    url: ready ? `/api/trial/jobs/${j.id}/media${q}` : null,
+    download: ready && token ? `/api/trial/jobs/${j.id}/download${q}` : null,
     error: j.status === "failed" ? j.error : null,
     sourceJob: j.source_job, createdAt: j.created_at,
   };
 };
 
-/** ChatGPT picture in the background: generated, saved to storage, then the job is done. */
-async function runOpenAI(job) {
+/** ChatGPT picture in the background (from the customer's photos when there are any), then stamped and stored. */
+async function runOpenAI(job, refs = []) {
   try {
-    const buf = await media.openaiImage(job.model_prompt || job.prompt, job.style);
-    const key = `trial/${job.ticket || job.id}.jpg`;
-    await storage.put(key, buf, { contentType: "image/jpeg" });
-    const done = (await db.query(
-      "UPDATE trial_jobs SET status = 'done', result_url = $2, stored_key = $3, finished_at = now() WHERE id = $1 AND status = 'running' RETURNING *",
-      [job.id, `store:${key}`, key]
-    )).rows[0];
-    if (done) await archive(done);
+    const prompt = job.model_prompt || job.prompt;
+    const buf = refs.length ? await media.openaiImageEdit(prompt, job.style, refs) : await media.openaiImage(prompt, job.style);
+    await finalize(job, buf);
   } catch (e) {
     console.error(`trial openai ${job.id}:`, e.message);
     await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1 AND status = 'running'", [job.id, e.message.slice(0, 300)])
       .catch((e2) => console.error(`trial openai ${job.id} (saving the failure):`, e2.message)); // e.g. during a shutdown
   }
 }
-async function startOpenAI(job) {
+async function startOpenAI(job, refs = []) {
   const row = (await db.query(
     "UPDATE trial_jobs SET provider = 'openai', model = $2, provider_job_id = $3, cost_usd = $4, status = 'running' WHERE id = $1 RETURNING *",
-    [job.id, media.OPENAI_IMAGE_MODEL, `openai:${job.id}`, media.COST.openaiImage]
+    [job.id, media.OPENAI_IMAGE_MODEL, `openai:${job.id}`, refs.length ? media.COST.openaiEdit : media.COST.openaiImage]
   )).rows[0];
-  runOpenAI(row).catch(() => {}); // not awaited: the visitor's page polls the job
+  runOpenAI(row, refs).catch(() => {}); // not awaited: the visitor's page polls the job
   return row;
 }
 
@@ -138,7 +219,7 @@ async function startOpenAI(job) {
  * Reserves a slot and starts the job.
  * opts: { ip, kind: "image"|"video", style, prompt, modelPrompt, sourceJobId, sourceToken, termsSections }
  */
-async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, sourceJobId = null, sourceToken = null, termsSections = [] }) {
+async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, refs = [], sourceJobId = null, sourceToken = null, termsSections = [] }) {
   if (!enabled()) throw new TrialError("off", "التجربة المجانية غير متاحة حالياً.");
   if (!["image", "video"].includes(kind)) throw new TrialError("invalid", "نوع غير معروف.");
   if (!["realistic", "cartoon"].includes(style)) throw new TrialError("invalid", "اختر واقعي أو كرتون.");
@@ -146,9 +227,14 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   if (text.length < 3) throw new TrialError("invalid", "اكتب وصفاً لما تريد إنشاءه.");
   const hash = ipHash(ip);
   if (kind === "video" && !media.falUp()) throw new TrialError("video_off", "الفيديو المجاني غير متاح حالياً، جرّب صورة 🙏");
-  // pictures with writing in them go to the ChatGPT image model (fal's FLUX misspells Arabic text)
-  const viaOpenAI = kind === "image" && openaiOk() && (media.useOpenAIImage(style) || Boolean(plan?.onScreenText));
-  const cost = (viaOpenAI ? media.COST.openaiImage : media.COST[kind]) + (speech ? media.COST.speech : 0);
+  // The customer's chat pictures are used (not when animating a trial picture – that has its own first frame):
+  //   picture → ChatGPT image *edit* of their photos (same faces, hair, clothes)
+  //   video   → image-to-video starting from their photo (Character 1 first)
+  const useRefs = !sourceJobId && refs.length > 0;
+  const editImage = kind === "image" && useRefs && openaiOk();
+  // pictures with writing in them go to the ChatGPT image model too (fal's FLUX misspells Arabic text)
+  const viaOpenAI = kind === "image" && openaiOk() && (editImage || media.useOpenAIImage(style) || Boolean(plan?.onScreenText));
+  const cost = (editImage ? media.COST.openaiEdit : viaOpenAI ? media.COST.openaiImage : media.COST[kind]) + (speech ? media.COST.speech : 0);
 
   // "animate this image": only one of this visitor's own finished images
   let imageUrl = null;
@@ -156,7 +242,16 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
     const src = (await db.query("SELECT * FROM trial_jobs WHERE id = $1", [String(sourceJobId)])).rows[0];
     const ok = src && src.kind === "image" && src.status === "done" && src.ip_hash === hash && safeEqual(src.token, sourceToken);
     if (!ok) throw new TrialError("invalid", "الصورة غير موجودة.");
-    imageUrl = src.result_url;
+    // the clean original (not the stamped copy) as a data URI – the video model needs no access to our storage
+    let original = null;
+    for (const key of [`trial/src/${src.ticket}.jpg`, src.stored_key]) {
+      if (original || !key) continue;
+      try { original = await storage.getBuffer(key, 25 * 1048576); } catch {}
+    }
+    if (!original) throw new TrialError("invalid", "الصورة غير متاحة.");
+    imageUrl = `data:image/jpeg;base64,${original.toString("base64")}`;
+  } else if (kind === "video" && useRefs) {
+    imageUrl = `data:image/jpeg;base64,${refs[0].buf.toString("base64")}`; // the customer's photo is the first frame
   }
 
   const job = await db.tx(async (c) => {
@@ -181,7 +276,7 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
     )).rows[0];
   });
 
-  if (viaOpenAI) return { job: await startOpenAI(job), token: job.token };
+  if (viaOpenAI) return { job: await startOpenAI(job, editImage ? refs : []), token: job.token };
   try {
     // the voice track first (Iraqi by default), then the video with it as the soundtrack
     let audioUrl = null;
@@ -206,7 +301,7 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
     // fal out of credit / failing: pictures switch to ChatGPT automatically
     if (kind === "image" && openaiOk()) {
       console.error(`trial ${job.id}: fal failed (${e.message.slice(0, 120)}) – using ChatGPT image`);
-      return { job: await startOpenAI(job), token: job.token };
+      return { job: await startOpenAI(job, useRefs ? refs : []), token: job.token };
     }
     await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1", [job.id, e.message.slice(0, 300)]);
     throw new TrialError("provider", "تعذّر بدء الإنشاء، حاول مرة ثانية بعد قليل (لم تُحتسب من رصيدك).");
@@ -228,19 +323,37 @@ async function refresh(job) {
       "UPDATE trial_jobs SET status = 'failed', error = 'interrupted', finished_at = now() WHERE id = $1 AND status = 'running' RETURNING *", [job.id]
     )).rows[0] || job;
   }
+  if (job.raw_url) {
+    // the provider has finished and the stamped copy is being made (in this process): nothing to ask yet;
+    // if the server restarted meanwhile, one caller takes the job over after 3 minutes
+    if (job.checked_at && Date.now() - new Date(job.checked_at).getTime() < 3 * 60e3) return job;
+    const again = (await db.query(
+      "UPDATE trial_jobs SET checked_at = now() WHERE id = $1 AND status = 'running' AND checked_at < now() - interval '3 minutes' RETURNING *", [job.id]
+    )).rows[0];
+    if (again) finalize(again).catch(() => {});
+    return again || job;
+  }
   if (job.checked_at && Date.now() - new Date(job.checked_at).getTime() < 3000) return job;
   let r;
   try { r = await media.poll(job); } catch (e) { console.error(`trial poll ${job.id}:`, e.message); r = { status: "running" }; }
   // a job that never finishes is closed after 30 minutes (and not counted)
   if (r.status === "running" && Date.now() - new Date(job.created_at).getTime() > 30 * 60e3) r = { status: "failed", error: "timed out" };
+  if (r.status === "done") {
+    // finished at the provider: remember its address, stamp and store the copy in the background –
+    // the job stays "running" (and the provider's unstamped link is never shown) until that is ready
+    const row = (await db.query(
+      "UPDATE trial_jobs SET checked_at = now(), raw_url = $2 WHERE id = $1 AND status IN ('queued','running') AND raw_url IS NULL RETURNING *",
+      [job.id, r.url]
+    )).rows[0];
+    if (row) finalize(row).catch(() => {});
+    return row || job;
+  }
   const row = (await db.query(
-    `UPDATE trial_jobs SET checked_at = now(), status = $2, result_url = coalesce($3, result_url), error = $4,
+    `UPDATE trial_jobs SET checked_at = now(), status = $2, error = $3,
             finished_at = CASE WHEN $2 IN ('done','failed') THEN now() ELSE finished_at END
       WHERE id = $1 AND status IN ('queued','running') RETURNING *`,
-    [job.id, r.status, r.url || null, r.error || null]
+    [job.id, r.status, r.error || null]
   )).rows[0];
-  // finished: keep our copy and tell the team (in the background – the visitor sees the provider link at once)
-  if (row?.status === "done") archive(row).catch(() => {});
   return row || job;
 }
 
@@ -276,9 +389,13 @@ async function sweep() {
     "SELECT * FROM trial_jobs WHERE status = 'done' AND notified_at IS NULL AND finished_at < now() - interval '1 minute' ORDER BY created_at LIMIT 10"
   )).rows;
   for (const j of unsaved) await archive(j).catch((e) => console.error("trial archive:", e.message));
+  await backfill(); // results made before the mark existed
 }
 function startSweeper() {
-  if (enabled()) setInterval(() => sweep().catch((e) => console.error("trial sweep:", e.message)), 30e3).unref();
+  if (!enabled()) return;
+  const tick = () => sweep().catch((e) => console.error("trial sweep:", e.message));
+  setTimeout(tick, 5000).unref(); // stamp older results right after a restart
+  setInterval(tick, 30e3).unref();
 }
 
-module.exports = { enabled, status, start, get, own, view, list, byTicket, setOnDone, sweep, startSweeper, ipHash, TrialError, LIMIT, DAILY_BUDGET };
+module.exports = { enabled, status, start, get, own, view, list, byTicket, setOnDone, sweep, backfill, startSweeper, refsFrom, ipHash, TrialError, LIMIT, DAILY_BUDGET };

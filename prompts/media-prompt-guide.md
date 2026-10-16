@@ -119,6 +119,26 @@ customer did; otherwise pick one that fits and describe it, don't name it.
   natural colours". Keep real Iraqi clothing and places, drawn in that style. Faces stay friendly, not
   grotesque. Lip movement rule (§4) still applies.
 
+## 8b. Pictures the customer attached
+
+The task line may say that pictures are attached, each with a role. Look at every picture and use it:
+
+- **Character 1 / 2 / 3** are people who must appear. Describe each one from the picture itself – face
+  shape, skin tone, hair (colour, length, style), facial hair, glasses, age range, build, and exactly what
+  they wear – and add "identical to Picture N". Never invent a different face, hairstyle or outfit for them.
+  If two characters are attached, say who is who and where they stand.
+- **Reference** pictures give a style, a place or a product. Take what is useful from them (the colours and
+  mood of a style, the architecture and light of a place, the shape, colour and label of a product) and
+  write it into the prompt. Do NOT copy a person who appears in a reference picture.
+- **Video from a picture:** Picture 1 becomes the first frame. Everything you see in it stays as it is; you
+  write only what moves (body, hands, expression, speech, camera) and the sound. Do not re-describe the
+  scene in a way that contradicts the picture, and do not ask for a different location.
+- **Picture from pictures:** the result is an edit: the people from the character pictures are placed in
+  the new scene you describe, with their faces, hair and clothes unchanged.
+- Text visible in a picture (a sign, a label) is part of it: keep it as it is, do not retype it.
+- If an attached picture cannot be used (blurry, no person where a character was expected) still write the
+  best prompt from the words and mention nothing about the problem.
+
 ## 9. Quality bar before you answer
 
 - Is every element of the customer's idea in the prompt? (people, place, product, action, mood, language)

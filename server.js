@@ -272,6 +272,21 @@ async function toModelMessages(messages) {
   return out;
 }
 
+/** The order's pictures (up to 4, ≤ 5 MB each) as vision parts, each preceded by its role. */
+async function briefPictures(files) {
+  const parts = [];
+  for (const a of files) {
+    if (parts.length >= 8) break;
+    if (a.media_type !== "image" || !VISION_MIME.has(a.mime) || Number(a.size_bytes) > VISION_MAX) continue;
+    try {
+      const buf = await storage.getBuffer(a.r2_key, VISION_MAX);
+      parts.push({ type: "text", text: `الصورة التالية: ${roleLabel(a.role)}${a.original_name ? ` (${a.original_name})` : ""}` });
+      parts.push({ type: "image_url", image_url: { url: `data:${a.mime};base64,${buf.toString("base64")}`, detail: "auto" } });
+    } catch (e) { console.error("brief picture skipped:", e.message); }
+  }
+  return parts;
+}
+
 async function buildBrief(full, messages, files) {
   const head = `# طلب فيديو ${full.requestId}
 
@@ -302,11 +317,15 @@ ${files.length ? files.map((a) => `- ${a.media_type === "video" ? "🎬" : "🖼
             role: "system",
             content: `أنت منتج إبداعي في استوديو VI Iraq. اكتب "ملف إنتاج" (production brief) بصيغة Markdown بالعربية لفريق صناعة الفيديو، اعتماداً على محادثة الزبون وخياراته.
 اكتب العناوين التالية بالضبط بمستوى ##: ملخص الفكرة، الهدف والجمهور، الشخصيات (استخدم أدوار المرفقات: شخصية 1/2/3 ومرجع)، الأسلوب البصري، السيناريو مشهداً بمشهد (جدول: المشهد، المدة بالثواني، الوصف البصري، النص/الصوت) بحيث يساوي المجموع مدة الفيديو، النص الكامل للتعليق الصوتي أو الحوار بلغة الفيديو المطلوبة، الموسيقى والمؤثرات، ملاحظات ونقاط غير واضحة يجب تأكيدها مع الزبون.
+إذا كانت هناك صور مرفقة فانظر إليها فعلاً: صِف ملامح كل شخصية (الوجه، الشعر، الملابس، العمر التقريبي) تحت «الشخصيات» واكتب أن الصورة هي المرجع المعتمد لشكلها، وخذ من صور المرجع الأسلوب أو المكان أو المنتج تحت «الأسلوب البصري»، ولا تنسخ أشخاصاً ظهروا في صورة مرجع.
 كن محدداً وعملياً، ولا تذكر أسعاراً، ولا تكتب أي مقدمة قبل أول عنوان.`,
           },
           {
             role: "user",
-            content: `خيارات الزبون:\n${orderSummary(full)}\n\nالمرفقات:\n${files.map((a) => `- ${a.original_name || a.upload_id}: ${roleLabel(a.role)}`).join("\n") || "-"}\n\nالمحادثة:\n${transcript(messages)}`,
+            content: [
+              { type: "text", text: `خيارات الزبون:\n${orderSummary(full)}\n\nالمرفقات:\n${files.map((a) => `- ${a.original_name || a.upload_id}: ${roleLabel(a.role)}`).join("\n") || "-"}\n\nالمحادثة:\n${transcript(messages)}` },
+              ...(await briefPictures(files)),
+            ],
           },
         ],
       });
@@ -587,7 +606,10 @@ app.post("/api/order", orderLimit, async (req, res) => {
         const brief = await buildBrief({ ...options, requestId: o.request_id, requesterId: o.requester_id, telegram, phone, createdAt: o.created_at.toISOString() }, messages, files);
         await orders.saveBrief(o.request_id, brief);
         const fresh = await orders.getOrder(o.request_id);
-        if (tg.configured) await tg.announceOrder(fresh, brief).catch((e) => console.error("telegram notify:", e.message));
+        if (tg.configured) {
+          await tg.announceOrder(fresh, brief).catch((e) => console.error("telegram notify:", e.message));
+          await tg.sendAssets(fresh, files).catch((e) => console.error("telegram assets:", e.message)); // the customer's pictures, by role
+        }
         await mail.orderEmail(fresh, brief).catch((e) => console.error("mail order:", e.message)); // email 1
       } catch (e) {
         console.error("order follow-up:", e.message);
@@ -645,19 +667,23 @@ app.post("/api/trial/jobs", trialLimit, async (req, res) => {
   const body = req.body || {};
   const { kind, style, sourceJob, sourceToken } = body;
   const voiceLang = body.voice === "none" ? "none" : planner.normLang(clean(body.voice) || "ar-IQ");
+  // the pictures the customer sent in the chat (paid and free versions use the same uploads)
+  const refs = sourceJob ? [] : await trial.refsFrom(body.messages);
   const conversation = trialConversation(body);
+  if (refs.length && !conversation.some((m) => m.role === "user")) conversation.push({ role: "user", content: "Make something from my attached picture(s)." });
   const userText = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n");
   // what the visitor sees on the card: their own newest message (or the animate instruction)
-  const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content);
+  const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content) || (refs.length ? "من صوري المرفقة" : "");
   if (text.length < 3) return res.status(400).json({ ok: false, code: "invalid", message: "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً»." });
   try {
-    // ChatGPT writes the full plan from the chat (Claude reviews it); terms are shown (never blocking) like in the chat
+    // ChatGPT writes the full plan from the chat and the pictures (Claude reviews it); terms are shown (never blocking) like in the chat
     const [{ plan, by }, sections] = await Promise.all([
-      planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob) }),
+      planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob), refs }),
       policyCheck([{ role: "user", content: userText }], { lastOnly: true }),
     ]);
-    console.log(`trial plan by ${by}: ${kind}/${style}${plan.speech ? ` · speech ${plan.speech.lang} "${plan.speech.text.slice(0, 60)}"` : ""}${plan.onScreenText ? ` · text "${plan.onScreenText.text}"` : ""}`);
-    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: plan.prompt, plan, speech: plan.speech, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
+    if (refs.length) plan.refs = refs.map((r) => r.role);
+    console.log(`trial plan by ${by}: ${kind}/${style}${refs.length ? ` · ${refs.length} chat picture(s)` : ""}${plan.speech ? ` · speech ${plan.speech.lang} "${plan.speech.text.slice(0, 60)}"` : ""}${plan.onScreenText ? ` · text "${plan.onScreenText.text}"` : ""}`);
+    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: plan.prompt, plan, speech: plan.speech, refs, sourceJobId: sourceJob || null, sourceToken, termsSections: sections });
     res.json({ ok: true, job: trial.view(job, token), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
   } catch (e) {
     if (e instanceof trial.TrialError) return res.status(["limit", "paused", "video_off"].includes(e.code) ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });
@@ -679,35 +705,21 @@ app.get("/api/trial/jobs/:id", statusLimit, async (req, res) => {
 });
 
 // Trial media for the visitor's own job (id + token in the link, so <img>/<video> can load it):
-//   /media    → shows it (our storage, or the provider's link)
-//   /download → saves it ("Content-Disposition: attachment"), streamed through this server because
-//               browsers ignore the download attribute on other sites' links.
-const TRIAL_MEDIA_HOSTS = /(^|\.)fal\.media$|(^|\.)fal\.run$|(^|\.)fal\.ai$/i;
+//   /media    → shows it
+//   /download → saves it ("Content-Disposition: attachment"), through this server so the browser saves the file
+// Only the stamped copy on our storage (VI-Iraq mark) is ever served – never the provider's own file.
 async function trialMedia(req, res, download) {
   const j = await trial.own(req.params.id, req.query.token).catch(() => null);
   return sendTrialFile(j, res, download);
 }
 async function sendTrialFile(j, res, download) {
-  if (!j || j.status !== "done" || !j.result_url) return res.sendStatus(404);
+  if (!j || j.status !== "done" || !j.watermarked || !j.stored_key) return res.sendStatus(404);
   const name = `vi-iraq-${j.ticket || j.id}.${j.kind === "video" ? "mp4" : "jpg"}`;
   const type = j.kind === "video" ? "video/mp4" : "image/jpeg";
   try {
-    // our own copy first (provider links can expire), then the provider link
-    const ownKey = j.stored_key || (j.result_url.startsWith("store:") ? j.result_url.slice(6) : null);
-    if (ownKey) {
-      const key = ownKey;
-      if (!download) return res.redirect(302, await storage.presignGet(key, 3600, { contentType: type }));
-      const buf = await storage.getBuffer(key, 80 * 1048576);
-      return res.set({ "Content-Type": type, "Content-Disposition": `attachment; filename="${name}"`, "Cache-Control": "private, max-age=3600" }).send(buf);
-    }
-    const url = new URL(j.result_url);
-    if (url.protocol !== "https:" || !TRIAL_MEDIA_HOSTS.test(url.hostname)) return res.sendStatus(404);
-    if (!download) return res.redirect(302, url.href);
-    const r = await fetch(url, { signal: AbortSignal.timeout(60000) });
-    if (!r.ok || !r.body) return res.sendStatus(502);
-    res.set({ "Content-Type": r.headers.get("content-type") || type, "Content-Disposition": `attachment; filename="${name}"`, "Cache-Control": "private, max-age=3600" });
-    if (r.headers.get("content-length")) res.set("Content-Length", r.headers.get("content-length"));
-    require("stream").Readable.fromWeb(r.body).pipe(res);
+    if (!download) return res.redirect(302, await storage.presignGet(j.stored_key, 3600, { contentType: type }));
+    const buf = await storage.getBuffer(j.stored_key, 150 * 1048576);
+    return res.set({ "Content-Type": type, "Content-Disposition": `attachment; filename="${name}"`, "Cache-Control": "private, max-age=3600" }).send(buf);
   } catch (e) {
     console.error("trial media:", e.message);
     if (!res.headersSent) res.sendStatus(502);
@@ -859,8 +871,9 @@ async function start() {
     setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();
     if (trial.enabled()) {
       console.log(`Free trial: on (prompts ${PROMPT_MODEL}${planner.reviewEnabled ? " + review " + planner.CLAUDE_MODEL : ""} · voice ${media.TTS_MODEL} · pictures: fal ${media.MODELS.image}${media.openaiReady && storage.ready ? ` + ChatGPT ${media.OPENAI_IMAGE_MODEL} for ${process.env.TRIAL_OPENAI_STYLES ?? "cartoon"} and when fal is out` : ""} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
+      console.log("Free trial watermark: on (VI-Iraq mark, bottom-right, on every picture and video)");
       trial.startSweeper();
-    } else console.log("Free trial: OFF (set FAL_KEY)");
+    } else console.log(`Free trial: OFF (needs FAL_KEY or OPENAI_API_KEY, storage${require("./watermark").ready ? "" : ", and ffmpeg"})`);
     if (payments.configured) {
       const k = await payments.verifyKeys();
       console.log(`Payments: wayl ${payments.ENV} · ${payments.IQD_PER_USD} IQD/USD · callbacks → ${PAY_PUBLIC_URL || "(request host)"} · keys ${k.ok ? "valid" : "INVALID – " + k.error}`);

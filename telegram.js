@@ -196,6 +196,23 @@ async function announceOrder(o, brief) {
   );
 }
 
+const ASSET_ROLES = { character1: "شخصية 1", character2: "شخصية 2", character3: "شخصية 3", reference: "مرجع (ليس شخصية)" };
+/** The customer's uploaded pictures/videos of an order, sent to the admins as files labelled with the order and role. */
+async function sendAssets(o, files) {
+  const ids = await admins();
+  if (!configured || !ids.length) return;
+  for (const a of (files || []).slice(0, 10)) {
+    try {
+      if (Number(a.size_bytes) > 45 * 1048576) continue; // bots can upload up to 50 MB
+      const buf = await storage.getBuffer(a.r2_key, 45 * 1048576);
+      const caption = `${o.request_id} · ${ASSET_ROLES[a.role] || a.role}`;
+      for (const id of ids) {
+        await call("sendDocument", { chat_id: id, caption }, { field: "document", buffer: buf, name: a.original_name || `${a.role}${path.extname(a.r2_key)}` }).catch((e) => console.error("telegram asset:", e.message));
+      }
+    } catch (e) { console.error("telegram asset skipped:", e.message); }
+  }
+}
+
 /** Payment confirmed by Wayl: tell the admins (with the /confirm command) and the customer if linked. */
 async function announcePaid(o, payment) {
   const amount = payment ? `${Number(payment.amount_iqd).toLocaleString("en-US")} د.ع${payment.payment_method ? ` · ${esc(payment.payment_method)}` : ""}${payment.env === "test" ? " · (اختبار)" : ""}` : "";
@@ -344,4 +361,4 @@ async function init(app, publicUrl) {
   return { mode, username: BOT_USERNAME, admins: (await admins()).length };
 }
 
-module.exports = { configured, init, notifyAdmins, announceOrder, announcePaid, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };
+module.exports = { configured, init, notifyAdmins, announceOrder, announcePaid, sendAssets, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };

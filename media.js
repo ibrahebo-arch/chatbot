@@ -29,6 +29,15 @@ const COST = {
 };
 const configured = Boolean(FAL_KEY);
 
+// Result links we accept from the provider: fal's CDN, and the queue's own origin (the test double).
+const FAL_ORIGIN = (() => { try { return new URL(FAL_QUEUE).origin; } catch { return ""; } })();
+function isProviderUrl(u) {
+  try {
+    const x = new URL(u);
+    return (x.protocol === "https:" && /(^|[.])fal[.](media|run|ai)$/i.test(x.hostname)) || x.origin === FAL_ORIGIN;
+  } catch { return false; }
+}
+
 // ChatGPT image model (OpenAI Images API, returns the picture itself as base64):
 //   used for the styles in TRIAL_OPENAI_STYLES (default "cartoon" – clearly better there), and
 //   automatically for every picture while fal is out of credit / failing. There is no OpenAI video
@@ -74,6 +83,35 @@ async function speak({ text, lang = "ar-IQ", voice = "male", tone = "" }) {
 }
 const audioDataUri = (buf) => `data:audio/mpeg;base64,${buf.toString("base64")}`;
 const openaiReady = Boolean(OPENAI_KEY);
+
+COST.openaiEdit = Number(process.env.OPENAI_EDIT_COST_USD) || 0.10;
+const ROLE_TEXT = { char1: "Character 1", char2: "Character 2", char3: "Character 3", ref: "style/place/product reference (not a person to copy)" };
+
+/**
+ * A picture made FROM the customer's photos (ChatGPT image edit): the people in the photos appear in the
+ * described scene with the same faces, hair and clothes. refs: [{ role, buf }] (JPEG buffers, max 3).
+ */
+async function openaiImageEdit(prompt, style, refs) {
+  const s = STYLE[style] || STYLE.realistic;
+  const roles = refs.map((r, i) => `Picture ${i + 1} is ${ROLE_TEXT[r.role] || ROLE_TEXT.ref}`).join("; ");
+  const text = `${s.image} ${prompt}\n${roles}. Every person in a character picture must appear in the scene with exactly the same face, hair, skin tone and clothing as in their picture. A reference picture only gives style, place or product – do not copy its people.`;
+  const send = async (withFidelity) => {
+    const fd = new FormData();
+    fd.append("model", OPENAI_IMAGE_MODEL);
+    fd.append("prompt", text);
+    refs.forEach((r, i) => fd.append("image[]", new Blob([r.buf], { type: "image/jpeg" }), `picture-${i + 1}.jpg`));
+    fd.append("size", "auto"); fd.append("quality", OPENAI_IMAGE_QUALITY); fd.append("output_format", "jpeg");
+    if (withFidelity) fd.append("input_fidelity", "high"); // keeps the faces
+    return fetch(`${OPENAI_BASE}/v1/images/edits`, { method: "POST", headers: { Authorization: `Bearer ${OPENAI_KEY}` }, body: fd, signal: AbortSignal.timeout(180000) });
+  };
+  let r = await send(true);
+  if (r.status === 400) r = await send(false); // a model without input_fidelity
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(`openai image edit ${r.status} ${String(j.error?.message || "").slice(0, 200)}`);
+  const b64 = j.data?.[0]?.b64_json;
+  if (!b64) throw new Error("openai image edit: nothing returned");
+  return Buffer.from(b64, "base64");
+}
 
 // fal out of credit (or failing) → skip it for 10 minutes: pictures go to ChatGPT, videos are paused
 let falDownUntil = 0;
@@ -178,7 +216,7 @@ async function poll({ model, provider_job_id: id, kind }) {
 }
 
 module.exports = {
-  configured, openaiReady, falUp, useOpenAIImage, openaiImage, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL,
+  configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl,
   resetFal: () => { falDownUntil = 0; },
   submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE,
 };
