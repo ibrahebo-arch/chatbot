@@ -78,8 +78,8 @@ async function apply(buffer, kind) {
     const args = video
       ? ["-y", "-v", "error", "-i", input, "-i", WM_FILE,
          "-filter_complex", `${stamp}[o];[o]scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p[v]`,
-         "-map", "[v]", "-map", "0:a?", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-c:a", "copy", "-movflags", "+faststart", output]
-      : ["-y", "-v", "error", "-i", input, "-i", WM_FILE, "-filter_complex", `${stamp}[v]`, "-map", "[v]", "-frames:v", "1", "-q:v", "2", output];
+         "-map", "[v]", "-map", "0:a?", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-c:a", "copy", "-movflags", "+faststart", "-map_metadata", "-1", "-fflags", "+bitexact", "-flags:v", "+bitexact", "-metadata", "title=VI-Iraq", output]
+      : ["-y", "-v", "error", "-i", input, "-i", WM_FILE, "-filter_complex", `${stamp}[v]`, "-map", "[v]", "-frames:v", "1", "-q:v", "2", "-map_metadata", "-1", "-fflags", "+bitexact", output];
     const r = await run(args);
     if (r.code !== 0) throw new Error(`ffmpeg ${r.code}: ${r.stderr.trim().split("\n").slice(-3).join(" | ").slice(0, 300)}`);
     const out = await fs.readFile(output);

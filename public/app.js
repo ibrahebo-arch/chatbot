@@ -642,10 +642,10 @@
       input.focus(); return;
     }
     startChat();
-    note.className = "note"; note.textContent = "ChatGPT يكتب الوصف من محادثتك…";
+    note.className = "note"; note.textContent = "جارٍ تحضير فكرتك من محادثتك…";
     btn.disabled = true;
     const temp = el("div", "msg sys tjob temp " + kind);
-    const tw = el("div", "wait"); tw.append(el("span", "spin"), el("span", "", "ChatGPT يكتب الوصف من محادثتك… ثم يبدأ الإنشاء"));
+    const tw = el("div", "wait"); tw.append(el("span", "spin"), el("span", "", "جارٍ تحضير فكرتك من محادثتك… ثم يبدأ الإنشاء"));
     const tbox = el("div", "media"); tbox.append(tw); temp.append(tbox); list.appendChild(temp); list.scrollTop = list.scrollHeight;
     try {
       const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken, voice: $("trialVoice").value, messages: state.messages }) });
