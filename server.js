@@ -575,6 +575,20 @@ app.post("/api/order", orderLimit, async (req, res) => {
     attachments: Math.min(attachments.length, 30),
     voice: orderVoice(order.voice),
   };
+  if (options.voice) {
+    if (options.language === "بدون كلام") options.voice = { ...options.voice, mode: "none", clip: null };
+    if (options.voice.clip) {
+      const row = await clipOf(options.voice.clip, req).catch(() => null);
+      if (!row || !row.analysis?.ok) options.voice.clip = null;
+      else {
+        options.voice.transcript = row.transcript || "";
+        options.voice.duration = Number(row.duration_sec);
+        const sp = row.analysis?.speaker;
+        if (sp?.gender && sp?.age) options.voice.speaker = voices.typeLabel(sp.gender, sp.age);
+      }
+    }
+    if ((options.voice.mode === "own" || options.voice.mode === "convert") && !options.voice.clip) options.voice.mode = "tts";
+  }
   const idempotencyKey = clean(req.get("idempotency-key") || order.idempotencyKey) || null;
 
   // requests that may conflict with the terms go through; the order records that the terms were shown
@@ -613,6 +627,10 @@ app.post("/api/order", orderLimit, async (req, res) => {
         if (tg.configured) {
           await tg.announceOrder(fresh, brief).catch((e) => console.error("telegram notify:", e.message));
           await tg.sendAssets(fresh, files).catch((e) => console.error("telegram assets:", e.message)); // the customer's pictures, by role
+          if (options.voice?.clip) { // the customer's voice recording, ready to use in production
+            const row = (await db.query("SELECT r2_key FROM voice_clips WHERE id = $1", [options.voice.clip])).rows[0];
+            if (row) await tg.sendAudio(fresh, await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), `${o.request_id} · 🎙️ ${voiceText(options.voice)}`.slice(0, 1000)).catch((e) => console.error("telegram voice:", e.message));
+          }
         }
         await mail.orderEmail(fresh, brief).catch((e) => console.error("mail order:", e.message)); // email 1
       } catch (e) {
@@ -664,8 +682,9 @@ function voiceText(v) {
   if (!v) return "-";
   const link = v.clip ? ` – التسجيل: ${PUBLIC_URL || ""}/api/voice/clips/${v.clip}/audio` : "";
   if (v.mode === "none") return "بدون صوت";
-  if (v.mode === "own") return `صوت الزبون كما سجّله${v.transcript ? `: «${v.transcript}»` : ""}${link}`;
-  if (v.mode === "convert") return `كلام الزبون بصوت ${v.label || "الشخصية"}${v.transcript ? `: «${v.transcript}»` : ""}${link}`;
+  const about = [v.speaker ? `المتكلم في التسجيل: ${v.speaker}` : "", v.duration ? `المدة ${Number(v.duration).toFixed(1)} ث` : ""].filter(Boolean).join("، ");
+  if (v.mode === "own") return `صوت الزبون كما سجّله${v.transcript ? `: «${v.transcript}»` : ""}${about ? ` (${about})` : ""}${link}`;
+  if (v.mode === "convert") return `كلام الزبون بصوت ${v.label || "الشخصية"}${v.transcript ? `: «${v.transcript}»` : ""}${about ? ` (${about})` : ""}${link}`;
   return v.label ? `صوت جاهز: ${v.label}` : "صوت جاهز يختاره الفريق";
 }
 
@@ -698,6 +717,7 @@ app.get("/api/voices/:id/preview", previewLimit, async (req, res) => {
   }
 });
 
+const checkSeconds = (req) => Math.min(120, Math.max(2, Math.round(Number(req.query.seconds)) || media.VIDEO_SECONDS));
 const clipOf = async (id, req) => {
   const row = (await db.query("SELECT * FROM voice_clips WHERE id = $1", [String(id || "")])).rows[0];
   return row && row.ip_hash === trial.ipHash(clientIp(req)) ? row : null;
@@ -712,7 +732,7 @@ app.put("/api/voice/clip", voiceLimit, express.raw({ type: () => true, limit: VO
   if (!storage.ready || !db.configured) return res.status(503).json({ ok: false, message: "تسجيل الصوت غير متاح حالياً." });
   try {
     const { mp3 } = await voices.toMp3(req.body);
-    const report = await voices.check(mp3, media.VIDEO_SECONDS);
+    const report = await voices.check(mp3, checkSeconds(req));
     const id = voices.newClipId();
     const key = `voices/clips/${id}.mp3`;
     await storage.put(key, mp3, { contentType: "audio/mpeg" });
@@ -734,7 +754,7 @@ app.post("/api/voice/clips/:id/check", voiceLimit, async (req, res) => {
   try {
     const row = await clipOf(req.params.id, req);
     if (!row) return res.status(404).json({ ok: false, message: "التسجيل غير موجود." });
-    const report = await voices.check(await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), media.VIDEO_SECONDS);
+    const report = await voices.check(await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), checkSeconds(req));
     const upd = (await db.query(
       "UPDATE voice_clips SET duration_sec = $2, transcript = $3, lang = $4, analysis = $5 WHERE id = $1 RETURNING *",
       [row.id, report.duration, report.heard.text, report.heard.lang, JSON.stringify({ ok: report.ok, items: report.items, speaker: row.analysis?.speaker?.declared ? row.analysis.speaker : report.speaker, metrics: report.metrics, ai: report.ai })]
@@ -1018,7 +1038,7 @@ async function start() {
         try { await storage.remove(a.r2_key); await orders.deleteAsset(a.id); } catch (e) { console.error("upload cleanup:", e.message); }
       }
       // voice recordings are kept 7 days (long enough to order the full video with them)
-      for (const c of (await db.query("SELECT id, r2_key FROM voice_clips WHERE created_at < now() - interval '7 days' LIMIT 200")).rows) {
+      for (const c of (await db.query("SELECT id, r2_key FROM voice_clips c WHERE created_at < now() - interval '7 days' AND NOT EXISTS (SELECT 1 FROM orders o WHERE o.options->'voice'->>'clip' = c.id) LIMIT 200")).rows) {
         try { await storage.remove(c.r2_key); await db.query("DELETE FROM voice_clips WHERE id = $1", [c.id]); } catch (e) { console.error("voice cleanup:", e.message); }
       }
     };

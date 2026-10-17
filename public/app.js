@@ -338,7 +338,9 @@
   $("characters").addEventListener("change", (e) => setCharacters(e.target.value));
   $("mGo").addEventListener("click", () => { if (document.body.classList.contains("free-mode")) $("trialGo").click(); else $("panel").scrollIntoView({ behavior: "smooth", block: "start" }); });
 
+  let afterRender = () => {};
   function render() {
+    afterRender();
     const p = price();
     $("secVal").textContent = state.seconds;
     $("priceVal").textContent = p; $("ctaPrice").textContent = p; $("mPrice").textContent = p;
@@ -512,9 +514,20 @@
     const b = e.target.closest("button"); if (!b || b.disabled) return;
     trial[id === "trialStyle" ? "style" : "kind"] = b.dataset.v;
     $(id).querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
-    if (id === "trialKind") $("voiceField").hidden = b.dataset.v !== "video"; // the voice choice only matters for videos
+    if (id === "trialKind") placeVoice(); // the voice choice only matters for videos
   }));
-  $("voiceField").hidden = true;
+  // one voice block for both panels: in the free trial under the video choice, in the paid order under «اللغة»
+  function placeVoice() {
+    const f = $("voiceField"); if (!f) return;
+    if (trial.mode === "free") {
+      const refs = $("trialRefs"); if (f.nextElementSibling !== refs) refs.before(f);
+      f.hidden = trial.kind !== "video";
+    } else {
+      const lang = $("language").closest(".field"); if (lang.nextElementSibling !== f) lang.after(f);
+      f.hidden = false;
+    }
+  }
+  placeVoice();
   // pictures sent in the chat are used by the free trial too: characters keep their faces and clothes
   function updateTrialRefs() {
     const n = state.attachments.filter((a) => a.image).length;
@@ -529,6 +542,7 @@
     document.body.classList.toggle("free-mode", m === "free");
     $("modeSeg").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.m === m));
     $("mGo").textContent = m === "free" ? "🎁 أنشئ مجاناً" : "تفاصيل الطلب وإرساله";
+    placeVoice(); renderVoice();
     if (m === "free") loadTrial();
   }
   $("modeSeg").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setMode(b.dataset.m); });
@@ -718,14 +732,17 @@
     const p = voice.catalog.voices.find((v) => v.id === voice.preset);
     return p ? `${p.gender}.${p.age}` : "auto";
   };
+  // the paid order: its length and «اللغة» field; the free video: 10 s and «لغة الكلام»
+  const curSeconds = () => (trial.mode === "free" ? voice.videoSeconds : state.seconds);
+  const isMute = () => (trial.mode === "free" ? $("trialVoice").value === "none" : state.language === "بدون كلام");
   function voiceSpec(forOrder = false) {
     const t = chosenType(); const [gender, age] = t === "auto" ? [null, null] : t.split(".");
-    const spec = { mode: $("trialVoice").value === "none" ? "none" : voice.mode, preset: voice.preset, gender, age, clip: voice.clip?.ok ? voice.clip.id : null };
+    const spec = { mode: isMute() ? "none" : voice.mode, preset: voice.preset, gender, age, clip: voice.clip?.ok ? voice.clip.id : null };
     if (forOrder) spec.transcript = voice.clip?.transcript || "";
     return spec;
   }
   function voiceChoiceText() {
-    if ($("trialVoice").value === "none") return "بدون صوت";
+    if (isMute()) return "بدون صوت";
     const who = voice.preset !== "auto" ? presetLabel(voice.preset) : voice.type !== "auto" ? typeLabel(voice.type) : "صوت مناسب للشخصية";
     if (voice.mode === "own") return "صوتك كما سجّلته";
     if (voice.mode === "convert") return `كلامك بصوت: ${who}`;
@@ -736,8 +753,8 @@
     const own = voice.clip?.ok;
     $("voiceMode").querySelectorAll('[data-v="own"],[data-v="convert"]').forEach((b) => { b.disabled = !own; b.title = own ? "" : "سجّل صوتك أولاً بزر المايك 🎙️"; });
     $("voicePlay").disabled = voice.preset === "auto" && voice.type === "auto";
-    if ($("trialVoice").value === "none") { s.textContent = "🔇 الفيديو بدون كلام – أصوات المكان فقط."; return; }
-    const secs = voice.videoSeconds;
+    if (isMute()) { s.textContent = "🔇 الفيديو بدون كلام – أصوات المكان فقط."; return; }
+    const secs = curSeconds();
     let t = `🎙️ سيتكلم في الفيديو: ${voiceChoiceText()}`;
     if (voice.mode === "tts") t += voice.type === "auto" ? " – نختار الشخصية والصوت من فكرتك." : " – والشخصية في الفيديو بنفس العمر والجنس.";
     if (own && voice.mode !== "tts") {
@@ -746,6 +763,7 @@
     }
     s.textContent = t;
   }
+  afterRender = renderVoice; // order length / language changed
   $("voiceType").addEventListener("change", (e) => setVoiceType(e.target.value));
   $("voicePreset").addEventListener("change", (e) => { voice.preset = e.target.value; renderVoice(); });
   $("trialVoice").addEventListener("change", renderVoice);
@@ -765,7 +783,7 @@
   function voiceFromText(text) {
     const t = String(text || ""), changed = [];
     const about = /صوت|يتكلم|تتكلم|يحچي|تحچي|يحكي|تحكي|يكول|تكول|يقول|تقول|المتكلم|الشخصية/.test(t);
-    if (/بدون صوت|بلا صوت|بدون كلام/.test(t)) { $("trialVoice").value = "none"; renderVoice(); changed.push("بدون صوت"); return changed; }
+    if (/بدون صوت|بلا صوت|بدون كلام/.test(t)) { if (trial.mode === "free") $("trialVoice").value = "none"; else setLanguage("بدون كلام"); renderVoice(); changed.push("بدون صوت"); return changed; }
     if (voice.clip?.ok && /(حول|حوّل|غير|غيّر|بدل|بدّل)\s*صوتي|كلامي بصوت/.test(t)) { setVoiceMode("convert"); changed.push("كلامك بصوت الشخصية"); }
     else if (voice.clip?.ok && /بصوتي|صوتي آني|نفس صوتي|صوتي كما/.test(t)) { setVoiceMode("own"); changed.push("صوتك كما هو"); }
     if (!about) return changed;
@@ -863,7 +881,7 @@
     const again = el("button", "", "🔍 افحص مرة ثانية"); again.type = "button";
     again.onclick = async () => {
       again.disabled = true; again.textContent = "⏳ يفحص…";
-      try { const d = await (await fetch(`/api/voice/clips/${encodeURIComponent(clip.id)}/check`, { method: "POST" })).json(); if (d.ok) { setClip(d.clip); voiceCard(card, d.clip); return; } toast(d.message || "تعذّر الفحص"); }
+      try { const d = await (await fetch(`/api/voice/clips/${encodeURIComponent(clip.id)}/check?seconds=${curSeconds()}`, { method: "POST" })).json(); if (d.ok) { setClip(d.clip); voiceCard(card, d.clip); return; } toast(d.message || "تعذّر الفحص"); }
       catch { toast("تعذّر الاتصال بالخادم"); }
       again.disabled = false; again.textContent = "🔍 افحص مرة ثانية";
     };
@@ -875,10 +893,10 @@
     voice.clip = clip;
     if (clip.ok && voice.mode === "tts") setVoiceMode("own"); else setVoiceMode(voice.mode);
   }
-  // a recording only makes sense in a video: switch the free trial to video when it is available
+  // a recording only makes sense in a video: the paid order keeps it (with speech), the free trial switches to video
   function useVideoForVoice() {
+    if (trial.mode !== "free") { if (state.language === "بدون كلام") setLanguage("عراقي (لهجة)"); return; }
     if (!trial.on) return;
-    if (trial.mode !== "free") setMode("free");
     const vb = $("trialKind").querySelector('[data-v="video"]');
     if (vb && !vb.disabled && trial.kind !== "video") vb.click();
     if ($("trialVoice").value === "none") $("trialVoice").value = "ar-IQ";
@@ -889,7 +907,7 @@
     const um = addMsg("user", `🎙️ ${name}`); const pa = el("audio"); pa.controls = true; pa.src = local; um.append(pa);
     const card = addMsg("sys", "", [], "vcheck"); card.append(el("h4", "", "🔍 نفحص صوتك… (المدة، مستوى الصوت، الوضوح، الضجيج، الكلام واللهجة)"));
     try {
-      const r = await fetch("/api/voice/clip", { method: "PUT", headers: { "Content-Type": blob.type || "application/octet-stream" }, body: blob });
+      const r = await fetch(`/api/voice/clip?seconds=${curSeconds()}`, { method: "PUT", headers: { "Content-Type": blob.type || "application/octet-stream" }, body: blob });
       const d = await r.json().catch(() => ({}));
       if (!d.ok) { card.replaceChildren(el("h4", "", `❌ ${d.message || "تعذّر فحص التسجيل"}`)); return; }
       setClip(d.clip); voiceCard(card, d.clip);

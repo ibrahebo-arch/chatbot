@@ -246,6 +246,10 @@ body.free-mode .mbar .m-free { display: block; }
 .vcheck .acts button { border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 999px; padding: 6px 12px; font-size: .8rem; }
 .vcheck .acts button.on { background: var(--sand); border-color: var(--sand); color: #1a1205; }
 .free-voice { display: grid; gap: 8px; }
+.free-voice .lang-row { display: grid; gap: 8px; }
+.free-voice .voice-title { display: none; margin: 4px 0 0; font-size: .95rem; }
+.panel:not(.free) .free-voice .lang-row { display: none; }   /* the paid order uses its own «اللغة» field */
+.panel:not(.free) .free-voice .voice-title { display: block; }
 .free-voice .voice-row { display: flex; gap: 6px; }
 .free-voice .voice-row select { flex: 1; min-width: 0; }
 .free-voice .mini { flex: none; border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 10px; padding: 0 12px; font-size: .82rem; }

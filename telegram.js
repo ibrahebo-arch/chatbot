@@ -196,6 +196,13 @@ async function announceOrder(o, brief) {
   );
 }
 
+/** The customer's voice recording of an order, sent to the admins as an audio file. */
+async function sendAudio(o, buf, caption) {
+  const ids = await admins();
+  if (!configured || !ids.length || !buf?.length) return;
+  for (const id of ids) await call("sendAudio", { chat_id: id, caption, title: `${o.request_id} – صوت الزبون` }, { field: "audio", buffer: buf, name: `${o.request_id}-voice.mp3` }).catch((e) => console.error("telegram audio:", e.message));
+}
+
 const ASSET_ROLES = { character1: "شخصية 1", character2: "شخصية 2", character3: "شخصية 3", reference: "مرجع (ليس شخصية)" };
 /** The customer's uploaded pictures/videos of an order, sent to the admins as files labelled with the order and role. */
 async function sendAssets(o, files) {
@@ -361,4 +368,4 @@ async function init(app, publicUrl) {
   return { mode, username: BOT_USERNAME, admins: (await admins()).length };
 }
 
-module.exports = { configured, init, notifyAdmins, announceOrder, announcePaid, sendAssets, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };
+module.exports = { configured, init, notifyAdmins, announceOrder, announcePaid, sendAssets, sendAudio, confirm, deliver, sendVideo, videoBuffer, linkFor, handleUpdate, get mode() { return mode; }, get username() { return BOT_USERNAME; }, adminsCount: () => adminCount };
