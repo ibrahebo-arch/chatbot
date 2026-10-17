@@ -112,4 +112,4 @@ async function resize(buffer, max = 1280) {
   }
 }
 
-module.exports = { apply, resize, probe, ready, FFMPEG, WIDTH_SHARE, MARGIN_SHARE };
+module.exports = { apply, resize, probe, ready, FFMPEG, WIDTH_SHARE, MARGIN_SHARE, run, slot, release };

@@ -216,7 +216,7 @@ async function poll({ model, provider_job_id: id, kind }) {
 }
 
 module.exports = {
-  configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl,
+  configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
   resetFal: () => { falDownUntil = 0; },
   submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE,
 };

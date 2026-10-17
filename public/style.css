@@ -228,6 +228,35 @@ body.free-mode .mbar .m-free { display: block; }
 .icon:hover { color: var(--text); border-color: var(--line2); }
 .icon.send { background: var(--sand); border-color: var(--sand); color: #1a1205; }
 .icon.send:hover { background: var(--sand2); }
+/* voice: mic button, check card, voice box */
+.icon.mic { position: relative; }
+.icon.mic.rec { background: var(--red); border-color: var(--red); color: #fff; animation: recpulse 1.2s ease-in-out infinite; }
+.icon.mic .rec-time { position: absolute; bottom: -7px; inset-inline: 0; margin: auto; width: max-content; font-size: .66rem; font-weight: 700; background: var(--red); color: #fff; border-radius: 999px; padding: 0 5px; }
+.icon.mic .rec-time:empty { display: none; }
+@keyframes recpulse { 50% { box-shadow: 0 0 0 6px rgba(255,107,107,.25); } }
+.msg.user audio, .msg.sys.vcheck audio { width: 100%; min-width: 220px; height: 38px; margin-top: 6px; display: block; }
+.msg.sys.vcheck { width: min(92%, 460px); text-align: start; border-style: solid; color: var(--text); display: grid; gap: 6px; }
+.vcheck h4 { margin: 0; font-size: .92rem; }
+.vcheck ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: .82rem; line-height: 1.6; }
+.vcheck li.bad { color: var(--red); }
+.vcheck li.warn { color: var(--sand2); }
+.vcheck .who { font-size: .82rem; color: var(--muted); }
+.vcheck .match { font-size: .82rem; }
+.vcheck .acts { display: flex; flex-wrap: wrap; gap: 6px; }
+.vcheck .acts button { border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 999px; padding: 6px 12px; font-size: .8rem; }
+.vcheck .acts button.on { background: var(--sand); border-color: var(--sand); color: #1a1205; }
+.free-voice { display: grid; gap: 8px; }
+.free-voice .voice-row { display: flex; gap: 6px; }
+.free-voice .voice-row select { flex: 1; min-width: 0; }
+.free-voice .mini { flex: none; border: 1px solid var(--line2); background: var(--card2); color: var(--text); border-radius: 10px; padding: 0 12px; font-size: .82rem; }
+.free-voice #voiceMode { flex-wrap: wrap; }
+.free-voice #voiceMode button { font-size: .8rem; }
+.free-voice #voiceMode button:disabled { opacity: .45; }
+.voice-summary { margin: 0; font-size: .82rem; line-height: 1.7; color: var(--sand2) !important; }
+.voice-how { font-size: .8rem; color: var(--muted); }
+.voice-how summary { cursor: pointer; color: var(--text); }
+.voice-how ol { margin: 6px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; line-height: 1.6; }
+.tjob .info .voice { font-size: .8rem; color: var(--muted); }
 .icon.send svg { transform: scaleX(-1); }
 
 /* ---------- order panel ---------- */

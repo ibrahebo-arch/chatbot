@@ -18,6 +18,8 @@ Return one JSON object and nothing else (no markdown fences, no comments):
     "lang": "ar-IQ",          // ar-IQ (Iraqi), ar (standard Arabic), en, ku (Kurdish), tr, fa, …
     "text": "...",            // the exact words, in the language's own script – see §6
     "voice": "male"|"female"|"child",
+    "gender": "female"|"male",  // the speaking character – see §6b
+    "age": "child"|"young"|"adult"|"old",
     "tone": "warm and friendly" // short direction for the voice actor
   },
   "onScreenText": {           // null when no text must be visible; see §7
@@ -148,6 +150,28 @@ Karrada"), the picture or video must show THAT place, recognisably – never a g
 - Write the **ambient sound** in the prompt's sound cue so the picture agrees with it ("busy street
   traffic and distant car horns", "quiet room, ceiling fan").
 - If the customer wants no voice, music only, or only ambient sound: `speech: null` and say so in the cue.
+- **The customer's own words win.** If they wrote the exact line to be said (in quotes, or after
+  "تكول / يكول / يقول / خليها تكول / say"), put those words in `speech.text` exactly as written – fix
+  nothing but obvious typos.
+
+## 6b. Voices and characters (video)
+
+The customer chooses who speaks and with which voice; the studio turns `speech` into the soundtrack and the
+video model moves the speaker's mouth to it. Your job is that **the person on screen fits the voice**.
+
+- Always fill `speech.gender` (female | male) and `speech.age`: `child` (under 14), `young` (14–25),
+  `adult` (26–55), `old` (over 55). When the task names a SPEAKING CHARACTER, use exactly that gender and
+  age – never put a man on screen for a girl's voice, an adult for a child's voice, or a young face for an
+  old voice. Describe that person in the prompt with matching face, body, clothes and age details.
+- When the task says the spoken words are FIXED (the customer recorded their own voice): `speech.text` is
+  exactly those words, unchanged. Plan the beats so the character talks for the recording's length and then
+  reacts (nods, smiles, breathes) without talking; do not add more speech.
+  - "used as recorded": it is the customer's real voice – the character on screen must match the speaker
+    the task names (gender and age).
+  - "read again in the character's voice": the same words, said by the chosen character.
+- Lines for children are short and simple, for old people calm and slow – and always fit the clip length
+  in §6 (a 10-second video holds at most about 18–24 Arabic words).
+- One speaker per clip unless the customer clearly asks for a dialogue.
 
 ## 7. On-screen text (writing inside the picture)
 

@@ -28,6 +28,7 @@ const mail = require("./mail");
 const payments = require("./payments");
 const media = require("./media");
 const trial = require("./trial");
+const voices = require("./voices");
 const planner = require("./planner");
 const { normalizeTelegram, normalizePhone } = require("./validate");
 
@@ -107,7 +108,7 @@ app.use((_req, res, next) => {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
     "Referrer-Policy": "strict-origin-when-cross-origin",
-    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+    "Permissions-Policy": "camera=(), microphone=(self), geolocation=(), payment=()", // the chat records voice notes
     "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
   });
   next();
@@ -157,6 +158,7 @@ const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي �
 - السعر التقديري معروض للزبون في اللوحة؛ إذا سأل عنه أعطِ الرقم الموجود في "خيارات الزبون الحالية" فقط، ولا تخترع أسعاراً أخرى.
 - أنت لا تُنتج الفيديو بنفسك ولا تدّعي ذلك؛ فريق VI Iraq ينتجه بعد إرسال الطلب ويتواصل مع الزبون عبر تيليغرام أو الهاتف.
 - لإرسال الطلب يجب أن يملأ الزبون معرّف تيليغرام ورقم هاتفه العراقي في اللوحة؛ ذكّره بذلك بلطف عندما تكتمل الفكرة.
+- الصوت في الفيديو: يختار الزبون الشخصية المتكلمة (بنت/ولد/شابة/شاب/امرأة/رجل/كبير بالعمر) وصوتها من اللوحة، أو يكتبها لك ("خلي الصوت بنت صغيرة"). ويستطيع تسجيل صوته بزر المايك 🎙️ في الدردشة أو رفع ملف صوتي: نفحصه أولاً (المدة، الوضوح، الضجيج، العمر والجنس) ثم يختار: صوته كما هو داخل الفيديو، أو نفس كلامه بصوت الشخصية. إذا كتب الكلمات التي يريدها حرفياً تُقال كما هي. اشرح له هذا باختصار إذا سأل عن الصوت.
 الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.
 LANGUAGE RULE (highest priority): always reply in the language of the customer's LAST message – Arabic (Iraqi touch welcome) if it is Arabic, English if it is English.`;
 
@@ -300,6 +302,7 @@ async function buildBrief(full, messages, files) {
 | المدة | ${full.seconds} ثانية |
 | اللغة | ${full.language} |
 | عدد الشخصيات | ${full.characters} |
+| الصوت | ${voiceText(full.voice)} |
 | السعر التقديري | $${full.price} |
 | التاريخ | ${full.createdAt} |
 
@@ -570,6 +573,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
     price: priceFor(quality, seconds),
     description: String(order.description || "").slice(0, 5000),
     attachments: Math.min(attachments.length, 30),
+    voice: orderVoice(order.voice),
   };
   const idempotencyKey = clean(req.get("idempotency-key") || order.idempotencyKey) || null;
 
@@ -639,6 +643,117 @@ app.post("/api/order", orderLimit, async (req, res) => {
   });
 });
 
+// ---------- voices (voices.js): character voices, the customer's own recordings, checked before use ----------
+const voiceLimit = rateLimit(15, 10 * 60 * 1000, "تسجيلات كثيرة، انتظر قليلاً ثم حاول مرة ثانية.");
+const previewLimit = rateLimit(60, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً.");
+const VOICE_MAX_BYTES = 12 * 1048576;
+const PREVIEW_LINE = "هلا بيكم! آني راح أحچي بالفيديو مالتكم، شلون صوتي؟";
+
+/** The voice part of a paid order (what the customer chose in the panel), cleaned. */
+function orderVoice(v) {
+  if (!v || typeof v !== "object") return null;
+  const mode = ["tts", "own", "convert", "none"].includes(v.mode) ? v.mode : "tts";
+  const preset = voices.byId(clean(v.preset));
+  const type = voices.typeLabel(clean(v.gender), clean(v.age));
+  return {
+    mode, preset: preset?.id || null, label: preset?.label || type || "", clip: /^V[\w-]{8,40}$/.test(clean(v.clip)) ? clean(v.clip) : null,
+    transcript: clean(v.transcript).slice(0, 600),
+  };
+}
+function voiceText(v) {
+  if (!v) return "-";
+  const link = v.clip ? ` – التسجيل: ${PUBLIC_URL || ""}/api/voice/clips/${v.clip}/audio` : "";
+  if (v.mode === "none") return "بدون صوت";
+  if (v.mode === "own") return `صوت الزبون كما سجّله${v.transcript ? `: «${v.transcript}»` : ""}${link}`;
+  if (v.mode === "convert") return `كلام الزبون بصوت ${v.label || "الشخصية"}${v.transcript ? `: «${v.transcript}»` : ""}${link}`;
+  return v.label ? `صوت جاهز: ${v.label}` : "صوت جاهز يختاره الفريق";
+}
+
+app.get("/api/voices", previewLimit, (_req, res) => {
+  res.set("Cache-Control", "public, max-age=600").json({ ok: true, ...voices.publicCatalog(), videoSeconds: media.VIDEO_SECONDS, recording: storage.ready && require("./watermark").ready });
+});
+
+// a short sample of each voice, made once and kept on our storage
+const previewsInFlight = new Map();
+app.get("/api/voices/:id/preview", previewLimit, async (req, res) => {
+  const v = voices.byId(req.params.id);
+  if (!v || !storage.ready) return res.sendStatus(404);
+  const key = `voices/preview/${v.id}.mp3`;
+  try {
+    let buf = await storage.getBuffer(key, 2 * 1048576).catch(() => null);
+    if (!buf) {
+      if (!previewsInFlight.has(v.id)) {
+        previewsInFlight.set(v.id, (async () => {
+          const mp3 = await voices.speak(v, { text: PREVIEW_LINE, lang: "ar-IQ" });
+          await storage.put(key, mp3, { contentType: "audio/mpeg" });
+          return mp3;
+        })().finally(() => previewsInFlight.delete(v.id)));
+      }
+      buf = await previewsInFlight.get(v.id);
+    }
+    res.set({ "Content-Type": "audio/mpeg", "Cache-Control": "public, max-age=86400" }).send(buf);
+  } catch (e) {
+    console.error(`voice preview ${v.id}:`, e.message);
+    res.status(502).json({ ok: false, message: "تعذّر تشغيل العيّنة الآن." });
+  }
+});
+
+const clipOf = async (id, req) => {
+  const row = (await db.query("SELECT * FROM voice_clips WHERE id = $1", [String(id || "")])).rows[0];
+  return row && row.ip_hash === trial.ipHash(clientIp(req)) ? row : null;
+};
+
+// The customer's voice (recorded in the chat or uploaded): converted, checked (length, loudness, noise, words,
+// speaker gender/age), kept 7 days. PUT raw audio; answers with the check the chat shows.
+app.put("/api/voice/clip", voiceLimit, express.raw({ type: () => true, limit: VOICE_MAX_BYTES }), async (req, res) => {
+  const type = String(req.get("content-type") || "").split(";")[0].trim().toLowerCase();
+  if (!/^(audio\/|video\/(webm|mp4|quicktime)$|application\/octet-stream$)/.test(type)) return res.status(415).json({ ok: false, message: "ارفع ملفاً صوتياً (mp3, m4a, wav, ogg) أو سجّل بزر المايك." });
+  if (!req.body?.length) return res.status(400).json({ ok: false, message: "التسجيل فارغ." });
+  if (!storage.ready || !db.configured) return res.status(503).json({ ok: false, message: "تسجيل الصوت غير متاح حالياً." });
+  try {
+    const { mp3 } = await voices.toMp3(req.body);
+    const report = await voices.check(mp3, media.VIDEO_SECONDS);
+    const id = voices.newClipId();
+    const key = `voices/clips/${id}.mp3`;
+    await storage.put(key, mp3, { contentType: "audio/mpeg" });
+    const row = (await db.query(
+      "INSERT INTO voice_clips (id, ip_hash, r2_key, duration_sec, transcript, lang, analysis) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *",
+      [id, trial.ipHash(clientIp(req)), key, report.duration, report.heard.text, report.heard.lang,
+       JSON.stringify({ ok: report.ok, items: report.items, speaker: report.speaker, metrics: report.metrics, ai: report.ai })]
+    )).rows[0];
+    console.log(`voice clip ${id}: ${report.duration}s · ${report.ok ? "ok" : "rejected"} · speaker ${report.speaker.gender || "?"}/${report.speaker.age || "?"}`);
+    res.json({ ok: true, clip: voices.clipView(row) });
+  } catch (e) {
+    console.error("voice clip:", e.message);
+    res.status(400).json({ ok: false, message: /readable|empty/.test(e.message) ? "تعذّرت قراءة التسجيل – جرّب تسجيلاً آخر أو ملف mp3." : "تعذّر فحص التسجيل، حاول مرة ثانية." });
+  }
+});
+
+// "check again": runs the full check once more on the stored recording
+app.post("/api/voice/clips/:id/check", voiceLimit, async (req, res) => {
+  try {
+    const row = await clipOf(req.params.id, req);
+    if (!row) return res.status(404).json({ ok: false, message: "التسجيل غير موجود." });
+    const report = await voices.check(await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), media.VIDEO_SECONDS);
+    const upd = (await db.query(
+      "UPDATE voice_clips SET duration_sec = $2, transcript = $3, lang = $4, analysis = $5 WHERE id = $1 RETURNING *",
+      [row.id, report.duration, report.heard.text, report.heard.lang, JSON.stringify({ ok: report.ok, items: report.items, speaker: report.speaker, metrics: report.metrics, ai: report.ai })]
+    )).rows[0];
+    res.json({ ok: true, clip: voices.clipView(upd) });
+  } catch (e) {
+    console.error("voice recheck:", e.message);
+    res.status(500).json({ ok: false, message: "تعذّر الفحص، حاول مرة ثانية." });
+  }
+});
+
+// the recording itself (its id is a random value known only to the browser that made it, and the team's brief)
+app.get("/api/voice/clips/:id/audio", statusLimit, async (req, res) => {
+  const row = (await db.query("SELECT r2_key FROM voice_clips WHERE id = $1", [String(req.params.id || "")]).catch(() => ({ rows: [] }))).rows[0];
+  if (!row) return res.sendStatus(404);
+  try { res.set({ "Content-Type": "audio/mpeg", "Cache-Control": "private, max-age=3600" }).send(await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES)); }
+  catch { res.sendStatus(404); }
+});
+
 // ---------- free trial (no account, no payment; limits per visitor IP – see trial.js) ----------
 const trialLimit = rateLimit(12, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً ثم حاول مرة ثانية.");
 
@@ -675,17 +790,32 @@ app.post("/api/trial/jobs", trialLimit, async (req, res) => {
   // what the visitor sees on the card: their own newest message (or the animate instruction)
   const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content) || (refs.length ? "من صوري المرفقة" : "");
   if (text.length < 3) return res.status(400).json({ ok: false, code: "invalid", message: "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً»." });
+  // the voice the customer chose (videos only): a character voice, their own recording, or their words in a character's voice
+  const vs = body.voiceSpec && typeof body.voiceSpec === "object" ? body.voiceSpec : {};
+  let voice = { mode: voiceLang === "none" ? "none" : ["tts", "own", "convert", "none"].includes(vs.mode) ? vs.mode : "tts",
+    preset: voices.byId(clean(vs.preset)) ? clean(vs.preset) : "auto",
+    gender: voices.GENDERS.includes(vs.gender) ? vs.gender : null, age: voices.AGES.includes(vs.age) ? vs.age : null, clip: null };
+  if (kind === "video" && (voice.mode === "own" || voice.mode === "convert")) {
+    const row = await clipOf(vs.clip, req).catch(() => null);
+    if (!row) return res.status(400).json({ ok: false, code: "invalid", message: "سجّل صوتك أولاً بزر المايك 🎙️ في الدردشة، ثم اختر طريقة استخدامه." });
+    if (!row.analysis?.ok) return res.status(400).json({ ok: false, code: "invalid", message: "تسجيلك لم ينجح في الفحص – سجّل مرة ثانية (التفاصيل في بطاقة الفحص)." });
+    voice.clip = { id: row.id, transcript: row.transcript || "", lang: voiceLang !== "none" ? voiceLang : "ar-IQ", duration: Number(row.duration_sec), mp3: await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES) };
+    // "own": the character on screen must match the real speaker; "convert": the chosen character
+    if (voice.mode === "own") { voice.gender = row.analysis?.speaker?.gender || voice.gender; voice.age = row.analysis?.speaker?.age || voice.age; }
+    else if (!voice.gender && voice.preset !== "auto") { const p = voices.byId(voice.preset); voice.gender = p.gender; voice.age = p.age; }
+  } else if (voice.preset !== "auto" && !voice.gender) { const p = voices.byId(voice.preset); voice.gender = p.gender; voice.age = p.age; }
+  const voicePlan = kind === "video" ? { mode: voice.mode, gender: voice.gender, age: voice.age, fixedText: voice.clip?.transcript || null, audioSeconds: voice.clip?.duration || null } : null;
   try {
     // the visitor gets the card at once; the plan is written from the chat and the pictures in the background.
     // Terms are shown (never blocking) like in the chat.
     const sections = await policyCheck([{ role: "user", content: userText }], { lastOnly: true });
     const planFn = async () => {
-      const { plan, by } = await planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob), refs });
+      const { plan, by } = await planner.plan(conversation, { kind, style, seconds: media.VIDEO_SECONDS, voiceLang, hasReferenceImage: Boolean(sourceJob), refs, voice: voicePlan });
       if (refs.length) plan.refs = refs.map((r) => r.role);
       console.log(`trial plan by ${by}: ${kind}/${style}${refs.length ? ` · ${refs.length} chat picture(s)` : ""}${plan.speech ? ` · speech ${plan.speech.lang} "${plan.speech.text.slice(0, 60)}"` : ""}${plan.onScreenText ? ` · text "${plan.onScreenText.text}"` : ""}`);
       return { plan };
     };
-    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: text.slice(0, 800), refs, sourceJobId: sourceJob || null, sourceToken, termsSections: sections, planFn });
+    const { job, token } = await trial.start({ ip: clientIp(req), kind, style, prompt: text.slice(0, 800), modelPrompt: text.slice(0, 800), refs, sourceJobId: sourceJob || null, sourceToken, termsSections: sections, planFn, voice: kind === "video" ? voice : null });
     res.json({ ok: true, job: trial.view(job, token), token, ...(sections.length ? { policy: { sections } } : {}), ...(await trial.status(clientIp(req))) });
   } catch (e) {
     if (e instanceof trial.TrialError) return res.status(["limit", "paused", "video_off"].includes(e.code) ? 429 : e.code === "provider" ? 502 : 400).json({ ok: false, code: e.code, message: e.message });
@@ -867,6 +997,10 @@ async function start() {
       if (!storage.ready) return;
       for (const a of await orders.staleDraftAssets(24)) {
         try { await storage.remove(a.r2_key); await orders.deleteAsset(a.id); } catch (e) { console.error("upload cleanup:", e.message); }
+      }
+      // voice recordings are kept 7 days (long enough to order the full video with them)
+      for (const c of (await db.query("SELECT id, r2_key FROM voice_clips WHERE created_at < now() - interval '7 days' LIMIT 200")).rows) {
+        try { await storage.remove(c.r2_key); await db.query("DELETE FROM voice_clips WHERE id = $1", [c.id]); } catch (e) { console.error("voice cleanup:", e.message); }
       }
     };
     sweepUploads().catch((e) => console.error("upload cleanup:", e.message));

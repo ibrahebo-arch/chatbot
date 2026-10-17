@@ -58,8 +58,12 @@
 
           <div class="tray" id="tray" hidden></div>
           <form class="composer" id="composer">
-            <input type="file" id="fileInput" multiple accept="image/*,video/*,.mp4,.mov,.webm,.heic" hidden />
-            <button type="button" class="icon" id="attachBtn" title="إرفاق صورة أو فيديو أو ملف" aria-label="إرفاق">
+            <input type="file" id="fileInput" multiple accept="image/*,video/*,audio/*,.mp4,.mov,.webm,.heic,.mp3,.m4a,.wav,.ogg" hidden />
+            <button type="button" class="icon mic" id="micBtn" title="سجّل صوتك – يُفحص ثم يُستخدم في الفيديو" aria-label="تسجيل صوت">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+              <span class="rec-time" id="micTime"></span>
+            </button>
+            <button type="button" class="icon" id="attachBtn" title="إرفاق صورة أو فيديو أو تسجيل صوتي" aria-label="إرفاق">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5 12.6 21a5.5 5.5 0 0 1-7.8-7.8l9-9a3.5 3.5 0 0 1 5 5l-9 9a1.5 1.5 0 0 1-2.1-2.1L16 7.8"/></svg>
             </button>
             <textarea id="input" rows="1" placeholder="اكتب فكرتك هنا…" autocomplete="off"></textarea>
@@ -96,7 +100,7 @@
               </div>
             </div>
             <div class="field free-voice" id="voiceField">
-              <label for="trialVoice">صوت الفيديو</label>
+              <label for="trialVoice">لغة الكلام</label>
               <select id="trialVoice">
                 <option value="ar-IQ">🇮🇶 عراقي</option>
                 <option value="ar">فصحى</option>
@@ -106,6 +110,28 @@
                 <option value="fa">فارسی</option>
                 <option value="none">بدون صوت</option>
               </select>
+              <label for="voiceType">الشخصية المتكلمة</label>
+              <select id="voiceType"><option value="auto">🤖 تلقائي – حسب فكرتك</option></select>
+              <div class="voice-row">
+                <select id="voicePreset" aria-label="الصوت"></select>
+                <button type="button" class="mini" id="voicePlay" title="اسمع عيّنة من هذا الصوت">▶️ اسمع</button>
+              </div>
+              <label>مصدر الصوت</label>
+              <div class="seg" id="voiceMode">
+                <button type="button" data-v="tts" class="on">🤖 صوت جاهز</button>
+                <button type="button" data-v="own" disabled>🎙️ صوتي كما هو</button>
+                <button type="button" data-v="convert" disabled>🔁 كلامي بصوت الشخصية</button>
+              </div>
+              <p class="hint voice-summary" id="voiceSummary"></p>
+              <details class="voice-how">
+                <summary>كيف أستخدم صوتي؟</summary>
+                <ol>
+                  <li>اضغط زر المايك 🎙️ في الدردشة وقل جملتك (2–10 ثوانٍ)، أو ارفع ملفاً صوتياً بزر المشبك.</li>
+                  <li>نفحص التسجيل فوراً: المدة، الوضوح، الضجيج، الكلام المسموع، والعمر والجنس – ونخبرك إذا كان صالحاً.</li>
+                  <li>اختر: <b>صوتي كما هو</b> (صوتك نفسه داخل الفيديو) أو <b>كلامي بصوت الشخصية</b> (نفس كلامك بصوت البنت أو الولد أو الشخصية التي اخترتها).</li>
+                  <li>أو اكتب في الدردشة ما تريد: «خلي الصوت بنت صغيرة»، «عمرها 10 سنين»، «خليه يكول: …».</li>
+                </ol>
+              </details>
             </div>
             <p class="hint refs-hint" id="trialRefs" hidden></p>
             <button class="cta free-cta" id="trialGo">🎁 أنشئ مجاناً من فكرتك</button>

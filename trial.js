@@ -14,6 +14,7 @@ const media = require("./media");
 const storage = require("./storage");
 const watermark = require("./watermark");
 const orders = require("./orders");
+const voices = require("./voices");
 
 const clean = (v) => String(v || "").trim();
 const LIMIT = { image: Number(process.env.TRIAL_IMAGES ?? 3), video: Number(process.env.TRIAL_VIDEOS ?? 1) };
@@ -187,6 +188,7 @@ const view = (j, token = null) => {
     id: j.id, ticket: j.ticket, kind: j.kind, style: j.style, prompt: j.prompt,
     status: j.status === "done" && !ready ? "running" : j.status,
     speech: j.speech_text ? { text: j.speech_text, lang: j.speech_lang } : null,
+    voice: j.voice ? { mode: j.voice.mode, label: j.voice.label || "", fitted: j.voice.fitted || "" } : null,
     url: ready ? `/api/trial/jobs/${j.id}/media${q}` : null,
     download: ready && token ? `/api/trial/jobs/${j.id}/download${q}` : null,
     error: j.status === "failed" ? j.error : null,
@@ -216,10 +218,32 @@ async function startOpenAI(job, refs = []) {
 }
 
 /**
- * Reserves a slot and starts the job.
- * opts: { ip, kind: "image"|"video", style, prompt, modelPrompt, sourceJobId, sourceToken, termsSections }
+ * The video's soundtrack from the customer's voice choice (see voices.js), fitted to the video length.
+ *   voice = { mode: tts|own|convert|none, preset, gender, age, clip: { mp3, transcript, lang } }
+ * Returns { mp3, info } or null (no voice).
  */
-async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, refs = [], sourceJobId = null, sourceToken = null, termsSections = [], planFn = null }) {
+async function soundtrack(voice, speech, seconds) {
+  const mode = voice?.mode || "tts";
+  if (mode === "none") return null;
+  const note = (f) => (f.cut ? "قُصّ ليناسب طول الفيديو" : f.tempo > 1 ? "سُرّع قليلاً ليناسب طول الفيديو" : "");
+  if (mode === "own" && voice.clip?.mp3) {
+    const f = await voices.fit(voice.clip.mp3, seconds, false); // the customer's own voice: cut if needed, never sped up
+    return { mp3: f.mp3, info: { mode, label: "صوتك كما سجّلته", clip: voice.clip.id, fitted: note(f) } };
+  }
+  const chosen = voice?.preset && voice.preset !== "auto" ? { preset: voice.preset } : null;
+  const type = { ...voices.typeFromSpeech(speech || {}), ...(voices.GENDERS.includes(voice?.gender) ? { gender: voice.gender } : {}), ...(voices.AGES.includes(voice?.age) ? { age: voice.age } : {}) };
+  const v = voices.pick(chosen || type);
+  const text = mode === "convert" ? clean(voice.clip?.transcript) : clean(speech?.text);
+  if (!v || !text) return null;
+  const f = await voices.fit(await voices.speak(v, { text, lang: speech?.lang || voice.clip?.lang || "ar-IQ", tone: speech?.tone || "" }), seconds, true);
+  return { mp3: f.mp3, info: { mode, preset: v.id, label: mode === "convert" ? `كلامك بصوت: ${v.label}` : v.label, clip: voice.clip?.id || null, fitted: note(f) } };
+}
+
+/**
+ * Reserves a slot and starts the job.
+ * opts: { ip, kind: "image"|"video", style, prompt, modelPrompt, sourceJobId, sourceToken, termsSections, voice }
+ */
+async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech = null, refs = [], sourceJobId = null, sourceToken = null, termsSections = [], planFn = null, voice = null }) {
   if (!enabled()) throw new TrialError("off", "التجربة المجانية غير متاحة حالياً.");
   if (!["image", "video"].includes(kind)) throw new TrialError("invalid", "نوع غير معروف.");
   if (!["realistic", "cartoon"].includes(style)) throw new TrialError("invalid", "اختر واقعي أو كرتون.");
@@ -283,16 +307,17 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const launch = async (job, plan, speech, modelPrompt) => {
     if (routeOf(plan)) return { job: await startOpenAI(job, editImage ? refs : []), token: job.token };
     try {
-      // the voice track first (Iraqi by default), then the video with it as the soundtrack
+      // the voice track first (the customer's choice: a character voice, their own recording, or their words in a
+      // character's voice – Iraqi by default), fitted to the video length, then the video with it as the soundtrack
       let audioUrl = null;
-      if (kind === "video" && speech?.text) {
+      if (kind === "video" && (speech?.text || voice?.clip)) {
         try {
-          const mp3 = await media.speak(speech);
-          audioUrl = media.audioDataUri(mp3);
-          if (storage.ready) {
+          const st = await soundtrack(voice, speech, media.VIDEO_SECONDS);
+          if (st) {
+            audioUrl = media.audioDataUri(st.mp3);
             const akey = `trial/${job.ticket}.mp3`;
-            await storage.put(akey, mp3, { contentType: "audio/mpeg" });
-            await db.query("UPDATE trial_jobs SET audio_key = $2 WHERE id = $1", [job.id, akey]);
+            if (storage.ready) await storage.put(akey, st.mp3, { contentType: "audio/mpeg" });
+            await db.query("UPDATE trial_jobs SET audio_key = $2, voice = $3 WHERE id = $1", [job.id, storage.ready ? akey : null, JSON.stringify(st.info)]);
           }
         } catch (e) { console.error(`trial ${job.ticket}: voice failed (${e.message.slice(0, 120)}) – video without voice`); }
       }

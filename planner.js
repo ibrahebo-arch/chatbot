@@ -16,7 +16,7 @@ const path = require("path");
 
 const clean = (v) => String(v || "").trim();
 const GUIDE = fs.readFileSync(path.join(__dirname, "prompts", "media-prompt-guide.md"), "utf8");
-const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), living humanoid presence – breathing, blinking, facial reactions (4b), Iraqi places (5), named places and the LOCATION REFERENCE (5b), speech length and dialect (6), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
+const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), living humanoid presence – breathing, blinking, facial reactions (4b), Iraqi places (5), named places and the LOCATION REFERENCE (5b), speech length and dialect (6), voices and characters – the speaker matches the chosen voice, fixed words stay exact (6b), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
 const RULES_END = "\n\n---\nFINAL CHECK before you answer: go through section 9 line by line; the prompt is English, follows the section 2 order, has concrete motion beats for video, keeps the customer's exact words for on-screen text, and the speech is short natural dialect that fits the clip length. Fix anything that fails, then output the JSON only.";
 const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
 const OPENAI_BASE = (clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "");
@@ -39,9 +39,24 @@ function picturesNote(kind, refs) {
     : ` CUSTOMER PICTURES (attached, in this order): ${list}. The result is an edit that puts the people from the character pictures into the new scene: say who from which picture appears, with the face, hair and clothes exactly as in their picture. Reference pictures only give style, place or product.`;
 }
 
-function task({ kind, style, seconds, voiceLang, hasReferenceImage, refs = [] }) {
+const AGE_WORDS = { child: "a child about 8–12 years old", young: "a young person about 18–25", adult: "an adult about 30–50", old: "an elderly person over 60" };
+const GENDER_WORDS = { female: "female", male: "male" };
+
+/** What the planner must know about the voice the customer chose (guide §6b). */
+function voiceNote(v) {
+  if (!v || v.mode === "none") return "";
+  const who = v.gender && v.age ? `${GENDER_WORDS[v.gender]}, ${AGE_WORDS[v.age]}` : "";
+  let s = who ? ` SPEAKING CHARACTER (chosen by the customer): ${who}. The person on screen who speaks MUST match this gender and age; set speech.gender="${v.gender}" and speech.age="${v.age}".` : " Choose the speaking character from the idea and set speech.gender and speech.age to match the person on screen.";
+  if (v.fixedText) {
+    s += ` The spoken words are FIXED (the customer's own recording${v.mode === "own" ? ", used as the soundtrack exactly as recorded" : ", read again in the character's voice"}): "${String(v.fixedText).slice(0, 400)}". Set speech.text to exactly these words – do not change, translate or shorten them.`;
+    if (v.audioSeconds) s += ` The recording lasts about ${Number(v.audioSeconds).toFixed(1)} s: the character speaks during that time, then reacts naturally without speaking.`;
+  }
+  return s;
+}
+
+function task({ kind, style, seconds, voiceLang, hasReferenceImage, refs = [], voice: v = null }) {
   const voice = voiceLang === "none" ? "The customer wants NO voice: speech must be null; describe ambient sound only."
-    : `Spoken language for speech.text: ${LANG_NAMES[voiceLang]} (${voiceLang}).`;
+    : `Spoken language for speech.text: ${LANG_NAMES[voiceLang]} (${voiceLang}).${voiceNote(v)}`;
   return kind === "video"
     ? `TASK: a ${seconds}-second ${style} VIDEO.${hasReferenceImage ? " The first frame is the customer's own picture (image-to-video): keep that exact scene, character and clothes, and describe only the motion, camera and sound." : ""}${picturesNote(kind, refs)} ${voice} Fit the action and the speech into ${seconds} seconds.`
     : `TASK: one ${style} PICTURE (no video, no speech: speech must be null).${picturesNote(kind, refs)}`;
@@ -88,6 +103,8 @@ function parsePlan(text) {
   const speech = p.speech && typeof p.speech === "object" && clean(p.speech.text) ? {
     lang: normLang(clean(p.speech.lang)), text: clean(p.speech.text).slice(0, 400),
     voice: ["male", "female", "child"].includes(p.speech.voice) ? p.speech.voice : "male", tone: clean(p.speech.tone).slice(0, 120),
+    ...(["female", "male"].includes(p.speech.gender) ? { gender: p.speech.gender } : {}),
+    ...(["child", "young", "adult", "old"].includes(p.speech.age) ? { age: p.speech.age } : {}),
   } : null;
   const ost = p.onScreenText && typeof p.onScreenText === "object" && clean(p.onScreenText.text) ? {
     text: clean(p.onScreenText.text).slice(0, 80), lang: clean(p.onScreenText.lang).slice(0, 10), placement: clean(p.onScreenText.placement).slice(0, 120),
@@ -170,16 +187,31 @@ async function review(plan, conversation, opts) {
 async function plan(conversation, opts) {
   const o = { ...opts, voiceLang: opts.voiceLang === "none" ? "none" : normLang(opts.voiceLang) };
   const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n").slice(0, 900);
-  if (!OPENAI_KEY) return { plan: { prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, by: "customer" };
+  if (!OPENAI_KEY) return { plan: applyVoice({ prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, o), by: "customer" };
   const d = await draft(conversation, o);
-  if (!d) return { plan: { prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, by: "customer" };
+  if (!d) return { plan: applyVoice({ prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, o), by: "customer" };
   const claude = await review(d.plan, conversation, o);
   const second = claude ? null : (ANTHROPIC_KEY ? null : await selfReview(d.plan, conversation, o, d.by));
   const fixed = claude || second;
   const p = fixed || d.plan;
-  if (o.kind !== "video" || o.voiceLang === "none") p.speech = null;
+  applyVoice(p, o);
   if (o.kind === "video" && !/frozen|mannequin/i.test(p.negative || "")) p.negative = [p.negative, "frozen face, mannequin stillness, statue-like pose, no blinking, dead eyes, rigid stare"].filter(Boolean).join(", ");
   return { plan: p, by: claude ? `${d.by}+${CLAUDE_MODEL}` : second ? `${d.by}+review` : d.by };
 }
 
-module.exports = { locationsIn, locationNote, plan, parsePlan, userContent, task, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };
+/**
+ * The customer's voice choice always wins over the model (pure – tested): no voice → speech null; their own
+ * words → speech.text is exactly the recording; a chosen character → speech.gender / speech.age.
+ */
+function applyVoice(p, o) {
+  const v = o.voice || null;
+  if (o.kind !== "video" || o.voiceLang === "none" || v?.mode === "none") { p.speech = null; return p; }
+  if (v?.fixedText) {
+    p.speech = { lang: o.voiceLang || p.speech?.lang || "ar-IQ", tone: "", voice: "male", ...(p.speech || {}), text: String(v.fixedText).slice(0, 400) };
+  }
+  if (p.speech && v?.gender) p.speech.gender = v.gender;
+  if (p.speech && v?.age) p.speech.age = v.age;
+  return p;
+}
+
+module.exports = { locationsIn, locationNote, plan, parsePlan, applyVoice, voiceNote, userContent, task, normLang, LANG_NAMES, PROMPT_MODEL, CLAUDE_MODEL, reviewEnabled: Boolean(ANTHROPIC_KEY) };
