@@ -825,16 +825,32 @@
     const sp = clip.speaker || {}; const t = chosenType();
     if (!sp.gender || !sp.age || t === "auto") return "";
     const [g, a] = t.split(".");
-    if (sp.gender === g && sp.age === a) return `✅ صوتك يناسب الشخصية المختارة (${typeLabel(t)}).`;
-    return `ℹ️ صوتك ${GENDER_AR[sp.gender]} ${AGE_AR[sp.age]} والشخصية المختارة «${typeLabel(t)}»: مع «صوتي كما هو» نجعل الشخص في الفيديو يطابق صوتك، ومع «كلامي بصوت الشخصية» يقول ${typeLabel(t)} نفس كلامك.`;
+    if (sp.gender === g && sp.age === a) return `✅ التسجيل يناسب الشخصية المختارة (${typeLabel(t)}).`;
+    return `ℹ️ المتكلم في التسجيل: ${typeLabel(`${sp.gender}.${sp.age}`)}، والشخصية المختارة «${typeLabel(t)}»: مع «صوتي كما هو» نجعل الشخص في الفيديو يطابق صوتك، ومع «كلامي بصوت الشخصية» يقول ${typeLabel(t)} نفس كلامك.`;
   }
   function voiceCard(card, clip) {
     card.replaceChildren();
     card.append(el("h4", "", clip.ok ? "🎙️ فحص صوتك: صالح للاستخدام" : "🎙️ فحص صوتك: يحتاج تسجيلاً جديداً"));
     const a = el("audio"); a.controls = true; a.preload = "metadata"; a.src = clip.url; card.append(a);
     const ul = el("ul"); clip.items.forEach((i) => ul.append(el("li", i.level, `${ICON[i.level] || "•"} ${i.text}`))); card.append(ul);
-    const sp = clip.speaker || {};
-    if (sp.gender || sp.age) card.append(el("span", "who", `🧑 الصوت يبدو: ${[GENDER_AR[sp.gender], AGE_AR[sp.age]].filter(Boolean).join(" ")}${sp.ageEstimate ? ` (حوالي ${sp.ageEstimate} سنة)` : ""}`));
+    // who is speaking – the customer says it (used to match the person in the video to the recording)
+    if (clip.ok) {
+      const sp = clip.speaker || {};
+      const who = el("label", "who", "🧑 صوت مَن في هذا التسجيل؟ ");
+      const sel = el("select");
+      const none = el("option", "", "اختر…"); none.value = ""; sel.append(none);
+      voice.catalog.types.forEach((t) => { const o = el("option", "", t.label); o.value = t.key; sel.append(o); });
+      sel.value = sp.gender && sp.age ? `${sp.gender}.${sp.age}` : "";
+      sel.onchange = async () => {
+        if (!sel.value) return;
+        const [gender, age] = sel.value.split(".");
+        try {
+          const d = await (await fetch(`/api/voice/clips/${encodeURIComponent(clip.id)}/speaker`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ gender, age }) })).json();
+          if (d.ok) { setClip(d.clip); voiceCard(card, d.clip); } else toast(d.message || "تعذّر الحفظ");
+        } catch { toast("تعذّر الاتصال بالخادم"); }
+      };
+      who.append(sel); card.append(who);
+    }
     const m = matchNote(clip); if (m && clip.ok) card.append(el("span", "match", m));
     const acts = el("div", "acts");
     if (clip.ok) {
@@ -871,7 +887,7 @@
     startChat();
     const local = URL.createObjectURL(blob);
     const um = addMsg("user", `🎙️ ${name}`); const pa = el("audio"); pa.controls = true; pa.src = local; um.append(pa);
-    const card = addMsg("sys", "", [], "vcheck"); card.append(el("h4", "", "🔍 نفحص صوتك… (المدة، الوضوح، الضجيج، الكلام، العمر والجنس)"));
+    const card = addMsg("sys", "", [], "vcheck"); card.append(el("h4", "", "🔍 نفحص صوتك… (المدة، مستوى الصوت، الوضوح، الضجيج، الكلام واللهجة)"));
     try {
       const r = await fetch("/api/voice/clip", { method: "PUT", headers: { "Content-Type": blob.type || "application/octet-stream" }, body: blob });
       const d = await r.json().catch(() => ({}));

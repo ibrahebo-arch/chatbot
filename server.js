@@ -158,7 +158,7 @@ const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي �
 - السعر التقديري معروض للزبون في اللوحة؛ إذا سأل عنه أعطِ الرقم الموجود في "خيارات الزبون الحالية" فقط، ولا تخترع أسعاراً أخرى.
 - أنت لا تُنتج الفيديو بنفسك ولا تدّعي ذلك؛ فريق VI Iraq ينتجه بعد إرسال الطلب ويتواصل مع الزبون عبر تيليغرام أو الهاتف.
 - لإرسال الطلب يجب أن يملأ الزبون معرّف تيليغرام ورقم هاتفه العراقي في اللوحة؛ ذكّره بذلك بلطف عندما تكتمل الفكرة.
-- الصوت في الفيديو: يختار الزبون الشخصية المتكلمة (بنت/ولد/شابة/شاب/امرأة/رجل/كبير بالعمر) وصوتها من اللوحة، أو يكتبها لك ("خلي الصوت بنت صغيرة"). ويستطيع تسجيل صوته بزر المايك 🎙️ في الدردشة أو رفع ملف صوتي: نفحصه أولاً (المدة، الوضوح، الضجيج، العمر والجنس) ثم يختار: صوته كما هو داخل الفيديو، أو نفس كلامه بصوت الشخصية. إذا كتب الكلمات التي يريدها حرفياً تُقال كما هي. اشرح له هذا باختصار إذا سأل عن الصوت.
+- الصوت في الفيديو: يختار الزبون الشخصية المتكلمة (بنت/ولد/شابة/شاب/امرأة/رجل/كبير بالعمر) وصوتها من اللوحة، أو يكتبها لك ("خلي الصوت بنت صغيرة"). ويستطيع تسجيل صوته بزر المايك 🎙️ في الدردشة أو رفع ملف صوتي: نفحصه أولاً (المدة، الوضوح، الضجيج، الكلام واللهجة) ويحدد هو صوت مَن في التسجيل، ثم يختار: صوته كما هو داخل الفيديو، أو نفس كلامه بصوت الشخصية. إذا كتب الكلمات التي يريدها حرفياً تُقال كما هي. اشرح له هذا باختصار إذا سأل عن الصوت.
 الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.
 LANGUAGE RULE (highest priority): always reply in the language of the customer's LAST message – Arabic (Iraqi touch welcome) if it is Arabic, English if it is English.`;
 
@@ -737,12 +737,31 @@ app.post("/api/voice/clips/:id/check", voiceLimit, async (req, res) => {
     const report = await voices.check(await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), media.VIDEO_SECONDS);
     const upd = (await db.query(
       "UPDATE voice_clips SET duration_sec = $2, transcript = $3, lang = $4, analysis = $5 WHERE id = $1 RETURNING *",
-      [row.id, report.duration, report.heard.text, report.heard.lang, JSON.stringify({ ok: report.ok, items: report.items, speaker: report.speaker, metrics: report.metrics, ai: report.ai })]
+      [row.id, report.duration, report.heard.text, report.heard.lang, JSON.stringify({ ok: report.ok, items: report.items, speaker: row.analysis?.speaker?.declared ? row.analysis.speaker : report.speaker, metrics: report.metrics, ai: report.ai })]
     )).rows[0];
     res.json({ ok: true, clip: voices.clipView(upd) });
   } catch (e) {
     console.error("voice recheck:", e.message);
     res.status(500).json({ ok: false, message: "تعذّر الفحص، حاول مرة ثانية." });
+  }
+});
+
+// who is speaking in the recording, as the customer says it (girl, boy, young woman … old man): the video
+// matches the person on screen to it when the recording is used as it is
+app.post("/api/voice/clips/:id/speaker", voiceLimit, async (req, res) => {
+  const { gender, age } = req.body || {};
+  if (!voices.GENDERS.includes(gender) || !voices.AGES.includes(age)) return res.status(400).json({ ok: false, message: "اختر من القائمة." });
+  try {
+    const row = await clipOf(req.params.id, req);
+    if (!row) return res.status(404).json({ ok: false, message: "التسجيل غير موجود." });
+    const upd = (await db.query(
+      "UPDATE voice_clips SET analysis = jsonb_set(coalesce(analysis, '{}'::jsonb), '{speaker}', $2::jsonb) WHERE id = $1 RETURNING *",
+      [row.id, JSON.stringify({ gender, age, ageEstimate: null, declared: true })]
+    )).rows[0];
+    res.json({ ok: true, clip: voices.clipView(upd) });
+  } catch (e) {
+    console.error("voice speaker:", e.message);
+    res.status(500).json({ ok: false, message: "تعذّر الحفظ، حاول مرة ثانية." });
   }
 });
 

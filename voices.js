@@ -28,7 +28,7 @@ const FAL_RUN = (clean(process.env.FAL_RUN_URL) || "https://fal.run").replace(/\
 const MINIMAX_MODEL = clean(process.env.VOICE_MINIMAX_MODEL) || "fal-ai/minimax/speech-2.8-hd";
 const ELEVEN_MODEL = clean(process.env.VOICE_ELEVEN_MODEL) || "fal-ai/elevenlabs/tts/eleven-v3";
 const TRANSCRIBE_MODEL = clean(process.env.TRANSCRIBE_MODEL) || "whisper-1";
-const AUDIO_MODELS = [clean(process.env.AUDIO_ANALYZE_MODEL) || "gpt-audio", "gpt-4o-audio-preview"];
+const AUDIO_MODELS = [clean(process.env.AUDIO_ANALYZE_MODEL) || "gpt-audio", "gpt-audio-mini"];
 const MIN_SECONDS = 2; // the video model needs at least 2 s of audio
 const MAX_CLIP_SECONDS = 60;
 
@@ -243,12 +243,15 @@ async function transcribe(mp3) {
   return { text: clean(j.text).slice(0, 600), lang: clean(j.language) };
 }
 
-/** An audio model listens: speaker gender/age, clarity, noise, music, several speakers, dialect. */
+/**
+ * An audio model listens to the recording's QUALITY: clarity, noise, music, several speakers, dialect.
+ * It is not asked who the speaker is (the models decline to judge gender or age from a voice); the customer
+ * says who is speaking on the check card, and that is what the video matches.
+ */
 async function listen(mp3) {
   if (!OPENAI_KEY) return null;
-  const ask = `Listen to this voice recording and answer with ONE JSON object only:
-{"gender":"female|male|unknown","age_group":"child|young|adult|old|unknown","age_estimate":<number or null>,"clarity":"good|ok|poor","background_noise":"none|low|high","music":true|false,"several_speakers":true|false,"dialect":"iraqi|other_arabic|standard_arabic|not_arabic|unknown"}
-age_group: child under 14, young 14-25, adult 26-55, old over 55.`;
+  const ask = `You check recordings for a video studio. Listen to this recording and rate its audio quality. Answer with ONE JSON object only, no other text:
+{"clarity":"good|ok|poor","background_noise":"none|low|high","music":true|false,"several_speakers":true|false,"dialect":"iraqi|other_arabic|standard_arabic|not_arabic|unknown"}`;
   for (const model of AUDIO_MODELS) {
     try {
       const r = await fetch(`${OPENAI_BASE}/v1/chat/completions`, {
@@ -294,7 +297,7 @@ function judge(m, heard, ai, seconds) {
   return { ok: !items.some((i) => i.level === "bad"), items };
 }
 
-/** What the recording sounds like, as a character type ({ gender, age } or nulls). */
+/** Who speaks in the recording, as a character type ({ gender, age } or nulls) – from the customer's own answer. */
 function speakerOf(ai) {
   if (!ai) return { gender: null, age: null, ageEstimate: null };
   return {
@@ -309,7 +312,7 @@ async function check(mp3, seconds) {
   const m = await measure(mp3);
   const [heard, ai] = await Promise.all([transcribe(mp3).catch((e) => { console.error("voice transcribe:", e.message); return { text: "", lang: "" }; }), listen(mp3)]);
   const verdict = judge(m, heard, ai, seconds);
-  return { duration: Math.round(m.duration * 100) / 100, metrics: m, heard, speaker: speakerOf(ai), ai, ...verdict };
+  return { duration: Math.round(m.duration * 100) / 100, metrics: m, heard, speaker: { gender: null, age: null, ageEstimate: null }, ai, ...verdict };
 }
 
 /** Customer-facing summary of a stored clip row. */
