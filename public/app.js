@@ -708,7 +708,7 @@
   }
   function fillPresets() {
     const sel = $("voicePreset"); sel.innerHTML = "";
-    const auto = el("option", "", voice.type === "auto" ? "🤖 الصوت المناسب للشخصية" : `⭐ الصوت المقترح – ${typeLabel(voice.type)}`); auto.value = "auto"; sel.append(auto);
+    const auto = el("option", "", voice.type === "auto" ? "الصوت المناسب للشخصية" : `الصوت المقترح – ${typeLabel(voice.type)}`); auto.value = "auto"; sel.append(auto);
     const [g, a] = voice.type.split(".");
     voice.catalog.voices.filter((v) => voice.type === "auto" || (v.gender === g && v.age === a))
       .forEach((v) => { const o = el("option", "", v.label); o.value = v.id; sel.append(o); });
@@ -753,9 +753,9 @@
     const own = voice.clip?.ok;
     $("voiceMode").querySelectorAll('[data-v="own"],[data-v="convert"]').forEach((b) => { b.disabled = !own; b.title = own ? "" : "سجّل صوتك أولاً بزر المايك 🎙️"; });
     $("voicePlay").disabled = voice.preset === "auto" && voice.type === "auto";
-    if (isMute()) { s.textContent = "🔇 الفيديو بدون كلام – أصوات المكان فقط."; return; }
+    if (isMute()) { s.textContent = "الفيديو بدون كلام – أصوات المكان فقط."; return; }
     const secs = curSeconds();
-    let t = `🎙️ سيتكلم في الفيديو: ${voiceChoiceText()}`;
+    let t = `سيتكلم في الفيديو: ${voiceChoiceText()}`;
     if (voice.mode === "tts") t += voice.type === "auto" ? " – نختار الشخصية والصوت من فكرتك." : " – والشخصية في الفيديو بنفس العمر والجنس.";
     if (own && voice.mode !== "tts") {
       const d = voice.clip.duration;
@@ -774,9 +774,11 @@
     if (!id) return;
     previewAudio?.pause();
     previewAudio = new Audio(`/api/voices/${encodeURIComponent(id)}/preview`);
-    $("voicePlay").textContent = "⏳"; previewAudio.oncanplay = () => ($("voicePlay").textContent = "🔊 يعمل");
-    previewAudio.onended = previewAudio.onerror = () => ($("voicePlay").textContent = "▶️ اسمع");
-    previewAudio.play().catch(() => ($("voicePlay").textContent = "▶️ اسمع"));
+    const btn = $("voicePlay"), label = btn.querySelector("span");
+    const show = (state, text) => { btn.dataset.state = state; label.textContent = text; };
+    show("load", "…"); previewAudio.oncanplay = () => show("play", "يعمل");
+    previewAudio.onended = previewAudio.onerror = () => show("", "اسمع");
+    previewAudio.play().catch(() => show("", "اسمع"));
   });
 
   // the customer tells the chat which voice they want
