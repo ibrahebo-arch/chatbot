@@ -226,8 +226,13 @@ async function soundtrack(voice, speech, seconds) {
   const mode = voice?.mode || "tts";
   if (mode === "none") return null;
   const note = (f) => (f.cut ? "قُصّ ليناسب طول الفيديو" : f.tempo > 1 ? "سُرّع قليلاً ليناسب طول الفيديو" : "");
+  // fitting is an improvement, never a reason to lose the voice: if ffmpeg cannot fit it, the track is used as it is
+  const fitOr = (mp3, allowSpeedUp) => voices.fit(mp3, seconds, allowSpeedUp).catch((e) => {
+    console.error(`voice fit: ${String(e.message).slice(0, 100)} – track used as it is`);
+    return { mp3, tempo: 1, cut: false };
+  });
   if (mode === "own" && voice.clip?.mp3) {
-    const f = await voices.fit(voice.clip.mp3, seconds, false); // the customer's own voice: cut if needed, never sped up
+    const f = await fitOr(voice.clip.mp3, false); // the customer's own voice: cut if needed, never sped up
     return { mp3: f.mp3, info: { mode, label: "صوتك كما سجّلته", clip: voice.clip.id, fitted: note(f) } };
   }
   const chosen = voice?.preset && voice.preset !== "auto" ? { preset: voice.preset } : null;
@@ -235,7 +240,7 @@ async function soundtrack(voice, speech, seconds) {
   const v = voices.pick(chosen || type);
   const text = mode === "convert" ? clean(voice.clip?.transcript) : clean(speech?.text);
   if (!v || !text) return null;
-  const f = await voices.fit(await voices.speak(v, { text, lang: speech?.lang || voice.clip?.lang || "ar-IQ", tone: speech?.tone || "" }), seconds, true);
+  const f = await fitOr(await voices.speak(v, { text, lang: speech?.lang || voice.clip?.lang || "ar-IQ", tone: speech?.tone || "" }), true);
   return { mp3: f.mp3, info: { mode, preset: v.id, label: mode === "convert" ? `كلامك بصوت: ${v.label}` : v.label, clip: voice.clip?.id || null, fitted: note(f) } };
 }
 
