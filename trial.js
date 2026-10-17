@@ -238,10 +238,10 @@ async function soundtrack(voice, speech, seconds) {
   const chosen = voice?.preset && voice.preset !== "auto" ? { preset: voice.preset } : null;
   const type = { ...voices.typeFromSpeech(speech || {}), ...(voices.GENDERS.includes(voice?.gender) ? { gender: voice.gender } : {}), ...(voices.AGES.includes(voice?.age) ? { age: voice.age } : {}) };
   const v = voices.pick(chosen || type);
-  const text = mode === "convert" ? clean(voice.clip?.transcript) : clean(speech?.text);
+  const text = mode === "convert" ? clean(voice?.clip?.transcript) : clean(speech?.text);
   if (!v || !text) return null;
-  const f = await fitOr(await voices.speak(v, { text, lang: speech?.lang || voice.clip?.lang || "ar-IQ", tone: speech?.tone || "" }), true);
-  return { mp3: f.mp3, info: { mode, preset: v.id, label: mode === "convert" ? `كلامك بصوت: ${v.label}` : v.label, clip: voice.clip?.id || null, fitted: note(f) } };
+  const f = await fitOr(await voices.speak(v, { text, lang: speech?.lang || voice?.clip?.lang || "ar-IQ", tone: speech?.tone || "" }), true);
+  return { mp3: f.mp3, info: { mode, preset: v.id, label: mode === "convert" ? `كلامك بصوت: ${v.label}` : v.label, clip: voice?.clip?.id || null, fitted: note(f) } };
 }
 
 /**
