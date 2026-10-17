@@ -230,6 +230,22 @@ body.free-mode .mbar .m-free { display: block; }
 .icon.send:hover { background: var(--sand2); }
 /* voice: mic button, check card, voice box */
 .icon.mic { position: relative; }
+/* voice mark: gradient mic with sound waves (chat mic button + «الصوت في الفيديو») */
+.vmark { width: 24px; height: 24px; overflow: visible; }
+.vmark .vm-cap { fill: url(#vgrad); }
+.vmark .vm-arm, .vmark .vm-w { fill: none; stroke: url(#vgrad); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.vmark .vm-w { stroke: var(--teal); transform-box: fill-box; transform-origin: center; opacity: .55; }
+.icon.mic:hover .vm-w { opacity: 1; animation: vwave .9s ease-in-out infinite; }
+.icon.mic:hover .vm-w.w2 { animation-delay: .2s; }
+.icon.mic.rec .vm-cap { fill: #fff; }
+.icon.mic.rec .vm-arm, .icon.mic.rec .vm-w { stroke: #fff; opacity: 1; animation: vwave .6s ease-in-out infinite; }
+.icon.mic.rec .vm-w.w2 { animation-delay: .15s; }
+.vbadge { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(228,179,99,.22), rgba(79,209,197,.12)); box-shadow: inset 0 0 0 1px rgba(228,179,99,.35); }
+.vbadge .vmark { width: 20px; height: 20px; }
+.vbadge .vm-w { opacity: 1; animation: vwave 1.6s ease-in-out infinite; }
+.vbadge .vm-w.w2 { animation-delay: .3s; }
+@keyframes vwave { 0%, 100% { transform: scaleY(.6); } 50% { transform: scaleY(1.5); } }
+@media (prefers-reduced-motion: reduce) { .vmark .vm-w { animation: none !important; } }
 .icon.mic.rec { background: var(--red); border-color: var(--red); color: #fff; animation: recpulse 1.2s ease-in-out infinite; }
 .icon.mic .rec-time { position: absolute; bottom: -7px; inset-inline: 0; margin: auto; width: max-content; font-size: .66rem; font-weight: 700; background: var(--red); color: #fff; border-radius: 999px; padding: 0 5px; }
 .icon.mic .rec-time:empty { display: none; }

@@ -57,10 +57,11 @@
           </div>
 
           <div class="tray" id="tray" hidden></div>
+          <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="vgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3cf8a"/><stop offset=".55" stop-color="#e4b363"/><stop offset="1" stop-color="#4fd1c5"/></linearGradient></defs></svg>
           <form class="composer" id="composer">
             <input type="file" id="fileInput" multiple accept="image/*,video/*,audio/*,.mp4,.mov,.webm,.heic,.mp3,.m4a,.wav,.ogg" hidden />
             <button type="button" class="icon mic" id="micBtn" title="سجّل صوتك – يُفحص ثم يُستخدم في الفيديو" aria-label="تسجيل صوت">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+              <svg class="vmark" viewBox="0 0 32 32" aria-hidden="true"><rect class="vm-cap" x="12" y="4" width="8" height="14" rx="4"/><path class="vm-arm" d="M8.5 15a7.5 7.5 0 0 0 15 0M16 22.5V27M12.5 27h7"/><path class="vm-w w1" d="M4.5 13v4"/><path class="vm-w w2" d="M1.5 14.2v1.6"/><path class="vm-w w1" d="M27.5 13v4"/><path class="vm-w w2" d="M30.5 14.2v1.6"/></svg>
               <span class="rec-time" id="micTime"></span>
             </button>
             <button type="button" class="icon" id="attachBtn" title="إرفاق صورة أو فيديو أو تسجيل صوتي" aria-label="إرفاق">
@@ -100,7 +101,7 @@
               </div>
             </div>
             <div class="field free-voice" id="voiceField">
-              <h3 class="voice-title"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg> الصوت في الفيديو</h3>
+              <h3 class="voice-title"><span class="vbadge"><svg class="vmark" viewBox="0 0 32 32" aria-hidden="true"><rect class="vm-cap" x="12" y="4" width="8" height="14" rx="4"/><path class="vm-arm" d="M8.5 15a7.5 7.5 0 0 0 15 0M16 22.5V27M12.5 27h7"/><path class="vm-w w1" d="M4.5 13v4"/><path class="vm-w w2" d="M1.5 14.2v1.6"/><path class="vm-w w1" d="M27.5 13v4"/><path class="vm-w w2" d="M30.5 14.2v1.6"/></svg></span> الصوت في الفيديو</h3>
               <div class="lang-row">
               <label for="trialVoice">لغة الكلام</label>
               <select id="trialVoice">
