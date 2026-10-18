@@ -17,6 +17,8 @@ tar -czf "$DIR/storage.tar.gz" -C /var/lib/vi-iraq storage
 # settings (contains secrets: this folder is root-only)
 cp /opt/vi-iraq/.env "$DIR/env"
 tar -czf "$DIR/server-config.tar.gz" /etc/nginx/sites-available /etc/systemd/system/vi-iraq.service /root/setup-vps.sh 2>/dev/null || true
+# private project docs (VI-Iraq.md, CLAUDE.md), if present
+[ -d /root/vi-iraq-docs ] && cp -r /root/vi-iraq-docs "$DIR/docs"
 sudo -u viiraq git -C /opt/vi-iraq rev-parse HEAD > "$DIR/commit.txt"
 (cd "$DIR" && sha256sum * > SHA256SUMS)
 

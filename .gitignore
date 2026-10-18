@@ -178,3 +178,7 @@ uploads/
 !.env.example
 data/
 VI-Iraq.md
+
+# private Claude Code instructions (load VI-Iraq.md)
+CLAUDE.md
+CLAUDE.local.md
