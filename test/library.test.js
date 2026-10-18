@@ -42,6 +42,8 @@ test("Arabic matching is whole-word with prefixes and endings", () => {
   assert.ok(!ids("طبل وزرنة").includes("sound.phone"), "«رنة» inside «زرنة» does not count");
   assert.ok(ids("a barista making latte in Dubai").includes("item.coffee-machine"));
   assert.ok(ids("two cats playing").includes("animal.cat"), "English plural");
+  assert.ok(ids("بنت تلعب ويه قطتها").includes("animal.cat"), "ة becomes ت before an ending");
+  assert.ok(!ids("اريد نفس الشي بس الناس").some((id) => id.startsWith("sound.breath")), "everyday words are ignored");
 });
 
 test("the note lists core and matches and stays a reasonable size", () => {

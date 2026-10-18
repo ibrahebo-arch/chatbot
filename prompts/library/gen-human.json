@@ -1,0 +1,987 @@
+[
+ {
+  "id": "human.gen.embarrassment-blushing",
+  "domain": "human",
+  "topic": "embarrassment and blushing",
+  "names": [
+   "إحراج",
+   "خجل",
+   "احمرار الوجه",
+   "انحرج",
+   "مستحي",
+   "embarrassment",
+   "blushing"
+  ],
+  "body": "When a compliment draws unexpected attention, the person pauses for a beat. Their eyebrows lift, eyes flick toward nearby faces, then drop to the floor. A small, closed-mouth smile appears as they press their lips together. Warmth may show as pink on lighter cheeks and ears, or as a subtle change in tone and sheen on darker skin. One hand touches the cheek or adjusts a sleeve; the shoulders draw inward before relaxing. A quiet breath or short laugh escapes. If they speak, the voice is softer and slightly quicker than usual, perhaps saying a brief thank-you."
+ },
+ {
+  "id": "human.gen.pride",
+  "domain": "human",
+  "topic": "pride",
+  "names": [
+   "فخر",
+   "اعتزاز",
+   "فخور",
+   "مفتخر",
+   "رافع راسه",
+   "pride",
+   "proud"
+  ],
+  "body": "After finishing something difficult, the person stands a little taller, shoulders settling back rather than tensing. Their chin rises slightly and their eyes stay on the finished work, then meet another person's eyes. The mouth forms a steady, genuine smile, with cheeks lifting but no need for exaggerated posing. Their hands may smooth a shirt, rest loosely at their sides, or hold the object carefully for someone to see. The movement is measured: a deep inhale, a brief pause, then an easy exhale. A pleased little laugh or warm, level voice accompanies a few simple words about what they completed."
+ },
+ {
+  "id": "human.gen.nervous-before-speech",
+  "domain": "human",
+  "topic": "nervousness before a speech",
+  "names": [
+   "توتر قبل الخطاب",
+   "قلق قبل الإلقاء",
+   "متوتر قبل الكلام",
+   "مرتبك بالخطاب",
+   "nervous before speech",
+   "speech nerves"
+  ],
+  "body": "Just before speaking to a seated audience, the person holds their notes a little too tightly. The paper bends and may make a faint rustle. Their shoulders sit high; one foot shifts, then becomes still when they notice it. Eyebrows draw together, eyes scan the first line and briefly look up. The mouth opens for a silent rehearsal, lips moisten, and a small swallow moves the throat. Their fingers straighten a page or grip the lectern edge. A shallow breath sounds close to the microphone. The first words may come out thin or fast, then slow as they exhale."
+ },
+ {
+  "id": "human.gen.relief-after-good-news",
+  "domain": "human",
+  "topic": "relief after good news",
+  "names": [
+   "ارتياح بعد خبر سار",
+   "فرج بعد خبر زين",
+   "ارتاح من سمع الخبر",
+   "خبر مفرح وراحة",
+   "relief after good news",
+   "relieved"
+  ],
+  "body": "As the good news becomes clear, the person's tense expression loosens in stages. Their eyes widen for an instant, then soften; the eyebrows lift and settle. The mouth opens on a surprised breath before turning into a broad smile. Shoulders drop visibly, and a hand that was gripping a phone or bag relaxes. They may press a palm to the chest, lean back, or reach for a nearby loved one's hand. A long exhale comes first, followed by a breathy laugh or a quiet, repeated question to confirm what they heard. Their voice grows warmer and steadier over the next few seconds."
+ },
+ {
+  "id": "human.gen.light-comic-jealousy",
+  "domain": "human",
+  "topic": "jealousy (light, comic)",
+  "names": [
+   "غيرة خفيفة",
+   "غيرة مضحكة",
+   "يغار بمزح",
+   "غيران شوي",
+   "light jealousy",
+   "comic jealousy"
+  ],
+  "body": "Watching a friend receive an extra slice of cake, the person glances from the plate to the friend and back again. One eyebrow rises while the other stays low; their eyes narrow playfully, without a hard stare. Their mouth pulls into an exaggerated pout that breaks into a smile. They fold their arms for a second, then point at their own empty plate or hold out a hand. The body leans toward the cake, pauses theatrically, and retreats. A mock-offended huff or tiny tongue click is followed by a joking remark in a light voice. The friend can easily see the joke."
+ },
+ {
+  "id": "human.gen.boredom-waiting",
+  "domain": "human",
+  "topic": "boredom waiting",
+  "names": [
+   "ملل الانتظار",
+   "طفشان من الانتظار",
+   "ضايج من الانتظار",
+   "زهقان ينتظر",
+   "bored waiting",
+   "waiting boredom"
+  ],
+  "body": "While waiting in a quiet room, the person sinks slightly into a chair, with shoulders rounded and feet planted or gently swinging. Their eyes move from the clock to the door, then linger without focusing on anything. The face is slack rather than upset: eyebrows neutral, mouth closed or briefly opening in a yawn. Fingers tap an uneven rhythm on a knee, stop, and turn a phone over without unlocking it. A soft sigh accompanies a long exhale. If someone asks how long they have waited, the reply is slow and flat at first, then returns to a normal voice as the conversation begins."
+ },
+ {
+  "id": "human.gen.comic-bad-food-disgust",
+  "domain": "human",
+  "topic": "disgust at bad food (comic)",
+  "names": [
+   "اشمئزاز من الأكل",
+   "قرف من الأكل",
+   "الأكل مو طيب",
+   "طعم يخبل بالعكس",
+   "comic food disgust",
+   "bad food reaction"
+  ],
+  "body": "After one small taste of an unpleasant dish, the person freezes with the spoon still raised. Their nose wrinkles, eyebrows pinch together, and eyes squeeze nearly shut before darting toward a glass of water. The lips purse, then the mouth opens slightly as they breathe out through it; they do not spit or make a mess. Their free hand fans the air near the chin while the shoulders pull up in a brief shudder. A tiny cough, hum, or squeaky exhale sells the comic beat. They set the spoon down gently and deliver a polite, strained comment in a higher voice."
+ },
+ {
+  "id": "human.gen.contempt",
+  "domain": "human",
+  "topic": "contempt",
+  "names": [
+   "ازدراء",
+   "احتقار",
+   "نظرة ازدراء",
+   "نظرة استحقار",
+   "contempt",
+   "contemptuous look"
+  ],
+  "body": "In response to a boastful remark, the person holds still for a beat rather than making a large gesture. One corner of the mouth lifts while the other remains flat; the lips may press together. Their eyes narrow slightly and look at the speaker, then turn away. One eyebrow rises a little. The chin tilts up by a small amount, shoulders remain squared, and the hands stay still or fold loosely across the body. A short breath through the nose may be audible. If they answer, the voice is cool, quiet, and clipped. The expression fades once the exchange ends, without shouting or threat."
+ },
+ {
+  "id": "human.gen.gratitude",
+  "domain": "human",
+  "topic": "gratitude",
+  "names": [
+   "gratitude",
+   "thankful",
+   "امتنان",
+   "شكر",
+   "ممتن",
+   "ممنون",
+   "تسلم"
+  ],
+  "body": "After receiving help, the person pauses for a beat and looks toward the giver’s face. The eyes soften, the eyebrows lift slightly, and a small smile opens enough to show a little teeth. One hand may rest briefly over the chest while the shoulders loosen and the body leans forward a few centimetres. They say “thank you” or “تسلم” in a warm, quieter voice, sometimes with a small breathy laugh. The hand drops naturally as conversation resumes. In an Iraqi home, this might happen beside a tea tray under soft afternoon window light, with cups faintly clinking nearby."
+ },
+ {
+  "id": "human.gen.admiration",
+  "domain": "human",
+  "topic": "admiration",
+  "names": [
+   "admiration",
+   "impressed",
+   "إعجاب",
+   "معجب",
+   "انبهار",
+   "عاشت ايدك"
+  ],
+  "body": "Looking at a carefully made object or a skilled performance, the person’s gaze stays fixed on the detail rather than darting around. Their eyebrows rise, eyes widen a little, and their mouth parts before settling into a smile. The head tilts or nods once; hands may come together loosely or gesture toward the work without touching it. A soft “wow,” “ما شاء الله,” or “عاشت إيدك” comes out with a lifted, sincere tone. The reaction grows over a second or two, then eases into closer inspection. Nearby room sounds continue beneath the voice, and light catches the object they are studying."
+ },
+ {
+  "id": "human.gen.nostalgia",
+  "domain": "human",
+  "topic": "nostalgia",
+  "names": [
+   "nostalgia",
+   "reminiscing",
+   "حنين",
+   "نوستالجيا",
+   "ذكريات زمان",
+   "ايام زمان"
+  ],
+  "body": "An old photograph or familiar song draws the person’s attention for several seconds. Their gaze settles, then shifts slightly as if following a memory; the eyelids relax and a small, uneven smile appears. The lips may press together before a quiet exhale. Fingers trace the photograph’s edge or rest around a tea glass, moving slowly and carefully. Their shoulders soften, and they speak in a lower, unhurried voice, perhaps starting with “أتذكر...” before pausing. The expression can carry warmth and sadness at once without requiring tears. Warm lamplight, paper rustling, and distant household sounds keep the moment grounded."
+ },
+ {
+  "id": "human.gen.determination",
+  "domain": "human",
+  "topic": "determination",
+  "names": [
+   "determination",
+   "determined",
+   "إصرار",
+   "عزيمة",
+   "مصمم",
+   "ما استسلم"
+  ],
+  "body": "Before returning to a difficult task, the person takes one steady breath. Their eyes focus on the next step, eyebrows draw slightly together, and the mouth closes into a firm, relaxed line rather than a grimace. The chin levels, shoulders square, and hands set the needed tools in place with controlled movements. A quiet “يلا” or “I can do this” may accompany the first action; the voice is even, not shouted. If something slips, they pause, adjust their grip, and try again. A chair scraping lightly or tools touching a tabletop gives the effort ordinary physical weight."
+ },
+ {
+  "id": "human.gen.excitement-opening-a-gift",
+  "domain": "human",
+  "topic": "excitement opening a gift",
+  "names": [
+   "opening a gift",
+   "gift excitement",
+   "فتح هدية",
+   "يفتح هدية",
+   "فرحة الهدية",
+   "هدية مفاجأة"
+  ],
+  "body": "Holding a wrapped gift, the person looks from the giver to the package with bright, widened eyes. Their eyebrows lift, their smile spreads, and they let out a quick laugh or surprised “آه!” Fingers find a loose edge of tape, peel it back, and pull the paper aside; it crinkles sharply while the box shifts against their palms. They may briefly cover their mouth on seeing what is inside, then lean closer and look up again to thank the giver. The movements are quick but careful enough not to drop the gift. Indoor light glints on glossy wrapping, with nearby voices rising in anticipation."
+ },
+ {
+  "id": "human.gen.shy-first-meeting",
+  "domain": "human",
+  "topic": "shy first meeting",
+  "names": [
+   "shy first meeting",
+   "nervous introduction",
+   "لقاء أول خجول",
+   "تعارف بخجل",
+   "اول لقاء خجول",
+   "مستحي بالتعارف"
+  ],
+  "body": "At an introduction, the person looks at the other face briefly, glances down, then looks back. Their eyebrows lift a touch, and a small closed-mouth smile appears and fades between words. Hands stay close to the body, perhaps lightly holding a bag strap or clasping together; shoulders are slightly raised before easing. They give their name in a soft voice, with a short breath or quiet laugh if they stumble over a word. Any greeting gesture follows the other person’s lead rather than assuming a handshake. In a softly lit room, low conversation continues around the small pause between replies."
+ },
+ {
+  "id": "human.gen.awkward-silence",
+  "domain": "human",
+  "topic": "awkward silence",
+  "names": [
+   "awkward silence",
+   "uncomfortable pause",
+   "صمت محرج",
+   "سكوت محرج",
+   "لحظة احراج",
+   "موقف محرج ساكت"
+  ],
+  "body": "A conversation stops, and neither person immediately fills the gap. One looks toward the other, then at a cup or the floor; the other makes a brief half-smile that does not quite hold. Lips press together, eyebrows rise faintly, and hands adjust a sleeve, turn a phone face down, or shift a glass by a few centimetres. Someone inhales as if to speak, then lets the breath out through the nose. The pause lasts a few noticeable seconds, making the room’s hum, a clock tick, or a spoon against glass suddenly clear. When speech resumes, the first words may come out slightly too quick."
+ },
+ {
+  "id": "human.gen.giggling-fit",
+  "domain": "human",
+  "topic": "giggling fit",
+  "names": [
+   "giggling fit",
+   "can't stop giggling",
+   "نوبة ضحك",
+   "ضحك مكتوم",
+   "قهقهة متواصلة",
+   "ميكدر يوقف ضحك"
+  ],
+  "body": "A small laugh escapes, stops, then returns in several quick bursts. The person’s cheeks lift, eyes narrow and water slightly, and their mouth opens between attempts to regain control. Their shoulders bounce with each breath; one hand may cover the mouth while the other rests on a table for balance. They try to say a few words, but the voice breaks into soft, high chuckles and a snort-like exhale. The fit gradually slows, with a long breath and one last unexpected giggle. In a quiet sitting room, fabric shifts and a chair creaks beneath the laughter; companions may smile without joining in."
+ },
+ {
+  "id": "human.gen.sneezing",
+  "domain": "human",
+  "topic": "sneezing",
+  "names": [
+   "عطاس",
+   "يعطس",
+   "يعطس بالعراقي",
+   "عطسة",
+   "sneezing",
+   "sneeze"
+  ],
+  "body": "A sneeze begins with a quick inhale: the chest lifts, the nose wrinkles, the eyes narrow, and the mouth opens slightly. The head may tip back for a moment, then jerk forward as the eyes squeeze shut and air bursts through the nose and mouth with a sharp “achoo.” The shoulders jump, and a hand, tissue, or bent elbow moves toward the face. There may be one sneeze or several, separated by short breaths. Afterward, the eyes reopen, the face relaxes, and the person may sniff, exhale, or say a brief “excuse me” in a slightly nasal voice."
+ },
+ {
+  "id": "human.gen.coughing",
+  "domain": "human",
+  "topic": "coughing",
+  "names": [
+   "سعال",
+   "كحة",
+   "يكح",
+   "يسعل",
+   "coughing",
+   "cough"
+  ],
+  "body": "A cough starts with a small breath in and a brief tightening of the chest and throat. The mouth opens, the chin pushes forward, and air comes out in a short, rough “kh” or a deeper, hollow burst. The eyes may narrow and the brows draw together; the head and shoulders dip with each cough. One hand often covers the mouth with a tissue or bent elbow, while the other stays at the side or rests on the chest. Several coughs can follow in uneven bursts, with audible inhales between them. The person then swallows, clears the throat, or resumes speaking with a temporarily rough voice."
+ },
+ {
+  "id": "human.gen.hiccups",
+  "domain": "human",
+  "topic": "hiccups",
+  "names": [
+   "فواق",
+   "حازوقة",
+   "شهقة متكررة",
+   "يحازك",
+   "hiccups",
+   "hiccuping"
+  ],
+  "body": "A hiccup is a sudden, small jolt through the upper chest and throat. The shoulders lift a fraction, the head gives a quick nod, and a clipped “hic” escapes before the person can finish a breath or word. The mouth may part briefly; the eyes blink or widen in surprise, while the rest of the face stays mostly relaxed. Hands might pause over a cup, phone, or table, then continue moving. Hiccups recur at irregular intervals rather than in a steady rhythm. Between them, breathing and speech sound ordinary, though a sentence may stop abruptly and restart after an embarrassed little exhale."
+ },
+ {
+  "id": "human.gen.stretching-after-waking",
+  "domain": "human",
+  "topic": "stretching after waking",
+  "names": [
+   "التمدد بعد الاستيقاظ",
+   "يتمطى بعد النوم",
+   "تمطي الصبح",
+   "مط الصبح",
+   "morning stretch",
+   "stretching after waking"
+  ],
+  "body": "Just after waking, the person blinks slowly, with heavy eyelids and a relaxed, slightly open mouth. They draw a deeper breath as both arms reach overhead or out to the sides, fingers spreading before curling loosely. The back arches gently, the shoulders rise, and the legs may straighten under a blanket, pulling the fabric taut. A quiet yawn, nasal hum, or long exhale may accompany the stretch; speech, if any, sounds soft and sleepy. The pose holds for a second or two, then releases gradually. Arms drop, the spine settles, and the eyes focus on the room in the soft light beside the bed."
+ },
+ {
+  "id": "human.gen.scratching-the-head",
+  "domain": "human",
+  "topic": "scratching the head",
+  "names": [
+   "حك الرأس",
+   "حك فروة الرأس",
+   "يحك راسه",
+   "حك الراس",
+   "scratching head",
+   "head scratch"
+  ],
+  "body": "One hand rises to the scalp, with fingers bent so the fingertips or nails make short, light back-and-forth movements through the hair. Small strands shift and lift, then fall back into place. The head may tilt toward the hand while the shoulders remain loose. The face can stay neutral or show mild concentration: brows slightly drawn, eyes glancing aside, and lips closed or parted without speaking. A faint dry rustle may be audible close to the microphone. After a few seconds, the fingers stop, slide out of the hair, and lower; the person may smooth a disturbed patch with the palm."
+ },
+ {
+  "id": "human.gen.rubbing-tired-eyes",
+  "domain": "human",
+  "topic": "rubbing tired eyes",
+  "names": [
+   "فرك العينين",
+   "يفرك عيونه",
+   "يفرك عيونه من التعب",
+   "دعك العينين",
+   "rubbing tired eyes",
+   "tired eye rub"
+  ],
+  "body": "The eyelids close before the hands reach the face. Fingertips or the heels of the palms press lightly around the closed eyes, moving in small circles or a slow sweep across the brow and upper cheeks. The shoulders hunch a little, and the head dips. The mouth stays relaxed, sometimes opening for a quiet yawn or a long breath out; any words sound low and sleepy. The skin around the eyes shifts under the hands, and there may be a soft brush of skin or fabric. When the hands fall away, the person blinks several times and looks around with a gradual, unfocused-to-alert gaze."
+ },
+ {
+  "id": "human.gen.biting-nails",
+  "domain": "human",
+  "topic": "biting nails",
+  "names": [
+   "قضم الأظافر",
+   "يعض أظافره",
+   "يقضم اظافره",
+   "عض الاظافر",
+   "biting nails",
+   "nail biting"
+  ],
+  "body": "A hand rises toward the mouth, and one fingertip rests between the front teeth. The lips close around the tip while the jaw makes tiny, repeated nibbling motions; the other fingers curl toward the palm. The eyes may stay fixed on something nearby or drift downward, and the brow can tighten slightly. The shoulders often fold forward, keeping the movement small and close to the face. Faint clicks or soft mouth sounds may be heard at close range, interrupted by nose breaths. Speech pauses while the finger is at the mouth. After a few seconds, the hand lowers, then may return with another finger."
+ },
+ {
+  "id": "human.gen.tapping-fingers",
+  "domain": "human",
+  "topic": "tapping fingers",
+  "names": [
+   "نقر الأصابع",
+   "طقطقة الأصابع على الطاولة",
+   "يدگ بأصابعه",
+   "نقر الاصابع",
+   "finger tapping",
+   "tapping fingers"
+  ],
+  "body": "A hand rests on a table, armrest, or knee while one or more fingers lift a short distance and drop in repeated taps. The fingertips flatten slightly on contact, then spring back; the wrist usually stays still. On a hard tabletop the sound is crisp and hollow, while fabric gives a muted pat. The taps may form an even beat or speed up, pause, and start again. The face need not change: eyes can follow a conversation or a screen, lips remain closed or move with normal speech, and the shoulders stay relaxed. If attention shifts to the hand, the person may look down and stop mid-pattern."
+ },
+ {
+  "id": "human.gen.fixing-hair-in-mirror",
+  "domain": "human",
+  "topic": "fixing hair in a mirror",
+  "names": [
+   "ترتيب الشعر أمام المرآة",
+   "تعديل الشعر بالمراية",
+   "تسريح الشعر بالمراية",
+   "fixing hair in mirror",
+   "adjusting hair in mirror"
+  ],
+  "body": "A person stands close to a wall mirror, shoulders angled slightly forward, looking at their reflected hairline rather than at the camera. One hand lifts a loose strand while the other smooths it down or tucks it behind an ear; the reflection follows each movement without delay. Their eyebrows draw together briefly in concentration, lips rest closed, then soften when the strand stays in place. Fingers make small, repeated passes, not broad sweeping motions. Hair springs back a little after each touch. A faint brush of fingers through hair is audible; there is usually no voice. Bathroom or bedroom light catches individual strands and the mirror’s surface."
+ },
+ {
+  "id": "human.gen.adjusting-headscarf",
+  "domain": "human",
+  "topic": "adjusting a headscarf",
+  "names": [
+   "تعديل الحجاب",
+   "ترتيب الحجاب",
+   "أعدل حجابي",
+   "adjusting headscarf",
+   "fixing hijab"
+  ],
+  "body": "A person checks the drape of a headscarf in a mirror or phone screen. Both hands lift the fabric near the temples, then one hand smooths a fold under the chin or across a shoulder. The cloth bends softly, forming new creases that settle under gravity; an existing pin or magnet stays in place. Their eyes move between the face-framing edges, brows slightly focused, mouth closed and relaxed. The head tilts a few degrees to compare both sides, then returns upright. Fabric makes a quiet rustle against itself. There is usually no speech. Soft indoor light reveals the scarf’s weave and gentle folds without making it look rigid."
+ },
+ {
+  "id": "human.gen.adjusting-tie",
+  "domain": "human",
+  "topic": "adjusting a tie",
+  "names": [
+   "تعديل ربطة العنق",
+   "ترتيب الكرافة",
+   "أضبط الكرافة",
+   "adjusting tie",
+   "straightening necktie"
+  ],
+  "body": "A person faces a mirror in a collared shirt, looking down briefly at the knot and then up at its reflection. One hand grips the narrow end or holds the collar steady while the other slides the knot upward in a short, controlled pull. The tie swings slightly before hanging flat against the shirt, its pointed end centered. Their eyebrows narrow in concentration; lips press together, then relax. The chin lifts as two fingertips flatten the knot and collar. Cloth makes a faint sliding sound, sometimes followed by a quiet exhale but no spoken words. Indoor light shows the tie’s texture and the shirt’s small folds."
+ },
+ {
+  "id": "human.gen.checking-watch",
+  "domain": "human",
+  "topic": "checking a watch",
+  "names": [
+   "النظر إلى الساعة",
+   "تفقد ساعة اليد",
+   "أشيك عالساعة",
+   "checking a watch",
+   "looking at wristwatch"
+  ],
+  "body": "A person raises one forearm toward chest height and turns the wrist until the watch face catches the light. Their eyes drop directly to the dial or screen; the head dips a little, while the other arm stays loose or briefly steadies a sleeve. Brows may lift slightly as they read, and the mouth remains closed, sometimes with a small exhale. After a second or two, the wrist rotates back and the arm falls naturally. A metal bracelet gives a light link rattle; a soft strap is nearly silent. The watch stays snug rather than sliding far up the arm. This fits an everyday room, street or workplace."
+ },
+ {
+  "id": "human.gen.wiping-sweat",
+  "domain": "human",
+  "topic": "wiping sweat",
+  "names": [
+   "مسح العرق",
+   "مسح التعرق",
+   "أمسح عرقي",
+   "wiping sweat",
+   "wiping perspiration"
+  ],
+  "body": "A person’s forehead has a slight sheen, with a few small beads near the hairline or temples. They blink, lift the back of one hand or a cloth, and draw it once across the forehead; the skin briefly creases beneath the pressure. Their eyes narrow against the light, brows tense, and lips part for a breath before closing. The shoulders rise subtly with the inhale, then ease down. If a cloth is used, it folds against the skin and makes a faint rubbing sound; breathing may be audible, but speech is not necessary. Warm daylight or overhead light catches the remaining moisture without making the face look drenched."
+ },
+ {
+  "id": "human.gen.single-clap-idea",
+  "domain": "human",
+  "topic": "clapping hands once with an idea",
+  "names": [
+   "التصفيق مرة عند تذكر فكرة",
+   "صفقة وحدة جتني فكرة",
+   "أصفق مرة من تجيني فكرة",
+   "single clap idea",
+   "one clap realization"
+  ],
+  "body": "A person pauses mid-thought, eyes shifting upward for a beat before focusing forward. Their eyebrows rise, mouth opens into a small smile, and both hands move together for one clear clap at chest height. The palms meet flat with a single sharp, dry sound, then separate immediately; there is no repeated applause. The shoulders lift slightly at the moment of contact and settle as the person leans forward, ready to speak. A short intake of breath or a quiet “Ah!” may follow the clap in a natural voice. Fingers relax afterward rather than remaining stiff. Ordinary room light reveals the quick hand motion and alert facial expression."
+ },
+ {
+  "id": "human.gen.facepalm",
+  "domain": "human",
+  "topic": "facepalm",
+  "names": [
+   "وضع اليد على الوجه",
+   "ضربة كف على الجبهة",
+   "حط إيده على وجهه",
+   "facepalm",
+   "palm to forehead"
+  ],
+  "body": "A person reacts to a small mistake by closing their eyes for a moment and bringing one open hand to the forehead. The palm lands lightly above the brows, fingers spreading toward the hairline rather than striking the face. Their mouth tightens or opens for a brief, quiet sigh; the chin tips down and shoulders droop a little. After a second, the hand slides off or lowers, the eyes reopen, and the person looks back at what happened. Skin and hair make almost no sound beyond a faint touch; there may be a soft exhale or an understated spoken “Oh.” The gesture reads clearly in ordinary indoor light."
+ },
+ {
+  "id": "human.gen.thumbs-up",
+  "domain": "human",
+  "topic": "thumbs up",
+  "names": [
+   "إشارة الإبهام للأعلى",
+   "علامة موافقة بالإبهام",
+   "إبهام لفوك",
+   "thumbs up",
+   "thumb up gesture"
+  ],
+  "body": "A person bends one elbow and raises a hand near shoulder or chest height, fingers curled into the palm and thumb extended straight upward. The wrist stays relaxed, with the thumb’s pad facing sideways rather than toward the camera. Their eyes meet the other person’s gaze; eyebrows lift slightly, and the mouth forms a small, natural smile. The hand holds still for a beat, perhaps giving one short upward pulse, then lowers. Clothing shifts softly at the elbow, but the gesture itself is silent. A brief, warm “Okay” may accompany it in a normal speaking voice. Clear light separates the thumb’s outline from the background."
+ },
+ {
+  "id": "human.gen.waving-goodbye",
+  "domain": "human",
+  "topic": "waving goodbye",
+  "names": [
+   "التلويح مودعاً",
+   "التلويح باليد للوداع",
+   "يودع بيده",
+   "يلوّح باي",
+   "waving goodbye",
+   "goodbye wave"
+  ],
+  "body": "The person turns toward someone leaving, with the face open and a small smile lifting the mouth corners. The eyes follow the other person, briefly narrowing with the smile. One hand rises beside the shoulder, palm facing outward and fingers comfortably apart. The wrist rocks the hand side to side two or three times; the elbow stays nearly still, and the hand settles as the person turns away. The other arm hangs naturally, and the shoulders remain relaxed. A soft “bye” or “مع السلامة” may accompany the first wave, followed by a light breath. In daylight, the moving fingers cast brief shadows across the face."
+ },
+ {
+  "id": "human.gen.pointing-at-something",
+  "domain": "human",
+  "topic": "pointing at something",
+  "names": [
+   "الإشارة بالإصبع",
+   "يشير إلى شيء",
+   "يدل بإيده",
+   "يأشر على شي",
+   "pointing at something",
+   "pointing gesture"
+  ],
+  "body": "The person notices an object and turns the face toward it first. The eyes fix on the target, then glance back at the companion to check that they are looking. The mouth opens slightly as if saying “there” or “هناك,” in a short, conversational voice. One arm extends toward the object with the index finger straight and the other fingers loosely curled; the wrist aligns with the forearm rather than snapping forward. The torso leans a little in the same direction while the shoulders remain loose. After a second, the hand lowers. Clothing rustles faintly with the movement. The gesture points to the object, not into anyone’s face."
+ },
+ {
+  "id": "human.gen.shrugging-shoulders",
+  "domain": "human",
+  "topic": "shrugging shoulders",
+  "names": [
+   "هز الكتفين",
+   "رفع الكتفين بحيرة",
+   "يهز كتوفه",
+   "يرفع كتوفه",
+   "shrugging shoulders",
+   "shoulder shrug"
+  ],
+  "body": "The person faces the questioner with a puzzled or uncertain look. Both shoulders lift toward the ears together, hold for a brief beat, then drop under their own weight. The elbows may bend outward while the hands turn palm-up near the waist, fingers relaxed and slightly spread. The eyes widen a little or glance aside; the brows rise, and the mouth makes a small uneven line or opens to say “I don’t know” or “ما أدري.” The voice is brief and matter-of-fact, sometimes preceded by a quiet exhale. The torso stays upright. Loose sleeves bunch at the raised shoulders, then fall back into place."
+ },
+ {
+  "id": "human.gen.rolling-eyes-comic",
+  "domain": "human",
+  "topic": "rolling eyes (comic)",
+  "names": [
+   "تدوير العينين بشكل كوميدي",
+   "تقليب العينين بمزاح",
+   "يقلب عيونه مزح",
+   "يدوّر عيونه ضحك",
+   "comic eye roll",
+   "playful eye roll"
+  ],
+  "body": "In a playful reaction, the person holds the head mostly still while both eyes travel upward in a visible arc, briefly showing more white below the irises, then return to the companion. The brows lift before the glance and settle afterward. The mouth pulls into a crooked, restrained smile rather than a hard frown. One hand might pause mid-gesture or rest at the hip; the shoulders rise a fraction with a small breath and relax. The action takes about a second and reads clearly at conversational distance. A soft huff or amused “oh, come on” can accompany it, with a teasing voice. The face remains relaxed afterward."
+ },
+ {
+  "id": "human.gen.winking",
+  "domain": "human",
+  "topic": "winking",
+  "names": [
+   "الغمز بالعين",
+   "غمزة عين",
+   "يغمز",
+   "يغمز بعينه",
+   "winking",
+   "one-eye wink"
+  ],
+  "body": "The person faces a companion and makes brief eye contact. One eyelid closes firmly for a fraction of a second while the other eye stays open and directed at the companion; the closed-side cheek lifts slightly. The mouth forms a small, one-sided smile, then returns to a neutral shape as the eyelid opens. The head may tip a few degrees, but the shoulders and torso remain relaxed. Hands continue whatever quiet action they were doing or rest at the sides; they do not need to imitate the wink. There is no sound from the eye movement itself. A short amused breath or softly spoken “okay” may follow, with an easy voice."
+ },
+ {
+  "id": "human.gen.raising-one-eyebrow",
+  "domain": "human",
+  "topic": "raising one eyebrow",
+  "names": [
+   "رفع حاجب واحد",
+   "رفع أحد الحاجبين",
+   "يرفع حاجب واحد",
+   "يرفع حاجبه",
+   "raising one eyebrow",
+   "single eyebrow raise"
+  ],
+  "body": "The person looks directly at someone or at an unexpected object. One eyebrow arches upward while the other stays near its resting line, creating an uneven shape above the eyes. The raised-side eye opens slightly wider; the gaze holds steady for a beat, then blinks. The mouth stays closed, perhaps with one corner lifting into a faint smile or the lips parting to ask “really?” in a quiet, questioning voice. The head tilts a little, while the shoulders stay level and the hands remain still or lightly hold an everyday object. After a second or two, the brow lowers smoothly. Side light makes the changing brow crease visible."
+ },
+ {
+  "id": "human.gen.pouting",
+  "domain": "human",
+  "topic": "pouting",
+  "names": [
+   "تقطيب الشفتين بزعل",
+   "زم الشفتين بدلال",
+   "يزم شفايفه",
+   "يسوي بوز",
+   "pouting",
+   "pouty lips"
+  ],
+  "body": "The person presses the lips together and pushes them slightly forward, making a small rounded pout rather than opening the mouth. The cheeks tighten near the corners of the lips. The eyes glance toward the other person, then briefly down; the brows draw together a little. The chin dips, and the shoulders may round slightly while the arms rest close to the body. Hands can fold loosely in the lap or hold an object without gripping it. The expression lasts a few seconds before the lips relax. A faint nasal exhale or quiet “hm” may accompany it; if the person speaks, the voice is subdued. Soft frontal light shows the lip shape clearly."
+ },
+ {
+  "id": "human.gen.puffing-cheeks",
+  "domain": "human",
+  "topic": "puffing cheeks",
+  "names": [
+   "نفخ الخدين",
+   "نفخ الوجنتين",
+   "ينفخ خدوده",
+   "ينفخ چفوفه",
+   "puffing cheeks",
+   "puffed cheeks"
+  ],
+  "body": "The person closes the lips and pushes air into the mouth until both cheeks bulge outward into smooth, rounded shapes. The eyes remain open, often widening slightly; the brows may lift. The mouth stays sealed, with the lips pressed into a short horizontal line. The hands rest at the sides or on a table, and the shoulders stay mostly still while the chest holds the breath. After a brief beat, the cheeks flatten as air escapes through parted lips in a soft “pff” sound. The head might tip forward a little with the release, then return upright. In even light, gentle shadows along the jaw make the cheek movement easy to see."
+ },
+ {
+  "id": "human.gen.whistling",
+  "domain": "human",
+  "topic": "whistling",
+  "names": [
+   "صفير",
+   "يصفّر",
+   "يصفر",
+   "تصفير",
+   "whistling",
+   "whistle",
+   "whistling person"
+  ],
+  "body": "The lips narrow into a small, rounded opening while the cheeks tighten slightly. Air passes through the opening in a clear, thin tone that rises or falls as the tongue and lips shift. The jaw stays mostly still; short whistles leave little gaps for breath. The eyes may track something nearby or narrow with concentration. One hand might rest at the side while the other taps a slow beat. The shoulders remain loose, and the chest lifts subtly before a longer note. In a quiet room the sound is sharp and close; outdoors it mixes with footsteps and traffic."
+ },
+ {
+  "id": "human.gen.humming-a-tune",
+  "domain": "human",
+  "topic": "humming a tune",
+  "names": [
+   "دندنة",
+   "يدندن",
+   "همهمة لحن",
+   "يدندن لحن",
+   "humming",
+   "humming a tune",
+   "hum a tune"
+  ],
+  "body": "The lips stay closed or barely parted, with a gentle vibration in the nose and throat. The sound is soft and rounded, shaped into short phrases with brief breaths between them. The cheeks and jaw move only slightly; the eyes may look down or follow a task. A hand sometimes taps a knee or tabletop in time, while the head makes small, unhurried nods. The body keeps doing whatever it was doing, such as preparing tea or folding clothes. Up close, the hum has a faint nasal buzz; across a room, its notes become less distinct."
+ },
+ {
+  "id": "human.gen.singing-along",
+  "domain": "human",
+  "topic": "singing along",
+  "names": [
+   "الغناء مع الأغنية",
+   "يغني ويه الأغنية",
+   "يغني ويا الأغنية",
+   "singing along",
+   "sing along",
+   "singing with music"
+  ],
+  "body": "The singer follows music already playing, entering a phrase a fraction late or early and taking breaths where the recorded voice does. The mouth opens wider on sustained vowels and closes quickly around consonants. Eyebrows lift on a high note; the eyes glance toward a speaker or stay on the road or task ahead. One hand may tap the beat, with shoulders swaying gently rather than moving in perfect time. The voice blends with the recording but remains audibly separate, sometimes dropping to a murmur when a lyric is missed. Between lines, the lips close and the body keeps the rhythm."
+ },
+ {
+  "id": "human.gen.talking-on-phone-while-walking",
+  "domain": "human",
+  "topic": "talking on the phone while walking",
+  "names": [
+   "يتكلم بالتلفون ويمشي",
+   "يحچي بالموبايل ويمشي",
+   "يتحدث بالهاتف أثناء المشي",
+   "walking on the phone",
+   "talking on phone while walking",
+   "phone call while walking"
+  ],
+  "body": "A person walks at a steady pace with a phone held beside one ear or in front of the mouth on speaker. The eyes alternate between the path ahead and nearby obstacles. The free hand gestures briefly, then swings with the stride; the other hand keeps the phone steady despite the body's gentle rise and fall. The mouth forms short replies, pauses to listen, and opens again after the distant voice stops. Footsteps and clothing rustle sit under the conversation. Outdoors, traffic may mask words, prompting the speaker to raise their voice slightly or turn their head away from the noise."
+ },
+ {
+  "id": "human.gen.elderly-man-with-cane",
+  "domain": "human",
+  "topic": "elderly man with a cane",
+  "names": [
+   "رجل مسن بعصا",
+   "رجل كبير بالعكاز",
+   "شايب بعكاز",
+   "elderly man with cane",
+   "older man with walking stick",
+   "old man with cane"
+  ],
+  "body": "An elderly man holds a cane in one hand, its rubber tip meeting the ground before or alongside a foot. His pace may be measured: cane, step, then the other foot, with small shifts of weight visible through his shoulders and hips. His face has fine lines around the eyes and mouth; his gaze moves between the path ahead and uneven ground. His lips part when he speaks, and his free hand may gesture lightly while the cane hand stays firm. The tip makes a soft tap on tile and a duller sound on pavement. Clothing hangs naturally and moves with each step."
+ },
+ {
+  "id": "human.gen.pregnant-woman",
+  "domain": "human",
+  "topic": "pregnant woman",
+  "names": [
+   "امرأة حامل",
+   "امرأة حبلى",
+   "مرة حامل",
+   "حامل",
+   "pregnant woman",
+   "expectant mother"
+  ],
+  "body": "A pregnant woman's abdomen projects beneath a dress, tunic, or other clothing, with its outline changing according to the fabric and stage of pregnancy. She stands with her weight balanced over her feet and may adjust her posture before walking. Her hands can rest at her sides, carry a bag, or briefly support her abdomen or lower back. Her face, eyes, and mouth show ordinary expressions rather than one fixed mood; when speaking, her lips move with a natural conversational voice. Steps make the usual soft footfalls, sometimes at an unhurried pace. Fabric shifts over the rounded shape as she turns or sits."
+ },
+ {
+  "id": "human.gen.athlete",
+  "domain": "human",
+  "topic": "athlete",
+  "names": [
+   "رياضي",
+   "رياضية",
+   "لاعب رياضي",
+   "athlete",
+   "sports athlete",
+   "trained sportsperson"
+  ],
+  "body": "An athlete in training wears clothing suited to the activity, such as a breathable shirt, fitted trousers or shorts, and supportive shoes. During a run, the torso stays relatively stable while bent arms swing opposite the legs. Each foot lands, bears weight, and pushes off; shoe soles make quick, repeated contacts with the ground. The face may tighten with effort, the eyes focus ahead, and the mouth opens as breathing grows audible. Hands stay relaxed rather than clenched. After stopping, the shoulders rise and fall more noticeably for several breaths, and the person may place hands on hips while looking toward a coach or the next marker."
+ },
+ {
+  "id": "human.gen.construction-worker",
+  "domain": "human",
+  "topic": "construction worker",
+  "names": [
+   "عامل بناء",
+   "عامل إنشاءات",
+   "عامل ورشة بناء",
+   "بنّاء",
+   "construction worker",
+   "building worker",
+   "site worker"
+  ],
+  "body": "A construction worker on an active site wears practical work clothes, sturdy boots, and task-appropriate protective gear such as a hard hat and gloves. Dust can settle on fabric seams and boot toes. When lifting a block or tool, the hands grip its edges, the knees bend, and the body shifts weight before standing. The eyes check the placement area; the mouth may open to give a short instruction, heard above scraping, footsteps, and intermittent tool noise. Arms and shoulders move with the load rather than holding it weightlessly. Sunlight catches rough concrete surfaces, while shaded areas under scaffolding appear cooler."
+ },
+ {
+  "id": "human.gen.businesswoman",
+  "domain": "human",
+  "topic": "businesswoman",
+  "names": [
+   "businesswoman",
+   "business woman",
+   "سيدة أعمال",
+   "امرأة أعمال",
+   "ست أعمال",
+   "مديرة شركة"
+  ],
+  "body": "An Iraqi businesswoman may wear a tailored jacket over trousers or a long skirt, or a modest dress; a headscarf is a personal choice, not a fixed part of the look. In an office meeting, she sits upright, glances between the speaker and her notes, and makes brief eye contact before speaking. Her mouth forms clear, measured words; a small smile appears at greetings, then settles into an attentive expression. One hand may hold a pen while the other turns a page or gestures with an open palm. Paper rustles, chairs shift softly, and her voice stays audible over low office conversation."
+ },
+ {
+  "id": "human.gen.influencer",
+  "domain": "human",
+  "topic": "influencer",
+  "names": [
+   "influencer",
+   "content creator",
+   "مؤثر",
+   "مؤثرة",
+   "صانع محتوى",
+   "صانعة محتوى",
+   "انفلونسر"
+  ],
+  "body": "An influencer recording a short video stands or sits within arm’s reach of a phone on a tripod. Clothing and styling vary with the subject: a neat everyday outfit may suit a café review, while a more polished look suits a product demonstration. The face brightens just before recording; the eyes focus on the lens rather than the screen. The mouth shifts from a greeting into quick, clearly shaped sentences, with short pauses between takes. Hands show an object close to the camera, then lower it to avoid blocking the face. A tap starts the recording; nearby traffic or room noise remains faint beneath the voice."
+ },
+ {
+  "id": "human.gen.chef",
+  "domain": "human",
+  "topic": "chef",
+  "names": [
+   "chef",
+   "cook",
+   "شيف",
+   "طباخ",
+   "طباخة",
+   "رئيس طهاة"
+  ],
+  "body": "A chef in a working kitchen wears a clean apron over practical clothing, with hair secured away from food. At the counter, the body leans slightly toward the board without hunching; the eyes check the knife edge, ingredients, and pan in quick turns. The face stays concentrated, and the mouth calls a brief instruction or answers a colleague over kitchen noise. One hand steadies the food with curled fingertips while the other makes controlled, even cuts. The knife taps the board, oil hisses when ingredients enter a hot pan, and steam rises unevenly into the overhead light. Movements become quicker during a busy service, but remain deliberate."
+ },
+ {
+  "id": "human.gen.ceremonial-parade-soldier",
+  "domain": "human",
+  "topic": "soldier in parade (ceremonial)",
+  "names": [
+   "ceremonial soldier",
+   "parade soldier",
+   "جندي في عرض عسكري",
+   "جندي مراسم",
+   "جندي استعراض",
+   "عسكري بالاستعراض"
+  ],
+  "body": "A ceremonial soldier stands in a pressed uniform with aligned seams, polished footwear, and headwear appropriate to the unit. In formation, the chin stays level, shoulders squared, and hands held at the prescribed position. The face is composed; eyes look straight ahead, and the mouth remains closed except when answering a command. At the call, the body moves on a shared beat with the line: a foot lifts, travels forward, and lands firmly while the opposite arm swings in a restrained arc. Bootsteps make a repeated hard rhythm on pavement. A commander’s projected voice cuts through open-air crowd murmur; bright daylight catches buttons and insignia."
+ },
+ {
+  "id": "human.gen.police-officer",
+  "domain": "human",
+  "topic": "police officer",
+  "names": [
+   "police officer",
+   "policeman",
+   "policewoman",
+   "شرطي",
+   "شرطية",
+   "ضابط شرطة",
+   "منتسب شرطة"
+  ],
+  "body": "A police officer on routine public duty wears a uniform with visible identification, sturdy shoes, and equipment secured close to the body. The exact colours and insignia depend on the service. At a roadside checkpoint or public entrance, the officer stands with feet balanced and shoulders relaxed, turning the head to follow an approaching person. The eyes check a document, then return to the person’s face. The mouth gives a short, clear instruction in an even voice; one hand indicates where to stop while the other holds a notebook or radio. Fabric and equipment shift as the officer walks, and a radio may crackle between nearby traffic sounds."
+ },
+ {
+  "id": "human.gen.imam-sheikh",
+  "domain": "human",
+  "topic": "imam / sheikh (respectful)",
+  "names": [
+   "imam",
+   "sheikh",
+   "إمام",
+   "شيخ مسجد",
+   "رجل دين",
+   "ماموستا"
+  ],
+  "body": "An imam or religious sheikh may wear a robe, jacket, or other modest clothing, with headwear varying by community and tradition. In a mosque or gathering space, he stands or sits upright facing listeners. His expression is calm and attentive; the eyes move across the group, and the mouth shapes words at an unhurried pace. A hand may rest on a lectern or lift briefly with an open palm to mark a point. When listening, he pauses, lowers his hand, and gives a slight nod before replying. His voice carries clearly with natural room reverberation; quiet footsteps and the rustle of clothing sit beneath it."
+ },
+ {
+  "id": "human.gen.tribal-sheikh-mudhif",
+  "domain": "human",
+  "topic": "tribal sheikh in a mudhif",
+  "names": [
+   "tribal sheikh",
+   "mudhif sheikh",
+   "شيخ عشيرة",
+   "شيخ بالمضيف",
+   "شيخ بالمظیف",
+   "شيخ بالمظيف"
+  ],
+  "body": "A tribal sheikh receiving guests in a mudhif sits on a floor cushion or low seating beneath tall reed arches. He may wear a dishdasha and an outer cloak, with a headscarf held by an agal; fabrics and colours vary. His face is composed and welcoming, eyes turning toward each arriving guest. His mouth offers a greeting, then pauses to hear the reply. One hand gestures toward a place to sit while the other rests on his knee or accepts a small coffee cup. He rises when appropriate, the cloak falling back into place with a soft swish. Voices, cup taps, and footsteps sound within the reed structure."
+ },
+ {
+  "id": "human.gen.bedouin",
+  "domain": "human",
+  "topic": "Bedouin",
+  "names": [
+   "bedouin",
+   "bedouin person",
+   "بدوي",
+   "بدوية",
+   "أهل البادية",
+   "بدو"
+  ],
+  "body": "A Bedouin person’s appearance depends on region, family, age, and occasion, rather than a single costume. In a desert gathering, a long, loose garment and wrapped head covering can shade the skin from sun and wind. The face narrows against glare; the eyes scan the ground and horizon, then settle on a companion. The mouth gives a brief greeting in an ordinary conversational voice. Hands adjust the head covering or hold a cup, while the body shifts its footing on loose sand. Footsteps make a dry crunch, fabric flutters in gusts, and speech rises slightly when wind passes between people. Light is harsh overhead and softer near sunset."
+ },
+ {
+  "id": "human.gen.kurdish-grandmother",
+  "domain": "human",
+  "topic": "Kurdish grandmother",
+  "names": [
+   "جدة كردية",
+   "الجدة الكردية",
+   "ستي الكردية",
+   "ناني كردية",
+   "kurdish grandmother",
+   "kurdish grandma"
+  ],
+  "body": "An older Kurdish woman sits on a low cushion in a family room, with fine lines around her eyes and hands shaped by age. Her clothing may include a long patterned dress, a fitted vest and a light scarf tied loosely over her hair; fabrics and colours vary by family. She turns toward someone entering, lifts her eyebrows, smiles with her mouth slightly open and extends one hand in greeting. Her other hand steadies her as she rises slowly. Cloth rustles; her steps are soft. Her voice is warm and measured, in the language her family uses, with a brief chuckle between phrases."
+ },
+ {
+  "id": "human.gen.assyrian-family",
+  "domain": "human",
+  "topic": "Assyrian family",
+  "names": [
+   "عائلة آشورية",
+   "عائلة اشورية",
+   "أسرة آشورية",
+   "اهل آشوريين",
+   "assyrian family",
+   "assyrian household"
+  ],
+  "body": "An Assyrian family gathers around a dining table in a lived-in home: adults and children of different ages, with no single required look or style of dress. Plates, bread and small tea glasses sit close together under warm ceiling light. One adult leans forward to pass a dish; a child reaches with both hands, then draws back to let someone else take it. Faces turn toward the speaker, eyes meet, and mouths shift from attentive stillness to smiles. Chairs scrape lightly, glass touches a saucer, and several voices overlap briefly. Conversation may be in Sureth, Arabic or another household language."
+ },
+ {
+  "id": "human.gen.yazidi-family",
+  "domain": "human",
+  "topic": "Yazidi family (respectful)",
+  "names": [
+   "عائلة إيزيدية",
+   "عائلة ايزيدية",
+   "أسرة يزيدية",
+   "اهل ايزيديين",
+   "yazidi family",
+   "yezidi family"
+  ],
+  "body": "A Yazidi family is shown in an ordinary shared moment, seated close together in a bright home or courtyard. Their clothes may be everyday shirts, dresses and trousers, with styles varying by person and occasion; avoid treating any one garment as mandatory. A parent tilts their head to listen, eyes on a child speaking across the table. The child gestures with open hands, pauses, then smiles as another relative answers. Faces remain relaxed, mouths moving naturally with speech. Cups make small sounds against a tray, footsteps cross the floor, and voices may be in Kurmanji or another language the family speaks."
+ },
+ {
+  "id": "human.gen.turkmen-family",
+  "domain": "human",
+  "topic": "Turkmen family",
+  "names": [
+   "عائلة تركمانية",
+   "عائلة تركمنية",
+   "أسرة تركمانية",
+   "اهل تركمان",
+   "iraqi turkmen family",
+   "turkmen family"
+  ],
+  "body": "An Iraqi Turkmen family sits together in a modest living room, with patterned cushions, a tea tray and afternoon light falling across the floor. Individuals differ in age, complexion and dress; some wear everyday Western-style clothes, while others choose traditional garments for a particular occasion. One person pours tea slowly, stopping just below the rim. Another turns their face toward the speaker, brows lifting, eyes attentive and lips parting to reply. Hands pass a glass carefully while bodies lean aside to make room. A spoon taps glass, fabric shifts against cushions, and conversation flows in Turkmen, Arabic or the family's other languages."
+ },
+ {
+  "id": "human.gen.marsh-arab-maadan-family",
+  "domain": "human",
+  "topic": "Marsh Arab (Maadan) family",
+  "names": [
+   "عائلة من عرب الأهوار",
+   "عائلة معدان",
+   "اهل الأهوار",
+   "اسرة اهوارية",
+   "marsh arab family",
+   "maadan family"
+  ],
+  "body": "A Marsh Arab family stands beside a narrow wooden mashhoof at the edge of an Iraqi marsh. Reed beds rise above the water, their pale stalks bending slightly in the breeze; a reed-built house may stand nearby. Clothes are practical and vary with the weather, often with sandals suited to wet ground. An adult steadies the boat with one hand while a child steps in, eyes fixed on the floorboards and arms held out briefly for balance. Another relative smiles and offers a hand. The hull rocks and settles under their weight. Water laps softly, reeds brush together, and family voices carry across the open water."
+ },
+ {
+  "id": "human.gen.twins",
+  "domain": "human",
+  "topic": "twins",
+  "names": [
+   "توأم",
+   "توائم",
+   "توأمين",
+   "توأمان",
+   "twins",
+   "twin siblings"
+  ],
+  "body": "Two siblings of the same age stand side by side. They may look strikingly alike or visibly different: twins do not always share identical faces, hair or height. In this moment, one turns toward the other a fraction of a second before both smile. Their eyes meet, mouths open as they begin speaking at once, and one raises a hand to let the other continue. Their shoulders relax and they laugh in two distinct voices. Shoes shift against the floor as they adjust their stance. Keep small differences in posture, expression and timing, even when their clothing matches."
+ },
+ {
+  "id": "human.gen.identical-friends-same-move",
+  "domain": "human",
+  "topic": "identical friends doing the same move",
+  "names": [
+   "صديقان بنفس الحركة",
+   "صديقتان بنفس الحركة",
+   "اصدقاء بحركة متطابقة",
+   "friends doing the same move",
+   "friends synchronized move"
+  ],
+  "body": "Two friends perform the same simple move, such as stepping right and raising one arm overhead. They begin together on an audible count, bend their knees, transfer weight onto the leading foot and lift their hands along matching arcs. Their bodies are closely synchronized, not rigid copies: one wrist turns slightly later and one heel lands a beat softer. Their eyes briefly check each other, brows lift, and both smile with mouths parting as they exhale. Fabric follows the arm motion and settles afterward. Footsteps strike in a near-unison pair, followed by a short laugh or spoken cue in their natural voices."
+ },
+ {
+  "id": "human.gen.people-different-heights-together",
+  "domain": "human",
+  "topic": "people of different heights together",
+  "names": [
+   "أشخاص بأطوال مختلفة",
+   "ناس أطوالهم مختلفة",
+   "ناس طوال وقصار",
+   "people of different heights",
+   "mixed height group"
+  ],
+  "body": "Several people of different heights stand together on the same level ground, making the differences clear without forced perspective. Shoulder and eye lines fall at distinct levels; heads remain proportionate to each person's body. The taller person lowers their gaze slightly to listen, while a shorter person tips their chin up, eyes on the speaker and mouth moving in reply. Hands gesture at comfortable heights, and everyone shifts weight naturally rather than holding a posed line. When they walk, stride lengths differ and footsteps land at slightly different times. Their voices overlap softly, with clothing rustles and ordinary footfalls in the shared space."
+ },
+ {
+  "id": "human.gen.person-with-glasses",
+  "domain": "human",
+  "topic": "person with glasses",
+  "names": [
+   "شخص يرتدي نظارات",
+   "شخص لابس نظارة",
+   "لابس نظارات",
+   "person with glasses",
+   "glasses wearer"
+  ],
+  "body": "Two lenses sit in a frame across the nose, with narrow arms running back over the ears. The frame may be dark plastic or thin metal; the lenses catch small, shifting reflections without hiding the eyes completely. When the person turns toward a light, a pale rectangle slides across each lens. The eyes remain visible behind it and may look slightly smaller or larger, depending on the prescription. The mouth moves naturally while speaking; the voice is clear, sometimes accompanied by a faint tap when a hand nudges the frame up the nose. Shoulders and body move normally. Indoors, overhead lights make sharper reflections than soft window light."
+ },
+ {
+  "id": "human.gen.person-with-freckles",
+  "domain": "human",
+  "topic": "person with freckles",
+  "names": [
+   "شخص عنده نمش",
+   "شخص منمش",
+   "وجه منمش",
+   "person with freckles",
+   "freckled person"
+  ],
+  "body": "Small, uneven tan-to-brown spots scatter across the cheeks and bridge of the nose, with some continuing onto the forehead, shoulders or arms. They vary in size and spacing rather than forming a uniform pattern. In daylight, the spots stay fixed as the face turns; shadows from the nose and cheekbones move over them. The eyes blink and track what the person is looking at, while the mouth and cheeks shift with speech or a smile. Hands and body move independently of the freckles, and the voice has no sound caused by them. Close shots should retain natural skin texture between the spots."
+ },
+ {
+  "id": "human.gen.person-with-curly-hair",
+  "domain": "human",
+  "topic": "person with curly hair",
+  "names": [
+   "شخص شعره مجعد",
+   "شخص شعره كيرلي",
+   "شعر مجعد",
+   "person with curly hair",
+   "curly-haired person"
+  ],
+  "body": "Curved strands form visible loops or tight coils around the head, creating an uneven, springy outline rather than a smooth sheet of hair. Individual curls compress under a hand and rebound when released; walking makes the ends bounce a little later than the head moves. Bright side light picks out separate strands, while the inner curls remain darker. The forehead may be partly covered, but the eyes, mouth and cheeks move normally during conversation. A hand can separate a curl with a faint rustle. The body follows its own movement, and the voice sounds like ordinary speech, with no sound particular to curly hair."
+ },
+ {
+  "id": "human.gen.bald-man",
+  "domain": "human",
+  "topic": "bald man",
+  "names": [
+   "رجل أصلع",
+   "رجال أصلع",
+   "رجل ما عنده شعر",
+   "bald man",
+   "bald-headed man"
+  ],
+  "body": "A bald man's scalp is visible from forehead to crown, with either no apparent hair or a short fringe around the sides and back. Its colour follows his skin tone; pores, fine lines and a slight natural sheen remain visible in close views. Overhead light makes a soft highlight on the curved crown, not a mirror-like glare. His eyebrows frame eyes that blink and shift focus, and his mouth changes shape as he speaks. Hands may pass over the scalp with a soft skin-on-skin sound. His shoulders and torso move normally, and his voice does not change because he is bald."
+ },
+ {
+  "id": "human.gen.man-with-big-moustache",
+  "domain": "human",
+  "topic": "man with a big moustache",
+  "names": [
+   "رجل بشارب كثيف",
+   "رجل عنده شنب كبير",
+   "شارب عريض",
+   "man with a big moustache",
+   "man with a thick mustache"
+  ],
+  "body": "A thick band of facial hair covers the upper lip and extends toward or beyond the corners of the mouth. Its edges are made of individual hairs, not a solid painted shape; darker hairs cast a small shadow on the skin below. The moustache shifts subtly when the man talks, smiles or presses his lips together, though the lower lip and jaw remain visible. His eyes blink and follow other people, and his hands may briefly smooth the hairs with a faint brushing sound. Head and shoulders move naturally. His voice comes from his mouth without a special muffled effect; side light reveals the moustache's texture."
+ },
+ {
+  "id": "human.gen.woman-with-long-braided-hair",
+  "domain": "human",
+  "topic": "woman with long braided hair",
+  "names": [
+   "امرأة بضفيرة طويلة",
+   "مرة شعرها مضفور طويل",
+   "امرأة بضفاير طويلة",
+   "woman with long braided hair",
+   "woman with long braids"
+  ],
+  "body": "Her hair is divided into interwoven sections that make one long braid or several braids hanging past the shoulders. Each braid has a repeating raised pattern, a narrower tip and a little weight: when she turns, it swings after her head and settles against her back or clothing. Stray hairs may catch the light near the hairline. Her eyes blink and focus naturally, her mouth moves with speech, and her hands can gather a braid or lay it over one shoulder. The movement makes a soft brush against fabric. Her posture and voice are individual, not determined by the hairstyle."
+ },
+ {
+  "id": "human.gen.teen-with-braces",
+  "domain": "human",
+  "topic": "teen with braces",
+  "names": [
+   "مراهق بتقويم أسنان",
+   "مراهق لابس تقويم",
+   "شاب عنده تقويم",
+   "teen with braces",
+   "teenager with braces"
+  ],
+  "body": "Small brackets sit in an even row on the front of the teeth, joined by a thin wire; some braces also have tiny coloured or clear bands. They appear only when the teen parts their lips to speak or smile. The brackets catch brief points of light, while the teeth and lips keep their natural texture. The eyes blink and shift toward a conversation partner. The mouth forms words normally, with occasional pauses to wet the lips; the voice remains recognisably human, not metallic. Hands may gesture while speaking, and the shoulders and body move with ordinary teenage posture. The braces themselves make no audible sound."
+ }
+]

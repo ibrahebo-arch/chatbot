@@ -1,0 +1,983 @@
+[
+ {
+  "id": "place.landmark.burj-khalifa",
+  "domain": "place",
+  "topic": "Burj Khalifa",
+  "names": [
+   "برج خليفة",
+   "برج خليفه",
+   "برج دبي",
+   "burj khalifa",
+   "khalifa tower"
+  ],
+  "body": "Burj Khalifa rises from Downtown Dubai as a narrow, silvery tower of reflective glass and polished metal. Its three-lobed base tapers through repeated setbacks into a long, needlelike spire. In daylight the facade catches pale blue sky and nearby towers; desert haze can soften its upper floors. After dark, facade lighting may form bright patterns against the black sky. Around the base are paved promenades, palms, shops and the Dubai Fountain lake. Visitors often stop with phones tilted sharply upward. Traffic and conversation make a low background murmur, while fountain music and splashing are audible during shows."
+ },
+ {
+  "id": "place.landmark.eiffel-tower",
+  "domain": "place",
+  "topic": "Eiffel Tower",
+  "names": [
+   "برج إيفل",
+   "برج ايفل",
+   "برج ايفيل",
+   "eiffel tower",
+   "tour eiffel"
+  ],
+  "body": "The Eiffel Tower is an open lattice of brown-painted iron, not a solid building. Four broad, curved legs rise from separate bases and meet beneath stacked platforms; the structure narrows to a slender antenna above. Its repeating cross-braces remain visible against the sky. From the Champ de Mars, lawns and paths lead toward the tower, with pedestrians, photographers and visitors queuing beneath it. Sunlight throws intricate lattice shadows onto the ground; at dusk the iron becomes a dark silhouette. At night it glows gold and briefly sparkles at scheduled intervals. Expect voices, footsteps, distant road noise and occasional elevator machinery."
+ },
+ {
+  "id": "place.landmark.statue-of-liberty",
+  "domain": "place",
+  "topic": "Statue of Liberty",
+  "names": [
+   "تمثال الحرية",
+   "تمثال الحريه",
+   "تمثال ليبرتي",
+   "statue of liberty",
+   "liberty statue"
+  ],
+  "body": "The Statue of Liberty stands on a high stone pedestal on Liberty Island in New York Harbor. Its copper surface has a matte blue-green patina. The robed figure faces outward, lifting a torch in her right hand and holding a tablet against her left side; seven long points radiate from her crown. From the water, the pedestal and statue form a tall, compact silhouette above the island’s trees. Clear sun picks out folds in the robe, while overcast light flattens the green. Ferries bring visitors with cameras. Wind, gull calls, boat engines and waves against the shore shape the soundscape."
+ },
+ {
+  "id": "place.landmark.big-ben",
+  "domain": "place",
+  "topic": "Big Ben",
+  "names": [
+   "بيغ بن",
+   "بيج بن",
+   "ساعة بيغ بن",
+   "برج إليزابيث",
+   "big ben",
+   "elizabeth tower"
+  ],
+  "body": "Elizabeth Tower, often called Big Ben, rises beside the Palace of Westminster in London. Its square shaft is clad in warm, sand-colored limestone, with narrow windows, ornate stonework and four large clock faces near the top. Each pale face has dark Roman numerals and hands within a decorative gold-toned frame. A steep roof and slender spire finish the tower. In low sunlight the stone looks honey-colored; under cloud it appears cooler and grayer. Pedestrians gather along nearby pavements and Westminster Bridge for photographs, with buses and taxis passing. Traffic, voices and occasional clock chimes carry through the area; Big Ben is the bell inside."
+ },
+ {
+  "id": "place.landmark.colosseum",
+  "domain": "place",
+  "topic": "Colosseum",
+  "names": [
+   "الكولوسيوم",
+   "الكولوسيو",
+   "مدرج الكولوسيوم",
+   "colosseum",
+   "roman colosseum"
+  ],
+  "body": "The Colosseum is a huge oval ruin of pale beige travertine and darker, weathered masonry in Rome. Rows of repeated arches wrap around its exterior, though sections of the outer wall are missing and the rim is uneven. Inside, stepped seating surrounds an exposed maze of low stone walls where the arena floor once stood. Pits, cracks and worn edges give the stone a rough texture. Morning light enters the arches at an angle; afternoon sun warms the facade and deepens shadows beneath each opening. Visitors walk slowly along marked routes, while guides speak over footsteps, birds and nearby street traffic."
+ },
+ {
+  "id": "place.landmark.great-wall-of-china",
+  "domain": "place",
+  "topic": "Great Wall of China",
+  "names": [
+   "سور الصين العظيم",
+   "سور الصين العظيمه",
+   "سور الصين الكبير",
+   "great wall of china",
+   "chinese great wall"
+  ],
+  "body": "The Great Wall appears as a long, narrow stone-and-brick walkway climbing ridgelines and dipping into valleys. Low parapets with squared crenellations border many restored sections, and blocky watchtowers interrupt the path at intervals. Its gray and brown surfaces vary with age and restoration; steep stretches have uneven steps rather than a level floor. The wall bends out of sight across wooded mountains, especially striking when mist hides distant ridges. Visitors in walking shoes pause at tower openings or hold handrails on climbs. Wind brushes the parapets, while footsteps, conversation and occasional bird calls echo between the walls."
+ },
+ {
+  "id": "place.landmark.taj-mahal",
+  "domain": "place",
+  "topic": "Taj Mahal",
+  "names": [
+   "تاج محل",
+   "تاج المحل",
+   "ضريح تاج محل",
+   "taj mahal",
+   "agra taj mahal"
+  ],
+  "body": "The Taj Mahal is a symmetrical white-marble mausoleum in Agra, set at the end of a long garden axis. A large onion-shaped central dome rises above an arched facade, with four smaller domed kiosks and one slim minaret near each corner of the raised platform. Inlaid dark patterns and carved details sharpen the otherwise pale surfaces. A narrow reflecting pool mirrors the building between straight paths, lawns and trees. Sunrise can tint the marble pink; midday sun makes it bright white, and cloud softens its edges. Visitors move along the paths and gather for photographs amid quiet voices, footsteps, birds and water sounds."
+ },
+ {
+  "id": "place.landmark.petra-treasury",
+  "domain": "place",
+  "topic": "Petra Treasury",
+  "names": [
+   "الخزنة البتراء",
+   "خزنة البتراء",
+   "الخزنه البتراء",
+   "خزنة فرعون",
+   "petra treasury",
+   "al khazneh"
+  ],
+  "body": "The Petra Treasury, Al-Khazneh, is a tall facade carved directly into rose-colored sandstone at the end of the narrow Siq gorge. Six columns frame its lower entrance; above them, a split pediment surrounds a round central pavilion topped by a stone urn. The rock shows bands of pink, rust, cream and gray, with weathered edges and fine carved details. Visitors emerge from the shaded Siq into a sandy open space facing the facade. Direct sunlight can turn the stone warm orange, while shade makes it muted pink. Footsteps scrape on gravel, voices echo off the cliffs, and animals may be heard nearby."
+ },
+ {
+  "id": "place.landmark.giza-pyramids-and-sphinx",
+  "domain": "place",
+  "topic": "Giza pyramids and Sphinx",
+  "names": [
+   "أهرامات الجيزة",
+   "اهرامات الجيزة",
+   "ابو الهول",
+   "أبو الهول",
+   "giza pyramids",
+   "great sphinx of giza"
+  ],
+  "body": "Three large pyramids rise from a sandy limestone plateau: Khufu is the largest, Khafre stands on slightly higher ground, and Menkaure is smaller. Their sloping faces are stepped with exposed tan stone blocks, not smooth golden triangles. Nearby, the Great Sphinx is a weathered limestone figure with a human head and a lion’s body, lying with its paws extended. Cairo’s buildings and roads appear beyond the plateau. Strong midday sun makes short, sharp shadows; low sun warms the stone and lengthens them. Visitors walk along marked paths, with occasional guides and camels. Expect footsteps on gravel, distant traffic, voices and wind."
+ },
+ {
+  "id": "place.landmark.sydney-opera-house",
+  "domain": "place",
+  "topic": "Sydney Opera House",
+  "names": [
+   "دار أوبرا سيدني",
+   "اوبرا سيدني",
+   "sydney opera house",
+   "sydney opera"
+  ],
+  "body": "The Sydney Opera House sits on a broad harbour-side podium clad in pale pinkish granite. Its overlapping roof shells curve upward like pointed sails, covered in small off-white and cream ceramic tiles that catch sunlight unevenly. Glass walls sit beneath the shells, and wide steps lead up from the forecourt. Blue harbour water, ferries and the Sydney Harbour Bridge often frame wider views. The roof looks bright white from a distance, warmer and more patterned close up; at night, exterior lighting defines each curved edge. Visitors cross the steps in loose groups. Hear gulls, footsteps, ferry engines and wind off the water."
+ },
+ {
+  "id": "place.landmark.christ-the-redeemer",
+  "domain": "place",
+  "topic": "Christ the Redeemer",
+  "names": [
+   "تمثال المسيح الفادي",
+   "المسيح الفادي",
+   "cristo redentor",
+   "christ the redeemer"
+  ],
+  "body": "Christ the Redeemer stands on Corcovado above Rio de Janeiro: a pale grey figure with a gently bowed head and straight arms extended horizontally. Its robe forms long, simple vertical folds; small soapstone tiles cover the reinforced-concrete surface, giving close views a faint mosaic texture. The statue is about 30 metres tall above its pedestal, with an arm span of about 28 metres. A viewing platform surrounds the base, usually busy with visitors looking toward mountains, bays and dense city blocks. Bright sun throws crisp shadows under the arms; passing cloud can briefly hide the head. Expect wind, conversation and camera shutters."
+ },
+ {
+  "id": "place.landmark.machu-picchu",
+  "domain": "place",
+  "topic": "Machu Picchu",
+  "names": [
+   "ماتشو بيتشو",
+   "ماتشو بيكشو",
+   "ماتشوبيتشو",
+   "machu picchu"
+  ],
+  "body": "Machu Picchu spreads across a steep green ridge above a deep Andean valley. Low walls and roofless rooms are built from closely fitted grey stone; some doorways taper inward, and narrow agricultural terraces step down the slopes. The pointed green peak of Huayna Picchu rises behind the ruins in familiar views. Grass fills open spaces, while stone paths and stairs connect different levels. Mist often drifts through at dawn, hiding and revealing sections of the site; midday light brings out the stone joints and vivid grass. Visitors move slowly on designated routes. Hear footsteps on stone, quiet conversation, birds and mountain wind."
+ },
+ {
+  "id": "place.landmark.hagia-sophia",
+  "domain": "place",
+  "topic": "Hagia Sophia",
+  "names": [
+   "آيا صوفيا",
+   "ايا صوفيا",
+   "آية صوفيا",
+   "hagia sophia",
+   "ayasofya"
+  ],
+  "body": "Hagia Sophia has a broad central dome supported by lower half-domes, with four slender minarets rising around its warm pink, ochre and pale-stone exterior. The building’s mass is wide and layered rather than sharply vertical. Inside, high galleries, marble surfaces and columns surround a vast domed space; gold-toned mosaics and large round Arabic calligraphy panels occupy different parts of the interior. Daylight enters through rows of windows and softens across the walls. Outside, visitors cross the paved square among trees and fountains; inside, people observe mosque etiquette and prayer areas. Sounds shift from traffic and footsteps outdoors to subdued voices and reverberant prayer indoors."
+ },
+ {
+  "id": "place.landmark.blue-mosque-istanbul",
+  "domain": "place",
+  "topic": "Blue Mosque Istanbul",
+  "names": [
+   "الجامع الأزرق",
+   "الجامع الازرق",
+   "مسجد السلطان أحمد",
+   "مسجد السلطان احمد",
+   "blue mosque istanbul",
+   "sultan ahmed mosque"
+  ],
+  "body": "The Blue Mosque faces Hagia Sophia across Sultanahmet Square. A broad central dome rises above cascading smaller domes and half-domes, while six slim minarets punctuate the skyline. Pale stone walls and grey lead-covered roofs look cool in overcast weather and warmer near sunset. Inside, blue-and-white floral Iznik tiles cover much of the lower walls; stained-glass windows filter light above a carpeted prayer space. Courtyard arches frame views of the domes, and its stone paving reflects light after rain. Visitors walk quietly and follow mosque etiquette alongside worshippers. Outside are footsteps, birds and city murmur; the call to prayer carries across the square."
+ },
+ {
+  "id": "place.landmark.kaaba-grand-mosque-makkah",
+  "domain": "place",
+  "topic": "Kaaba and the Grand Mosque in Makkah",
+  "names": [
+   "الكعبة",
+   "الكعبه",
+   "المسجد الحرام",
+   "الحرم المكي",
+   "kaaba",
+   "grand mosque makkah",
+   "masjid al haram"
+  ],
+  "body": "The Kaaba is a tall, nearly cubic stone structure at the centre of the Grand Mosque’s open courtyard. Black cloth, the kiswa, hangs straight over its walls, with a broad band of gold embroidered calligraphy near the top and a raised gold-coloured door on one side. Pale polished marble surrounds it; multi-level arcades and mosque buildings enclose the courtyard. Pilgrims move counterclockwise around the Kaaba in a continuous flow, sometimes dense, sometimes spacious. Harsh daylight creates strong contrast between black cloth and white stone; floodlights illuminate both at night. Hear footsteps, shared murmurs, recitation and the call to prayer."
+ },
+ {
+  "id": "place.landmark.prophets-mosque-madinah",
+  "domain": "place",
+  "topic": "Prophet's Mosque in Madinah",
+  "names": [
+   "المسجد النبوي",
+   "الحرم النبوي",
+   "مسجد النبي",
+   "القبة الخضراء",
+   "prophet's mosque",
+   "masjid nabawi"
+  ],
+  "body": "The Prophet’s Mosque extends across a vast paved precinct with long arcades, pale stone walls and many slender minarets. Its distinctive green dome rises above one section of the mosque, contrasting with the lighter roofs and cream-coloured exterior. In the courtyards, huge cream folding umbrellas open overhead on tall columns, casting patterned shade across polished marble that can reflect people and architecture. Daylight makes the paving bright; after dark, rows of lights define the arcades and umbrella structures. Worshippers and visitors cross the courtyard calmly, observing mosque etiquette. Hear soft footsteps, low conversation, recitation and the call to prayer."
+ },
+ {
+  "id": "place.landmark.al-aqsa-dome-of-the-rock",
+  "domain": "place",
+  "topic": "Al-Aqsa and the Dome of the Rock",
+  "names": [
+   "الأقصى",
+   "المسجد الأقصى",
+   "قبة الصخرة",
+   "القدس الأقصى",
+   "الاكصى",
+   "al-aqsa",
+   "dome of the rock",
+   "aqsa compound"
+  ],
+  "body": "In Jerusalem’s walled Al-Aqsa compound, the Dome of the Rock stands on a raised stone platform: an octagonal building faced with blue patterned tiles and pale stone, topped by a broad gold-coloured dome. South of it, the separate Al-Qibli Mosque has a long stone façade and a darker grey lead-covered dome. Cypress trees, stone arches and broad paved walks connect the buildings. Morning light gives the gold dome a warm glow; at dusk, shadows deepen across the paving. Visitors and worshippers walk quietly or gather in small groups; footsteps, birds and distant calls to prayer carry through the open space."
+ },
+ {
+  "id": "place.landmark.sheikh-zayed-grand-mosque",
+  "domain": "place",
+  "topic": "Sheikh Zayed Grand Mosque",
+  "names": [
+   "جامع الشيخ زايد",
+   "مسجد الشيخ زايد الكبير",
+   "جامع زايد الكبير",
+   "sheikh zayed grand mosque",
+   "zayed grand mosque"
+  ],
+  "body": "The Sheikh Zayed Grand Mosque in Abu Dhabi is an expansive white-marble complex with four slender minarets, rows of columns and many rounded domes, the largest above the central prayer hall. Floral stone inlays cross the polished courtyard, while shallow pools mirror the arcades. Inside are tall chandeliers, a vast patterned carpet and columns decorated with coloured floral designs. Strong midday sun sharpens the white edges and throws repeating arch shadows; evening lighting gives the marble a cooler glow. Visitors move at a measured pace along designated routes, with soft footsteps and low conversation; calls to prayer are heard at prayer times."
+ },
+ {
+  "id": "place.landmark.burj-al-arab",
+  "domain": "place",
+  "topic": "Burj Al Arab",
+  "names": [
+   "برج العرب",
+   "فندق برج العرب",
+   "برج العرب دبي",
+   "burj al arab",
+   "burj al arab hotel"
+  ],
+  "body": "Burj Al Arab rises from a small artificial island off Dubai’s Jumeirah shore, reached by a narrow bridge. Its tall, curved profile resembles a sail: two sweeping white structural edges frame a taut, pale fabric façade, with a circular helipad projecting near the top. The building tapers upward above a low waterfront base. In bright sun, the white surfaces glare against blue water; after dark, coloured architectural lighting outlines the shape. From the beach, people photograph it across the water while waves lap, traffic hums along the shore and occasional boats pass at a steady speed."
+ },
+ {
+  "id": "place.landmark.kuwait-towers",
+  "domain": "place",
+  "topic": "Kuwait Towers",
+  "names": [
+   "أبراج الكويت",
+   "ابراج الكويت",
+   "برج الكويت",
+   "kuwait towers",
+   "kuwait water towers"
+  ],
+  "body": "Kuwait Towers are three slim concrete towers standing together on a headland beside the Arabian Gulf. The tallest carries two rounded spheres; the second carries one, while the narrow third has no sphere. Their pale shafts rise from a paved waterfront setting, and the spheres are clad in small blue, green and silver mosaic-like plates that catch the sun. The upper viewing sphere sits well above the lower, larger one. At sunset the towers silhouette against the water; at night they are illuminated. People stroll and take photographs nearby as wind, passing cars and small waves make a soft background sound."
+ },
+ {
+  "id": "place.landmark.museum-of-the-future-dubai",
+  "domain": "place",
+  "topic": "Museum of the Future Dubai",
+  "names": [
+   "متحف المستقبل",
+   "متحف المستقبل دبي",
+   "museum of the future",
+   "museum of the future dubai"
+  ],
+  "body": "Dubai’s Museum of the Future is a large upright oval ring with a hollow centre, standing above a landscaped green mound beside Sheikh Zayed Road. Its smooth, silver-toned stainless-steel skin is divided into curved panels pierced by oversized Arabic calligraphy; the lettering forms the windows. The oval narrows around its open centre, so sky and nearby towers remain visible through it. Daylight slides across the metallic surface, while the cut-out script glows from inside after dark. Visitors approach along paved paths and pause for photographs; road traffic supplies a constant low rush beneath conversation and footsteps."
+ },
+ {
+  "id": "place.landmark.louvre-pyramid",
+  "domain": "place",
+  "topic": "Louvre pyramid",
+  "names": [
+   "هرم اللوفر",
+   "الهرم الزجاجي للوفر",
+   "هرم متحف اللوفر",
+   "louvre pyramid",
+   "pyramide du louvre"
+  ],
+  "body": "The Louvre pyramid stands in the Cour Napoléon in Paris, enclosed by the Louvre’s long pale-stone façades. Four sloping triangular faces of clear glass meet at a point above a square base, held in a fine metal grid. Smaller glass pyramids, shallow reflecting pools and paved walkways surround it. Through the glass, the entrance space below ground is partly visible. Sunlight makes the panes reflect clouds and palace windows; after dark, interior lighting makes the pyramid glow against the darker courtyard. Visitors queue, cross the paving and take photographs, accompanied by footsteps, low conversation and the sound of nearby water."
+ },
+ {
+  "id": "place.landmark.sagrada-familia",
+  "domain": "place",
+  "topic": "Sagrada Familia",
+  "names": [
+   "ساغرادا فاميليا",
+   "ساجرادا فاميليا",
+   "كنيسة العائلة المقدسة برشلونة",
+   "sagrada familia",
+   "la sagrada familia"
+  ],
+  "body": "Barcelona’s Sagrada Família has a dense, rising silhouette of narrow spires above richly worked stone façades. Openings, carved figures and branching details cover the exterior; pale newer stone and darker weathered stone give different sections distinct tones. The Nativity façade is especially crowded with sculpted plants and figures, while the Passion façade has starker, angular forms. Inside, tall columns branch like trees beneath high vaulted ceilings, and coloured stained-glass light spreads across stone floors. Visitors look upward and move slowly through the aisles. Outside, traffic and voices mix; inside, footsteps and hushed speech echo."
+ },
+ {
+  "id": "place.landmark.alhambra",
+  "domain": "place",
+  "topic": "Alhambra",
+  "names": [
+   "الحمراء غرناطة",
+   "قصر الحمراء",
+   "قلعة الحمراء",
+   "alhambra",
+   "alhambra granada"
+  ],
+  "body": "The Alhambra occupies a wooded hill above Granada, with long reddish-ochre fortress walls and square towers visible from below. Within the complex, Nasrid palace rooms have slender columns, carved plaster walls, geometric tilework and intricate ceilings. Courtyards frame still, narrow reflecting pools or small fountains; the Court of the Lions has a central stone fountain supported by carved lions. Sunlight enters through arches and latticed openings, tracing patterns across floors and walls. In the gardens, cypress, water channels and planted beds line paths. Visitors walk slowly; running water, birds and quiet conversation sound against the stone."
+ },
+ {
+  "id": "place.landmark.acropolis",
+  "domain": "place",
+  "topic": "Acropolis",
+  "names": [
+   "أكروبوليس أثينا",
+   "الأكروبوليس",
+   "اكروبوليس",
+   "أكروبوليس",
+   "acropolis",
+   "acropolis of athens"
+  ],
+  "body": "The Acropolis rises on a broad, steep-sided limestone outcrop above Athens. Its most recognizable building, the Parthenon, is a long rectangular temple of pale marble columns beneath a damaged, partly surviving roofline; other temples and broken columns occupy the rocky plateau. From below, the structures appear small against the height of the hill. Up close, marble blocks show chips, seams and warm cream tones. Paths are uneven stone, with low barriers keeping visitors away from fragile areas. Sunlight makes the marble bright at midday and honey-coloured near sunset. Visitors walk slowly, photograph the ruins and speak over wind and the distant hum of traffic."
+ },
+ {
+  "id": "place.landmark.leaning-tower-of-pisa",
+  "domain": "place",
+  "topic": "Leaning Tower of Pisa",
+  "names": [
+   "برج بيزا المائل",
+   "برج بيزا",
+   "برج پيزا المائل",
+   "برج پيزا",
+   "leaning tower of pisa",
+   "pisa tower"
+  ],
+  "body": "The Leaning Tower of Pisa is a cylindrical, white-to-grey marble bell tower beside Pisa Cathedral on a closely trimmed green lawn. Stacked arcaded levels wrap around its circumference, with narrow dark openings between rows of columns and a smaller bell chamber at the top. The entire tower tilts visibly to one side, though its individual levels remain rigid; it does not sway. Weathering gives the stone faint beige streaks and darker joints. In bright sun, the arches cast sharp repeating shadows; at dusk, the marble softens to pale gold. Visitors gather along nearby paths, taking photographs and talking while bells and footsteps carry across the open square."
+ },
+ {
+  "id": "place.landmark.venice-grand-canal",
+  "domain": "place",
+  "topic": "Venice Grand Canal",
+  "names": [
+   "القناة الكبرى في البندقية",
+   "القنال الكبير بالبندقية",
+   "قناة البندقية الكبرى",
+   "venice grand canal",
+   "grand canal venice",
+   "canal grande"
+  ],
+  "body": "Venice’s Grand Canal is a wide, winding waterway bordered closely by multi-storey palazzi. Their cream, ochre and faded pink facades rise directly from the water, with arched windows, balconies and dark waterline stains. Motorboats, long public vaporetto boats, water taxis and occasional gondolas move along it, pushing overlapping wakes that slap against stone steps and moorings. Arched bridges cross at intervals, including the broad stone Rialto Bridge. Water reflects broken patches of sky and buildings rather than a perfect mirror. Morning light catches upper facades while lower levels remain shaded. Expect engine rumble, boat horns, voices, gulls and the steady sound of water."
+ },
+ {
+  "id": "place.landmark.times-square",
+  "domain": "place",
+  "topic": "Times Square",
+  "names": [
+   "تايمز سكوير",
+   "ميدان تايمز سكوير",
+   "ساحة تايمز سكوير",
+   "تايمز كوير",
+   "times square",
+   "times sq"
+  ],
+  "body": "Times Square is a dense Broadway and Seventh Avenue junction in Manhattan, surrounded by tall buildings covered with enormous, changing LED advertisements. Large screens stack above shopfronts and cast saturated blue, red and white light onto faces and pavement, especially after dark. Street-level space includes broad pedestrian areas, traffic lanes, metal barriers and the red stepped seating above the TKTS booth. Crowds weave around people stopping for photographs; vehicles move slowly through nearby lanes. Daylight reveals concrete, glass and signage beneath the displays, while rain spreads coloured reflections across the ground. The sound is layered: conversation, traffic, horns, sirens in the distance and occasional street performers."
+ },
+ {
+  "id": "place.landmark.golden-gate-bridge",
+  "domain": "place",
+  "topic": "Golden Gate Bridge",
+  "names": [
+   "جسر البوابة الذهبية",
+   "جسر غولدن غيت",
+   "جسر جولدن جيت",
+   "غولدن غيت بريدج",
+   "golden gate bridge",
+   "golden gate"
+  ],
+  "body": "The Golden Gate Bridge crosses a broad tidal strait on two tall, International Orange towers. Thick main cables curve between the towers and descend toward both shores; many thin vertical cables hold the long, nearly level roadway below. From a distance, the narrow deck cuts a straight line above dark blue or grey water, with green hills and rocky shorelines at either end. Marine fog can conceal the upper towers while the deck remains visible, then shift in the wind. Cars produce a continuous tyre hiss and low rumble; walkers and cyclists use the separated side paths. In clear late light, the orange structure stands sharply against sea and sky."
+ },
+ {
+  "id": "place.landmark.grand-canyon",
+  "domain": "place",
+  "topic": "Grand Canyon",
+  "names": [
+   "الغراند كانيون",
+   "جراند كانيون",
+   "الأخدود العظيم",
+   "وادي جراند كانيون",
+   "grand canyon",
+   "grand canyon national park"
+  ],
+  "body": "The Grand Canyon is a vast, branching cut through a high desert plateau, with stepped cliffs, broad terraces and narrow side ravines receding into haze. Exposed rock forms horizontal bands of tan, rust red, brown and pale cream. From the South Rim, the opposite rim looks far away, and the Colorado River may appear only as a thin, distant ribbon from certain viewpoints. Shadows shift across the rock faces as the sun moves; sunrise and sunset bring stronger red tones, while midday light flattens them. Visitors stand behind viewpoint railings or walk dusty rim paths. Wind, voices and occasional ravens are more noticeable than traffic."
+ },
+ {
+  "id": "place.landmark.niagara-falls",
+  "domain": "place",
+  "topic": "Niagara Falls",
+  "names": [
+   "شلالات نياجرا",
+   "شلالات نياغرا",
+   "نياجرا فولز",
+   "نياغرا فولز",
+   "niagara falls",
+   "niagara waterfall"
+  ],
+  "body": "Niagara Falls comprises separate major waterfalls along a broad river gorge. Horseshoe Falls curves in a wide arc on the Canadian side, while the American Falls presents a straighter, broken white curtain with large rocks below. Heavy greenish water accelerates over the edges and turns into churning white spray. Mist rises continuously, drifting with the wind and sometimes hiding parts of the falls or forming rainbows in sunlight. Viewing areas have paved paths, railings and crowds in jackets or rain ponchos; small tour boats may approach below. The roar is deep and constant, making nearby conversation difficult. After dark, coloured illumination may wash across the falling water."
+ },
+ {
+  "id": "place.landmark.mount-fuji",
+  "domain": "place",
+  "topic": "Mount Fuji",
+  "names": [
+   "جبل فوجي",
+   "جبل فوجى",
+   "فوجي سان",
+   "فوجي ياما",
+   "mount fuji",
+   "fuji-san"
+  ],
+  "body": "Mount Fuji is a solitary, broad-based volcanic cone with smooth slopes rising to a slightly uneven summit. Its upper slopes are dark volcanic rock when exposed and white when snow-covered; snow is most likely in colder months, not throughout summer. From distant lakes or towns, the mountain forms a clear triangle above lower wooded hills, though clouds frequently wrap its middle or hide the peak entirely. Early morning can bring crisp outlines and pale pink light; haze often softens the silhouette later. Around lakeside viewpoints, people photograph the mountain beside still water, roads or buildings. Sounds come from the immediate setting—wind, birds, visitors or passing traffic—not the distant summit."
+ },
+ {
+  "id": "place.landmark.shibuya-crossing",
+  "domain": "place",
+  "topic": "Shibuya crossing",
+  "names": [
+   "shibuya crossing",
+   "shibuya scramble",
+   "شيبويا",
+   "تقاطع شيبويا",
+   "معبر شيبويا"
+  ],
+  "body": "Outside Shibuya Station in Tokyo, broad white zebra stripes meet across a multiway junction beneath glass-fronted buildings and large illuminated video screens. When the pedestrian signals turn green, people flow from every corner at once, crossing straight or diagonally while vehicles wait. Dark coats, backpacks, umbrellas and shopping bags form a dense but orderly moving pattern; the crowd thins between signals. Buses, taxis and cars resume moving when pedestrians stop. Footsteps, signal chimes, engine noise and screen advertisements overlap. Daylight reflects off glass and wet asphalt; after dark, signs cast shifting colour onto faces and the road."
+ },
+ {
+  "id": "place.landmark.forbidden-city",
+  "domain": "place",
+  "topic": "Forbidden City",
+  "names": [
+   "forbidden city",
+   "palace museum beijing",
+   "المدينة المحرمة",
+   "القصر المحرم",
+   "قصر بكين المحرم"
+  ],
+  "body": "The Forbidden City in Beijing is a vast sequence of rectangular courtyards and timber halls aligned along a central axis. Deep red walls and columns support broad, upturned roofs covered in yellow glazed tiles. Major halls stand on tiered white marble terraces with carved balustrades; paved courtyards leave long, open views between buildings. Gates frame one roofline behind another, while lower side buildings repeat the red-and-gold palette. Visitors walk in groups, pause for photographs and pass through shaded doorways. Footsteps and conversation echo faintly across stone. Midday light makes the courtyards bright and the eaves dark; low sun warms the roof tiles."
+ },
+ {
+  "id": "place.landmark.angkor-wat",
+  "domain": "place",
+  "topic": "Angkor Wat",
+  "names": [
+   "angkor wat",
+   "ankor wat",
+   "أنغكور وات",
+   "انكور وات",
+   "معبد أنغكور وات"
+  ],
+  "body": "Angkor Wat rises from a broad, tree-lined enclosure behind a rectangular moat. A long raised stone causeway leads toward galleries and five lotus-bud towers, with the tallest at the centre. Weathered sandstone ranges from warm grey to brown; closely carved figures and patterns cover many walls and doorframes. Steps are steep, and the towers narrow upward in stacked tiers rather than smooth curves. Visitors cross the causeway on foot, speaking quietly or stopping at the water’s edge. Birds and insects sound through the trees. Low morning light catches the western entrance and reflects in still water; tropical cloud softens the stone’s shadows."
+ },
+ {
+  "id": "place.landmark.marina-bay-sands",
+  "domain": "place",
+  "topic": "Marina Bay Sands",
+  "names": [
+   "marina bay sands",
+   "mbs singapore",
+   "مارينا باي ساندز",
+   "مارينا باي ساندس",
+   "فندق مارينا باي"
+  ],
+  "body": "Marina Bay Sands has three tall, slightly curved hotel towers with closely spaced horizontal window bands. A long, narrow SkyPark joins their roofs and projects beyond one end, giving the silhouette its distinctive overhang. Pale glass, grey metal and dark window strips face Singapore’s waterfront. From across the bay, the white, petal-shaped ArtScience Museum and landscaped promenade sit below the towers. Pedestrians move along the water while boats leave small wakes. Traffic and voices blend with waterfront wind. Humid daylight can look hazy; at dusk the windows turn reflective, and after dark building lights shimmer in the bay."
+ },
+ {
+  "id": "place.landmark.petronas-towers",
+  "domain": "place",
+  "topic": "Petronas Towers",
+  "names": [
+   "petronas towers",
+   "petronas twin towers",
+   "برجا بتروناس",
+   "أبراج بتروناس",
+   "برجين بتروناس"
+  ],
+  "body": "The Petronas Towers are matching, slender skyscrapers in Kuala Lumpur, clad in bands of stainless steel and glass. Repeating stepped sections taper toward pointed spires, and a two-level skybridge links the towers well above the ground. Their facades catch daylight in silver flashes; at night, bright white lighting traces the stacked outlines against the sky. At their base are a shopping complex, paved approaches and the trees and fountains of KLCC Park. People gather for photographs, walk through the park or watch the water. Nearby traffic hums beneath conversation and splashing fountains, while rain briefly darkens the paving."
+ },
+ {
+  "id": "place.landmark.santorini",
+  "domain": "place",
+  "topic": "Santorini",
+  "names": [
+   "santorini",
+   "santorini greece",
+   "سانتوريني",
+   "جزيرة سانتوريني",
+   "سانتوريني اليونان"
+  ],
+  "body": "On Santorini, villages such as Oia and Fira cling to the edge of a high volcanic caldera. Whitewashed cubic buildings, terraces and stairways overlap down the steep slope; some church domes are vivid blue, but most roofs and walls are white or pale stone. Dark volcanic cliffs fall toward deep blue water, with islands visible across the bay. Narrow lanes turn around plaster walls, and people walk carefully on steps, stopping at small terraces and viewpoints. Voices, footsteps and occasional sea wind carry through the lanes. Midday sun creates sharp shadows; sunset warms the white facades to peach and gold."
+ },
+ {
+  "id": "place.landmark.cappadocia-balloons",
+  "domain": "place",
+  "topic": "Cappadocia balloons",
+  "names": [
+   "cappadocia balloons",
+   "cappadocia hot air balloons",
+   "مناطيد كابادوكيا",
+   "بالونات كابادوكيا",
+   "مناطيد كبادوكيا"
+  ],
+  "body": "At dawn in Cappadocia, large hot-air balloons lift above pale beige and ochre valleys dotted with cone-shaped tuff formations and rock-cut openings. Their rounded fabric envelopes show coloured panels; small wicker baskets hang directly below. On the ground, fans fill the envelopes before burner flames flare inside them. Balloons rise gradually, drift with the wind and change height in short bursts rather than flying in fixed rows. A burner makes a brief, forceful roar, followed by quieter wind and distant voices. Pink early light grazes the ridges, while haze can soften balloons farther across the valley."
+ },
+ {
+  "id": "place.landmark.northern-lights-iceland",
+  "domain": "place",
+  "topic": "Northern lights in Iceland",
+  "names": [
+   "northern lights iceland",
+   "iceland aurora",
+   "الشفق القطبي في آيسلندا",
+   "الاضواء الشمالية آيسلندا",
+   "شفق ايسلندا"
+  ],
+  "body": "On a clear, dark Icelandic night, the northern lights may appear as a faint green arc or brighter folded curtains stretching across part of the sky. Their edges ripple and shift over seconds or minutes; purple or reddish fringes appear less often. Below them, the landscape might be black volcanic ground, low mountains or a coast, with snow in some seasons and locations but not everywhere. People in heavy jackets stand still or adjust cameras on tripods. The aurora itself makes no audible sound; wind, footsteps on gravel and nearby surf are more likely. Moonlight reveals the ground, while cloud or city glare can hide the display."
+ },
+ {
+  "id": "place.landmark.swiss-alps-village",
+  "domain": "place",
+  "topic": "Swiss Alps village",
+  "names": [
+   "قرية في جبال الألب السويسرية",
+   "قرية بالألب السويسرية",
+   "قرية بجبال سويسرا",
+   "swiss alps village",
+   "swiss alpine village"
+  ],
+  "body": "Compact wooden chalets cluster along narrow lanes, often with pale plaster ground floors, dark timber balconies, flower boxes and steep roofs built to shed snow. Stone foundations meet grassy slopes; footpaths, fences and small barns lead toward conifer woods and high, jagged peaks. Summer light makes the meadows vivid green, while winter softens roofs and paths under uneven snow. At dawn, shadows remain deep beneath the mountains; afternoon sun catches windows and roof edges. People walk in hiking clothes or winter coats, depending on the season. Expect footsteps on gravel or packed snow, a stream, occasional cowbells and distant church bells."
+ },
+ {
+  "id": "place.landmark.maldives-water-villas",
+  "domain": "place",
+  "topic": "Maldives water villas",
+  "names": [
+   "فلل مائية في المالديف",
+   "فلل فوق الماي بالمالديف",
+   "أكواخ المالديف المائية",
+   "maldives water villas",
+   "maldives overwater villas"
+  ],
+  "body": "Separate timber-and-thatch villas stand on pilings above a shallow turquoise lagoon, linked to a low island by a narrow wooden boardwalk. Each has a shaded deck; some have steps descending directly into the water. White sand shows through clear shallows, which darken to blue farther out. Gentle waves lap against the posts, making small shifting reflections beneath the decks. At midday the water is bright and the shadows sharp; near sunset the roofs become dark silhouettes against peach-coloured light. Resort guests walk barefoot or in light clothes. Hear boardwalk footsteps, soft splashes, wind in palms and occasional boat engines offshore."
+ },
+ {
+  "id": "place.landmark.bali-rice-terraces",
+  "domain": "place",
+  "topic": "Bali rice terraces",
+  "names": [
+   "مدرجات الأرز في بالي",
+   "مصاطب الرز ببالي",
+   "حقول الرز المدرجة ببالي",
+   "bali rice terraces",
+   "bali paddy terraces"
+  ],
+  "body": "Curving, narrow rice plots step down steep green hillsides, separated by raised earthen banks and fed by small flowing irrigation channels. Young rice grows as bright, evenly spaced shoots in reflective water; mature rice forms denser, softer green or golden bands. Coconut palms and other tropical trees rise around the fields, with footpaths and occasional small field shelters between plots. Morning haze hangs in the valleys, and wet surfaces flash in direct sun. Farmers may walk the narrow banks carrying tools or baskets, placing each foot carefully. Water trickles continuously; insects, birds and nearby conversation carry across the terraces."
+ },
+ {
+  "id": "place.landmark.dead-sea",
+  "domain": "place",
+  "topic": "Dead Sea",
+  "names": [
+   "البحر الميت",
+   "بحر الميت",
+   "الميت بالأردن",
+   "dead sea",
+   "dead sea salt lake"
+  ],
+  "body": "The Dead Sea is a broad, intensely salty lake edged in places by pale mineral crusts, stony shores and dry, rugged hills. Its water can look deep blue or greenish, with a smooth, slightly oily-looking surface and small wind-driven ripples rather than ocean surf. White salt crystals collect along rocks and at the waterline. In strong midday light, the bare slopes and salt reflect harshly; sunset turns the distant hills muted pink and brown. At designated bathing areas, people ease into the water and float high on their backs, moving cautiously to keep it out of their eyes. Hear light lapping, wind and nearby bathers."
+ },
+ {
+  "id": "place.landmark.wadi-rum",
+  "domain": "place",
+  "topic": "Wadi Rum",
+  "names": [
+   "وادي رم",
+   "وادي الرّم",
+   "وادي رم بالأردن",
+   "wadi rum",
+   "wadi ram"
+  ],
+  "body": "Wadi Rum has wide sandy and gravel plains broken by immense sandstone and granite massifs, sheer cliffs and narrow rock passages. The sand ranges from pale tan to rusty red; layered cliff faces carry darker weathered streaks. Sparse shrubs dot the ground, and tyre tracks may cross open stretches before fading into wind-shaped sand. Low sun throws long, sharply defined shadows and warms the rock to deep orange; midday light is flatter and more glaring. Visitors may walk with local guides or ride in open tour vehicles, with camps set well apart beneath the cliffs. Hear wind brushing sand, footsteps on grit and distant vehicle engines."
+ },
+ {
+  "id": "place.landmark.sahara-dunes-morocco",
+  "domain": "place",
+  "topic": "Sahara dunes in Morocco",
+  "names": [
+   "كثبان الصحراء المغربية",
+   "عرقان الصحراء بالمغرب",
+   "رمال مرزوكة",
+   "morocco sahara dunes",
+   "merzouga dunes",
+   "erg chebbi"
+  ],
+  "body": "Near Morocco’s Saharan dune fields, especially Erg Chebbi, long ridges of fine sand rise in smooth slopes with crisp, wind-cut crests. Their colour shifts from pale gold in hard daylight to copper-orange at sunrise and sunset. One side of a dune may be gently rippled, while its sheltered face drops steeply into shadow. Beyond the sand are flatter, darker stony plains, scattered shrubs and distant settlements or camps. People leave deep footprints that soften as wind moves grains across them; camel caravans or walking groups advance slowly along the firmer ground. Hear dry wind, soft sliding sand, footsteps and occasional voices."
+ },
+ {
+  "id": "place.landmark.victoria-falls",
+  "domain": "place",
+  "topic": "Victoria Falls",
+  "names": [
+   "شلالات فيكتوريا",
+   "شلال فكتوريا",
+   "شلالات فكتوريا بزيمبابوي",
+   "victoria falls",
+   "mosi oa tunya"
+  ],
+  "body": "The Zambezi River spills over a long, nearly straight basalt edge into a narrow, deep gorge between Zambia and Zimbabwe. Multiple curtains of water are separated by rocky islands when the river is lower; in high-water months, heavy spray can hide much of the drop. White water plunges vertically, then churns far below dark rock walls. Mist rises above the rim and wets nearby paths and vegetation. Sunlight through the spray can form rainbows, while viewpoints become hazy silhouettes in backlight. Visitors stand at protected lookouts in raincoats or damp clothes. The continuous roar dominates, with wind and falling droplets close to the viewpoints."
+ },
+ {
+  "id": "place.landmark.kilimanjaro",
+  "domain": "place",
+  "topic": "Kilimanjaro",
+  "names": [
+   "جبل كليمنجارو",
+   "جبل كليمانجارو",
+   "كليمنجارو بتنزانيا",
+   "mount kilimanjaro",
+   "kilimanjaro"
+  ],
+  "body": "Kilimanjaro rises above northern Tanzania as a vast volcanic massif, not a single narrow cone. Its broad, highest summit, Kibo, has pale rock and patches of ice or snow near the top; the lower Mawenzi summit is darker and sharply jagged. Forest covers wetter lower slopes, giving way uphill to moorland and then sparse, stony alpine ground. From the plains, haze can soften the mountain’s outline, while early morning light makes the summit clearer and catches any remaining ice. Trekkers climb on foot with local guides and porters, moving slowly on steep, loose paths. Hear boots on gravel, wind and conversation; the upper slopes can be strikingly quiet."
+ },
+ {
+  "id": "place.landmark.amazon-rainforest",
+  "domain": "place",
+  "topic": "Amazon rainforest",
+  "names": [
+   "غابة الأمازون",
+   "غابات الأمازون",
+   "غابة الامازون",
+   "amazon rainforest",
+   "amazon jungle"
+  ],
+  "body": "A dense canopy of broad, overlapping green leaves hides most of the ground, with taller trees rising above it on straight trunks. Vines hang in loose curves; palms and large leaves crowd the shaded understory. Along rivers, muddy brown water reflects broken patches of sky and moves around submerged branches. Humid air softens distant views. Rain drums on leaves, then falls in heavy drops long afterward; insects buzz and birds call from different heights. Under the canopy, daylight is green and dappled, while exposed riverbanks can be glaringly bright. People typically travel on narrow paths or in small boats, rather than through open forest."
+ },
+ {
+  "id": "place.landmark.antarctica-ice",
+  "domain": "place",
+  "topic": "Antarctica ice",
+  "names": [
+   "جليد القارة القطبية الجنوبية",
+   "جليد أنتاركتيكا",
+   "ثلوج القطب الجنوبي",
+   "antarctica ice",
+   "antarctic ice"
+  ],
+  "body": "The inland ice is a vast, gently rolling white surface, broken by wind-sculpted ridges and occasional dark rock. Near the coast, glacier fronts form sheer, layered walls; fresh fractures glow pale blue beneath a white crust. Snow blows close to the ground in thin, fast streams, and footsteps crunch or squeak in the cold. Wind dominates the sound, interrupted near shore by cracking ice, seabirds, and water. Low sun casts long blue-grey shadows; overcast light flattens the terrain until horizon and ground nearly merge. Researchers wear bulky insulated layers and goggles. Penguins belong to coastal areas, not the empty inland plateau."
+ },
+ {
+  "id": "place.landmark.hollywood-sign",
+  "domain": "place",
+  "topic": "Hollywood sign",
+  "names": [
+   "علامة هوليوود",
+   "لافتة هوليوود",
+   "حروف هوليوود",
+   "hollywood sign",
+   "hollywood letters"
+  ],
+  "body": "Nine separate, tall white block letters spell HOLLYWOOD across the uneven slope of Mount Lee. The letters have straight, flat faces and stand on a framework above dry grass, scrub, and low green-brown chaparral; they do not form a single continuous wall. From Los Angeles streets and public viewpoints, the sign appears distant against the hills, sometimes softened by haze. Strong midday sun makes the white faces bright and the shadows narrow; late light warms the hillside. Wind rustles the scrub, with traffic audible farther below. Visitors photograph it from overlooks and trails, but fencing keeps them away from the letters themselves."
+ },
+ {
+  "id": "place.landmark.brandenburg-gate",
+  "domain": "place",
+  "topic": "Brandenburg Gate",
+  "names": [
+   "بوابة براندنبورغ",
+   "بوابة براندنبورج",
+   "بوابة براندنبورك",
+   "brandenburg gate",
+   "brandenburger tor"
+  ],
+  "body": "A broad, pale sandstone gate stands between Berlin’s Pariser Platz and the avenue leading toward the Tiergarten. Six tall columns on each face support a heavy horizontal roofline, creating five passageways, with the central opening wider than the outer ones. Above the roof sits a dark bronze chariot drawn by four horses. Fine carved details show most clearly in angled morning or evening light; at night, warm floodlights pick out the columns against a dark sky. The paved square holds walkers, cyclists, tour groups, and photographers. Footsteps, conversation in several languages, bicycle bells, and distant traffic mingle around the open passages."
+ },
+ {
+  "id": "place.landmark.red-square-st-basils",
+  "domain": "place",
+  "topic": "Red Square and St Basil's",
+  "names": [
+   "الساحة الحمراء وكاتدرائية القديس باسيل",
+   "الميدان الأحمر وكنيسة فاسيلي",
+   "الساحة الحمرا وسانت باسيل",
+   "red square and st basil's",
+   "red square st basils"
+  ],
+  "body": "Red Square is a long, open expanse of dark stone paving, bordered by the red brick Kremlin wall on one side and the ornate GUM building on the other. At its southern end, St Basil’s Cathedral forms an irregular cluster of chapels and towers topped with bulbous domes. The domes carry distinct stripes, spirals, facets, and colours, including green, red, blue, and gold; they are not identical. In clear sun, the brick and painted patterns look vivid, while winter or overcast light makes the square more subdued. Visitors cross the broad paving in small groups; footsteps, conversation, and distant traffic carry through the open space."
+ },
+ {
+  "id": "place.landmark.tower-bridge-london",
+  "domain": "place",
+  "topic": "Tower Bridge London",
+  "names": [
+   "جسر البرج لندن",
+   "جسر تاور بريدج",
+   "تاور بريدج لندن",
+   "tower bridge london",
+   "london tower bridge"
+  ],
+  "body": "Two square, pale stone-clad towers rise from the Thames, each finished with pointed roofs and small Gothic-style turrets. High walkways connect them above the roadway; blue-painted steel suspension elements extend outward toward the riverbanks. Between the towers, the two road sections can tilt upward separately to let a tall vessel pass. When closed, cars, buses, cyclists, and pedestrians cross at street level, producing tyre hiss and footsteps over the steady river and nearby city traffic. The tidal water often looks grey-brown. Cloudy daylight softens the stone; at dusk, architectural lights outline the towers and blue metalwork against the river."
+ },
+ {
+  "id": "place.landmark.stonehenge",
+  "domain": "place",
+  "topic": "Stonehenge",
+  "names": [
+   "ستونهنج",
+   "ستون هنج",
+   "حجارة ستونهنج",
+   "stonehenge",
+   "stonehenge stones"
+  ],
+  "body": "Large grey standing stones form a broken outer circle on open, gently rolling grassland. Some pairs support long horizontal lintels, making heavy stone doorways; smaller, darker stones stand in an irregular arrangement inside. The surfaces are rough, weathered, and mottled with pale lichen, with uneven edges rather than polished faces. The stones remain still while long grass bends in the wind. Low sunlight stretches their shadows across the ground; cloud cover gives the scene a muted grey-green palette. Visitors usually view the monument from a designated path at a distance. Voices, footsteps, birds, and wind across Salisbury Plain provide the surrounding sound."
+ },
+ {
+  "id": "place.landmark.neuschwanstein-castle",
+  "domain": "place",
+  "topic": "Neuschwanstein castle",
+  "names": [
+   "قلعة نويشفانشتاين",
+   "قصر نويشفانشتاين",
+   "قلعة نوي شوانشتاين",
+   "neuschwanstein castle",
+   "schloss neuschwanstein"
+  ],
+  "body": "Neuschwanstein rises from a wooded Bavarian hillside as a cluster of pale limestone walls, steep slate-grey roofs, narrow windows, and tall towers with pointed caps. Its silhouette is deliberately varied: a prominent square tower, smaller round turrets, and stepped rooflines stand at different heights. A reddish brick gatehouse contrasts with the light main buildings. Dark conifers frame the lower walls, with mountain slopes and a lake visible from wider viewpoints. Morning mist may veil the valley; clear afternoon light sharpens the pale facade against the trees. Visitors approach on paved paths or by shuttle, with footsteps, conversation, birds, and occasional vehicle noise."
+ },
+ {
+  "id": "place.landmark.amsterdam-canals",
+  "domain": "place",
+  "topic": "Amsterdam canals",
+  "names": [
+   "قنوات أمستردام",
+   "قنوات امستردام",
+   "ترع أمستردام",
+   "amsterdam canals",
+   "amsterdam grachten"
+  ],
+  "body": "Amsterdam’s canals are long, calm strips of dark green-brown water edged by brick quays. Narrow, tall canal houses stand shoulder to shoulder, with stepped or curved gables, large windows and muted brick facades. Small arched bridges cross the water; bicycles often line their railings. Houseboats sit low against the banks while sightseeing boats pass slowly, leaving gentle V-shaped wakes that rock reflections and moored vessels. Plane trees, parked bicycles and pedestrians frame the streets. In daylight the water reflects broken patches of sky; after dark, warm windows and bridge lights streak across it. Expect bicycle bells, boat engines and soft water against hulls."
+ },
+ {
+  "id": "place.landmark.prague-old-town",
+  "domain": "place",
+  "topic": "Prague old town",
+  "names": [
+   "بلدة براغ القديمة",
+   "المدينة القديمة في براغ",
+   "ساحة براغ القديمة",
+   "prague old town",
+   "staromestske namesti"
+  ],
+  "body": "Prague’s Old Town Square is a broad paved space enclosed by pastel plaster buildings with steep tiled roofs and ornate facades. The dark twin spires of the Gothic Church of Our Lady before Týn rise behind the eastern buildings; the Old Town Hall and its astronomical clock stand on another side. People cross the square on foot, gather beneath the clock and sit at outdoor tables. Nearby lanes narrow between stone and stucco walls. Morning light catches upper facades while the square remains partly shaded; evening lamps warm the paving. Footsteps, conversation, café dishes and the clock’s hourly gathering shape the sound."
+ },
+ {
+  "id": "place.landmark.dubrovnik-walls",
+  "domain": "place",
+  "topic": "Dubrovnik walls",
+  "names": [
+   "أسوار دوبروفنيك",
+   "سور دوبروفنيك",
+   "اسوار دوبروفنيك",
+   "dubrovnik walls",
+   "dubrovnik city walls"
+  ],
+  "body": "Dubrovnik’s walls form a continuous pale limestone circuit above the compact Old Town. Thick parapets, rounded bastions and square towers follow the uneven coastline and climb toward the hillside. A narrow stone walkway runs along the top, overlooking tightly packed terracotta roofs, church domes and the deep blue Adriatic. Visitors move steadily along the exposed path, pausing at corners where the sea opens into view. The limestone can look almost white in strong midday sun and honey-coloured near sunset. Below, small waves break against the rock; above, footsteps scrape stone, seabirds call and conversation carries in the breeze."
+ },
+ {
+  "id": "place.landmark.ha-long-bay",
+  "domain": "place",
+  "topic": "Ha Long Bay",
+  "names": [
+   "خليج ها لونغ",
+   "خليج هالونغ",
+   "ها لونج باي",
+   "ha long bay",
+   "halong bay"
+  ],
+  "body": "Ha Long Bay is a wide expanse of green water interrupted by hundreds of steep limestone islands. Their dark, nearly vertical faces rise directly from the sea, with dense green vegetation clinging to ledges and rounded tops. Some formations contain cave mouths or small sheltered beaches. Tour boats and wooden-style cruise vessels travel slowly between the islands, leaving narrow wakes that spread across otherwise gentle ripples. Distant karsts fade to blue-grey in humid haze; low sunlight outlines their edges and glints on the water. Boat motors hum, water taps against hulls and voices carry briefly across open stretches."
+ },
+ {
+  "id": "place.landmark.pamukkale-terraces",
+  "domain": "place",
+  "topic": "Pamukkale terraces",
+  "names": [
+   "مدرجات باموكالي",
+   "تراسات باموكالي",
+   "باموك قلعة",
+   "pamukkale terraces",
+   "pamukkale travertines"
+  ],
+  "body": "Pamukkale’s terraces cover a hillside in bright white travertine, shaped into rounded rims and shallow, stepped basins. Mineral-rich water flows in thin sheets over the surface and collects in pale turquoise pools; other sections appear dry and matte. The edges look soft and sculpted rather than like regular stairs. Visitors walk barefoot in permitted areas, moving carefully on the wet stone and stopping at pool edges. Ancient stone ruins stand on the plateau above. Harsh midday light makes the white surface glare, while late sun brings out subtle cream shadows. Expect trickling water, footsteps and quiet conversation."
+ },
+ {
+  "id": "place.landmark.mecca-clock-tower",
+  "domain": "place",
+  "topic": "Mecca clock tower",
+  "names": [
+   "برج ساعة مكة",
+   "ساعة مكة",
+   "ابراج الساعة مكة",
+   "mecca clock tower",
+   "makkah clock tower",
+   "abraj al bait"
+  ],
+  "body": "The Mecca clock tower rises above the Abraj Al Bait complex beside the Grand Mosque. Its tall, tiered stone-coloured facade narrows toward four enormous clock faces, each set beneath Arabic calligraphy; a slender spire and large crescent crown the top. The clocks dominate the surrounding high-rise buildings and remain visible above many streets approaching the mosque. By day, pale stone and dark glass stand out against the bright sky; at night, the illuminated clock faces and green lighting become prominent. Pilgrims in modest clothing move through nearby streets in dense, orderly flows. The soundscape includes footsteps, traffic farther out, conversation and calls to prayer."
+ },
+ {
+  "id": "place.landmark.jeddah-corniche",
+  "domain": "place",
+  "topic": "Jeddah corniche",
+  "names": [
+   "كورنيش جدة",
+   "كورنيش جده",
+   "كُرنيش جدة",
+   "jeddah corniche",
+   "jeddah waterfront"
+  ],
+  "body": "Jeddah’s corniche is a long Red Sea waterfront with broad paved walking areas, palm trees, lawns and low walls facing the water. Its appearance changes along the coast: some stretches have landscaped parks and play areas, while others have sculptures, cafés and open views across the sea. Families stroll or sit together, and children move between the paths and grass. The water is usually dark blue or turquoise near shore, with small wind-driven waves against rocks and seawalls. Sunsets cast warm light across the promenade; after dark, path lights and nearby buildings brighten it. Expect conversation, footsteps, passing cars and surf."
+ },
+ {
+  "id": "place.landmark.doha-skyline",
+  "domain": "place",
+  "topic": "Doha skyline",
+  "names": [
+   "أفق الدوحة",
+   "سكاي لاين الدوحة",
+   "أبراج الدوحة",
+   "doha skyline",
+   "doha west bay"
+  ],
+  "body": "Doha’s West Bay skyline is a dense cluster of high-rises seen especially clearly across the curved waterfront of the Corniche. The towers vary sharply in outline: cylindrical, tapering and rectangular forms stand together, clad largely in reflective blue, silver and dark glass. Roads, landscaped paths and palms trace the shoreline, while small boats sometimes cross the bay in front of the buildings. In bright daylight the facades flash with reflected sun and sky; at dusk their windows and architectural lighting form distinct vertical patterns. The foreground water ripples in the breeze. Sounds near the Corniche include traffic, footsteps, conversation and occasional boat engines."
+ },
+ {
+  "id": "place.landmark.muscat-sultan-qaboos-mosque",
+  "domain": "place",
+  "topic": "Muscat Sultan Qaboos mosque",
+  "names": [
+   "جامع السلطان قابوس الأكبر",
+   "مسجد السلطان قابوس مسقط",
+   "جامع السلطان قابوس بمسقط",
+   "sultan qaboos grand mosque",
+   "muscat grand mosque"
+  ],
+  "body": "The Sultan Qaboos Grand Mosque sits within low, landscaped grounds in Muscat. Its pale sandstone walls form broad rectangular courtyards around a central prayer hall, topped by a patterned golden dome. One tall, square minaret rises beside it, with four shorter minarets marking the complex. Arched walkways cast sharp, repeating shadows across polished stone; inside, a vast patterned carpet lies beneath an ornate chandelier. Morning light makes the exterior look warm cream, while evening lighting picks out the arches and dome against a dark sky. Visitors walk quietly through the courtyards; footsteps echo under the arcades, and the call to prayer may carry across the grounds."
+ },
+ {
+  "id": "place.landmark.bahrain-world-trade-center",
+  "domain": "place",
+  "topic": "Bahrain World Trade Center",
+  "names": [
+   "مركز البحرين التجاري العالمي",
+   "أبراج مركز البحرين التجاري العالمي",
+   "مركز البحرين التجاري بالمنامة",
+   "bahrain world trade center",
+   "bahrain wtc"
+  ],
+  "body": "The Bahrain World Trade Center is a pair of matching, blue-glass towers on Manama’s waterfront. Each tower tapers and curves like an upright sail, with a pointed upper edge; three horizontal bridges span the gap, each carrying a large, three-bladed wind turbine. The towers stand above a broad commercial base, with roads, palms and other high-rises nearby. Sunlight flashes across the glass in moving reflections, while at dusk the façades become darker blue against the lit streets. Traffic and waterfront wind provide the background sound. People at ground level appear small beneath the bridges; the turbine blades may turn slowly when conditions permit."
+ },
+ {
+  "id": "place.landmark.beirut-raouche-rocks",
+  "domain": "place",
+  "topic": "Beirut Raouche rocks",
+  "names": [
+   "صخور الروشة",
+   "صخرة الروشة بيروت",
+   "صخرة الحمام بيروت",
+   "raouche rocks",
+   "pigeon rocks beirut"
+  ],
+  "body": "Raouche’s Pigeon Rocks are two weathered limestone masses standing just offshore from Beirut’s seafront. The larger rock has a broad natural arch near its base, where turquoise water passes through; the other rises beside it as a narrower, irregular pillar. Their pale beige surfaces show dark streaks, cracks and rough horizontal layers. From the cliffside promenade, the rocks sit below street level against open sea, with apartment blocks, cafés and passing cars behind the viewer. Waves break white around the bases, and gulls call overhead. Late sun turns the stone honey-coloured; after sunset, the arch becomes a dark silhouette against the water."
+ },
+ {
+  "id": "place.landmark.damascus-umayyad-mosque",
+  "domain": "place",
+  "topic": "Damascus Umayyad Mosque",
+  "names": [
+   "الجامع الأموي بدمشق",
+   "جامع بني أمية دمشق",
+   "جامع الأمويين",
+   "umayyad mosque damascus",
+   "great mosque of damascus"
+  ],
+  "body": "The Umayyad Mosque has a wide, open courtyard paved in pale stone, enclosed by arcaded walls and a long prayer hall. Its façades carry intricate mosaics of green foliage and golden buildings; tall minarets rise above the surrounding old-city roofs. Polished courtyard paving reflects people and columns when wet, while midday sun draws crisp shadows beneath the arches. Inside, rows of columns and hanging lamps lead across a broad, carpeted space. Worshippers and visitors move at a measured pace, with modest dress appropriate to the site. Soft footsteps and conversation echo off stone, and the call to prayer is heard at prayer times."
+ },
+ {
+  "id": "place.landmark.cairo-khan-el-khalili",
+  "domain": "place",
+  "topic": "Cairo Khan el-Khalili",
+  "names": [
+   "خان الخليلي",
+   "سوق خان الخليلي",
+   "خان الخليلي القاهرة",
+   "khan el khalili",
+   "khan al khalili"
+  ],
+  "body": "Khan el-Khalili is a dense network of narrow market lanes in historic Cairo. Weathered stone and plaster façades rise above tightly packed shopfronts; pierced metal lanterns, brass trays, jewellery and bright textiles fill the displays. Some passages have overhead coverings that break the sunlight into patches, while exposed lanes glow warm in late afternoon. Shopkeepers stand among stacked goods, customers pause to look, and people thread past one another on foot. Metal objects give a light clink when handled, mixed with bargaining voices, footsteps and the sounds of nearby traffic. After dark, hanging lamps and shop lights add warm points of light along the lanes."
+ },
+ {
+  "id": "place.landmark.luxor-karnak-temple",
+  "domain": "place",
+  "topic": "Luxor Karnak temple",
+  "names": [
+   "معبد الكرنك",
+   "معابد الكرنك بالأقصر",
+   "الكرنك في الأقصر",
+   "karnak temple",
+   "luxor karnak"
+  ],
+  "body": "Karnak is a vast complex of warm sandstone courts, gateways and ruins on Luxor’s east bank. Massive pylons frame the approaches, while the Great Hypostyle Hall packs towering columns into close rows; their broad capitals flare outward above carved shafts. Hieroglyphs and reliefs cover the stone, with traces of old colour visible in sheltered areas. Obelisks rise above lower walls, and rows of ram-headed sphinxes line an approach. Visitors move slowly through the uneven spaces, their footsteps crunching on gravel and echoing faintly between columns. Strong midday light cuts deep shadows across the carvings; near sunset, the sandstone turns orange-pink against a pale sky."
+ },
+ {
+  "id": "place.landmark.marrakech-jemaa-el-fnaa",
+  "domain": "place",
+  "topic": "Marrakech Jemaa el-Fnaa",
+  "names": [
+   "ساحة جامع الفنا",
+   "جامع الفنا مراكش",
+   "ساحة الفنا بمراكش",
+   "jemaa el fnaa",
+   "djemaa el fna"
+  ],
+  "body": "Jemaa el-Fnaa is a broad, open square in Marrakech, bordered by cafés, market entrances and low, ochre-toned buildings. By day, pedestrians cross the sunlit paving between scattered vendors; the Koutoubia Mosque’s square minaret is visible beyond the surrounding streets. Toward evening, food stalls gather in rows under bright bulbs, with steam rising from grills as crowds flow through the gaps. Warm shop lights and a fading pink sky replace the hard afternoon glare. Conversations, footsteps, cooking sounds and performers’ music overlap across the square. People cluster, separate and reform around stalls and performances, leaving the open space in constant motion."
+ },
+ {
+  "id": "place.landmark.chefchaouen-blue-city",
+  "domain": "place",
+  "topic": "Chefchaouen blue city",
+  "names": [
+   "شفشاون المدينة الزرقاء",
+   "المدينة الزرقاء شفشاون",
+   "شاون الزرقاء",
+   "chefchaouen blue city",
+   "chaouen blue medina"
+  ],
+  "body": "Chefchaouen’s medina climbs a hillside in narrow lanes and short flights of steps, surrounded by the Rif Mountains. Walls are painted in layered shades of powder blue, turquoise and deep indigo, often meeting white upper façades and terracotta roof tiles. Blue doors, iron grilles, ceramic pots and small shop displays add detail at walking height. Sunlight brightens exposed corners while shaded passages look cool and saturated; after rain, stone steps darken and reflect patches of blue. Residents and visitors walk slowly through the steep streets, sometimes stepping aside in tight passages. Footsteps, quiet conversation and occasional scooters on wider lanes carry between the closely spaced walls."
+ },
+ {
+  "id": "place.landmark.tunis-sidi-bou-said",
+  "domain": "place",
+  "topic": "Tunis Sidi Bou Said",
+  "names": [
+   "تونس سيدي بوسعيد",
+   "سيدي بوسعيد",
+   "سيدي بو سعيد",
+   "سيدي بوسعيد تونس",
+   "tunis sidi bou said",
+   "sidi bou said"
+  ],
+  "body": "Sidi Bou Said climbs a hillside above the Gulf of Tunis in narrow, sloping lanes. Mostly two-storey whitewashed buildings have flat roofs, bright blue wooden doors and shutters, and dark wrought-iron window grilles. Some doors sit beneath rounded stone arches; pink bougainvillea spills over white walls. Stone steps and paving catch hard midday sun, while late light warms the white facades and leaves the sea pale blue below. People walk slowly uphill, pause at viewpoints, or sit at small café tables. Footsteps scrape on stone amid conversation, clinking tea glasses, and occasional gull calls."
+ },
+ {
+  "id": "place.landmark.istanbul-grand-bazaar",
+  "domain": "place",
+  "topic": "Istanbul Grand Bazaar",
+  "names": [
+   "بازار اسطنبول الكبير",
+   "البازار الكبير اسطنبول",
+   "السوق المسقوف اسطنبول",
+   "جراند بازار اسطنبول",
+   "istanbul grand bazaar",
+   "grand bazaar istanbul",
+   "kapalıçarşı"
+  ],
+  "body": "Istanbul’s Grand Bazaar is a dense network of covered shopping lanes beneath pale masonry vaults and repeating arches. The corridors are only a few shopfronts wide, with worn stone floors and closely packed displays of gold jewellery, patterned carpets, ceramics, leather goods, and hanging lamps. Some ceilings carry painted ornament; glass cases and polished metal throw warm shop lighting across the passages. Daylight is strongest at the entrance gates, while the inner lanes stay evenly lit by electric lamps. Shoppers thread around one another at walking pace as sellers stand in doorways. Voices echo under the vaults, mixed with footsteps, rustling bags, and the clink of tea glasses."
+ }
+]

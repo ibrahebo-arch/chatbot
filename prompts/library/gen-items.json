@@ -1,0 +1,2212 @@
+[
+ {
+  "id": "item.gen.toyota-camry",
+  "domain": "item",
+  "topic": "Toyota Camry",
+  "names": [
+   "toyota camry",
+   "camry",
+   "تويوتا كامري",
+   "كامري",
+   "كامري تويوتا"
+  ],
+  "body": "A contemporary Toyota Camry is a midsize four-door sedan, noticeably longer and wider than a Corolla, with a low roof, broad shoulders and a short rear deck. On common late-2010s and early-2020s models, slim swept-back headlights sit above a large dark lower grille. The Toyota oval is centered on the nose and trunk, with CAMRY lettering or a badge at the rear. Paint is often white, silver or black; chrome trim outlines the side windows. Its doors swing outward, the trunk lid lifts, and the body dips slightly under braking. On Iraqi streets, its tires hiss on asphalt and its engine hum stays subdued in traffic."
+ },
+ {
+  "id": "item.gen.toyota-corolla",
+  "domain": "item",
+  "topic": "Toyota Corolla",
+  "names": [
+   "toyota corolla",
+   "corolla",
+   "تويوتا كورولا",
+   "كورولا",
+   "كرولا"
+  ],
+  "body": "A contemporary Toyota Corolla sedan has four doors, a compact footprint and a lower, narrower body than a Camry. Recent models have sharp headlights that reach toward the front fenders, a dark lower grille, a gently arched roof and a short trunk. The Toyota oval sits at the center of the nose and rear; COROLLA is badged on the trunk. White, silver and gray paint are common, with dark tires beneath modest wheel arches. At a curb, its doors open outward and the trunk lid rises on hinges. It rolls with little body sway on smooth roads; over speed bumps, the suspension compresses and rebounds with a soft thump."
+ },
+ {
+  "id": "item.gen.toyota-prado",
+  "domain": "item",
+  "topic": "Toyota Prado",
+  "names": [
+   "toyota prado",
+   "land cruiser prado",
+   "prado",
+   "تويوتا برادو",
+   "برادو",
+   "لاندكروزر برادو"
+  ],
+  "body": "The commonly seen 150-series Toyota Land Cruiser Prado is a tall, body-on-frame SUV with an upright windshield, high roof, broad hood and generous ground clearance. Its prominent grille has vertical chrome bars around a central Toyota oval; headlights wrap into the front corners. Large side mirrors, side steps and roof rails appear on many examples, with LAND CRUISER PRADO badging at the rear. White and metallic silver are familiar colors. A person steps up into the cabin rather than down into it. The heavy doors close with a solid thud, and the vehicle leans gently in turns; its tires rumble over rough pavement and its suspension rises slowly after speed bumps."
+ },
+ {
+  "id": "item.gen.toyota-fortuner",
+  "domain": "item",
+  "topic": "Toyota Fortuner",
+  "names": [
+   "toyota fortuner",
+   "fortuner",
+   "تويوتا فورتشنر",
+   "فورتشنر",
+   "فورتنر"
+  ],
+  "body": "A Toyota Fortuner is a tall, seven-seat, body-on-frame SUV with a high hood, raised ground clearance and a squared-off rear cargo area. On the widely seen second generation, narrow headlights flank a chrome-trimmed grille, while a strong crease runs along the doors and the rear side window tapers upward. A Toyota oval sits on the grille and tailgate, with FORTUNER lettering across the back on many versions. Side steps help passengers climb in. The rear hatch lifts upward to load bags. In motion it rocks more than a sedan over uneven roads, with a low engine hum, tire noise and a firm thud from its large doors."
+ },
+ {
+  "id": "item.gen.nissan-patrol",
+  "domain": "item",
+  "topic": "Nissan Patrol",
+  "names": [
+   "nissan patrol",
+   "patrol",
+   "نيسان باترول",
+   "باترول",
+   "بترول نيسان"
+  ],
+  "body": "The Y62 Nissan Patrol, common on Gulf and Iraqi roads, is a very large SUV with a wide, rounded body, tall cabin and substantial ground clearance. A thick chrome V-shaped surround frames its broad front grille, with the Nissan badge centered inside; PATROL lettering appears on the tailgate. Large headlights, substantial mirrors and wide doors make its scale clear beside a standing adult. Black, white and metallic finishes are common. Passengers step up into the cabin, and the rear hatch lifts to reveal a large cargo opening. It moves with noticeable weight: the body settles after bumps, tires make a broad road rumble, and the doors shut with a deep thud."
+ },
+ {
+  "id": "item.gen.nissan-sunny",
+  "domain": "item",
+  "topic": "Nissan Sunny",
+  "names": [
+   "nissan sunny",
+   "sunny",
+   "نيسان صني",
+   "صني",
+   "سني نيسان"
+  ],
+  "body": "A recent Nissan Sunny is a small four-door sedan with a gently rounded roof, short hood and separate trunk. Its front has swept headlights beside a dark grille outlined by a chrome V, with the Nissan badge in the center. SUNNY lettering or a badge sits on the rear trunk lid. The narrow tires, modest wheels and compact width distinguish it from larger family sedans; white and silver examples are frequent on Iraqi roads. At a taxi stand or shopfront, people enter through outward-swinging doors and place bags in the lifting trunk. It accelerates with a light engine buzz, its tires hiss on pavement, and small bumps produce a brief suspension tap."
+ },
+ {
+  "id": "item.gen.kia-sportage",
+  "domain": "item",
+  "topic": "Kia Sportage",
+  "names": [
+   "kia sportage",
+   "sportage",
+   "كيا سبورتاج",
+   "سبورتاج",
+   "سبورتج"
+  ],
+  "body": "A current-generation Kia Sportage is a compact SUV with a high roof, short rear overhang and sculpted sides. Its distinctive front has broad dark grille texture and boomerang-shaped daytime running lights wrapping around the main headlamp areas. The stylized KIA emblem sits above the grille and on the tailgate; SPORTAGE is spelled across the rear. Dark wheel-arch trim, roof rails on many versions and a rising side-window line frame the body. A person steps into its cabin at roughly hip height. The rear hatch lifts overhead for shopping bags. It stays relatively level through city turns, with tire hiss, a muted engine note and a firm click as the hatch latches."
+ },
+ {
+  "id": "item.gen.kia-cerato",
+  "domain": "item",
+  "topic": "Kia Cerato",
+  "names": [
+   "kia cerato",
+   "cerato",
+   "كيا سيراتو",
+   "سيراتو",
+   "سراتو"
+  ],
+  "body": "A late-2010s Kia Cerato sedan is a compact four-door car with a sloping roof, low nose and short trunk. Narrow swept headlights meet Kia’s dark, pinched-center grille, while a wide lower intake fills the front bumper. On 2019–2021 examples, the oval Kia badge sits above the grille and on the trunk; CERATO is badged at the rear. The taillights stretch horizontally across the rear corners. White, silver, gray and black paint are typical. Its doors swing outward and the trunk lid lifts for luggage. Beside an SUV it looks low and narrow; in traffic it moves with modest body roll, quiet tire hiss and a light engine hum."
+ },
+ {
+  "id": "item.gen.hyundai-elantra",
+  "domain": "item",
+  "topic": "Hyundai Elantra",
+  "names": [
+   "هيونداي النترا",
+   "هيونداي إلنترا",
+   "النترا",
+   "إلنترا",
+   "الانترا",
+   "hyundai elantra",
+   "elantra"
+  ],
+  "body": "A 2021–23 Hyundai Elantra is a compact four-door sedan with a low, wide nose, a broad black grille and sharply creased sides. Triangular facets meet along the doors; the roof slopes toward a short trunk. Slim headlamps sit at the grille’s upper corners, and narrow rear lamps stretch across the trunk beneath the centered Hyundai emblem. The Elantra badge sits on the trunk, with trim badges varying by version. Its wheels look modest beside the long body. It rolls quietly on pavement, with light tire hiss and a subdued engine note; the doors close with a firm, hollow thud. Sunlight picks out the angular body creases."
+ },
+ {
+  "id": "item.gen.hyundai-sonata",
+  "domain": "item",
+  "topic": "Hyundai Sonata",
+  "names": [
+   "هيونداي سوناتا",
+   "سوناتا",
+   "الصوناتا",
+   "hyundai sonata",
+   "sonata"
+  ],
+  "body": "A 2024-on Hyundai Sonata is a midsize four-door sedan, longer and wider-looking than an Elantra. A thin horizontal daytime-running light spans the front above a dark grille; the main headlamps sit lower at either side. Its hood is broad, the roof sweeps back, and the trunk ends in a narrow, full-width rear light. The Hyundai emblem is centered on the hood and the Sonata name appears across the trunk. Through the windows, a wide dashboard display and low seating are visible. It glides smoothly over roads, producing soft tire noise, a muted engine hum and a solid click when its doors shut."
+ },
+ {
+  "id": "item.gen.hyundai-tucson",
+  "domain": "item",
+  "topic": "Hyundai Tucson",
+  "names": [
+   "هيونداي توسان",
+   "هيونداي توسون",
+   "توسان",
+   "توسون",
+   "hyundai tucson",
+   "tucson"
+  ],
+  "body": "A 2022–24 Hyundai Tucson is a compact SUV with a high roof, five doors and sharply folded panels along its sides. When parked, the angular daytime-running lamps blend into the dark front grille; switched on, they form bright shapes at its outer edges. The main lamps sit below them. Rear lamps have pointed vertical elements joined across the tailgate, with the Hyundai emblem centered above the Tucson badge. Black trim borders the wheel arches and lower body. It sits higher than a sedan but still fits an ordinary parking space. The suspension gently rocks over bumps; expect tire hiss, a restrained engine sound and a weighty tailgate latch."
+ },
+ {
+  "id": "item.gen.chevrolet-tahoe",
+  "domain": "item",
+  "topic": "Chevrolet Tahoe",
+  "names": [
+   "شفروليه تاهو",
+   "شيفروليه تاهو",
+   "تاهو",
+   "شفر تاهو",
+   "chevrolet tahoe",
+   "chevy tahoe"
+  ],
+  "body": "A 2021–24 Chevrolet Tahoe is a large, tall SUV with four side doors, three seating rows and an upright, nearly square rear. Its broad front has a wide grille carrying the Chevrolet bowtie, with narrow upper running lights and larger lighting units below. A Tahoe badge appears on the front doors; the rear tailgate opens upward above a substantial bumper. Large wheels leave a visible gap beneath the body, and roof rails may run front to back. Beside an adult, the hood reaches roughly chest height. It leans slightly through turns and settles over bumps, with low engine rumble, tire noise and heavy door thumps."
+ },
+ {
+  "id": "item.gen.gmc-yukon",
+  "domain": "item",
+  "topic": "GMC Yukon",
+  "names": [
+   "جي ام سي يوكن",
+   "جي إم سي يوكن",
+   "يوكن",
+   "gmc yukon",
+   "yukon"
+  ],
+  "body": "A 2021–24 GMC Yukon is a full-size, three-row SUV with a tall, broad body and an almost vertical tailgate. Its front is distinguished by a large, upright grille bearing prominent red GMC letters, flanked by stacked, angular lighting. The Yukon name appears on the side doors; trim details and grille finishes vary. Squared-off wheel openings, large mirrors and broad running boards emphasize its height beside pedestrians. It rolls with more body movement than a sedan, the suspension compressing visibly over uneven pavement. At low speed, hear a deep engine hum, soft tire crunch on gravel and substantial clicks from its doors and tailgate."
+ },
+ {
+  "id": "item.gen.chevrolet-caprice-iraqi-classic",
+  "domain": "item",
+  "topic": "Chevrolet Caprice (Iraqi classic)",
+  "names": [
+   "شفروليه كابرس",
+   "شيفروليه كابرس",
+   "كابرس كلاسيك",
+   "كابرس قديم",
+   "كابريس",
+   "chevrolet caprice",
+   "caprice classic"
+  ],
+  "body": "For the Iraqi classic, show a late-1980s Chevrolet Caprice sedan: long, low and box-shaped, with a flat hood, upright windshield, straight beltline and broad, squared trunk. A chrome-edged grille carries the Chevrolet bowtie between rectangular headlamps; chrome trim outlines the windows and bumpers. Caprice or Caprice Classic lettering appears on the body according to trim. The cabin has wide seats and large glass areas, and the car occupies noticeably more curb space than a modern compact sedan. Its soft suspension lets the body float and dip over bumps. An idling engine gives a low, uneven hum; doors shut with a deep metallic clunk."
+ },
+ {
+  "id": "item.gen.mercedes-g-class",
+  "domain": "item",
+  "topic": "Mercedes G-Class",
+  "names": [
+   "مرسيدس جي كلاس",
+   "مرسيدس جي كلاس واجن",
+   "جي كلاس",
+   "جي واجن",
+   "mercedes g-class",
+   "g-wagen"
+  ],
+  "body": "A modern Mercedes G-Class is a tall, narrow-looking luxury SUV with a near-vertical windshield, flat roof, slab sides and exposed door hinges. Round headlamps flank a rectangular grille with the Mercedes star at its center; small turn indicators sit on top of the front fenders. A rear-mounted spare wheel, usually covered, dominates the side-hinged tailgate. Black wheel-arch extensions frame the tires, and the upright cabin sits high above the road. It moves with a firm, slightly rocking ride. Its distinctive doors require a solid pull and close with a sharp mechanical clack; tires and engine are audible at low speed."
+ },
+ {
+  "id": "item.gen.mercedes-s-class",
+  "domain": "item",
+  "topic": "Mercedes S-Class",
+  "names": [
+   "مرسيدس اس كلاس",
+   "مرسيدس إس كلاس",
+   "مرسيدس الفئة اس",
+   "اس كلاس",
+   "mercedes s-class",
+   "s-class"
+  ],
+  "body": "A current Mercedes S-Class sedan is long and low, with a broad chrome-framed grille, a sculpted hood and slim LED headlamps. A small standing Mercedes star may sit on the hood, depending on version; the trunk carries the Mercedes star above its model badge. The gently arched roof shelters spacious rear seats, while polished trim and broad display screens are visible inside. Flush-fitting door handles extend outward when approached on equipped cars. Its wheels remain visually composed as the suspension absorbs road ripples, with little body bounce. From outside, hear subdued tire hiss, a faint engine note and a soft, solid door closure."
+ },
+ {
+  "id": "item.gen.bmw-x5",
+  "domain": "item",
+  "topic": "BMW X5",
+  "names": [
+   "bmw x5",
+   "بي ام دبليو x5",
+   "بي ام x5",
+   "بي ام دبليو اكس فايف",
+   "بي ام اكس فايف",
+   "بي ام دبليو اكس 5"
+  ],
+  "body": "The BMW X5 is a large, five-door SUV with a high beltline, broad shoulders and a roof reaching roughly an adult’s chest-to-head height. Two tall kidney-shaped grilles sit between narrow headlights, with a blue-and-white BMW roundel above them on the hood. The rear has a liftgate, wide taillights and an X5 badge beside the tailgate seam. Paint is glossy; windows are dark-edged glass, and the wheels have thick road tires. It sits level when parked, then pitches slightly under braking and leans gently through turns. Doors close with a solid thud; on the road, tire hiss and a subdued engine note are most noticeable."
+ },
+ {
+  "id": "item.gen.range-rover",
+  "domain": "item",
+  "topic": "Range Rover",
+  "names": [
+   "range rover",
+   "رنج روفر",
+   "رينج روفر",
+   "رانج روفر",
+   "رنج روڤر",
+   "لاند روفر رنج روفر"
+  ],
+  "body": "The full-size Range Rover is a tall, broad luxury SUV with a nearly level roof, upright tailgate and large, flat-looking side panels. RANGE ROVER lettering spans the front edge of the hood and the rear tailgate; a small oval Land Rover badge appears in the grille area. Its slim lamps, dark window surrounds and substantial alloy wheels give it a clean, squared-off outline beside a person. The suspension keeps the cabin notably level over ordinary bumps, though the heavy body still rolls slightly in a turn. Doors shut with a muted, weighty sound. Inside, road noise is restrained; outside, tires, engine and cooling fans remain audible."
+ },
+ {
+  "id": "item.gen.tesla-model-3",
+  "domain": "item",
+  "topic": "Tesla Model 3",
+  "names": [
+   "tesla model 3",
+   "تسلا موديل 3",
+   "تيسلا موديل 3",
+   "تسلا مدل ٣",
+   "تسلا موديل ثري",
+   "تيسلا موديل ثري"
+  ],
+  "body": "The Tesla Model 3 is a low, four-door electric sedan with a smooth, grille-free nose, sloping glass roof and short rear deck. A small Tesla T emblem is centered on the hood; the rear carries Tesla branding. Flush door handles sit nearly flat against the painted panels, and large dark glass areas contrast with the body colour. It is about waist-high at the hood beside an adult. Pulling away, it moves smoothly without engine revs or gear-change jolts. At low speed there may be a faint electric whir or pedestrian warning sound; tire hiss and wind become clearer as speed rises. Brake lights illuminate under deceleration."
+ },
+ {
+  "id": "item.gen.ford-mustang",
+  "domain": "item",
+  "topic": "Ford Mustang",
+  "names": [
+   "ford mustang",
+   "فورد موستانج",
+   "فورد موستنج",
+   "موستانج",
+   "موستنك فورد",
+   "mustang car"
+  ],
+  "body": "A Ford Mustang coupe has a long hood, low roof, short rear deck and wide rear haunches. The galloping-horse emblem sits in the front grille, while each side of the rear has three vertical taillight bars. Two long doors open beside low seats; the hood comes to around an adult’s waist. Glossy painted steel panels meet dark grille openings, glass and broad rubber tires. It squats slightly when accelerating and noses down during firm braking. Gasoline versions have an audible engine note that rises with revs, especially from the rear, while tires hiss over pavement and the doors close with a heavy clunk."
+ },
+ {
+  "id": "item.gen.jeep-wrangler",
+  "domain": "item",
+  "topic": "Jeep Wrangler",
+  "names": [
+   "jeep wrangler",
+   "جيب رانجلر",
+   "جيب رانغلر",
+   "رانجلر جيب",
+   "رانغلر",
+   "jeep wrangler suv"
+  ],
+  "body": "The Jeep Wrangler is a tall, boxy SUV with a nearly vertical windshield, flat hood, exposed-looking wheel arches and a seven-slot front grille between round headlights. Its rear-mounted spare tire sits on a side-opening tailgate. Two-door and longer four-door bodies exist; both ride high on chunky tires, with visible clearance under the body. Jeep badges appear on the exterior panels. On rough ground the body rocks and the wheels move up and down independently; on pavement it leans more visibly than a low sedan. Wind brushes around its upright shape, tires rumble, and the engine is audible when it climbs or accelerates."
+ },
+ {
+  "id": "item.gen.dodge-charger",
+  "domain": "item",
+  "topic": "Dodge Charger",
+  "names": [
+   "dodge charger",
+   "دودج تشارجر",
+   "دوج تشارجر",
+   "دودج جارجر",
+   "تشارجر دودج",
+   "charger dodge"
+  ],
+  "body": "The familiar gasoline-era Dodge Charger is a large four-door sedan with a long hood, low roof and muscular rear shoulders. A dark, wide front grille sits below narrow headlights; DODGE or Charger badging appears at the rear, where red taillights form a broad horizontal outline. Its doors reach comfortable adult height, while the hood sits near the waist. The painted body reflects streetlights in long streaks across its flat sides. It settles backward a little under acceleration and dips forward when braking. Depending on engine and exhaust, it sounds like a low rumble or a sharper growl, over steady tire and wind noise."
+ },
+ {
+  "id": "item.gen.mitsubishi-pajero",
+  "domain": "item",
+  "topic": "Mitsubishi Pajero",
+  "names": [
+   "mitsubishi pajero",
+   "ميتسوبيشي باجيرو",
+   "متسوبيشي باجيرو",
+   "باجيرو",
+   "باجيرو ميتسوبيشي",
+   "mitsubishi montero"
+  ],
+  "body": "The five-door Mitsubishi Pajero commonly seen on Iraqi streets is a tall, sturdy SUV with an upright cabin, broad windows and pronounced wheel arches. A three-diamond Mitsubishi emblem sits in the front grille; PAJERO lettering appears on the rear of many versions. Many have a spare tire mounted on the rear door, sometimes under a painted cover. The high floor requires a noticeable step up from the pavement, and the tires have deeper sidewalls than those of a sedan. Over uneven roads the body gently sways and rebounds. Its doors close with a substantial clack; engine, tire rumble and some wind noise are audible."
+ },
+ {
+  "id": "item.gen.honda-accord",
+  "domain": "item",
+  "topic": "Honda Accord",
+  "names": [
+   "honda accord",
+   "هوندا اكورد",
+   "هوندا أكورد",
+   "هندا اكورد",
+   "اكورد هوندا",
+   "honda accord sedan"
+  ],
+  "body": "The Honda Accord is a midsize four-door sedan with a low hood, long passenger cabin and gently sloping rear window. A chrome or dark horizontal grille carries the Honda H at the front; another H and an Accord badge appear on the trunk or tailgate area. Headlights wrap toward the front fenders, and the body sits much lower than an SUV beside an adult. Its painted panels and clear glass catch smooth reflections rather than sharp off-road contours. The car stays fairly level through ordinary turns, compressing slightly over bumps. Doors shut with a compact thump; engine hum, tire hiss and wind rise gradually with speed."
+ },
+ {
+  "id": "item.gen.audi-a6",
+  "domain": "item",
+  "topic": "Audi A6",
+  "names": [
+   "أودي a6",
+   "اودي ايه 6",
+   "أودي أي سكس",
+   "audi a6",
+   "a6 sedan"
+  ],
+  "body": "The Audi A6 is a long, low executive sedan, about 4.9 metres from bumper to bumper, with four doors, a separate boot and a broad hexagonal grille carrying four interlocked chrome rings. Narrow headlamps sit beside the grille; their LED patterns vary by model year. A gently arched roof, straight shoulder line and large alloy wheels give it a planted profile. The four rings also appear on the boot lid, above the number plate. In traffic, its body stays level over small bumps, while the wheels rise and fall visibly. The doors close with a muted thump; inside, tyre noise and the engine are subdued."
+ },
+ {
+  "id": "item.gen.volkswagen-passat",
+  "domain": "item",
+  "topic": "Volkswagen Passat",
+  "names": [
+   "فولكس فاجن باسات",
+   "فولكس واجن باسات",
+   "فولكس باسات",
+   "باسات",
+   "volkswagen passat",
+   "vw passat"
+  ],
+  "body": "A Volkswagen Passat is a restrained, mid-size family car, commonly seen as a four-door sedan with a defined boot. Its broad front grille has horizontal bars and a round VW badge at the centre; the headlamps meet the grille at either side. Straight body creases run along the doors, and the roof curves down to a broad rear window. The VW badge sits centrally on the boot, with Passat lettering on many versions. It is roughly 4.8 metres long, noticeably larger than a compact hatchback. In motion it leans slightly through turns. Doors shut with a solid click, followed by a low engine hum and tyre hiss."
+ },
+ {
+  "id": "item.gen.peugeot-206",
+  "domain": "item",
+  "topic": "Peugeot 206",
+  "names": [
+   "بيجو 206",
+   "بجو 206",
+   "بيجو ميتين وستة",
+   "peugeot 206",
+   "206 hatchback"
+  ],
+  "body": "The Peugeot 206 is a small, rounded hatchback, usually three or five doors, about 3.8 metres long. Its pointed nose has elongated, swept-back headlamps, a small grille and a lion badge near the front edge of the bonnet. The windscreen slopes into a high, curved roof; the short rear ends in a near-vertical hatch with a rear wiper. Upright tail lamps sit at the outer corners. Black window trim and compact wheels emphasize its modest size beside an adult. On uneven streets its short wheelbase makes the body bob quickly. The hatch clicks shut, and older examples have a readily audible engine and road rattle."
+ },
+ {
+  "id": "item.gen.chery-tiggo",
+  "domain": "item",
+  "topic": "Chery Tiggo",
+  "names": [
+   "شيري تيجو",
+   "شيري تيغو",
+   "تشيري تيجو",
+   "chery tiggo",
+   "tiggo suv"
+  ],
+  "body": "Chery Tiggo denotes a range of compact and mid-size SUVs, so grille patterns, lamps and dimensions must match the particular Tiggo model being shown. A typical recent Tiggo has a tall five-door body, raised ride height, dark wheel-arch trim, roof rails and a broad grille with a centred Chery oval emblem. The side windows narrow toward the rear, above a high beltline; a large liftgate opens upward behind the rear seats. Adults sit higher than in a sedan, with the wheels and tyres clearly visible below the doors. Over bumps the body rocks gently. Expect a firm door thud, tyre noise and a subdued engine note."
+ },
+ {
+  "id": "item.gen.byd-electric-car",
+  "domain": "item",
+  "topic": "BYD electric car",
+  "names": [
+   "سيارة بي واي دي كهربائية",
+   "بي واي دي كهرباء",
+   "سيارة byd كهربائية",
+   "byd electric car",
+   "byd ev"
+  ],
+  "body": "BYD makes several electric cars, so the body shape and badge placement should follow a chosen model rather than mixing them. A BYD Atto 3, for example, is a compact five-door crossover with a closed, body-coloured nose, slim headlamps, a narrow trim strip across the front and BYD lettering on the tailgate. A charge-port flap opens on the front-right fender. It rides on road tyres, not exposed machinery, and its cabin seats adults upright. Pulling away, the car moves smoothly without engine vibration; sound comes mainly from tyre contact, wind and a faint electric whine. Brake lamps brighten as it slows."
+ },
+ {
+  "id": "item.gen.iraqi-airways-boeing-737",
+  "domain": "item",
+  "topic": "Iraqi Airways Boeing 737",
+  "names": [
+   "بوينغ 737 الخطوط الجوية العراقية",
+   "طائرة الخطوط العراقية 737",
+   "الخطوط الجوية العراقية بوينج 737",
+   "iraqi airways boeing 737",
+   "iraqi airways 737"
+  ],
+  "body": "An Iraqi Airways Boeing 737 is a narrow-body airliner with one passenger deck, a pointed nose, a row of small cabin windows and one large turbofan engine beneath each swept wing. The white fuselage carries Iraqi Airways identification in Arabic and English, with green airline markings and a bird emblem on the tail; placement varies across liveries. The nose gear sits below the cockpit, with two main landing-gear assemblies beneath the wings. On the apron, its doors stand well above a person and require stairs or a jet bridge. Engine fans spin before taxi; their rising whine becomes a powerful roar, accompanied by rolling tyres and brief brake squeals."
+ },
+ {
+  "id": "item.gen.emirates-a380",
+  "domain": "item",
+  "topic": "Emirates A380",
+  "names": [
+   "طائرة الإمارات a380",
+   "ايرباص 380 طيران الإمارات",
+   "الإمارات إيه 380",
+   "emirates a380",
+   "emirates airbus a380"
+  ],
+  "body": "The Emirates A380 is an exceptionally large, wide-body airliner, about 73 metres long, with two continuous rows of cabin windows on its full-length upper and lower passenger decks. Four large turbofan engines hang beneath its broad swept wings, two on each side. The predominantly white fuselage bears Emirates titles, while the tall tail carries the airline’s red, green, white and black flag design. Its bulbous upper-deck front makes the nose profile distinctive. On the ground, service vehicles look small beside the landing gear. It turns slowly while taxiing; four engines produce a deep, layered rush of air, and the many wheels rumble over pavement joints."
+ },
+ {
+  "id": "item.gen.private-jet",
+  "domain": "item",
+  "topic": "private jet",
+  "names": [
+   "طائرة خاصة",
+   "طائرة رجال أعمال",
+   "طيارة خاصة",
+   "private jet",
+   "business jet"
+  ],
+  "body": "A typical mid-size private jet is a slim, low-wing aircraft with a pointed nose, a short row of oval cabin windows and two compact turbofan engines mounted on the rear fuselage. Many have a T-shaped tail, with the horizontal stabilizer high above the engines; exact proportions vary by model. Its painted exterior is usually white with narrow accent stripes. The front-left cabin door often opens into built-in stairs, placing the entrance above an adult’s head. On the apron, passengers walk directly from a vehicle to the aircraft. During taxi the nose wheel steers visibly, while the engines make a steady high-pitched whine that grows louder for takeoff."
+ },
+ {
+  "id": "item.gen.fighter-jet-air-show",
+  "domain": "item",
+  "topic": "fighter jet at an air show",
+  "names": [
+   "طائرة مقاتلة في عرض جوي",
+   "مقاتلة عرض جوي",
+   "طيارة حربية بالعرض الجوي",
+   "fighter jet air show",
+   "airshow fighter jet"
+  ],
+  "body": "A single-seat fighter jet has a pointed nose, tinted bubble canopy, swept wings, air intakes beside or beneath the cockpit, and one or two exhaust nozzles at the rear. Its paint is usually matte grey, with identification markings on the wings and fuselage. At an air show it appears without visible weapons. On the ground, its landing gear supports a body much longer than a person; in flight, the gear retracts and the aircraft banks in wide, fast arcs. The engines produce a sustained roar that rises sharply on a low pass. Sunlight flashes across the canopy and wing edges."
+ },
+ {
+  "id": "item.gen.cargo-container-ship",
+  "domain": "item",
+  "topic": "cargo container ship",
+  "names": [
+   "سفينة حاويات",
+   "باخرة حاويات",
+   "سفينة كونتينرات",
+   "باخرة كونتينرات",
+   "cargo container ship",
+   "container vessel"
+  ],
+  "body": "A cargo container ship is a long, broad steel vessel with a high bow, a mostly flat deck packed with rectangular shipping containers, and a white or pale superstructure commonly near the stern. Containers sit in straight rows and stacked tiers, with corrugated sides, locking corners, serial markings and company names. The dark hull rises well above a person standing on the quay; a painted waterline divides it from the wet surface below. It moves slowly and steadily, pushing a rounded bow wave and leaving a broad wake. Its engines give a low vibration, joined by ventilation hum, occasional horn blasts and water slapping against steel."
+ },
+ {
+  "id": "item.gen.fishing-dhow",
+  "domain": "item",
+  "topic": "fishing dhow",
+  "names": [
+   "مركب صيد شراعي",
+   "قارب صيد داو",
+   "محمل صيد",
+   "لنج صيد",
+   "fishing dhow",
+   "dhow fishing boat"
+  ],
+  "body": "A fishing dhow is a narrow wooden boat with a curved, rising bow, a lower stern, an open working deck and low gunwales. Its hull may show painted bands over weathered planks. Traditional examples carry a tall mast and a large triangular lateen sail on a long slanting yard; motorized examples may travel with the sail furled. Nets, coiled rope, floats and fish crates occupy the deck, with crew moving carefully around them. The boat rolls and pitches with short waves rather than staying level. A raised sail creaks and snaps in the wind; under power, an engine drones beneath the splash of water against wood."
+ },
+ {
+  "id": "item.gen.speed-boat",
+  "domain": "item",
+  "topic": "speed boat",
+  "names": [
+   "قارب سريع",
+   "زورق سريع",
+   "طراد سريع",
+   "لنش سريع",
+   "speed boat",
+   "speedboat"
+  ],
+  "body": "A typical recreational speed boat has a low fiberglass hull, pointed bow, wraparound windshield and open seating behind the helm. Cushioned seats, grab rails and a compact steering console fit within a boat a few times longer than a person. Many have an outboard motor mounted at the stern, with its cowling above the water and propeller below; branding belongs on the actual motor and hull. As it accelerates, the bow lifts, the hull planes across the surface and a white, foamy wake spreads behind it. The motor climbs from a rumble to a loud whine, mixed with wind noise and repeated slaps over chop."
+ },
+ {
+  "id": "item.gen.jet-ski",
+  "domain": "item",
+  "topic": "jet ski",
+  "names": [
+   "دراجة مائية",
+   "جت سكي",
+   "جيت سكي",
+   "سكوتر مائي",
+   "jet ski",
+   "personal watercraft"
+  ],
+  "body": "A jet ski is a compact personal watercraft with a pointed molded-plastic bow, raised handlebar console, long narrow saddle and footwells along both sides. One or two riders sit astride it, holding the handlebars; registration numbers or maker markings appear on the bodywork, not on a separate boat hull. An enclosed waterjet draws water from beneath the craft and expels it at the stern, so no outboard propeller is visible. The craft rises over small waves, leans into turns and throws a low fan of spray. Its engine buzzes and revs sharply above the hiss of water, with sunlight reflecting off the wet shell."
+ },
+ {
+  "id": "item.gen.sports-motorcycle",
+  "domain": "item",
+  "topic": "sports motorcycle",
+  "names": [
+   "دراجة نارية رياضية",
+   "موتوسيكل رياضي",
+   "دراجة سبورت",
+   "بايك سبورت",
+   "sports motorcycle",
+   "sport bike"
+  ],
+  "body": "A sports motorcycle has two similarly sized wheels, a compact fuel tank, low clip-on handlebars and a seat that places the rider leaning forward. Shaped fairing panels wrap around the front and sides, with a windshield, headlamps and air openings at the nose. The exposed lower parts include the engine, exhaust, chain and rear swingarm; a license plate sits behind the rear wheel. At low speed the rider balances and steers with small corrections. In a turn, rider and motorcycle lean together while the tires remain in contact with the road. The engine note rises with acceleration, alongside tire hiss and a brief mechanical click at each gear change."
+ },
+ {
+  "id": "item.gen.electric-scooter",
+  "domain": "item",
+  "topic": "electric scooter",
+  "names": [
+   "سكوتر كهربائي",
+   "سكوتر كهربا",
+   "دراجة سكوتر كهربائية",
+   "electric scooter",
+   "electric kick scooter"
+  ],
+  "body": "A standing electric scooter has a narrow deck for two feet, a small wheel at each end and an upright stem topped by handlebars. The battery is commonly housed inside the deck, while a motor drives one wheel. A thumb throttle and brake lever sit near the grips, with a small display between them; lights face forward and backward, and a rear mudguard curves over the tire. The rider stands with knees slightly bent and shifts weight over uneven pavement. It rolls quietly, with a faint motor whir, tire hum and occasional brake squeak. At night, its headlight casts a short beam onto the ground ahead."
+ },
+ {
+  "id": "item.gen.school-bus",
+  "domain": "item",
+  "topic": "school bus",
+  "names": [
+   "حافلة مدرسية",
+   "باص مدرسة",
+   "باص مدرسي",
+   "باص طلاب",
+   "school bus"
+  ],
+  "body": "A school bus is a full-height passenger vehicle with a wide windshield, side mirrors extending beyond the body, a folding entry door near the front and rows of closely spaced side windows. Yellow paint and school identification are common, though lettering and exact markings vary by operator; the destination sign or school name belongs above or beside the windows. Inside are narrow paired seats, a central aisle and handrails near the steps. Its length is several times a standing adult’s height. The bus pulls away slowly, its heavy body rocking over bumps. Expect engine rumble, air-brake hiss on larger models, door mechanism noise and children talking inside."
+ },
+ {
+  "id": "item.gen.ambulance",
+  "domain": "item",
+  "topic": "ambulance",
+  "names": [
+   "سيارة إسعاف",
+   "سيارة اسعاف",
+   "إسعاف",
+   "اسعاف",
+   "سيارة الإسعاف",
+   "ambulance",
+   "emergency ambulance"
+  ],
+  "body": "A typical ambulance is a tall white van with a high roof, wide rear doors, side access door and tinted windows around the patient compartment. Red or green stripes, a crescent symbol and Arabic service lettering appear on the sides; markings differ by operator. A roof light bar flashes blue or red, reflecting off nearby cars at night. The front cabin seats a driver and attendant, while the rear holds a secured stretcher, storage cabinets and medical equipment. It accelerates and brakes like a heavy van, with slight body roll on turns. Its siren rises and falls over engine and road noise."
+ },
+ {
+  "id": "item.gen.fire-engine",
+  "domain": "item",
+  "topic": "fire engine",
+  "names": [
+   "سيارة إطفاء",
+   "سيارة اطفاء",
+   "شاحنة إطفاء",
+   "سيارة مطافي",
+   "مطافي",
+   "fire engine",
+   "fire truck"
+  ],
+  "body": "A fire engine is a large red truck with a high crew cab and a boxy equipment body behind it. Roller-shutter compartments line both sides, holding coiled hoses, tools and fittings. A pump panel with gauges and valves sits along the side or rear, connected to a water tank inside the body. Reflective stripes and Arabic civil-defense lettering vary by service. Roof lights flash, and a siren sounds above the low diesel rumble. The truck turns wide and rocks slightly as it stops. Crew members pull hoses from compartments; water under pressure makes the hose stiff and produces a rushing spray."
+ },
+ {
+  "id": "item.gen.police-car",
+  "domain": "item",
+  "topic": "police car",
+  "names": [
+   "سيارة شرطة",
+   "سيارة الشرطة",
+   "سيارة بوليس",
+   "دورية شرطة",
+   "دورية",
+   "police car",
+   "police patrol car"
+  ],
+  "body": "A police car is commonly a white sedan or SUV with contrasting blue markings, Arabic police lettering and an emblem on the doors; exact colors and graphics vary by jurisdiction. A compact light bar or individual roof beacons flash blue and sometimes red. Its ordinary passenger-car shape remains visible beneath the markings: grille and headlights at the front, side mirrors, four doors and a rear license plate. Uniformed officers sit in the front seats. At low speed it rolls smoothly over pavement; on turns an SUV leans more than a sedan. Engine hum, tire noise, brief radio chatter and an intermittent siren are characteristic sounds."
+ },
+ {
+  "id": "item.gen.garbage-truck",
+  "domain": "item",
+  "topic": "garbage truck",
+  "names": [
+   "شاحنة نفايات",
+   "سيارة نفايات",
+   "سيارة زبالة",
+   "سيارة قمامة",
+   "شاحنة قمامة",
+   "garbage truck",
+   "refuse truck"
+  ],
+  "body": "A common garbage truck has a heavy cab ahead of a tall, enclosed steel body. At the back, a broad loading hopper sits below a hinged tailgate, with hydraulic arms and a compactor plate inside. Paint may be white, green or municipal colors, often with Arabic service lettering. Workers in reflective clothing lift bins and tip their contents into the rear hopper, then stand clear as the hydraulic plate pushes the load inward. The truck advances slowly between stops, its suspension dipping under the weight. Diesel idling, hydraulic whine, bin wheels rattling and the metallic clank of a closing lid are audible."
+ },
+ {
+  "id": "item.gen.construction-site-crane",
+  "domain": "item",
+  "topic": "crane on a construction site",
+  "names": [
+   "رافعة برجية",
+   "رافعة بناء",
+   "كرين بناء",
+   "كرين موقع",
+   "ونش برج",
+   "tower crane",
+   "construction crane"
+  ],
+  "body": "A tower crane rises from a fixed base as a narrow lattice-steel mast, usually painted yellow, white or red. Near its top, a horizontal working jib extends over the site, balanced by a shorter counter-jib carrying heavy concrete counterweights. A small operator cabin sits near the rotating head. A trolley travels along the long jib, suspending a steel hook from vertical cables. The hook and load sway gently when the crane starts or stops; the entire upper assembly turns slowly while the mast stays fixed. Electric motors hum, gears whir and the hook hardware clinks above workers, rebar and unfinished concrete floors."
+ },
+ {
+  "id": "item.gen.excavator",
+  "domain": "item",
+  "topic": "excavator",
+  "names": [
+   "حفارة",
+   "حفار",
+   "باكهو",
+   "بوكلين",
+   "excavator",
+   "tracked excavator"
+  ],
+  "body": "An excavator has a tracked undercarriage beneath a rotating upper body with an offset operator cabin and a rear engine cover. A long boom rises from the front, joined to a shorter stick and a toothed steel bucket. Exposed hydraulic cylinders push the joints through deliberate arcs: the bucket bites into soil, curls inward, lifts and swings to drop the load. The upper body rotates while the tracks can remain still; when traveling, the broad metal tracks crawl over uneven ground. Most machines are yellow or orange with black trim and manufacturer decals on the body. Diesel rumble, hydraulic hiss and scraping bucket teeth accompany the movement."
+ },
+ {
+  "id": "item.gen.cement-mixer-truck",
+  "domain": "item",
+  "topic": "cement mixer truck",
+  "names": [
+   "خلاطة إسمنت",
+   "خلاطة اسمنت",
+   "سيارة خلاطة",
+   "شاحنة خلاطة",
+   "خلاطة كونكريت",
+   "cement mixer truck",
+   "concrete mixer truck"
+  ],
+  "body": "A cement mixer truck has a heavy road-truck cab and a large tilted steel mixing drum mounted behind it. The drum’s broad middle tapers toward an opening above the rear discharge chute; support rollers and a drive unit sit underneath. It may be painted white or another fleet color, with a company name on the cab or drum. The drum turns steadily while the truck travels, keeping wet concrete moving inside. At delivery, its rotation reverses, internal spiral blades feed concrete out, and hinged metal chute sections guide the thick flow. The engine drones, the drum rumbles and the chute rattles as workers position it."
+ },
+ {
+  "id": "item.gen.fuel-tanker",
+  "domain": "item",
+  "topic": "fuel tanker",
+  "names": [
+   "صهريج وقود",
+   "شاحنة وقود",
+   "تناكر وقود",
+   "تنكر بنزين",
+   "صهريج بنزين",
+   "fuel tanker",
+   "fuel tanker truck"
+  ],
+  "body": "A fuel tanker is a heavy truck carrying a long cylindrical or oval metal tank behind its cab. The tank may be polished aluminum or painted steel, with rounded ends, top access covers, side rails and piping beneath. Hazard labels, fuel identification and company markings appear where required and vary by operator. Internal compartments and baffles limit liquid surge, though the truck still needs long, careful stops and wide turns. At a filling station, the driver parks, secures the vehicle and connects a thick hose to a lower outlet valve. Diesel idle, faint pump hum and the clack of couplings are more noticeable than the fuel moving inside."
+ },
+ {
+  "id": "item.gen.camper-van",
+  "domain": "item",
+  "topic": "camper van",
+  "names": [
+   "camper van",
+   "campervan",
+   "motorhome van",
+   "فان تخييم",
+   "سيارة تخييم",
+   "كرفان فان",
+   "فان رحلات"
+  ],
+  "body": "A camper van is a high-roof road van, usually about five to seven metres long, with a tall windshield, sliding side door, rear doors and compact road wheels. Windows may be cut into the cargo sides, often with curtains visible behind them. Inside, a narrow aisle separates a small sink, cabinets and seating that may convert into a bed; overhead cupboards fit close to the ceiling. The side door rolls back along an exterior track with a metallic clunk. On the road, the body leans slightly through turns, while tyres hiss and loose interior fittings may rattle."
+ },
+ {
+  "id": "item.gen.iphone-17-pro",
+  "domain": "item",
+  "topic": "iPhone 17 Pro",
+  "names": [
+   "iphone 17 pro",
+   "iphone17pro",
+   "ايفون 17 برو",
+   "آيفون ١٧ برو",
+   "ايفون سبعتعش برو",
+   "ايفون ١٧ برو"
+  ],
+  "body": "The iPhone 17 Pro is a hand-sized smartphone with a flat-edged aluminium body, rounded corners and a nearly full-screen front with a pill-shaped Dynamic Island cutout near the top. Its rear has a wide raised camera plateau stretching across the upper portion: three large black lenses sit in a triangular arrangement on the left, with a flash and smaller sensors to the right. An Apple logo sits below the plateau. The bottom edge holds a USB-C port and speaker openings. Fingers tap or swipe the glass; camera lenses remain fixed as the phone moves. Notifications produce short tones or a tight vibration."
+ },
+ {
+  "id": "item.gen.samsung-galaxy-s",
+  "domain": "item",
+  "topic": "Samsung Galaxy S",
+  "names": [
+   "samsung galaxy s",
+   "galaxy s",
+   "سامسونج جالكسي اس",
+   "سامسونج غالاكسي إس",
+   "كالكسي اس",
+   "جالكسي s"
+  ],
+  "body": "A modern standard Samsung Galaxy S is a slim, palm-sized phone with a flat glass front, narrow even bezels and a tiny centred hole-punch selfie camera. Its flat back carries three separate circular camera lenses in a vertical line near the upper left, rather than one broad camera island; a small flash sits beside them. The Samsung wordmark appears low on the back. Power and volume keys sit on one side, with a USB-C port and speaker opening along the bottom. The bright touchscreen responds to taps and swipes; alerts make crisp electronic tones or a brief vibration."
+ },
+ {
+  "id": "item.gen.ipad-tablet",
+  "domain": "item",
+  "topic": "iPad tablet",
+  "names": [
+   "ipad",
+   "ipad tablet",
+   "apple ipad",
+   "آيباد",
+   "ايباد",
+   "تابلت ابل",
+   "جهاز آيباد"
+  ],
+  "body": "A current standard iPad is a thin, rigid aluminium rectangle with rounded corners, a broad glass touchscreen and even black borders. Its back is plain except for a centred Apple logo and one small camera near a corner. In landscape orientation, the front camera sits along the long edge. A USB-C socket is centred on a short edge, with small speaker perforations nearby; the power button is on a corner of the frame. Held with two hands or laid on a desk, it barely flexes. Fingers glide, tap and pinch on the glass; speakers play clear, small-bodied audio."
+ },
+ {
+  "id": "item.gen.macbook",
+  "domain": "item",
+  "topic": "MacBook",
+  "names": [
+   "macbook",
+   "macbook air",
+   "macbook pro",
+   "ماك بوك",
+   "ماكبوك",
+   "لابتوب ابل",
+   "ماك بوك اير"
+  ],
+  "body": "A modern MacBook is a thin aluminium clamshell laptop, roughly the width of a school notebook, with a centred Apple logo on its plain outer lid. Opening the lid reveals a glossy display in a black bezel, a low black keyboard and a large centred trackpad below it. USB-C ports line the side edges; many models also have a magnetic charging connector and headphone jack. The hinge holds the screen at a chosen angle while the base rests flat on a desk or lap. Keys make light, distinct clicks, and the trackpad gives a subtle haptic tap."
+ },
+ {
+  "id": "item.gen.gaming-pc-rgb-lights",
+  "domain": "item",
+  "topic": "gaming PC with RGB lights",
+  "names": [
+   "rgb gaming pc",
+   "gaming pc rgb",
+   "rgb computer tower",
+   "كمبيوتر قيمنق rgb",
+   "بي سي قيمنق مضيء",
+   "كيس ألعاب rgb",
+   "حاسبة قيمنگ rgb"
+  ],
+  "body": "A gaming PC with RGB lights is usually a desk-height rectangular tower with a metal frame, ventilated front or top panels and a tempered-glass side window. Through the glass, a large graphics card sits horizontally below the processor cooler, with bundled cables and circular fans visible around them. LED strips, fan rings and illuminated memory modules can glow in different colours, but the light comes from fixed components, not the glass itself. Fans spin continuously, speeding up under load and producing a soft rushing hum. Warm air leaves through vents while the solid case remains still beside a monitor."
+ },
+ {
+  "id": "item.gen.playstation-5",
+  "domain": "item",
+  "topic": "PlayStation 5",
+  "names": [
+   "playstation 5",
+   "ps5",
+   "بلايستيشن 5",
+   "بلاي ستيشن ٥",
+   "سوني فايف",
+   "بليستيشن فايف"
+  ],
+  "body": "The original PlayStation 5 console has a tall black central body between two curved white side panels that extend above it like narrow fins. It can stand vertically on a base or lie horizontally; the disc version has a noticeable drive bulge and slot low on one side. Small ports and a power button face forward, while ventilation openings run near the dark centre. A DualSense controller has white grips around a black middle, two thumbsticks, a directional pad, four face buttons and a broad touchpad. Startup brings a brief electronic chime; during play, cooling fans hum and the controller gives short vibrations."
+ },
+ {
+  "id": "item.gen.smart-watch",
+  "domain": "item",
+  "topic": "smart watch",
+  "names": [
+   "smart watch",
+   "smartwatch",
+   "ساعة ذكية",
+   "ساعه ذكيه",
+   "ساعة سمارت",
+   "سمارت ووتش"
+  ],
+  "body": "A typical smart watch is a small wrist-worn computer with a dark glass face set into a metal or plastic case, held by a flexible silicone or woven strap. The strap wraps snugly around the wrist; an optical sensor protrudes slightly from the underside against the skin. Depending on the model, a side button, crown or bezel controls menus alongside taps and swipes. The screen is normally dim or black until raised, touched or alerted, then shows bright text and simple icons. It makes a faint notification chime or haptic buzz; its light weight lets it follow ordinary arm movement."
+ },
+ {
+  "id": "item.gen.wireless-earbuds",
+  "domain": "item",
+  "topic": "wireless earbuds",
+  "names": [
+   "سماعات لاسلكية",
+   "سماعات بلوتوث",
+   "سماعات أذن",
+   "سماعات وايرلس",
+   "wireless earbuds",
+   "bluetooth earbuds"
+  ],
+  "body": "A pair of wireless earbuds fits inside the outer ears, each with a small rounded speaker housing and a short stem pointing downward. Smooth white or black plastic catches narrow highlights; silicone-tipped models have soft, replaceable tips that seal the ear canal. Their matching charging case is palm-sized, with two shaped recesses under a hinged lid, a small status light near the front, and a charging port along the bottom or back. A person lifts one bud from the case, presses it into an ear, and adjusts it with a fingertip. The lid clicks shut; the earbuds themselves make little audible sound outside the ear."
+ },
+ {
+  "id": "item.gen.dslr-camera",
+  "domain": "item",
+  "topic": "DSLR camera",
+  "names": [
+   "كاميرا دي اس ال ار",
+   "كاميرا احترافية",
+   "كامرة dslr",
+   "كاميرا عاكسة",
+   "dslr camera",
+   "digital slr"
+  ],
+  "body": "A DSLR has a black, textured body with a deep right-hand grip, an optical viewfinder hump above the lens mount, and a large detachable cylindrical lens projecting forward. The lens carries ridged zoom and focus rings; its front glass reflects small, curved highlights. A mode dial and shutter button sit on top, while an LCD, viewfinder eyepiece, and clustered controls face the photographer. A strap hangs from metal lugs on both shoulders. Held at eye level, the camera moves with the photographer’s elbows; turning a lens ring rotates smoothly. The shutter makes a distinct clack as its mirror flips, followed by a brief mechanical reset."
+ },
+ {
+  "id": "item.gen.dji-drone",
+  "domain": "item",
+  "topic": "drone (DJI)",
+  "names": [
+   "درون دي جي آي",
+   "طائرة دي جي آي",
+   "درون dji",
+   "طيارة تصوير دي جي آي",
+   "dji drone",
+   "dji quadcopter"
+  ],
+  "body": "A compact DJI camera drone has a low, streamlined grey body and four folding arms, each ending in a motor and two slender propeller blades. A small camera hangs at the front on a stabilized gimbal, visibly separate from the main shell; a DJI mark may appear on the top. For flight, the arms unfold and the propellers spin into translucent discs. The drone rises level, tilts slightly to travel, and makes a steady, high-pitched buzzing that grows louder nearby. In the operator’s hands, a separate controller has two thumb sticks and a phone or built-in screen showing the camera view. Ground shadows shift beneath the hovering drone."
+ },
+ {
+  "id": "item.gen.ring-light-phone-tripod",
+  "domain": "item",
+  "topic": "ring light and phone tripod",
+  "names": [
+   "رينج لايت",
+   "رنك لايت",
+   "إضاءة حلقية",
+   "حامل موبايل للتصوير",
+   "ring light",
+   "phone tripod"
+  ],
+  "body": "A ring light is a circular LED lamp, often 25–45 centimetres across, with a white diffuser facing the subject and a dark plastic back. It sits above a telescoping metal stand with three legs splayed across the floor. A phone clamp on a short adjustable arm places the phone near the ring’s open centre, its cameras facing the person being filmed. Knobs lock the stand height and tilt; a cable runs down to a power adapter or USB supply. When switched on, the ring gives even frontal light and circular reflections in the eyes. The stand barely moves unless touched; its joints click when adjusted."
+ },
+ {
+  "id": "item.gen.podcast-microphone",
+  "domain": "item",
+  "topic": "microphone for podcasts",
+  "names": [
+   "مايك بودكاست",
+   "ميكروفون بودكاست",
+   "مايك تسجيل",
+   "مايكروفون تسجيل صوت",
+   "podcast microphone",
+   "podcast mic"
+  ],
+  "body": "A podcast microphone is a hand-length metal cylinder with a rounded grille at its speaking end, usually matte black or dark grey. It sits in a clip or shock mount on a hinged desk boom arm, with a cable running from its base along the arm. A circular pop filter or foam windscreen may sit between the grille and the speaker’s mouth. The speaker stays roughly a handspan away and turns toward the microphone while talking; the boom pivots quietly when repositioned. Close speech sounds full and clear, while plosive consonants make soft bursts if no filter is fitted. Small status lights appear only on powered models."
+ },
+ {
+  "id": "item.gen.living-room-smart-tv",
+  "domain": "item",
+  "topic": "smart TV in a living room",
+  "names": [
+   "تلفزيون ذكي",
+   "شاشة ذكية",
+   "تلفزيون سمارت",
+   "شاشة سمارت",
+   "smart tv",
+   "living room television"
+  ],
+  "body": "A smart TV is a broad, thin black rectangle, commonly 43–65 inches across, mounted on a wall or resting on two feet atop a low cabinet. Its narrow bezel frames a bright, flat image; a small brand mark, if present, sits at the centre of the lower edge. In a living room, sofas face the screen, with a remote on a cushion or table and cables mostly hidden behind the set. Menu tiles change instantly when someone presses the remote, while video moves continuously across the display. Dialogue and music come from small built-in speakers or a soundbar below. The screen casts shifting coloured light onto nearby faces."
+ },
+ {
+  "id": "item.gen.split-air-conditioner",
+  "domain": "item",
+  "topic": "air conditioner split unit",
+  "names": [
+   "مكيف سبليت",
+   "مكيف سبلت",
+   "سبلت",
+   "مكيف جداري",
+   "split air conditioner",
+   "split ac"
+  ],
+  "body": "The indoor half of a split air conditioner is a long white plastic box mounted high on a wall, wider than it is tall, with a small display or indicator lights near one end. Its lower horizontal flap tilts open to direct airflow; behind it are narrow dark vents. Refrigerant pipes and wiring pass through the wall to an outdoor metal unit with a large circular fan grille. When switched on, the indoor fan produces a soft rushing hum and the flap moves slowly into position. A person points a small remote toward it. Cool air stirs curtains below, while condensation drains outside through a separate hose."
+ },
+ {
+  "id": "item.gen.iraqi-desert-cooler",
+  "domain": "item",
+  "topic": "water cooler (Iraqi desert cooler)",
+  "names": [
+   "مبردة هواء صحراوية",
+   "مبردة صحراوية",
+   "مبردة مي",
+   "مبردة ماء صحراوية",
+   "desert cooler",
+   "evaporative cooler"
+  ],
+  "body": "An Iraqi desert cooler is a boxy evaporative air cooler, often metal or moulded plastic, with a large fan opening on the front and damp cooling pads behind grilles on its sides or back. A water reservoir sits at the bottom; a small pump wets the pads while the fan pulls air through them. Larger units may sit on a roof or beside a window, feeding air indoors through a short duct. Smaller wheeled models stand on the floor and are filled by hand. The fan makes a constant rushing sound, joined by faint water trickling and occasional rattling. Its moving air feels cool and slightly humid, not icy."
+ },
+ {
+  "id": "item.gen.iraqi-neighbourhood-generator",
+  "domain": "item",
+  "topic": "electric generator (Iraqi neighbourhood generator)",
+  "names": [
+   "مولد الحي",
+   "مولدة الحي",
+   "مولدة أهلية",
+   "ماطور الحي",
+   "neighbourhood generator",
+   "iraqi generator"
+  ],
+  "body": "An Iraqi neighbourhood generator is a large diesel engine coupled to an alternator on a heavy steel skid, often under a corrugated-metal shelter or behind a shop. The engine has a rectangular block, hoses, a radiator at one end and an exhaust pipe leading upward; the alternator is a rounded metal housing at the other. Thick insulated cables run to a nearby distribution cabinet with switches and numbered subscriber circuits. A caretaker checks gauges while it runs. The machine stays fixed but vibrates visibly, producing a deep, uneven rumble, cooling-fan rush and occasional exhaust puffs. Dust softens its paint in harsh daylight."
+ },
+ {
+  "id": "item.gen.rooftop-solar-panels",
+  "domain": "item",
+  "topic": "solar panels on a roof",
+  "names": [
+   "ألواح شمسية",
+   "ألواح الطاقة الشمسية",
+   "بانلات شمسية",
+   "منظومة طاقة شمسية",
+   "rooftop solar panels",
+   "solar panels"
+  ],
+  "body": "Rooftop solar panels are flat, dark blue-black rectangles with thin silver aluminium frames. Fine pale lines divide their glass-covered cells into a regular grid. Several panels sit in aligned rows on angled metal rails, raised above a flat concrete roof; clamps hold the frames, and cables disappear beneath them toward an inverter mounted in a sheltered spot. In Iraqi homes, a parapet, water tank or satellite dish may share the roof. The panels do not move or make audible sound in use. Strong sun creates small reflections on the glass, while the frames cast sharp, parallel shadows on the concrete."
+ },
+ {
+  "id": "item.gen.washing-machine",
+  "domain": "item",
+  "topic": "washing machine",
+  "names": [
+   "غسالة ملابس",
+   "غسالة أوتوماتيك",
+   "غسالة ملابس اتوماتيك",
+   "غسالة",
+   "washing machine",
+   "front load washer"
+  ],
+  "body": "A common front-loading washing machine is a waist-high white metal cabinet with a large circular glass door on the front. A recessed handle opens the door to a perforated stainless-steel drum and grey rubber seal. Along the upper front edge are a detergent drawer, cycle dial and small display or indicator lights, with the brand mark usually near the controls. Clothes tumble behind the glass as the drum turns, pause, then turn the other way; the spin cycle makes the cabinet tremble slightly. It sounds like water filling, soft fabric slaps, a pump draining and a rising whir. It usually stands on a tiled laundry or bathroom floor."
+ },
+ {
+  "id": "item.gen.refrigerator",
+  "domain": "item",
+  "topic": "refrigerator",
+  "names": [
+   "ثلاجة",
+   "براد",
+   "ثلاجة مطبخ",
+   "refrigerator",
+   "fridge"
+  ],
+  "body": "A household refrigerator is a tall, upright appliance with an enamelled white or brushed-metal exterior, sealed doors and a narrow gap between compartments. A common design has a smaller freezer door above a larger fridge door; handles sit near their opening edges, and a small maker’s badge may appear near the top. Opening the lower door reveals plastic shelves, clear produce drawers and bottle racks in the door. The interior lamp comes on immediately, lighting chilled containers and condensation. The doors swing on side hinges and close with a soft gasket thump. Between openings, it gives off a low compressor hum and occasional click in a tiled kitchen."
+ },
+ {
+  "id": "item.gen.microwave-oven",
+  "domain": "item",
+  "topic": "microwave oven",
+  "names": [
+   "فرن ميكروويف",
+   "ميكرويف",
+   "مايكرويف",
+   "microwave oven",
+   "microwave"
+  ],
+  "body": "A countertop microwave is a compact rectangular metal box, usually white, silver or black, with a dark mesh-patterned window across most of its front door. A pull handle or push-button release sits beside the window; a keypad or two rotary dials occupy a vertical control strip. Inside, a round glass plate rests on a wheeled ring. A bowl placed on the plate rotates steadily when the door closes and the timer starts. The interior light glows through the screened window, and a low fan-and-transformer hum ends with a beep. The door closes with a firm plastic click on a kitchen counter."
+ },
+ {
+  "id": "item.gen.gas-stove-with-oven",
+  "domain": "item",
+  "topic": "gas stove with oven",
+  "names": [
+   "طباخ غاز",
+   "طباخ غاز مع فرن",
+   "فرن غاز",
+   "بوتاجاز",
+   "gas stove with oven",
+   "gas cooker"
+  ],
+  "body": "A freestanding gas stove with oven is a waist-high metal appliance, commonly white or stainless steel, with four circular burners on top beneath black enamelled grates. A row of control knobs sits across the front, above an oven door with a glass viewing window and horizontal handle. Burner caps sit concentrically on their rings; a lit burner shows a tight circle of small blue flames beneath a pot. The oven door hinges downward and reveals wire racks when opened. Turning a knob may produce ignition clicks before a soft gas whoosh. Pots can rattle gently on the grates, and the oven light gives the window a warm glow."
+ },
+ {
+  "id": "item.gen.blender",
+  "domain": "item",
+  "topic": "blender",
+  "names": [
+   "خلاط كهربائي",
+   "خلاط عصير",
+   "خلاط",
+   "بلندر",
+   "blender",
+   "kitchen blender"
+  ],
+  "body": "A countertop blender has a squat motor base topped by a tall, tapered jug of clear plastic or glass. The jug has a side handle, pouring spout and fitted lid; small measurement marks run up its wall. A blade assembly sits at the bottom, directly above the base coupling, while speed buttons or a dial face forward. Fruit and liquid swirl downward into the blades and climb the jug walls, forming a visible vortex. The base stays put on rubber feet but vibrates slightly. Its motor makes a sharp, rising buzz, with brief changes in pitch as pieces break down. Kitchen light catches droplets on the inside of the jug."
+ },
+ {
+  "id": "item.gen.air-fryer",
+  "domain": "item",
+  "topic": "air fryer",
+  "names": [
+   "قلاية هوائية",
+   "قلاية بدون زيت",
+   "قلاية هواية",
+   "اير فراير",
+   "air fryer",
+   "airfryer"
+  ],
+  "body": "A common basket-style air fryer is a rounded or boxy countertop appliance with a dark plastic outer shell, a front pull handle and a small display or dial controls near the top. Pulling the handle slides out a deep basket with a perforated tray inside; food sits in a shallow layer so hot air can circulate around it. The basket slides back with a solid click, and the display shows a cooking time and temperature. During use, a fan makes a steady rushing sound, with occasional clicks from temperature control. Warm air exits through rear vents. Its matte surfaces catch soft kitchen reflections, while the basket remains hidden during cooking."
+ },
+ {
+  "id": "item.gen.electric-kettle",
+  "domain": "item",
+  "topic": "electric kettle",
+  "names": [
+   "غلاية كهربائية",
+   "غلاية ماي",
+   "كتل كهربائي",
+   "electric kettle",
+   "water kettle"
+  ],
+  "body": "A household electric kettle is a jug about 20–25 cm tall, usually brushed stainless steel or white plastic, with a broad base, curved handle, hinged lid, and short pouring spout opposite the handle. A water-level window may run beside the handle; capacity marks and any brand label vary by model. The jug lifts off a separate round power base, leaving the cord behind. A thumb switch near the handle clicks down to heat and springs up when the water boils. Through a clear window, bubbles rise rapidly; steam escapes the spout. Heating begins with a low hum, builds to a rushing boil, then stops with a click."
+ },
+ {
+  "id": "item.gen.turkish-coffee-pot-cezve",
+  "domain": "item",
+  "topic": "Turkish coffee pot (dallah/cezve)",
+  "names": [
+   "ركوة قهوة",
+   "جزوة",
+   "جزوة تركية",
+   "كنكة قهوة",
+   "turkish coffee pot",
+   "cezve",
+   "ibrik"
+  ],
+  "body": "A cezve, often called a rakwa or kanaka locally, is a small open-topped Turkish coffee pot, not the tall lidded Arabic dallah. Its metal cup has a wide rounded bottom, slightly narrowed neck, flared pouring lip, and one long handle projecting sideways. Copper versions have a warm reddish exterior and silvery tinned interior; stainless-steel versions are also common. A typical pot holds one to four small servings and sits directly on a stovetop. Finely ground coffee and water darken as they heat; a dense tan foam swells toward the rim before the cook lifts the pot. It makes a faint simmering hiss, not a whistling sound."
+ },
+ {
+  "id": "item.gen.arabic-coffee-dallah-finjan",
+  "domain": "item",
+  "topic": "Arabic coffee dallah and finjan",
+  "names": [
+   "دلة قهوة",
+   "دلة وفناجين",
+   "فنجان قهوة عربية",
+   "دله وفنجال",
+   "arabic coffee dallah",
+   "dallah and finjan",
+   "arabic coffee pot"
+  ],
+  "body": "An Arabic coffee dallah is a tall metal serving pot with a broad lower body, narrowed waist, domed hinged lid, pointed finial, curved handle, and long, slender spout rising from the opposite side. Finishes range from polished brass to silver-coloured metal; decoration and maker marks vary. Beside it sit finjan cups: small, handleless porcelain cups, often white with a coloured or gold rim. The server holds the dallah by its handle and tips it carefully, pouring a modest measure of pale amber coffee into each finjan rather than filling it. Coffee lands with a light splash; the cups give a delicate ceramic clink when set down."
+ },
+ {
+  "id": "item.gen.hookah-argileh",
+  "domain": "item",
+  "topic": "hookah (argileh)",
+  "names": [
+   "أركيلة",
+   "اركيلة",
+   "شيشة",
+   "نركيلة",
+   "hookah",
+   "argileh",
+   "shisha pipe"
+  ],
+  "body": "A hookah stands roughly knee-high to waist-high: a clear or coloured glass water base supports a vertical metal stem, with a small clay or metal tobacco bowl at the top and a flexible hose connected near the lower stem. The bowl may be covered with perforated foil and topped with glowing charcoal. A metal tray below catches ash; the hose ends in a removable mouthpiece. When an adult draws through the hose, air pulls smoke down the stem and through the water, making distinct bubbling sounds. Wisps leave the mouthpiece and drift with room air. Charcoal glows orange and occasionally crackles; ornate patterns and maker marks vary."
+ },
+ {
+  "id": "item.gen.prayer-beads-masbaha",
+  "domain": "item",
+  "topic": "prayer beads (masbaha)",
+  "names": [
+   "مسبحة",
+   "سبحة",
+   "سبحه",
+   "prayer beads",
+   "masbaha",
+   "tasbih beads"
+  ],
+  "body": "A masbaha is a flexible loop of small, evenly spaced beads threaded on cord, commonly with 33 beads or three groups of 33 separated by slightly different spacer beads. At one end, an elongated terminal bead or short connector leads to a tassel or decorative end piece. Beads may be smooth wood, amber-coloured resin, glass, or stone; their colour and translucency vary. The loop fits loosely around a hand, and a person advances one bead at a time between thumb and forefinger. The strand bends under its own weight and gives soft, irregular clicks as beads touch. It is often carried in a pocket or held while seated."
+ },
+ {
+  "id": "item.gen.oud-instrument",
+  "domain": "item",
+  "topic": "oud instrument",
+  "names": [
+   "عود موسيقي",
+   "آلة العود",
+   "عود عربي",
+   "oud instrument",
+   "arabic oud"
+  ],
+  "body": "An oud has a large pear-shaped wooden body with a flat soundboard and a deep, rounded back built from narrow wooden ribs. One or more carved sound holes sit beneath the strings. Its short, wide neck has no frets, and the pegbox bends sharply backward, with tuning pegs projecting from both sides. Most Arabic ouds have five paired courses of strings and sometimes a single bass string; details vary by maker. Seated players rest the body across the lap and pluck near the sound holes with a thin pick while the other hand moves along the neck. Notes sound warm and resonant, with brief pick attacks and audible string slides."
+ },
+ {
+  "id": "item.gen.darbuka-drum",
+  "domain": "item",
+  "topic": "darbuka drum",
+  "names": [
+   "دربكة",
+   "طبلة دربكة",
+   "دنبك",
+   "darbuka",
+   "doumbek",
+   "goblet drum"
+  ],
+  "body": "A darbuka is a goblet-shaped hand drum, wider at the playing head and tapering to a narrow waist before flaring slightly at the open foot. Common modern versions have a cast-metal or aluminium shell, a synthetic circular head, and evenly spaced tension bolts around its rim; ceramic versions can have a glued skin head instead. A player holds it under one arm or across the thigh, leaving the head unobstructed. A palm strike near the centre produces a deep dum; quick fingertips at the rim make sharp tak sounds. The shell reflects stage or room light, while the open bottom lets each hit ring briefly."
+ },
+ {
+  "id": "item.gen.qanun-instrument",
+  "domain": "item",
+  "topic": "qanun instrument",
+  "names": [
+   "قانون موسيقي",
+   "آلة القانون",
+   "قانون شرقي",
+   "qanun instrument",
+   "kanun instrument",
+   "arabic qanun"
+  ],
+  "body": "A qanun is a shallow, flat wooden zither with a broad trapezoidal outline, usually laid across a seated musician’s knees or on a low stand. Many parallel strings run lengthwise across its polished soundboard, grouped in courses; carved sound openings and a section covered in taut skin appear on the top. Along one angled side, rows of small metal levers sit beside the strings for pitch adjustments. Players wear small plectra on the index fingers and pluck rapidly with both hands, while a hand can flip a lever between phrases. The instrument stays still as the strings visibly vibrate, producing bright, ringing, overlapping notes and occasional tiny lever clicks."
+ },
+ {
+  "id": "item.gen.violin",
+  "domain": "item",
+  "topic": "violin",
+  "names": [
+   "violin",
+   "كمان",
+   "كمنجة",
+   "كمانة",
+   "آلة الكمان"
+  ],
+  "body": "A violin has a glossy, warm-brown wooden body about 36 cm long, with a narrow waist, two curved f-shaped sound holes and a black fingerboard extending over the top. Four strings run from the tailpiece, across a pale wooden bridge, to tuning pegs in the scroll. The player tucks the body beneath the chin, supports the neck with one hand and draws a long, horsehair-strung bow across the strings with the other. The bow changes direction smoothly; fingers press and release strings rapidly. Its sound is clear, sustained and sometimes slightly scratchy, with brief taps when the bow meets a string."
+ },
+ {
+  "id": "item.gen.piano",
+  "domain": "item",
+  "topic": "piano",
+  "names": [
+   "piano",
+   "grand piano",
+   "بيانو",
+   "بيانو كبير",
+   "بيانة"
+  ],
+  "body": "A grand piano is a polished black instrument with a long, curved wooden case, usually 1.5–2.7 metres from keyboard to tail. It stands on three legs with small casters; its heavy lid can be raised on a prop, revealing a gold-coloured metal frame and rows of steel strings. The keyboard has repeating groups of two and three raised black keys between long white keys, with pedals below. A seated player depresses keys with both hands while feet work the pedals. Each key triggers a felt hammer inside; notes ring, overlap and fade naturally. Expect soft mechanical clicks beneath the resonant tone and reflections on the glossy case."
+ },
+ {
+  "id": "item.gen.electric-guitar",
+  "domain": "item",
+  "topic": "electric guitar",
+  "names": [
+   "electric guitar",
+   "غيتار كهربائي",
+   "جيتار كهربائي",
+   "قيتار كهربائي"
+  ],
+  "body": "An electric guitar is a solid-bodied instrument, roughly a metre long, with a contoured painted or varnished wooden body and a narrow fretted neck. Six metal strings stretch from tuning machines on the headstock, over a nut and magnetic pickups, to a bridge on the body. Pickup shapes and positions vary by model; small volume and tone knobs and a selector switch sit within reach of the picking hand. A cable plugs into a jack and runs to an amplifier. The player strums or plucks while the other hand presses strings behind metal frets. Unplugged strings sound thin and quiet; amplified notes can be clean, buzzing or sustained."
+ },
+ {
+  "id": "item.gen.dj-console",
+  "domain": "item",
+  "topic": "DJ console",
+  "names": [
+   "dj console",
+   "dj controller",
+   "دي جي",
+   "ديجي",
+   "كونسول دي جي",
+   "جهاز دي جي"
+  ],
+  "body": "A typical DJ controller is a wide, shallow black unit on a table, with two circular jog wheels flanking a central mixer. Each deck has illuminated play and cue buttons, a pitch slider and rows of performance pads. The centre holds channel faders, equalizer knobs and a horizontal crossfader near the front edge. Cables leave the rear for a laptop, speakers and power; headphones plug into a front or side socket. The DJ taps buttons, turns knobs, slides faders and nudges a jog wheel to align tracks. Buttons click faintly, while bass-heavy music comes from separate speakers. Coloured LEDs remain crisp against the dark surface."
+ },
+ {
+  "id": "item.gen.football",
+  "domain": "item",
+  "topic": "football",
+  "names": [
+   "football",
+   "soccer ball",
+   "كرة قدم",
+   "طابة قدم",
+   "طوبة قدم",
+   "كرة القدم"
+  ],
+  "body": "A regulation football is a nearly spherical, air-filled ball about 22 cm across, with a stitched or bonded synthetic outer shell and a small inflation valve. Many modern balls use coloured curved panels; the familiar classic design has black pentagons among white hexagons. The surface is slightly textured rather than perfectly smooth. On grass or a hard pitch, a player kicks it with a foot, making it compress briefly before it spins, bounces or rolls. A firm kick gives a hollow thump; rolling on pavement adds a soft, irregular rattle. In daylight, panel seams and the ball’s moving shadow remain visible."
+ },
+ {
+  "id": "item.gen.basketball-and-hoop",
+  "domain": "item",
+  "topic": "basketball and hoop",
+  "names": [
+   "basketball and hoop",
+   "basketball hoop",
+   "كرة سلة",
+   "سلة كرة",
+   "طوق السلة",
+   "حلقة السلة"
+  ],
+  "body": "A basketball is an orange-brown, pebbled ball about 24 cm across, divided by dark recessed channels. It rebounds sharply when dribbled, making a deep, rhythmic thud on a court. The hoop is a horizontal orange metal rim, about 45 cm wide and 3.05 metres above the playing surface, fixed to a rectangular backboard by a projecting bracket. A white open-bottomed cord net hangs from loops around the rim. Players shoot the ball in an arc; it may strike the rigid backboard with a knock, ring against the metal or pass through with a brief net swish. Indoor court lights reflect off the backboard."
+ },
+ {
+  "id": "item.gen.tennis-racket",
+  "domain": "item",
+  "topic": "tennis racket",
+  "names": [
+   "tennis racket",
+   "tennis racquet",
+   "مضرب تنس",
+   "مضرب التنس",
+   "راكيت تنس"
+  ],
+  "body": "A tennis racket is roughly 69 cm long, with an oval head of graphite composite joined to a slim shaft and an octagonal, wrapped handle. Taut strings cross in a regular grid inside the frame; small plastic grommets protect them where they pass through its edge. The player grips the handle and swings the racket through a yellow felt tennis ball. On contact, the strings flex briefly and return the ball with a crisp pop. The racket continues through an arc after impact, driven by the player’s arm and body rotation. A grip may show wear, while sunlight picks out the string grid and frame edges."
+ },
+ {
+  "id": "item.gen.treadmill",
+  "domain": "item",
+  "topic": "treadmill",
+  "names": [
+   "treadmill",
+   "running machine",
+   "جهاز مشي",
+   "جهاز الركض",
+   "سير مشي",
+   "مشاية كهربائية"
+  ],
+  "body": "A motorized treadmill has a long, dark rubber walking belt between two low side rails, mounted on a sturdy frame with an upright post on each side. Handrails lead to a front console with speed and incline controls, a display and often a red safety-stop key attached to a clip. The belt travels backward beneath the user’s feet while the person walks or runs forward in place. Footfalls make regular dull impacts over the steady motor hum; faster settings produce quicker belt noise. The deck may tilt upward at the front for incline. Gym lighting catches the moving belt’s texture and the console’s lit numbers."
+ },
+ {
+  "id": "item.gen.dumbbells",
+  "domain": "item",
+  "topic": "dumbbells",
+  "names": [
+   "دمبل",
+   "دمبلز",
+   "دامبل",
+   "أثقال يدوية",
+   "dumbbells",
+   "hand weights"
+  ],
+  "body": "A typical gym dumbbell has a short straight steel handle between two equal, thick round or hexagonal weights. The grip is crosshatched metal; rubber-coated hex weights are often matte black, with a weight number molded or printed on each end. A medium dumbbell is roughly as long as an adult forearm and moves as one rigid piece. Held at the sides or raised in controlled arcs, it tilts slightly as the wrist adjusts and stops with a small jolt. Metal versions ring when they touch; rubber-coated ones make a dull clunk against a rack or floor. Overhead gym lights catch the textured grip and worn edges."
+ },
+ {
+  "id": "item.gen.bicycle-helmet",
+  "domain": "item",
+  "topic": "bicycle helmet",
+  "names": [
+   "خوذة دراجة",
+   "خوذة الدراجة الهوائية",
+   "خوذة بايسكل",
+   "خوذة سيكل",
+   "bicycle helmet",
+   "bike helmet"
+  ],
+  "body": "A bicycle helmet is a lightweight rounded shell covering the top, back and sides of the head, with elongated ventilation slots running front to back. A thin coloured plastic outer skin sits over thick, usually white expanded-foam padding. Inside are soft pads and an adjustable rear fit band. Two narrow straps descend past the ears, join under the jaw and fasten with a small plastic buckle; they should not cover the ears. On a rider, the helmet stays level rather than rocking as the bicycle moves. The buckle clicks, loose strap ends may flutter in wind, and fingertips make a hollow tap on the shell. Sunlight reveals the depth of the vents."
+ },
+ {
+  "id": "item.gen.fishing-rod",
+  "domain": "item",
+  "topic": "fishing rod",
+  "names": [
+   "قصبة صيد",
+   "سنارة صيد",
+   "عود صيد",
+   "چصبة صيد",
+   "fishing rod",
+   "fishing pole"
+  ],
+  "body": "A common spinning rod is a long, slender graphite or fibreglass pole that tapers toward a flexible tip. Small metal line guides form a straight row along the blank. Near the thicker end, a cork or dark foam grip surrounds a reel seat holding a spinning reel beneath the rod. Fine, nearly transparent line runs from the reel through each guide. When lifted or cast, the tip bends behind the handle’s motion, then springs back with a faint swish; the reel’s bail clicks and its handle turns with a soft mechanical whirr. Outdoors beside water, the line can catch sunlight while the dark rod remains a narrow silhouette."
+ },
+ {
+  "id": "item.gen.makeup-brush-set",
+  "domain": "item",
+  "topic": "makeup brush set",
+  "names": [
+   "طقم فرش مكياج",
+   "مجموعة فراشي مكياج",
+   "فرش ميك أب",
+   "براشات مكياج",
+   "makeup brush set",
+   "cosmetic brushes"
+  ],
+  "body": "A makeup brush set contains several brushes of different widths laid together in a pouch, cup or tray. Each has a slim wooden or plastic handle, a short metal ferrule and densely packed bristles. The largest, rounded brush is for powder; smaller tapered, flat and angled heads suit more precise application. Bristles may be brown, black or cream, sometimes darkened at the tips by product. In use, the soft heads compress against skin and spring back, while handles rotate between fingers. Brushing makes a faint whisper; ferrules and handles tap lightly when set down. Under vanity lighting, the bristle edges look soft rather than sharply outlined."
+ },
+ {
+  "id": "item.gen.hair-dryer",
+  "domain": "item",
+  "topic": "hair dryer",
+  "names": [
+   "مجفف شعر",
+   "سشوار",
+   "سيشوار",
+   "استشوار",
+   "hair dryer",
+   "blow dryer"
+  ],
+  "body": "A handheld hair dryer has a compact plastic motor housing, a short barrel with an air outlet at the front and a handle dropping beneath it. A vented intake grille is at the rear; heat and fan switches sit on the handle beside the user’s thumb. Many have a removable narrow concentrator nozzle and a thick power cord exiting the handle base. In use, the fan makes a steady rushing hum, rising or falling as the speed switch changes. The warm airflow lifts loose strands and makes them stream away from the nozzle. Glossy or matte plastic catches bathroom or salon lights; the intake must remain clear of hair."
+ },
+ {
+  "id": "item.gen.hair-straightener",
+  "domain": "item",
+  "topic": "straightener",
+  "names": [
+   "مكواة شعر",
+   "مملس شعر",
+   "ستريتنر شعر",
+   "فير فرد الشعر",
+   "hair straightener",
+   "flat iron"
+  ],
+  "body": "A hair straightener resembles a long, narrow pair of hinged tongs. Its two plastic arms hold smooth, rectangular heated plates on their inner faces, usually ceramic-coated metal; a cord leaves the hinge end through a rotating joint. Power and temperature controls are commonly on the side or inner edge of one arm, with a small indicator light. A user closes the plates around a thin section of dry hair and slides them steadily toward the ends. The arms make a light click when pressed together, while hair glides across the plates with a faint hiss or brushing sound. The cord trails below the hand, and the hot plates stay away from the scalp."
+ },
+ {
+  "id": "item.gen.nail-polish",
+  "domain": "item",
+  "topic": "nail polish",
+  "names": [
+   "طلاء أظافر",
+   "مناكير",
+   "منكير",
+   "صبغ أظافر",
+   "nail polish",
+   "nail varnish"
+  ],
+  "body": "Nail polish usually comes in a small clear glass bottle, square or rounded, with coloured liquid visible through the walls. A tall screw cap holds a thin stem and a short, flat brush hidden inside. A label is typically on the bottle front or base, while shade names or numbers may appear on a small sticker underneath. The cap twists open with slight resistance; the brush lifts out carrying a glossy bead that spreads into a thin coat across each nail. Fresh polish reflects light sharply before settling and drying. The bottle taps against a tabletop with a hard glass sound, and the liquid smells strongly of solvent."
+ },
+ {
+  "id": "item.gen.dehn-al-oud-perfume",
+  "domain": "item",
+  "topic": "oud perfume (dehn al oud)",
+  "names": [
+   "دهن العود",
+   "دهن عود",
+   "دهن العود الأصلي",
+   "عطر دهن العود",
+   "oud perfume oil",
+   "dehn al oud"
+  ],
+  "body": "Dehn al oud is a concentrated perfume oil, commonly sold in a small glass vial or decorative bottle rather than an aerosol spray. The liquid ranges from golden amber to deep brown and clings to the glass more slowly than water. A tight screw cap may carry a short glass or plastic applicator; some bottles instead have a rollerball. A user touches a tiny amount to the wrist or another pulse point, then replaces the cap. The oil leaves a brief sheen without a cloud of mist. Glass gives a small clink on a counter, and the cap makes a soft twist or click. Warm light deepens the amber colour."
+ },
+ {
+  "id": "item.gen.bakhoor-incense-burner",
+  "domain": "item",
+  "topic": "bakhoor incense burner",
+  "names": [
+   "مبخرة",
+   "مبخرة بخور",
+   "مبخر",
+   "مبخره",
+   "bakhoor burner",
+   "incense burner"
+  ],
+  "body": "A tabletop bakhoor burner, or mabkhara, is a small metal vessel about 15–25 cm tall. A broad foot supports a raised cup holding a hot charcoal disc and small pieces of fragrant wood or resin. A pierced dome lid may sit above the cup; its openings let thin, pale smoke curl upward before it spreads through the room. Brass or gold-coloured metal catches warm highlights, while a wooden handle, if fitted, stays clear of the hot bowl. Someone lifts the lid carefully to add bakhoor. The charcoal gives a faint crackle; the lid makes a light metallic tap when replaced."
+ },
+ {
+  "id": "item.gen.luxury-handbag",
+  "domain": "item",
+  "topic": "luxury handbag",
+  "names": [
+   "حقيبة فاخرة",
+   "شنطة فخمة",
+   "جنطة فخمة",
+   "حقيبة يد فاخرة",
+   "luxury handbag",
+   "designer handbag"
+  ],
+  "body": "A structured luxury handbag is roughly 25–35 cm wide, with smooth or finely grained leather panels, crisp seams, firm handles and a flat, reinforced base. The opening closes with a zipper or fitted flap; small metal feet may protect the underside. Hardware has a consistent polished finish, and any logo appears on a modest plaque, clasp or embossed leather patch rather than floating on the surface. Carried in the crook of an arm or by hand, it keeps its shape and swings slightly with each step. The leather gives a soft creak, while a zipper or clasp makes a brief, precise sound."
+ },
+ {
+  "id": "item.gen.sunglasses",
+  "domain": "item",
+  "topic": "sunglasses",
+  "names": [
+   "نظارات شمسية",
+   "نضارات شمسية",
+   "نظارة شمس",
+   "نضارة شمس",
+   "sunglasses",
+   "sun shades"
+  ],
+  "body": "Sunglasses have two tinted lenses held in a frame across the bridge of the nose, with hinged temples extending back over the ears. Adult frames are usually about 13–15 cm wide; lenses may be dark grey, brown or green, with glossy reflections that shift as the head turns. Plastic frames look slightly thicker at the rims, while metal frames have slim rims and separate nose pads. The wearer slides them on with one hand and may fold the temples inward when removing them. The hinges make a tiny click. In strong sun, the lenses hide some eye detail but do not become opaque mirrors unless the coating is reflective."
+ },
+ {
+  "id": "item.gen.sneakers",
+  "domain": "item",
+  "topic": "sneakers",
+  "names": [
+   "حذاء رياضي",
+   "أحذية رياضية",
+   "جوتي رياضي",
+   "قندرة رياضية",
+   "sneakers",
+   "trainers"
+  ],
+  "body": "Everyday sneakers sit low around the ankle, with a flexible fabric or leather upper, a padded tongue, threaded laces and a thicker rubber-soled profile. The outsole has moulded grooves for grip; a lighter foam midsole may form a visible band between upper and tread. On an adult foot, the toe extends a little beyond the toes inside and bends at the ball of the foot during a step. Laces bounce subtly during walking. Rubber soles make muted taps on tile and a faint squeak during a quick turn. Dust collects along tread edges, while mesh panels show texture rather than a perfectly smooth surface."
+ },
+ {
+  "id": "item.gen.high-heels",
+  "domain": "item",
+  "topic": "high heels",
+  "names": [
+   "كعب عالي",
+   "كعب عال",
+   "حذاء كعب",
+   "جوتي كعب",
+   "high heels",
+   "heeled shoes"
+  ],
+  "body": "A classic high-heeled pump has a closed toe, an open top that exposes the instep, and a firm heel rising about 6–10 cm behind the foot. The narrow sole curves upward beneath the arch; the heel sits under the back of the wearer’s weight, not at the extreme rear edge of the shoe. Leather or satin uppers hold a smooth shape, with a thin seam or trim around the opening. Walking shifts weight from heel tip to forefoot, producing distinct clicks on tile or stone. The shoe stays aligned with the foot rather than flexing like a sneaker."
+ },
+ {
+  "id": "item.gen.leather-shoes",
+  "domain": "item",
+  "topic": "leather shoes",
+  "names": [
+   "حذاء جلد",
+   "أحذية جلدية",
+   "جوتي جلد",
+   "قندرة جلد",
+   "leather shoes",
+   "leather dress shoes"
+  ],
+  "body": "A leather dress shoe has a shaped toe, stitched upper panels, a low stacked-looking heel and a relatively thin, firm sole. On a lace-up pair, the laces cross over the instep above a separate tongue; the opening wraps below the ankle. Black or dark brown leather reflects light in broad, soft highlights, with fine creases forming across the toe as the wearer walks. The sole bends slightly at the ball of the foot, while the heel keeps its shape. On hard floors, steps make measured taps rather than rubbery squeaks. Trouser hems usually fall just above or partly over the shoe."
+ },
+ {
+  "id": "item.gen.backpack",
+  "domain": "item",
+  "topic": "backpack",
+  "names": [
+   "حقيبة ظهر",
+   "شنطة ظهر",
+   "جنطة ظهر",
+   "حقيبة مدرسية",
+   "backpack",
+   "rucksack"
+  ],
+  "body": "A day backpack is a soft rectangular bag, roughly 40–50 cm tall, with a zipped main compartment, a smaller front pocket, a top grab handle and two padded shoulder straps attached at both ends. Its fabric may be woven polyester or canvas; seams and zipper tracks remain visible along the edges. Filled with books or daily items, it rounds outward and settles against the wearer’s back rather than staying perfectly flat. The straps pull taut at the shoulders, and the lower corners bounce gently during walking. Zippers rasp when opened, buckles click, and loose contents can make a muffled shifting sound."
+ },
+ {
+  "id": "item.gen.suitcase-on-wheels",
+  "domain": "item",
+  "topic": "suitcase on wheels",
+  "names": [
+   "حقيبة سفر بعجلات",
+   "شنطة سفر بعجلات",
+   "جنطة سفر بعجلات",
+   "حقيبة ترولي",
+   "rolling suitcase",
+   "wheeled suitcase"
+  ],
+  "body": "A wheeled carry-on suitcase is a boxy upright case about 55 cm tall, with a hard moulded shell or taut fabric body, a zipper running around its edge, a top carry handle and a telescoping pull handle emerging from two parallel tubes. Four small swivel wheels sit at the bottom corners; a two-wheel version instead tilts back when pulled. The case follows a person through an airport or hotel, rocking slightly over floor joints. Wheels produce a steady low rattle on tile and a rougher rumble outdoors. Scuffs gather near the lower corners, while overhead lights trace long highlights across a hard shell."
+ },
+ {
+  "id": "item.gen.umbrella",
+  "domain": "item",
+  "topic": "umbrella",
+  "names": [
+   "مظلة",
+   "مظلة مطر",
+   "شمسية",
+   "شمسيّة مطر",
+   "umbrella",
+   "rain umbrella"
+  ],
+  "body": "A handheld rain umbrella has a fabric canopy stretched over eight thin metal or fiberglass ribs, a central shaft, and a handle long enough to grip in one hand. Open, the canopy forms a shallow dome wider than a person's shoulders; closed, its wet panels fold into narrow pleats around the shaft. Common colors include black, navy, and bright solid colors. A sliding runner pushes the ribs outward with a brief click, and the canopy flexes and tilts under wind rather than staying rigid. Rain taps on the fabric and drips from its lowest edges. People angle it over their heads while walking along wet pavements."
+ },
+ {
+  "id": "item.gen.iraqi-bridal-gold-necklace",
+  "domain": "item",
+  "topic": "gold necklace (Iraqi bridal gold)",
+  "names": [
+   "قلادة ذهب عروس",
+   "عقد ذهب عراقي",
+   "ذهب العروس",
+   "جنكل العروس",
+   "iraqi bridal gold necklace",
+   "bridal gold necklace"
+  ],
+  "body": "An Iraqi bridal gold necklace is often a substantial yellow-gold piece that sits across the collarbones and upper chest, rather than a fine single chain. Its design may combine closely linked sections with repeated stamped or cast floral and geometric motifs, polished raised details, and small dangling elements. A clasp closes behind the neck; a tiny purity mark may appear near it, but there is no universal bridal logo. The linked parts settle against the body and shift slightly as the wearer turns. Pendants can make a faint metallic jingle. Under wedding-hall lights, smooth surfaces flash brightly while recessed decoration remains darker."
+ },
+ {
+  "id": "item.gen.diamond-ring",
+  "domain": "item",
+  "topic": "diamond ring",
+  "names": [
+   "خاتم ألماس",
+   "خاتم الماس",
+   "محبس ألماس",
+   "diamond ring",
+   "diamond engagement ring"
+  ],
+  "body": "A typical diamond ring has a narrow circular band of yellow gold, white gold, or platinum, with one clear faceted stone raised above it. Four or six small metal prongs grip the stone at its edge; the pointed underside sits above an open setting that lets light through. A tiny metal-purity stamp may be visible inside the band, not across the stone. On a hand, the ring stays at the base of a finger and rotates only slightly when loose. Its facets produce brief, sharp flashes as the hand moves under direct light, not a constant glow. It makes a light tap against glass or a hard tabletop."
+ },
+ {
+  "id": "item.gen.silver-aqeeq-ring",
+  "domain": "item",
+  "topic": "silver ring with agate (aqeeq)",
+  "names": [
+   "خاتم عقيق",
+   "خاتم عقيق فضة",
+   "محبس عقيق",
+   "silver aqeeq ring",
+   "agate silver ring"
+  ],
+  "body": "A silver aqeeq ring usually has a broad silver band and a prominent oval or rounded-rectangular agate stone set lengthwise along the finger. The polished stone is often reddish brown, honey-colored, or dark brown, with natural variations rather than a diamond-like sparkle. A raised silver bezel holds its edge; engraved or textured decoration may run down the shoulders of the band. The underside is open or hollowed beneath the setting, and a silver mark may be stamped inside. Worn on a hand, its high setting catches light as a soft sheen. It feels weightier than a thin plain band and gives a small hard tap against a cup."
+ },
+ {
+  "id": "item.gen.pocket-watch",
+  "domain": "item",
+  "topic": "pocket watch",
+  "names": [
+   "ساعة جيب",
+   "ساعة الجيب",
+   "ساعة بجيب",
+   "pocket watch",
+   "fob watch"
+  ],
+  "body": "A pocket watch is a small, round metal timepiece, roughly palm-width, with a winding crown and chain loop at the twelve o'clock position. Its face sits behind clear glass and has hands for hours and minutes, often with a thin seconds hand; the numerals may be Roman or Arabic. Some models have a hinged metal cover that flips open, while others leave the face exposed. A chain attached to the top loop hangs in a loose curve from a waistcoat or trouser pocket. The watch swings gently when lifted, its cover clicks shut, and a mechanical movement produces a quiet, regular ticking audible close to the ear."
+ },
+ {
+  "id": "item.gen.medicine-bottles-and-pills",
+  "domain": "item",
+  "topic": "medicine bottles and pills",
+  "names": [
+   "قناني أدوية وحبوب",
+   "عبوات دواء وحبوب",
+   "علب علاج وحبايات",
+   "medicine bottles and pills",
+   "pill bottles"
+  ],
+  "body": "Medicine bottles are small upright containers of amber or opaque plastic, sometimes glass, with a screw cap or child-resistant cap above a cylindrical body. Their paper labels wrap around the side and carry the medicine name, strength, dosage instructions, and expiry information; printing may be in Arabic or English. Tablets and capsules vary in size and color, so pills from different medicines should not all look identical. In a pharmacy or home, bottles stand beside cartons or foil blister strips. A cap makes a short plastic click as it opens; tablets rattle inside the bottle and make a dry tap when poured into a palm. Labels stay attached as the bottle turns."
+ },
+ {
+  "id": "item.gen.wheelchair",
+  "domain": "item",
+  "topic": "wheelchair",
+  "names": [
+   "كرسي متحرك",
+   "كرسي عجلات",
+   "كرسي معاقين",
+   "wheelchair",
+   "manual wheelchair"
+  ],
+  "body": "A standard manual wheelchair has a tubular metal frame, a fabric or padded seat and backrest, two large rear wheels with separate hand rims, and two much smaller swiveling front casters. Push handles rise behind the backrest; footrests project forward below the knees. Seated, a person's feet rest on those supports rather than dragging on the floor. The user can grip the hand rims to turn the rear wheels, while a companion can steer by the handles. The front casters pivot to follow a change in direction, and the chair slows when the rims are held. Tires roll softly; casters click over tile joints, and wheel brakes snap into place when parked."
+ },
+ {
+  "id": "item.gen.hospital-bed",
+  "domain": "item",
+  "topic": "hospital bed",
+  "names": [
+   "سرير مستشفى",
+   "سرير طبي",
+   "تخت مستشفى",
+   "hospital bed",
+   "adjustable hospital bed"
+  ],
+  "body": "A hospital bed is a single-person bed on a rigid metal frame with a segmented mattress, wipe-clean head and foot panels, and side rails that can be raised or lowered. Its casters sit beneath the frame and have brakes to keep the bed still. A fitted sheet covers the mattress, with a pillow at the head; an IV pole or bedside monitor may stand nearby but is not part of every bed. On an electric model, buttons tilt the back section upward and can raise the knee section, bending the mattress with them. The motor hums briefly, the rails latch with a click, and the bed rolls with a low rumble when moved."
+ },
+ {
+  "id": "item.gen.dental-chair",
+  "domain": "item",
+  "topic": "dental chair",
+  "names": [
+   "كرسي أسنان",
+   "كرسي طبيب الأسنان",
+   "كرسي دكتور الأسنان",
+   "كرسي سنون",
+   "dental chair",
+   "dentist chair"
+  ],
+  "body": "A dental chair has a padded vinyl seat, backrest and narrow headrest on a heavy floor-mounted base, with a footrest extending toward the patient’s shoes. Its smooth upholstery is often pale blue, grey or beige. A hinged instrument arm holds handpieces and a small control panel beside the dentist; an adjustable exam light hangs overhead. A rinse bowl and suction hoses sit to one side. The seated patient reclines slowly as electric motors hum, while the headrest supports the neck. Dentists and assistants work close to the patient under a bright, focused beam; suction makes a steady hiss."
+ },
+ {
+  "id": "item.gen.x-ray-machine",
+  "domain": "item",
+  "topic": "X-ray machine",
+  "names": [
+   "جهاز أشعة سينية",
+   "جهاز أشعة اكس",
+   "جهاز أشعة",
+   "مكينة أشعة",
+   "x-ray machine",
+   "radiography machine"
+  ],
+  "body": "In a general radiography room, the X-ray tube sits inside a rounded metal housing mounted on a ceiling rail or movable column. A rectangular collimator beneath it projects a small positioning light. The patient stands against an upright detector panel or lies on a flat examination table with a detector underneath. The radiographer slides and rotates the tube into alignment, then steps behind a shielded control area before exposure. Parts move with low mechanical whirs and clicks; the exposure itself is brief and nearly silent. Surfaces are smooth white or grey metal and plastic, with position markings, controls and a manufacturer badge on the housing."
+ },
+ {
+  "id": "item.gen.mri-scanner",
+  "domain": "item",
+  "topic": "MRI scanner",
+  "names": [
+   "جهاز رنين مغناطيسي",
+   "جهاز الرنين",
+   "مكينة رنين",
+   "mri scanner",
+   "mri machine"
+  ],
+  "body": "An MRI scanner is a large white cylindrical housing with a short, wide-looking tunnel through its centre and a narrow patient table aligned with the opening. The patient lies flat on the padded table, often with a fitted plastic coil placed around the body part being examined. The table glides smoothly into the tunnel with a soft motor sound. During scanning, repeated loud knocking, tapping and buzzing come in changing rhythms; patients wear hearing protection. Soft room lighting reflects off the curved housing. Staff monitor the examination from an adjoining room, while the patient remains still."
+ },
+ {
+  "id": "item.gen.supermarket-shopping-cart",
+  "domain": "item",
+  "topic": "shopping cart in a supermarket",
+  "names": [
+   "عربة تسوق",
+   "عربة سوبر ماركت",
+   "عربة مشتريات",
+   "عربية تسوق",
+   "عربة مال السوق",
+   "shopping cart",
+   "supermarket trolley"
+  ],
+  "body": "A supermarket shopping cart is a waist-high basket of silver metal wire on a tubular frame, with four small caster wheels below. A plastic-covered handle spans the back, often carrying a store name or coin-lock fitting. The rear basket panel folds inward when carts nest together; many carts also have a small folding child seat there. A shopper pushes the handle while walking between aisles. The front casters swivel into turns, sometimes wobbling, and the wheels rattle over floor joints. Products collect in the wire basket, visible through its sides under bright overhead supermarket lights."
+ },
+ {
+  "id": "item.gen.cash-register",
+  "domain": "item",
+  "topic": "cash register",
+  "names": [
+   "صندوق محاسبة",
+   "آلة تسجيل النقد",
+   "كاشير",
+   "ماكينة كاشير",
+   "cash register",
+   "checkout register"
+  ],
+  "body": "A modern cash register at a shop counter usually combines a flat touchscreen or angled display with a rectangular cash drawer below it. A small customer-facing display shows the running total; a barcode scanner and receipt printer sit nearby. The casing is generally black or grey plastic, with manufacturer markings on the outer edge rather than across the screen. The cashier scans items, taps the display and takes payment. The drawer springs open a short distance with a clack, revealing divided spaces for notes and coins, while the printer feeds out a narrow paper receipt with a brief buzzing sound."
+ },
+ {
+  "id": "item.gen.card-payment-terminal",
+  "domain": "item",
+  "topic": "card payment terminal",
+  "names": [
+   "جهاز دفع بالبطاقة",
+   "جهاز نقاط بيع",
+   "جهاز كي كارد",
+   "ماكينة فيزا",
+   "جهاز دفع إلكتروني",
+   "card payment terminal",
+   "card reader"
+  ],
+  "body": "A card payment terminal is a palm-sized plastic device, usually black or dark grey, resting on a counter or held out to a customer. Its upper face has a small colour screen; below are number keys and coloured cancel, clear and confirm keys, though touchscreen models may omit physical keys. Contactless symbols appear near the tap area, with a chip-card slot along an edge. The cashier enters an amount, then the customer taps, inserts or swipes a card as supported. Button presses click softly, and the terminal gives short beeps; some models print a narrow receipt from a paper roll inside."
+ },
+ {
+  "id": "item.gen.atm-machine",
+  "domain": "item",
+  "topic": "ATM machine",
+  "names": [
+   "صراف آلي",
+   "جهاز صراف",
+   "ماكنة صراف",
+   "ماكينة سحب فلوس",
+   "atm machine",
+   "cash machine"
+  ],
+  "body": "An ATM has a sturdy metal cabinet with a front panel holding a screen, keypad, card slot and cash-dispensing opening. Many units are set into a wall at standing height; others are freestanding inside a bank or shop. Labels beside the openings identify card entry, cash and receipts, while the bank logo appears on the fascia above or beside the screen. A customer faces the machine, inserts or taps a card where supported, presses the keypad and collects notes from the dispenser. Keys make muted clicks, internal rollers whir, and a shutter opens briefly at the cash slot. Screen light is most noticeable after dark."
+ },
+ {
+  "id": "item.gen.shop-shelves-products",
+  "domain": "item",
+  "topic": "shop shelves with products",
+  "names": [
+   "رفوف محل",
+   "رفوف دكان",
+   "رفوف متجر",
+   "أرفف بضائع",
+   "shop shelves",
+   "store shelves"
+  ],
+  "body": "Shop shelves are rows of metal uprights supporting shallow horizontal shelves, commonly painted white or light grey. Products stand in repeated front-facing lines: boxes and tins on flat shelves, bottles grouped by size, and small packets sometimes hanging from hooks. Narrow price strips clip onto the front edges, with printed labels directly below the matching items. Heavier goods sit lower, while lighter packages fill eye-level rows. Shoppers reach in, lift an item and leave a small gap; staff pull remaining products forward to straighten the display. Packaging rustles, bottles tap lightly, and fluorescent or LED ceiling lights illuminate the aisle evenly."
+ },
+ {
+  "id": "item.gen.cardboard-boxes-parcels",
+  "domain": "item",
+  "topic": "cardboard boxes and parcels",
+  "names": [
+   "صناديق كرتون",
+   "طرود",
+   "كراتين",
+   "كارتونات",
+   "cardboard boxes",
+   "parcels"
+  ],
+  "body": "Shipping boxes are rectangular, made from brown corrugated cardboard with faint horizontal ridges visible along cut edges. Folded top flaps meet at a central seam sealed with clear or brown packing tape; larger parcels may have tape crossing the seam. Address labels sit flat on an outer face, usually with printed text and a barcode, while handled boxes show softened corners and small dents. Sizes range from a hand-held parcel to a box carried with both arms. People lift them from underneath, stack them with larger boxes below, and set them down with a hollow thump. Tape peels with a sharp ripping sound."
+ },
+ {
+  "id": "item.gen.delivery-bag",
+  "domain": "item",
+  "topic": "delivery bag",
+  "names": [
+   "حقيبة توصيل",
+   "شنطة توصيل",
+   "جنطة دليفري",
+   "delivery bag",
+   "courier bag",
+   "food delivery bag"
+  ],
+  "body": "A food delivery bag is a boxy, soft-sided insulated carrier, often black or a bright company colour, roughly as wide as a rider’s torso. Fabric or vinyl covers foam panels that help it hold a rectangular shape. A zippered lid opens across the top or front, revealing a wipe-clean silver lining; webbing handles, shoulder straps and sometimes reflective strips are sewn onto the outside. Any company logo belongs on the outer panel, not inside the lining. Riders carry it by its handles or secure it behind a motorcycle seat. The bag flexes slightly when lifted; its zipper rasps and packaged meals shift softly inside."
+ },
+ {
+  "id": "item.gen.office-chair-desk",
+  "domain": "item",
+  "topic": "office chair and desk",
+  "names": [
+   "كرسي مكتب ومكتب",
+   "كرسي دوار ومكتب",
+   "كرسي مكتب وطاولة",
+   "office chair and desk",
+   "desk chair"
+  ],
+  "body": "A typical office desk has a flat laminate or wood-veneer top at seated elbow height, supported by metal legs or side panels, with a clear space beneath for knees. A task chair sits in front of it: padded seat and backrest, armrests, a central height-adjustment column and five wheeled legs spreading from the base. The chair rolls a short distance when pushed, swivels around its column and sinks slightly under a seated person. Papers, a keyboard and a monitor usually rest on the desk, with cables dropping behind it. Casters make a low rattle on hard floors; drawers slide and close with a muted knock."
+ },
+ {
+  "id": "item.gen.whiteboard",
+  "domain": "item",
+  "topic": "whiteboard",
+  "names": [
+   "سبورة بيضاء",
+   "سبورة وايت بورد",
+   "لوح أبيض",
+   "whiteboard",
+   "dry erase board"
+  ],
+  "body": "A whiteboard is a smooth, glossy white rectangular panel mounted flat on a wall or standing on a wheeled frame. A narrow aluminium frame borders its edges, and a shallow tray along the bottom holds markers and an eraser. Dry-erase ink sits on the surface as dark, coloured strokes rather than soaking in. A hand writes with the marker tip touching the board, producing a faint squeak; an eraser sweeps the marks into pale smudges before removing them. Ceiling lights appear as soft reflections across the panel. In offices and classrooms, people stand beside it to write diagrams or lists."
+ },
+ {
+  "id": "item.gen.projector",
+  "domain": "item",
+  "topic": "projector",
+  "names": [
+   "جهاز عرض",
+   "بروجكتر",
+   "بروجيكتور",
+   "projector",
+   "video projector"
+  ],
+  "body": "A room projector is a compact rectangular unit, usually white or dark grey, with a glass lens near the front edge, ventilation grilles along its sides and power and video sockets at the rear. It rests on a table or hangs upside down from a ceiling mount. When powered, a concentrated beam leaves the lens and forms an image on a screen or pale wall; people crossing the beam cast sharp moving shadows. Buttons and small status lights sit on its casing, while a remote may control it from across the room. An internal fan makes a steady soft whir, and the casing grows warm near the vents."
+ },
+ {
+  "id": "item.gen.printer",
+  "domain": "item",
+  "topic": "printer",
+  "names": [
+   "طابعة",
+   "برنتر",
+   "طابعة مكتب",
+   "printer",
+   "office printer"
+  ],
+  "body": "A desktop office printer is a squat rectangular machine with a hard plastic casing, often white, grey or black. A paper tray pulls out from the lower front, an output slot sits above it, and a small control panel with buttons or a display occupies the top or front. Sheets feed from the tray one at a time and emerge flat, printed side visible according to the model. A side or top panel opens to reach the ink cartridges or toner. It sits on a desk or low cabinet, about the width of a person’s shoulders. Printing brings brief motor hums, clicks and the dry rustle of moving paper."
+ },
+ {
+  "id": "item.gen.baby-stroller",
+  "domain": "item",
+  "topic": "baby stroller",
+  "names": [
+   "عربة أطفال",
+   "عربة بيبي",
+   "عربانة طفل",
+   "baby stroller",
+   "pushchair"
+  ],
+  "body": "A baby stroller has a fabric seat suspended within a folding metal frame, a curved push handle behind it and small rubber or foam wheels below. Front wheels swivel for steering; rear wheels commonly have a foot-operated brake. A canopy arches over the seat, and a harness fastens across the child’s shoulders and waist. An adult pushes from behind, making the stroller roll and gently bounce over pavement joints; the front wheels pivot around corners. On smooth floors it moves quietly, while rough paving makes the wheels rattle. Strollers appear on sidewalks, in shops and at building entrances, often with a storage basket beneath the seat."
+ },
+ {
+  "id": "item.gen.baby-crib",
+  "domain": "item",
+  "topic": "baby crib",
+  "names": [
+   "سرير أطفال",
+   "سرير بيبي",
+   "مهد طفل",
+   "baby crib",
+   "infant crib"
+  ],
+  "body": "A baby crib is a small rectangular bed with a firm, flat mattress enclosed by tall sides. Wooden versions have smooth vertical slats between solid corner posts; metal versions use closely spaced bars. The mattress fits snugly inside, under a fitted sheet, with no loose bedding or toys around a sleeping infant. A crib stands on four legs, sometimes with small locking wheels, and its frame stays still when gently touched. An adult reaches over the fixed side to place or lift the baby. Soft room light catches the rails and casts narrow shadows; the sheet rustles, and the frame may give a faint wooden creak."
+ },
+ {
+  "id": "item.gen.childrens-toys",
+  "domain": "item",
+  "topic": "children's toys",
+  "names": [
+   "ألعاب أطفال",
+   "لعب أطفال",
+   "لعب جهال",
+   "لعبة أطفال",
+   "children's toys",
+   "kids toys"
+  ],
+  "body": "A group of children’s toys usually mixes sizes and materials rather than matching as a set: palm-sized plastic cars with free-spinning wheels, bright stacking rings on a short post, soft fabric dolls, and chunky interlocking blocks. Molded plastic has smooth rounded edges and small seam lines; fabric toys show stitching and slightly uneven stuffing. The pieces sit loosely in a basket or scatter across a floor, not in a perfectly spaced display. Wheels rattle over tile, blocks make sharp hollow clicks, and soft toys land quietly. A child grips, pushes, stacks, or drops them with quick, imprecise movements."
+ },
+ {
+  "id": "item.gen.teddy-bear",
+  "domain": "item",
+  "topic": "teddy bear",
+  "names": [
+   "دب محشو",
+   "دبدوب",
+   "دبدوب أطفال",
+   "دب لعبة",
+   "teddy bear",
+   "plush bear"
+  ],
+  "body": "A teddy bear has a rounded head, short protruding muzzle, two small ears high on the head, and a soft torso with four stubby limbs. Its plush fabric may be beige, brown, cream, or another colour, with a visible pile that changes shade when brushed against its grain. The nose is usually stitched or molded; eyes are small dark buttons or securely fixed plastic, depending on the toy. Seams follow the sides of the limbs and body. It slumps when set down, compresses in someone’s arms, and springs back imperfectly. Handling makes a faint fabric rustle, not a mechanical sound."
+ },
+ {
+  "id": "item.gen.balloons",
+  "domain": "item",
+  "topic": "balloons",
+  "names": [
+   "بالونات",
+   "بالون",
+   "بلالين",
+   "نفاخات",
+   "balloons",
+   "party balloons"
+  ],
+  "body": "Inflated latex balloons are smooth, thin-skinned ovals with a narrower neck tied into a small knot. Their colours look saturated in shade and translucent where strong light passes through; a window or ceiling lamp appears as a bright reflection on the curved surface. Air-filled balloons fall slowly, bounce lightly, and roll along the floor. Helium-filled ones pull upward against a narrow curling ribbon, bobbing with drafts or a person’s movement. They squeak when rubbed together and make a light tapping sound against a wall. Party clusters vary slightly in size and shape, even when the colours match."
+ },
+ {
+  "id": "item.gen.wedding-cake",
+  "domain": "item",
+  "topic": "wedding cake",
+  "names": [
+   "كعكة زفاف",
+   "كيكة عرس",
+   "كيكة زواج",
+   "تورتة عرس",
+   "wedding cake",
+   "marriage cake"
+  ],
+  "body": "A wedding cake is commonly presented on a rigid round board or stand, often with two or more round tiers that narrow upward. Smooth buttercream or fondant may cover the sides in white or pale colours, with piped borders, sugar flowers, or fresh flowers placed deliberately along the tiers. The tiers are level but handmade decoration has tiny irregularities; fresh petals cast small shadows. Its height reaches roughly from a person’s waist toward their chest when displayed on a table. A knife meets slight resistance through icing, then softer sponge. Serving produces quiet plate and cutlery clinks amid conversation."
+ },
+ {
+  "id": "item.gen.birthday-cake",
+  "domain": "item",
+  "topic": "birthday cake",
+  "names": [
+   "كعكة عيد ميلاد",
+   "كيكة عيد ميلاد",
+   "تورتة عيد ميلاد",
+   "كيكة ميلاد",
+   "birthday cake",
+   "birthday gâteau"
+  ],
+  "body": "A birthday cake is usually a low round or rectangular sponge cake on a cardboard cake board, covered with buttercream, whipped cream, or glossy icing. Piped edges, coloured sprinkles, fruit, or chocolate pieces sit on top; lettering, if present, follows the cake’s curve and is rarely perfectly uniform. Thin candles stand in the icing, their small flames bending with nearby movement and reflecting on glossy decorations. A person can carry the cake with both hands. Plates and forks clink as it is served, candles make a faint hiss when blown out, and a knife leaves cream on each cut face."
+ },
+ {
+  "id": "item.gen.chocolate-box",
+  "domain": "item",
+  "topic": "chocolate box",
+  "names": [
+   "علبة شوكولاتة",
+   "علبة چكليت",
+   "بوكس شوكولاتة",
+   "صندوق شوكولاتة",
+   "chocolate box",
+   "boxed chocolates"
+  ],
+  "body": "A chocolate box is a shallow, rigid cardboard box, commonly rectangular or square, with a fitted lid. Printed branding belongs on the actual package, not as a floating label; an unbranded box can have a plain coloured lid. Inside, small chocolates sit in individual cavities of a molded plastic tray or pleated paper cups, sometimes beneath a thin protective sheet. Their surfaces range from matte cocoa dust to glossy tempered chocolate, with slight differences in shape and decoration. The lid lifts without hinges and may rub softly against the base. The tray crackles when handled; chocolates make muted taps as they are picked up."
+ },
+ {
+  "id": "item.gen.iraqi-tea-set-on-tray",
+  "domain": "item",
+  "topic": "Iraqi tea set on a tray",
+  "names": [
+   "استكانات شاي عراقي",
+   "صينية شاي عراقي",
+   "عدة شاي عراقي",
+   "استكانات وصينية",
+   "iraqi tea set",
+   "iraqi tea tray"
+  ],
+  "body": "An Iraqi tea service sits on a round metal tray with a shallow raised rim, often stainless steel or engraved brass-coloured metal. Small, clear, handleless istikan glasses have narrow waists and flared lips; each stands on a little saucer. Strong black tea fills the lower part of each glass in a deep reddish amber, leaving room near the rim. A small teapot and sugar bowl may share the tray, with teaspoons resting on saucers. Someone carries the tray level with one hand beneath it or both hands at its edges. Glass and spoon make delicate clinks; poured tea sounds like a thin, steady splash."
+ },
+ {
+  "id": "item.gen.watermelon",
+  "domain": "item",
+  "topic": "watermelon",
+  "names": [
+   "بطيخ",
+   "رقي",
+   "رگّي",
+   "بطيخة",
+   "watermelon",
+   "water melon"
+  ],
+  "body": "A whole watermelon is a heavy oval or round fruit, commonly about the width of a person’s torso, with a smooth, firm rind. Its green skin shows irregular darker green stripes or mottling and a duller patch where it rested on the ground. Cut open, it reveals thick pale rind around red or pink flesh, often dotted with flat dark seeds, though some varieties have only small pale seed traces. The cut surface looks wet and glistens in sunlight. A knife passes through the flesh easily but needs more pressure at the rind. Slices drip juice, thud softly on a plate, and crunch wetly when bitten."
+ },
+ {
+  "id": "item.gen.pomegranate",
+  "domain": "item",
+  "topic": "pomegranate",
+  "names": [
+   "رمان",
+   "رمانة",
+   "الرمان",
+   "pomegranate"
+  ],
+  "body": "A pomegranate is a round, slightly flattened fruit about the size of a fist, with tough, leathery skin ranging from warm yellow-red to deep crimson. A small, stiff, star-shaped crown protrudes from one end. The skin is matte to faintly glossy and may show natural scuffs or fine cracks. Cutting it reveals pale, spongy membranes separating tightly packed, translucent red or pink arils, each enclosing a seed. A ripe fruit feels heavy. Arils tumble and bounce when loosened into a bowl, making soft taps; biting them gives a crisp pop. In Iraqi markets, whole fruits sit in shallow crates or are split to display their colour."
+ },
+ {
+  "id": "item.gen.oranges",
+  "domain": "item",
+  "topic": "oranges",
+  "names": [
+   "برتقال",
+   "برتقالة",
+   "برتقالات",
+   "orange",
+   "oranges"
+  ],
+  "body": "Oranges are roughly spherical citrus fruits, usually palm-sized, with a dimpled peel coloured bright orange to yellow-orange. Their skins vary in thickness and often show a small green stem scar; some retain a leaf. Beneath the peel is white, fibrous pith around wedge-shaped segments filled with juice sacs. A knife makes a soft rasp through the rind, while peeling releases tiny sprays of aromatic oil. Segments separate with a faint tear and release juice when squeezed. In a fruit stall, oranges pile unevenly in crates rather than forming perfect rows, with natural variation in size, colour and surface marks."
+ },
+ {
+  "id": "item.gen.bananas",
+  "domain": "item",
+  "topic": "bananas",
+  "names": [
+   "موز",
+   "موزة",
+   "الموز",
+   "banana",
+   "bananas"
+  ],
+  "body": "Bananas grow in connected hands, each fruit attached by a short, thick stalk. An individual banana is elongated and gently curved, with several subtle lengthwise ridges and a tapered tip. Market bananas are commonly green-yellow, clear yellow or yellow with scattered brown ripening freckles; the peel may have small pressure bruises. Inside, the flesh is pale cream and soft but holds its shape when freshly peeled. Pulling a peel strip downward makes a faint fibrous rip, and slicing gives a muted tap on a board. Hands of bananas hang from stall hooks or rest in crates, shifting slightly when lifted by their shared stem."
+ },
+ {
+  "id": "item.gen.grapes",
+  "domain": "item",
+  "topic": "grapes",
+  "names": [
+   "عنب",
+   "عناقيد عنب",
+   "عنقود عنب",
+   "grape",
+   "grapes"
+  ],
+  "body": "Grapes hang in branching clusters from a thin central stem, with individual berries attached on finer stalks. Berries may be small and round or slightly oval, coloured pale green, amber, red or dark purple depending on the variety. Fresh skins can carry a dusty-looking natural wax bloom, not dirt. A cluster bends under its own weight, and loose berries roll quickly across a table. Pulling one free makes a tiny snap; biting it breaks the taut skin with a soft pop and releases clear juice. At produce stalls, clusters lie in shallow crates, their slender stems visible between the fruit."
+ },
+ {
+  "id": "item.gen.tomatoes-and-cucumbers",
+  "domain": "item",
+  "topic": "tomatoes and cucumbers",
+  "names": [
+   "طماطة وخيار",
+   "طماطم وخيار",
+   "بندورة وخيار",
+   "tomatoes and cucumbers",
+   "tomato and cucumber"
+  ],
+  "body": "Tomatoes and cucumbers are commonly displayed together at Iraqi vegetable stalls and chopped together for salad. Tomatoes are rounded or slightly flattened, with smooth red skin, a small stem scar and moist chambers of seeds inside; some still carry a green, star-shaped calyx. Cucumbers are elongated, firm and dark to medium green, often with faint lengthwise stripes and a subtly bumpy surface. A knife meets tomato skin with slight resistance before releasing juice; cucumber cuts with a sharper, watery crunch. Chopped pieces glisten in a bowl, while whole vegetables roll or shift naturally when picked up from a crate."
+ },
+ {
+  "id": "item.gen.iraqi-pickles-torshi",
+  "domain": "item",
+  "topic": "Iraqi pickles (torshi)",
+  "names": [
+   "طرشي",
+   "طرشي عراقي",
+   "مخلل عراقي",
+   "مخللات عراقية",
+   "torshi",
+   "iraqi pickles"
+  ],
+  "body": "Iraqi torshi is a mixture of vegetables preserved in a sharp brine or vinegar liquid, often served beside rice, sandwiches or grilled food. A clear jar or bowl may show cauliflower florets, carrot rounds, cucumber pieces, turnip and peppers packed irregularly together. Colours range from pale cream and orange to green; turnip can appear vivid pink when pickled with beet. The vegetables stay firm enough to crunch rather than collapsing. Liquid clings to each piece and drips back into the jar when lifted with a spoon. Glass clinks softly against the spoon, followed by a wet stir and a crisp bite."
+ },
+ {
+  "id": "item.gen.amba-mango-pickle",
+  "domain": "item",
+  "topic": "amba mango pickle",
+  "names": [
+   "عمبة",
+   "عنبة",
+   "امبة",
+   "مخلل المانجو",
+   "amba",
+   "mango amba",
+   "amba mango pickle"
+  ],
+  "body": "Iraqi amba is a tangy mango pickle or sauce, typically mustard-yellow to deep golden, with a thick, uneven texture rather than the smooth look of bottled juice. Small softened mango pieces may be visible in the spiced liquid. In a jar it coats the glass above the fill line; on a sandwich or plate it spreads in glossy streaks and slowly settles into folds. A spoon lifts it in a heavy ribbon that drops with a soft plop. Amba is commonly added to Iraqi falafel sandwiches and other street food, where its bright colour contrasts with bread, vegetables and browned fried fillings."
+ },
+ {
+  "id": "item.gen.geymar-with-date-syrup",
+  "domain": "item",
+  "topic": "geymar with date syrup (Iraqi breakfast)",
+  "names": [
+   "قيمر ودبس التمر",
+   "گيمر ودبس التمر",
+   "قيمر ودبس",
+   "قِيْمر ودبس التمر",
+   "geymar with date syrup",
+   "qaymar with date syrup"
+  ],
+  "body": "Iraqi geymar is a thick, pale ivory dairy cream served at breakfast, often in a shallow dish with dark date syrup poured over or beside it. The cream sits in soft folds or broad scoops, with a delicate wrinkled surface skin and edges that hold their shape. Date syrup is translucent deep brown where thin and nearly black where it pools; it runs slowly into glossy ribbons over the cream. A spoon presses through the dense, yielding geymar with little sound, then lightly taps the dish. Torn samoon or other bread is used to scoop up both, leaving irregular swirls of cream and syrup."
+ },
+ {
+  "id": "item.gen.lentil-soup",
+  "domain": "item",
+  "topic": "lentil soup",
+  "names": [
+   "شوربة عدس",
+   "شوربة العدس",
+   "شوربة عدس عراقية",
+   "حساء العدس",
+   "lentil soup",
+   "shorbat adas"
+  ],
+  "body": "Iraqi lentil soup is a smooth, opaque golden-yellow to orange soup, usually made from red lentils cooked until they lose their shape. It fills a small ceramic bowl nearly to the rim and may have tiny flecks of cumin or black pepper on its surface. It pours in a thick, continuous stream rather than splashing like water. A spoon leaves a shallow trail that slowly closes. Serve it hot with a lemon wedge and flatbread; a squeeze of lemon makes small ripples across the surface. Steam rises in soft wisps under side light. The scene is quiet except for spoon taps against the bowl and bread tearing."
+ },
+ {
+  "id": "item.gen.iraqi-biryani",
+  "domain": "item",
+  "topic": "biryani Iraqi style",
+  "names": [
+   "برياني عراقي",
+   "برياني العراقي",
+   "برياني دجاج عراقي",
+   "برياني لحم عراقي",
+   "iraqi biryani",
+   "iraqi-style biryani"
+  ],
+  "body": "Iraqi biryani is a piled platter of separate long rice grains, predominantly yellow from spices, with some white and deeper orange patches. Chicken pieces or cooked meat sit among small cubes of fried potato, peas, carrots and short browned strands of vermicelli. Raisins and toasted nuts may be scattered over the top; some servings include halved boiled eggs. It is mixed rather than built as perfectly defined layers. A serving spoon lifts loose grains and heavier pieces together, with a few raisins rolling back onto the platter. The rice gives off light steam when fresh. Plates, spoons and small side dishes sit around a family table."
+ },
+ {
+  "id": "item.gen.tepsi-baytinjan",
+  "domain": "item",
+  "topic": "tepsi baytinjan",
+  "names": [
+   "تبسي باذنجان",
+   "تبسي بيتنجان",
+   "تبسي باذنجان عراقي",
+   "صينية باذنجان عراقية",
+   "tepsi baytinjan",
+   "iraqi eggplant tepsi"
+  ],
+  "body": "Tepsi baytinjan fills a shallow round or rectangular metal baking tray. Fried eggplant slices show dark purple skin around soft brown centres, overlapping with pale golden potato slices, red tomato rounds and onion. Depending on the household, small meatballs or seasoned minced meat sit between the vegetables. A red tomato sauce pools in the gaps and stains the tray edges; the top has browned spots from the oven, not a thick cheese crust. When a spoon cuts in, tender slices slide apart and sauce runs into the space. The tray may arrive bubbling faintly, then settle with a soft sizzle. Serve beside white rice or bread."
+ },
+ {
+  "id": "item.gen.fasolia-with-rice",
+  "domain": "item",
+  "topic": "fasolia with rice",
+  "names": [
+   "فاصوليا ورز",
+   "فاصوليا بالرز",
+   "فاصوليا وتمن",
+   "مرق فاصوليا عراقي",
+   "fasolia with rice",
+   "iraqi fasolia and rice"
+  ],
+  "body": "Iraqi fasolia with rice is commonly presented as two distinct parts: a bowl of white beans in red tomato stew beside a mound of steamed white rice. The beans remain whole and plump, with glossy skins; small pieces of lamb or beef may be visible in the sauce. The stew is fluid enough to ladle but thick enough to coat the beans. Iraqi rice has visible separate grains and may have a lightly browned crisp portion from the bottom of the pot. A ladleful of fasolia spreads across the rice and sinks between grains. Gentle steam rises, accompanied by the clink of a ladle and plates."
+ },
+ {
+  "id": "item.gen.iraqi-makhlama",
+  "domain": "item",
+  "topic": "Iraqi fried eggs and tomato (makhlama)",
+  "names": [
+   "مخلمة",
+   "مخلمة عراقية",
+   "مخلمة بيض وطماطة",
+   "بيض وطماطة",
+   "بيض وبندورة عراقي",
+   "iraqi makhlama",
+   "iraqi eggs and tomato"
+  ],
+  "body": "Makhlama is served hot in a small frying pan or shallow plate, with eggs set among softened chopped tomatoes and onions. The tomatoes make a red, slightly oily sauce with visible skins and irregular pieces, rather than a smooth purée. Egg whites turn opaque while yolks may remain rounded and soft; in other servings, the eggs are stirred into yellow-and-red curds. Some versions contain browned minced meat, but the egg-and-tomato base stays visible. A metal spoon breaks a yolk and draws yellow across the sauce. The pan gives a brief hiss as it leaves the heat. Iraqi bread is used to scoop it up."
+ },
+ {
+  "id": "item.gen.shawarma-spit",
+  "domain": "item",
+  "topic": "shawarma spit",
+  "names": [
+   "سيخ شاورما",
+   "ماكينة شاورما",
+   "عمود شاورما",
+   "shawarma spit",
+   "shawarma rotisserie",
+   "vertical shawarma grill"
+  ],
+  "body": "A shawarma spit is a tall vertical steel skewer carrying a dense stack of thin meat slices, shaped into a tapered cylinder roughly as high as a worker’s torso. The skewer stands over a circular drip tray, with upright gas burners or electric heating panels behind it. A motor turns the meat slowly and steadily, bringing every side past the heat; the outer layer darkens and glistens while the centre stays covered. A cook shaves thin strips downward with a long knife or electric cutter, and the pieces fall into the tray. There is a low motor hum, burner hiss and crisp scraping sound. Warm shop lights catch the rendered fat."
+ },
+ {
+  "id": "item.gen.falafel-sandwich",
+  "domain": "item",
+  "topic": "falafel sandwich",
+  "names": [
+   "سندويج فلافل",
+   "سندويچ فلافل",
+   "صمون فلافل",
+   "لفة فلافل",
+   "falafel sandwich",
+   "iraqi falafel sandwich"
+  ],
+  "body": "An Iraqi falafel sandwich often uses a small, elongated samoon loaf with a pointed end and a slit along one side. Several deep-fried falafel pieces sit inside, their rough brown crusts contrasting with a soft greenish interior where one is broken. Chopped tomato, cucumber, parsley and pickles may fill the gaps, with tahini sauce or tangy amba visible near the opening. The bread compresses slightly when held, and loose crumbs or salad pieces can fall onto the paper wrapper. A bite makes a brief crisp crunch followed by the softer sound of bread tearing. It is commonly assembled at a street-food counter."
+ },
+ {
+  "id": "item.gen.ice-cream",
+  "domain": "item",
+  "topic": "ice cream",
+  "names": [
+   "آيس كريم",
+   "ايس كريم",
+   "بوظة",
+   "مثلجات",
+   "ice cream",
+   "ice-cream scoop"
+  ],
+  "body": "Scooped ice cream forms rounded mounds with curved ridges left by the scoop. Its surface is matte and faintly grainy when very cold, becoming smoother and glossier as it warms. Vanilla is pale cream, chocolate is brown, and fruit flavours vary in colour; avoid making every flavour unnaturally bright. A scoop sits in a wafer cone or paper cup, visibly smaller than a person’s palm. In warm air, the edges soften first, then slow drips run down the cone or cup. A metal scoop scrapes against the tub, while a wafer cone gives a dry crunch when bitten. Shop display lights reflect on the glass freezer."
+ },
+ {
+  "id": "item.gen.fresh-juice-shop-asir",
+  "domain": "item",
+  "topic": "fresh juice shop (asir)",
+  "names": [
+   "محل عصير",
+   "محل عصائر",
+   "عصير طازج",
+   "عصاير فريش",
+   "fresh juice shop",
+   "asir shop"
+  ],
+  "body": "A small Iraqi juice shop has a bright Arabic sign above a glass-front counter, with oranges, lemons, pomegranates, and bananas displayed in crates or neat piles. Behind the counter sit a citrus press, blender, plastic pitchers, and rows of clear cups. A worker cuts fruit, presses halves under a metal cone, or runs a blender that buzzes sharply before stopping. Juice pours in a thick, uneven stream; pulp and foam gather at the top. Customers stand close to the counter while cups are filled, lidded, and handed over. Daylight catches condensation on cold pitchers and the wet shine of freshly cut fruit."
+ },
+ {
+  "id": "item.gen.pepsi-bottle",
+  "domain": "item",
+  "topic": "Pepsi bottle",
+  "names": [
+   "قنينة بيبسي",
+   "قارورة بيبسي",
+   "بطل بيبسي",
+   "بيبسي قنينة",
+   "pepsi bottle",
+   "pepsi cola bottle"
+  ],
+  "body": "A common single-serve Pepsi bottle is clear molded PET plastic, roughly hand-height, with rounded shoulders, a narrow threaded neck, and a five-lobed base that lets it stand upright. Dark brown cola shows through the plastic. A blue wraparound label sits around the middle, carrying the red, white, and blue Pepsi globe and white Pepsi lettering; a blue screw cap seals the neck above a tamper-evident ring. Bottle sizes and label layouts vary by market. When lifted, the thin plastic flexes slightly. Opening the cap makes a short crackle and hiss; pouring produces fizz, rising bubbles, and a brief foam head."
+ },
+ {
+  "id": "item.gen.water-bottle",
+  "domain": "item",
+  "topic": "water bottle",
+  "names": [
+   "قنينة مي",
+   "بطل مي",
+   "قارورة ماء",
+   "قنينة ماء",
+   "water bottle",
+   "bottled water"
+  ],
+  "body": "A typical disposable drinking-water bottle is transparent PET plastic, narrow enough to hold in one hand, with a short threaded neck, a screw cap, and a tamper-evident ring left behind when first opened. Its sides often have shallow ribs or molded grip panels; the bottom has raised feet. A paper or plastic label wraps around the center, while the clear water reveals any dents in the bottle wall. The lightweight bottle crinkles when squeezed and springs partly back. Removing the cap makes a small plastic snap. Water glugs from the opening when tilted steeply and leaves clear beads of condensation if chilled."
+ },
+ {
+  "id": "item.gen.coffee-cup-to-go",
+  "domain": "item",
+  "topic": "coffee cup to go",
+  "names": [
+   "كوب قهوة سفري",
+   "كاسة قهوة سفري",
+   "كوب قهوة للطلبات الخارجية",
+   "takeaway coffee cup",
+   "coffee cup to go"
+  ],
+  "body": "A takeaway coffee cup is a tall, gently tapered paperboard cylinder, wider at its rolled rim than at its flat base. The inside has a thin liquid-resistant lining. A fitted plastic lid snaps over the rim, usually with a raised drinking spout or small sip opening; some cups have a separate corrugated cardboard sleeve around the middle. Branding, when present, is printed on the outside rather than inside the cup. An adult holds it comfortably in one hand, often by the sleeve. Hot coffee gives off faint steam through the opening. The lid clicks when pressed into place, and the cup makes a soft papery sound when set down."
+ },
+ {
+  "id": "item.gen.cappuccino-with-latte-art",
+  "domain": "item",
+  "topic": "cappuccino with latte art",
+  "names": [
+   "كابتشينو برسم",
+   "كابتشينو لاتيه آرت",
+   "رسم على الكابتشينو",
+   "cappuccino with latte art",
+   "latte art cappuccino"
+  ],
+  "body": "A cappuccino with latte art sits in a small, wide ceramic cup, often on a matching saucer with a teaspoon beside it. Espresso gives the surface a warm brown edge; finely steamed milk forms a glossy, creamy layer with no large visible bubbles. A white heart or leaf pattern spreads across the brown surface, its curved edges made by the milk pour rather than a printed stencil. The cup is filled close to, but below, the rim. Freshly made, it releases a little steam. The pattern slowly blurs as the cup moves, and the saucer gives a light ceramic clink when lifted or set down."
+ },
+ {
+  "id": "item.gen.arabic-sweets-tray",
+  "domain": "item",
+  "topic": "Arabic sweets tray",
+  "names": [
+   "صينية حلويات عربية",
+   "صينية حلو عربي",
+   "صينية بقلاوة وحلويات",
+   "arabic sweets tray",
+   "middle eastern sweets tray"
+  ],
+  "body": "An Arabic sweets tray is a broad, shallow metal serving tray holding small pastries in orderly rows or clusters. It may mix diamond-cut baklava, rolled pastries, round semolina pieces, and pistachio-topped bites; the exact assortment varies by shop. Golden pastry layers have crisp edges, while syrup gives their surfaces a restrained shine. Chopped green pistachio, pale nuts, and occasional paper cups separate pieces visually. A vendor lifts individual sweets with small tongs onto a plate or into a box. The tongs click against the tray, and flaky pieces make a faint crackle. Display-case lighting reflects off the metal rim and glossy syrup."
+ },
+ {
+  "id": "item.gen.kunafa",
+  "domain": "item",
+  "topic": "Kunafa",
+  "names": [
+   "كنافة",
+   "كنافه",
+   "كنافة جبن",
+   "كنافة شعر",
+   "kunafa",
+   "knafeh"
+  ],
+  "body": "Kunafa is commonly presented as a shallow round pastry cooked in a wide metal pan and cut into wedges or squares. One familiar version has a crisp, finely shredded pastry surface, toasted from gold to orange-gold, over a soft white cheese filling. Another uses a finer, compact semolina-like crust. Clear sugar syrup adds a glossy sheen, and crushed green pistachios may be scattered across the top. A server slides a flat spatula beneath a portion; crisp strands shift and crackle while the warm filling can stretch in soft threads as the piece lifts. On a plate, a cut edge shows the thin crust above the thicker filling."
+ },
+ {
+  "id": "item.gen.basbousa",
+  "domain": "item",
+  "topic": "Basbousa",
+  "names": [
+   "بسبوسة",
+   "بسبوسه",
+   "بسبوسة سميد",
+   "هريسة سميد",
+   "basbousa",
+   "semolina cake basbousa"
+  ],
+  "body": "Basbousa is a shallow semolina cake baked in a rectangular or round pan and marked into small squares or diamonds. Its surface is evenly golden brown, slightly grainy rather than smooth, with a whole almond or pistachio sometimes pressed into the center of each portion. Sugar syrup soaks into the cake, leaving a moist sheen without hiding the scored lines. A spatula lifts one piece, exposing a dense, tender crumb made of visible fine grains. It holds its shape but releases a few crumbs at the cut edges. A knife makes a soft scraping sound against the pan, followed by the gentle tap of cake placed on a plate."
+ }
+]

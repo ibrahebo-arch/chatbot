@@ -94,11 +94,15 @@ async function refresh(force = false) {
 }
 
 /** How strongly an entry matches the text: length of its longest name found (0 = no match). */
+// Everyday words that are also some entry's name: they would trigger it in unrelated requests, so they never count.
+const IGNORE = new Set(["نفس", "ناس", "ظهر", "عصر", "حر", "مي", "شعر", "وجه", "كتب", "حب", "يد", "ايد", "عين", "بر", "سما", "صني",
+  "box", "hot", "png", "drc", "fsm", "ad", "pc", "tap", "run", "eat", "sun", "sky", "kid", "boy", "wow", "sad", "cry", "buy", "pen", "bed"].map(norm));
+
 function matchScore(e, t) {
   let best = 0;
   for (const n of e.names) {
     const k = norm(n).trim();
-    if (k.length < 2) continue;
+    if (k.length < 2 || IGNORE.has(k)) continue;
     if (nameRe(k).test(t) && k.length > best) best = k.length;
   }
   return best;
@@ -115,7 +119,8 @@ function nameRe(k) {
   if (!re) {
     re = /^[a-z0-9 .'&-]+$/.test(k)
       ? new RegExp("(^|[^a-z0-9])" + esc(k) + "(s|es)?([^a-z0-9]|$)")
-      : new RegExp("(^|\\s)" + AR_PRE + esc(k) + AR_SUF + "(\\s|$)");
+      // a final ة (normalised to ه) turns into ت before an ending: قطة → قطتها، سيارة → سيارتي
+      : new RegExp("(^|\\s)" + AR_PRE + "(?:" + esc(k) + AR_SUF + (k.endsWith("ه") ? "|" + esc(k.slice(0, -1)) + "ت(?:ها|ه|هم|ي|ك|كم|نا|ين|ان)" : "") + ")(\\s|$)");
     reCache.set(k, re);
   }
   return re;

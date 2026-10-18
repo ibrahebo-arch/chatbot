@@ -1,0 +1,812 @@
+[
+ {
+  "id": "animal.gen.lion",
+  "domain": "animal",
+  "topic": "lion",
+  "names": [
+   "أسد",
+   "اسد",
+   "السبع",
+   "lion"
+  ],
+  "body": "An adult lion has a broad chest, muscular shoulders, sandy-gold short fur, rounded ears and a long tail ending in a dark tuft. An adult male usually has a thick mane framing the face and neck; a lioness lacks the mane and has a slimmer outline. Lions walk on large padded paws with a measured, rolling gait, and often rest together in open grass under warm daylight. Their faces are calm but alert, with amber eyes and long whiskers. Nearby, quiet breathing, low contact grunts and the dry swish of grass are audible; a distant roar is deep and carrying."
+ },
+ {
+  "id": "animal.gen.tiger",
+  "domain": "animal",
+  "topic": "tiger",
+  "names": [
+   "نمر",
+   "ببر",
+   "الببر",
+   "tiger"
+  ],
+  "body": "A tiger is a large, solitary cat with a long, muscular body, a broad head and a heavy tail. Its orange coat carries irregular black vertical stripes over pale fur on the cheeks, throat, belly and inner legs. The stripe pattern continues onto its face and tail; individual patterns vary. It walks silently on broad, soft paws, shoulders rising and falling beneath the fur, then may pause to watch or sniff its surroundings. In dappled forest light, its coat shifts between bright orange and shadow. Calm sounds include breath, a soft chuff and leaves brushing its body."
+ },
+ {
+  "id": "animal.gen.elephant",
+  "domain": "animal",
+  "topic": "elephant",
+  "names": [
+   "فيل",
+   "الفيل",
+   "فيلة",
+   "elephant"
+  ],
+  "body": "An African elephant has a massive grey body, pillar-like legs, wide fan-shaped ears and a flexible trunk reaching nearly to the ground. Its skin is thick and deeply wrinkled, with sparse coarse hairs; some adults have curved ivory tusks. It walks with slow, surprisingly quiet steps on broad cushioned feet, while its trunk explores, gathers grass or sprays water. The ears flap loosely in the heat. In open savanna daylight, dust can settle into the skin folds. Low rumbles carry between elephants, with occasional airy breaths, footfalls and a louder trumpet when one calls."
+ },
+ {
+  "id": "animal.gen.giraffe",
+  "domain": "animal",
+  "topic": "giraffe",
+  "names": [
+   "زرافة",
+   "زرافه",
+   "الزرافة",
+   "giraffe"
+  ],
+  "body": "A giraffe stands on very long legs beneath a sloping back and an exceptionally long neck. Its tan coat has large, irregular brown patches separated by pale lines; short hair covers the body, and a dark tuft tips the tail. Small skin-covered horns, called ossicones, rise between large ears above long-lashed eyes. It walks with both legs on one side moving nearly together, giving its stride a gentle sway. When reaching leaves, its dark, grasping tongue curls around them. In clear savanna light, expect soft hoof taps, leaf rustles and occasional snorts rather than constant calling."
+ },
+ {
+  "id": "animal.gen.zebra",
+  "domain": "animal",
+  "topic": "zebra",
+  "names": [
+   "حمار وحشي",
+   "حمار الوحش",
+   "زيبرا",
+   "zebra"
+  ],
+  "body": "A plains zebra is horse-shaped but stockier, with upright ears, a short stiff mane and a tail ending in a long hair tuft. Bold black and white stripes cover its body and legs, forming a distinct pattern on each animal. It stands alert in grassy plains, sometimes swishing its tail or grooming a nearby zebra. At a walk, its hooves land in a steady four-beat rhythm; at a trot, its head and mane bob lightly. Strong sunlight picks out the stripe contrast and a slight sheen on the short coat. Its calls are bark-like brays, alongside snorts and hoofbeats."
+ },
+ {
+  "id": "animal.gen.monkey",
+  "domain": "animal",
+  "topic": "monkey",
+  "names": [
+   "قرد",
+   "قردة",
+   "قرود",
+   "monkey"
+  ],
+  "body": "A long-tailed macaque is a compact monkey with brown-grey fur, a lighter underside, a mostly bare expressive face and grasping hands and feet. Its tail is long and slim, helping with balance rather than gripping branches. It moves on all fours along branches or the ground, then climbs with quick, deliberate handholds and short jumps. In a calm group, individuals sit close, inspect one another’s fur and glance around with bright, attentive eyes. Daylight catches the fine fur around their cheeks. Soft chatters, brief squeaks, leaf movement and light taps on branches fill the background."
+ },
+ {
+  "id": "animal.gen.gorilla",
+  "domain": "animal",
+  "topic": "gorilla",
+  "names": [
+   "غوريلا",
+   "گوريلا",
+   "غوريل",
+   "gorilla"
+  ],
+  "body": "A gorilla has a broad chest, powerful shoulders, long arms and dark, dense hair surrounding a mostly bare face, ears, hands and feet. An adult male may show a silver-grey saddle across his back. On the ground it usually knuckle-walks, placing curled fingers down as its body shifts in a steady, weighty rhythm. A relaxed gorilla may sit to pull leaves closer, chew slowly or watch others with a composed expression. Soft forest light reveals the hair’s texture and the contours of its brow. Expect rustling vegetation, quiet grunts, breaths and occasional low, resonant calls."
+ },
+ {
+  "id": "animal.gen.bear",
+  "domain": "animal",
+  "topic": "bear",
+  "names": [
+   "دب",
+   "الدب",
+   "دب بني",
+   "bear"
+  ],
+  "body": "A brown bear has a heavy rounded body, a shoulder hump, small round ears and a short tail almost hidden by thick fur. Its coat ranges from light brown to dark chocolate, with longer guard hairs catching the light. It walks on the full soles of its broad feet, producing a slow, rolling gait; curved claws are visible beyond the toes. A calm bear may sniff the air, turn stones or forage among berries beside a stream. Its nose moves constantly as it investigates. Audible details include heavy breathing, soft huffs, pawfalls on soil and water moving over rocks."
+ },
+ {
+  "id": "animal.gen.wolf",
+  "domain": "animal",
+  "topic": "wolf",
+  "names": [
+   "ذئب",
+   "ذيب",
+   "ديب",
+   "wolf",
+   "wolves"
+  ],
+  "body": "A wolf is a long-legged, deep-chested canine with a broad muzzle, upright triangular ears, and a thick tail carried mostly low. Its dense coat mixes gray, brown, cream, and black, with lighter fur around the cheeks and underside. It walks in a steady, ground-covering trot, placing its paws neatly and keeping its body level; when alert, its ears lift and its gaze fixes on a distant sound. A calm wolf may sniff the ground or glance toward other wolves nearby. Its sounds include low whines, short barks, and a sustained, rising howl. In daylight, the outer guard hairs catch the light above the softer undercoat."
+ },
+ {
+  "id": "animal.gen.fox",
+  "domain": "animal",
+  "topic": "fox",
+  "names": [
+   "ثعلب",
+   "الثعلب",
+   "ثعالب",
+   "fox",
+   "foxes"
+  ],
+  "body": "A fox is a small, slender canine with a pointed muzzle, large upright ears, narrow legs, and a long, bushy tail. A familiar red fox has rusty orange fur across its back, white on the throat and chest, and darker lower legs; colour varies among foxes. It moves with light, quiet steps, pauses with one forepaw raised, then turns its head sharply toward a sound. Its tail swings behind it for balance as it trots or makes a short, springy leap. Fine whiskers frame its muzzle, and its eyes appear bright in side light. Foxes can give brief barks, yips, and soft whines."
+ },
+ {
+  "id": "animal.gen.deer",
+  "domain": "animal",
+  "topic": "deer",
+  "names": [
+   "أيل",
+   "ايل",
+   "الأيل",
+   "deer",
+   "stag"
+  ],
+  "body": "A deer has a lean body, long slender legs, large sideways-set eyes, and tall ears that swivel toward sounds. Its coat is short and smooth, usually some shade of brown with a paler throat and belly. In many species, adult males carry branching antlers, while females do not; antler size and shape vary. A deer walks on paired hooves with a careful, almost silent step, then bounds with long, elastic strides when moving quickly. At rest, it may lower its head to graze and lift it to listen, ears pointed forward. Hooves can click on hard ground, and its breathing is quiet."
+ },
+ {
+  "id": "animal.gen.gazelle",
+  "domain": "animal",
+  "topic": "gazelle",
+  "names": [
+   "غزال",
+   "غزالة",
+   "غزاله",
+   "ظبي",
+   "gazelle"
+  ],
+  "body": "A gazelle is a slim antelope with a compact body, very fine legs, a narrow face, and large dark eyes. Its short coat is sandy or warm brown above and white below, often divided by a darker stripe along each side. Many species have curved or ringed horns; their shape and whether females have them vary by species. It stands poised on small, paired hooves, ears turning independently as it watches its surroundings. A gazelle walks lightly, runs with swift, even strides, and may spring upward with all four feet briefly clear of the ground. Hooves make faint taps on firm soil; grazing is quiet."
+ },
+ {
+  "id": "animal.gen.rabbit",
+  "domain": "animal",
+  "topic": "rabbit",
+  "names": [
+   "أرنب",
+   "ارنب",
+   "أرنوب",
+   "rabbit",
+   "bunny"
+  ],
+  "body": "A rabbit has a rounded body, long mobile ears, large side-facing eyes, a short cottony tail, and powerful hind legs much longer than its forelegs. Its fur is dense and soft, commonly brown, gray, white, or a mixture that blends with the ground. It sits with its back curved and nose twitching rapidly while whiskers brush nearby grass. When it moves, the front feet land first and the hind feet swing forward in a compact hop; quicker hops stretch its body low over the ground. Rabbit ears pivot toward small sounds. It is usually quiet, with faint snuffling and soft footfalls on dry leaves."
+ },
+ {
+  "id": "animal.gen.squirrel",
+  "domain": "animal",
+  "topic": "squirrel",
+  "names": [
+   "سنجاب",
+   "السنجاب",
+   "سنجوب",
+   "squirrel",
+   "squirrels"
+  ],
+  "body": "A squirrel is a small rodent with bright side-set eyes, rounded ears, grasping front paws, and a long tail covered in thick fur. Its coat may be gray, reddish brown, or sandy, often paler underneath. It travels in quick bursts: scampering along a branch, stopping abruptly, then climbing with its claws gripping bark. When it leaps, its body stretches between branches and its tail trails behind, helping it balance on landing. It can sit upright to hold a seed between its forepaws, rotating it as it nibbles. Claws make tiny scratches on bark; some squirrels give sharp chirps or chattering calls."
+ },
+ {
+  "id": "animal.gen.hedgehog",
+  "domain": "animal",
+  "topic": "hedgehog",
+  "names": [
+   "قنفذ",
+   "القنفذ",
+   "قنفود",
+   "hedgehog",
+   "hedgehogs"
+  ],
+  "body": "A hedgehog is a small, low-bodied mammal with a pointed snout, short legs, tiny rounded ears, and a back covered in stiff, cream-and-brown spines. Its face and belly have softer fur, and its dark nose moves constantly as it sniffs. It walks close to the ground with short, deliberate steps, rustling through dry grass or leaves. When uncertain, it may pause, tuck its head, and draw its spiny back into a rounded shape; when relaxed, its face and feet remain visible. Its sounds are quiet snuffles, breathing, and occasional soft grunts. Side light picks out the separate spines clearly."
+ },
+ {
+  "id": "animal.gen.turtle",
+  "domain": "animal",
+  "topic": "turtle",
+  "names": [
+   "سلحفاة",
+   "السلحفاة",
+   "سلحفاء",
+   "turtle",
+   "freshwater turtle"
+  ],
+  "body": "A freshwater turtle has a broad, hard upper shell, a flatter lower shell, a small beaked head, four clawed feet with some webbing, and a short tail. The shell is part of its body, with curved plates that may be olive, brown, or dark green. On land it walks slowly, lifting one side at a time, its claws making faint taps on stone. In water it moves more smoothly, paddling its limbs in alternating strokes and steering with small adjustments of its feet. It may pause with only its eyes and nostrils above the surface. Turtles are generally quiet; movement may produce gentle splashes or shell contact sounds."
+ },
+ {
+  "id": "animal.gen.tortoise",
+  "domain": "animal",
+  "topic": "tortoise",
+  "names": [
+   "سلحفاة",
+   "سلحفاة برية",
+   "ترسة",
+   "tortoise",
+   "land tortoise"
+  ],
+  "body": "A tortoise has a high, domed shell with hard, polygonal plates in mottled tan, brown, or olive. Its head, thick neck, and four sturdy, scaly legs emerge beneath the shell; the feet are blunt and clawed, not flippers. It walks slowly, shifting its weight from side to side and placing each foot firmly on the ground. Its small eyes blink, and its beak-shaped mouth nips leaves without chewing motions like a mammal’s. It may pause or draw its head partly inward when approached. Usually quiet, it makes faint scrapes on gravel and soft rustles through dry grass in warm daylight."
+ },
+ {
+  "id": "animal.gen.calm-snake",
+  "domain": "animal",
+  "topic": "snake (calm, no attack)",
+  "names": [
+   "ثعبان",
+   "حية",
+   "حنش",
+   "أفعى",
+   "snake",
+   "serpent"
+  ],
+  "body": "A calm snake has a long, limbless body covered in small, overlapping scales that catch light with a subtle sheen. Its colour and markings vary by species, from sandy brown to olive or patterned grey. It moves in smooth sideways curves, pushing against stones, soil, or vegetation; its belly stays close to the ground. The head leads steadily while the body follows the same path. It may pause and flick its narrow, forked tongue to sample the air. It has no external ears or blinking eyelids. A moving snake is nearly silent, apart from faint brushing against leaves or grit."
+ },
+ {
+  "id": "animal.gen.lizard",
+  "domain": "animal",
+  "topic": "lizard",
+  "names": [
+   "سحلية",
+   "عظاءة",
+   "حرذون",
+   "lizard",
+   "garden lizard"
+  ],
+  "body": "A typical small lizard has an elongated body, four short legs with spreading, clawed toes, a distinct head, and a long tapering tail. Fine scales give its skin a dry, textured look; browns, greys, and olive tones often blend with stone or soil. It moves in quick bursts, its body flexing sideways as alternating feet grip the ground, then stops abruptly with its head raised. Its eyes track nearby movement, and its throat may pulse gently as it breathes. On a sunny wall or rock, the scales show tiny highlights. It makes little sound beyond light taps and scratches from its feet."
+ },
+ {
+  "id": "animal.gen.crocodile",
+  "domain": "animal",
+  "topic": "crocodile",
+  "names": [
+   "تمساح",
+   "تماسيح",
+   "crocodile",
+   "croc"
+  ],
+  "body": "A crocodile has a long, heavy body, short strong legs, a muscular tail, and a broad, elongated snout. Dark olive or brown skin is covered in tough scales and raised, bony ridges; the underside is paler. Its eyes and nostrils sit high on the head, so they can remain above water while most of the body is submerged. On land it moves deliberately, lifting its belly slightly as the legs step. In water, the tail drives a smooth, quiet glide while the legs tuck close. A resting crocodile may lie motionless in sun. Water laps softly around it; low grunts are possible."
+ },
+ {
+  "id": "animal.gen.frog",
+  "domain": "animal",
+  "topic": "frog",
+  "names": [
+   "ضفدع",
+   "ضفدعة",
+   "ضفادع",
+   "frog",
+   "frogs"
+  ],
+  "body": "A frog has a compact body, broad head, prominent eyes, short front legs, and long, folded hind legs built for jumping. Its moist skin may be smooth or slightly bumpy, often green, brown, or mottled to match plants and mud. At rest it crouches low with its hind feet tucked beneath it. To jump, it extends both powerful back legs at once, then lands on its front feet before settling again. In water, its hind legs kick outward and back, with webbed feet helping it swim. Near reeds or a pond, it may blink and inflate its throat while making short croaks."
+ },
+ {
+  "id": "animal.gen.parrot",
+  "domain": "animal",
+  "topic": "parrot",
+  "names": [
+   "ببغاء",
+   "ببغاوات",
+   "ببغى",
+   "parrot",
+   "parrots"
+  ],
+  "body": "A parrot has a rounded head, a strong curved beak, upright posture, and gripping feet with two toes pointing forward and two back. Its feathers may be green, blue, yellow, red, or mixed, depending on the species, with a tail ranging from short and squared to long and tapered. It climbs branches or a perch using its feet and beak for balance, tilting its head to inspect things. In flight it beats its wings firmly, then may glide briefly. Feathers lie sleek when relaxed and fluff slightly during grooming. Its sounds include sharp calls, whistles, and, in some individuals, imitated speech."
+ },
+ {
+  "id": "animal.gen.peacock",
+  "domain": "animal",
+  "topic": "peacock",
+  "names": [
+   "طاووس",
+   "طواويس",
+   "ذكر الطاووس",
+   "peacock",
+   "male peafowl"
+  ],
+  "body": "A peacock is a male peafowl with a small crested head, vivid blue neck and chest, sturdy grey legs, and a long train of iridescent upper-tail feathers trailing behind the shorter true tail. Each train feather ends in a colourful eye-shaped marking. It walks with measured steps, its train brushing the ground. When displaying, it lifts and spreads the train into a broad fan, sometimes trembling the feathers so they shimmer and make a faint rustle. Its wings are rounded and can carry it in short, forceful flights up to a branch or wall. Its calls are loud, high, and slightly harsh."
+ },
+ {
+  "id": "animal.gen.eagle",
+  "domain": "animal",
+  "topic": "eagle",
+  "names": [
+   "عقاب",
+   "نسر",
+   "طائر العقاب",
+   "eagle",
+   "eagles"
+  ],
+  "body": "An eagle is a large bird of prey with broad wings, a deep chest, a hooked beak, and powerful legs ending in curved talons. Plumage varies by species but is often layered brown or dark feathers, with a paler head, underside, or wing markings. When perched, it stands upright and turns its head in small, alert movements; its eyes face forward and outward to scan the surroundings. In flight, it holds its wings wide and steady, riding rising air in long circles with only occasional deep wingbeats. Feathers shift subtly in the wind. Its calls are clear whistles or high, repeated cries, depending on species."
+ },
+ {
+  "id": "animal.gen.owl",
+  "domain": "animal",
+  "topic": "owl",
+  "names": [
+   "بومة",
+   "بومه",
+   "بوم",
+   "owl"
+  ],
+  "body": "An owl has a compact body, a broad head, large forward-facing eyes and a short hooked beak partly hidden by facial feathers. Its soft plumage is mottled brown, grey or cream, with fine bars and spots; some species have feather tufts, while others have a smooth, round head. It sits upright on a branch, gripping with curved talons, and turns its head far to either side while keeping its body still. Broad wings carry it on quiet, gentle beats. It blinks slowly, gives low hoots or short calls, and appears most naturally in dim evening light."
+ },
+ {
+  "id": "animal.gen.flamingo",
+  "domain": "animal",
+  "topic": "flamingo",
+  "names": [
+   "فلامنغو",
+   "فلامنجو",
+   "نحام",
+   "النحام الوردي",
+   "flamingo"
+  ],
+  "body": "A flamingo is a tall wading bird with a slim body, exceptionally long legs, a long curved neck and a thick bill bent sharply downward. Its feathers range from pale blush to coral pink, with black flight feathers most visible when its wings open. It walks slowly through shallow water, often holding its neck in a loose S shape, then dips its head upside down to filter food with its bill. When resting, it may balance on one leg with its head tucked into its back feathers. Groups make nasal honks and murmurs beside bright, reflective water."
+ },
+ {
+  "id": "animal.gen.duck",
+  "domain": "animal",
+  "topic": "duck",
+  "names": [
+   "بطة",
+   "بطه",
+   "بط",
+   "duck"
+  ],
+  "body": "A duck has a rounded, buoyant body, a broad flat bill, short legs set far back and webbed feet. Plumage varies by breed and species: a familiar domestic duck may be white with an orange bill, while a mallard drake has a glossy green head and a brown female has finely patterned feathers. On land it waddles with a side-to-side sway; on water it glides smoothly, leaving a V-shaped wake while its feet paddle beneath the surface. It dips its head or tips its body forward to feed. Ducks make quacks, softer chuckles and splashing sounds around ponds and canals."
+ },
+ {
+  "id": "animal.gen.swan",
+  "domain": "animal",
+  "topic": "swan",
+  "names": [
+   "بجعة",
+   "بجعه",
+   "بجع",
+   "swan"
+  ],
+  "body": "A swan is a large waterbird with a heavy oval body, a very long flexible neck and broad wings folded high along its back. Many familiar swans are white, with densely layered feathers and a dark or orange-and-black bill, depending on species. It glides across still water with little visible effort, pushing with large webbed feet below the surface; on land its walk is slower and heavier. It bends its neck to preen or feed underwater, and may lift its wings slightly while swimming. Sounds include soft grunts, hisses and, in some species, resonant calls. Light catches the fine texture of its feathers."
+ },
+ {
+  "id": "animal.gen.goose",
+  "domain": "animal",
+  "topic": "goose",
+  "names": [
+   "إوزة",
+   "اوزة",
+   "وزه",
+   "إوز",
+   "goose"
+  ],
+  "body": "A goose has a sturdy, elongated body, a medium-long neck, a wedge-shaped bill and strong legs with webbed feet. Its feathers are usually grey, brown and cream in wild species, or sometimes white in domestic birds. It walks with deliberate steps and a gentle body sway, grazing with short pulls of its bill. On water it floats high and paddles steadily; in flight, broad wings beat firmly as geese often travel in a loose V formation. It holds its head alert and gives loud, nasal honks and quieter contact calls. Its feather layers are clearly visible in side light near grass or water."
+ },
+ {
+  "id": "animal.gen.chicken-and-chicks",
+  "domain": "animal",
+  "topic": "chicken and chicks",
+  "names": [
+   "دجاجة وصيصان",
+   "دجاجة وكتاكيت",
+   "دجاجه وصيصان",
+   "دياية وصيصان",
+   "hen and chicks",
+   "chicken and chicks"
+  ],
+  "body": "A mother hen has a rounded body, layered feathers, a small comb above her beak and sturdy scaly legs. Several chicks stay close to her feet: they are palm-sized, round and covered in soft yellow, brown or striped down, with tiny wings and quick, thin legs. The hen takes short, bobbing steps, scratches the ground backward with one foot and pecks at small bits of food. Chicks hurry after her in uneven bursts, stopping to peck and sometimes tucking beneath her body. She gives low clucks and brief calling notes; the chicks answer with high, continuous peeps in a calm yard or garden."
+ },
+ {
+  "id": "animal.gen.rooster",
+  "domain": "animal",
+  "topic": "rooster",
+  "names": [
+   "ديك",
+   "الديك",
+   "rooster",
+   "cock"
+  ],
+  "body": "A rooster stands taller and more upright than a hen, with a prominent red comb and wattles, a pointed beak, sturdy scaly legs and long, arched tail feathers. Its neck feathers are narrow and glossy; its colours may be copper, black, white or patterned, depending on breed. It walks with deliberate, high steps, bobs its head while pecking and occasionally flaps its wings, stirring loose feathers. To crow, it stretches its neck upward, opens its beak and gives a loud, rising call followed by a rough falling note. In daylight, iridescent green or blue highlights may show on dark tail feathers."
+ },
+ {
+  "id": "animal.gen.turkey",
+  "domain": "animal",
+  "topic": "turkey",
+  "names": [
+   "ديك رومي",
+   "حبش",
+   "ديك حبش",
+   "turkey"
+  ],
+  "body": "A turkey is a large, heavy bird with a broad breast, small bare head, short strong beak and thick legs. Its body feathers are layered brown, bronze or black in many birds, while domestic varieties may be white. Loose red skin hangs at the throat, and a soft fleshy snood rests above the beak. It walks with measured, weighty steps and pecks at the ground. A male may calmly fan his wide, banded tail, lower his wings and puff out his chest, making the feathers rustle. Turkeys make gobbling calls, clucks and soft purrs, often heard in a farmyard."
+ },
+ {
+  "id": "animal.gen.ostrich",
+  "domain": "animal",
+  "topic": "ostrich",
+  "names": [
+   "نعامة",
+   "نعامه",
+   "طائر النعام",
+   "ostrich"
+  ],
+  "body": "An ostrich is a very tall, flightless bird with a small head, long bare neck and powerful, mostly bare legs ending in two toes per foot. Its rounded body carries loose, shaggy feathers; males are usually black with white wing and tail feathers, while females are dusty grey-brown. It walks with a rolling stride and runs on long, springy steps, its small wings lifting slightly for balance. The eyes are large, with noticeable lashes, and the beak is short and flat. On open ground it pecks at plants and looks around alertly. Footfalls thud softly; it may hiss or make a low booming call."
+ },
+ {
+  "id": "animal.gen.camel-calf",
+  "domain": "animal",
+  "topic": "camel calf",
+  "names": [
+   "حوار",
+   "حاشي",
+   "صغير الجمل",
+   "camel calf",
+   "baby camel"
+  ],
+  "body": "A camel calf has a narrow face, long lashes, soft lips and outsized, slender legs beneath a compact, woolly body. In an Arabian setting it is usually a young one-humped dromedary; its hump begins as a small, low mound rather than a tall adult hump. Coat colours range from cream to sandy brown, often with fuzz around the neck and head. It stands and walks on broad, padded feet, swaying slightly as it learns to keep pace with its mother. It nuzzles her flank and stays close in a yard or open grazing area. Its calls are soft, nasal bleats and grunts."
+ },
+ {
+  "id": "animal.gen.donkey",
+  "domain": "animal",
+  "topic": "donkey",
+  "names": [
+   "حمار",
+   "الحمّار",
+   "حمار أهلي",
+   "donkey",
+   "domestic donkey"
+  ],
+  "body": "A donkey has a sturdy, compact body, a straight-backed profile, long upright ears and a short mane that stands like a brush. Its coat is commonly grey or brown, with a lighter muzzle and belly; some have a dark stripe down the spine and across the shoulders. The tail ends in a tuft of long hair. Small, hard hooves make distinct clopping sounds on stone or packed earth. It walks steadily with short, deliberate steps, pauses to turn its ears toward sounds and lowers its head to graze. Its bray begins as a rough intake and rises into a loud, carrying hee-haw."
+ },
+ {
+  "id": "animal.gen.mule",
+  "domain": "animal",
+  "topic": "mule",
+  "names": [
+   "بغل",
+   "بغلة",
+   "البغل",
+   "mule"
+  ],
+  "body": "A mule is the offspring of a donkey and a horse. It usually has a horse-like, muscular body and longer head, paired with noticeably long donkey-like ears. Its mane is short, its tail carries long hair, and its coat may be brown, grey, black or chestnut. Its height varies, but its legs tend to look lean and strong above neat, hard hooves. It walks with measured, sure-footed steps, especially on uneven paths, and its hooves click against rock or pavement. At rest it shifts its weight and swivels its ears independently. Its call can mix a horse-like whinny with a rough donkey-like bray."
+ },
+ {
+  "id": "animal.gen.cow-and-calf",
+  "domain": "animal",
+  "topic": "cow and calf",
+  "names": [
+   "بقرة وعجل",
+   "بقرة ويا عجل",
+   "بقره وعجل",
+   "cow and calf",
+   "mother cow and calf"
+  ],
+  "body": "An adult cow stands broad-bodied on four sturdy legs, with a long muzzle, sideways ears and an udder beneath its belly. Beside her, the calf is much smaller and narrower, with fine legs, a rounded face and a soft, short coat. Their colours may be solid brown or black, or marked with irregular white patches. The cow walks slowly, her weight shifting from side to side; the calf follows in quicker, sometimes unsteady steps and may nuzzle beneath her to nurse. In a farmyard or grassy enclosure, they sniff the ground and chew calmly. The cow gives a deep moo; the calf answers more softly and higher."
+ },
+ {
+  "id": "animal.gen.goat-kid",
+  "domain": "animal",
+  "topic": "goat kid",
+  "names": [
+   "جدي",
+   "جدي صغير",
+   "صغير الماعز",
+   "goat kid",
+   "baby goat"
+  ],
+  "body": "A goat kid is a small, light-framed young goat with thin legs, a short raised tail and a soft coat that may be white, tan, brown, black or spotted. Its face is narrow, its eyes have horizontal pupils, and its ears may point outward or droop according to breed. Tiny horn buds can be visible, though some kids have none. It moves in quick, springy steps, making brief hops and stopping close to its mother. It noses at leaves, clothing hems or a feeding bowl without force. Its hooves tap sharply on hard ground, and its high, wavering bleats sound thinner than an adult goat’s."
+ },
+ {
+  "id": "animal.gen.lamb",
+  "domain": "animal",
+  "topic": "lamb",
+  "names": [
+   "حمل صغير",
+   "خروف صغير",
+   "صغير الغنم",
+   "lamb",
+   "baby sheep"
+  ],
+  "body": "A lamb is a young sheep with a rounded body, slim legs, a short muzzle and a coat of soft, tightly curled or wavy wool. It may be creamy white, brown, black or patchy, with a small face and ears that angle outward. Compared with a goat kid, it looks stockier and woollier and usually keeps its tail down. It walks in short, light steps, occasionally bounding on all four legs, then settles near its mother to graze or nurse. Wool catches warm sunlight around its outline, while small hooves make faint taps on firm soil. Its bleat is high, gentle and nasal."
+ },
+ {
+  "id": "animal.gen.persian-cat",
+  "domain": "animal",
+  "topic": "Persian cat",
+  "names": [
+   "قط فارسي",
+   "قط شيرازي",
+   "بسة شيرازية",
+   "persian cat",
+   "persian kitten"
+  ],
+  "body": "A Persian cat has a compact body, short sturdy legs, small rounded ears and a very long, dense coat that forms a ruff around its neck. Its face is round, with large eyes, a short nose and a broad, soft-looking muzzle; the degree of facial flatness varies. Coat colours include white, cream, grey, black and patterned combinations. Its plume-like tail follows behind as it walks with quiet, unhurried steps. Indoors, it often sits with its paws tucked beneath its chest or stretches out on a cool floor. Fur shifts gently as it moves. Its sounds are soft meows, occasional purrs and faint pawsteps."
+ },
+ {
+  "id": "animal.gen.baghdad-street-cat",
+  "domain": "animal",
+  "topic": "street cat in Baghdad",
+  "names": [
+   "قط شارع بغداد",
+   "قطة شارع بغداد",
+   "بزون بغداد",
+   "بزونة بغداد",
+   "baghdad street cat"
+  ],
+  "body": "A lean domestic cat with a narrow waist, long tail, pointed ears and short fur, often tabby, ginger, black or white with dusty patches. Its paws land quietly and precisely as it steps along a pavement edge or slips beneath a parked car. It pauses to sniff, flicks its ears toward traffic and squints in strong midday sun. A wary cat keeps a little distance from passersby; a familiar one may approach with its tail raised. Expect soft meows, brief chirps and the scrape of claws on concrete. Warm light catches its whiskers against shopfronts and beige walls."
+ },
+ {
+  "id": "animal.gen.german-shepherd",
+  "domain": "animal",
+  "topic": "German shepherd",
+  "names": [
+   "جيرمن شيبرد",
+   "جرمن شيبرد",
+   "كلب الراعي الألماني",
+   "كلب الراعي الالماني",
+   "german shepherd",
+   "german shepherd dog"
+  ],
+  "body": "A German shepherd is a large, athletic dog with a long muzzle, upright triangular ears, a deep chest and a bushy tail carried low. Its dense double coat is often tan with a black saddle and mask, though solid black and sable coats also occur. At a walk, its long legs produce a smooth, ground-covering stride; when alert, its ears turn toward a sound and its head lifts. It may pant with its mouth open, sniff the ground or sit beside its handler. Breathing, collar jingles, nails clicking on tile and an occasional low bark are audible. Sunlight separates the glossy guard hairs from the softer undercoat."
+ },
+ {
+  "id": "animal.gen.golden-retriever",
+  "domain": "animal",
+  "topic": "golden retriever",
+  "names": [
+   "كلب جولدن ريتريفر",
+   "كلب غولدن ريتريفر",
+   "المسترد الذهبي",
+   "golden retriever"
+  ],
+  "body": "A golden retriever is a medium-large dog with a broad head, soft hanging ears, a sturdy chest and a long, feathered tail. Its thick golden coat ranges from pale cream to deep gold, with longer, slightly wavy hair along the legs, chest and tail. It walks with an easy, even gait and often approaches familiar people with a loose body and wagging tail. When sitting, it may tilt its head toward a voice; after drinking, drops cling to the fur beneath its mouth. Expect gentle panting, nails tapping on a floor, collar sounds and occasional barks. Side light gives the layered fur a warm glow."
+ },
+ {
+  "id": "animal.gen.saluki-hunting-dog",
+  "domain": "animal",
+  "topic": "Saluki hunting dog",
+  "names": [
+   "كلب سلوقي",
+   "كلب صيد سلوقي",
+   "سلوقي",
+   "saluki",
+   "saluki hunting dog"
+  ],
+  "body": "A Saluki is a tall, slender sighthound with a narrow head, deep chest, tucked waist and long legs. Its short, smooth coat may be cream, fawn, black or patterned; many have silky feathering on the ears, tail and backs of the legs, while smooth-coated Salukis do not. It stands lightly on compact paws, watching distant movement, then crosses open ground in long, elastic strides with its spine flexing. At rest it may fold its legs neatly beneath itself beside a handler. The dog is usually quiet; its paws make soft taps on hard ground, with light panting after exercise. Low sun outlines its fine coat."
+ },
+ {
+  "id": "animal.gen.hamster",
+  "domain": "animal",
+  "topic": "hamster",
+  "names": [
+   "هامستر",
+   "همستر",
+   "حيوان الهامستر",
+   "hamster",
+   "pet hamster"
+  ],
+  "body": "A hamster is a small, round-bodied rodent with short legs, tiny rounded ears, glossy dark eyes and prominent whiskers. Fur may be golden, white, grey or mixed, depending on the kind; the tail is very short and usually hidden by the coat. It moves in quick starts and stops, sniffing bedding and gripping food with its front paws. Its cheek pouches can swell noticeably when it carries seeds. In a clean enclosure, it burrows into paper bedding, climbs low surfaces and runs in a suitably sized wheel. Sounds are subtle: bedding rustles, claws patter and the wheel turns with a soft hum. Gentle light reveals individual hairs."
+ },
+ {
+  "id": "animal.gen.goldfish",
+  "domain": "animal",
+  "topic": "goldfish",
+  "names": [
+   "سمكة ذهبية",
+   "سمچة ذهبية",
+   "سمك زينة ذهبي",
+   "goldfish",
+   "pet goldfish"
+  ],
+  "body": "A goldfish has overlapping reflective scales, round eyes and translucent fins that fan and fold as it swims. Colour ranges from orange and gold to white, red-and-white or dark patches. Body shape varies: common goldfish are streamlined with a single tail, while fancy varieties are rounder and often have paired tails. In a clear, spacious aquarium, it advances with small side-to-side tail beats, steers with its pectoral fins and hovers by making constant tiny adjustments. Its mouth opens and closes as water passes over the gills. The fish makes no noticeable voice; listen instead for filter water and faint surface ripples. Aquarium light flashes across its scales."
+ },
+ {
+  "id": "animal.gen.butterfly",
+  "domain": "animal",
+  "topic": "butterfly",
+  "names": [
+   "فراشة",
+   "فراشه",
+   "فراشات",
+   "butterfly",
+   "butterflies"
+  ],
+  "body": "A butterfly has six thin legs, a slender body, two antennae with slightly thickened tips and four broad wings covered in fine coloured scales. Wing patterns vary by species, often showing spots, bands or dark borders that appear different when the wings close. It flies in a wavering path with repeated wingbeats and short glides, then lands lightly on a flower or leaf. At rest, it may slowly open and close its wings; a narrow, coiled feeding tube extends toward nectar. Butterfly wings make no audible flutter at ordinary distance. Soft daylight brings out their delicate texture, while a nearby breeze shifts both insect and flower."
+ },
+ {
+  "id": "animal.gen.bee",
+  "domain": "animal",
+  "topic": "bee",
+  "names": [
+   "نحلة",
+   "نحله",
+   "نحل العسل",
+   "bee",
+   "honeybee"
+  ],
+  "body": "A worker honeybee has a compact, fuzzy thorax, a banded brown-and-gold abdomen, six jointed legs, elbowed antennae and two pairs of clear wings. Its large compound eyes sit on either side of the head. In flight, rapidly beating wings create a steady, high buzz; the bee hovers briefly before settling on a flower. It walks over petals, probes with its mouthparts and gathers yellow pollen on its hind legs. It then lifts off, legs tucked beneath the body, and follows a purposeful path to another bloom. In warm daylight, fine hairs catch the light, while the moving wings appear as translucent blurs."
+ },
+ {
+  "id": "animal.gen.ant",
+  "domain": "animal",
+  "topic": "ant",
+  "names": [
+   "ant",
+   "ants",
+   "نملة",
+   "نمل",
+   "نملية"
+  ],
+  "body": "A worker ant is a tiny insect with a distinct head, narrow waist and rounded abdomen. Its hard body may be black, reddish brown or amber, with six jointed legs and two elbowed antennae that constantly probe the ground. Workers walk in quick, uneven steps, pausing to touch antennae with another ant or carry a crumb in their jaws. A close view shows a slight shine on the shell and fine texture along the legs. Ants often follow an irregular trail across soil, pavement or a kitchen ledge. They make no readily audible sound at ordinary camera distance."
+ },
+ {
+  "id": "animal.gen.dragonfly",
+  "domain": "animal",
+  "topic": "dragonfly",
+  "names": [
+   "dragonfly",
+   "dragonflies",
+   "يعسوب",
+   "يعسوبة",
+   "رعاش",
+   "رعاشة"
+  ],
+  "body": "A dragonfly has a long, slender abdomen, a compact chest, six thin legs and an oversized head dominated by two rounded compound eyes. Four transparent wings extend sideways, their delicate veins catching the light. Colours range from muted brown to vivid blue, green or red, depending on the species. It can hover nearly motionless, dart sideways, reverse direction and settle on a reed with its wings held open. Its legs tuck beneath the body during flight. Near a pond or irrigation channel, sunlight flashes across the wings; a close microphone may catch a faint wing rustle, but it is usually silent to people nearby."
+ },
+ {
+  "id": "animal.gen.dolphin",
+  "domain": "animal",
+  "topic": "dolphin",
+  "names": [
+   "dolphin",
+   "dolphins",
+   "دلفين",
+   "دلافين",
+   "دولفين",
+   "دولفينات"
+  ],
+  "body": "A dolphin has a smooth, streamlined grey body, a rounded forehead, a short beak in many species and a curved dorsal fin. Two pointed flippers steer while the broad tail flukes beat up and down, not side to side. Its skin looks wet and reflective as it rolls through the surface, briefly exposing the blowhole on top of its head to breathe. Dolphins often travel together, surfacing in fluid arcs before slipping back beneath the water. Above water, a breath sounds like a quick puff amid splashes; underwater, they produce whistles and rapid clicks. Bright surface light ripples across their backs."
+ },
+ {
+  "id": "animal.gen.whale",
+  "domain": "animal",
+  "topic": "whale",
+  "names": [
+   "whale",
+   "whales",
+   "حوت",
+   "حيتان",
+   "حوت البحر"
+  ],
+  "body": "A whale is a large marine mammal with a smooth, tapered body, two flippers and broad horizontal tail flukes that drive it forward with slow up-and-down strokes. Shape, colour and size vary greatly by species: some are dark grey with pale patches, while others have a more uniform back. At the surface, its blowhole releases a forceful breath and a visible misty spout in cool air. It may roll, show a curved back, then lift its tail as it dives. Low light makes the wet skin gleam. Nearby listeners hear the breath and water washing aside; some species also make calls audible underwater."
+ },
+ {
+  "id": "animal.gen.shark-calm",
+  "domain": "animal",
+  "topic": "shark (calm)",
+  "names": [
+   "shark",
+   "calm shark",
+   "قرش",
+   "سمك قرش",
+   "سمكة قرش",
+   "قرش هادئ"
+  ],
+  "body": "A calm shark glides through water with a firm, streamlined body, pointed or rounded snout, visible gill slits behind the head and a prominent dorsal fin. Its pectoral fins spread outward for lift, while the uneven tail sweeps side to side to propel it forward. Many species have a grey or brown back and a paler underside; skin appears matte rather than slick at close range. It holds a steady course, making gentle turns without abrupt lunges. In clear water, shifting sunlight patterns pass over its back and the seabed. The shark makes no vocal sound; only water movement and distant underwater ambience are heard."
+ },
+ {
+  "id": "animal.gen.octopus",
+  "domain": "animal",
+  "topic": "octopus",
+  "names": [
+   "octopus",
+   "octopuses",
+   "أخطبوط",
+   "اخطبوط",
+   "أخطبوطة",
+   "اخطبوطة"
+  ],
+  "body": "An octopus has a soft, rounded mantle, two alert eyes and eight flexible arms lined with suction cups. Its skin can shift colour and texture, appearing smooth one moment and subtly raised or mottled the next. It crawls over rock by placing and curling its arms, feeling along crevices with the cups. When swimming, it may gather its arms and pulse water through a funnel beneath the mantle, moving in a short, smooth burst. In shallow coastal water, rippled sunlight plays over its body as it pauses beside a rock. It has no vocal call; the scene sounds of water, bubbles and nearby marine life."
+ },
+ {
+  "id": "animal.gen.jellyfish",
+  "domain": "animal",
+  "topic": "jellyfish",
+  "names": [
+   "jellyfish",
+   "jellies",
+   "قنديل البحر",
+   "قناديل البحر",
+   "قنديل بحر"
+  ],
+  "body": "A jellyfish has a translucent, umbrella-shaped bell with soft trailing oral arms and, in many species, fine tentacles. Its outline may be clear, milky white, pink or faintly blue. The bell contracts and relaxes in slow pulses, pushing water backward, while currents carry much of its movement. Thin edges glow when sunlight filters through the water, revealing faint internal shapes without making the animal look solid. Several may drift at different depths, their trailing parts following the flow rather than swinging like hair in air. Jellyfish make no vocal sound; the audible scene is gentle water movement and distant bubbles."
+ },
+ {
+  "id": "animal.gen.penguin",
+  "domain": "animal",
+  "topic": "penguin",
+  "names": [
+   "penguin",
+   "penguins",
+   "بطريق",
+   "بطاريق",
+   "بطريقات"
+  ],
+  "body": "A penguin is an upright seabird with a compact body, short legs set far back, a pointed beak and stiff, flipper-like wings. Most have a dark back and pale belly, though markings and size differ by species. On land it waddles with short steps, balancing with its flippers, and may slide on its belly over snow where conditions allow. Underwater it drives itself forward with strong wing strokes, steering with its feet and tail. Dense, short feathers look smooth from a distance and bead with water when it emerges. Colonies can be noisy with braying or chirping calls, footfalls and surf along the shore."
+ },
+ {
+  "id": "animal.gen.polar-bear",
+  "domain": "animal",
+  "topic": "polar bear",
+  "names": [
+   "الدب القطبي",
+   "دب قطبي",
+   "دب الثلج",
+   "polar bear"
+  ],
+  "body": "A polar bear has a long neck, small rounded ears, a tapered muzzle and a powerful body carried on four broad paws. Its dense fur looks white or cream, sometimes yellowish in warm light, with individual guard hairs visible along the shoulders. Black skin shows at the nose, lips and paw pads. It walks with a heavy, rolling gait, leaving wide prints in snow; in water it swims steadily with its front paws. A calm bear may sniff the air or turn its head slowly. Breathing, snorts and low huffs are more natural than constant roaring. Arctic daylight gives the fur cool blue shadows."
+ },
+ {
+  "id": "animal.gen.panda",
+  "domain": "animal",
+  "topic": "panda",
+  "names": [
+   "الباندا",
+   "دب الباندا",
+   "دب البنده",
+   "panda",
+   "giant panda"
+  ],
+  "body": "A giant panda is a stocky bear with a round head, short tail and thick, slightly coarse-looking fur. Its body is creamy white, with black ears, eye patches, shoulders and legs; the dark patches sit around the eyes rather than covering the whole face. It often sits upright with its hind legs forward, gripping bamboo stalks with its paws and chewing slowly. When walking, it moves on all fours with short, deliberate steps and a gentle body sway. Snuffles, soft bleats and the dry crack of bamboo are plausible sounds. Natural light reveals separate hairs along the edges of the black and white markings."
+ },
+ {
+  "id": "animal.gen.kangaroo",
+  "domain": "animal",
+  "topic": "kangaroo",
+  "names": [
+   "الكنغر",
+   "كنغر",
+   "الكنكرو",
+   "kangaroo"
+  ],
+  "body": "A kangaroo has a small head, tall mobile ears, short forearms, large hind feet and a thick, muscular tail extending behind its body. Its short fur is usually grey or reddish brown, with a paler chest and belly. At speed it hops on both hind legs together, the tail balancing each springing arc; while grazing slowly, it uses its forelimbs and tail for support. It pauses upright to look around, ears pivoting independently toward sounds. Quiet snorts, foot thumps and soft rustling in dry grass suit a calm scene. Strong sunlight picks out the contours of its hind legs and tail."
+ },
+ {
+  "id": "animal.gen.koala",
+  "domain": "animal",
+  "topic": "koala",
+  "names": [
+   "الكوالا",
+   "كوالا",
+   "دب الكوالا",
+   "koala"
+  ],
+  "body": "A koala is a compact tree-dwelling marsupial with a large black nose, round fluffy ears, short tail and dense grey fur over a pale chest. Its forepaws grip branches with strong curved claws and opposing digits; its hind paws brace against the bark. It climbs deliberately, shifting its weight before reaching for the next hold, and often rests curled against a fork in a eucalyptus tree. A calm koala blinks slowly or sniffs leaves before chewing them. Leaves rustle around it; occasional low grunts are possible, though a resting koala is often silent. Soft daylight shows the woolly texture of its coat."
+ },
+ {
+  "id": "animal.gen.horse-foal",
+  "domain": "animal",
+  "topic": "horse foal",
+  "names": [
+   "مهر",
+   "مهر حصان",
+   "مهر صغير",
+   "ولد الفرس",
+   "horse foal",
+   "foal"
+  ],
+  "body": "A horse foal has a compact body, a short muzzle and notably long, slender legs with small hooves. Its coat may be bay, chestnut, black or grey, with soft hair and a short, wispy mane and tail. It stands close to its mother, flicking its ears and taking quick, curious looks at nearby movement. A young foal walks carefully, then breaks into a light, slightly uncoordinated trot; its hooves make small, crisp taps on firm ground. Soft nickers and breathing accompany a quiet paddock scene. Morning light catches the fine hair around its ears and muzzle."
+ },
+ {
+  "id": "animal.gen.arabian-falcon",
+  "domain": "animal",
+  "topic": "Arabian falcon",
+  "names": [
+   "صقر عربي",
+   "الصقر العربي",
+   "صقر",
+   "شاهين",
+   "حر",
+   "arabian falcon"
+  ],
+  "body": "An Arabian falcon is a streamlined bird of prey with a hooked beak, dark alert eyes, long pointed wings and strong yellow feet tipped with curved talons. Plumage varies by species, often combining brown or slate-grey upper feathers with a lighter, finely marked underside. At rest it stands upright on a falconer’s leather glove or a padded perch, turning its head sharply to follow movement. In flight, firm wingbeats alternate with smooth glides; feathers flex subtly in the wind. Its calls are sharp, repeated cries rather than a constant soundtrack. Desert light brings out the layered feather edges and the texture of traditional leather equipment."
+ },
+ {
+  "id": "animal.gen.iraqi-pigeon-racing",
+  "domain": "animal",
+  "topic": "pigeon racing (Iraqi tradition)",
+  "names": [
+   "سباق الحمام العراقي",
+   "سباق حمام",
+   "تطيير الحمام",
+   "حمام سباق",
+   "حمام طيارة",
+   "iraqi pigeon racing",
+   "pigeon racing"
+  ],
+  "body": "On an Iraqi rooftop, keepers release small groups of domestic pigeons from simple coops with wooden perches, wire fronts and shaded openings. The birds have compact bodies, small heads and iridescent green or violet neck feathers; their plumage may be grey, white, brown or mottled. They launch with rapid, audible wingbeats, gather into a loose flock and circle above neighbouring roofs before settling with brief flared-wing landings. A keeper may watch from beside the coop, using familiar calls or a light whistle to guide them home. Wing flutters, coos and distant street sounds mix in the warm late-afternoon light."
+ }
+]
