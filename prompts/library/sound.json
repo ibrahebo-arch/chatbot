@@ -1,18 +1,244 @@
 [
-  { "id": "sound.voice-consistency", "domain": "sound", "names": ["صوت", "اصوات", "يتكلمون", "شخصيات", "حوار", "voice", "voices", "characters", "dialogue"], "body": "Each speaking character has one fixed voice for the whole clip, matching their body: children high and light, young women bright, young men clear mid-range, older men deep and slightly rough, elderly women soft and a little shaky; the pace and accent match the personality (calm = slow with pauses, excited = fast and rising). The voice is placed where the person is (closer = louder and drier, across the room = softer with room echo)." },
-  { "id": "sound.iraqi-dialect", "domain": "sound", "names": ["عراقي", "لهجة عراقية", "باللهجة", "بغدادي", "iraqi", "iraqi dialect"], "body": "Natural Iraqi speech: Baghdadi dialect sounds (چ for k in چا/شلونك, گ for q in گال), everyday words (شلونك، هواية، ماكو، اكو، زين، يمعود، عيوني، تدلل، هلا بيك), warm friendly intonation that rises at the end of questions, words flowing together, and short natural sentences – never formal news-reader Arabic unless asked." },
-  { "id": "sound.breath-human", "domain": "sound", "names": ["نفس", "يتنفس", "تنهيدة", "تنهد", "breath", "breathing", "sigh"], "body": "Human non-voice sounds that make a person real: an audible in-breath before speaking, a relieved sigh, a short laugh through the nose, a 'hmm' while thinking, clearing the throat, a sniff, a gasp of surprise, panting after running, a yawn; quiet and natural, timed exactly with the visible breath and facial movement." },
-  { "id": "sound.footsteps", "domain": "sound", "names": ["خطوات", "كعب", "حذاء", "نعال", "footsteps", "heels", "shoes", "slippers"], "body": "Footsteps that match the shoe and floor: heels click sharply on marble, sneakers squeak on gym floors and are soft on carpet, slippers (نعال) slap on tiles, boots thud on wood, sandals crunch on gravel and dust; each step lands exactly when the foot touches down." },
-  { "id": "sound.street-iraq", "domain": "sound", "names": ["شارع", "سوق", "زحمة", "مرور", "street", "traffic", "market", "bazaar"], "body": "Iraqi street soundscape: frequent car horns (short beeps, not angry), engines idling, minibus drivers calling destinations, vendors shouting prices ('بألف! بألف!'), generator hum, a motorcycle passing, radio music from a shop, people chatting, and sometimes the call to prayer from a distant mosque." },
-  { "id": "sound.adhan", "domain": "sound", "names": ["اذان", "أذان", "جامع", "مسجد", "adhan", "call to prayer", "mosque"], "body": "The call to prayer (adhan) heard from a minaret loudspeaker: a long melodic male voice that echoes across rooftops, sometimes overlapping from two mosques at different distances; the city noise continues softly underneath. Treat it with respect – never as a joke." },
-  { "id": "sound.indoor-room", "domain": "sound", "names": ["غرفة", "بيت", "صالة", "مطبخ", "مكتب", "room", "house", "home", "kitchen", "office"], "body": "Indoor sound: a small room tone (AC or fan hum, a fridge, a distant TV or children playing), voices sound close and slightly reflected, kitchens add clinking dishes, boiling water and the hiss of a pan, offices add keyboard clicks, a printer and a phone ringing far away." },
-  { "id": "sound.nature", "domain": "sound", "names": ["طبيعة", "عصافير", "طيور", "غابة", "جبل", "nature", "birds", "forest", "mountain"], "body": "Nature sound: birdsong with varied calls at different distances, leaves rustling with the wind, a stream trickling, insects buzzing in summer heat, frogs at night near water, wind whistling on mountain ridges; quiet enough that footsteps and breathing are heard." },
-  { "id": "sound.music-wedding", "domain": "sound", "names": ["طبل", "زرنة", "دبكة", "هلهولة", "زغاريد", "drum", "zurna", "ululation", "music"], "body": "Iraqi celebration sound: the big drum (طبل) beating a driving rhythm with the zurna's piercing melody, women's ululation (هلهولة/زغاريد) in bursts, clapping on the beat, people singing along and cheering; the music is loud but the speech is still understandable when someone speaks to camera." },
-  { "id": "sound.car", "domain": "sound", "names": ["سيارة", "محرك", "هورن", "زمور", "car", "engine", "horn"], "body": "Car sounds: the door opens with a click and closes with a solid thunk, the engine starts with a crank and settles into an idle, revs rise with acceleration, the indicator ticks, the horn is a short double beep, tyres hum on asphalt and crunch on gravel, windows whir down." },
-  { "id": "sound.kitchen-cafe", "domain": "sound", "names": ["قهوة", "كافيه", "مقهى", "شاي", "استكان", "coffee", "cafe", "tea"], "body": "Café and tea sounds: the hiss and gurgle of an espresso machine, milk steaming with a rising screech, a spoon stirring tea in an istikan with a fast tinkle, glasses set down on saucers, the clack of dominoes and backgammon (طاولي) in a traditional café, quiet chatter and laughter." },
-  { "id": "sound.phone", "domain": "sound", "names": ["رنة", "يرن", "اشعار", "رسالة", "ringtone", "notification", "call"], "body": "Phone sounds: a ringtone or vibration buzz on a table, a notification ping, keyboard taps, the voice on a call sounds thin and compressed when heard through the phone's speaker." },
-  { "id": "sound.crowd-cheer", "domain": "sound", "names": ["ملعب", "مباراة", "جمهور", "هتاف", "stadium", "match", "fans", "cheer"], "body": "Stadium or crowd sound: a constant roar that rises into cheers at key moments, chants in rhythm, whistles, drums, the referee's whistle cutting through, a commentator's excited voice; individual shouts near the camera are clearer." },
-  { "id": "sound.silence", "domain": "sound", "names": ["هدوء", "صمت", "هادئ", "quiet", "silence", "silent"], "body": "Quiet scenes are never dead silent: keep a soft room tone or night ambience (a clock ticking, distant traffic, crickets), so breathing, fabric rustle and small movements are audible and the moment feels real." },
-  { "id": "sound.animals", "domain": "sound", "names": ["قطة", "بزونة", "كلب", "جاج", "ديك", "خروف", "حصان", "cat", "dog", "chicken", "rooster", "sheep", "horse"], "body": "Animal sounds in sync with the animal's mouth and body: a cat's meow with the mouth opening and purring when stroked, a dog's bark with a chest bounce, a rooster crowing at dawn with neck stretched, sheep bleating in a flock, horse hooves clopping and snorting; always at the right distance and timing." },
-  { "id": "sound.water-sounds", "domain": "sound", "names": ["شلال", "موج", "امواج", "حنفية", "waterfall", "waves", "tap", "fountain"], "body": "Water sounds: waves roll in with a rising whoosh and break with a crash then hiss back, a waterfall roars constantly, a fountain splashes softly, a tap runs with a steady stream and drips after closing; louder when closer to the camera." }
+  {
+    "id": "sound.voice-consistency",
+    "domain": "sound",
+    "names": [
+      "صوت",
+      "اصوات",
+      "يتكلمون",
+      "شخصيات",
+      "حوار",
+      "voice",
+      "voices",
+      "characters",
+      "dialogue"
+    ],
+    "body": "Each speaking character has one fixed voice for the whole clip, matching their body: children high and light, young women bright, young men clear mid-range, older men deep and slightly rough, elderly women soft and a little shaky; the pace and accent match the personality (calm = slow with pauses, excited = fast and rising). The voice is placed where the person is (closer = louder and drier, across the room = softer with room echo)."
+  },
+  {
+    "id": "sound.iraqi-dialect",
+    "domain": "sound",
+    "names": [
+      "عراقي",
+      "لهجة عراقية",
+      "باللهجة",
+      "بغدادي",
+      "iraqi",
+      "iraqi dialect"
+    ],
+    "body": "Natural Iraqi speech: Baghdadi dialect sounds (چ for k in چا/شلونك, گ for q in گال), everyday words (شلونك، هواية، ماكو، اكو، زين، يمعود، عيوني، تدلل، هلا بيك), warm friendly intonation that rises at the end of questions, words flowing together, and short natural sentences – never formal news-reader Arabic unless asked."
+  },
+  {
+    "id": "sound.breath-human",
+    "domain": "sound",
+    "names": [
+      "نفس",
+      "يتنفس",
+      "تنهيدة",
+      "تنهد",
+      "breath",
+      "breathing",
+      "sigh"
+    ],
+    "body": "Human non-voice sounds that make a person real: an audible in-breath before speaking, a relieved sigh, a short laugh through the nose, a 'hmm' while thinking, clearing the throat, a sniff, a gasp of surprise, panting after running, a yawn; quiet and natural, timed exactly with the visible breath and facial movement."
+  },
+  {
+    "id": "sound.footsteps",
+    "domain": "sound",
+    "names": [
+      "خطوات",
+      "كعب",
+      "حذاء",
+      "نعال",
+      "footsteps",
+      "heels",
+      "shoes",
+      "slippers"
+    ],
+    "body": "Footsteps that match the shoe and floor: heels click sharply on marble, sneakers squeak on gym floors and are soft on carpet, slippers (نعال) slap on tiles, boots thud on wood, sandals crunch on gravel and dust; each step lands exactly when the foot touches down."
+  },
+  {
+    "id": "sound.street-iraq",
+    "domain": "sound",
+    "names": [
+      "شارع",
+      "سوق",
+      "زحمة",
+      "مرور",
+      "street",
+      "traffic",
+      "market",
+      "bazaar"
+    ],
+    "body": "City street soundscape that fits the place shown: engines and tyres, horns, footsteps, voices passing, a shop's music, distant sirens or construction. In an Iraqi street: frequent short friendly horn beeps, minibus drivers calling destinations, vendors shouting prices ('بألف! بألف!'), generator hum, a motorcycle passing and the call to prayer far away. In a Western city (Los Angeles, London…): steady traffic hum, buses braking, crosswalk beeps, English chatter, no Middle-Eastern sounds."
+  },
+  {
+    "id": "sound.adhan",
+    "domain": "sound",
+    "names": [
+      "اذان",
+      "أذان",
+      "جامع",
+      "مسجد",
+      "adhan",
+      "call to prayer",
+      "mosque"
+    ],
+    "body": "The call to prayer (adhan) heard from a minaret loudspeaker: a long melodic male voice that echoes across rooftops, sometimes overlapping from two mosques at different distances; the city noise continues softly underneath. Treat it with respect – never as a joke."
+  },
+  {
+    "id": "sound.indoor-room",
+    "domain": "sound",
+    "names": [
+      "غرفة",
+      "بيت",
+      "صالة",
+      "مطبخ",
+      "مكتب",
+      "room",
+      "house",
+      "home",
+      "kitchen",
+      "office"
+    ],
+    "body": "Indoor sound: a small room tone (AC or fan hum, a fridge, a distant TV or children playing), voices sound close and slightly reflected, kitchens add clinking dishes, boiling water and the hiss of a pan, offices add keyboard clicks, a printer and a phone ringing far away."
+  },
+  {
+    "id": "sound.nature",
+    "domain": "sound",
+    "names": [
+      "طبيعة",
+      "عصافير",
+      "طيور",
+      "غابة",
+      "جبل",
+      "nature",
+      "birds",
+      "forest",
+      "mountain"
+    ],
+    "body": "Nature sound: birdsong with varied calls at different distances, leaves rustling with the wind, a stream trickling, insects buzzing in summer heat, frogs at night near water, wind whistling on mountain ridges; quiet enough that footsteps and breathing are heard."
+  },
+  {
+    "id": "sound.music-wedding",
+    "domain": "sound",
+    "names": [
+      "طبل",
+      "زرنة",
+      "دبكة",
+      "هلهولة",
+      "زغاريد",
+      "drum",
+      "zurna",
+      "ululation",
+      "music"
+    ],
+    "body": "Iraqi celebration sound: the big drum (طبل) beating a driving rhythm with the zurna's piercing melody, women's ululation (هلهولة/زغاريد) in bursts, clapping on the beat, people singing along and cheering; the music is loud but the speech is still understandable when someone speaks to camera."
+  },
+  {
+    "id": "sound.car",
+    "domain": "sound",
+    "names": [
+      "سيارة",
+      "محرك",
+      "هورن",
+      "زمور",
+      "car",
+      "engine",
+      "horn"
+    ],
+    "body": "Car sounds: the door opens with a click and closes with a solid thunk, the engine starts with a crank and settles into an idle, revs rise with acceleration, the indicator ticks, the horn is a short double beep, tyres hum on asphalt and crunch on gravel, windows whir down."
+  },
+  {
+    "id": "sound.kitchen-cafe",
+    "domain": "sound",
+    "names": [
+      "قهوة",
+      "كافيه",
+      "مقهى",
+      "شاي",
+      "استكان",
+      "coffee",
+      "cafe",
+      "tea"
+    ],
+    "body": "Café and tea sounds: the hiss and gurgle of an espresso machine, milk steaming with a rising screech, a spoon stirring tea in an istikan with a fast tinkle, glasses set down on saucers, the clack of dominoes and backgammon (طاولي) in a traditional café, quiet chatter and laughter."
+  },
+  {
+    "id": "sound.phone",
+    "domain": "sound",
+    "names": [
+      "رنة",
+      "يرن",
+      "اشعار",
+      "رسالة",
+      "ringtone",
+      "notification",
+      "call"
+    ],
+    "body": "Phone sounds: a ringtone or vibration buzz on a table, a notification ping, keyboard taps, the voice on a call sounds thin and compressed when heard through the phone's speaker."
+  },
+  {
+    "id": "sound.crowd-cheer",
+    "domain": "sound",
+    "names": [
+      "ملعب",
+      "مباراة",
+      "جمهور",
+      "هتاف",
+      "stadium",
+      "match",
+      "fans",
+      "cheer"
+    ],
+    "body": "Stadium or crowd sound: a constant roar that rises into cheers at key moments, chants in rhythm, whistles, drums, the referee's whistle cutting through, a commentator's excited voice; individual shouts near the camera are clearer."
+  },
+  {
+    "id": "sound.silence",
+    "domain": "sound",
+    "names": [
+      "هدوء",
+      "صمت",
+      "هادئ",
+      "quiet",
+      "silence",
+      "silent"
+    ],
+    "body": "Quiet scenes are never dead silent: keep a soft room tone or night ambience (a clock ticking, distant traffic, crickets), so breathing, fabric rustle and small movements are audible and the moment feels real."
+  },
+  {
+    "id": "sound.animals",
+    "domain": "sound",
+    "names": [
+      "قطة",
+      "بزونة",
+      "كلب",
+      "جاج",
+      "ديك",
+      "خروف",
+      "حصان",
+      "cat",
+      "dog",
+      "chicken",
+      "rooster",
+      "sheep",
+      "horse"
+    ],
+    "body": "Animal sounds in sync with the animal's mouth and body: a cat's meow with the mouth opening and purring when stroked, a dog's bark with a chest bounce, a rooster crowing at dawn with neck stretched, sheep bleating in a flock, horse hooves clopping and snorting; always at the right distance and timing."
+  },
+  {
+    "id": "sound.water-sounds",
+    "domain": "sound",
+    "names": [
+      "شلال",
+      "موج",
+      "امواج",
+      "حنفية",
+      "waterfall",
+      "waves",
+      "tap",
+      "fountain"
+    ],
+    "body": "Water sounds: waves roll in with a rising whoosh and break with a crash then hiss back, a waterfall roars constantly, a fountain splashes softly, a tap runs with a steady stream and drips after closing; louder when closer to the camera."
+  }
 ]

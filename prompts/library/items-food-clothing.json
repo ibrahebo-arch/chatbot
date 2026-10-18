@@ -1,21 +1,271 @@
 [
-  { "id": "food.masgouf", "domain": "item", "names": ["مسگوف", "مسكوف", "سمك مسكوف", "masgouf", "masguf"], "body": "Masgouf: a big carp split open like a butterfly, staked upright on wooden sticks in a circle around an open fire of apricot or tamarisk wood on the Tigris bank, the skin blistering golden-black, then laid flat on a tray with tomatoes, onions, lemon, pickles and flatbread; smoke and the glow of fire." },
-  { "id": "food.dolma", "domain": "item", "names": ["دولمة", "دولمه", "محشي", "dolma", "stuffed"], "body": "Iraqi dolma: a large pot flipped onto a big round tray revealing layers of stuffed vine leaves, onions, peppers, courgettes and aubergines in a shiny red-brown sauce, ribs or lamb at the bottom, steam rising; the family gathers around and reaches in." },
-  { "id": "food.kubba", "domain": "item", "names": ["كبة", "كبه", "كبة حلب", "كبة موصلية", "kubba", "kibbeh"], "body": "Kubba: golden fried oval shells of bulgur or rice dough with a crunchy surface, broken open to show spiced minced meat with onions and nuts; Mosul kubba is a big flat disc; kubba hamudh floats in a sour turnip soup." },
-  { "id": "food.samoon", "domain": "item", "names": ["صمون", "خبز", "خبز عراقي", "تنور", "samoon", "samoun", "bread"], "body": "Iraqi bread: samoon is a diamond-shaped golden bread with pointed ends, crisp crust and fluffy inside; tannour bread is a large thin round flatbread with charred bubbles; stacked warm in bags, torn by hand with steam escaping." },
-  { "id": "food.kebab-tikka", "domain": "item", "names": ["كباب", "تكة", "معلاك", "مشاوي", "شيش", "kebab", "tikka", "grill", "bbq"], "body": "Iraqi grill: long flat skewers of minced lamb kebab and cubes of tikka over glowing charcoal, fat dripping and flaring, the griller fanning the coals, served on bread with grilled tomatoes, onions with sumac and parsley, amba (mango pickle) sauce; smoke and sizzle." },
-  { "id": "food.quzi", "domain": "item", "names": ["قوزي", "تشريب", "پاچة", "باچة", "quzi", "tashreeb", "pacha"], "body": "Iraqi feast dishes: quzi – a whole roasted lamb on a mountain of yellow rice with almonds and raisins; tashreeb – bread soaked in rich broth with meat and chickpeas; pacha – a traditional dish of head and trotters in broth (shown appetisingly, no gore)." },
-  { "id": "food.sweets", "domain": "item", "names": ["كليجة", "حلويات", "بقلاوة", "زلابية", "من السما", "kleicha", "sweets", "baklava", "dessert"], "body": "Iraqi sweets: kleicha – round date-filled cookies with a stamped pattern, golden and dusted; baklava – thin flaky layers with pistachio, glistening with syrup; zalabia – crispy syrup-soaked spirals; mann al-sama – white powdered nougat; on trays with tea." },
-  { "id": "food.dates", "domain": "item", "names": ["تمر", "تمور", "رطب", "نخلة", "نخيل", "dates", "palm", "date palm"], "body": "Iraqi dates and palms: glossy brown and amber dates with wrinkled skin, fresh rutab half-ripe yellow-brown, hanging in heavy orange clusters under the palm crown; tall palm trunks with a rough diamond pattern, fronds swaying; Basra and Diyala palm groves." },
-  { "id": "food.generic-appetising", "domain": "item", "names": ["اكل", "طعام", "وجبة", "سفرة", "food", "meal", "dish", "dinner", "lunch"], "body": "Food that looks delicious: hero lighting from the side or back to show texture and steam, glistening sauces, crisp edges, fresh herbs, colours rich but natural, steam rising from hot dishes, condensation on cold drinks, a hand reaching in to show scale; plates and bowls with realistic weight and shadows." },
-  { "id": "food.fast-food", "domain": "item", "names": ["برغر", "بركر", "بيتزا", "شاورما", "فلافل", "burger", "pizza", "shawarma", "falafel", "sandwich"], "body": "Fast food done right: burgers with a toasted bun, juicy patty, melted cheese dripping over the edge, fresh lettuce and tomato in layers; pizza with a cheese pull when a slice lifts; shawarma sliced thin from a rotating spit, wrapped in bread with garlic sauce and pickles; falafel crunchy outside and green inside." },
-  { "id": "clothing.dishdasha", "domain": "item", "names": ["دشداشة", "دشداشه", "ثوب", "عباية رجالي", "صاية", "dishdasha", "thobe", "thawb"], "body": "Iraqi men's dishdasha: an ankle-length robe with long sleeves, collar or round neck, usually white, grey, beige or brown, light cotton in summer and heavier wool in winter; worn with sandals; older men may add a bisht (sheer black or brown cloak with gold trim) for occasions." },
-  { "id": "clothing.shemagh", "domain": "item", "names": ["شماغ", "يشماغ", "كوفية", "عقال", "غترة", "shemagh", "keffiyeh", "agal"], "body": "Shemagh and agal: a square cotton headscarf in red-and-white or black-and-white check (white for some), folded into a triangle and draped over the head, held by a black cord ring (agal); the ends hang over the shoulders and move in the wind; tribal sheikhs wear it with a bisht." },
-  { "id": "clothing.abaya-women", "domain": "item", "names": ["عباية", "عباءة", "عباية نسائية", "abaya", "jilbab"], "body": "Women's abaya: a loose full-length black (or modern coloured) robe of crepe or chiffon over clothes, sometimes with embroidered sleeves or trim, worn with a hijab; it flows and swings when walking and gathers when sitting. Southern Iraqi women may wear the traditional black abaya draped over the head." },
-  { "id": "clothing.kurdish", "domain": "item", "names": ["زي كردي", "ملابس كردية", "كردي", "كوردي", "kurdish dress", "kurdish clothes", "kurdish"], "body": "Kurdish traditional dress: men in sharwal (wide baggy trousers) with a matching jacket and a wide cloth sash wrapped around the waist, and a fringed turban; women in long brightly coloured dresses with sequins and layered sleeves, a velvet vest, gold coin jewellery and a headscarf; worn at Newroz with dancing in lines." },
-  { "id": "clothing.suit", "domain": "item", "names": ["بدلة", "قاط", "رسمي", "ربطة", "suit", "tuxedo", "formal"], "body": "A suit that fits: jacket shoulders sitting at the shoulder edge, sleeves showing a little shirt cuff, trousers with a crease breaking slightly on the shoe, a tie knotted at the collar; fabric with fine texture and folds at the elbows; polished shoes reflecting light." },
-  { "id": "clothing.wedding-dress", "domain": "item", "names": ["فستان عرس", "بدلة عرس", "فستان زفاف", "wedding dress", "bridal gown"], "body": "Bridal gown: white or ivory with lace and embroidery, a fitted bodice and a full skirt or long train, a veil of sheer tulle that moves with air, sparkling crystals catching light; the bride holds a bouquet and lifts the skirt slightly to walk." },
-  { "id": "clothing.school-uniform", "domain": "item", "names": ["زي مدرسي", "يونيفورم", "uniform", "school uniform"], "body": "Iraqi school uniform: boys in grey or navy trousers with white or light-blue shirts; girls in grey or navy pinafores or skirts with white shirts and white or light headscarves for older girls; backpacks." },
-  { "id": "clothing.sports", "domain": "item", "names": ["تيشيرت", "رياضي", "قميص المنتخب", "منتخب", "jersey", "sportswear", "tracksuit", "national team"], "body": "Sportswear: Iraqi national team kit – white or green jersey with the eagle crest and the Iraqi flag colours; tracksuits with stripes, sneakers with visible soles and laces; fabric with stretch and sweat patches during exercise." },
-  { "id": "clothing.modern-casual", "domain": "item", "names": ["كاجوال", "جينز", "هودي", "ستايل", "موضة", "casual", "jeans", "hoodie", "fashion", "streetwear"], "body": "Modern casual fashion: jeans with real seams and slight fading, hoodies and jackets with zippers and pockets, sneakers, sunglasses, layered outfits; clothing fits the body with natural folds and moves with each step." }
+  {
+    "id": "food.masgouf",
+    "domain": "item",
+    "names": [
+      "مسگوف",
+      "مسكوف",
+      "سمك مسكوف",
+      "masgouf",
+      "masguf"
+    ],
+    "body": "Masgouf: a big carp split open like a butterfly, staked upright on wooden sticks in a circle around an open fire of apricot or tamarisk wood on the Tigris bank, the skin blistering golden-black, then laid flat on a tray with tomatoes, onions, lemon, pickles and flatbread; smoke and the glow of fire."
+  },
+  {
+    "id": "food.dolma",
+    "domain": "item",
+    "names": [
+      "دولمة",
+      "دولمه",
+      "محشي",
+      "dolma",
+      "stuffed"
+    ],
+    "body": "Iraqi dolma: a large pot flipped onto a big round tray revealing layers of stuffed vine leaves, onions, peppers, courgettes and aubergines in a shiny red-brown sauce, ribs or lamb at the bottom, steam rising; the family gathers around and reaches in."
+  },
+  {
+    "id": "food.kubba",
+    "domain": "item",
+    "names": [
+      "كبة",
+      "كبه",
+      "كبة حلب",
+      "كبة موصلية",
+      "kubba",
+      "kibbeh"
+    ],
+    "body": "Kubba: golden fried oval shells of bulgur or rice dough with a crunchy surface, broken open to show spiced minced meat with onions and nuts; Mosul kubba is a big flat disc; kubba hamudh floats in a sour turnip soup."
+  },
+  {
+    "id": "food.samoon",
+    "domain": "item",
+    "names": [
+      "صمون",
+      "خبز",
+      "خبز عراقي",
+      "تنور",
+      "samoon",
+      "samoun",
+      "bread"
+    ],
+    "body": "Iraqi bread: samoon is a diamond-shaped golden bread with pointed ends, crisp crust and fluffy inside; tannour bread is a large thin round flatbread with charred bubbles; stacked warm in bags, torn by hand with steam escaping."
+  },
+  {
+    "id": "food.kebab-tikka",
+    "domain": "item",
+    "names": [
+      "كباب",
+      "تكة",
+      "معلاك",
+      "مشاوي",
+      "شيش",
+      "kebab",
+      "tikka",
+      "grill",
+      "bbq"
+    ],
+    "body": "Iraqi grill: long flat skewers of minced lamb kebab and cubes of tikka over glowing charcoal, fat dripping and flaring, the griller fanning the coals, served on bread with grilled tomatoes, onions with sumac and parsley, amba (mango pickle) sauce; smoke and sizzle."
+  },
+  {
+    "id": "food.quzi",
+    "domain": "item",
+    "names": [
+      "قوزي",
+      "تشريب",
+      "پاچة",
+      "باچة",
+      "quzi",
+      "tashreeb",
+      "pacha"
+    ],
+    "body": "Iraqi feast dishes: quzi – a whole roasted lamb on a mountain of yellow rice with almonds and raisins; tashreeb – bread soaked in rich broth with meat and chickpeas; pacha – a traditional dish of head and trotters in broth (shown appetisingly, no gore)."
+  },
+  {
+    "id": "food.sweets",
+    "domain": "item",
+    "names": [
+      "كليجة",
+      "حلويات",
+      "بقلاوة",
+      "زلابية",
+      "من السما",
+      "kleicha",
+      "sweets",
+      "baklava",
+      "dessert"
+    ],
+    "body": "Iraqi sweets: kleicha – round date-filled cookies with a stamped pattern, golden and dusted; baklava – thin flaky layers with pistachio, glistening with syrup; zalabia – crispy syrup-soaked spirals; mann al-sama – white powdered nougat; on trays with tea."
+  },
+  {
+    "id": "food.dates",
+    "domain": "item",
+    "names": [
+      "تمر",
+      "تمور",
+      "رطب",
+      "نخلة",
+      "نخيل",
+      "dates",
+      "palm",
+      "date palm"
+    ],
+    "body": "Iraqi dates and palms: glossy brown and amber dates with wrinkled skin, fresh rutab half-ripe yellow-brown, hanging in heavy orange clusters under the palm crown; tall palm trunks with a rough diamond pattern, fronds swaying; Basra and Diyala palm groves."
+  },
+  {
+    "id": "food.generic-appetising",
+    "domain": "item",
+    "names": [
+      "اكل",
+      "طعام",
+      "وجبة",
+      "سفرة",
+      "food",
+      "meal",
+      "dish",
+      "dinner",
+      "lunch"
+    ],
+    "body": "Food that looks delicious: hero lighting from the side or back to show texture and steam, glistening sauces, crisp edges, fresh herbs, colours rich but natural, steam rising from hot dishes, condensation on cold drinks, a hand reaching in to show scale; plates and bowls with realistic weight and shadows."
+  },
+  {
+    "id": "food.fast-food",
+    "domain": "item",
+    "names": [
+      "برغر",
+      "بركر",
+      "بيتزا",
+      "شاورما",
+      "فلافل",
+      "burger",
+      "pizza",
+      "shawarma",
+      "falafel",
+      "sandwich"
+    ],
+    "body": "Fast food done right: burgers with a toasted bun, juicy patty, melted cheese dripping over the edge, fresh lettuce and tomato in layers; pizza with a cheese pull when a slice lifts; shawarma sliced thin from a rotating spit, wrapped in bread with garlic sauce and pickles; falafel crunchy outside and green inside."
+  },
+  {
+    "id": "clothing.dishdasha",
+    "domain": "item",
+    "names": [
+      "دشداشة",
+      "دشداشه",
+      "ثوب",
+      "عباية رجالي",
+      "صاية",
+      "dishdasha",
+      "thobe",
+      "thawb"
+    ],
+    "body": "Iraqi men's dishdasha: an ankle-length robe with long sleeves, collar or round neck, usually white, grey, beige or brown, light cotton in summer and heavier wool in winter; worn with sandals; older men may add a bisht (sheer black or brown cloak with gold trim) for occasions."
+  },
+  {
+    "id": "clothing.shemagh",
+    "domain": "item",
+    "names": [
+      "شماغ",
+      "يشماغ",
+      "كوفية",
+      "عقال",
+      "غترة",
+      "shemagh",
+      "keffiyeh",
+      "agal"
+    ],
+    "body": "Shemagh and agal: a square cotton headscarf in red-and-white or black-and-white check (white for some), folded into a triangle and draped over the head, held by a black cord ring (agal); the ends hang over the shoulders and move in the wind; tribal sheikhs wear it with a bisht."
+  },
+  {
+    "id": "clothing.abaya-women",
+    "domain": "item",
+    "names": [
+      "عباية",
+      "عباءة",
+      "عباية نسائية",
+      "abaya",
+      "jilbab"
+    ],
+    "body": "Women's abaya: a loose full-length black (or modern coloured) robe of crepe or chiffon over clothes, sometimes with embroidered sleeves or trim, worn with a hijab; it flows and swings when walking and gathers when sitting. Southern Iraqi women may wear the traditional black abaya draped over the head."
+  },
+  {
+    "id": "clothing.kurdish",
+    "domain": "item",
+    "names": [
+      "زي كردي",
+      "ملابس كردية",
+      "كردي",
+      "كوردي",
+      "kurdish dress",
+      "kurdish clothes",
+      "kurdish"
+    ],
+    "body": "Kurdish traditional dress: men in sharwal (wide baggy trousers) with a matching jacket and a wide cloth sash wrapped around the waist, and a fringed turban; women in long brightly coloured dresses with sequins and layered sleeves, a velvet vest, gold coin jewellery and a headscarf; worn at Newroz with dancing in lines."
+  },
+  {
+    "id": "clothing.suit",
+    "domain": "item",
+    "names": [
+      "بدلة رسمية",
+      "قاط",
+      "ربطة",
+      "business suit",
+      "tuxedo",
+      "formal suit"
+    ],
+    "body": "A suit that fits: jacket shoulders sitting at the shoulder edge, sleeves showing a little shirt cuff, trousers with a crease breaking slightly on the shoe, a tie knotted at the collar; fabric with fine texture and folds at the elbows; polished shoes reflecting light."
+  },
+  {
+    "id": "clothing.wedding-dress",
+    "domain": "item",
+    "names": [
+      "فستان عرس",
+      "بدلة عرس",
+      "فستان زفاف",
+      "wedding dress",
+      "bridal gown"
+    ],
+    "body": "Bridal gown: white or ivory with lace and embroidery, a fitted bodice and a full skirt or long train, a veil of sheer tulle that moves with air, sparkling crystals catching light; the bride holds a bouquet and lifts the skirt slightly to walk."
+  },
+  {
+    "id": "clothing.school-uniform",
+    "domain": "item",
+    "names": [
+      "زي مدرسي",
+      "يونيفورم",
+      "uniform",
+      "school uniform"
+    ],
+    "body": "Iraqi school uniform: boys in grey or navy trousers with white or light-blue shirts; girls in grey or navy pinafores or skirts with white shirts and white or light headscarves for older girls; backpacks."
+  },
+  {
+    "id": "clothing.sports",
+    "domain": "item",
+    "names": [
+      "تيشيرت",
+      "رياضي",
+      "قميص المنتخب",
+      "منتخب",
+      "jersey",
+      "sportswear",
+      "tracksuit",
+      "national team"
+    ],
+    "body": "Sportswear: Iraqi national team kit – white or green jersey with the eagle crest and the Iraqi flag colours; tracksuits with stripes, sneakers with visible soles and laces; fabric with stretch and sweat patches during exercise."
+  },
+  {
+    "id": "clothing.modern-casual",
+    "domain": "item",
+    "names": [
+      "كاجوال",
+      "جينز",
+      "هودي",
+      "ستايل",
+      "موضة",
+      "casual",
+      "jeans",
+      "hoodie",
+      "fashion",
+      "streetwear"
+    ],
+    "body": "Modern casual fashion: jeans with real seams and slight fading, hoodies and jackets with zippers and pockets, sneakers, sunglasses, layered outfits; clothing fits the body with natural folds and moves with each step."
+  }
 ]
