@@ -20,7 +20,7 @@ tar -czf "$DIR/server-config.tar.gz" /etc/nginx/sites-available /etc/systemd/sys
 # private project docs (VI-Iraq.md, CLAUDE.md), if present
 [ -d /root/vi-iraq-docs ] && cp -r /root/vi-iraq-docs "$DIR/docs"
 sudo -u viiraq git -C /opt/vi-iraq rev-parse HEAD > "$DIR/commit.txt"
-(cd "$DIR" && sha256sum * > SHA256SUMS)
+(cd "$DIR" && find . -type f ! -name SHA256SUMS -exec sha256sum {} + > SHA256SUMS)
 
 ln -sfn "$DIR" "$DEST/latest"
 find "$DEST" -mindepth 1 -maxdepth 1 -type d -mtime +"$KEEP_DAYS" -exec rm -rf {} +
