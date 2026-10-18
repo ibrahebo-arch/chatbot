@@ -164,3 +164,11 @@ module.exports = {
   animals: { domain: "animal", prefix: "animal.gen", guide: "For an animal: correct anatomy and proportions, fur/feathers/scales texture, how it moves (gait, flight, swimming), behaviour and expressions, the sounds it makes, kept calm and non-violent.", topics: animals },
   nature: { domain: "nature", prefix: "nature.gen", guide: "For a nature scene: landforms, plants, water and sky, how light and weather behave, what moves (wind, water, animals) and the sounds.", topics: nature },
 };
+
+// expansion (tools/library-topics-more.js): more topics for the existing sets, and two new sets
+{
+  const more = require("./library-topics-more");
+  for (const k of ["actions", "human", "sounds", "animals", "nature"]) module.exports[k].topics.push(...more[k]);
+  module.exports.reality = { domain: "reality", prefix: "reality.gen", guide: "For a physics or material behaviour: exactly how it moves and reacts in the real world (forces, weight, timing, deformation, secondary motion), what the eye sees moment by moment, the matching sound, and the AI mistakes to avoid (floating, sliding, morphing, passing through objects).", topics: more.reality };
+  module.exports.style = { domain: "style", prefix: "style.gen", guide: "For a camera move or look: the lens, movement, framing, lighting and colour in concrete terms, when it fits (ads, social, drama), and how it keeps people and motion realistic.", topics: more.style };
+}
