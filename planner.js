@@ -13,10 +13,11 @@
  */
 const fs = require("fs");
 const path = require("path");
+const library = require("./library");
 
 const clean = (v) => String(v || "").trim();
 const GUIDE = fs.readFileSync(path.join(__dirname, "prompts", "media-prompt-guide.md"), "utf8");
-const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), living humanoid presence – breathing, blinking, facial reactions (4b), Iraqi places (5), named places and the LOCATION REFERENCE (5b), speech length and dialect (6), voices and characters – the speaker matches the chosen voice, fixed words stay exact (6b), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
+const RULES = "READ THIS FIRST. The guide below is binding, not advice. Before you write, read every section (1-10) and apply each one that fits the request: the JSON format (section 1), the prompt order (2), real-person rules (3), motion beats (4), living humanoid presence – breathing, blinking, facial reactions (4b), Iraqi places (5), named places and the LOCATION REFERENCE (5b), speech length and dialect (6), voices and characters – the speaker matches the chosen voice, fixed words stay exact (6b), exact on-screen text (7), cartoon mode (8), customer pictures (8b), the quality checklist (9) and the reply language (10). The REALITY LIBRARY block in the request (core + entries matched to this customer's words: people, physics, sounds, places, items, actions) is binding too: turn every point that fits into concrete visible and audible detail. If the customer's wish and a rule conflict, keep the customer's idea and satisfy the rule another way. Never output anything except the JSON object.\n\n";
 const RULES_END = "\n\n---\nFINAL CHECK before you answer: go through section 9 line by line; the prompt is English, follows the section 2 order, has concrete motion beats for video, keeps the customer's exact words for on-screen text, and the speech is short natural dialect that fits the clip length. Fix anything that fails, then output the JSON only.";
 const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
 const OPENAI_BASE = (clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "");
@@ -90,6 +91,9 @@ function locationNote(conversation) {
   return "\n\nLOCATION REFERENCE – the customer named these real places. Show them as they really look (landmarks, architecture, street life) and keep these details in the prompt:\n" + hits.map((l) => "- " + l.look).join("\n");
 }
 
+/** The reality library block for this request (computed once per plan; the place list alone without plan opts). */
+const knowledge = (conversation, opts) => (opts && typeof opts.libraryNote === "string" ? opts.libraryNote : locationNote(conversation));
+
 function conversationText(conversation) {
   return conversation.map((m) => `${m.role === "user" ? "Customer" : "Assistant"}: ${String(m.content || "").slice(0, 1500)}`).join("\n").slice(-7000);
 }
@@ -132,7 +136,7 @@ async function chatgpt(model, system, user) {
 
 /** Step 1 – ChatGPT writes the plan. */
 async function draft(conversation, opts) {
-  const user = userContent(`${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}${locationNote(conversation)}`, opts.refs);
+  const user = userContent(`${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}${knowledge(conversation, opts)}`, opts.refs);
   for (const model of [PROMPT_MODEL, FALLBACK_MODEL]) {
     try {
       const plan = parsePlan(await chatgpt(model, RULES + GUIDE + RULES_END, user));
@@ -150,7 +154,7 @@ async function selfReview(plan, conversation, opts, model) {
     const user = userContent(`${task(opts)}
 
 CONVERSATION:
-${conversationText(conversation)}${locationNote(conversation)}
+${conversationText(conversation)}${knowledge(conversation, opts)}
 
 DRAFT PLAN (written by you a moment ago):
 ${JSON.stringify(plan)}
@@ -169,7 +173,7 @@ async function review(plan, conversation, opts) {
       max_tokens: 4000,
       output_config: { effort: "medium" },
       system: [{ type: "text", text: GUIDE + "\n\nYou are the REVIEWER. You receive a draft plan written by another model. Check it against every section of the guide and against the customer's conversation, fix everything that is wrong or missing (dialect, motion beats, camera, Iraqi place detail, speech length, on-screen text spelling, contradictions, anatomy/quality lines) and return the corrected plan as the same JSON object only.", cache_control: { type: "ephemeral" } }],
-      messages: [{ role: "user", content: `${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}${locationNote(conversation)}\n\nDRAFT PLAN:\n${JSON.stringify(plan)}` }],
+      messages: [{ role: "user", content: `${task(opts)}\n\nCONVERSATION:\n${conversationText(conversation)}${knowledge(conversation, opts)}\n\nDRAFT PLAN:\n${JSON.stringify(plan)}` }],
     });
     if (r.stop_reason === "refusal") return null;
     const text = r.content.filter((b) => b.type === "text").map((b) => b.text).join("");
@@ -186,6 +190,8 @@ async function review(plan, conversation, opts) {
  */
 async function plan(conversation, opts) {
   const o = { ...opts, voiceLang: opts.voiceLang === "none" ? "none" : normLang(opts.voiceLang) };
+  const lib = library.note(conversation, o.kind === "video" ? "video" : "image");
+  o.libraryNote = lib.text;
   const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n").slice(0, 900);
   if (!OPENAI_KEY) return { plan: applyVoice({ prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, o), by: "customer" };
   const d = await draft(conversation, o);
@@ -196,7 +202,7 @@ async function plan(conversation, opts) {
   const p = fixed || d.plan;
   applyVoice(p, o);
   if (o.kind === "video" && !/frozen|mannequin/i.test(p.negative || "")) p.negative = [p.negative, "frozen face, mannequin stillness, statue-like pose, no blinking, dead eyes, rigid stare"].filter(Boolean).join(", ");
-  return { plan: p, by: claude ? `${d.by}+${CLAUDE_MODEL}` : second ? `${d.by}+review` : d.by };
+  return { plan: p, by: claude ? `${d.by}+${CLAUDE_MODEL}` : second ? `${d.by}+review` : d.by, library: lib.ids };
 }
 
 /**

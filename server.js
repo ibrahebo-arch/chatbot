@@ -29,6 +29,7 @@ const payments = require("./payments");
 const media = require("./media");
 const trial = require("./trial");
 const voices = require("./voices");
+const library = require("./library");
 const planner = require("./planner");
 const { normalizeTelegram, normalizePhone } = require("./validate");
 
@@ -1019,6 +1020,8 @@ async function start() {
   try {
     const m = await db.initDb();
     console.log(`Database: ready (${m.applied.length ? "applied " + m.applied.join(", ") : "up to date"})`);
+    try { const l = await library.sync(db); const s = library.stats(); console.log(`Prompt library: ${s.entries} entries, ${s.words} words (${l.files} from files)`); }
+    catch (e) { console.error("prompt library sync:", e.message); }
   } catch (e) {
     console.error(`FATAL: database not ready – ${e.message}`);
     process.exit(1);
