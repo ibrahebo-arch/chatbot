@@ -613,6 +613,7 @@
     const acts = el("div", "acts");
     if (j.status === "done" && j.url) {
       const name = `vi-iraq-${j.ticket || j.id}.${j.kind === "video" ? "mp4" : "jpg"}`;
+      let primary = null;
       if (IOS && j.download && navigator.canShare) {
         // iPhone: the share sheet's «حفظ الفيديو/Save Video» puts it in Photos; a download link does nothing in
         // Chrome on iPhone. The file is fetched now, so the tap opens the sheet at once (iOS needs a fresh tap).
@@ -625,12 +626,15 @@
           }
           location.href = j.download; // not loaded yet or no file sharing: the browser saves the file itself
         };
-        acts.append(save);
+        acts.append(save); primary = save;
         info.append(el("span", "save-hint", j.kind === "video" ? "اضغط «حفظ الفيديو» ثم اختر «حفظ الفيديو» من القائمة ليُحفظ في الصور." : "اضغط «حفظ الصورة» ثم اختر «حفظ الصورة» من القائمة لتُحفظ في الصور."));
       } else {
         const dl = el("a", "dl", j.kind === "video" ? "⬇️ تنزيل الفيديو" : "⬇️ تنزيل الصورة");
-        dl.href = j.download || j.url; dl.setAttribute("download", name); acts.append(dl);
+        dl.href = j.download || j.url; dl.setAttribute("download", name); acts.append(dl); primary = dl;
       }
+      const fab = el("button", "fab-save", j.kind === "video" ? "⬇️ حفظ الفيديو" : "⬇️ حفظ"); fab.type = "button";
+      fab.onclick = (e) => { e.stopPropagation(); primary.click(); };
+      box.append(fab);
       if (j.kind === "image") {
         const an = el("button", "animate", "🎬 حرّكها فيديو"); an.type = "button";
         an.hidden = !(trial.info?.left?.video > 0 && trial.info?.videoAvailable);
