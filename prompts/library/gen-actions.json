@@ -1343,5 +1343,2450 @@
    "reciting quran"
   ],
   "body": "A person sits comfortably in a quiet home or mosque, holding an open mushaf or placing it on a low wooden stand. Its cream pages show dense lines of black Arabic script, sometimes framed by fine coloured borders. Their gaze follows the lines steadily; lips move with each phrase, with small pauses for breath. Recitation is clear and measured, sometimes softly melodic, without background music. A hand supports the book and carefully lifts a thin page when needed; the paper makes a faint rustle. Nearby listeners, if present, sit quietly with attentive faces. Daylight or warm indoor light falls across the pages without obscuring the text."
+ },
+ {
+  "id": "action.gen.pushing-heavy-door",
+  "domain": "action",
+  "topic": "pushing a heavy door",
+  "names": [
+   "دفع باب ثقيل",
+   "فتح باب ثقيل",
+   "يدز باب ثگيل",
+   "باب ثگيل ينفتح",
+   "pushing heavy door",
+   "heavy door push"
+  ],
+  "body": "A person plants one foot ahead of the other and presses a palm or shoulder against a tall, solid door. Their torso leans forward, knees bend, and their face tightens with effort. The door holds for a moment, then turns slowly on its hinges; its far edge travels faster than the edge beside the hinge. A metal handle trembles, hinges creak, and the bottom may scrape lightly across the floor. As the gap widens, the person takes a short step to keep pressure on it, then straightens when the weight gives way. Nearby people wait clear of the swinging edge."
+ },
+ {
+  "id": "action.gen.pulling-rope",
+  "domain": "action",
+  "topic": "pulling a rope",
+  "names": [
+   "سحب حبل",
+   "شد الحبل",
+   "يجر حبل",
+   "يشد الحبل",
+   "pulling a rope",
+   "rope pull"
+  ],
+  "body": "A thick rope runs from the person's hands toward a load outside the frame. They grip it with both hands, step back, and lean their hips away from the line of tension. Their shoulders draw back while their elbows bend; their jaw sets and their eyes follow the rope. The strands straighten before the load moves, then quiver briefly with each pull. Rough fibres slide against the palms with a dry rasp, while shoes scuff the ground. Between pulls, the person shifts one hand forward without letting the rope go slack. Anyone nearby watches the moving line and keeps clear of it."
+ },
+ {
+  "id": "action.gen.climbing-stairs",
+  "domain": "action",
+  "topic": "climbing stairs",
+  "names": [
+   "صعود الدرج",
+   "طلوع السلم",
+   "يطلع الدرج",
+   "يصعد درج",
+   "climbing stairs",
+   "walking upstairs"
+  ],
+  "body": "A person approaches a flight of stairs and lifts one foot onto the first tread. Their weight shifts over that leg before the trailing foot rises to the next step. Knees and ankles flex in a steady alternating rhythm; the torso tips slightly forward, and the arms swing gently or one hand brushes the rail. The face is usually relaxed, with the eyes glancing a few steps ahead. Each shoe makes a separate tap or soft thud, followed by a faint clothing rustle. Overhead light catches the horizontal treads and leaves darker bands beneath the projecting edges. People passing the other way keep to one side."
+ },
+ {
+  "id": "action.gen.running-down-stairs",
+  "domain": "action",
+  "topic": "running down stairs",
+  "names": [
+   "الركض نزول الدرج",
+   "الجري على الدرج",
+   "يركض ينزل الدرج",
+   "ينزل الدرج ركض",
+   "running down stairs",
+   "rushing downstairs"
+  ],
+  "body": "A person descends quickly, placing each foot on a lower tread before lifting the other. Their knees stay bent to absorb repeated drops, the torso leans slightly back from the downward slope, and the arms move out for balance. Their eyes track the next steps, with a concentrated, alert expression. Footfalls come in a rapid series of distinct thumps; soles may squeak briefly on polished stone or tile. A loose jacket or hair bounces with each landing. The descent slows near the bottom as the person lengthens the final step onto level ground. Others on the stairs pause or make room."
+ },
+ {
+  "id": "action.gen.climbing-ladder",
+  "domain": "action",
+  "topic": "climbing a ladder",
+  "names": [
+   "تسلق سلم",
+   "صعود السلم المتنقل",
+   "يصعد السلم",
+   "يتسلق سلم",
+   "climbing a ladder",
+   "ladder climb"
+  ],
+  "body": "A ladder rests against a wall at an angle, its side rails straight and its rungs evenly spaced. The climber faces it, grips the rails or rungs, and steps upward one rung at a time. Their hips remain close to the ladder while their arms steady the body and their legs provide most of the lift. Their expression is focused, with frequent glances toward the next rung. Each shoe lands with a hollow tap, and the ladder may give a small metallic rattle or wooden creak under shifting weight. The feet of the ladder stay planted on the ground; a nearby person, if present, watches from the side."
+ },
+ {
+  "id": "action.gen.climbing-wall-bouldering",
+  "domain": "action",
+  "topic": "climbing a wall (bouldering)",
+  "names": [
+   "تسلق بولدر",
+   "تسلق جدار بولدر",
+   "يتسلق حايط بولدر",
+   "بولدرنغ",
+   "bouldering wall",
+   "bouldering climb"
+  ],
+  "body": "On a low bouldering wall, coloured holds project from a textured surface above a thick padded floor. The climber tests a hold with their fingers, places a rubber-soled shoe on a small foothold, and pushes through that leg while reaching upward. Their body stays close to the wall; hips turn to make room for the next move. Chalk marks the fingertips, and the face shows concentration rather than a fixed grin. Shoes make short rubber squeaks, fingers brush gritty holds, and breathing becomes audible during a difficult reach. A spotter, if present, stands back on the mat, attentive to the climber's position."
+ },
+ {
+  "id": "action.gen.parkour-vault-railing",
+  "domain": "action",
+  "topic": "parkour vault over a railing",
+  "names": [
+   "قفز باركور فوق حاجز",
+   "تجاوز درابزين باركور",
+   "ينقز فوق الدرابزين",
+   "باركور فوق سياج",
+   "parkour railing vault",
+   "vault over railing"
+  ],
+  "body": "A runner approaches a waist-high railing on clear, level ground and slows just enough to place one hand firmly on its top bar. Their shoulders move over that hand as their knees draw up and their hips pass sideways across the rail. The other arm opens for balance. Clothing folds and swings with the movement; a shoe may pass close to the bar without touching it. The hand makes a brief slap against metal, followed by two quick footfalls on landing. The runner's face stays intent, then relaxes as they continue forward. Nearby onlookers stand outside the landing space and turn their heads to follow."
+ },
+ {
+  "id": "action.gen.backflip",
+  "domain": "action",
+  "topic": "backflip",
+  "names": [
+   "شقلبة خلفية",
+   "قلبة خلفية",
+   "يقلب للوراء",
+   "باك فلب",
+   "backflip",
+   "backward somersault"
+  ],
+  "body": "In an open gym space above a padded floor, a performer stands upright, bends at the knees, and swings both arms upward. Their feet leave the mat together; the body rises before rotating backward. Knees draw toward the chest during the turn, then the legs extend as the floor comes back into view. The performer lands on both feet with bent knees and steadies with their arms. Their face shifts from concentration to a brief relieved smile. There is a soft mat thump at takeoff, a swish of clothing in the air, and a firmer landing thud. Observers watch from outside the landing area and react afterward."
+ },
+ {
+  "id": "action.gen.cartwheel",
+  "domain": "action",
+  "topic": "cartwheel",
+  "names": [
+   "cartwheel",
+   "عجلة بشرية",
+   "حركة العجلة",
+   "شقلبة جانبية",
+   "دولاب جمباز"
+  ],
+  "body": "On a flat gym mat or patch of grass, the performer stands sideways with arms raised beside the ears. One foot steps forward; the torso tips sideways as the first palm, then the second, presses into the ground. Straight legs sweep overhead in a wide split while weight passes from hand to hand. The first foot lands, then the second, and the performer rises facing the opposite direction. Hair and loose clothing swing with the rotation; palms and feet make four soft, distinct contacts. A coach or nearby friends watch the landing, their expressions turning to smiles when balance holds."
+ },
+ {
+  "id": "action.gen.handstand",
+  "domain": "action",
+  "topic": "handstand",
+  "names": [
+   "handstand",
+   "وقوف على اليدين",
+   "الوقوف على اليدين",
+   "وقفة إيدين",
+   "وقفة على الإيدين"
+  ],
+  "body": "On a gym mat, the performer plants both palms shoulder-width apart, fingers spread and pressing firmly into the surface. One leg kicks upward and the other follows until hips stack above shoulders and feet point toward the ceiling. Arms stay straight; small fingertip presses correct the body's gentle sway. A beginner may use a wall, with heels touching it lightly rather than striking it. Breathing remains audible, and the mat gives a faint squeak beneath shifting hands. The performer's face looks focused and slightly flushed; a spotter stands close, watching the hips and ready to steady the legs. One foot lowers, then the other."
+ },
+ {
+  "id": "action.gen.push-ups",
+  "domain": "action",
+  "topic": "push-ups",
+  "names": [
+   "push-ups",
+   "pushups",
+   "تمارين الضغط",
+   "تمرين ضغط",
+   "بوش اب",
+   "ضغط أرضي"
+  ],
+  "body": "On a clean floor or exercise mat, the person places palms just wider than shoulder-width and extends both legs behind, balancing on the toes. The body forms a fairly straight line from head to heels. Elbows bend as the chest lowers toward the mat without collapsing the hips; then the arms press the body back up. Clothing creases at the shoulders and waist, and each repetition brings a soft exhale and a slight mat squeak under the hands. The face shows concentration, with eyes toward the floor. A trainer nearby counts at the pace of each completed rise, not each descent."
+ },
+ {
+  "id": "action.gen.sit-ups",
+  "domain": "action",
+  "topic": "sit-ups",
+  "names": [
+   "sit-ups",
+   "situps",
+   "تمارين البطن",
+   "تمرين بطن",
+   "سيت اب",
+   "نهوض من الرقود"
+  ],
+  "body": "On an exercise mat, the person lies on their back with knees bent, feet flat and hands lightly beside the head or crossed over the chest. The abdomen tightens; shoulders lift first, followed by the upper back, until the torso comes toward the knees. The person pauses briefly, then lowers with control instead of dropping onto the mat. Feet may shift slightly, and fabric wrinkles across the stomach as the torso folds. Breathing is audible: an exhale on the way up and an inhale on the way down. The face looks intent, never strained into a grimace, while a nearby partner counts completed rises."
+ },
+ {
+  "id": "action.gen.jumping-rope",
+  "domain": "action",
+  "topic": "jumping rope",
+  "names": [
+   "jumping rope",
+   "skipping rope",
+   "نط الحبل",
+   "قفز الحبل",
+   "نط بالحبل",
+   "لعبة الحبل"
+  ],
+  "body": "In a courtyard or gym, the jumper holds a handle in each hand with elbows near the ribs. Small wrist circles send the rope up behind the back, over the head and down toward the ground. Both feet spring just high enough for the rope to pass underneath, then land softly on the balls of the feet with knees slightly bent. The rope makes a quick swish followed by a light tap on the ground; shoe taps keep a steady rhythm. Loose hair and clothing bounce with each hop. The jumper looks forward with a focused, relaxed face, while nearby people give the turning rope room."
+ },
+ {
+  "id": "action.gen.stretching-before-sport",
+  "domain": "action",
+  "topic": "stretching before sport",
+  "names": [
+   "stretching before sport",
+   "warm up stretches",
+   "الإطالة قبل الرياضة",
+   "تمارين الإحماء",
+   "تمطيط قبل اللعب",
+   "تسخين قبل الرياضة"
+  ],
+  "body": "Before a game on a court or field, players leave space between one another and begin with easy movements. One rolls the shoulders, swings each arm in a controlled arc, then steps into a shallow lunge and shifts weight from foot to foot. Another raises a knee toward the chest while balancing briefly on the other leg. Movements are smooth, without bouncing into an extreme position. Shoes scuff the surface, clothing rustles, and short conversations mix with steady breathing. Faces are alert and calm; players glance at teammates and the playing area as they finish, then walk or jog toward their starting positions."
+ },
+ {
+  "id": "action.gen.lifting-child-onto-shoulders",
+  "domain": "action",
+  "topic": "lifting a child onto shoulders",
+  "names": [
+   "lifting a child onto shoulders",
+   "shoulder ride",
+   "حمل طفل على الكتفين",
+   "ركوب الطفل على الأكتاف",
+   "شل الطفل على الكتاف",
+   "الطفل فوق الكتف"
+  ],
+  "body": "In an open room or outdoor gathering, an adult crouches in front of a child and checks that there is clear space overhead. With the child close to the body, the adult holds securely around the child's torso, lifts using the legs, and guides one leg to each side of the neck. The child settles astride the shoulders; the adult stands gradually while holding both lower legs. Fabric pulls across the adult's shoulders, and shoes press more firmly into the ground as the weight rises. The child may laugh and look around from the new height. The adult smiles, keeps a steady stance and speaks reassuringly."
+ },
+ {
+  "id": "action.gen.spinning-child-around",
+  "domain": "action",
+  "topic": "spinning a child around",
+  "names": [
+   "spinning a child around",
+   "spin child",
+   "تدوير الطفل",
+   "لف الطفل",
+   "تدوير الطفل بالهواء",
+   "أدوّر الطفل"
+  ],
+  "body": "In a clear patch of grass or a spacious room, an adult bends their knees and lifts a small child close against the chest, with firm support beneath the child's body and around the torso. The adult straightens and takes a few slow turning steps rather than pulling the child by the arms. The child's legs and loose clothing trail slightly behind each turn, then swing gently inward as the turning stops. Shoes make soft pivoting sounds; laughter and a brief rush of breath accompany the motion. Both faces are visible and smiling. The adult slows before setting the child's feet back on the ground and steadying them."
+ },
+ {
+  "id": "action.gen.carrying-a-baby",
+  "domain": "action",
+  "topic": "carrying a baby",
+  "names": [
+   "حمل الرضيع",
+   "حمل الطفل",
+   "شايل البيبي",
+   "شايلة البيبي",
+   "carrying a baby",
+   "holding an infant"
+  ],
+  "body": "An adult lifts a baby close to the chest, placing one hand beneath the bottom and the other behind the upper back and neck if the baby cannot yet hold its head steady. The baby’s weight settles against the adult’s forearm and torso; small legs hang or curl loosely, while the head turns toward a familiar voice. The adult adjusts their grip before walking with short, even steps. Fabric creases where the baby rests, and a tiny hand may grasp a collar. In a softly lit home, footsteps, clothing rustle, breathing, and occasional baby murmurs are the main sounds."
+ },
+ {
+  "id": "action.gen.rocking-a-baby-to-sleep",
+  "domain": "action",
+  "topic": "rocking a baby to sleep",
+  "names": [
+   "هز الرضيع للنوم",
+   "تهدئة الطفل للنوم",
+   "هز البيبي لينام",
+   "تنويم البيبي",
+   "rocking a baby to sleep",
+   "soothing a baby to sleep"
+  ],
+  "body": "An adult holds a baby securely against the chest or across both forearms, with the head supported. They shift their weight slowly from one foot to the other, or move a chair through a small, regular arc. The baby’s body follows with a gentle delay; a loose sleeve or blanket sways slightly. The adult’s face is relaxed and attentive, often lowered toward the baby. Blinks grow slower, fingers uncurl, and the baby’s head becomes heavier against the supporting arm. In a dim bedroom, soft humming, quiet breathing, a chair’s faint creak, and an occasional sleepy sigh accompany the motion."
+ },
+ {
+  "id": "action.gen.feeding-a-baby",
+  "domain": "action",
+  "topic": "feeding a baby",
+  "names": [
+   "إطعام الرضيع",
+   "رضاعة الطفل بالزجاجة",
+   "تغذية البيبي",
+   "أكل البيبي",
+   "feeding a baby",
+   "bottle-feeding a baby"
+  ],
+  "body": "For bottle-feeding, an adult holds the baby in a slightly upright position, supporting the head and shoulders with one arm. The other hand tilts the bottle so milk fills the teat, then pauses when the baby stops sucking or turns away. The baby’s jaw moves in small repeated pulses, with brief swallows and breaths between them; tiny fingers may rest against the bottle. The adult watches the baby’s face rather than forcing the pace. A cloth is kept nearby for drips. In ordinary room light, the sounds are quiet sucking, swallowing, bottle handling, and soft speech."
+ },
+ {
+  "id": "action.gen.brushing-teeth",
+  "domain": "action",
+  "topic": "brushing teeth",
+  "names": [
+   "تنظيف الأسنان بالفرشاة",
+   "تفريش الأسنان",
+   "أفرش أسناني",
+   "فرش أسنانه",
+   "brushing teeth",
+   "toothbrushing"
+  ],
+  "body": "At a bathroom sink, a person squeezes a small dab of toothpaste onto a damp toothbrush and brings it to the teeth. The wrist guides short, controlled strokes along the front, back, and chewing surfaces, while lips part and cheeks shift around the brush. Foam builds at the corners of the mouth. In the mirror, the person glances between the brush and their reflection, then spits into the basin and rinses. The brush makes a soft scratchy swish; the tap splashes against ceramic. Bright bathroom light catches water drops on the chrome faucet and the wet toothbrush bristles."
+ },
+ {
+  "id": "action.gen.washing-face-at-a-sink",
+  "domain": "action",
+  "topic": "washing face at a sink",
+  "names": [
+   "غسل الوجه بالمغسلة",
+   "غسل الوجه عند الحوض",
+   "أغسل وجهي بالمغسلة",
+   "washing face at a sink",
+   "washing your face"
+  ],
+  "body": "A person leans over a bathroom sink, turns the tap, and cups both hands under the stream. Water gathers in the palms before being lifted to the face; fingers spread across the cheeks and forehead, then move gently around the nose and chin. Droplets run from the jaw into the white ceramic basin and darken the cuffs if sleeves are left low. The person closes their eyes against the splash, rinses once more, and pats the face with a towel. Running water changes pitch as hands interrupt it, followed by brief splashes, a faucet click, and the towel’s soft rustle."
+ },
+ {
+  "id": "action.gen.shaving-with-a-razor",
+  "domain": "action",
+  "topic": "shaving with a razor",
+  "names": [
+   "حلاقة الذقن بالموس",
+   "حلاقة الوجه بالشفرة",
+   "يحلق بالموس",
+   "shaving with a razor",
+   "razor shave"
+  ],
+  "body": "In front of a bathroom mirror, a person spreads shaving foam or gel over damp facial hair, leaving the lips and eyes clear. One hand pulls a patch of skin gently taut while the other draws a wet razor across it in short, light strokes. The razor is lifted and rinsed between passes; foam and cut stubble wash into the sink. The person tilts their chin to see the jawline and checks the result in the mirror, expression focused. No cuts are visible. Bright light reflects off the faucet, while water trickles and the razor makes a faint scraping sound."
+ },
+ {
+  "id": "action.gen.combing-hair",
+  "domain": "action",
+  "topic": "combing hair",
+  "names": [
+   "تمشيط الشعر",
+   "تسريح الشعر بالمشط",
+   "أمشط شعري",
+   "يمشط شعره",
+   "combing hair",
+   "combing your hair"
+  ],
+  "body": "A person holds a comb near the middle or ends of their hair and draws it downward, beginning below any tangles before working closer to the roots. The other hand steadies a section so the scalp is not pulled. Individual strands align into a smoother sheet, while a few loose hairs catch between the comb’s teeth. Straight hair falls quickly; curls spring back into shape after each pass. The person watches a mirror and changes the comb’s angle around the ears and hairline. In indoor light, the comb gives a faint rasp through the hair, with occasional soft taps against the sink."
+ },
+ {
+  "id": "action.gen.braiding-hair",
+  "domain": "action",
+  "topic": "braiding hair",
+  "names": [
+   "تضفير الشعر",
+   "جدل الشعر",
+   "سوي ضفيرة",
+   "أسوي جديلة",
+   "braiding hair",
+   "making a hair braid"
+  ],
+  "body": "A person gathers the hair, smooths it with their fingers, and divides it into three roughly equal strands. Holding one strand in each hand and the third between fingers, they cross an outer strand over the middle, then repeat from the opposite side. Their hands alternate in a steady rhythm, tightening each crossing without jerking the scalp. A neat woven pattern lengthens down the back or over one shoulder; loose ends move lightly as the hands work. The braider looks at the strands or their reflection, then secures the end with a small elastic. Hair brushes against fabric with a soft rustle."
+ },
+ {
+  "id": "action.gen.applying-lipstick",
+  "domain": "action",
+  "topic": "applying lipstick",
+  "names": [
+   "وضع أحمر الشفاه",
+   "وضع الروج",
+   "تحط روج",
+   "حمرة شفايف",
+   "applying lipstick",
+   "putting on lipstick"
+  ],
+  "body": "In front of a mirror, a person removes the cap from a short lipstick tube and twists its base until the coloured tip rises a few millimetres. Holding still with lips slightly parted, they trace the upper lip from the centre outward, then sweep colour across the lower lip. The waxy tip glides with light pressure, leaving an even satin or matte layer. They press their lips together once, check the edges, and make a small correction. Their expression is focused, then relaxed. The cap clicks back on. Bathroom or dressing-table light catches the colour and the tube’s reflective casing."
+ },
+ {
+  "id": "action.gen.applying-eyeliner",
+  "domain": "action",
+  "topic": "applying eyeliner",
+  "names": [
+   "وضع الكحل",
+   "رسم الآيلاينر",
+   "تحط كحل",
+   "تخط عينها",
+   "applying eyeliner",
+   "putting on eyeliner"
+  ],
+  "body": "Close to a mirror, a person steadies one elbow and looks slightly downward. With the free hand they may gently hold the skin beside the eye; with the other, they guide a fine brush or felt tip along the upper lash line in short, controlled strokes. A dark, narrow line appears just above the lashes, sometimes tapering into a small outward wing. They pause, blink carefully, compare both eyes, and touch up an uneven spot. Their face stays intent and still. The applicator makes almost no sound beyond a faint tap against its cap; bright, even light reveals the line without harsh shadows."
+ },
+ {
+  "id": "action.gen.putting-on-a-hijab",
+  "domain": "action",
+  "topic": "putting on a hijab",
+  "names": [
+   "لبس الحجاب",
+   "ارتداء الحجاب",
+   "تحط حجاب",
+   "تلبس شيلة",
+   "putting on a hijab",
+   "wrapping a hijab"
+  ],
+  "body": "A person places a light rectangular scarf over their head, leaving one end longer than the other. They adjust the front edge around the forehead and cheeks, then bring the longer end under the chin and around the neck or over a shoulder. Their fingers smooth small folds and secure the fabric with a magnet or pin, kept clear of the skin. Cotton stays softly in place; chiffon drapes and shifts more easily. Their expression is calm and attentive as they check the frame in a mirror. Cloth rustles quietly against clothing in the soft light of a bedroom or dressing area."
+ },
+ {
+  "id": "action.gen.tying-a-shemagh",
+  "domain": "action",
+  "topic": "tying a shemagh",
+  "names": [
+   "لبس الشماغ",
+   "ربط الشماغ",
+   "يلف شماغ",
+   "تعديل الشماغ",
+   "tying a shemagh",
+   "wearing a shemagh"
+  ],
+  "body": "A person lifts a square, checked shemagh folded into a triangle and settles its straight edge across the forehead. The two long sides fall beside the face, while the pointed section hangs behind. They pull one side across the lower face or around the head, according to the style, then tuck its end into a fold; the other side hangs loose or is brought across and tucked too. Fingers adjust the tension so the cloth sits securely without pulling. Their expression is focused, then satisfied. The lightweight fabric flutters in a breeze and makes a soft rustle; red-and-white or black-and-white checks remain visible in daylight."
+ },
+ {
+  "id": "action.gen.tying-shoelaces",
+  "domain": "action",
+  "topic": "tying shoelaces",
+  "names": [
+   "ربط الحذاء",
+   "ربط الرباط",
+   "يربط قيطان الحذاء",
+   "يربط رباطه",
+   "tying shoelaces",
+   "tying shoe laces"
+  ],
+  "body": "Seated or bent over, a person takes one lace in each hand and pulls the shoe snug across the foot. They cross the laces, pass one end underneath, and pull both outward to make the first knot. One hand forms a loop; the other wraps its lace around the loop, pushes a second loop through the opening, and pulls both loops apart. The woven laces slide, then tighten, leaving two loops and two short ends resting on the shoe. Fingers make small corrections while the person watches the knot. Lace tips tap lightly against the shoe; the sole stays planted on the floor."
+ },
+ {
+  "id": "action.gen.buttoning-a-shirt",
+  "domain": "action",
+  "topic": "buttoning a shirt",
+  "names": [
+   "تزرير القميص",
+   "إغلاق أزرار القميص",
+   "يزرر قميصه",
+   "يسد أزرار القميص",
+   "buttoning a shirt",
+   "fastening shirt buttons"
+  ],
+  "body": "A person holds the two front edges of a shirt together and checks that the button and its matching hole are level. Using thumb and forefinger, they push the small round button sideways through the slit, then pull the fabric gently until it lies flat. They repeat down the front, glancing between their fingers and the shirt to avoid skipping a hole. Cotton bunches briefly around each button before smoothing out; stiffer fabric makes a faint brushing sound. The person’s expression is neutral and concentrated. In a bedroom mirror, even light shows the neat line of buttons and the collar settling into place."
+ },
+ {
+  "id": "action.gen.ironing-clothes",
+  "domain": "action",
+  "topic": "ironing clothes",
+  "names": [
+   "كي الملابس",
+   "كوي الملابس",
+   "يكوي هدوم",
+   "يكوي قميص",
+   "ironing clothes",
+   "ironing a shirt"
+  ],
+  "body": "An ironing board stands at waist height with a garment spread flat across its padded surface. A person smooths the fabric with one hand, then moves a heated iron forward in steady, overlapping passes, keeping the other hand clear of the soleplate. They lift and reposition the garment to reach sleeves, seams, or the collar rather than dragging deep folds underneath. Creases relax behind the iron; a little steam may rise and fade. Their gaze follows the edge of each pass. The iron glides with a soft scrape, and steam releases with a brief hiss. Bright room light makes remaining wrinkles easy to see."
+ },
+ {
+  "id": "action.gen.folding-laundry",
+  "domain": "action",
+  "topic": "folding laundry",
+  "names": [
+   "طي الملابس",
+   "تطبيق الملابس",
+   "يطوي الهدوم",
+   "يطبق الغسيل",
+   "folding laundry",
+   "folding clothes"
+  ],
+  "body": "A person lifts a dry garment from a laundry pile and gives it a small shake so the fabric falls open. They lay it on a bed or table, smooth it with both palms, and bring the sides inward before folding the bottom up into a compact rectangle. For a T-shirt, the sleeves fold toward the centre; towels make thicker, straighter stacks. Each fold presses out trapped air, while soft cotton bends easily and heavier denim keeps a sharper edge. The person watches the corners and adjusts them with quick fingertips. Fabric swishes and brushes the surface as a neat pile grows beside them."
+ },
+ {
+  "id": "action.gen.hanging-laundry-on-a-roof",
+  "domain": "action",
+  "topic": "hanging laundry on a roof",
+  "names": [
+   "نشر الغسيل على السطح",
+   "تعليق الغسيل",
+   "أنشر غسيل",
+   "نشر ملابس",
+   "hanging laundry",
+   "rooftop laundry"
+  ],
+  "body": "On a flat Iraqi rooftop, a person lifts damp clothes from a plastic basin beside a low parapet. They shake each garment once or twice, arms spreading as droplets flick onto the concrete, then drape it evenly over a taut clothesline. Fingers pinch a plastic peg open and release it over the fabric and line with a small click. Wet cotton hangs heavily at first; a breeze lifts its edges and makes sleeves sway. The person squints in bright sunlight and checks that nothing touches the dusty roof. Nearby family members may pass through, stepping around the basin. Pegs click, fabric flaps softly, and distant street sounds rise from below."
+ },
+ {
+  "id": "action.gen.sweeping-the-floor",
+  "domain": "action",
+  "topic": "sweeping the floor",
+  "names": [
+   "كنس الأرض",
+   "كنس البيت",
+   "أكنس الأرض",
+   "sweeping the floor",
+   "floor sweeping"
+  ],
+  "body": "In a tiled Iraqi home, a person grips a long-handled broom with both hands and draws its bristles across the floor in short, overlapping strokes. Fine dust, crumbs, and hair gather into a narrow line, then a small pile. The broom head flexes against the tiles with a dry swishing scrape; loose grains tick against furniture legs. The person shifts their feet around chair legs, bends to hold a dustpan flat to the floor, and pushes the pile into it with several careful strokes. Their face stays focused on stray bits near the skirting. Someone nearby lifts their feet briefly to let the broom pass. Window light shows dust moving through the air."
+ },
+ {
+  "id": "action.gen.mopping-the-floor",
+  "domain": "action",
+  "topic": "mopping",
+  "names": [
+   "مسح الأرض",
+   "تمسيح الأرض",
+   "مسح البلاط",
+   "mopping",
+   "mopping the floor"
+  ],
+  "body": "A bucket sits on the tiles while a person lowers a mop into water, lifts its darkened strands, and wrings them until drops fall back with hollow plinks. They push the mop forward and pull it back in broad, overlapping arcs, stepping onto the dry section rather than the wet floor. Water leaves a thin reflective film that follows the tile joints and gradually dulls as it evaporates. The mop makes a soft wet swish, with an occasional squeak where pressure increases. The person looks down to catch missed corners, then moves a chair aside. Others pause at the doorway or walk around the wet area. Window light glints across the fresh streaks."
+ },
+ {
+  "id": "action.gen.vacuuming",
+  "domain": "action",
+  "topic": "vacuuming",
+  "names": [
+   "تنظيف بالمكنسة الكهربائية",
+   "كنس بالمكنسة الكهربائية",
+   "أشفط الغبار",
+   "تشغيل المكنسة",
+   "vacuuming",
+   "using a vacuum cleaner"
+  ],
+  "body": "A person pushes a vacuum cleaner head across a rug in straight passes, then draws it back, slightly overlapping the last track. One hand holds the tube or handle while the other guides the hose around a sofa leg. The wheels rattle lightly over tile, but the motor's steady hum dominates; grains tapped by suction make faint clicks inside the tube. Rug fibres flatten in one direction and lift as the head returns. The person glances down for missed crumbs, pauses to shift a lightweight chair, and resumes. Someone nearby raises their voice slightly over the motor or steps clear of the trailing cord. Daylight reveals the changing pile of the rug."
+ },
+ {
+  "id": "action.gen.washing-dishes",
+  "domain": "action",
+  "topic": "washing dishes",
+  "names": [
+   "غسل الصحون",
+   "غسل المواعين",
+   "جلي الصحون",
+   "أغسل المواعين",
+   "washing dishes",
+   "doing the dishes"
+  ],
+  "body": "At a kitchen sink, a person holds a plate by its rim, wets it under the tap, and works a soapy sponge across the face and greasy edges in small circles. They rotate the plate, scrub the back, then rinse until the foam slides away in thin streams. Ceramic clinks lightly against other dishes; running water splashes into a metal or ceramic basin. Their eyes check for remaining marks before they set the plate upright in a draining rack, where drops collect and fall. Cups and spoons follow, each turned to rinse inside. A family member may place another dish beside the sink and wait for space. Overhead light glints on wet surfaces."
+ },
+ {
+  "id": "action.gen.setting-the-table",
+  "domain": "action",
+  "topic": "setting the table",
+  "names": [
+   "ترتيب السفرة",
+   "تجهيز المائدة",
+   "فرش السفرة",
+   "أرتب السفرة",
+   "setting the table",
+   "laying the table"
+  ],
+  "body": "A person clears a dining table, smooths a cloth or wipes the surface, then places plates at each seat with measured gaps between them. Plates give soft ceramic taps; spoons and forks make brief metallic clicks as they are laid beside them. Glasses go above the plates, and a water jug or serving dishes take the reachable centre. The person leans back to check the spacing, then straightens a glass or shifts a chair. Another family member may carry a dish in carefully with both hands, while seated people watch and move their elbows aside. Warm indoor light reflects in the glassware, and quiet conversation continues beneath the sounds of dishes being set down."
+ },
+ {
+  "id": "action.gen.pouring-water-from-a-jug",
+  "domain": "action",
+  "topic": "pouring water from a jug",
+  "names": [
+   "صب الماء من إبريق",
+   "صب الماي من الجك",
+   "أصب ماي من الجك",
+   "سكب الماء في كأس",
+   "pouring water from a jug",
+   "pouring water"
+  ],
+  "body": "A person wraps their hand around a jug handle, lifts it from the table, and brings its spout just above an empty glass. They tilt their wrist gradually; a clear stream forms, strikes the bottom with a sharp splash, then sounds deeper as the water level rises. Small bubbles cling briefly to the glass before floating up. The person watches the level closely, straightens the jug to cut off the stream, and holds it still for a last drop before setting it down with a soft tap. Someone receiving the water steadies the glass or draws it closer, then relaxes their hand. Indoor light bends through the filled glass and casts a wavering highlight on the table."
+ },
+ {
+  "id": "action.gen.opening-a-bottle",
+  "domain": "action",
+  "topic": "opening a bottle",
+  "names": [
+   "فتح القنينة",
+   "فتح القنينة بيدي",
+   "فتح الزجاجة",
+   "فتح بطل ماي",
+   "opening a bottle",
+   "unscrewing a bottle cap"
+  ],
+  "body": "A person steadies a plastic water bottle with one hand and grips its ribbed cap with the other. Their fingers twist the cap anticlockwise while the bottle flexes slightly under the holding hand. The tamper ring breaks away from the cap with a few crisp clicks; the cap turns freely, rises along the threads, and lifts off. The person glances at the opening, keeps the bottle upright so water does not spill, and sets the cap nearby or holds it between their fingers. Someone waiting for a drink watches and reaches for a glass. In a quiet room, the plastic crackle and the cap's light tap on the table are distinct."
+ },
+ {
+  "id": "action.gen.peeling-an-orange",
+  "domain": "action",
+  "topic": "peeling an orange",
+  "names": [
+   "تقشير برتقالة",
+   "تقشير البرتقال",
+   "أقشر برتقالة",
+   "peeling an orange",
+   "orange peel"
+  ],
+  "body": "A person holds a round orange in one palm and presses a thumbnail into the dimpled skin near the stem. The rind breaks with a soft pop, releasing a fine spray of citrus oil. Fingers lift curved pieces of orange peel, exposing white pith and then glossy segments beneath. The fruit turns in the supporting hand as each strip pulls away with a faint tearing sound. Loose peel curls on the table; a little white pith stays stuck to the fruit. The person looks down in concentration, then relaxes as the last piece comes free. In daylight, the moist segments catch small bright highlights."
+ },
+ {
+  "id": "action.gen.cutting-a-watermelon",
+  "domain": "action",
+  "topic": "cutting a watermelon",
+  "names": [
+   "تقطيع البطيخ",
+   "قطع بطيخة",
+   "تقطيع الرقي",
+   "cutting a watermelon",
+   "slicing watermelon"
+  ],
+  "body": "A green, striped watermelon rests on a steady cutting board. One hand keeps it from rolling while the other guides a kitchen knife down through the firm rind. The blade meets resistance, then slips into the softer flesh with a wet crunch. The halves ease apart under their own weight, revealing red flesh, pale rind and scattered dark seeds. The cutter watches the blade closely and moves their holding hand clear before making thick wedges. Each wedge lands on the board with a damp thud; juice beads and runs along the cut surface. Nearby people may lean in and smile at the opened fruit."
+ },
+ {
+  "id": "action.gen.kneading-dough",
+  "domain": "action",
+  "topic": "kneading dough",
+  "names": [
+   "عجن العجين",
+   "عجن العجينة",
+   "أعجن عجين",
+   "kneading dough",
+   "dough kneading"
+  ],
+  "body": "A mound of pale dough sits on a lightly floured counter. The person folds its far edge toward the centre, presses forward with the heels of both hands, then turns the mass a quarter turn and repeats. At first the dough sticks to fingers and leaves rough streaks; as it is worked, it becomes smoother, more elastic and less likely to tear. Each push makes a soft, heavy slap against the counter. Flour dust clings to knuckles and the work surface. The kneader looks down with a focused, relaxed face, leaning body weight into the push rather than striking the dough."
+ },
+ {
+  "id": "action.gen.rolling-bread-dough",
+  "domain": "action",
+  "topic": "rolling bread dough",
+  "names": [
+   "فرد عجينة الخبز",
+   "رق العجين",
+   "أفرد عجين خبز",
+   "rolling bread dough",
+   "rolling dough"
+  ],
+  "body": "A small ball of bread dough is pressed into a thick disc on a floured work surface. The person rolls a smooth wooden pin away from the body, lifts it, and rolls again from another angle, turning the dough between passes. Pressure spreads the disc outward; its edge grows thinner and wider without becoming perfectly circular. Flour leaves pale patches on the dough and a dusty ring on the counter. The pin makes a low rumbling sound, with a light tap when lifted and set down. The person's eyes track uneven spots, and their hands ease pressure near the edges to avoid tearing."
+ },
+ {
+  "id": "action.gen.flipping-a-pancake",
+  "domain": "action",
+  "topic": "flipping a pancake",
+  "names": [
+   "قلب البان كيك",
+   "تقليب البانكيك",
+   "أقلب بان كيك",
+   "flipping a pancake",
+   "pancake flip"
+  ],
+  "body": "A round pancake cooks in a shallow pan, its top changing from glossy batter to a dull surface dotted with small bubbles. The cook watches the edge set, slides a flat spatula underneath and lifts just enough to free the pancake. A quick turn of the wrist rolls it over; it lands flat with a soft slap, showing a mottled golden-brown cooked side. The pan gives a quiet sizzle as the second side touches the heat. The pancake bends briefly during the turn but holds together. The cook's face stays intent until it lands, then their shoulders loosen."
+ },
+ {
+  "id": "action.gen.grilling-kebab",
+  "domain": "action",
+  "topic": "grilling kebab",
+  "names": [
+   "شوي الكباب",
+   "شوي كباب",
+   "أشوي كباب",
+   "grilling kebab",
+   "kebab grill"
+  ],
+  "body": "Shaped minced-meat kebabs rest lengthwise on metal skewers above glowing charcoal or a hot grill. The cook grips the cool ends and rotates each skewer so a raw-looking side faces the heat. Fat sizzles and drips, sending up brief wisps of smoke; the surface darkens in patches and develops browned ridges while staying attached to the skewer. A slight shimmer of hot air rises above the grill. The cook leans back from the heat, watches for uneven browning and turns the skewers again with a controlled wrist motion. People waiting nearby may watch and smile as the smell spreads through the cooking area."
+ },
+ {
+  "id": "action.gen.stirring-a-big-pot",
+  "domain": "action",
+  "topic": "stirring a big pot",
+  "names": [
+   "تحريك قدر كبير",
+   "تقليب قدر كبير",
+   "أحرك جدر كبير",
+   "stirring a big pot",
+   "stirring large pot"
+  ],
+  "body": "A wide, deep cooking pot sits firmly on a burner, filled below its rim with simmering food. The cook grips a long spoon and draws it along the bottom in a slow arc, then pulls the contents upward through the centre. The liquid follows a broad swirl rather than spinning all at once; thicker pieces lag and roll over as the spoon passes. Small bubbles break at the surface, steam rises and the spoon taps the pot with a hollow metallic sound. The cook keeps their face back from the steam, eyes on the contents, and steadies the pot by a heat-safe handle when needed."
+ },
+ {
+  "id": "action.gen.frying-eggs",
+  "domain": "action",
+  "topic": "frying eggs",
+  "names": [
+   "قلي البيض",
+   "قلي بيض",
+   "أقلي بيض",
+   "frying eggs",
+   "fried eggs"
+  ],
+  "body": "A little oil glistens across a heated frying pan. The cook cracks an egg on the pan's rim, opens the shell over the centre and lets the clear white spread around a rounded yellow yolk. The white sizzles on contact, turning opaque from the edges inward; tiny bubbles form where it meets the oil. A second egg may settle beside it, its white touching the first without the yolks merging. The cook watches closely, tilts the pan to move hot oil around the edges and lowers the heat if it spits. A spatula slides gently underneath when the whites have set."
+ },
+ {
+  "id": "action.gen.making-iraqi-tea",
+  "domain": "action",
+  "topic": "making tea the Iraqi way",
+  "names": [
+   "شاي عراقي",
+   "چاي عراقي",
+   "تحضير الشاي العراقي",
+   "تخدير چاي",
+   "iraqi tea",
+   "iraqi chai"
+  ],
+  "body": "A small metal kettle warms water on a stove while loose black tea steeps separately in a teapot. The maker lifts the teapot by its handle, tilts it over a narrow-waisted glass, and pours a dark stream to about a third of the glass. Hot water follows, turning the tea clear reddish brown. A spoon of sugar may be stirred in with light clinks against the glass. Steam rises and curls in the kitchen light. The maker sets the glass on a small saucer, keeping fingers away from the hot rim, then offers it to a waiting guest, who smiles and reaches for the saucer."
+ },
+ {
+  "id": "action.gen.serving-coffee-on-tray",
+  "domain": "action",
+  "topic": "serving coffee on a tray",
+  "names": [
+   "تقديم القهوة بالصينية",
+   "ضيافة القهوة",
+   "تقديم القهوة بالسينّية",
+   "تقديم گهوة بصينية",
+   "serving coffee on a tray",
+   "coffee tray service"
+  ],
+  "body": "Small cups sit spaced apart on a round metal tray, beside a coffee pot and perhaps a little dish of dates. The server grips the tray underneath with one hand, keeping it level as they walk; the cups tremble slightly but stay upright. At the guests, the server stops before lifting a cup by its handle or rim and offering it gently. Coffee pours in a thin stream if cups are filled there, making a soft splash against ceramic. A guest looks up, smiles, and takes the cup while the server watches the handoff. Reflections slide across the tray under warm indoor light."
+ },
+ {
+  "id": "action.gen.eating-by-hand-from-shared-tray",
+  "domain": "action",
+  "topic": "eating with hands from a shared tray",
+  "names": [
+   "الأكل باليد من صينية مشتركة",
+   "الأكل باليد من طبق مشترك",
+   "اكل باليد من صينية",
+   "ناكل بإيدنا من صينية",
+   "eating with hands from a shared tray",
+   "shared tray meal"
+  ],
+  "body": "Several diners sit around a broad tray of rice and food, each reaching toward the portion nearest them. With clean fingertips, one person gathers a small mouthful, pressing it together so loose grains stay in place, then brings it steadily to the mouth. A few grains fall back onto the tray. Others pause to speak, smile, or pass a nearby piece of bread without reaching across someone else. Fingers touch the tray with faint taps; conversation, soft chewing, and the rustle of sleeves fill the room. Warm light picks out individual rice grains, glossy food, and the relaxed faces around the meal."
+ },
+ {
+  "id": "action.gen.eating-with-chopsticks",
+  "domain": "action",
+  "topic": "eating with chopsticks",
+  "names": [
+   "الأكل بعيدان الطعام",
+   "استخدام عيدان الأكل",
+   "الأكل بعيدان الأكل",
+   "آكل بالچوبستكس",
+   "eating with chopsticks",
+   "using chopsticks"
+  ],
+  "body": "A diner holds two slim chopsticks in one hand above a bowl. The lower stick rests almost still against the thumb and ring finger; the upper stick moves between thumb and fingers. Its tip lowers toward a bite, closes against the lower tip, then lifts the food with a small, controlled squeeze. A slippery piece may wobble or slide back into the bowl before the next attempt. The diner leans slightly forward and brings the bite to the mouth, smiling at a companion across the table. Wood or metal tips make faint clicks against each other and the bowl; overhead light catches the food’s surface."
+ },
+ {
+  "id": "action.gen.drinking-from-straw",
+  "domain": "action",
+  "topic": "drinking from a straw",
+  "names": [
+   "الشرب بالقشة",
+   "الشرب بالمصاصة",
+   "أشرب بشفاطة",
+   "اشرب بقشة",
+   "drinking from a straw",
+   "sipping through a straw"
+  ],
+  "body": "A straw stands at an angle in a glass of juice, its lower end below the liquid surface. The drinker steadies the glass, bends toward the straw, and closes their lips around its tip. Their cheeks draw in very slightly as the liquid climbs the straw; ice cubes may shift and click when the glass tilts. After a sip, they release the straw, swallow, and lower the glass, leaving a little moisture on its rim. Condensation beads on the outside and runs toward the fingers. In café or kitchen light, the drink glows through the glass while nearby voices continue at a normal level."
+ },
+ {
+  "id": "action.gen.blowing-on-hot-food",
+  "domain": "action",
+  "topic": "blowing on hot food",
+  "names": [
+   "النفخ على الطعام الساخن",
+   "تبريد الأكل بالنفخ",
+   "أنفخ على الأكل الحار",
+   "انفخ على اللقمة الحارة",
+   "blowing on hot food",
+   "cooling food by blowing"
+  ],
+  "body": "A person lifts a spoonful of steaming soup or a hot bite of food and holds it a short distance from the mouth. They purse their lips and send two or three gentle breaths across the surface. Steam bends away with each breath, while a thin layer of liquid ripples in the spoon. Their eyes stay on the food; a companion nearby waits or continues eating, perhaps smiling at the cautious pause. The person tests the temperature with a small sip or bite before taking more. The spoon gives a quiet clink against the bowl, and soft blowing is audible between kitchen or dining-room sounds."
+ },
+ {
+  "id": "action.gen.toasting-with-juice-glasses",
+  "domain": "action",
+  "topic": "toasting with glasses of juice",
+  "names": [
+   "نخب بكؤوس العصير",
+   "رفع كؤوس العصير",
+   "نخب بالعصير",
+   "نرفع كلاصات عصير",
+   "toasting with glasses of juice",
+   "juice glass toast"
+  ],
+  "body": "People around a table lift glasses filled with coloured juice, holding them by the sides or stems. They turn toward one another, smile, and extend their arms just far enough for the rims to meet. The glasses touch with a light clink; liquid sways toward the edges and settles again as each hand draws back. Someone says a short celebratory phrase while others laugh or echo it. They take a sip after the clink, then lower the glasses onto the table with soft taps. Daylight or warm room light shines through the juice, showing ice, pulp, or tiny bubbles where present."
+ },
+ {
+  "id": "action.gen.opening-a-gift",
+  "domain": "action",
+  "topic": "opening a gift",
+  "names": [
+   "فتح هدية",
+   "فتح الهدية",
+   "أفتح هدية",
+   "يفتح هدية",
+   "opening a gift",
+   "unwrapping a present"
+  ],
+  "body": "A recipient holds a wrapped box on their lap or a table, glances at the giver, and smiles before starting. Fingertips find the edge of a tape strip or loosen a ribbon; paper creases and tears with a crisp rustle as it is pulled away. The box stays mostly still under one hand while the other lifts the lid. The recipient looks inside, eyebrows rising or their smile widening, then turns the gift so others can see. The giver watches their face and smiles back; nearby people lean in or speak softly. Loose wrapping paper gathers around the box under the room’s ordinary light."
+ },
+ {
+  "id": "action.gen.wrapping-a-gift",
+  "domain": "action",
+  "topic": "wrapping a gift",
+  "names": [
+   "تغليف هدية",
+   "لف هدية",
+   "تغليف الهدايا",
+   "ألف الهدية",
+   "wrapping a gift",
+   "gift wrapping"
+  ],
+  "body": "On a table, a person lays a rectangular box face down on patterned wrapping paper, pulls the near edge snugly over it, and fixes it with a small piece of clear tape. The paper slides slightly before the tape grips. They bring the other edge across, crease it with a fingertip, then fold each open end into flat triangular flaps. Scissors make short, crisp snips; the paper rustles with every adjustment. Their eyes stay on the corners, lips pressed in concentration. A ribbon bends around the box and springs gently as they pull it into a bow under warm room light."
+ },
+ {
+  "id": "action.gen.writing-a-letter",
+  "domain": "action",
+  "topic": "writing a letter",
+  "names": [
+   "كتابة رسالة",
+   "كتابة جواب",
+   "أكتب رسالة",
+   "أكتب جواب",
+   "writing a letter",
+   "handwritten letter"
+  ],
+  "body": "A person sits at a desk with a sheet of paper angled slightly toward their writing hand. One hand steadies the page while the other guides a pen in small strokes across each line. The nib makes a faint scratch, pauses at the end of a sentence, then moves again after a brief glance upward. Their expression shifts between concentration and a slight smile. Fresh ink looks darker than the lines above it. When the page is finished, they lift it by the corners, wait a moment, fold it into thirds with firm finger creases, and slide it into an envelope."
+ },
+ {
+  "id": "action.gen.signing-a-document",
+  "domain": "action",
+  "topic": "signing a document",
+  "names": [
+   "توقيع مستند",
+   "توقيع وثيقة",
+   "توقيع ورقة",
+   "أوقع الورقة",
+   "signing a document",
+   "signing papers"
+  ],
+  "body": "A document lies flat on a desk, its printed paragraphs ending above a clearly marked signature line. The signer scans the page, lowers a pen to the line, and writes in a quick sequence of loops and strokes. Their wrist glides while the heel of the hand rests lightly on the paper. The pen makes a soft, uneven scratching sound and briefly slows at the final stroke. Their face is attentive rather than posed. If another person is present, that person waits beside the desk, watching the page without reaching for it. The signer lifts the pen and lets the ink settle before moving the sheet."
+ },
+ {
+  "id": "action.gen.typing-fast-on-a-laptop",
+  "domain": "action",
+  "topic": "typing fast on a laptop",
+  "names": [
+   "طباعة سريعة على لابتوب",
+   "الكتابة بسرعة على حاسوب محمول",
+   "أطبع بسرعة عاللابتوب",
+   "كتابة سريعة عاللابتوب",
+   "typing fast on a laptop",
+   "fast laptop typing"
+  ],
+  "body": "A person leans toward an open laptop, elbows near the desk and wrists hovering just above the keyboard. Their fingers strike different keys in rapid, uneven bursts, not a perfectly steady rhythm. Keys travel a few millimetres and spring back, producing a light plastic clatter punctuated by the larger tap of the space bar. Text grows line by line on the screen. Their eyes track the words, occasionally flicking down to the keys; their brow tightens when they correct a mistake with several sharp backspace taps. The screen casts a cool glow on their face, while the laptop stays still except for slight vibration from the keystrokes."
+ },
+ {
+  "id": "action.gen.video-call-with-family",
+  "domain": "action",
+  "topic": "video call with family",
+  "names": [
+   "مكالمة فيديو مع العائلة",
+   "اتصال مرئي مع الأهل",
+   "فيديو كول ويا الأهل",
+   "مكالمة فيديو ويا العائلة",
+   "video call with family",
+   "family video call"
+  ],
+  "body": "A phone stands propped on a table, its front camera facing two family members seated close enough to share the frame. They lean in, smile, and wave toward the screen; a child briefly moves too close, filling the image with their face before pulling back. On the display, relatives respond a fraction of a second later, waving and talking over one another. Voices sound thin through the small speaker, with occasional compression that clips a syllable. One person turns the phone slightly so everyone fits, causing the background to sweep across the screen. Warm indoor light catches faces, while the call display adds a cooler glow."
+ },
+ {
+  "id": "action.gen.taking-a-photo-of-food",
+  "domain": "action",
+  "topic": "taking a photo of food",
+  "names": [
+   "تصوير الطعام",
+   "تصوير الأكل",
+   "أصور الأكل",
+   "أصور الطبق",
+   "taking a photo of food",
+   "food photo"
+  ],
+  "body": "A plate of food sits on a table beside a glass and folded napkin. A person raises a phone over the plate, tilts it to keep the rim inside the frame, then shifts sideways to avoid casting a shadow across the food. Their eyes move between the real plate and its image on the screen. They tap the food on the display to set focus and exposure; the bright highlights soften slightly. Their free hand nudges a spoon away from the plate’s edge. The phone stays still for a beat, a faint shutter sound plays, and they lower it to check the picture. Nearby diners pause briefly, then resume eating."
+ },
+ {
+  "id": "action.gen.scrolling-a-phone-in-bed",
+  "domain": "action",
+  "topic": "scrolling a phone in bed",
+  "names": [
+   "تصفح الهاتف في السرير",
+   "التمرير على الهاتف في الفراش",
+   "أتصفح الموبايل بالفراش",
+   "أقلب بالموبايل بالسرير",
+   "scrolling a phone in bed",
+   "phone scrolling in bed"
+  ],
+  "body": "A person lies against a pillow with a blanket pulled over their legs, holding a phone above their chest. The screen lights their face in cool, changing tones while the room behind them remains dim. Their thumb drags upward in short strokes; each page glides, slows, and settles before the next swipe. They pause to read, blink, and shift their grip as the phone grows heavy in one hand. The mattress dips when they roll onto one side, and the blanket makes a soft brushing sound. A quiet tap opens an item, followed by another swipe; their expression changes briefly with what they see."
+ },
+ {
+  "id": "action.gen.reading-a-book-under-a-lamp",
+  "domain": "action",
+  "topic": "reading a book under a lamp",
+  "names": [
+   "قراءة كتاب تحت المصباح",
+   "قراءة كتاب بضوء مصباح",
+   "أقرأ كتاب بضو اللمبة",
+   "أقرا كتاب يم الأباجورة",
+   "reading a book under a lamp",
+   "lamplight reading"
+  ],
+  "body": "A reader sits in a chair beside a small lamp, holding an open paperback at a comfortable angle. The lamp casts a warm pool of light across cream-coloured pages, leaving the far side of the room darker. Their eyes move down the page in small jumps. One thumb holds the book open while the other slips beneath a page corner and turns it; the thin paper bends, flutters, and settles with a soft rustle. They adjust the book closer to the light without changing seats. Their face is calm and focused, with an occasional raised eyebrow or faint smile at a line they have read."
+ },
+ {
+  "id": "action.gen.playing-chess",
+  "domain": "action",
+  "topic": "playing chess",
+  "names": [
+   "لعب الشطرنج",
+   "يلعب شطرنج",
+   "شطرنج",
+   "لعبة الشطرنج",
+   "playing chess",
+   "chess game"
+  ],
+  "body": "Two players sit across a square board of alternating light and dark squares, leaning forward to study the pieces. One lifts a wooden knight between thumb and forefinger, moves it to a new square, and sets it down with a small tap. The other player follows the move with their eyes, pauses, then slides a piece without disturbing its neighbors. Captured pieces rest beside the board. Their faces stay focused, with brief raised eyebrows or restrained smiles after a surprising move. Pieces make light wooden clicks; chairs shift softly. A table lamp casts short shadows across the board in a quiet room."
+ },
+ {
+  "id": "action.gen.playing-cards",
+  "domain": "action",
+  "topic": "playing cards",
+  "names": [
+   "لعب الورق",
+   "لعب الشدة",
+   "يلعب شدة",
+   "لعب الكوتشينة",
+   "playing cards",
+   "card game"
+  ],
+  "body": "Several players sit around a table, each holding a fan of thin paper cards with their faces angled inward. A dealer gathers the deck, shuffles it with a dry flutter, then deals one card at a time across the tabletop. Players glance between their hands and the cards already played. One selects a card with a thumb, turns it face up, and lays it down with a crisp slap. Others react with a quick smile, a lifted eyebrow, or a disappointed exhale. Loose cards slide briefly before friction stops them. Cups and a warm overhead light complete the relaxed indoor gathering."
+ },
+ {
+  "id": "action.gen.solving-a-puzzle",
+  "domain": "action",
+  "topic": "solving a puzzle",
+  "names": [
+   "حل الأحجية",
+   "حل لغز الصور",
+   "تركيب البازل",
+   "يركب بازل",
+   "solving a puzzle",
+   "jigsaw puzzle"
+  ],
+  "body": "A person sits at a broad table scattered with cardboard jigsaw pieces, sorting straight-edged pieces into one group and similar colors into others. They pick up a piece, rotate it between finger and thumb, and compare its tabs and gaps with an unfinished section. A wrong fit stops against the neighboring piece without sinking flat; they lift it away and try another. When a piece fits, it settles level with a faint click. A companion points toward a matching color, then smiles as the solver nods. Soft rustling accompanies the movements. Window light reveals the printed image and slightly raised puzzle edges."
+ },
+ {
+  "id": "action.gen.painting-on-a-canvas",
+  "domain": "action",
+  "topic": "painting on a canvas",
+  "names": [
+   "الرسم على القماش",
+   "الرسم على كانفاس",
+   "التلوين على اللوحة",
+   "يرسم على كانفاس",
+   "painting on a canvas",
+   "canvas painting"
+  ],
+  "body": "A painter stands at an easel holding a brush in one hand and a paint-covered palette in the other. They touch the brush to a patch of color, drag it lightly across the palette, then place the bristles against the upright canvas. A broad stroke begins thick and textured, narrowing as pressure eases and the brush lifts. They step back, narrow their eyes to judge the composition, and lean in for a smaller mark. Wet paint catches the side light; earlier layers look duller as they dry. Bristles make faint scratchy swishes, with occasional taps against a water jar in the studio."
+ },
+ {
+  "id": "action.gen.drawing-with-pencils",
+  "domain": "action",
+  "topic": "drawing with pencils",
+  "names": [
+   "الرسم بالأقلام الرصاص",
+   "الرسم بالرصاص",
+   "يرسم بقلم رصاص",
+   "تخطيط بالقلم الرصاص",
+   "drawing with pencils",
+   "pencil drawing"
+  ],
+  "body": "An artist bends over a sheet of white paper, keeping one hand near its edge while the other guides a graphite pencil. They sketch a light outline with short, loose strokes, check the proportions, then darken selected lines with firmer pressure. For shading, the pencil tilts sideways so more graphite touches the paper, building a soft gray area through repeated strokes. A kneaded eraser lifts a highlight without tearing the sheet. The artist squints, pauses, and looks back at the subject before adjusting a line. Pencil marks make a fine scratching sound; angled daylight shows graphite sheen and scattered eraser crumbs."
+ },
+ {
+  "id": "action.gen.sculpting-clay",
+  "domain": "action",
+  "topic": "sculpting clay",
+  "names": [
+   "نحت الطين",
+   "تشكيل الصلصال",
+   "نحت الصلصال",
+   "يشكل طين",
+   "sculpting clay",
+   "clay sculpting"
+  ],
+  "body": "A sculptor works a damp lump of clay on a sturdy table. They press both palms into it to establish the main form, pinch out a smaller projection, then support the opposite side while smoothing the surface with a wet thumb. A loop tool scrapes away a thin ribbon of clay; it curls and drops onto the table. The sculptor tilts their head, studies the silhouette, and makes another careful adjustment while a nearby observer watches with interest. The clay holds finger grooves but yields under steady pressure. Soft squelches and tool scrapes accompany the work under diffuse studio light."
+ },
+ {
+  "id": "action.gen.pottery-wheel",
+  "domain": "action",
+  "topic": "pottery wheel",
+  "names": [
+   "دولاب الفخار",
+   "عجلة الفخار",
+   "تشكيل الفخار بالدولاب",
+   "يشتغل على دولاب الفخار",
+   "pottery wheel",
+   "wheel throwing"
+  ],
+  "body": "A potter sits close to a spinning pottery wheel, elbows braced against their thighs. They press a wet lump of clay firmly onto the rotating plate, center it with both palms, then push upward to form a cone. With wet fingers, they open a hollow at the center and draw the walls higher, applying even pressure inside and out. Water and slip shine on their hands; excess liquid collects in the wheel tray. The potter watches the rim closely, adjusting a slight wobble with steady fingertips. The wheel hums continuously, with a soft watery hiss where hands touch clay. Workshop light catches each rotation."
+ },
+ {
+  "id": "action.gen.sewing-on-a-machine",
+  "domain": "action",
+  "topic": "sewing on a machine",
+  "names": [
+   "الخياطة على الماكينة",
+   "الخياطة بالمكينة",
+   "ماكينة الخياطة",
+   "يخيط بالمكينة",
+   "sewing on a machine",
+   "machine sewing"
+  ],
+  "body": "A sewer sits before a sewing machine, aligning two layers of fabric beneath the lowered presser foot. They turn the handwheel to place the needle, then press the foot pedal gently. The needle rises and falls rapidly while the feed dogs pull the fabric backward in even steps. Both hands guide the seam without tugging; a slight turn follows a marked curve. The sewer watches the stitching line, relaxes their shoulders as it stays straight, then releases the pedal and lifts the fabric away. The machine makes a rhythmic clatter that stops immediately with the pedal. A task lamp lights the thread and fabric texture."
+ },
+ {
+  "id": "action.gen.knitting",
+  "domain": "action",
+  "topic": "knitting",
+  "names": [
+   "حياكة بالصوف",
+   "حياكة بالإبر",
+   "تريكو",
+   "شغل تريكو",
+   "knitting",
+   "knitwear"
+  ],
+  "body": "A knitter sits with a soft ball of yarn beside them and two slender needles angled across their lap. Loops of wool line one needle in an even row. The right needle enters the front of the next loop, catches yarn guided over a finger, draws a new loop through, then lets the old loop slip off. The growing fabric hangs below, stretching slightly under its own weight. Fingers make small, repeated adjustments while the needles tap softly together and the yarn brushes the skin. The knitter looks down with a relaxed, attentive expression, occasionally checking the edges for even stitches."
+ },
+ {
+  "id": "action.gen.embroidery",
+  "domain": "action",
+  "topic": "embroidery",
+  "names": [
+   "تطريز",
+   "تطريز يدوي",
+   "تطريز بالإبرة",
+   "شغل طرز",
+   "embroidery",
+   "hand embroidery"
+  ],
+  "body": "A piece of cotton or linen is pulled taut inside a round wooden hoop. Coloured thread passes through the eye of a thin needle, leaving a short tail behind the cloth. One hand steadies the hoop while the other pushes the needle up from beneath, draws the thread through, then sends it back down a measured distance away. Each stitch settles flat against the fabric; pulling too hard would pucker it. A floral outline gradually fills with short, closely spaced marks. The embroiderer watches the needle point closely, turning the hoop to follow a curve. Thread makes a faint rasp through the cloth; daylight reveals its slight sheen."
+ },
+ {
+  "id": "action.gen.playing-the-darbuka",
+  "domain": "action",
+  "topic": "playing the darbuka",
+  "names": [
+   "عزف دربكة",
+   "العزف على الطبلة",
+   "ضرب دربكة",
+   "دربوكة",
+   "playing darbuka",
+   "darbuka drumming"
+  ],
+  "body": "A goblet-shaped darbuka rests tilted across the player's thigh, its narrow waist supported by the legs and its drumhead facing outward. The player keeps the shoulders loose and alternates hands: fingers and palm strike near the centre for a rounded, low dum, while fingertips hit close to the rim for a sharp tek. Each hand rebounds immediately so the head can vibrate. Quick finger rolls add a rattling sequence of lighter taps. The player's eyes follow the rhythm and their face brightens at an accent; nearby listeners may nod or clap in time. The low pulse and crisp rim notes carry clearly across a room."
+ },
+ {
+  "id": "action.gen.playing-the-piano",
+  "domain": "action",
+  "topic": "playing the piano",
+  "names": [
+   "عزف بيانو",
+   "العزف على البيانو",
+   "عزف عالبيانو",
+   "piano playing",
+   "playing piano",
+   "piano performance"
+  ],
+  "body": "A pianist sits on a bench facing a row of white keys broken by shorter black keys. The forearms stay roughly level with the keyboard as curved fingers press individual keys; the keys sink a short distance and return when released. Hands shift sideways for higher or lower notes, with the thumb passing under other fingers during a scale. A foot may press the right pedal, letting notes ring together until it lifts. The player's eyes move between the keys and sheet music, their expression attentive. Felt-covered hammers sound strings inside the instrument, producing bright high notes and fuller low ones; polished surfaces catch soft room light."
+ },
+ {
+  "id": "action.gen.playing-the-violin",
+  "domain": "action",
+  "topic": "playing the violin",
+  "names": [
+   "عزف كمان",
+   "العزف على الكمان",
+   "عزف عالكمان",
+   "playing violin",
+   "violin playing",
+   "violin performance"
+  ],
+  "body": "The violin's small varnished wooden body rests between the player's left shoulder and jaw, its neck extending outward. Left fingertips press strings against the fingerboard to change pitch. The right hand draws a horsehair bow across one or two strings, roughly parallel to the bridge; reversing its direction keeps a note sounding. The wrist and elbow adjust together, while faster bow strokes make a more urgent sound. Fingers can rock gently for vibrato, giving a sustained note a subtle pulse. The player watches their hands or music with a concentrated face. Warm light catches the curved body, and bow changes bring faint scraping sounds between clear tones."
+ },
+ {
+  "id": "action.gen.conducting-an-orchestra",
+  "domain": "action",
+  "topic": "conducting an orchestra",
+  "names": [
+   "قيادة أوركسترا",
+   "قائد أوركسترا",
+   "قيادة الفرقة الموسيقية",
+   "conducting orchestra",
+   "orchestra conductor",
+   "orchestral conducting"
+  ],
+  "body": "A conductor stands facing seated musicians, with the audience behind them. Before a passage, they raise both hands; players look up from their music, lift instruments or ready their fingers, and take a shared breath. One hand, sometimes holding a slim white baton, drops decisively to mark the first beat, then traces a repeating pattern in the air. The other hand opens toward a section to invite its entrance or closes to ask for a softer sound. Musicians respond together, bows moving or keys depressing in sync. The conductor's face shifts from focused to encouraging; small shoe movements and page turns sit beneath the swelling music."
+ },
+ {
+  "id": "action.gen.singing-karaoke",
+  "domain": "action",
+  "topic": "singing karaoke",
+  "names": [
+   "غناء كاريوكي",
+   "يغني كاريوكي",
+   "ليلة كاريوكي",
+   "karaoke singing",
+   "singing karaoke",
+   "karaoke night"
+  ],
+  "body": "A singer stands or sits facing a screen where lyric lines change colour in time with an instrumental track. They hold a microphone a few centimetres from the mouth, inhale before the next line, then shape the words with moving lips and jaw. A speaker carries the amplified voice over drums and melody; moving the microphone too close can make breaths and consonants sound harsh. The singer glances between the screen and friends, smiling or concentrating during a difficult phrase. Friends nearby watch, sway, clap on the beat or join the chorus. Coloured room lights reflect on the microphone grille as the final note fades."
+ },
+ {
+  "id": "action.gen.beatboxing",
+  "domain": "action",
+  "topic": "beatboxing",
+  "names": [
+   "بيت بوكس",
+   "تقليد الإيقاع بالفم",
+   "إيقاع بالفم",
+   "beatboxing",
+   "beatbox",
+   "vocal percussion"
+  ],
+  "body": "A beatboxer builds a rhythm using lips, tongue and breath rather than an instrument. Closed lips release a short, low puff for a kick sound; the tongue makes a tight ts against the teeth for a hi-hat; a forceful pf produces a snare-like burst. These sounds alternate in a steady pattern, with tiny breaths fitted between beats. Cheeks and jaw shift visibly, but the head and shoulders often keep a relaxed pulse. The performer may lean toward a handheld microphone, careful not to strike it with breath. Listeners watch the mouth, nod in time and smile when the pattern changes; a quiet room makes every click and bassy puff distinct."
+ },
+ {
+  "id": "action.gen.rapping",
+  "domain": "action",
+  "topic": "rapping",
+  "names": [
+   "راب",
+   "غناء الراب",
+   "يغني راب",
+   "رابر",
+   "rap",
+   "rapping"
+  ],
+  "body": "A rapper stands close to a handheld microphone, shoulders loose and knees flexing lightly to the beat. Their mouth moves quickly through short phrases, with brief, visible breaths between lines. One hand marks the rhythm with small chops or open-palmed gestures while the other steadies the microphone. A backing track carries a regular bass pulse and crisp percussion; the voice sits clearly over it, sometimes landing just before or after a beat. In a small Iraqi studio or café performance space, warm lights catch faces in the audience as listeners nod, smile, and call out at the end of a line."
+ },
+ {
+  "id": "action.gen.stand-up-comedy",
+  "domain": "action",
+  "topic": "stand-up comedy",
+  "names": [
+   "ستاند أب كوميدي",
+   "كوميديا ارتجالية",
+   "كوميديا واقفة",
+   "عرض ستاند أب",
+   "stand-up comedy",
+   "standup"
+  ],
+  "body": "One comedian stands facing seated listeners, usually with a microphone in hand and a slim microphone stand nearby. They set up a story in an even voice, then pause briefly before the punchline, watching the room. Eyebrows lift, a hand sketches a character or situation, and their expression changes as they imitate another person. The first laugh may start at one table and spread; some listeners lean forward or cover a smile, while the comedian waits for the sound to fade before continuing. A low stage light separates the performer from the dimmer café or club, with occasional glass clinks under the speech."
+ },
+ {
+  "id": "action.gen.magic-trick-with-cards",
+  "domain": "action",
+  "topic": "magic trick with cards",
+  "names": [
+   "خدعة ورق",
+   "خدعة بالورق",
+   "سحر الورق",
+   "خفة يد بالكوتشينة",
+   "card trick",
+   "card magic"
+  ],
+  "body": "A magician holds a standard deck of playing cards at chest or table height and fans it so a spectator can choose one. The spectator studies the face, shows it to friends, and returns it without exposing it to the magician. As the deck is squared, practiced fingers quietly keep track of the card; a casual-looking shuffle follows. The magician turns over cards one by one, then reveals the selection with a quick wrist motion. Paper edges make soft brushing and tapping sounds. Nearby faces shift from close attention to raised brows and laughter, under clear indoor light that shows the card faces without glare."
+ },
+ {
+  "id": "action.gen.juggling",
+  "domain": "action",
+  "topic": "juggling",
+  "names": [
+   "بهلوانية الكرات",
+   "رمي الكرات بالهواء",
+   "تلاعب بالكرات",
+   "juggling",
+   "juggler"
+  ],
+  "body": "A juggler begins with three small, evenly weighted balls, two in one hand and one in the other. Each throw rises in a smooth arc to roughly eye level and crosses to the opposite hand; the next ball leaves just before the falling one is caught. The hands stay near waist height, elbows relaxed, and the gaze follows the upper part of the pattern rather than each catch. Soft thuds mark catches, with an occasional bounce if a ball drops. In a family gathering or public performance space, children watch the crossing arcs intently, then grin and clap when the juggler gathers all three balls at once."
+ },
+ {
+  "id": "action.gen.clown-at-a-kids-party",
+  "domain": "action",
+  "topic": "clown at a kids party",
+  "names": [
+   "مهرج حفلة أطفال",
+   "مهرج عيد ميلاد",
+   "مهرج أطفال",
+   "clown at a kids party",
+   "birthday clown",
+   "party clown"
+  ],
+  "body": "A party clown wears bright, loose clothes, oversized shoes or a playful hat, and face paint with clear expressions rather than a fixed mask. In a decorated room, the clown crouches to meet children at eye level, shows an empty hand, then produces a small scarf from a sleeve. Their movements are broad but careful around the children and cake table. A balloon squeaks as it is twisted into a simple shape; paper decorations rustle nearby. Some children laugh and reach forward, others stay close to a parent and watch cautiously. The clown smiles, gives them space, and lets the group react before the next trick."
+ },
+ {
+  "id": "action.gen.bowling",
+  "domain": "action",
+  "topic": "bowling",
+  "names": [
+   "بولينغ",
+   "بولنغ",
+   "لعبة البولينغ",
+   "صالة بولينغ",
+   "bowling",
+   "ten-pin bowling"
+  ],
+  "body": "A bowler approaches the foul line carrying a heavy, glossy ball with fingers in its three holes. Over several measured steps, the ball swings backward and then forward like a pendulum; the bowler bends the sliding knee, releases near the floor, and follows through with the arm. The ball rolls down a polished lane with a low rumble, sometimes curving slightly before striking the white pins. Pins crack together, scatter, and fall into the rear pit. The bowler watches the result, then smiles or winces; companions react from the seats. Overhead lights reflect in long streaks on the lane."
+ },
+ {
+  "id": "action.gen.billiards",
+  "domain": "action",
+  "topic": "billiards",
+  "names": [
+   "بلياردو",
+   "بليارد",
+   "لعبة البلياردو",
+   "طاولة بلياردو",
+   "billiards",
+   "pool game"
+  ],
+  "body": "On a pool table, colored balls rest on tightly stretched green or blue cloth between dark cushioned rails and six pockets. A player bends low, plants one hand on the cloth as a bridge, and slides the cue through it in short practice strokes. The cue tip clicks against the white ball, which rolls into another ball; both change direction on contact, while spin can alter their paths near a rail. A pocketed ball drops with a hollow clunk. Under a focused hanging lamp, players follow the moving balls with their eyes, stepping back to give the shooter room in a quiet café or games hall."
+ },
+ {
+  "id": "action.gen.table-tennis",
+  "domain": "action",
+  "topic": "table tennis",
+  "names": [
+   "تنس الطاولة",
+   "كرة الطاولة",
+   "بنغ بونغ",
+   "بينغ بونغ",
+   "table tennis",
+   "ping pong"
+  ],
+  "body": "Two players stand at opposite ends of a waist-high table divided by a low net. The server holds a light white or orange ball on an open palm, tosses it upward, and strikes it with a small rubber-faced paddle. The ball taps the server’s side, clears the net, and taps the receiver’s side before the return. During a rally, both players take quick side steps, bend their knees, and turn their shoulders for compact strokes. Repeated sharp ticks mark paddle contacts, with softer clicks on the tabletop. Bright indoor lighting makes the fast ball visible as spectators track it and react when a point ends."
+ },
+ {
+  "id": "action.gen.badminton",
+  "domain": "action",
+  "topic": "badminton",
+  "names": [
+   "badminton",
+   "كرة الريشة",
+   "ريشة",
+   "بادمنتون",
+   "لعبة الريشة"
+  ],
+  "body": "An indoor badminton court has a matte green or blue floor marked with thin white lines and a taut net across its middle. Two players hold light rackets with oval string beds. One steps forward, turns the shoulders, and flicks the wrist; the cork tip of the white feather shuttlecock leads its flight while the feather skirt creates drag, making it slow and drop steeply. The opponent watches with a concentrated face, shuffles in short steps, and reaches to return it. Shoes squeak, strings make a sharp tick, and the shuttle lands with a soft tap under even overhead lighting."
+ },
+ {
+  "id": "action.gen.volleyball-spike",
+  "domain": "action",
+  "topic": "volleyball spike",
+  "names": [
+   "volleyball spike",
+   "ضربة ساحقة",
+   "ضربة ساحقة بالكرة الطائرة",
+   "كبس طائرة",
+   "سبايك طائرة"
+  ],
+  "body": "On an indoor volleyball court, a setter raises both hands and cushions the ball upward with the fingertips. A hitter watches the rising ball, takes quick approach steps, plants both feet, and jumps with arms swinging up. The hitting shoulder rotates forward; an open hand strikes the upper back of the ball, driving it over the net and sharply downward. Opposing blockers jump with straight arms and spread fingers, while back-row players bend their knees, eyes fixed on the ball. Faces tighten with effort, then turn toward its landing spot. Sneakers squeak, the strike pops, and teammates call out beneath bright gym lights."
+ },
+ {
+  "id": "action.gen.basketball-free-throw",
+  "domain": "action",
+  "topic": "basketball free throw",
+  "names": [
+   "basketball free throw",
+   "رمية حرة",
+   "رميات حرة",
+   "فري ثرو",
+   "فاول باسكت"
+  ],
+  "body": "At the free-throw line, a basketball player stands behind the painted stripe with feet about shoulder-width apart. The orange pebbled ball rests on the fingertips, not against the palms. After a steadying bounce, the player bends knees and elbows together, lifts the ball above the forehead, then extends the legs and shooting arm; the wrist folds forward as the ball leaves the fingers with backspin. Players along the lane lean slightly and watch, ready to step in after release. The shooter’s face stays focused, then follows the arc. A hollow bounce, shoe squeaks, and a possible rim clang or net swish echo through the gym."
+ },
+ {
+  "id": "action.gen.football-penalty-kick",
+  "domain": "action",
+  "topic": "football penalty kick",
+  "names": [
+   "football penalty kick",
+   "ركلة جزاء",
+   "ضربة جزاء",
+   "بلنتي",
+   "بنالتي"
+  ],
+  "body": "A football rests on the white penalty spot in front of a full-size goal. The kicker waits a few paces back, looking between ball and goalkeeper. At the whistle, the kicker runs forward, plants one foot beside the ball, and swings the other leg through; the firm boot contact sends the ball spinning toward goal. The goalkeeper bends at the knees, shifts weight, then pushes sideways in response. Other players wait outside the penalty area, tense and watching the shot. The kicker’s expression is concentrated; faces change as the ball reaches the goal. A brief whistle, footstep thuds, boot impact, and crowd murmur mark the moment."
+ },
+ {
+  "id": "action.gen.goalkeeper-diving-save",
+  "domain": "action",
+  "topic": "goalkeeper diving save",
+  "names": [
+   "goalkeeper diving save",
+   "تصدي حارس مرمى",
+   "قفزة حارس المرمى",
+   "صدّة الحارس",
+   "طيران الحارس"
+  ],
+  "body": "In front of a football goal, a goalkeeper crouches with hands open and eyes tracking an incoming ball. As it travels toward one side, the keeper takes a short adjusting step, drives off the far leg, and stretches horizontally with both gloved hands reaching first. The gloves meet the ball with a dull slap, either gripping it or deflecting it away from goal. The keeper lands on the outer side of the body and shoulder, then rolls to soften the impact. Nearby players halt or turn toward the rebound, their faces tense until the ball is safe. Studs scrape turf as voices rise around the pitch."
+ },
+ {
+  "id": "action.gen.tennis-serve",
+  "domain": "action",
+  "topic": "tennis serve",
+  "names": [
+   "tennis serve",
+   "إرسال تنس",
+   "إرسال كرة المضرب",
+   "سيرف تنس",
+   "ضربة إرسال تنس"
+  ],
+  "body": "Behind the baseline, a tennis player stands sideways to the net with a racket in one hand and a yellow felt ball in the other. The tossing arm lifts straight; the ball rises nearly vertically while the knees bend and the racket drops behind the back. The player pushes upward, rotates the shoulders, and strikes the ball high overhead, then lands inside the baseline as the racket follows across the body. Across the net, the receiver leans forward with bent knees and watches the toss closely. Focused faces track the fast ball. Shoes scuff the court, strings snap audibly, and the ball makes a brief thump on landing."
+ },
+ {
+  "id": "action.gen.golf-swing",
+  "domain": "action",
+  "topic": "golf swing",
+  "names": [
+   "golf swing",
+   "أرجحة الغولف",
+   "ضربة غولف",
+   "سوينغ غولف",
+   "ضربة جولف"
+  ],
+  "body": "On closely cut grass, a golfer addresses a small white ball with feet apart and a metal-headed club resting just behind it. The hands and shoulders take the club back as the torso turns and weight shifts toward the rear foot. The hips begin the return; arms and club follow, accelerating through the ball. At contact, the club face sends the ball forward while the body rotates onto the front foot, finishing with the club high over one shoulder. A nearby playing partner stands clear, watching the flight. Faces follow the ball into bright daylight. The strike makes a crisp click, followed by a brief swish of air."
+ },
+ {
+  "id": "action.gen.archery",
+  "domain": "action",
+  "topic": "archery",
+  "names": [
+   "archery",
+   "رماية بالقوس",
+   "الرماية بالسهام",
+   "قوس وسهم",
+   "لعبة القوس والسهم"
+  ],
+  "body": "At a supervised archery range, a round paper target with coloured rings stands against a safe backstop. An archer faces sideways, feet steady, and sets a blunt-tipped practice arrow on the bow’s rest. One hand holds the bow while the other draws the string to the face; the shoulders settle, the eyes fix on the target, and the fingers release. The bow limbs spring forward and the arrow flies point-first, with its small rear vanes keeping it straight. A coach and other archers remain behind the shooting line, watching calmly. The string gives a short twang; the arrow lands with a muted thud in the target."
+ },
+ {
+  "id": "action.gen.fencing",
+  "domain": "action",
+  "topic": "fencing",
+  "names": [
+   "مبارزة",
+   "مبارزة رياضية",
+   "سياج رياضي",
+   "فنسنغ",
+   "fencing",
+   "sport fencing"
+  ],
+  "body": "On a narrow, level piste, two fencers face each other in white padded jackets, breeches, gloves, mesh masks, and flexible shoes. Each holds a thin, bendable sporting blade with a bell-shaped hand guard. From a sideways stance, they advance and retreat in short, springy steps, front foot landing heel first. One extends the arm and lunges; the blade flexes on a controlled touch to the opponent’s protected torso. A scoring light flashes, shoes squeak, and a light metallic tap cuts through the quiet hall. Both pause, lower their blades, and return to their starting marks."
+ },
+ {
+  "id": "action.gen.karate-kata",
+  "domain": "action",
+  "topic": "karate kata",
+  "names": [
+   "كاتا كاراتيه",
+   "كاتا كراتيه",
+   "حركات الكاراتيه",
+   "عرض كاتا",
+   "karate kata",
+   "kata"
+  ],
+  "body": "A karate practitioner stands barefoot on a clean training mat in a white cotton gi tied with a belt. After a small bow, they settle into a low stance, turn sharply, and perform a set sequence of blocks and straight punches against imagined attacks. Hips rotate before each technique; the rear foot grips the mat while the leading foot slides into position. Sleeves snap at the end of each controlled motion, and measured exhalations punctuate the quiet room. The practitioner’s face stays focused, gaze following each new direction. They finish motionless in a balanced stance, then relax and bow again."
+ },
+ {
+  "id": "action.gen.taekwondo-kick",
+  "domain": "action",
+  "topic": "taekwondo kick",
+  "names": [
+   "ركلة تايكواندو",
+   "رفسة تايكواندو",
+   "ضربة رجل تايكواندو",
+   "ركلة تكواندو",
+   "taekwondo kick",
+   "tkd kick"
+  ],
+  "body": "On interlocking foam mats, a taekwondo athlete in a white dobok faces a partner holding a padded target at chest height. The athlete shifts weight onto the supporting leg, raises the kicking knee, and pivots the planted foot so the heel turns toward the target. The lower leg snaps outward; the top of the foot strikes the pad with a flat pop. The pad jolts back and the holder’s arm yields slightly while both keep their balance. The kicker quickly folds the knee, sets the foot down, and resets their guard. Bare feet brush the mat; faces show concentration, then a brief acknowledging nod."
+ },
+ {
+  "id": "action.gen.judo-throw",
+  "domain": "action",
+  "topic": "judo throw",
+  "names": [
+   "رمي جودو",
+   "رمية جودو",
+   "قلبة جودو",
+   "إسقاط جودو",
+   "judo throw",
+   "judo"
+  ],
+  "body": "Two judoka in thick cotton gis stand on firm tatami mats, each gripping the other’s sleeve and lapel. The thrower draws their partner forward, steps across, turns their back close to the partner’s chest, and bends their knees. Straightening the legs and rotating the torso lifts the partner over the hip in a smooth arc. The partner releases a grip, tucks the chin, and slaps the mat with one arm on landing, spreading the impact into a broad, hollow thud. The thrower keeps hold of the sleeve to guide the descent. Both look alert, pause briefly, and rise to reset."
+ },
+ {
+  "id": "action.gen.sport-wrestling-takedown",
+  "domain": "action",
+  "topic": "wrestling takedown (sport)",
+  "names": [
+   "إسقاط مصارعة",
+   "مسكة إسقاط مصارعة",
+   "طرح مصارعة رياضية",
+   "تيك داون مصارعة",
+   "wrestling takedown",
+   "sport wrestling"
+  ],
+  "body": "On a circular wrestling mat, two athletes in close-fitting singlets and soft wrestling shoes crouch with knees bent and hands forward. One changes level by bending the knees, steps between the other’s feet, and wraps both arms around a leg. The defender widens their stance and presses down on the attacker’s shoulders, face tense with effort. The attacker drives sideways and turns the corner; the defender tips onto a hip and forearm rather than falling straight back. Shoes scrape, fabric rustles, and the mat gives a dull thump. The attacker settles on top with controlled weight as the referee moves closer to check the position."
+ },
+ {
+  "id": "action.gen.weightlifting-clean-and-jerk",
+  "domain": "action",
+  "topic": "weightlifting clean and jerk",
+  "names": [
+   "نتر ورفع أثقال",
+   "رفعة كلين آند جيرك",
+   "الخطف والنتر",
+   "كلين اند جيرك",
+   "clean and jerk",
+   "weightlifting clean and jerk"
+  ],
+  "body": "A weightlifter stands over a steel barbell fitted with large, coloured bumper plates on a raised platform. With a flat back and hands gripping outside the legs, they drive through the floor; the bar stays close to the shins and thighs. A quick hip extension sends it upward, and the lifter drops beneath it, catching it across the front shoulders in a squat. After standing, they dip straight down and drive up, splitting the feet front to back while locking the bar overhead. Plates rattle, shoes strike the platform, and breathing is sharp. The lifter brings the feet together, steadies the bar, then lowers it onto the platform."
+ },
+ {
+  "id": "action.gen.rowing-a-boat",
+  "domain": "action",
+  "topic": "rowing a boat",
+  "names": [
+   "تجديف قارب",
+   "التجديف بالقارب",
+   "تگديف قارب",
+   "قارب مجاديف",
+   "rowing a boat",
+   "boat rowing"
+  ],
+  "body": "A rower sits facing the stern of a narrow boat, feet braced and hands on two long oar handles. They bend forward with knees tucked, lower the broad blades into the water, then push through the legs before leaning back and drawing the handles toward the ribs. The boat glides opposite the direction they face. At the finish, they lift the blades clear, turn them flat, extend their arms, and slide forward for the next stroke. Water curls off each blade with a soft splash; oarlocks click and the hull makes a faint rushing sound. Small ripples spread across otherwise calm water."
+ },
+ {
+  "id": "action.gen.kayaking",
+  "domain": "action",
+  "topic": "kayaking",
+  "names": [
+   "كاياك",
+   "قارب كاياك",
+   "تجديف كاياك",
+   "گاياك",
+   "kayaking",
+   "kayak paddling"
+  ],
+  "body": "A kayaker sits low in a slim, pointed kayak, facing forward with legs stretched inside the hull and a buoyancy vest over light outdoor clothing. Holding a double-bladed paddle, they plant one blade beside the bow, pull it back through the water, and rotate the torso to repeat on the other side. Alternating strokes keep the boat moving smoothly ahead, while a stronger stroke on one side turns its nose. Droplets fall from the lifted blade; each dip makes a brief splash followed by the soft hiss of water against the hull. The paddler watches the route ahead, and the narrow wake trails behind."
+ },
+ {
+  "id": "action.gen.sailing",
+  "domain": "action",
+  "topic": "sailing",
+  "names": [
+   "إبحار شراعي",
+   "الإبحار",
+   "قارب شراعي",
+   "مركب شراعي",
+   "sailing",
+   "sailboat"
+  ],
+  "body": "A small sailboat has a narrow white hull, a tall mast, and a triangular sail that curves under wind pressure. The sailor sits along one side, holds the tiller, and pulls a rope to tighten the sail. As the boat turns, the sail briefly flutters with sharp snaps, then fills again; the hull tilts and cuts a thin, hissing wake. The sailor shifts weight across the cockpit, ducking under the swinging boom and watching the water ahead. Passengers grip the rim and lean with the turn, their faces alert. Sunlight flashes on ripples while rope creaks and water taps the hull."
+ },
+ {
+  "id": "action.gen.paddleboarding",
+  "domain": "action",
+  "topic": "paddleboarding",
+  "names": [
+   "التجديف واقفا",
+   "التجديف على لوح",
+   "ركوب لوح التجديف",
+   "بادلبورد",
+   "paddleboarding",
+   "stand up paddleboarding"
+  ],
+  "body": "A paddleboard is a long, broad board floating almost flat, with a dark grippy pad under the rider’s bare feet. The rider stands with knees slightly bent and feet apart, plants a single-bladed paddle ahead of the board, then draws it back through the water. Each stroke makes a soft splash and nudges the nose forward; alternating sides keeps the board straight. Small ripples rock it gently, prompting quick ankle adjustments and an occasional glance down. On a calm beach or sheltered river, nearby paddlers keep their distance and look ahead. Sunlight shows droplets falling from the raised blade."
+ },
+ {
+  "id": "action.gen.snorkeling",
+  "domain": "action",
+  "topic": "snorkeling",
+  "names": [
+   "الغطس بالسنوركل",
+   "سباحة بالسنوركل",
+   "غوص سطحي",
+   "سنوركل",
+   "snorkeling",
+   "snorkelling"
+  ],
+  "body": "A snorkeler floats face-down near the surface, wearing a clear mask, a breathing tube that rises above the water, and long flexible fins. Slow kicks begin at the hips; the fins bend and push water backward without much splashing. The person turns their head to follow fish or the seabed, eyes visible through the mask, while companions float a few metres away and point below the surface. Breathing through the tube makes a hollow, rhythmic sound; lifting the face brings a brief trickle of water off the mask. Bright daylight ripples across shoulders and casts wavering patterns onto sand or rock."
+ },
+ {
+  "id": "action.gen.scuba-diving",
+  "domain": "action",
+  "topic": "scuba diving",
+  "names": [
+   "غوص سكوبا",
+   "الغوص بالأسطوانات",
+   "غوص بأسطوانة",
+   "سكوبا",
+   "scuba diving",
+   "scuba"
+  ],
+  "body": "A scuba diver wears a dark wetsuit, mask, fins, and a metal air cylinder secured to a bulky vest. After checking the mouthpiece, the diver eases below the surface and kicks slowly from the hips. Small adjustments to the vest keep the body nearly horizontal, hovering above the seabed rather than standing on it. Each exhale sends silver bubbles upward with a low rushing sound; inhalation through the regulator is quieter. A diving partner stays within sight, exchanging a simple hand signal before moving on. Filtered blue-green light softens colours, while suspended particles drift past rock, coral, or sand."
+ },
+ {
+  "id": "action.gen.water-skiing",
+  "domain": "action",
+  "topic": "water skiing",
+  "names": [
+   "التزلج على الماء",
+   "تزلج مائي",
+   "سكي مائي",
+   "water skiing",
+   "waterskiing",
+   "water ski"
+  ],
+  "body": "A water skier starts in the water wearing a buoyancy vest, knees tucked up, ski tips pointed out, and both hands around a tow handle. As the boat accelerates, the rope straightens, pulling the skier forward; they keep their arms extended, rise through bent knees, and settle into a low stance. The skis plane across the surface, leaving two white trails and a continuous spray. To turn, the skier leans gently against the rope and crosses the boat’s wake, knees absorbing its bumps. The boat driver looks ahead while an observer watches the skier. Engine noise, wind, and splashing fill the open water."
+ },
+ {
+  "id": "action.gen.ice-skating",
+  "domain": "action",
+  "topic": "ice skating",
+  "names": [
+   "التزلج على الجليد",
+   "تزلج جليدي",
+   "تزحلق على الجليد",
+   "ice skating",
+   "iceskating"
+  ],
+  "body": "An ice skater glides on narrow metal blades beneath fitted boots. Starting with bent knees, the skater pushes one foot diagonally outward, transfers weight to the other blade, and repeats, leaving faint curved lines on the ice. Arms open slightly for balance, then draw closer during a gentle turn. A blade makes a thin scraping hiss, sharper when its edge grips or the skater stops with a small fan of ice shavings. Other skaters adjust their paths and glance over before passing. Cold rink lights reflect in long streaks on the pale surface; breath may show faintly near the rink entrance."
+ },
+ {
+  "id": "action.gen.skateboarding-trick",
+  "domain": "action",
+  "topic": "skateboarding trick",
+  "names": [
+   "حركة سكيت بورد",
+   "خدعة لوح التزلج",
+   "قفزة أولي",
+   "حركة سكيت",
+   "skateboarding trick",
+   "skateboard ollie"
+  ],
+  "body": "A skateboarder rolls toward a low painted line on smooth pavement, shoulders level and knees bent. For an ollie, the back foot snaps the tail down with a wooden crack as the front foot slides up the grippy deck. The board rises with the skater, levels beneath both shoes, then lands on four small wheels with a hollow clack. Knees bend to absorb the impact before the rider rolls away, looking toward the path ahead. Nearby skaters pause clear of the landing area and follow the jump with their eyes. Wheel rattle returns between occasional taps over pavement seams in bright outdoor light."
+ },
+ {
+  "id": "action.gen.rollerblading",
+  "domain": "action",
+  "topic": "rollerblading",
+  "names": [
+   "التزلج بالعجلات",
+   "تزلج رولر",
+   "رولر بليد",
+   "الزلاجات ذات العجلات",
+   "rollerblading",
+   "inline skating"
+  ],
+  "body": "A rollerblader wears snug boots with a single row of small wheels beneath each foot, often with a helmet and wrist guards. With knees bent and torso slightly forward, the skater pushes one foot outward, glides on the other, then switches sides. The wheels hum over smooth pavement and click briefly across expansion joints. For a gentle turn, the skater leans and lets the wheels trace a curve; to slow down, one foot moves ahead and its heel brake presses the ground. People on a promenade or park path step aside as the skater looks forward, hands loose for balance in the afternoon light."
+ },
+ {
+  "id": "action.gen.bmx-jump",
+  "domain": "action",
+  "topic": "BMX jump",
+  "names": [
+   "قفزة بي إم إكس",
+   "قفز بي ام اكس",
+   "نطة بي إم إكس",
+   "قفزة دراجة بي إم إكس",
+   "bmx jump",
+   "bmx air"
+  ],
+  "body": "On a purpose-built dirt ramp or skatepark jump, a BMX rider pedals toward the lip standing on the pedals, knees and elbows bent. The small, rigid bicycle has thick tires, a low saddle and straight handlebars. At the lip, the rider extends slightly, then draws knees up to keep the bike level in the air. Clothing and loose straps flutter briefly. The rider watches the landing, lowers the front wheel and bends arms and legs as both tires meet the downslope. Tires make a short thump and gritty roll; a freewheel clicks when pedaling stops. A helmeted spotter watches from clear of the landing."
+ },
+ {
+  "id": "action.gen.safe-motorcycle-wheelie",
+  "domain": "action",
+  "topic": "motorcycle wheelie (stunt, safe)",
+  "names": [
+   "ويلية دراجة نارية",
+   "رفع العجلة الأمامية للدراجة",
+   "ون ويل دراجة",
+   "استعراض دباب على عجلة",
+   "motorcycle wheelie",
+   "bike wheelie"
+  ],
+  "body": "On a closed stunt course, a rider in a full-face helmet, gloves, boots and protective clothing rolls a motorcycle forward in a straight line. With knees gripping the tank, the rider adds throttle and shifts weight so the front suspension extends and the front tire rises. The rear tire stays planted and visibly compresses under the load. Small throttle changes and a covered rear brake control the height; the rider looks ahead rather than down. The engine note rises with the lift, then softens as the front wheel comes down and the fork compresses. Barriers and an alert spotter remain well outside the riding lane."
+ },
+ {
+  "id": "action.gen.safe-track-drifting",
+  "domain": "action",
+  "topic": "car drifting on a track (safe)",
+  "names": [
+   "تفحيط حلبة",
+   "درفت على حلبة",
+   "انجراف سيارة على مضمار",
+   "دريفت سيارة",
+   "track drifting",
+   "car drift"
+  ],
+  "body": "On a closed asphalt track, a helmeted driver turns into a corner, then feeds in power as the car’s rear tires lose some grip. The tail swings outward while the front wheels point partly back toward the direction of travel: the driver countersteers and makes quick, small corrections. The car slides sideways but continues around the bend, its body leaning slightly as the suspension loads. Tire squeal rises with the slide; on dry pavement, a light haze may trail the rear tires. The driver eases the steering and throttle as grip returns. Spectators behind barriers turn their heads to follow it."
+ },
+ {
+  "id": "action.gen.go-kart-racing",
+  "domain": "action",
+  "topic": "go-kart racing",
+  "names": [
+   "سباق كارتينج",
+   "سباق غوكارت",
+   "سباق عربات كارت",
+   "ريس كارت",
+   "go-kart racing",
+   "kart race"
+  ],
+  "body": "Low go-karts run close to the pavement on a marked circuit, with small exposed wheels, plastic side guards and drivers seated near ground level. Helmeted drivers hold the steering wheels firmly and lean only slightly through bends; the karts have little suspension, so their bodies jostle over surface seams. Approaching a corner, drivers lift off the accelerator, brake, turn, then accelerate out as the rear tires grip. Engine buzzing grows louder on the straight and drops in pitch under braking, mixed with tire chirps at tighter turns. Marshals watch from protected posts, and waiting drivers follow the race from behind barriers."
+ },
+ {
+  "id": "action.gen.paragliding",
+  "domain": "action",
+  "topic": "paragliding",
+  "names": [
+   "طيران شراعي مظلة",
+   "الطيران بالمظلة الشراعية",
+   "باراقلايد",
+   "تحليق باراغلايدر",
+   "paragliding",
+   "paraglider flight"
+  ],
+  "body": "On an open hillside, a pilot in a helmet and harness faces the wind with a curved fabric wing laid out behind. The pilot steps forward and raises the wing on thin lines; its cells fill with air, forming a broad arc overhead. After checking that it is steady, the pilot runs down the slope until the harness lifts away from the ground. In flight, legs hang beneath the wing while gentle pulls on the brake handles turn it gradually. Fabric rustles at launch; aloft, wind dominates the sound. People on the hillside watch, shielding their eyes from the bright sky."
+ },
+ {
+  "id": "action.gen.skydiving",
+  "domain": "action",
+  "topic": "skydiving",
+  "names": [
+   "قفز مظلي",
+   "القفز بالمظلة",
+   "سكاي دايف",
+   "نزول حر بالمظلة",
+   "skydiving",
+   "parachute jump"
+  ],
+  "body": "At a supervised drop zone, a helmeted skydiver moves to an aircraft door wearing a snug parachute container and secured harness. After exiting, the body settles belly-down, arms and legs spread to stay stable; loose fabric flaps and cheeks shift in the strong airflow. At the planned altitude, the jumper pulls a handle, a small pilot chute trails out, and the main canopy unfolds overhead. The sudden slowing rocks the harness before the jumper sits more upright. Wind roars during freefall, then quiets beneath the open canopy. Ground crew look upward as the jumper steers toward a clear landing area."
+ },
+ {
+  "id": "action.gen.bungee-jumping",
+  "domain": "action",
+  "topic": "bungee jumping",
+  "names": [
+   "قفزة بنجي",
+   "قفز بانجي",
+   "قفزة الحبل المطاطي",
+   "نطة بنجي",
+   "bungee jumping",
+   "bungee jump"
+  ],
+  "body": "At a managed bungee platform, an instructor checks the jumper’s harness, ankle attachments and thick elastic cord while another watches the clear space below. The jumper stands at the edge, often smiling tensely or taking a deep breath, then steps outward. The cord hangs slack at first as the body drops and clothing flutters. It straightens, stretches and slows the fall progressively; the jumper briefly rebounds upward before smaller bounces fade. A shout may cut through the wind, followed by the cord’s faint creak and voices from the platform. Staff keep watching and prepare the retrieval line."
+ },
+ {
+  "id": "action.gen.zip-line",
+  "domain": "action",
+  "topic": "zip line",
+  "names": [
+   "انزلاق بالحبل",
+   "انزلاق على سلك",
+   "زيب لاين",
+   "نزول بالحبل المعلق",
+   "zip line",
+   "zipline ride"
+  ],
+  "body": "A rider wearing a helmet and harness sits back at a raised platform while an attendant checks the lanyard clipped to a wheeled trolley on a taut overhead cable. On release, gravity carries the rider away; knees stay bent and hands hold the designated grips, clear of the moving trolley. The harness supports the rider’s weight as the cable dips gently between supports. Wheels make a steady metallic whir, louder at speed, with wind rushing past the face. Near the far platform, a braking system slows the trolley; an attendant waits until it stops before helping the rider unclip."
+ },
+ {
+  "id": "action.gen.hot-air-balloon-ride",
+  "domain": "action",
+  "topic": "hot air balloon ride",
+  "names": [
+   "منطاد هوائي",
+   "ركوب المنطاد",
+   "طلعة منطاد",
+   "ركبة منطاد",
+   "hot air balloon ride",
+   "balloon flight"
+  ],
+  "body": "A wicker basket hangs beneath a tall, rounded fabric envelope striped in bright colours. Before takeoff, passengers step into the basket and grip its rim while the pilot opens the burner. A loud rushing flame swells overhead; warm air lifts the envelope until the basket rises gently, with a slight sway. Passengers look down, smile, and point while the pilot watches the wind and burner. Fields, roofs, and roads move slowly below in clear morning light. In flight, the burner roars in short bursts above quieter wind and basket creaks. On landing, knees bend as the basket bumps and drags briefly."
+ },
+ {
+  "id": "action.gen.riding-a-camel",
+  "domain": "action",
+  "topic": "riding a camel",
+  "names": [
+   "ركوب الجمل",
+   "ركوب الناقة",
+   "ركبة جمل",
+   "ركوب البعير",
+   "camel ride",
+   "riding a camel"
+  ],
+  "body": "A camel rests with its long legs folded under its sandy-brown body. A handler holds the lead rope while the rider settles onto a padded saddle, places both feet securely, and grips the front handle. As the camel straightens its rear legs first, the rider leans back against the sudden forward tilt; when its front legs rise, the rider adjusts again. The handler walks beside it. Each long, rolling step rocks the rider from side to side, and the camel's broad feet press into sand or firm ground. Leather tack creaks, hooves make soft thuds, and the camel may snort while the rider smiles or concentrates on balance."
+ },
+ {
+  "id": "action.gen.riding-a-donkey-cart",
+  "domain": "action",
+  "topic": "riding a donkey cart",
+  "names": [
+   "ركوب عربة حمار",
+   "ركوب عربانة حمار",
+   "عربانة حمار",
+   "عربة يجرها حمار",
+   "donkey cart ride",
+   "riding a donkey cart"
+  ],
+  "body": "A small donkey stands between the shafts of a two-wheeled wooden cart, its harness fitted across chest and shoulders. A driver checks the reins, sits at the front, and gives a gentle cue. The donkey walks forward with short, steady steps; the wheels begin turning and the cart rocks over ruts. Passengers sit on the bench, hold the side rail, and shift their weight with each bump. The driver watches the path while passengers glance around, sometimes smiling at a rough patch. Hooves tap against packed earth or pavement, wheels rattle, and harness fittings jingle in the open air."
+ },
+ {
+  "id": "action.gen.milking-a-cow",
+  "domain": "action",
+  "topic": "milking a cow",
+  "names": [
+   "حلب البقرة",
+   "حلب بقرة",
+   "أحلب بقرة",
+   "حلبة البقرة",
+   "milking a cow",
+   "cow milking"
+  ],
+  "body": "A calm cow stands on level ground beside a clean metal pail. The milker crouches near her flank, checks that she is settled, and cleans and dries the udder and teats. One hand supports a teat near its top; fingers close in sequence downward, sending a narrow stream of milk into the pail. The hands alternate in a steady rhythm rather than pulling sharply. The cow shifts her weight occasionally, flicks her tail, or chews while the milker watches her and pauses if she moves. Milk strikes the pail with quick hollow splashes amid soft breathing, hoof scuffs, and farmyard sounds."
+ },
+ {
+  "id": "action.gen.feeding-chickens",
+  "domain": "action",
+  "topic": "feeding chickens",
+  "names": [
+   "إطعام الدجاج",
+   "تغذية الدجاج",
+   "أكل الدجاج",
+   "أوكل الدجاج",
+   "feeding chickens",
+   "feed chickens"
+  ],
+  "body": "A person carries a shallow bowl of grain into a yard or chicken enclosure. Chickens notice the movement, turn their heads, and hurry closer with quick, bobbing steps. The person scatters small handfuls across dry ground, spreading the feed rather than piling it in one spot. Birds stop and peck rapidly, scratching backward with their feet to uncover stray grains; one may sidestep another, but the group keeps moving around the scatter. The feeder looks down to avoid stepping among them. Feathers shift in daylight as claws scrape the earth, grains patter down, and soft clucks mix with occasional louder calls."
+ },
+ {
+  "id": "action.gen.planting-a-tree",
+  "domain": "action",
+  "topic": "planting a tree",
+  "names": [
+   "زراعة شجرة",
+   "غرس شجرة",
+   "أزرع شجرة",
+   "غرسة شجرة",
+   "planting a tree",
+   "tree planting"
+  ],
+  "body": "A young tree stands beside a freshly dug hole, its leaves trembling in a light breeze and its roots held in a soil-filled nursery bag. One person removes the bag without tearing the root ball, while another steadies the thin trunk. They lower it into the hole with the root flare near ground level, check that it stands straight, and shovel loose soil around the roots. Hands press the soil gently to remove large air gaps. Both step back to inspect it, then water slowly around the base. The shovel scrapes, soil falls in soft clumps, and water darkens the earth in the sunlight."
+ },
+ {
+  "id": "action.gen.watering-plants",
+  "domain": "action",
+  "topic": "watering plants",
+  "names": [
+   "سقي النباتات",
+   "ري النباتات",
+   "أسقي الزرع",
+   "سقي الزرع",
+   "watering plants",
+   "water plants"
+  ],
+  "body": "A person carries a watering can along a row of potted plants or a garden bed. They tilt its spout toward the soil at one plant's base, letting a gentle shower fall without flattening the leaves. The soil turns darker as it absorbs water; a few drops cling to leaf edges and slide off. The person straightens the can to stop the flow, checks the damp patch, then moves to the next plant. Their eyes follow the stream so it stays on the roots rather than the path. Water patters on soil and the can gives a faint hollow slosh between pours, under ordinary outdoor sounds."
+ },
+ {
+  "id": "action.gen.picking-fruit-from-a-tree",
+  "domain": "action",
+  "topic": "picking fruit from a tree",
+  "names": [
+   "قطف الفاكهة",
+   "قطف الثمار",
+   "جني الفواكه",
+   "أقطف فواكه",
+   "picking fruit from a tree",
+   "fruit picking"
+  ],
+  "body": "Ripe fruit hangs among leaves on a low branch in daylight. A picker looks for an undamaged piece, reaches up, and cups it in one hand while the other steadies the branch. A small lift and twist releases the fruit at its stem; the branch springs back slightly, rustling the leaves. The picker checks the fruit, smiles or nods, and lowers it gently into a basket rather than dropping it. Another person may hold the basket and look for the next ripe piece. Footsteps press into the ground, leaves brush against sleeves, and fruit lands with a muted tap against the basket lining."
+ },
+ {
+  "id": "action.gen.harvesting-tomatoes",
+  "domain": "action",
+  "topic": "harvesting tomatoes",
+  "names": [
+   "حصاد الطماطم",
+   "قطف الطماطم",
+   "جني الطماطم",
+   "قطف الطماطة",
+   "harvesting tomatoes",
+   "picking tomatoes"
+  ],
+  "body": "In a tomato field, green vines lean against low supports, with ripe red fruit hanging among dusty leaves. A picker parts the foliage with one hand, cups a tomato with the other, then twists gently at the stem until it snaps. Their expression stays focused as they check the fruit for bruises and lower it into a shallow plastic crate; dropping it would dent the skin. Another worker moves along the row, glancing at the filled crates. Leaves rustle, stems make faint clicks, and tomatoes knock softly against one another. Daylight catches the fruit’s smooth, slightly uneven surfaces."
+ },
+ {
+  "id": "action.gen.fishing-with-rod-on-pier",
+  "domain": "action",
+  "topic": "fishing with a rod on a pier",
+  "names": [
+   "صيد السمك بالسنارة",
+   "الصيد من الرصيف",
+   "صيد بالصنارة عالرصيف",
+   "صيد سمچ بالسنارة",
+   "fishing on a pier",
+   "rod fishing"
+  ],
+  "body": "A person stands near the edge of a concrete pier, feet apart, holding a slim fishing rod angled over the water. They draw the rod back, then swing it forward; the flexible tip bends and straightens as the weighted line arcs out and lands with a small splash. Their eyes follow the float while a companion watches from a safe distance. When the line tightens, the fisher raises the rod and turns the reel handle steadily, looking alert. The reel clicks softly over the slap of water against the pier, wind in loose clothing, and distant voices. Sunlight flickers across the moving surface."
+ },
+ {
+  "id": "action.gen.selling-vegetables-at-stall",
+  "domain": "action",
+  "topic": "selling vegetables at a stall",
+  "names": [
+   "بيع الخضروات",
+   "بائع خضار",
+   "بيع خضرة بالبسطة",
+   "بسطية خضرة",
+   "selling vegetables",
+   "vegetable stall"
+  ],
+  "body": "At an open-air stall, tomatoes, cucumbers, eggplants, and leafy greens sit in shallow crates beneath a fabric shade. The seller straightens a pile with both hands, then lifts the vegetables a customer points to and places them on a scale. The pan dips under their weight and settles. Seller and customer watch the reading; the seller looks attentive while the customer checks the produce before agreeing. A thin bag crackles as it opens and fills, and the seller passes it across the counter. Nearby shoppers move past, voices overlap, and daylight filters through the shade onto the vegetables’ varied skins."
+ },
+ {
+  "id": "action.gen.counting-money-at-shop",
+  "domain": "action",
+  "topic": "counting money at a shop",
+  "names": [
+   "عد النقود في المحل",
+   "عد الفلوس بالمحل",
+   "يعد فلوس بالدكان",
+   "حساب الفلوس بالدكان",
+   "counting money at a shop",
+   "counting cash"
+  ],
+  "body": "Behind a shop counter, a cashier holds a small stack of banknotes in one hand and slides each note forward with a thumb, laying them flat in a separate pile. The notes bend slightly and make dry paper flicks. The cashier pauses to compare the total with a receipt, looking concentrated; the waiting customer watches the notes and then the cashier’s face. Coins, if needed for change, clink against the counter before being counted into an open palm. Shelves of packaged goods fill the background, with bright indoor light on the counter and a low hum of conversation and refrigeration."
+ },
+ {
+  "id": "action.gen.packing-groceries",
+  "domain": "action",
+  "topic": "packing groceries",
+  "names": [
+   "تعبئة المشتريات",
+   "توضيب الأغراض",
+   "ترتيب الأغراض بالكيس",
+   "تعبئة أغراض السوق",
+   "packing groceries",
+   "bagging groceries"
+  ],
+  "body": "At a grocery checkout, a worker opens a bag by pulling its sides apart, then sets heavy cans and bottles at the bottom. Lighter boxes go above them; bread and soft produce are placed last so they are not crushed. The bag’s base spreads against the counter as the weight settles, while plastic or paper rustles with each item. The worker glances between the remaining groceries and the bag, looking focused, and the customer watches, then reaches for the handles. A scanner beeps nearby, packaging taps the counter, and overhead shop lighting reflects off bottles and sealed packets."
+ },
+ {
+  "id": "action.gen.delivering-parcel-to-door",
+  "domain": "action",
+  "topic": "delivering a parcel to a door",
+  "names": [
+   "توصيل طرد للباب",
+   "تسليم طرد للمنزل",
+   "وصل طرد للباب",
+   "توصيل شحنة للبيت",
+   "parcel delivery",
+   "delivering a package"
+  ],
+  "body": "A courier stops at a doorway holding a taped cardboard parcel against one forearm and presses the bell with the other hand. A short chime sounds inside. When the resident opens the door, the courier looks up, confirms the name, and shifts the box outward with both hands. The resident’s face changes from curious to recognizing the delivery; they grip the bottom before the courier lets go. The box tilts briefly, then settles level in the resident’s arms. Footsteps and a quiet exchange of words carry through the hallway or shaded entrance, with daylight falling across the doorframe and printed shipping label."
+ },
+ {
+  "id": "action.gen.waiting-at-bus-stop",
+  "domain": "action",
+  "topic": "waiting at a bus stop",
+  "names": [
+   "انتظار الحافلة",
+   "انتظار الباص بالموقف",
+   "واقف ينتظر الباص",
+   "موقف الباص",
+   "waiting at a bus stop",
+   "waiting for the bus"
+  ],
+  "body": "Several passengers stand beneath a bus-stop shelter or beside its sign, leaving space along the curb. One checks a phone, another shifts a shopping bag from hand to hand, and others look down the road between brief conversations. Their expressions are patient or slightly weary. A bus appears in the distance; heads turn toward it, and people gather their belongings without stepping into the roadway. Its engine grows louder as it approaches, brakes hiss, and the vehicle rocks gently when it stops. Road noise continues around the shelter, while daylight or streetlamps cast shadows across the pavement and waiting faces."
+ },
+ {
+  "id": "action.gen.getting-into-a-taxi",
+  "domain": "action",
+  "topic": "getting into a taxi",
+  "names": [
+   "ركوب سيارة أجرة",
+   "ركوب التكسي",
+   "يركب تاكسي",
+   "يصعد بالتكسي",
+   "getting into a taxi",
+   "entering a taxi"
+  ],
+  "body": "A taxi pulls alongside the curb and settles to a stop, its engine idling. The passenger checks that it is the right car, opens the rear door, and turns sideways to lower their head and shoulders through the opening. They slide onto the seat, draw both legs inside, and pull a bag in after them. The driver glances toward the passenger or into the mirror, waiting with a neutral, attentive expression. The door swings inward and shuts with a solid click; the passenger reaches for the seat belt, which unspools and fastens with a snap. Traffic sounds continue outside the windows."
+ },
+ {
+  "id": "action.gen.boarding-a-plane",
+  "domain": "action",
+  "topic": "boarding a plane",
+  "names": [
+   "الصعود إلى الطائرة",
+   "ركوب الطيارة",
+   "بوابة الصعود",
+   "بوردنغ",
+   "boarding a plane",
+   "plane boarding"
+  ],
+  "body": "At the gate, passengers rise when their group is called, lift cabin bags by the handles, and form a loose queue between stanchions. A staff member scans each boarding pass; the reader gives a short beep, and the passenger walks down the narrow jet bridge under cool overhead lights. Shoes make soft, uneven taps on its floor. At the aircraft door, a flight attendant smiles and points toward the correct aisle. Passengers turn sideways to pass seated people, raise bags into overhead bins with both hands, then sit and fasten belts with a click. Those waiting behind pause patiently or glance at their seat numbers."
+ },
+ {
+  "id": "action.gen.airport-check-in",
+  "domain": "action",
+  "topic": "airport check-in",
+  "names": [
+   "تسجيل السفر",
+   "تشيك إن المطار",
+   "كاونتر الطيران",
+   "تسجيل الوصول بالمطار",
+   "airport check-in",
+   "flight check-in"
+  ],
+  "body": "At an airline counter, a traveler rolls a suitcase forward as the queue advances. The agent greets them, checks their travel document and booking on a monitor, then asks them to place the case flat on a waist-high scale. The traveler lifts it by its side handle; its wheels knock lightly against the metal edge. A weight appears on the display. The agent loops a printed tag around the handle, hands over a boarding pass, and indicates the departure gate. The belt hums as the suitcase moves away. The traveler checks the pass while companions watch, relaxed or slightly hurried under bright terminal lighting."
+ },
+ {
+  "id": "action.gen.passport-control",
+  "domain": "action",
+  "topic": "passport control",
+  "names": [
+   "تدقيق الجوازات",
+   "ختم الجواز",
+   "سيطرة الجوازات",
+   "الجوازات بالمطار",
+   "passport control",
+   "immigration desk"
+  ],
+  "body": "At a passport-control booth, a traveler steps up only when the officer signals. They place an open passport on the counter and look toward the officer or camera as directed. The officer compares the photograph with the face, glances at a screen, and turns the passport pages with a soft flutter. A scanner may beep; a stamp, where used, lands with a brief dull thump. The traveler waits with hands on the counter or holding a small bag, while family members remain behind the floor line. The officer returns the document, and the traveler nods and walks onward through the brightly lit terminal."
+ },
+ {
+  "id": "action.gen.luggage-on-a-carousel",
+  "domain": "action",
+  "topic": "luggage on a carousel",
+  "names": [
+   "سير الحقائب",
+   "جنط المطار",
+   "استلام الشنط",
+   "دوار الأمتعة",
+   "luggage carousel",
+   "baggage claim"
+  ],
+  "body": "In baggage claim, rubber belt panels carry suitcases out of a curtained opening and around a broad oval carousel. Hard-shell cases wobble slightly over the seams; fabric bags settle and slide, their tags fluttering in the moving air. The motor makes a steady low rumble, punctuated by wheels and buckles tapping the belt. Travelers stand a step back, scanning for familiar colors and tags beneath bright ceiling lights. When a bag approaches, its owner walks alongside it, grips the handle, and lifts it clear in one motion. Nearby people shift aside, then return their attention to the passing luggage."
+ },
+ {
+  "id": "action.gen.hotel-check-in",
+  "domain": "action",
+  "topic": "hotel check-in",
+  "names": [
+   "تسجيل دخول الفندق",
+   "تشيك إن الفندق",
+   "استلام غرفة الفندق",
+   "استقبال الفندق",
+   "hotel check-in",
+   "hotel reception"
+  ],
+  "body": "A guest approaches the reception desk with a rolling case and gives a name or reservation number. The receptionist smiles, checks the booking on a screen, and asks for the required identification. Paper or a tablet rests on the counter for any necessary signature; fingers tap keys softly while lobby conversation and suitcase wheels sound in the background. The receptionist explains the room number, breakfast times, and lift location, then passes over a key card in a small sleeve. The guest repeats a detail or nods, takes the card, and steers the case toward the lifts through warm, even lobby light."
+ },
+ {
+  "id": "action.gen.room-service",
+  "domain": "action",
+  "topic": "room service",
+  "names": [
+   "خدمة الغرف",
+   "طلب الأكل للغرفة",
+   "أكل الغرفة",
+   "توصيل وجبة للفندق",
+   "room service",
+   "in-room dining"
+  ],
+  "body": "A knock or soft chime sounds at the hotel-room door. The guest opens it to find a staff member beside a compact trolley or holding a covered tray. After confirming the order, the guest steps aside. The staff member rolls the trolley over the threshold slowly, keeping glasses upright, and sets dishes on a table or unfolds the trolley leaves. Lids lift to reveal the food; plates give a faint ceramic clink, and cutlery rests neatly beside folded napkins. The guest checks the meal and thanks the staff member, who smiles, confirms where to leave the trolley later, and departs. Warm room lamps reflect off glassware."
+ },
+ {
+  "id": "action.gen.valet-parking",
+  "domain": "action",
+  "topic": "valet parking",
+  "names": [
+   "صف السيارات بالفندق",
+   "خدمة صف السيارات",
+   "فاليه",
+   "تسليم السيارة للفاليه",
+   "valet parking",
+   "valet service"
+  ],
+  "body": "A driver eases a car to the marked hotel entrance and brakes to a complete stop. A valet approaches from the pavement, greets the driver, and waits as the engine is switched off. Doors close with muted thuds while passengers step out and collect bags; the valet helps with luggage if requested. The driver hands over the key and receives a numbered ticket. After checking that everyone is clear of the car, the valet sits, adjusts the seat or mirrors if needed, starts the engine, signals, and pulls away slowly. Under the entrance canopy, guests watch the car leave amid quiet conversation and rolling suitcase wheels."
+ },
+ {
+  "id": "action.gen.filling-a-car-with-fuel",
+  "domain": "action",
+  "topic": "filling a car with fuel",
+  "names": [
+   "تعبئة بنزين",
+   "تزويد السيارة بالوقود",
+   "تفويل السيارة",
+   "محطة البنزين",
+   "filling a car with fuel",
+   "refueling a car"
+  ],
+  "body": "A car stops beside a fuel pump with its filler door facing the hose. The driver switches off the engine, opens the filler door, and unscrews the cap; it turns with small plastic clicks. At an attended station, an attendant greets the driver and confirms the fuel type and amount before lifting the correct nozzle. Otherwise, the driver does the same. The nozzle slides into the filler neck, its handle is squeezed, and the pump hums while numbers climb on the display. It clicks off when filling ends. The nozzle is returned, the cap tightened, and the filler door pressed shut before payment or departure."
+ },
+ {
+  "id": "action.gen.car-breakdown-pushing",
+  "domain": "action",
+  "topic": "car breakdown and pushing the car",
+  "names": [
+   "تعطل السيارة",
+   "دفع السيارة",
+   "السيارة عطلت",
+   "السيارة واقفة",
+   "car breakdown",
+   "pushing a car"
+  ],
+  "body": "A compact car sits at the edge of an Iraqi street with its hazard lights blinking amber. The driver turns the key, hears a weak click, then looks toward a passenger, who gives a brief nod. With the engine off and the car in neutral, the driver stays behind the wheel to steer and brake. Two adults plant their palms against the rear bodywork, lean forward, and push in short, heavy steps. The tyres begin rolling slowly; shoes scrape the pavement. The driver watches the mirrors and guides the car into a clear roadside space, then brakes gently. Traffic hums past as everyone exhales and steps back."
+ },
+ {
+  "id": "action.gen.parallel-parking",
+  "domain": "action",
+  "topic": "parallel parking",
+  "names": [
+   "الركن الموازي",
+   "الاصطفاف الموازي",
+   "صف السيارة بين سيارتين",
+   "صف السيارة عالشارع",
+   "parallel parking",
+   "parking between cars"
+  ],
+  "body": "A driver slows beside an open curb space between two parked cars, signals, and checks the mirrors and over one shoulder. The car stops alongside the front vehicle. Reversing slowly, the driver turns the steering wheel; the rear wheels trace an arc toward the curb while the front swings outward. Tyres make a faint gritty sound on asphalt, with a soft reversing tone audible inside the cabin. The driver pauses, looks again, counter-steers, and eases the front end into the space. A passenger watches the gap with a concentrated expression, then relaxes. The car stops nearly parallel to the curb, leaving visible space at both bumpers."
+ },
+ {
+  "id": "action.gen.crossing-busy-street",
+  "domain": "action",
+  "topic": "crossing a busy street",
+  "names": [
+   "عبور شارع مزدحم",
+   "قطع الشارع",
+   "أعبر الشارع",
+   "عبور الطريق",
+   "crossing a busy street",
+   "crossing traffic"
+  ],
+  "body": "At a marked crossing on a busy commercial street, pedestrians gather behind the curb while cars and taxis pass in uneven streams. A woman holding a shopping bag looks left, right, then toward the pedestrian signal; others beside her watch the traffic too. When the signal changes and vehicles stop, she steps onto the stripes at a steady pace. Her bag swings lightly against her leg, and shoe soles tap the road. A parent keeps a child close by the hand. Faces stay attentive rather than alarmed; heads turn toward any approaching lane. Engines idle, a distant horn sounds, and the group reaches the opposite pavement together."
+ },
+ {
+  "id": "action.gen.riding-escalator",
+  "domain": "action",
+  "topic": "riding an escalator",
+  "names": [
+   "ركوب السلم الكهربائي",
+   "الدرج الكهربائي",
+   "أصعد بالدرج الكهربائي",
+   "escalator ride",
+   "riding an escalator"
+  ],
+  "body": "In a bright shopping mall, ribbed metal escalator steps emerge from beneath a comb-shaped landing plate. A rider waits for a clear step, places one foot on it and then the other, and takes the moving rubber handrail. Their body gives a small balancing sway as the step rises; a companion behind them leaves a step of space. The steps keep their treads level while their edges form a staircase. A low motor hum and rhythmic metal rattle sit beneath nearby conversations. At the top, the rider looks forward, steps promptly onto the fixed floor, and releases the handrail as the steps flatten and disappear."
+ },
+ {
+  "id": "action.gen.using-an-atm",
+  "domain": "action",
+  "topic": "using an ATM",
+  "names": [
+   "استخدام الصراف الآلي",
+   "سحب من الصراف",
+   "أسحب فلوس من الصراف",
+   "ماكينة الصراف",
+   "using an atm",
+   "cash withdrawal"
+  ],
+  "body": "An ATM is set into a bank wall under a small overhead light. A customer stands close to the screen, selects an option with a fingertip, inserts a bank card, and shields the keypad with the other hand while entering a PIN; no digits are visible. The machine gives short electronic beeps and a quiet internal whir. The customer glances at the screen, waits with a neutral, focused expression, then takes the returned card when it protrudes. Banknotes slide out in a neat stack, their corners lifting slightly in the air. The customer counts them discreetly, pockets the cash and card, and steps aside for the next person."
+ },
+ {
+  "id": "action.gen.paying-with-phone",
+  "domain": "action",
+  "topic": "paying with a phone",
+  "names": [
+   "الدفع بالهاتف",
+   "الدفع بالموبايل",
+   "أدفع بالتلفون",
+   "دفع بدون تلامس",
+   "paying with a phone",
+   "phone payment"
+  ],
+  "body": "At a shop counter, a cashier turns a small card terminal toward the customer. The customer wakes a smartphone, checks its payment screen, and holds the phone a few centimetres above the terminal rather than pressing it against the plastic. For a moment both people watch the display. A short confirmation chime sounds, the terminal flashes an approval message, and the cashier’s face softens into a quick smile. The customer lowers the phone and picks up a small shopping bag; its thin handles stretch under the weight. Barcode scanner chirps and subdued conversation continue around them under even indoor lighting."
+ },
+ {
+  "id": "action.gen.trying-clothes-fitting-room",
+  "domain": "action",
+  "topic": "trying clothes in a fitting room",
+  "names": [
+   "قياس الملابس",
+   "تجربة الملابس",
+   "غرفة القياس",
+   "أقيس الملابس",
+   "trying clothes on",
+   "fitting room"
+  ],
+  "body": "A fitting room has a full-length mirror, a bench, wall hooks, and a curtain that closes completely. A shopper carries a folded shirt inside and pulls the curtain shut. After changing in private, they stand before the mirror, smooth the shirt over the shoulders, turn sideways, and lift their arms slightly to check its fit. The fabric creases at the elbows and settles when the arms drop. Soft hanger clicks and muffled shop music come through the curtain. The shopper studies the hem with a thoughtful expression, then opens the curtain only when fully dressed to ask a companion, who looks up and gives a considered response."
+ },
+ {
+  "id": "action.gen.trying-on-shoes",
+  "domain": "action",
+  "topic": "trying on shoes",
+  "names": [
+   "قياس الأحذية",
+   "تجربة الحذاء",
+   "أقيس القندرة",
+   "أجرب الحذاء",
+   "trying on shoes",
+   "shoe fitting"
+  ],
+  "body": "In a shoe shop, open boxes sit beside a low padded stool. A customer sits, loosens a pair of new shoes, and slides each foot in while keeping their socks on. They press a thumb across each toe box, then stand and shift weight from heel to toe. The leather or fabric bends over the instep; the soles make soft taps on the tile. The customer walks a few careful steps, turns, and walks back, watching the mirror near the floor. A shop assistant waits nearby with an attentive expression. The customer pauses to feel whether either heel slips, while faint shop music plays overhead."
+ },
+ {
+  "id": "action.gen.getting-a-manicure",
+  "domain": "action",
+  "topic": "getting a manicure",
+  "names": [
+   "مانيكير",
+   "تقليم الأظافر",
+   "ترتيب الأظافر",
+   "سويت مناكير",
+   "manicure",
+   "nail appointment"
+  ],
+  "body": "At a nail salon, the customer rests both forearms on a small table, palms down under a bright task lamp. The technician holds one finger at a time, trims the nail edge, then draws a file across it in short, even strokes. Fine dust gathers on a towel; the file makes a soft rasp. After the cuticles are gently pushed back, the technician wipes each nail and brushes polish from base to tip. The wet surface catches a narrow highlight. The customer keeps their fingers spread while the polish dries, glancing at the colour and smiling. Bottles, cotton pads and tools stay close at hand."
+ },
+ {
+  "id": "action.gen.eye-test-at-an-optician",
+  "domain": "action",
+  "topic": "eye test at an optician",
+  "names": [
+   "فحص النظر",
+   "فحص عيون عند البصريات",
+   "قياس النظر",
+   "أفحص نظري",
+   "eye test",
+   "optician exam"
+  ],
+  "body": "In a quiet optician’s exam room, the patient sits upright facing a lit chart of letters or symbols. The optician adjusts a trial frame or lens device at eye level and asks the patient to cover one eye. The patient leans slightly forward, squints at the smaller rows, then reads aloud, sometimes pausing to guess. Lenses click softly as the optician changes them and asks which view is clearer. A pen taps against a clipboard while results are noted. The chart glows against a plain wall; overhead light reflects faintly in the lenses. Both faces remain attentive, with relaxed, matter-of-fact expressions."
+ },
+ {
+  "id": "action.gen.gentle-child-vaccination",
+  "domain": "action",
+  "topic": "vaccination of a child (gentle)",
+  "names": [
+   "تطعيم طفل",
+   "لقاح الأطفال",
+   "إبرة التطعيم",
+   "أطعم طفلي",
+   "child vaccination",
+   "gentle vaccine"
+  ],
+  "body": "In a clean clinic room, a child sits on a parent’s lap with one sleeve raised. The parent wraps an arm gently around the child’s waist and speaks close to their ear. A nurse at their side checks the child’s upper arm, wipes a small patch of skin and waits for it to dry. The child watches the parent’s face or looks away, gripping a sleeve. The injection is brief; the child may flinch or cry, then settles as the parent comforts them. A small dressing goes on afterward. Paper rustles, the nurse speaks softly, and a toy or sticker draws the child’s attention."
+ },
+ {
+  "id": "action.gen.physiotherapy-session",
+  "domain": "action",
+  "topic": "physiotherapy session",
+  "names": [
+   "جلسة علاج طبيعي",
+   "علاج فيزيائي",
+   "تمارين العلاج الطبيعي",
+   "جلسة فيزيو",
+   "physiotherapy session",
+   "physical therapy"
+  ],
+  "body": "In a physiotherapy room, a patient moves slowly beside a padded treatment table while the therapist stands close enough to guide, not carry, their weight. The therapist demonstrates a controlled bend or stretch, then watches the patient repeat it, adjusting the angle with a light hand at the shoulder or knee. Muscles tighten visibly before the patient exhales and eases back to the starting position. Shoes grip the floor; an exercise band stretches and returns without snapping. The therapist counts in a calm voice, and the patient’s face shows concentration, sometimes a brief wince. Bright even light reveals mats, bands and a chair nearby."
+ },
+ {
+  "id": "action.gen.teacher-grading-papers",
+  "domain": "action",
+  "topic": "teacher grading papers",
+  "names": [
+   "تصحيح أوراق الطلاب",
+   "تصحيح الامتحانات",
+   "المدرس يصحح",
+   "المعلمة تصحح دفاتر",
+   "grading papers",
+   "marking exams"
+  ],
+  "body": "A teacher sits at a desk with a stack of student papers on one side and a smaller finished pile on the other. They lift a page by one corner, scan lines of handwriting and make a short mark beside an answer. The pen scratches lightly; paper slides across the desktop as each sheet changes piles. A rubric, notebook and capped pens lie within reach. Under a desk lamp or classroom ceiling lights, red or blue ink stands out against white pages. The teacher’s brow furrows at an unclear response, then relaxes while writing a brief note. Empty desks or a quiet staffroom fill the background."
+ },
+ {
+  "id": "action.gen.kids-raising-hands-in-class",
+  "domain": "action",
+  "topic": "kids raising hands in class",
+  "names": [
+   "طلاب يرفعون أيديهم",
+   "أطفال يرفعون أيديهم",
+   "رفع اليد في الصف",
+   "التلاميذ يرفعون إيدهم",
+   "kids raising hands",
+   "hands up in class"
+  ],
+  "body": "In a classroom, children sit at individual desks or shared tables facing a teacher and board. After a question, several straighten their backs and lift one arm, elbows extending at different angles; one child holds a hand high while another raises it halfway and looks around. Fingers may spread or stay together. The teacher scans the room and points to one student, whose hand drops as they begin to answer. Other children lower their arms more slowly, some still eager and smiling. Chair legs scrape lightly, sleeves brush desks, and a few quiet voices fade as the selected student speaks. Daylight mixes with overhead classroom lighting."
+ },
+ {
+  "id": "action.gen.school-morning-line-up-and-flag",
+  "domain": "action",
+  "topic": "school morning line-up and flag",
+  "names": [
+   "طابور الصباح",
+   "تحية العلم في المدرسة",
+   "اصطفاف الطلاب الصباحي",
+   "طابور العلم",
+   "school morning line-up",
+   "school flag ceremony"
+  ],
+  "body": "In a school courtyard, students stand in rows by class, with teachers spaced along the sides. Children shuffle into place, straighten their shirts and turn toward a flagpole at the front. A student or staff member raises the flag; the cloth climbs the pole, bunches briefly, then opens and ripples in the morning breeze. In an Iraqi school, its red, white and black bands and green script are visible when the fabric unfurls. The rope taps lightly against the pole. Students face forward for the anthem or a short announcement, their voices joining unevenly. Low sun casts long shadows across the concrete before the rows break for class."
+ },
+ {
+  "id": "action.gen.graduation-speech",
+  "domain": "action",
+  "topic": "graduation speech",
+  "names": [
+   "خطاب التخرج",
+   "كلمة حفل التخرج",
+   "كلمة الخريجين",
+   "يلقي كلمة تخرج",
+   "graduation speech",
+   "commencement speech"
+  ],
+  "body": "At a graduation ceremony, a speaker in a gown or formal clothes steps to a lectern facing seated graduates and families. They place notes flat, adjust their stance and lean toward the microphone before speaking. Their voice comes through the room’s speakers with a slight echo; they pause between lines and look up to make eye contact. Graduates in matching gowns listen, smile at a familiar remark or exchange brief glances. Families hold phones steady above laps or at eye level. Stage lights brighten the speaker’s face while the audience sits in softer light. At the final sentence, applause rises, hands clap and the speaker steps back, smiling."
+ },
+ {
+  "id": "action.gen.award-ceremony",
+  "domain": "action",
+  "topic": "award ceremony",
+  "names": [
+   "حفل توزيع الجوائز",
+   "حفل تكريم",
+   "توزيع جوائز",
+   "حفلة تكريم",
+   "award ceremony",
+   "awards night"
+  ],
+  "body": "On a lit stage, a presenter stands beside a small table holding plaques or trophies. The winner walks up from the audience, smiling, while seated guests turn their heads and applaud. The presenter lifts one award by its base, pauses for a handshake, then places it securely in the winner’s hands. Both face the cameras for a moment; the winner may raise the award slightly but keeps its weight supported. Stage lights make polished metal or acrylic gleam against a darker backdrop. Applause fills the room, interrupted by camera shutters, a microphone announcement, and footsteps crossing the stage."
+ },
+ {
+  "id": "action.gen.press-conference",
+  "domain": "action",
+  "topic": "press conference",
+  "names": [
+   "مؤتمر صحفي",
+   "لقاء صحفي",
+   "مؤتمر إعلامي",
+   "مؤتمر صحافي",
+   "press conference",
+   "media briefing"
+  ],
+  "body": "A speaker sits or stands behind a table or lectern, with several microphones angled toward their mouth and a printed backdrop behind them. Journalists face forward from rows of chairs, holding phones, notebooks, or small recorders. The speaker leans toward a microphone to answer, pauses, then looks across the room as a reporter raises a hand and asks a question. Other reporters glance up from their notes. Water glasses, cables, and name cards stay still on the table unless touched. Indoor lighting is even and bright; speech is amplified, with faint chair movement, camera shutters, and occasional microphone handling noise."
+ },
+ {
+  "id": "action.gen.podcast-recording",
+  "domain": "action",
+  "topic": "podcast recording",
+  "names": [
+   "تسجيل بودكاست",
+   "تصوير بودكاست",
+   "حلقة بودكاست",
+   "podcast recording",
+   "podcast session"
+  ],
+  "body": "Two hosts sit across a small table in a quiet room, each speaking into a microphone held close by a boom arm. Headphones cover their ears, with cables running toward an audio interface or computer. One host finishes a sentence, breathes back from the mic, and watches the other nod and begin speaking; hands make small gestures without striking the table. A recorder display or software meters rise with each voice, then fall during pauses. Soft lamps illuminate faces while the background stays subdued. Voices sound close and dry, alongside light breaths, a page turn, and the occasional quiet click of a control."
+ },
+ {
+  "id": "action.gen.tv-cooking-show",
+  "domain": "action",
+  "topic": "TV cooking show",
+  "names": [
+   "برنامج طبخ تلفزيوني",
+   "برنامج طبخ",
+   "عرض طبخ تلفزيوني",
+   "فقرة طبخ",
+   "tv cooking show",
+   "television cooking show"
+  ],
+  "body": "A presenter stands at a clean kitchen counter facing a studio camera, with ingredients measured in small bowls and a pan heating on the hob. While explaining a step, they tip chopped vegetables into the pan, stir with a spatula, and briefly glance toward a second camera framing the food. A nearby guest may smile, watch the pan, and taste only when offered a spoon. Oil sizzles as steam rises and disperses beneath the overhead lights. Camera operators remain outside the cooking area; bright, even lighting shows the ingredients’ true colours. Speech, utensil taps, sizzling, and an extractor fan form the soundscape."
+ },
+ {
+  "id": "action.gen.car-key-handover",
+  "domain": "action",
+  "topic": "car key handover",
+  "names": [
+   "تسليم مفتاح السيارة",
+   "تسليم مفاتيح السيارة",
+   "استلام مفتاح سيارة",
+   "استلام السيارة",
+   "car key handover",
+   "car key delivery"
+  ],
+  "body": "Beside a parked, clean car, a seller or dealership employee holds out a small key fob, often attached to a plain tag or short key ring. The new owner extends an open hand; the giver lowers the fob into the palm and releases it only after the fingers close. Both smile, glance at the key, then look toward the vehicle. The owner may press the unlock button, prompting a brief indicator flash and a soft lock click, before reaching for the door handle. Daylight reflects across the windows and paint. Nearby voices, footsteps, and distant traffic remain louder than the lightweight key’s movement."
+ },
+ {
+  "id": "action.gen.ribbon-cutting-at-an-opening",
+  "domain": "action",
+  "topic": "ribbon cutting at an opening",
+  "names": [
+   "قص الشريط",
+   "افتتاح بقص الشريط",
+   "مراسم قص الشريط",
+   "حفل قص الشريط",
+   "ribbon cutting",
+   "opening ribbon ceremony"
+  ],
+  "body": "A coloured ribbon stretches across an entrance at about waist height, held taut or tied to posts on either side. The invited guest stands at its centre with scissors while hosts gather close but leave space for the blades. After a brief pause for photographs, the guest opens the scissors, places the ribbon between the blades, and squeezes; the cut ends spring apart slightly and droop. Smiling guests clap and turn toward the newly open doorway, while someone may guide the group inside. Daylight or entrance lights catch the ribbon’s sheen. Camera shutters, applause, greetings, and the small snip occur in sequence."
+ },
+ {
+  "id": "action.gen.construction-workers-pouring-concrete",
+  "domain": "action",
+  "topic": "construction workers pouring concrete",
+  "names": [
+   "صب الخرسانة",
+   "صب كونكريت",
+   "عمال يصبون خرسانة",
+   "صب سمنت",
+   "pouring concrete",
+   "concrete pour"
+  ],
+  "body": "At a prepared building site, workers in helmets, boots, gloves, and high-visibility clothing guide wet concrete from a pump hose into timber or metal formwork. One worker grips the heavy hose with both hands as the thick grey mix flows downward in uneven folds; others use shovels or rakes to spread it without stepping into unsupported areas. A vibrating probe briefly hums inside the mix, settling it around reinforcement and bringing small bubbles to the surface. Faces stay focused, with short spoken directions between movements. Harsh daylight shows damp patches and aggregate in the slurry. Pump rumble, engine noise, scraping tools, and bootsteps fill the site."
+ },
+ {
+  "id": "action.gen.welder-with-sparks",
+  "domain": "action",
+  "topic": "welder with sparks",
+  "names": [
+   "لحام مع شرر",
+   "لحام يطير شرر",
+   "عامل لحام",
+   "شرار اللحام",
+   "welder with sparks",
+   "welding sparks"
+  ],
+  "body": "In a workshop, a welder wears a lowered welding helmet, gloves, long sleeves, and sturdy boots while joining two clamped pieces of metal. They steady the torch near the seam, start the arc, and move along it at a controlled pace. A bright blue-white point of light appears at the contact area; small orange sparks shoot outward, curve down under gravity, and fade on the floor. The welder stops, lifts the torch away, and waits before inspecting the bead through the helmet. Nearby workers face away or stay behind welding screens. The arc crackles sharply over a low ventilation hum, with intermittent metallic taps."
+ },
+ {
+  "id": "action.gen.electrician-fixing-wires",
+  "domain": "action",
+  "topic": "electrician fixing wires",
+  "names": [
+   "كهربائي يصلح الأسلاك",
+   "تصليح أسلاك الكهرباء",
+   "كهربجي يصلح الوايرات",
+   "تصليح الوايرات",
+   "electrician fixing wires"
+  ],
+  "body": "In a modest Iraqi apartment, the electrician stands beside an open wall switch box, with insulated screwdrivers and a voltage tester on a small stool. He switches off the circuit breaker, tests the wires, then loosens a terminal and trims a frayed end. Copper bends stiffly as he strips the insulation and secures the wire under the screw. His brow tightens while he works; the resident watches from a few steps away. Plastic clicks, a screwdriver turns with a faint scrape, and the cover plate snaps back on. Only then does he restore power and test the switch under warm ceiling light."
+ },
+ {
+  "id": "action.gen.plumber-fixing-a-sink",
+  "domain": "action",
+  "topic": "plumber fixing a sink",
+  "names": [
+   "سباك يصلح المغسلة",
+   "إصلاح حوض المطبخ",
+   "سنكري يصلح المغسلة",
+   "تصليح المجلى",
+   "plumber fixing a sink"
+  ],
+  "body": "Under a kitchen sink, the plumber kneels on a folded cloth beside a shallow bucket. He closes the water valves, twists the curved drain trap loose and lowers it carefully; a little cloudy water drips into the bucket with hollow taps. He wipes the threads, clears a small blockage and tightens the trap by hand before giving it a short turn with pliers. His sleeves are pushed up and his face stays focused. The homeowner leans near the doorway, watching the first test flow. Water rushes into the basin, the pipe gives a soft gurgle, and both look underneath for leaks."
+ },
+ {
+  "id": "action.gen.mechanic-under-a-car",
+  "domain": "action",
+  "topic": "mechanic under a car",
+  "names": [
+   "ميكانيكي تحت السيارة",
+   "ميكانيكي يصلح سيارة",
+   "ميكانيكي جوه السيارة",
+   "تصليح سيارة من تحت",
+   "mechanic under a car"
+  ],
+  "body": "In an open-front garage, a car rests on jack stands above a concrete floor marked with old oil stains. The mechanic lies on a low wheeled creeper and rolls beneath it, holding a small work lamp in one hand. He steadies a wrench with both hands, pulls until a bolt releases, then lowers a metal cover into a parts tray. The wrench clicks; the cover lands with a light clang. His expression is intent, and he squints toward the lit underside. A colleague crouches outside the car, listening and passing him a socket. Daylight cuts across the garage entrance while a fan hums nearby."
+ },
+ {
+  "id": "action.gen.tailor-measuring-a-suit",
+  "domain": "action",
+  "topic": "tailor measuring a suit",
+  "names": [
+   "خياط يقيس بدلة",
+   "أخذ قياسات بدلة",
+   "خياط ياخذ قياس بدلة",
+   "قياس قاط",
+   "tailor measuring a suit"
+  ],
+  "body": "Inside a tailoring shop, a customer stands straight in front of a mirror wearing a shirt and trousers. The tailor drapes a flexible measuring tape around the chest, holds it level without pulling tight and reads the number. He notes it in a small book, then measures the shoulders, waist and sleeve length in turn. The customer lowers his arms when asked and glances at his reflection; the tailor studies each line with a calm, concentrated face. Tape slides against fabric, a pencil scratches paper, and hangers click softly on a rail. Bright shop lights show the folds and seams clearly."
+ },
+ {
+  "id": "action.gen.shoe-shiner-on-the-street",
+  "domain": "action",
+  "topic": "shoe shiner on the street",
+  "names": [
+   "ماسح أحذية في الشارع",
+   "تلميع الأحذية في الشارع",
+   "صباغ أحذية بالشارع",
+   "تلميع قنادر",
+   "street shoe shiner"
+  ],
+  "body": "At the edge of a shaded Iraqi sidewalk, the shoe shiner sits behind a compact wooden box fitted with a raised footrest. A customer places one leather shoe on it. The shiner brushes away dust in quick strokes, spreads a thin layer of polish with a cloth and buffs the toe until it catches a bright reflection. The customer's other foot stays on the pavement, and both watch the finish take shape. Bristles rasp against leather; the polishing cloth makes a brisk, soft swish. Traffic passes behind them, while small tins, brushes and a folded rag remain neatly arranged beside the box."
+ },
+ {
+  "id": "action.gen.street-food-vendor-cooking",
+  "domain": "action",
+  "topic": "street food vendor cooking",
+  "names": [
+   "بائع أكل شارع يطبخ",
+   "بائع طعام شعبي",
+   "بياع أكل بالشارع",
+   "بسطية أكل تطبخ",
+   "street food vendor cooking"
+  ],
+  "body": "At a street-side cart in Iraq, a vendor turns small pieces of seasoned meat on a flat metal griddle. One hand works a spatula while the other steadies an open bread roll. He presses the meat briefly, scoops it into the bread, adds sliced tomato and herbs, then wraps the sandwich in paper. Oil spits in tiny bursts and the spatula scrapes sharply across the hot surface. His face is alert as he checks the browning; a waiting customer watches the sandwich and reaches for it with a smile. Steam rises into the evening light, with traffic noise beyond the cart."
+ },
+ {
+  "id": "action.gen.ice-cream-cart-vendor",
+  "domain": "action",
+  "topic": "ice cream cart vendor",
+  "names": [
+   "بائع آيس كريم بعربة",
+   "عربة المثلجات",
+   "بياع آيس كريم بالعربة",
+   "عربة بوظة",
+   "ice cream cart vendor"
+  ],
+  "body": "An ice cream vendor stands beside a small wheeled cart with a shaded lid and colourful pictures of frozen treats on its sides. He rings a handbell once, lifts the lid and reaches into the cold compartment for a wrapped ice cream. A child points to a picture while an adult stands close beside them; the vendor checks the choice and hands the treat over with an easy smile. The wrapper crinkles as the child takes it. The lid drops shut with a muted thump, the cart wheels rattle slightly when he shifts it, and late-afternoon sunlight glints on the metal handle."
+ },
+ {
+  "id": "action.gen.balloon-seller",
+  "domain": "action",
+  "topic": "balloon seller",
+  "names": [
+   "بائع بالونات",
+   "بائع المناطيد الملونة",
+   "بياع بالونات",
+   "بياع نفاخات",
+   "balloon seller"
+  ],
+  "body": "Near a busy public walkway, a balloon seller holds a cluster of helium-filled balloons tied to a weighted handle. Round red, yellow and blue balloons bob above his head, tugging their thin strings taut whenever a breeze crosses the street. A child points upward; the seller separates one string from the bundle, loops it securely around the child's wrist and lets the balloon rise to the string's length. The child smiles and looks up while the accompanying adult watches the knot. The balloons rub together with faint squeaks, nearby footsteps and voices fill the background, and soft daylight shines through their coloured surfaces."
+ },
+ {
+  "id": "action.gen.cotton-candy-making",
+  "domain": "action",
+  "topic": "cotton candy making",
+  "names": [
+   "غزل البنات",
+   "صنع غزل البنات",
+   "شعر البنات",
+   "حلاوة قطن",
+   "cotton candy",
+   "making cotton candy",
+   "candy floss"
+  ],
+  "body": "At a fairground stall, a vendor pours a small scoop of coloured sugar into the spinning metal head at the centre of a wide stainless-steel bowl. The motor hums; melted sugar shoots through tiny openings and cools into fine strands along the bowl’s rim. Keeping fingers clear of the hot head, the vendor turns a paper stick around the rim, then lifts and rotates it to gather a loose, cloud-shaped puff. The strands stretch lightly before settling onto the stick. A waiting child leans forward and smiles; an adult beside them watches the vendor’s hands. Warm stall lights show the candy’s pale pink translucence against the darker evening background."
  }
 ]

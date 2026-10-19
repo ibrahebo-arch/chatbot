@@ -1149,5 +1149,1470 @@
    "darbuka beat"
   ],
   "body": "A player braces the goblet-shaped darbuka under one arm or across a thigh, leaving the circular drumhead exposed. A flat hand striking near the centre produces a deep, rounded dum; fingertips striking near the rim produce a sharper, higher tak. The hands alternate in a repeating pattern, with quick rolls and small accents that visibly match each sound. Notes stop almost at once, though a tiled room adds a short echo. The drum may have a metal or ceramic shell and a pale synthetic or natural head. Nearby voices, claps, or an instrument can sit around the rhythm without hiding its distinct low and high strikes."
+ },
+ {
+  "id": "sound.gen.heartbeat",
+  "domain": "sound",
+  "topic": "heartbeat",
+  "names": [
+   "نبض القلب",
+   "دقات القلب",
+   "خفقان القلب",
+   "دگات الگلب",
+   "نبض",
+   "heartbeat",
+   "heartbeats"
+  ],
+  "body": "A heartbeat is not normally audible across a room. Show a stethoscope against the chest, an ear close to the chest, or an explicitly close-miked perspective if the sound is prominent. It has a low, muffled double beat, “lub-dub,” followed by a slightly longer pause before the next pair. The beats are steady but not mechanically identical; breathing can subtly alter their spacing. A stethoscope’s metal head rests flat against clothing or skin, and its tubing moves slightly with the listener’s hand. Surrounding room noise falls away in a close recording, while fabric rustle and quiet breathing remain."
+ },
+ {
+  "id": "sound.gen.whispering",
+  "domain": "sound",
+  "topic": "whispering",
+  "names": [
+   "همس",
+   "وشوشة",
+   "يهمس",
+   "يوشوش",
+   "whispering",
+   "whisper"
+  ],
+  "body": "Whispering comes from two people close enough that ordinary speech would be unnecessary. Lips and jaw form words while the vocal cords make little or no pitched sound; breath carries soft consonants and faint vowel shapes. The sound is dry, airy and low in volume, with small pauses for breathing, rather than a steady hiss. A person may lean toward the listener’s ear or shield their mouth with a hand without touching it. In a quiet room, syllables and clothing rustle can be heard; in a busy room, the words disappear beneath conversation. Mouth movement must follow the whispered phrases."
+ },
+ {
+  "id": "sound.gen.laughter-of-a-crowd",
+  "domain": "sound",
+  "topic": "laughter of a crowd",
+  "names": [
+   "ضحك الجمهور",
+   "ضحك جماعي",
+   "ضحك الحضور",
+   "الجماعة تضحك",
+   "crowd laughter",
+   "audience laughter"
+  ],
+  "body": "Crowd laughter begins unevenly: a few people react first, then overlapping voices swell and fade at different times. It combines short bright laughs, deeper chuckles, breathy exhalations and the occasional clap, never one perfectly synchronized repeated sound. In the picture, shoulders lift, faces open into smiles, and some people lean toward companions; others only grin. The loudest burst follows the visible cause of the reaction by a brief natural delay. In a hall, the sound gains a light room echo; in an outdoor gathering, individual nearby voices remain distinct above a softer wash of people farther away."
+ },
+ {
+  "id": "sound.gen.giggling-children",
+  "domain": "sound",
+  "topic": "giggling children",
+  "names": [
+   "ضحك الأطفال",
+   "قهقهة الأطفال",
+   "ضحكة جهال",
+   "الجهال يضحكون",
+   "giggling children",
+   "kids giggling"
+  ],
+  "body": "Children’s giggles are quick, light bursts at different pitches, broken by little inhalations and sometimes a squeal. One child may start, prompting another to laugh a moment later. Show the cause on screen: a playful face, a harmless game, or a shared surprise. Their mouths open and close with each burst; shoulders bounce, and a child may cover their smile or bend forward briefly. Small shoes scuff the floor or playground surface beneath the voices. The giggles rise suddenly, taper into breathy chuckles, and may restart when the children look at each other. Avoid perfectly looped, identical laughs."
+ },
+ {
+  "id": "sound.gen.baby-babbling",
+  "domain": "sound",
+  "topic": "baby babbling",
+  "names": [
+   "مناغاة الطفل",
+   "مناغاة البيبي",
+   "حچي البيبي",
+   "البيبي يناغي",
+   "baby babbling",
+   "infant babble"
+  ],
+  "body": "A babbling baby sits with support or rests securely in a caregiver’s arms, moving lips, tongue and jaw while trying out sounds. Rounded vowels mix with repeated soft syllables such as “ba-ba” or “ma-ma,” though these need not be meaningful words. The voice is small and variable: a brief squeal, a pause for breath, then another cluster of syllables. Eyes may follow a familiar face while hands open, reach or pat clothing. A caregiver’s quiet response can prompt another burst. Keep the room’s ordinary soft sounds underneath, and match each audible syllable to visible mouth movement."
+ },
+ {
+  "id": "sound.gen.old-man-coughing-softly",
+  "domain": "sound",
+  "topic": "old man coughing softly",
+  "names": [
+   "سعال رجل مسن",
+   "كحة رجل كبير",
+   "كحة شايب",
+   "الشايب يكح",
+   "old man coughing softly",
+   "elderly man cough"
+  ],
+  "body": "An older man gives one or two restrained coughs after drawing a small breath. His chest and shoulders tighten briefly, his mouth opens behind a bent elbow or tissue, and each cough ends with a short exhale. The sound is a low, dry “kh” with a little throat texture, quieter than normal conversation and separated by natural pauses. It should not become a prolonged, dramatic fit. His clothing settles as he lowers his arm, perhaps followed by a gentle throat clear or a sip of water. Nearby conversation and room tone continue, with only a momentary pause from someone close to him."
+ },
+ {
+  "id": "sound.gen.sniffing-perfume",
+  "domain": "sound",
+  "topic": "sniffing perfume",
+  "names": [
+   "شم العطر",
+   "يشم عطر",
+   "يتشمم العطر",
+   "يشم الريحة",
+   "sniffing perfume",
+   "smelling perfume"
+  ],
+  "body": "A person raises a wrist, scent strip or open perfume bottle toward the nose and takes one or two short, quiet nasal breaths. The sniff is a soft inward sound, not a loud snort; nostrils may widen slightly while the face stays relaxed. If perfume is sprayed first, a finger depresses the pump and a brief, fine “psst” accompanies the visible mist. The person then brings the scented surface closer, rather than sniffing before the spray lands. A glass bottle catches small highlights, and any mist disperses quickly in the light. Room ambience remains audible beneath the subtle sniff."
+ },
+ {
+  "id": "sound.gen.kissing-cheeks-greeting",
+  "domain": "sound",
+  "topic": "kissing cheeks greeting",
+  "names": [
+   "تقبيل الخدود",
+   "بوسة الخد",
+   "سلام بالخد",
+   "يبوس الخد",
+   "cheek kisses greeting",
+   "cheek kiss greeting"
+  ],
+  "body": "Two people approach at a comfortable pace, turn their heads slightly and lean in for a familiar greeting. Depending on their relationship and local custom, a kiss may touch the cheek or be made close beside it; the number and side of kisses vary, so follow the people shown rather than a fixed sequence. One hand may rest lightly on a shoulder or upper arm. A cheek kiss makes a brief, soft lip sound in sync with the near-contact, while clothing brushes and quiet greeting words overlap. Faces separate between sides, and both people regain their balance before continuing the conversation."
+ },
+ {
+  "id": "sound.gen.single-hand-clap",
+  "domain": "sound",
+  "topic": "single hand clap",
+  "names": [
+   "تصفيقة واحدة",
+   "صفقة وحدة",
+   "تصفيق مرة واحدة",
+   "كف واحد",
+   "single hand clap",
+   "one clap"
+  ],
+  "body": "Two open hands move toward each other and meet once, palm against palm, usually around chest height. Fingers spread slightly, then flex on impact; the hands separate immediately instead of continuing a rhythm. The sound is one short, sharp crack with a little lower, papery body, loudest exactly when the palms touch. In a tiled room it may leave a brief reflection; outdoors it dies quickly. Sleeves and skin may shift with the movement. Show the hands clearly in ordinary daylight or room light, with nearby faces turning only after the clap, not before."
+ },
+ {
+  "id": "sound.gen.slow-clap",
+  "domain": "sound",
+  "topic": "slow clap",
+  "names": [
+   "تصفيق بطيء",
+   "صفگ بطيء",
+   "تصفيق على مهل",
+   "slow clap",
+   "slow clapping"
+  ],
+  "body": "A person holds both hands in front of the chest and brings the palms together repeatedly with deliberate gaps between strikes. Each contact makes a distinct, hollow-edged clap; the hands separate fully before the next one. Start with roughly one clap every second or two, keeping the spacing visibly slow rather than using a rapid applause soundtrack. Sound varies slightly as the palms meet at different angles. In a room, each clap has a short echo and enough silence after it to hear quiet voices or clothing movement. The person may keep a steady expression while others look toward the sound."
+ },
+ {
+  "id": "sound.gen.finger-snap",
+  "domain": "sound",
+  "topic": "finger snap",
+  "names": [
+   "فرقعة الأصابع",
+   "طقطقة الأصابع",
+   "طگة أصابع",
+   "نقر الأصابع",
+   "finger snap",
+   "snapping fingers"
+  ],
+  "body": "The thumb presses firmly against the middle finger while the other fingers curl loosely. When pressure releases, the middle finger slides off the thumb and strikes the fleshy base of the thumb on the palm. That impact makes the snap: a tiny, dry, high click with a slightly deeper tick beneath it, not a long ringing sound. The hand may flick downward a few centimetres and then reset. A single snap is brief and close-sounding, easily lost under conversation or traffic. Keep the fingers visible in soft room light so the audible click lands on the instant of contact."
+ },
+ {
+  "id": "sound.gen.knuckles-cracking",
+  "domain": "sound",
+  "topic": "knuckles cracking",
+  "names": [
+   "طقطقة الأصابع",
+   "فرقعة المفاصل",
+   "طگة المفاصل",
+   "تكسير الأصابع",
+   "knuckles cracking",
+   "cracking knuckles"
+  ],
+  "body": "One hand grips or presses a finger of the other, bending it gently until a joint shifts; some people interlace both hands and extend their fingers instead. Each successful movement produces a brief, dry pop or click, with uneven pauses between joints. It is quieter than a clap and has no crunching or breaking-bone sound. The fingers return to their normal shape immediately, without swelling or injury. Small tendon movements and changing pressure are more visible than any dramatic displacement. In a quiet office, living room or café, the clicks sit beneath breathing, fabric rustle and distant conversation."
+ },
+ {
+  "id": "sound.gen.comic-stomach-growling",
+  "domain": "sound",
+  "topic": "stomach growling (comic)",
+  "names": [
+   "قرقرة البطن",
+   "صوت البطن",
+   "بطني يقرقر",
+   "جوع البطن",
+   "comic stomach growl",
+   "stomach rumble"
+  ],
+  "body": "A hungry person pauses, perhaps glancing down and resting a hand lightly on the abdomen. Clothing stays mostly still: the stomach does not visibly inflate, lurch or speak. The sound is an internal, low, hollow gurgle with a few bubbling changes in pitch, lasting about one to three seconds. For a comic moment it can be clear and slightly louder than life, but it should still sound muffled by the body, not like an animal roaring. Place it during a lull in conversation, before the person reacts. A kitchen or café backdrop can include faint dishes and voices."
+ },
+ {
+  "id": "sound.gen.slurping-tea",
+  "domain": "sound",
+  "topic": "slurping tea",
+  "names": [
+   "ارتشاف الشاي",
+   "شفط الشاي",
+   "شرب الشاي بصوت",
+   "يسحب چاي",
+   "slurping tea",
+   "tea slurp"
+  ],
+  "body": "A person raises a small glass of dark amber tea to the lips, often holding it above a saucer. The glass tilts only a little. As tea and air enter together, there is a short, wet, airy slurp, followed by a swallow and possibly the light clink of glass touching the saucer. The slurp begins exactly when the lips meet the rim; it should not continue after the glass moves away. In an Iraqi home or café, a teaspoon, sugar and nearby conversation may be present. Window or overhead light shines through the tea and catches the glass rim."
+ },
+ {
+  "id": "sound.gen.crunching-an-apple",
+  "domain": "sound",
+  "topic": "crunching an apple",
+  "names": [
+   "قضم تفاحة",
+   "قرمشة تفاحة",
+   "عضة تفاح",
+   "أكل تفاحة مقرمشة",
+   "crunching an apple",
+   "apple bite"
+  ],
+  "body": "A hand holds a firm round apple, red, green or mottled, while the mouth opens wide enough to catch its curved side. Teeth break the taut skin first with a bright snap, then tear through pale, moist flesh with a short, coarse crunch. The bite leaves an uneven crescent-shaped mark, sometimes with a bead of juice at its edge. Chewing follows in several softer, irregular crackles behind closed lips, with brief pauses to swallow. These sounds happen in sequence, not all at once. In daylight, the fresh cut surface looks pale and slightly wet; room chatter remains behind the close bite."
+ },
+ {
+  "id": "sound.gen.biting-a-crispy-samoon",
+  "domain": "sound",
+  "topic": "biting a crispy samoon",
+  "names": [
+   "قضم صمون",
+   "قرمشة صمون",
+   "عضة صمون",
+   "صمون مقرمش",
+   "crispy samoon bite",
+   "biting samoon"
+  ],
+  "body": "An Iraqi samoon is an elongated, pointed oval roll with a golden-brown, lightly blistered crust and a softer pale centre. Held in one or both hands, it compresses slightly as the teeth bite into an edge. The thin crust breaks with a brief, dry crackle; the airy interior tears more quietly, and a few small flakes fall toward the plate or table. Chewing makes muted, irregular crunches, not the loud snap of an apple. The bread springs back a little where it was pressed. Morning light in a kitchen or bakery shows the crust’s rough surface and soft interior."
+ },
+ {
+  "id": "sound.gen.sizzling-kebab-on-charcoal",
+  "domain": "sound",
+  "topic": "sizzling kebab on charcoal",
+  "names": [
+   "كباب على الفحم",
+   "كباب مشوي",
+   "كباب عالفحم",
+   "كباب يفور",
+   "charcoal kebab",
+   "sizzling kebab"
+  ],
+  "body": "Flattened minced-meat kebabs cling to wide metal skewers above a bed of glowing charcoal. Their surfaces turn from red-brown to dark brown, with uneven charred ridges and beads of rendered fat. Each falling drop makes a brief, sharp sizzle on the coals; an occasional small flame rises and subsides. The sound is a close, irregular crackle beneath nearby voices and the soft scrape of a cook turning skewers. Thin grey smoke drifts sideways rather than rising in a fixed column. Warm firelight catches the metal, while daylight or stall lighting reveals the meat’s rough texture."
+ },
+ {
+  "id": "sound.gen.pressure-cooker-hiss",
+  "domain": "sound",
+  "topic": "pressure cooker hiss",
+  "names": [
+   "صفير قدر الضغط",
+   "هسيس قدر الضغط",
+   "صفارة جدر الضغط",
+   "فحيح جدر الضغط",
+   "pressure cooker hiss",
+   "pressure cooker whistle"
+  ],
+  "body": "A metal pressure cooker sits firmly on a burner with its lid locked and a small valve or regulator on top. As steam escapes through that opening, a narrow white plume appears against darker surroundings. The sound begins as a faint hiss and becomes a sustained, high, airy rush; on some models the regulator rocks, adding short pulses or light metallic ticks. The hiss occurs only while steam is visibly escaping, often over the quieter burner noise. Kitchen tiles and nearby pots give it a slight hard-surfaced echo. Condensation may gather around the vent, while the cooker itself remains still."
+ },
+ {
+  "id": "sound.gen.rice-boiling",
+  "domain": "sound",
+  "topic": "rice boiling",
+  "names": [
+   "غليان الرز",
+   "غليان الأرز",
+   "الرز يغلي",
+   "تفوير الرز",
+   "rice boiling",
+   "boiling rice"
+  ],
+  "body": "White rice boils in a metal pot as cloudy water rolls between the grains. Small bubbles first collect at the edges, then larger bubbles break across the surface, lifting grains briefly before they settle again. A pale, starchy foam can gather around the rim. The sound is a soft, continuous wet burble with uneven pops; if a loose lid is present, it may rattle lightly in time with escaping steam. Steam rises in wavering wisps under kitchen light. As the water level falls, exposed grains become more distinct and the loud bubbling gives way to quieter simmering."
+ },
+ {
+  "id": "sound.gen.mortar-and-pestle",
+  "domain": "sound",
+  "topic": "mortar and pestle",
+  "names": [
+   "هاون ومدقة",
+   "هاون ودگمة",
+   "جرن ومدقة",
+   "دق البهارات بالهاون",
+   "mortar and pestle",
+   "pounding spices"
+  ],
+  "body": "A heavy stone mortar has a thick rim, rounded interior and broad base that stays planted on the worktop. A matching pestle moves down into dry spices, then twists against the bowl’s inner curve. Each downward strike makes a short, dull stone knock; the grinding motion adds a gritty scrape and the faint crackle of seeds breaking. Strikes arrive at a human, slightly uneven pace, with brief pauses to gather the spices from the sides. Fine powder coats the lower walls, while larger fragments bounce only a little. In a tiled kitchen, the knocks sound close and lightly echoed."
+ },
+ {
+  "id": "sound.gen.coffee-grinder",
+  "domain": "sound",
+  "topic": "coffee grinder",
+  "names": [
+   "مطحنة قهوة",
+   "طاحونة قهوة",
+   "طاحونة گهوة",
+   "جرش البن",
+   "coffee grinder",
+   "grinding coffee"
+  ],
+  "body": "A small electric burr grinder holds glossy brown coffee beans in a clear or dark hopper above its grinding chamber. When switched on, the motor starts abruptly with a low whirr; beans entering the burrs add a rough, rapid crunch that gradually thins as the hopper empties. The housing vibrates slightly but stays in place, and fine brown grounds collect below in a cup or drawer. The sound stops sharply at the switch, sometimes followed by a few settling clicks. On a kitchen counter it is louder than nearby conversation, with no visible steam or smoke."
+ },
+ {
+  "id": "sound.gen.espresso-shot-pouring",
+  "domain": "sound",
+  "topic": "espresso shot pouring",
+  "names": [
+   "صب شوت اسبريسو",
+   "استخلاص الاسبريسو",
+   "نزول شوت إسبريسو",
+   "espresso shot pouring",
+   "espresso extraction"
+  ],
+  "body": "A small ceramic cup sits beneath the espresso machine’s metal spout. After the pump starts with a steady mechanical buzz, dark drops appear, joining into a narrow, glossy stream that falls into the cup. The stream often changes from deep brown to a lighter caramel colour as the shot runs, while a tan crema spreads across the surface in tiny bubbles. The pour makes a faint liquid patter under the louder pump, then stops in a few last drops when the machine is switched off. Reflections on the cup and spout are crisp under café counter lighting."
+ },
+ {
+  "id": "sound.gen.milk-frothing",
+  "domain": "sound",
+  "topic": "milk frothing",
+  "names": [
+   "تبخير الحليب",
+   "رغوة الحليب",
+   "تفويح الحليب",
+   "steaming milk",
+   "milk frothing"
+  ],
+  "body": "A barista holds a stainless-steel pitcher beneath an espresso machine’s steam wand, with the wand tip just below the milk surface. Steam makes a continuous sharp hiss, while a few brief, papery sipping sounds occur as air enters. The pitcher tilts slightly and the milk rotates in a smooth whirlpool; its surface becomes glossy and rises gradually rather than forming large, dry bubbles. A hand makes small height adjustments, changing the pitch of the hiss in sync with the movement. The pitcher may grow visibly misted. When the steam stops, the barista taps and swirls it, making a short metal knock."
+ },
+ {
+  "id": "sound.gen.spoon-stirring-in-an-istikan",
+  "domain": "sound",
+  "topic": "spoon stirring in an istikan",
+  "names": [
+   "تحريك الشاي بالاستكان",
+   "تقليب الشاي بالاستكان",
+   "ملعقة بالاستكان",
+   "تحريك الشاي بالاستيكان",
+   "stirring tea in an istikan",
+   "istikan spoon clink"
+  ],
+  "body": "A small metal teaspoon circles inside an istikan, the narrow-waisted glass used for tea. Amber tea swirls around the spoon, and undissolved sugar may briefly cloud the bottom before disappearing. As the spoon touches the thin glass wall, it makes bright, delicate clinks in a quick, uneven rhythm; softer swishing fills the gaps. Each clink matches a visible point of contact, not every turn of the spoon. A hand steadies the glass by its rim or saucer, which may give a separate, lower tap on the table. Warm light passes through the tea and casts an amber patch nearby."
+ },
+ {
+  "id": "sound.gen.cup-on-a-saucer",
+  "domain": "sound",
+  "topic": "cup on a saucer",
+  "names": [
+   "كوب على صحن",
+   "فنجان على صحن",
+   "كوب وصحنه",
+   "استكان وصحن",
+   "cup on a saucer",
+   "cup and saucer"
+  ],
+  "body": "A small ceramic cup sits inside the shallow circular dip of a matching saucer, with its handle projecting to one side. Glazed surfaces catch narrow highlights; the cup may hold dark tea or coffee, leaving a thin line of liquid near the rim. As a hand sets it down, the base touches porcelain with a short, bright clink, followed by a softer rattle if the cup slides slightly. Lifting it makes a quieter click as the surfaces separate. On a table, nearby teaspoons or conversation may be audible, but the cup itself stays silent when still."
+ },
+ {
+  "id": "sound.gen.pouring-water-into-a-glass",
+  "domain": "sound",
+  "topic": "pouring water into a glass",
+  "names": [
+   "صب الماء في كأس",
+   "سكب الماء في كوب",
+   "صب مي بالگلاص",
+   "صب مي بالكلاس",
+   "pouring water into a glass",
+   "water pour into glass"
+  ],
+  "body": "A clear stream leaves the tilted mouth of a jug or bottle and curves down into a transparent glass. At first it strikes the empty base with a sharp, hollow splashing sound. As the level rises, the sound becomes fuller and lower, with small irregular splashes against the inside wall. Bubbles briefly cling to the glass and drift upward; ripples spread from the point of impact. A steady pour sounds continuous, while a narrow bottle neck may make the stream pulse as air enters. The sound stops with the visible stream, apart from one or two late drips."
+ },
+ {
+  "id": "sound.gen.carbonated-drink-fizz",
+  "domain": "sound",
+  "topic": "carbonated drink fizz",
+  "names": [
+   "فوران المشروب الغازي",
+   "فقاعات المشروب الغازي",
+   "فوران البيبسي",
+   "فوران المشروب",
+   "carbonated drink fizz",
+   "soda fizz"
+  ],
+  "body": "Tiny gas bubbles form throughout a freshly poured carbonated drink, then rise in uneven trails through the liquid. They collect along the inner wall of a glass and burst at the surface, sometimes supporting a thin, pale foam that quickly subsides. The sound is a close, soft, high-pitched hiss mixed with fine, irregular crackles, strongest just after pouring and gradually fading. In a quiet room it is audible near the glass, not across a busy café. Bright side light reveals the bubble trails and sparkling reflections; the liquid remains in motion even after the pour ends."
+ },
+ {
+  "id": "sound.gen.bottle-cap-opening",
+  "domain": "sound",
+  "topic": "bottle cap opening",
+  "names": [
+   "فتح غطاء القنينة",
+   "فتح غطاء الزجاجة",
+   "فتح غطا القنينة",
+   "فتح غطا البطل",
+   "opening a bottle cap",
+   "bottle cap opening"
+  ],
+  "body": "A hand grips a bottle while the other twists its ridged plastic cap. The cap turns around the threaded neck; a tamper ring may snap at several small points before the cap lifts free. The sound is a short sequence of dry plastic clicks and rubbing squeaks, synchronized with the twisting fingers. On a carbonated bottle, pressure release adds one brief, sharp hiss as the seal breaks. A metal crown cap instead bends upward under an opener with a crisp pop. After opening, the cap is separate from the bottle and may tap lightly against a table."
+ },
+ {
+  "id": "sound.gen.wrapping-paper",
+  "domain": "sound",
+  "topic": "wrapping paper",
+  "names": [
+   "ورق تغليف الهدايا",
+   "ورق لف الهدايا",
+   "ورق تغليف هدية",
+   "ورگ تغليف هدية",
+   "wrapping paper",
+   "gift wrap"
+  ],
+  "body": "A sheet of wrapping paper is thin enough to bend around a box but stiff enough to hold a crease. Its printed outer face may be glossy or matte; the reverse is often pale. Fingers pull it taut across straight edges, fold triangular flaps at the ends, and press down tape. Each adjustment makes a light, papery crackle or rustle that follows the moving hands. A firm crease produces a sharper scrape, while cutting with scissors makes separate rhythmic snips. Torn paper makes a louder, uneven ripping sound. Loose corners spring back slightly until secured."
+ },
+ {
+  "id": "sound.gen.velcro",
+  "domain": "sound",
+  "topic": "velcro",
+  "names": [
+   "شريط لاصق خطاف وحلقة",
+   "قفل فيلكرو",
+   "لاصق فلكرو",
+   "لزگ فلكرو",
+   "velcro",
+   "hook and loop fastener"
+  ],
+  "body": "A hook-and-loop fastener consists of two fabric strips: one feels rough with tiny stiff hooks, the other soft and fuzzy with loops. Pressing them together makes a muted series of tiny ticks as the surfaces grip. When a hand pulls the strips apart, they resist briefly, then release with a coarse, sustained ripping buzz that lasts only as long as the visible separation. A quick peel sounds sharp; a slow peel produces a drawn-out crackle. The strips bend easily and remain attached where still pressed together. They commonly appear on shoes, bags, and adjustable fabric straps."
+ },
+ {
+  "id": "sound.gen.suitcase-wheels-on-tiles",
+  "domain": "sound",
+  "topic": "suitcase wheels on tiles",
+  "names": [
+   "عجلات حقيبة على البلاط",
+   "عجلات شنطة على السيراميك",
+   "تواير جنطة عالكاشي",
+   "عجلات جنطة عالكاشي",
+   "suitcase wheels on tiles",
+   "rolling suitcase on tile"
+  ],
+  "body": "A traveler pulls an upright suitcase by its extended handle, tilting the case so two small wheels carry most of its weight. On smooth tile, the wheels make a low, continuous rolling hum. Each grout line adds a brief, evenly spaced click or bump; faster walking makes those clicks closer together. If a wheel swivels or the case wobbles, a faint plastic rattle joins the sound. The suitcase follows slightly behind the person and rocks subtly over tile joints. In a station or airport corridor, footsteps and distant voices surround the rolling sound, with hard walls adding a mild echo."
+ },
+ {
+  "id": "sound.gen.shopping-bag-rustle",
+  "domain": "sound",
+  "topic": "shopping bag rustle",
+  "names": [
+   "حفيف كيس التسوق",
+   "حفيف كيس المشتريات",
+   "خشخشة كيس التسوق",
+   "خشخشة جيس المشتريات",
+   "shopping bag rustle",
+   "shopping bag crinkle"
+  ],
+  "body": "A lightweight shopping bag changes shape whenever a hand lifts its handles, sets it down, or shifts items inside. Thin plastic folds into sharp creases and makes bright, irregular crinkles, especially when squeezed; paper makes a drier, lower rustle with occasional stiff snaps at its folded sides. The sound comes in short bursts matching the visible movement, then stops when the bag rests. Its bottom sags under groceries or small boxes, while the handles stretch upward around the fingers. In a shop or kitchen, the rustle sits close to the microphone beneath conversation and footsteps."
+ },
+ {
+  "id": "sound.gen.coins-dropping",
+  "domain": "sound",
+  "topic": "coins dropping",
+  "names": [
+   "سقوط العملات المعدنية",
+   "رنين العملات المعدنية",
+   "طگة فلوس معدنية",
+   "نثر الفراطة",
+   "coins dropping",
+   "coin clatter"
+  ],
+  "body": "A hand releases a few small metal coins above a counter or into a shallow tray. They fall separately, strike with sharp, bright ticks, then bounce and spin with thinner, faster rattles before settling. A coin landing flat makes a brief clack; one landing on its edge may ring lightly as it wobbles in tightening circles. The sound is close and brief, usually louder on tile or metal than on wood. Silver- and brass-coloured faces catch small flashes of overhead light as they tumble. In a shop, the last faint spin follows the cashier’s visible hand movement."
+ },
+ {
+  "id": "sound.gen.counting-banknotes",
+  "domain": "sound",
+  "topic": "counting banknotes",
+  "names": [
+   "عد الأوراق النقدية",
+   "عد الفلوس الورق",
+   "تعداد الفلوس",
+   "counting banknotes",
+   "counting cash"
+  ],
+  "body": "A cashier holds a short stack of rectangular banknotes in one hand and peels notes forward with a thumb, one at a time. Each note bends, separates and springs slightly flatter, producing a soft, dry flick. The flicks form a quick but uneven rhythm, with a louder papery tap when the stack is squared against a counter. Worn notes look softer and curl at the corners; crisp notes stay straighter and sound sharper. Printed colours and pale edges shift as the thumb moves. The sound stays close and quiet beneath ordinary shop voices, with each flick matching a visible note."
+ },
+ {
+  "id": "sound.gen.cash-drawer",
+  "domain": "sound",
+  "topic": "cash drawer",
+  "names": [
+   "درج النقود",
+   "درج الكاش",
+   "درج الفلوس",
+   "cash drawer",
+   "till drawer"
+  ],
+  "body": "A rectangular metal drawer sits below a shop counter or point-of-sale screen. After a sale, its latch releases with a small click and the drawer springs outward a short distance on runners, ending in a muted clunk. Moulded plastic compartments inside hold stacked notes and loose coins; their contents may rattle lightly as the drawer stops. The cashier places change inside or takes it out, then pushes the drawer shut with a palm. It slides inward with a low scrape and finishes with a firm latch click. Reflections from overhead shop lights skim its metal rim and coin surfaces."
+ },
+ {
+  "id": "sound.gen.barcode-scanner-beep",
+  "domain": "sound",
+  "topic": "barcode scanner beep",
+  "names": [
+   "صفارة قارئ الباركود",
+   "بيب سكانر الباركود",
+   "صوت ماسح الباركود",
+   "barcode scanner beep",
+   "checkout scanner beep"
+  ],
+  "body": "At a checkout, a cashier passes a package’s printed bars across a glass scanner window or aims a handheld scanner at them. A red scanning light briefly crosses the label; when the code is read, a short, clean electronic beep sounds once. It is mid-to-high pitched, even in volume, and stops abruptly rather than fading. The beep coincides with a successful pass, not with every hand movement; an unread label is usually repositioned and tried again. Nearby sounds include packaging brushing the counter, subdued conversation and the next item being set down. Bright shop lighting reflects in the scanner glass."
+ },
+ {
+  "id": "sound.gen.receipt-printer",
+  "domain": "sound",
+  "topic": "receipt printer",
+  "names": [
+   "طابعة الإيصالات",
+   "طابعة الوصل",
+   "طابعة الريسيت",
+   "receipt printer",
+   "thermal receipt printer"
+  ],
+  "body": "A compact receipt printer sits beside a checkout screen, with a narrow slot facing the cashier. At the end of a transaction, a strip of pale thermal paper advances from the slot while dark text appears on it. The mechanism makes a quick, fine buzzing or rattling sound in short bursts that match the paper’s movement. It stops sharply; a hand then pulls the strip against a serrated edge, making a brief papery tear. The paper curls slightly from its roll and catches the overhead light. Voices, scanner beeps and the handling of a payment may surround this small, close-up sound."
+ },
+ {
+  "id": "sound.gen.shop-door-bell-chime",
+  "domain": "sound",
+  "topic": "shop door bell chime",
+  "names": [
+   "جرس باب المحل",
+   "رنّة باب الدكان",
+   "جرس باب المتجر",
+   "shop door bell chime",
+   "store entrance chime"
+  ],
+  "body": "A small bell or chime hangs near a shop entrance, often just above a hinged door. As a customer pushes the door open, the moving door nudges the bell or its striker. One or several light metallic notes ring out at that moment, slightly uneven in timing and fading over a second or two. Another quieter ring may follow as the door swings back toward its frame. The sound is clear near the entrance but blends quickly into voices and counter noise farther inside. Daylight spills through the opening, briefly brightening the floor around the arriving customer."
+ },
+ {
+  "id": "sound.gen.sliding-glass-door",
+  "domain": "sound",
+  "topic": "sliding glass door",
+  "names": [
+   "باب زجاجي منزلق",
+   "باب زجاجي سحاب",
+   "باب زجاج سلايد",
+   "sliding glass door",
+   "automatic glass door"
+  ],
+  "body": "Two tall, clear glass panels sit in metal frames at a shop or building entrance. As a person approaches, an overhead sensor triggers the moving panels to glide sideways along their tracks, opening a gap wide enough to pass through. The motion starts and stops smoothly; a low motor hum and faint rolling sound last only while the panels move. After a short pause, they slide together with a soft final contact, unless someone remains in the doorway. Reflections of lights, cars and people shift across the glass during the movement. Frame edges and handles remain visible against the transparent panels."
+ },
+ {
+  "id": "sound.gen.car-engine-start",
+  "domain": "sound",
+  "topic": "car engine start",
+  "names": [
+   "تشغيل محرك السيارة",
+   "دگة سلف السيارة",
+   "تشغيل الموتر",
+   "car engine start",
+   "starting a car engine"
+  ],
+  "body": "A driver turns a key or presses a start button while seated inside a stationary car. Dashboard lights come on, followed by a brief starter-motor whir and a few low, rapid cranking pulses. When the engine catches, the cranking stops immediately and a steadier idle takes its place, with a slight vibration visible in the steering wheel or dashboard. A warm engine may start almost at once; a cold one can crank a little longer. Outside, the exhaust note is fuller but not necessarily loud. Cabin insulation softens the sound, while a parking garage can add a short echo."
+ },
+ {
+  "id": "sound.gen.car-idling",
+  "domain": "sound",
+  "topic": "car idling",
+  "names": [
+   "car idling",
+   "idling engine",
+   "محرك السيارة شغال",
+   "السيارة واقفة وشغالة",
+   "صوت مكينة السيارة"
+  ],
+  "body": "A parked or stationary gasoline car has no wheel movement, but its running engine makes the body tremble slightly. The exhaust pipe may quiver, and an interior mirror can show a faint vibration. The sound is a low, continuous rumble with a faster, softer mechanical ticking above it. Its pitch stays mostly steady, wavering briefly when the air conditioner engages. It begins as the engine settles after starting and continues while the car waits at a curb or traffic light. Inside, the sound is muffled; outside, it mixes with nearby traffic and voices without overpowering them."
+ },
+ {
+  "id": "sound.gen.car-accelerating",
+  "domain": "sound",
+  "topic": "car accelerating",
+  "names": [
+   "car accelerating",
+   "car speeding up",
+   "تسارع السيارة",
+   "السيارة تدعس بنزين",
+   "صوت تسارع السيارة"
+  ],
+  "body": "As a driver presses the accelerator, the car rolls forward and gains speed; its body may lean back slightly before settling. The engine note rises from a low hum to a louder, higher, sustained growl, then briefly drops in pitch when an automatic transmission changes gear. Tire noise and passing air become more noticeable as speed builds. The sound follows the visible increase in wheel rotation, not before it. From a roadside viewpoint it grows louder as the car approaches and fades as it moves away. Ordinary acceleration is smooth, with no tire squeal or smoke."
+ },
+ {
+  "id": "sound.gen.electric-car-hum",
+  "domain": "sound",
+  "topic": "electric car hum",
+  "names": [
+   "electric car hum",
+   "ev motor sound",
+   "صوت السيارة الكهربائية",
+   "همهمة السيارة الكهربائية",
+   "صوت الكهربائي"
+  ],
+  "body": "An electric car can pull away with little body vibration and no exhaust sound. Close by, a soft, smooth whine rises in pitch as its wheels turn faster; at low speeds, an exterior pedestrian-warning sound may add a steady or gently pulsing electronic tone. The exact warning tone varies by vehicle. As speed increases, tire hiss and airflow often become louder than the motor. The sound begins with movement and changes smoothly with speed, without the distinct gear-change surges of a typical gasoline car. In a quiet parking area it is clear; beside busy traffic it can be hard to pick out."
+ },
+ {
+  "id": "sound.gen.truck-air-brakes",
+  "domain": "sound",
+  "topic": "truck air brakes",
+  "names": [
+   "truck air brakes",
+   "truck brake hiss",
+   "فرامل هواء الشاحنة",
+   "بريك هوا الشاحنة",
+   "صوت بريكات التريلة"
+  ],
+  "body": "A large truck slows with its heavy body dipping slightly forward and its wheels continuing to turn until it stops. The air-brake system can make a short, sharp burst of escaping air near the chassis, often heard around a stop or when the driver releases a brake. It sounds like a forceful hiss, sometimes with a lower mechanical clunk, and ends within a second or two rather than continuing throughout the stop. Engine rumble and tire noise remain underneath. At a loading area or roadside, the hiss stands out briefly, then nearby voices and traffic become audible again."
+ },
+ {
+  "id": "sound.gen.bus-doors-opening",
+  "domain": "sound",
+  "topic": "bus doors opening",
+  "names": [
+   "bus doors opening",
+   "bus door sound",
+   "فتح أبواب الحافلة",
+   "فتح باب الباص",
+   "صوت باب الباص"
+  ],
+  "body": "Once a bus has stopped, its glass-and-metal passenger doors separate or fold aside within the doorway. Rubber seals pull apart, the panels move along a short guided path, and they come to rest with a light rattle or thud. Many buses make a brief pneumatic hiss as the mechanism operates, followed by a low motor or linkage sound; the exact mix depends on the bus. The sounds start with the visible door movement and stop when the opening is clear. At a bus stop, engine idle, footsteps, passenger conversation and traffic usually surround the brief sequence."
+ },
+ {
+  "id": "sound.gen.train-wheels-clacking",
+  "domain": "sound",
+  "topic": "train wheels clacking",
+  "names": [
+   "train wheels clacking",
+   "rail wheel clatter",
+   "طقطقة عجلات القطار",
+   "صوت عجلات القطار",
+   "دگدگة القطار"
+  ],
+  "body": "Steel train wheels roll on shiny rails beneath heavy carriages. Where the wheels cross rail joints or track fittings, they produce pairs of hard metallic clicks that repeat faster as the train moves faster; a carriage may sway gently at the same time. Beneath the clicks is a continuous low rolling roar, with occasional higher squeals on curves. The rhythm comes from wheels passing fixed points on the track, so it aligns with the train’s visible motion. Modern continuously welded track has fewer regular clacks and a smoother roar. From a platform, the sound swells as the train passes and recedes afterward."
+ },
+ {
+  "id": "sound.gen.metro-announcement",
+  "domain": "sound",
+  "topic": "metro announcement",
+  "names": [
+   "metro announcement",
+   "subway station announcement",
+   "إعلان المترو",
+   "نداء المترو",
+   "إعلان محطة المترو"
+  ],
+  "body": "A metro announcement comes from small ceiling or wall speakers in a station, or from speakers inside a carriage. A recorded or live voice names a stop, route or boarding instruction in short, clearly separated phrases; some systems use more than one language. It may start with a brief electronic chime, though many announcements have none. The voice sounds slightly compressed and reverberant on a tiled platform, but drier inside a carriage. It plays as passengers wait, board or approach a stop, over the rumble of trains, ventilation and footsteps. Lips should not move in sync unless a visible staff member is speaking."
+ },
+ {
+  "id": "sound.gen.airport-announcement",
+  "domain": "sound",
+  "topic": "airport announcement",
+  "names": [
+   "airport announcement",
+   "airport pa announcement",
+   "إعلان المطار",
+   "نداء المطار",
+   "إعلان الرحلات بالمطار"
+  ],
+  "body": "An airport announcement plays through overhead speakers across a terminal while travelers sit with bags, walk past flight-information screens or queue near a gate. A short chime may precede a calm recorded or live voice giving flight, gate or boarding information. Speech is measured, with pauses around names and numbers; languages vary by airport and service. The speaker sound is slightly thin and spread through the large room, with a soft echo rather than a close, studio-clear voice. It rises above rolling suitcase wheels, ventilation and distant conversation, then ends cleanly while that background activity continues."
+ },
+ {
+  "id": "sound.gen.plane-cabin-hum",
+  "domain": "sound",
+  "topic": "plane cabin hum",
+  "names": [
+   "طنين مقصورة الطائرة",
+   "صوت داخل الطيارة",
+   "همهمة الطيارة",
+   "plane cabin hum",
+   "airplane cabin noise"
+  ],
+  "body": "Inside a passenger aircraft, rows of fabric or leather seats sit beneath closed overhead bins and long ceiling lights. A steady, low-to-mid-pitched rushing hum fills the cabin while the aircraft is in flight. It comes from airflow, ventilation and engines heard through the fuselage; it does not pulse with each passenger movement. Air vents add a finer hiss nearby. The sound is continuous and fairly even, with little echo because soft seats and passengers absorb it. Quiet conversation, a seat adjustment or a service cart may briefly stand out above the hum. Daylight through oval windows changes the cabin’s brightness, not the sound’s rhythm."
+ },
+ {
+  "id": "sound.gen.seatbelt-click",
+  "domain": "sound",
+  "topic": "seatbelt click",
+  "names": [
+   "طقطقة حزام الأمان",
+   "صوت حزام الطيارة",
+   "طقة حزام الأمان",
+   "seatbelt click",
+   "airplane belt buckle"
+  ],
+  "body": "In an aircraft seat, a passenger draws two grey woven straps across their lap and slides a flat metal tongue into a rectangular metal buckle. At the instant the tongue locks, it makes one short, crisp metallic click, sometimes followed by a faint rattle as the hand lets go. The click is close and distinct but not loud, against the cabin’s constant low hum and nearby conversation. The belt lies flat over clothing, with no shoulder strap on a typical passenger seat. Releasing it is a separate action: lifting the buckle’s hinged flap produces a lighter clack before the straps fall apart."
+ },
+ {
+  "id": "sound.gen.jet-flyover",
+  "domain": "sound",
+  "topic": "jet flyover",
+  "names": [
+   "مرور طائرة نفاثة",
+   "صوت طيارة نفاثة",
+   "عبور طيارة فوق",
+   "jet flyover",
+   "airliner overhead"
+  ],
+  "body": "A commercial jet crosses the sky as a small, bright fuselage with swept wings, two engines beneath them and a visible tail. From the ground, its sound begins as a distant, broad rushing roar, grows louder as it approaches overhead, then fades gradually after it passes. The sound may arrive slightly after its apparent position because it travels more slowly than light. It is sustained rather than a single burst, with a low rumble under a higher airy hiss. Buildings can reflect it briefly; in an open field it fades without much echo. People may glance up while ordinary street or countryside sounds continue below."
+ },
+ {
+  "id": "sound.gen.boat-motor",
+  "domain": "sound",
+  "topic": "boat motor",
+  "names": [
+   "صوت محرك القارب",
+   "مكينة الزورق",
+   "موتور القارب",
+   "boat motor",
+   "motorboat engine"
+  ],
+  "body": "A small motorboat moves across the water with an outboard engine mounted on its stern. When the operator opens the throttle, the engine’s repeated low buzz rises in pitch and volume; a faster propeller pushes water backward and leaves a widening, foamy wake. At idle, the sound is softer and slightly uneven, with water lapping against the hull between vibrations. The motor stays audible while it runs, rather than sounding only when the boat advances. Spray and wake make separate splashing sounds. On a calm river or harbour, the buzz carries over the water and fades as the boat travels away."
+ },
+ {
+  "id": "sound.gen.oars-in-water",
+  "domain": "sound",
+  "topic": "oars in water",
+  "names": [
+   "صوت المجاديف بالماء",
+   "تجديف بالقارب",
+   "ضرب المجداف بالماي",
+   "oars in water",
+   "rowing splash"
+  ],
+  "body": "A rower pulls long oars through the water from a low seat in a small boat. Each flat blade enters with a modest splash, drags through the water with a soft, continuous swish, then lifts out with a brief trickle of droplets. The sounds repeat in time with the rower’s backward pull and forward recovery, separated by short quiet gaps; they are not heavy crashing waves. Wooden oars may creak lightly at their fittings. The boat advances and leaves narrow ripples that spread behind it. On still water, distant voices, birds or shoreline sounds remain audible around the close, gentle strokes."
+ },
+ {
+  "id": "sound.gen.sails-flapping",
+  "domain": "sound",
+  "topic": "sails flapping",
+  "names": [
+   "رفرفة الشراع",
+   "صوت الأشرعة",
+   "خفقان شراع القارب",
+   "sails flapping",
+   "sail flapping"
+  ],
+  "body": "A pale woven sail hangs from a mast above a boat, with seams and curved edges visible against the sky. When it loses wind or the boat turns, loose sections fold and snap back, making irregular, sharp cloth flaps mixed with softer rustling. The sound happens exactly as the sail visibly buckles; a sail pulled taut in a steady breeze is much quieter. Ropes may tap the mast and fittings may make small metallic ticks, separate from the cloth noise. The flaps come in brief clusters rather than a fixed beat. Wind, water against the hull and crew voices usually remain underneath."
+ },
+ {
+  "id": "sound.gen.port-crane",
+  "domain": "sound",
+  "topic": "port crane",
+  "names": [
+   "رافعة الميناء",
+   "كرين الميناء",
+   "ونش الميناء",
+   "port crane",
+   "container crane"
+  ],
+  "body": "A container crane rises above a dock on tall steel legs, with a long horizontal beam extending over a cargo ship. A box-shaped spreader hangs from cables and lowers squarely onto a rectangular shipping container. Its locking mechanism gives short metallic clunks; motors then produce a steady mechanical whir as the cables lift the container slowly and keep it nearly level. The suspended load may sway slightly when the trolley travels along the beam, not swing wildly. Wheels, rails and steel fittings add occasional rattles. Across the open quay, engine hum, distant voices and seabirds surround the crane sounds without a strong indoor echo."
+ },
+ {
+  "id": "sound.gen.construction-drill",
+  "domain": "sound",
+  "topic": "construction drill",
+  "names": [
+   "صوت دريل البناء",
+   "مثقاب البناء",
+   "صوت الدريل بالجدار",
+   "construction drill",
+   "hammer drill sound"
+  ],
+  "body": "A worker braces a handheld hammer drill with both hands and presses its rotating bit against a concrete wall. The tool has a compact plastic body, metal chuck and thick power cord or battery pack. When the trigger is held, it makes a loud, harsh, rapid buzz with a higher whine from the motor and a stuttering knock from the hammer action. Fine pale dust gathers below the hole. The sound starts and stops with the worker’s finger, often in several short bursts, and becomes duller if pressure changes. Hard unfinished surfaces reflect the noise; footsteps and voices are harder to hear while drilling."
+ },
+ {
+  "id": "sound.gen.hammering-nails",
+  "domain": "sound",
+  "topic": "hammering nails",
+  "names": [
+   "دق المسامير",
+   "طرق المسامير",
+   "دگ مسامير",
+   "hammering nails",
+   "nail hammering"
+  ],
+  "body": "A hand grips a hammer with a wooden or rubber-covered handle, bringing its flat steel head down onto a small nail. The nail shortens visibly above the wood with each hit, while the board may quiver slightly. Each impact makes a sharp metallic tick over a lower, solid wooden knock; the sound is brief and dry, with little echo indoors. Strikes often begin slowly while the nail is held steady, then become quicker and firmer. A faint scrape or repositioning sound falls between hits. Sawdust, unfinished timber, and a workbench or floor covering usually surround the action."
+ },
+ {
+  "id": "sound.gen.saw-cutting-wood",
+  "domain": "sound",
+  "topic": "saw cutting wood",
+  "names": [
+   "نشر الخشب",
+   "قص الخشب بالمنشار",
+   "نشر خشب",
+   "saw cutting wood",
+   "wood sawing"
+  ],
+  "body": "A hand saw has a long, thin metal blade with fine teeth and a shaped handle. Its blade travels back and forth along one line in a board, gradually opening a narrow pale groove. The wood is held against a bench or supported at its far end; fine sawdust collects beneath the cut. Each stroke produces a rough, mid-pitched shhhk, louder while the teeth bite and softer on the return. The strokes form a steady, human rhythm rather than a continuous motor sound. Near the end, the loose offcut shifts and drops with a light wooden clack."
+ },
+ {
+  "id": "sound.gen.welding-hiss",
+  "domain": "sound",
+  "topic": "welding hiss",
+  "names": [
+   "هسيس اللحام",
+   "فحيح اللحام",
+   "صوت اللحام",
+   "welding hiss",
+   "arc welding sound"
+  ],
+  "body": "A welder in a dark protective helmet and gloves holds a welding torch close to a seam between metal pieces. At the point of contact, a tiny, intensely white-blue arc flickers, throwing brief orange sparks and a little rising smoke. The sound starts exactly when the arc lights: a sustained, close, high hiss layered with fine crackles and occasional sharper pops. It stops abruptly when the torch lifts, leaving small cooling ticks from the metal. The arc can briefly brighten nearby surfaces, while the workshop behind it stays comparatively dim. Metal pieces rest firmly on a worktable."
+ },
+ {
+  "id": "sound.gen.ceiling-fan",
+  "domain": "sound",
+  "topic": "ceiling fan",
+  "names": [
+   "مروحة سقف",
+   "مروحة السقف",
+   "مروحة السگف",
+   "ceiling fan",
+   "overhead fan"
+  ],
+  "body": "A ceiling fan hangs from a short rod beneath the ceiling, with three to five broad blades arranged evenly around a central motor housing. When switched on, the blades accelerate over a few seconds into a smooth circular blur, pushing a gentle draft that stirs curtains or loose papers below. Its sound is a low, steady motor hum with a soft wash of moving air, louder at higher speed. A slight tick may repeat once per revolution on an older fan, but strong rattling is not typical. Ceiling light catches the blade edges as they pass above a room."
+ },
+ {
+  "id": "sound.gen.fridge-door",
+  "domain": "sound",
+  "topic": "fridge door",
+  "names": [
+   "باب الثلاجة",
+   "باب البراد",
+   "باب الثلاجة ينفتح",
+   "fridge door",
+   "refrigerator door"
+  ],
+  "body": "A refrigerator door is a thick, smooth panel with a handle or recessed grip and a flexible magnetic seal around its inner edge. A hand pulls; the seal releases with a short soft peel, and the heavy door swings outward on its hinges. Interior light comes on as shelves, containers, and bottles appear. Jars may give a faint clink if the door shelf moves quickly. When pushed shut, the door slows against its seal and ends with a muted, cushioned thump, not a metallic slam. A low compressor hum may continue in the kitchen independently of the door."
+ },
+ {
+  "id": "sound.gen.microwave-beep",
+  "domain": "sound",
+  "topic": "microwave beep",
+  "names": [
+   "صفارة المايكرويف",
+   "صوت الميكروويف",
+   "بيب المايكرويف",
+   "microwave beep",
+   "microwave chime"
+  ],
+  "body": "A microwave sits on a counter as a compact metal box with a windowed door, keypad, and small illuminated display. During heating, the turntable rotates behind the mesh-covered window and a low electrical hum is audible. At the end of the timer, the hum stops and the unit sounds one or several short electronic beeps. They are clean, fairly high-pitched, evenly spaced, and much louder than the display's faint button clicks; their exact pattern varies by model. A beep may also sound immediately when someone presses a key. Kitchen room tone surrounds the sound without a long echo."
+ },
+ {
+  "id": "sound.gen.washing-machine-spin",
+  "domain": "sound",
+  "topic": "washing machine spin",
+  "names": [
+   "عصر الغسالة",
+   "دوران الغسالة",
+   "الغسالة تعصر",
+   "washing machine spin",
+   "washer spin cycle"
+  ],
+  "body": "A washing machine stands squarely on the floor, its metal cabinet surrounding a drum visible through a round front window or beneath a top lid. As the spin cycle begins, wet clothes gather against the drum wall and the rotation speeds up gradually. A low, uneven tumble becomes a steady rising whirr, with a deeper vibration felt through the cabinet. Water may briefly rattle through a drain hose. At full speed, the drum is a blur and the sound stays continuous rather than pulsing with individual garments. It winds down over several seconds, followed by a few loose fabric falls."
+ },
+ {
+  "id": "sound.gen.vacuum-cleaner",
+  "domain": "sound",
+  "topic": "vacuum cleaner",
+  "names": [
+   "مكنسة كهربائية",
+   "مكنسة كهربا",
+   "شفاط الغبار",
+   "vacuum cleaner",
+   "vacuuming"
+  ],
+  "body": "A vacuum cleaner has a floor head, a long tube or handle, a flexible hose or enclosed body, and a trailing cord on many models. A person guides the head in overlapping passes across tile or a rug. Its electric motor starts with a rising whine and settles into a continuous, fairly loud high-pitched hum over a lower rushing-air sound. On a rug, the head makes a soft brushing rasp; on tile, small crumbs may click briefly as they enter. The pitch can change when the head seals against fabric or lifts away. The cord and hose follow with small sliding sounds."
+ },
+ {
+  "id": "sound.gen.hair-dryer",
+  "domain": "sound",
+  "topic": "hair dryer",
+  "names": [
+   "مجفف الشعر",
+   "مجفف شعر",
+   "سشوار",
+   "سيشوار",
+   "hair dryer",
+   "blow dryer"
+  ],
+  "body": "A handheld hair dryer has a short plastic barrel, a rear air grille, a narrow front nozzle and a handle with switches and a dangling cord. In a bathroom or salon, someone aims it at damp hair while lifting strands with a brush. The fan starts when the switch moves: a steady, fairly loud mid-pitched whir rises to a higher hiss at stronger settings. Air pushes loose strands outward and makes a faint rushing sound against them. The pitch drops briefly when the dryer switches off, then stops. Hard bathroom surfaces can add a slight echo; salon chatter remains audible underneath."
+ },
+ {
+  "id": "sound.gen.clippers-buzzing",
+  "domain": "sound",
+  "topic": "clippers buzzing",
+  "names": [
+   "ماكينة حلاقة الشعر",
+   "صوت ماكينة الحلاقة",
+   "مكينة حلاقة",
+   "مكنة حلاقة",
+   "clippers buzzing",
+   "hair clippers"
+  ],
+  "body": "Electric hair clippers are a palm-sized plastic or metal tool with a flat row of closely spaced steel teeth at one end. A barber guides them upward through short hair, often with a plastic guard holding the blades away from the scalp. Switching them on produces a continuous, close, low-to-mid-pitched buzz with a fine metallic vibration. The buzz becomes slightly rougher as the teeth cut dense hair and quieter when the tool lifts clear. Tiny cut hairs fall onto a cape. In a barbershop, the sound sits above conversation, comb movements and occasional taps as the barber changes the guard."
+ },
+ {
+  "id": "sound.gen.scissors-snipping",
+  "domain": "sound",
+  "topic": "scissors snipping",
+  "names": [
+   "قص المقص",
+   "صوت المقص",
+   "قص بالمقص",
+   "مقص الحلاق",
+   "scissors snipping",
+   "hair scissors"
+  ],
+  "body": "Hair-cutting scissors have two slim steel blades joined by a small screw, with finger loops at the handles. A barber or stylist holds a section of hair between their fingers and closes the blades across its ends. Each closure makes a short, crisp metal snick; several quick cuts form an uneven series rather than a perfectly timed beat. The sound is softer when cutting a thin section and sharper when the empty blades meet. Loose hair drops lightly onto a cape or floor. Nearby comb strokes, quiet conversation and room ambience remain clear between snips."
+ },
+ {
+  "id": "sound.gen.camera-shutter-burst",
+  "domain": "sound",
+  "topic": "camera shutter burst",
+  "names": [
+   "تصوير متتابع بالكاميرا",
+   "صوت غالق الكاميرا",
+   "تصوير متتالي",
+   "شتر الكاميرا",
+   "camera shutter burst",
+   "burst shooting"
+  ],
+  "body": "A photographer holds a digital camera to their eye or watches its rear screen, keeping a finger pressed on the shutter button as the lens points at a moving subject. With an audible mechanical shutter, a burst makes a rapid series of short, dry clicks, sometimes with a deeper clack from a moving mirror. The clicks are closely spaced but individually distinct, then stop as soon as the finger lifts. A burst lasts a fraction of a second to a few seconds; it is not a sustained rattle after the camera stops shooting. In a quiet room the clicks stand out, while crowd noise can mask them."
+ },
+ {
+  "id": "sound.gen.drone-buzz",
+  "domain": "sound",
+  "topic": "drone buzz",
+  "names": [
+   "أزيز الطائرة المسيرة",
+   "صوت الدرون",
+   "طنين الدرون",
+   "صوت الطيارة المسيرة",
+   "drone buzz",
+   "quadcopter buzz"
+  ],
+  "body": "A small camera drone has a compact body, four arms and fast-spinning propellers that appear as translucent discs in motion. As its motors spin up, a thin electric whine rises into a continuous, raspy buzz. The pitch climbs when the drone accelerates or climbs and eases when it hovers or descends. Close overhead, the layered propeller sound is prominent; across an open field, it becomes a faint, high hum. Small corrections make the body tilt before it moves sideways, while the camera below stays relatively level. Wind, distant traffic and nearby voices remain separate from the buzz."
+ },
+ {
+  "id": "sound.gen.football-kick-and-net",
+  "domain": "sound",
+  "topic": "football kick and net",
+  "names": [
+   "ركلة كرة القدم في الشباك",
+   "صوت الكرة والشباك",
+   "طگة الطوبة بالشبك",
+   "تسديدة بالشبك",
+   "football kick and net",
+   "soccer goal sound"
+  ],
+  "body": "A player swings a leg through a round football, and the foot briefly compresses the ball before it speeds toward the goal. Contact makes a short, low thump, sharper with a firm strike. If the ball reaches the net, the mesh bows backward and ripples around it with a soft, brief rustle; the net itself does not make a metallic crash. The ball may bounce once against the ground or roll back as the mesh settles. The kick and net sound are separated by the ball’s visible travel time. On a pitch, footsteps, calls and distant spectators surround the action."
+ },
+ {
+  "id": "sound.gen.basketball-dribble",
+  "domain": "sound",
+  "topic": "basketball dribble",
+  "names": [
+   "تنطيط كرة السلة",
+   "ارتداد كرة السلة",
+   "طگة كرة السلة",
+   "دربلة كرة سلة",
+   "basketball dribble",
+   "basketball bounce"
+  ],
+  "body": "An orange basketball with dark seams flattens slightly each time it strikes the floor, then springs back into a player’s hand. A dribble makes repeating hollow, low-pitched pops, with a lighter slap when the palm pushes the ball down again. The beats quicken or slow with the player’s steps and change in loudness as the bounce height changes. On an indoor court, each impact carries a brief hard echo, while shoe soles squeak during turns. On outdoor concrete, the bounce sounds drier and less echoing. The ball’s rise and fall must match every audible impact."
+ },
+ {
+  "id": "sound.gen.tennis-ball-hit",
+  "domain": "sound",
+  "topic": "tennis ball hit",
+  "names": [
+   "ضربة كرة التنس",
+   "صوت مضرب التنس",
+   "طگة كرة التنس",
+   "ضرب كرة تنس",
+   "tennis ball hit",
+   "tennis racket hit"
+  ],
+  "body": "A yellow-green felt tennis ball compresses briefly against the strings of a racket, then shoots away and begins to spin. A clean hit makes a short, bright pop with a lower stringy thud beneath it; an off-centre strike sounds duller. The sound occurs at the visible instant of contact, followed later by a softer, lower bounce when the ball reaches the court. Players make small shoe squeaks or scraping steps as they adjust their position. On an outdoor court the pop fades quickly into open air, while an indoor court gives it a brief echo."
+ },
+ {
+  "id": "sound.gen.swimming-pool-splash",
+  "domain": "sound",
+  "topic": "swimming pool splash",
+  "names": [
+   "رشة مسبح",
+   "طرطشة مسبح",
+   "قفزة بالمسبح",
+   "سبلاش مسبح",
+   "swimming pool splash",
+   "pool splash"
+  ],
+  "body": "A person enters clear blue pool water, pushing up a brief white crown of spray around the entry point. Larger droplets arc outward and fall back first; fine mist hangs for a moment in strong sunlight. Ripples spread in widening rings and bounce off the tiled pool edge. The sound begins exactly at impact with a short, low slap, followed by a brighter rush of scattered droplets and a few smaller plips. It is loud nearby but fades within seconds. Wet tiles, lane markings or steps remain visible beneath the surface; voices and water movement may continue in the background."
+ },
+ {
+  "id": "sound.gen.diving-board",
+  "domain": "sound",
+  "topic": "diving board",
+  "names": [
+   "لوح الغطس",
+   "منصة القفز للمسبح",
+   "لوح النط للمسبح",
+   "diving board",
+   "springboard"
+  ],
+  "body": "A narrow, slightly textured board projects over a swimming pool from a rigid support. Its free end dips under the diver’s weight, springs upward and vibrates with smaller, quicker bends after takeoff. The diver’s feet leave the board before the splash below; the board never follows them into the water. Each loading step can make a dull footfall and a faint mechanical squeak or hollow rattle. The final spring produces a brief twang, then the later water impact sounds separately. Blue water, tiled edges and a clear landing area frame the action, often under bright outdoor light or even indoor pool lighting."
+ },
+ {
+  "id": "sound.gen.gym-weights-clank",
+  "domain": "sound",
+  "topic": "gym weights clank",
+  "names": [
+   "صوت الأوزان بالنادي",
+   "طقطقة حديد الجيم",
+   "رنة الدنابل",
+   "gym weights clank",
+   "weight plates clank"
+  ],
+  "body": "Metal weight plates slide onto a barbell sleeve or touch one another as a lifter sets the bar on a rack. Round plates have flat faces, a central hole and worn edges; the bar has a textured grip and reflective steel ends. Contact makes a sharp, mid-to-high metallic clink, sometimes followed by a lower rattle as loose plates settle. The sound occurs at the visible point of contact, not throughout the lift. A padded floor can soften a set-down into a low thud. Rubber-coated plates sound duller than bare metal. Breathing, footsteps and quiet gym conversation sit behind the brief impacts."
+ },
+ {
+  "id": "sound.gen.treadmill",
+  "domain": "sound",
+  "topic": "treadmill",
+  "names": [
+   "جهاز المشي",
+   "سير الجري",
+   "ماكينة الركض",
+   "treadmill",
+   "running machine"
+  ],
+  "body": "A treadmill has a dark moving belt between two side rails, an upright frame and a console facing the runner. The runner stays roughly in place while the belt carries each planted foot backward. Arms swing opposite the legs, and the torso rises and falls slightly with each step. Footfalls make a regular, padded thump over a continuous low motor hum and belt hiss; faster running tightens the rhythm and raises the hum. The belt keeps moving smoothly between steps. Indoor gym light reflects softly off the console, while nearby machines, ventilation and occasional voices form a steady background."
+ },
+ {
+  "id": "sound.gen.boxing-bag-punches",
+  "domain": "sound",
+  "topic": "boxing bag punches",
+  "names": [
+   "لكم كيس الملاكمة",
+   "ضرب كيس البوكس",
+   "تمرين كيس الملاكمة",
+   "boxing bag punches",
+   "punching bag workout"
+  ],
+  "body": "A gloved trainee strikes a heavy training bag hanging from a chain or sturdy ceiling mount. The long cylindrical bag compresses briefly at each contact, then swings away and returns in a shallow arc; its chain may twist and give a faint metallic rattle. Each punch lands with a short, low thump, sharper on firm surfaces and softer through thick padding. A quick combination creates separate impacts rather than one continuous noise. Shoes shift on the floor between strikes, with controlled breathing audible nearby. Gym lights reveal creases in the bag covering and worn patches where gloves repeatedly make contact."
+ },
+ {
+  "id": "sound.gen.stadium-chant",
+  "domain": "sound",
+  "topic": "stadium chant",
+  "names": [
+   "هتاف الجمهور",
+   "هوسة المدرجات",
+   "تشجيع الملعب",
+   "stadium chant",
+   "football crowd chant"
+  ],
+  "body": "Spectators packed across stadium terraces chant together while watching the field. Open mouths, raised arms and clapping hands move in a repeating pattern, though individuals enter a beat early or late. The sound is a broad mass of human voices at several pitches, with a shared rhythm and repeated short phrases. Claps add crisp pulses; drums, if present, sound lower and more regular. The chant swells as more sections join, then thins or stops between repetitions. In an open stadium it spreads without a tight indoor echo, with whistles and distant field sounds around it. Team colours appear across shirts and scarves."
+ },
+ {
+  "id": "sound.gen.hilhola-ululation",
+  "domain": "sound",
+  "topic": "hilhola ululation",
+  "names": [
+   "هلهولة",
+   "هلاهل",
+   "زغرودة",
+   "زغاريد",
+   "hilhola",
+   "ululation"
+  ],
+  "body": "At a wedding or family celebration, a person lifts their chin, opens their mouth and produces a high, wavering celebratory call. The tongue moves rapidly against the upper mouth, breaking a sustained vocal tone into quick, bright pulses. It starts prominently, lasts a few seconds and may end in a sharper rising flourish. Several people can answer in overlapping bursts, but each call has its own beginning and end. The sound cuts through clapping, conversation and music without resembling a mechanical trill. Nearby faces turn toward the caller; hands may clap, while festive clothing and warm indoor light frame the moment."
+ },
+ {
+  "id": "sound.gen.oud-strumming",
+  "domain": "sound",
+  "topic": "oud strumming",
+  "names": [
+   "عزف العود",
+   "نقر العود",
+   "ضرب ريشة العود",
+   "oud strumming",
+   "oud playing"
+  ],
+  "body": "A seated musician holds a wooden oud with a rounded, bowl-shaped back, a short fretless neck and a broad face pierced by decorative sound holes. One hand presses paired strings along the neck while the other sweeps a small plectrum, or risha, across them. Each visible stroke produces a warm, woody burst with several notes nearly together; the strings then ring and decay. Alternating downstrokes and upstrokes create a measured pulse, with occasional sharper single-note picks. The sound is close and resonant, not metallic. Fingers shift smoothly between pitches as soft room ambience surrounds the instrument."
+ },
+ {
+  "id": "sound.gen.qanun-plucking",
+  "domain": "sound",
+  "topic": "qanun plucking",
+  "names": [
+   "قانون موسيقي",
+   "عزف القانون",
+   "نقر القانون",
+   "قانون عراقي",
+   "qanun",
+   "kanun",
+   "qanun plucking"
+  ],
+  "body": "A qanun rests flat across the player’s lap or on a low stand: a broad, shallow wooden trapezoid with many closely spaced strings running across its pale soundboard. Small metal levers line one side. The player’s hands hover above the strings, plucking rapidly with plectra attached to the index fingers by rings. Each visible pluck produces a bright, crisp ping followed by a short, shimmering decay; quick alternating fingers create rippling runs rather than one continuous note. Nearby strings may vibrate sympathetically. Finger movements are small and precise, and the instrument stays still. In a room, the notes carry lightly over conversation or accompanying percussion."
+ },
+ {
+  "id": "sound.gen.nay-flute",
+  "domain": "sound",
+  "topic": "nay flute",
+  "names": [
+   "ناي",
+   "الناي",
+   "عزف الناي",
+   "صوت الناي",
+   "ناي عراقي",
+   "nay",
+   "ney",
+   "nay flute"
+  ],
+  "body": "A nay is a slender, hollow reed tube, usually tan with darker natural nodes and finger holes along its front. The player holds it diagonally from the mouth, blowing across its open end while fingers lift and seal the holes. The sound begins with the breath: soft, airy, and slightly rough around a clear sustained pitch. Notes can bend gently as the player changes lip angle and breath pressure; gaps between phrases coincide with a quick inhale. Fingers move in small, deliberate changes, not like keys on a metal flute. In a quiet room, breath noise is audible close to the instrument, while the longer notes linger briefly in the space."
+ },
+ {
+  "id": "sound.gen.piano-chord",
+  "domain": "sound",
+  "topic": "piano chord",
+  "names": [
+   "وتر بيانو",
+   "كورد بيانو",
+   "تآلف بيانو",
+   "عزف البيانو",
+   "piano chord",
+   "piano chords"
+  ],
+  "body": "A hand lowers onto several adjacent or separated piano keys at once, depressing them a short, even distance. White keys are glossy or satin ivory-colored plastic; the narrower black keys sit raised between them. The chord starts exactly as the keys go down: several pitches strike together with a firm attack, then soften and ring. A heavy touch sounds louder and sharper, but the fingers do not need a dramatic swing. If the sustain pedal is held, the notes continue after the hand lifts; without it, they stop as the keys return. A close recording may catch faint key and pedal movement beneath the fuller sound."
+ },
+ {
+  "id": "sound.gen.violin-bow",
+  "domain": "sound",
+  "topic": "violin bow",
+  "names": [
+   "قوس كمان",
+   "عزف الكمان",
+   "سحب قوس الكمان",
+   "قوس الفيولين",
+   "violin bow",
+   "violin bowing"
+  ],
+  "body": "The violin sits beneath the player’s chin, its warm brown wooden body angled across the shoulder. One hand presses the strings along the black fingerboard; the other draws a long wooden bow, strung with pale horsehair, across them. Sound begins when the moving bow grips a string: a sustained, singing note with a faint textured rasp close up. The note continues through the stroke and may swell or fade with bow pressure and speed. A bow reversal can make a slight change in articulation without a full silence. The violin body moves subtly with the player, while room reflections give longer notes a gentle tail."
+ },
+ {
+  "id": "sound.gen.guitar-strum",
+  "domain": "sound",
+  "topic": "guitar strum",
+  "names": [
+   "ضرب أوتار الغيتار",
+   "عزف غيتار",
+   "عزف جيتار",
+   "سترمنغ غيتار",
+   "guitar strum",
+   "strumming guitar"
+  ],
+  "body": "An acoustic guitar has a curved wooden body, a round sound hole, and six strings stretched over the neck. The player’s fretting hand holds a chord shape while the other hand sweeps across the strings with fingers or a small pick. Each downward or upward pass produces a brief sequence of string attacks, not a single perfectly simultaneous sound. Low strings give a warm thump; higher strings add bright, metallic ringing. The strings visibly quiver after a strong stroke, and the wooden body resonates as the hand moves away. In a room, pick contact may sound like a soft scrape between louder, regular beats."
+ },
+ {
+  "id": "sound.gen.dj-beat-drop",
+  "domain": "sound",
+  "topic": "DJ beat drop",
+  "names": [
+   "نزلة بيت دي جي",
+   "دروب دي جي",
+   "نزول الإيقاع",
+   "دي جي دروب",
+   "dj beat drop",
+   "beat drop"
+  ],
+  "body": "At a DJ booth, the DJ works a mixer between two decks while speaker stacks face the audience. A repeating electronic pulse may build beneath a rising sweep, then briefly thin out or pause. On the drop, the full rhythm returns together: a deep kick and bass hit under a sharper clap or snare and ticking high sounds. The low frequencies are felt as much as heard near the speakers, with room reverberation following each hit. A fader move or timed button press can coincide with the change, but the DJ need not make a huge gesture. Stage lights may switch on the same beat as people begin bouncing."
+ },
+ {
+  "id": "sound.gen.crowd-at-a-concert",
+  "domain": "sound",
+  "topic": "crowd at a concert",
+  "names": [
+   "جمهور حفلة موسيقية",
+   "جمهور كونسرت",
+   "حشد حفلة",
+   "جمهور حفل غنائي",
+   "concert crowd",
+   "crowd at a concert"
+  ],
+  "body": "A concert crowd forms an uneven field of heads and shoulders facing a lit stage. People stand at different heights and distances; some sway, clap, sing along, or raise phones whose screens glow faintly. Movement spreads in loose waves rather than perfect unison. Applause makes overlapping, irregular handclaps; cheers rise as scattered shouts that blend into a broad roar, often louder between songs or after a recognizable musical moment. During a quiet passage, nearby voices and a few isolated calls remain audible. Stage light washes faces in shifting colors while the audience farther back falls into shadow. Venue echoes blend the crowd with amplified music."
+ },
+ {
+  "id": "sound.gen.party-popper",
+  "domain": "sound",
+  "topic": "party popper",
+  "names": [
+   "فرقع حفلات",
+   "مفرقعة حفلات",
+   "مدفع قصاصات",
+   "بوبر حفلة",
+   "party popper",
+   "confetti popper"
+  ],
+  "body": "A handheld party popper is a small paper or plastic tube, often brightly printed, held with its open end aimed upward and away from faces. One hand grips the tube while the other twists its base or pulls a short string, depending on the design. The trigger makes a sudden, sharp pop as a little burst of pressure sends lightweight paper confetti outward. The pieces spread in a loose cone, slow quickly, then flutter and tumble down at different speeds. The pop is brief, followed by paper rustling and nearby laughter or cheers; it does not produce a sustained bang or a fireball. Colorful bits may settle on hair, tables, and the floor."
+ },
+ {
+  "id": "sound.gen.birthday-song",
+  "domain": "sound",
+  "topic": "birthday song",
+  "names": [
+   "أغنية عيد الميلاد",
+   "أغنية عيد ميلاد",
+   "غنية عيد الميلاد",
+   "غنية عيد ميلاد",
+   "birthday song",
+   "happy birthday song"
+  ],
+  "body": "A small group faces a cake while someone sings the familiar birthday tune and others join in. Voices begin together loosely, then drift slightly apart on held notes; children often sing higher and louder than adults. The sound is warm and uneven rather than studio-perfect, with claps sometimes marking the beat. A candle flame flickers above icing as faces lean toward the table. The final note is usually drawn out, followed immediately by cheers, laughter, or a breath blowing out the candles. Indoors, the voices have a short room echo; in a garden, they sound more open."
+ },
+ {
+  "id": "sound.gen.applause-in-a-theatre",
+  "domain": "sound",
+  "topic": "applause in a theatre",
+  "names": [
+   "تصفيق المسرح",
+   "تصفيق في المسرح",
+   "تصفيق الجمهور بالمسرح",
+   "تصفيق بالمسرح",
+   "theatre applause",
+   "theater applause"
+  ],
+  "body": "As a performer finishes or the curtain falls, seated audience members bring their palms together repeatedly. Individual claps are sharp, dry snaps at slightly different speeds; together they form a broad, uneven rush that grows louder as more people join. Hands move in front of chests while heads turn toward the stage, and some people stand. Occasional cheers or whistles rise above the clapping, but do not follow a fixed rhythm. Upholstered seats and curtains soften the sound, while the hall adds a brief echo. The applause swells, sustains for several seconds, then breaks into scattered last claps."
+ },
+ {
+  "id": "sound.gen.rain-on-a-car-roof",
+  "domain": "sound",
+  "topic": "rain on a car roof",
+  "names": [
+   "مطر على سقف السيارة",
+   "صوت المطر على سقف السيارة",
+   "مطر على سطح السيارة",
+   "مطر ع سقف السيارة",
+   "rain on car roof",
+   "car roof rain"
+  ],
+  "body": "Raindrops strike the painted metal roof of a parked or moving car, producing a dense patter of small, hollow ticks above the passengers. Light rain makes separate, irregular taps; a downpour blends them into a steady, louder rattle. Larger drops from a tree or roof edge land as distinct knocks. Water beads on the windows, streams down the glass, and gathers along the roof seams before running off. Inside the closed car, the tapping sounds close and slightly resonant, while street noise is muffled. Passing vehicles may add a brief spray hiss outside."
+ },
+ {
+  "id": "sound.gen.rain-on-an-umbrella",
+  "domain": "sound",
+  "topic": "rain on an umbrella",
+  "names": [
+   "مطر على المظلة",
+   "صوت المطر على المظلة",
+   "مطر على الشمسية",
+   "مطر ع الشمسية",
+   "rain on umbrella",
+   "umbrella rain"
+  ],
+  "body": "A person holds an open umbrella above their head as raindrops hit its taut fabric canopy. Each drop makes a soft, high tick; many drops become a continuous papery patter, with heavier drops sounding like quick, dull pops. The canopy trembles slightly on impact, and water runs down its sloping panels before dripping from the rim in uneven strings. The sound follows the person closely as they walk, while footsteps splash below and traffic remains farther away. A gust tilts the umbrella and briefly changes where the rain lands, making one side sound louder."
+ },
+ {
+  "id": "sound.gen.thunder-rumble",
+  "domain": "sound",
+  "topic": "thunder rumble",
+  "names": [
+   "دوي الرعد",
+   "هدير الرعد",
+   "صوت الرعد",
+   "دوي الرعد البعيد",
+   "thunder rumble",
+   "rumbling thunder"
+  ],
+  "body": "A thundercloud fills part of a dark sky, sometimes with a brief flash illuminating its edges. The rumble arrives after the flash, with the delay more noticeable when the storm is distant. It begins as a low, broad growl, rolls through uneven deeper pulses, and fades over several seconds. Nearby thunder may start with a sharp crack before the lower sound follows; distant thunder is softer and has no clear snap. The cloud itself does not visibly shake. Rain may be falling in streaks, and people outdoors pause or look up as the sound spreads across the scene."
+ },
+ {
+  "id": "sound.gen.wind-howling",
+  "domain": "sound",
+  "topic": "wind howling",
+  "names": [
+   "عواء الريح",
+   "صفير الريح القوية",
+   "عويل الريح",
+   "صوت الهوا يعوي",
+   "wind howling",
+   "howling wind"
+  ],
+  "body": "Strong wind pushes past a window gap, doorway, roof edge, or narrow alley, creating a sustained airy howl. Its pitch rises and falls as gusts change speed, often with a thin whistle above a lower rushing sound. A loose curtain lifts, branches bend and spring partly back, and dust or leaves travel in the direction of the gust. The howl grows loudest when air funnels through a small opening, then drops away as the gust eases. Nearby rattling shutters or window frames make separate, harder clicks. In open space, the wind sounds more like a broad rush than a clear whistle."
+ },
+ {
+  "id": "sound.gen.sandstorm-hiss",
+  "domain": "sound",
+  "topic": "sandstorm hiss",
+  "names": [
+   "هسيس العاصفة الرملية",
+   "صوت العاصفة الرملية",
+   "هسيس عاصفة ترابية",
+   "صوت العجاج",
+   "sandstorm hiss",
+   "sandstorm sound"
+  ],
+  "body": "Wind drives fine sand and dust across the ground in low, fast sheets, turning distant buildings and cars into muted outlines. Grains brushing walls, windows, and metal surfaces create a steady dry hiss, with occasional sharper ticks where larger particles strike. The sound strengthens during gusts and thins briefly between them. Dust curls around corners and gathers against kerbs; fabric and loose signs flap or rattle separately. Sunlight becomes dim and yellow-brown, with little contrast or hard shadow. People outside may cover their faces and walk with their heads lowered, while the hissing remains continuous around them."
+ },
+ {
+  "id": "sound.gen.river-current",
+  "domain": "sound",
+  "topic": "river current",
+  "names": [
+   "تيار النهر",
+   "جريان النهر",
+   "صوت جريان النهر",
+   "مي النهر تجري",
+   "river current",
+   "river flowing sound"
+  ],
+  "body": "River water moves steadily downstream, its surface sliding around stones, reeds, or bridge supports. A smooth, deep channel may sound like a low continuous wash, while shallow water over rocks makes brighter, irregular gurgles and splashes. Small ripples form upstream of obstacles, split around them, then trail into swirling eddies. Floating leaves travel with the flow rather than moving at a fixed speed across every part of the river. Sunlight glints on raised ripples, while shaded water looks darker and flatter. Along the bank, insects, birds, or distant people may be heard behind the constant water sound."
+ },
+ {
+  "id": "sound.gen.marsh-birds",
+  "domain": "sound",
+  "topic": "marsh birds",
+  "names": [
+   "طيور الأهوار",
+   "طيور الاهوار",
+   "عصافير الهور",
+   "طيور المستنقعات",
+   "marsh birds",
+   "reed birds"
+  ],
+  "body": "In the Iraqi marshes, small brown reed birds cling to upright green stalks, while pale herons stand motionless in shallow water and dark waterbirds paddle between floating plants. A reed bends under a bird’s weight and springs back when it flies; takeoff sends small ripples across the water. Short, high chirps come from the reeds, with occasional louder, rough calls from birds crossing overhead. Calls begin as beaks open and often overlap without a steady beat. Wind rustles the reeds beneath them, and soft daylight reflects off the water onto feathers and faces in narrow boats."
+ },
+ {
+  "id": "sound.gen.cat-purring",
+  "domain": "sound",
+  "topic": "cat purring",
+  "names": [
+   "خرخرة القط",
+   "خرخرة البسة",
+   "خرخرة البزونة",
+   "صوت خرخرة القطط",
+   "cat purring",
+   "kitten purring"
+  ],
+  "body": "A resting cat’s fur rises and settles slightly at its throat and chest as it breathes. Its eyes may narrow, whiskers stay relaxed, and paws often tuck beneath a rounded body or press slowly into a blanket. The purr is a low, close, vibrating rumble in short pulses, continuing through both inhaling and exhaling; its texture changes subtly with each breath. It sounds much quieter across a room than it does beside the cat’s head. On a sofa or floor cushion, fabric may rustle under shifting paws, while indoor daylight picks out individual hairs along the ears and back."
+ },
+ {
+  "id": "sound.gen.horse-galloping",
+  "domain": "sound",
+  "topic": "horse galloping",
+  "names": [
+   "ركض الخيل",
+   "عدو الحصان",
+   "حصان يركض",
+   "صوت حوافر الخيل",
+   "horse galloping",
+   "galloping hooves"
+  ],
+  "body": "A galloping horse stretches forward, gathers its legs beneath its body, and briefly lifts all four hooves clear of the ground. Its mane and tail stream backward, then bounce with each stride; the rider, if present, moves with the saddle rather than sitting rigidly. Hoofbeats form a fast, uneven rolling pattern, with a short gap before the next stride. On hard ground each landing makes a sharp clop; on sand it becomes a dull thud with scattered grains and dust. Breathing and tack may be audible nearby. Low sunlight can catch dust behind the horse without obscuring its legs."
+ },
+ {
+  "id": "sound.gen.bees-buzzing",
+  "domain": "sound",
+  "topic": "bees buzzing",
+  "names": [
+   "طنين النحل",
+   "أزيز النحل",
+   "صوت النحل",
+   "نحل يطن",
+   "bees buzzing",
+   "bee buzz"
+  ],
+  "body": "A bee has a compact, fuzzy body with dark and amber bands and two pairs of translucent wings that blur during flight. It hovers briefly before landing on a flower, grips the petals with its legs, and moves from bloom to bloom in quick, irregular paths. Rapid wingbeats make a thin, steady buzz that rises in pitch as the bee approaches and fades as it flies away. Several bees create overlapping tones rather than one synchronized hum. Close to a flowering tree or garden bed, leaves shift lightly in the breeze, and sunlight glints off the wings at certain angles."
+ },
+ {
+  "id": "sound.gen.fire-crackling-in-a-stove",
+  "domain": "sound",
+  "topic": "fire crackling in a stove",
+  "names": [
+   "طقطقة الحطب في المدفأة",
+   "صوت النار بالمدفأة",
+   "فرقعة نار الصوبة",
+   "طقطقة نار الصوبة",
+   "fire crackling in a stove",
+   "wood stove crackle"
+  ],
+  "body": "Inside a metal wood stove, orange flames curl around stacked logs, while their edges blacken and small patches glow red. Through a glass door, the flames brighten and shrink as air moves through the stove. Crackles are dry, irregular clicks and occasional sharper pops, timed to tiny bursts from the burning wood; beneath them is a soft, continuous rush of flame. A metal panel may give a faint tick as it heats or cools. The closed door slightly muffles the sound. In a dim room, warm, shifting light falls on the stove frame and nearby floor."
+ },
+ {
+  "id": "sound.gen.campfire-at-night",
+  "domain": "sound",
+  "topic": "campfire at night",
+  "names": [
+   "نار المخيم ليلا",
+   "نار المخيم بالليل",
+   "نار الكشتة",
+   "نار القعدة بالبر",
+   "campfire at night",
+   "night campfire"
+  ],
+  "body": "A small campfire burns in a shallow bed of ash, with short logs leaning together and glowing embers visible between them. Flames bend with the breeze, throwing uneven orange light across nearby faces, cups and ground; beyond that pool of light, the night stays dark. Dry wood makes scattered snaps and soft crackles in sync with brief bright flares. An occasional ember lifts, dims and disappears without lighting the whole sky. People seated a comfortable distance away may speak quietly over the fire. Wind and distant night insects remain audible in the pauses between louder pops."
+ },
+ {
+  "id": "sound.gen.waves-on-rocks",
+  "domain": "sound",
+  "topic": "waves on rocks",
+  "names": [
+   "أمواج تضرب الصخور",
+   "موج على الصخور",
+   "صوت الموج على الصخر",
+   "موج يصدم الصخور",
+   "waves on rocks",
+   "surf on rocks"
+  ],
+  "body": "A swell rises against uneven coastal rocks, breaks into white foam, then drains through cracks and channels. Wet stone looks darker than dry stone and catches narrow highlights as the water retreats. Each impact makes a broad, low rush with a brighter splash on top; afterward comes a thinner hiss and gurgle as water pulls back. The sequence repeats with changing strength and spacing, not a perfectly even rhythm. Larger waves send spray briefly above the rocks, while smaller ones only wash their lower edges. Seabirds and wind may be heard farther away, especially between impacts."
+ },
+ {
+  "id": "sound.gen.waterfall-roar",
+  "domain": "sound",
+  "topic": "waterfall roar",
+  "names": [
+   "هدير الشلال",
+   "صوت الشلال",
+   "خرير الشلال",
+   "شلال يهدِر",
+   "waterfall roar",
+   "roaring waterfall"
+  ],
+  "body": "Water pours over a rocky ledge in broken white sheets and separate streams, accelerating downward before striking a churning pool. The falling water stays in constant motion, while spray drifts sideways with the wind and dampens nearby stone and leaves. Its sound is a sustained, broad roar, with a lower rumble from the impact and a finer hiss from the spray. It grows louder as the viewpoint approaches; nearby speech becomes harder to hear. The pool surface boils with pale bubbles that spread outward and slowly dissolve. In sunlight, droplets flash briefly against the darker rock."
+ },
+ {
+  "id": "sound.gen.ice-cracking",
+  "domain": "sound",
+  "topic": "ice cracking",
+  "names": [
+   "ice cracking",
+   "cracking ice",
+   "ice crack",
+   "تشقق الجليد",
+   "تكسر الجليد",
+   "طقطقة الجليد",
+   "الثلج يتشقق"
+  ],
+  "body": "A thin sheet of ice covers a shallow puddle, clear at its edges and cloudy white where tiny air bubbles are trapped. As a boot presses down, fine dark lines shoot outward from the sole; then angular pieces dip into the water beneath. The sound begins with one sharp, high-pitched tick at the first visible split, followed immediately by several uneven snaps and a brief watery clink as pieces shift. It is close and crisp, not a long rumble. Pale winter light catches the raised edges, while the surrounding pavement stays still and quiet."
+ },
+ {
+  "id": "sound.gen.snow-crunch",
+  "domain": "sound",
+  "topic": "snow crunch",
+  "names": [
+   "snow crunch",
+   "crunching snow",
+   "footsteps in snow",
+   "صرير الثلج",
+   "قرمشة الثلج",
+   "صوت المشي على الثلج",
+   "دعس الثلج"
+  ],
+  "body": "A boot sinks a few centimetres into a layer of fresh snow, leaving a sharply outlined sole print and pushing loose white grains up around its sides. Each downward step produces a short, muffled crunch with a faint, higher squeak when the snow is very cold and dry. The sound peaks as weight settles, then stops when the foot lifts; the next step repeats at a walking rhythm. It carries little echo outdoors, with perhaps a soft scrape as the boot pulls free. Overcast daylight makes the snow look pale blue in shadow and bright white on top."
+ },
+ {
+  "id": "sound.gen.leaves-crunching-underfoot",
+  "domain": "sound",
+  "topic": "leaves crunching underfoot",
+  "names": [
+   "leaves crunching underfoot",
+   "crunching leaves",
+   "footsteps on dry leaves",
+   "حفيف الأوراق تحت الأقدام",
+   "قرمشة أوراق الشجر",
+   "صوت المشي على الورق اليابس",
+   "دعس ورق الشجر"
+  ],
+  "body": "Dry fallen leaves lie in a loose, uneven layer across a path, their curled brown and yellow edges lifting off the ground. A shoe presses them flat, breaking thin veins and brittle edges while a few whole leaves slide sideways. The impact makes a brief cluster of crisp, papery crackles and a lower rustle; scattered little clicks continue as the foot lifts and the leaves settle. Repeated steps form an irregular walking rhythm, louder on thick dry patches and quieter where leaves are damp. Soft daylight shows their creases, and the sound stays close without much echo outdoors."
  }
 ]

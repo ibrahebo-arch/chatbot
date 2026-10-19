@@ -509,5 +509,924 @@
    "noon city heatwave"
   ],
   "body": "At noon during a heatwave, sunlight falls almost overhead, making short, hard-edged shadows beneath cars, balconies, and pedestrians. Concrete and pale walls look glaringly bright; dark asphalt absorbs the light and may shimmer slightly when viewed along the road, especially over a long distance. Air-conditioning units hum, and warm air rises from their vents. People seek shade beside buildings or under shop awnings, walk at a measured pace, and carry water. Trees offer small pools of moving shade as their leaves stir. Traffic continues, but the street may feel quieter between vehicles; exposed metal and pavement look dry, not steaming."
+ },
+ {
+  "id": "nature.gen.tigris-dawn-mist",
+  "domain": "nature",
+  "topic": "Tigris at dawn with mist",
+  "names": [
+   "دجلة الفجر",
+   "نهر دجلة ضباب",
+   "دجلة الصبح",
+   "ضباب دجلة",
+   "tigris dawn",
+   "tigris mist"
+  ],
+  "body": "At dawn the Tigris appears as a broad, slow brown-green ribbon. Low white mist hangs just above the water, hiding the far bank in patches while reeds, date palms and moored wooden boats emerge as soft silhouettes. The sky changes from cool blue-grey to pale peach; its colour reflects in broken streaks where the current wrinkles the surface. Moist air softens distant buildings or fields without obscuring the near bank. Small ripples lap against mud or stone, birds cross the water, and their calls carry over the quiet sound of the current."
+ },
+ {
+  "id": "nature.gen.euphrates-anah",
+  "domain": "nature",
+  "topic": "Euphrates at Anah",
+  "names": [
+   "الفرات في عانة",
+   "نهر الفرات عانة",
+   "فرات عانه",
+   "الفرات بعانة",
+   "euphrates anah",
+   "anah river"
+  ],
+  "body": "At Anah, the Euphrates runs through a dry western Iraqi landscape of pale, stony slopes and low river terraces. Its broad water can look blue-green under clear sky or silty brown after runoff, with wind pushing fine ripples toward the shore. Date palms and irrigated green plots form narrow bands against beige earth; buildings and small boats may appear near settled stretches. Strong midday sun gives rocks sharp shadows, while late light warms them to honey colour. Reeds rustle at the edge, water taps against stones, and occasional birds call above the steady breeze."
+ },
+ {
+  "id": "nature.gen.shatt-al-arab-sunset",
+  "domain": "nature",
+  "topic": "Shatt al-Arab at sunset",
+  "names": [
+   "شط العرب الغروب",
+   "شط العرب المغرب",
+   "غروب شط العرب",
+   "shatt al-arab sunset",
+   "shatt al arab dusk"
+  ],
+  "body": "At sunset the Shatt al-Arab is a wide, gently moving tidal waterway, its brown-green surface catching long copper and pink reflections. Date palms line parts of the banks, with Basra’s riverside buildings, jetties and moored boats visible along urban stretches. Boat wakes spread into shallow V-shaped ripples and bend the reflections of the low sun. Haze softens the far shore; the sky fades from warm orange near the horizon to muted blue overhead. Palm fronds stir in the breeze. Water slaps against pilings, engines hum intermittently, and birds call from the banks."
+ },
+ {
+  "id": "nature.gen.dukan-lake",
+  "domain": "nature",
+  "topic": "Dukan lake",
+  "names": [
+   "بحيرة دوكان",
+   "سد دوكان",
+   "بحيرة دوگان",
+   "dukan lake",
+   "lake dokan",
+   "dukan reservoir"
+  ],
+  "body": "Dukan Lake fills a wide mountain basin in Iraqi Kurdistan, with branching blue-green water between grey and tan rocky slopes. Its irregular shoreline has small coves, exposed stones and a pale band where water levels have fallen. In spring, patches of fresh grass and scattered shrubs brighten the hills; by dry summer they turn straw-coloured. Sunlight makes the open water glitter, while passing cloud shadows darken whole sections at once. Wind raises short, closely spaced waves that patter against the shore. Small boats may cross the lake, their wakes widening slowly behind them."
+ },
+ {
+  "id": "nature.gen.darbandikhan-lake",
+  "domain": "nature",
+  "topic": "Darbandikhan lake",
+  "names": [
+   "بحيرة دربنديخان",
+   "سد دربنديخان",
+   "بحيرة دربندخان",
+   "darbandikhan lake",
+   "darbandikhan reservoir"
+  ],
+  "body": "Darbandikhan Lake is a long, winding reservoir enclosed by steep, folded hills in southeastern Iraqi Kurdistan. The water shifts from turquoise near sunlit shallows to deeper blue-green in shaded stretches. Rocky banks show layers of grey and ochre stone, with sparse shrubs and spring grass on gentler slopes. The arms of the lake disappear around bends, so distant hills overlap in hazy blue-grey shapes. A breeze travels along the valley, ruffling the surface in bands and moving low vegetation. Waves make a light tapping sound on pebbles; passing boats add a brief engine hum and spreading wake."
+ },
+ {
+  "id": "nature.gen.gali-ali-beg-waterfall",
+  "domain": "nature",
+  "topic": "Gali Ali Beg waterfall",
+  "names": [
+   "شلال كلي علي بك",
+   "شلال گلي علي بك",
+   "كلي علي بيك",
+   "gali ali beg waterfall",
+   "gali ali bek"
+  ],
+  "body": "Gali Ali Beg waterfall drops over a rocky ledge into a pool in a narrow mountain gorge near Rawanduz. White water breaks into uneven streams and spray against dark, wet stone; the surrounding cliff faces are grey and tan, with greenery tucked into cracks and along the watercourse. In bright daylight, droplets flash silver while the gorge keeps parts of the rock in cool shadow. Flow is stronger after rain and snowmelt. Water thunders close to the fall, then softens into a rushing stream. Visitors may stand on nearby paths, small against the rock walls."
+ },
+ {
+  "id": "nature.gen.bekhal-waterfall",
+  "domain": "nature",
+  "topic": "Bekhal waterfall",
+  "names": [
+   "شلال بيخال",
+   "شلالات بيخال",
+   "شلال بيخاڵ",
+   "bekhal waterfall",
+   "bekhal falls"
+  ],
+  "body": "Bekhal waterfall spreads across a stepped rock face near Rawanduz rather than falling as one narrow column. Several white streams slide and tumble over dark, wet ledges into shallow channels below. Green plants cling to damp edges, contrasting with the surrounding tan-grey mountain rock. Sun catches individual threads of water and spray, while overhangs remain shaded. The flow varies with rainfall and snowmelt; small streams join, separate and fan out as they descend. The sound is a constant layered rush and splash, mixed at busy times with voices from visitors on nearby paths."
+ },
+ {
+  "id": "nature.gen.kurdistan-spring-red-poppies",
+  "domain": "nature",
+  "topic": "Kurdistan spring meadows with red poppies",
+  "names": [
+   "شقائق النعمان كردستان",
+   "حقل شقائق كردستان",
+   "ورد الحنون كردستان",
+   "ورد احمر ربيع كردستان",
+   "kurdistan red poppies",
+   "kurdistan spring meadows"
+  ],
+  "body": "In spring, open meadows in Iraqi Kurdistan turn green between rocky hills, with scattered red poppies standing above shorter grass. Each poppy has thin, crinkled petals around a dark centre and a slender stem that bends quickly in the wind. Wildflowers and low herbs dot the ground rather than forming perfectly even rows. After rain, the soil is darker and clouds cast moving shadows across the slopes; clear sun makes the red petals appear almost translucent. Grass swishes, insects buzz nearby, and birds call across the hills. Sheep may graze in loose groups at a distance."
+ },
+ {
+  "id": "nature.gen.zagros-mountain-snow",
+  "domain": "nature",
+  "topic": "Zagros mountain snow",
+  "names": [
+   "ثلوج زاغروس",
+   "ثلج جبال زاكروس",
+   "ثلج جبال كردستان",
+   "zagros snow",
+   "zagros mountains snow"
+  ],
+  "body": "In the Iraqi Zagros, snow lies in broad white patches on high ridges and collects deeply in gullies, while darker rock and sparse shrubs show through on exposed slopes. Peaks rise in uneven, folded lines rather than perfect cones. Fresh snow softens ledges; older snow looks compact and faintly grey near roads or bare ground. Winter clouds can hide the summits within minutes, and low sun gives the slopes blue shadows and bright, sharp highlights. Wind lifts loose powder off crests and makes a thin rushing sound. Where temperatures rise, meltwater trickles over stones below the snowline."
+ },
+ {
+  "id": "nature.gen.iraqi-western-desert-stony-plain",
+  "domain": "nature",
+  "topic": "Iraqi western desert stony plain",
+  "names": [
+   "بادية العراق الغربية",
+   "صحراء العراق الغربية",
+   "الحمادة العراقية",
+   "iraqi western desert",
+   "western iraq stony plain"
+  ],
+  "body": "The western Iraqi desert often appears as a wide, nearly level plain of pale beige gravel and angular brown stones over hard, dusty ground. Low ridges, shallow dry wadis and occasional limestone outcrops interrupt the horizon; it is not a continuous sea of dunes. Vegetation is sparse, with small grey-green shrubs set far apart. At noon, hard sunlight flattens colour and heat shimmer blurs distant edges. After rain, water may briefly run through wadis, but most channels are dry. Wind scrapes grit across the surface, with little sound beyond its steady hiss and the crunch of stones underfoot or tyres."
+ },
+ {
+  "id": "nature.gen.bahr-al-najaf-depression",
+  "domain": "nature",
+  "topic": "Bahr al-Najaf depression",
+  "names": [
+   "بحر النجف",
+   "منخفض بحر النجف",
+   "بحر النجف الاشرف",
+   "bahr al-najaf",
+   "najaf depression"
+  ],
+  "body": "Bahr al-Najaf is a broad, low depression beside the higher ground west of Najaf, with a landscape that changes sharply with water levels. Shallow water may occupy parts of the basin, while other stretches show damp mud, pale salt crust, sand and low vegetation. Its edges are irregular, not a neat shoreline. In wet patches, reeds bend in the breeze and wading birds pick through the shallows. Strong sun turns salt bright white and gives still water a silver glare; overcast light reveals muted brown and grey bands across the basin. Wind ripples any open water and carries faint reed rustle and bird calls."
+ },
+ {
+  "id": "nature.gen.sawa-lake-iraq",
+  "domain": "nature",
+  "topic": "Sawa lake",
+  "names": [
+   "بحيرة ساوة",
+   "بحيرة ساوه",
+   "ساوة السماوة",
+   "sawa lake",
+   "lake sawa iraq"
+  ],
+  "body": "Sawa Lake near Samawah is a shallow, highly saline basin in an otherwise dry landscape. Its appearance depends on the date: prolonged water loss has left much of the former lakebed exposed, so a present-day view should not automatically show a full blue lake. Dry sections appear pale with salt deposits, cracked sediment and rough, low margins; where water remains, it forms shallow, reflective patches edged by light-coloured crust. There are few trees close to the basin. Under strong sun, salt gleams and heat shimmer softens the horizon. Wind makes small ripples on remaining water and a dry hiss over the exposed ground."
+ },
+ {
+  "id": "nature.gen.habbaniyah-lake",
+  "domain": "nature",
+  "topic": "Habbaniyah lake",
+  "names": [
+   "بحيرة الحبانية",
+   "بحيرة حبانية",
+   "الحبانية",
+   "habbaniyah lake",
+   "lake habbaniyah"
+  ],
+  "body": "Habbaniyah Lake is a broad reservoir in Anbar, with an open water surface that can look blue-grey or muddy green depending on light, wind and suspended sediment. Its shoreline varies with managed water levels: some stretches are sandy or gently sloping, while others expose mud and low banks. Small wind-driven waves slap against the edge, and stronger gusts roughen the lake into dark, closely spaced ripples. In clear weather the sky and distant shore reflect faintly on calmer water. Reeds or other waterside plants occur in sheltered spots. Near visited shores, people, parked cars and small boats may appear without filling the whole landscape."
+ },
+ {
+  "id": "nature.gen.marsh-reed-beds-sunrise",
+  "domain": "nature",
+  "topic": "marsh reed beds at sunrise",
+  "names": [
+   "قصب الاهوار عند الشروق",
+   "بردي الاهوار فجرا",
+   "شروق الاهوار العراقية",
+   "marsh reeds at sunrise",
+   "iraqi marsh sunrise"
+  ],
+  "body": "At sunrise in the Iraqi marshes, tall reed stems rise in dense clusters from shallow water, their narrow leaves and feathery tops catching warm light. Open channels cut dark, winding gaps through the reeds. The low sun turns one side of each stem gold while the opposite side stays cool and shadowed; a thin mist may hover just above the water. A light breeze sways the upper leaves before the heavier stems follow, and small ripples break the sky’s reflection. Birds move between reed tops and call across the water. A narrow wooden boat may glide past with a soft splash or the quiet push of a pole."
+ },
+ {
+  "id": "nature.gen.palm-grove-irrigation-canals",
+  "domain": "nature",
+  "topic": "palm grove irrigation canals",
+  "names": [
+   "سواقي بساتين النخيل",
+   "قنوات ري النخيل",
+   "ساقية النخيل",
+   "palm grove canals",
+   "date palm irrigation canals"
+  ],
+  "body": "In an Iraqi date-palm grove, narrow irrigation channels run between rows of tall palms, carrying water close to the roots. The channels may be earthen, with uneven muddy sides, or lined in concrete; water depth and flow vary by season and irrigation schedule. Palm trunks are rough and fibrous, topped by long arching fronds that cast broken, striped shadows on the ground. Smaller crops or bare soil may fill the spaces between trunks. Water moves slowly around bends, reflecting flashes of sky through the canopy. Fronds click and rustle in a breeze, while flowing water makes a low trickling sound near an inlet."
+ },
+ {
+  "id": "nature.gen.iraqi-farmland-spring",
+  "domain": "nature",
+  "topic": "Iraqi farmland in spring",
+  "names": [
+   "مزارع العراق بالربيع",
+   "الريف العراقي بالربيع",
+   "حقول العراق بالربيع",
+   "iraqi farmland spring",
+   "iraq spring fields"
+  ],
+  "body": "In spring, Iraqi farmland can show broad green fields of wheat or barley divided by earthen paths, irrigation ditches and occasional roads. The crop forms a dense, fine-textured surface, with narrow leaves bending together in wind; as it matures, patches turn yellow-green. Date palms, poplars or low farm buildings may mark field edges, depending on the area. After rain the soil looks darker and tracks hold shallow puddles; in dry weather dust gathers along the paths. Morning light picks out individual seed heads, while midday sun makes the fields appear flatter and brighter. Wind produces a soft, continuous swish through the grain, mixed with distant birds and farm activity."
+ },
+ {
+  "id": "nature.gen.date-harvest-season",
+  "domain": "nature",
+  "topic": "date harvest season",
+  "names": [
+   "حصاد التمور",
+   "جني التمر",
+   "موسم الرطب",
+   "قطاف التمر",
+   "date harvest",
+   "date picking"
+  ],
+  "body": "Heavy date clusters hang beneath the crowns of tall palms, their fruit turning from yellow or red to amber and deep brown. Narrow trunks carry rough, diamond-shaped scars from old fronds. Harvesters climb with a secured strap or use ladders, lowering cut bunches on ropes rather than dropping them. Fronds sway and rasp in a light breeze; loose dates patter onto woven mats. Below, people separate ripe fruit from stems and place it in shallow crates. Warm, low sunlight catches the glossy skins and throws long striped shadows across dry soil and irrigation channels."
+ },
+ {
+  "id": "nature.gen.summer-dust-haze-over-a-city",
+  "domain": "nature",
+  "topic": "summer dust haze over a city",
+  "names": [
+   "غبار الصيف",
+   "عجاج الصيف",
+   "ضباب ترابي صيفي",
+   "summer dust haze",
+   "dusty summer skyline"
+  ],
+  "body": "Fine airborne dust washes the skyline in pale beige, softening the edges of apartment blocks, rooftop tanks, antennas and distant towers. Nearby walls remain distinct, while buildings farther away fade into nearly the same colour as the sky. The sun shows through as a dull white disc with little sharp shadow on the pavement. Heat shimmers above parked cars and flat roofs. A light wind pushes dust along the curb and stirs plastic bags without forming a dense sandstorm. Traffic sounds carry normally nearby but seem muffled in the distance; a thin film settles on windows and leaves."
+ },
+ {
+  "id": "nature.gen.winter-rain-in-baghdad-streets",
+  "domain": "nature",
+  "topic": "winter rain in Baghdad streets",
+  "names": [
+   "مطر بغداد الشتوي",
+   "شتا بغداد",
+   "أمطار بغداد بالشتاء",
+   "baghdad winter rain",
+   "rainy baghdad streets"
+  ],
+  "body": "Cool rain darkens Baghdad’s asphalt and makes shop signs, headlights and traffic signals reflect in broken streaks across the road. Water gathers along raised curbs and runs toward drains, carrying small leaves and grit. People walk beneath umbrellas or pull jackets close, stepping around shallow puddles; cars pass with a brief hiss of tyres rather than tall sprays. Raindrops tap on metal shutters, car roofs and awnings, with occasional heavier drips falling from balcony edges. The sky is an even grey, and the light stays soft enough that buildings cast almost no visible shadows."
+ },
+ {
+  "id": "nature.gen.flooded-street-after-rain",
+  "domain": "nature",
+  "topic": "flooded street after rain",
+  "names": [
+   "شارع مغمور بعد المطر",
+   "شارع غرقان من المطر",
+   "تجمع مياه الأمطار بالشارع",
+   "flooded street after rain",
+   "rainwater street flooding"
+  ],
+  "body": "Standing rainwater covers the low section of a street from curb to curb, obscuring lane markings but leaving the tops of curbs and parked-car tyres visible. Its surface reflects walls and streetlights in wavering patches. Slow vehicles push broad ripples outward; water folds back against doorsteps and laps at the curb with a hollow slosh. Pedestrians test the edge or use a higher pavement, watching for submerged potholes. Bits of leaves float past a partly blocked drain. After the rain stops, drips from roofs and the hum of cautious traffic replace the sound of falling water."
+ },
+ {
+  "id": "nature.gen.hail-storm",
+  "domain": "nature",
+  "topic": "hail storm",
+  "names": [
+   "عاصفة برد",
+   "تساقط البرد",
+   "دنيا دتثلج برد",
+   "hail storm",
+   "hailstones falling"
+  ],
+  "body": "Small white hailstones strike pavement, car roofs and windows in quick, uneven bursts, bouncing once or twice before rolling toward the gutter. Against dark asphalt they look like scattered beads; on grass and along wall bases they collect in irregular white patches. The sky is dark grey, and sheets of rain may mix with the hail, turning the buildup into watery slush. People move under awnings or cover their heads as the sharp clatter briefly overwhelms traffic noise. Gusts angle the falling stones, while runoff carries some away. As the burst eases, separate roof drips become audible again."
+ },
+ {
+  "id": "nature.gen.tornado-at-a-distance",
+  "domain": "nature",
+  "topic": "tornado at a distance",
+  "names": [
+   "إعصار قمعي بعيد",
+   "زوبعة بعيدة",
+   "تورنادو بعيد",
+   "distant tornado",
+   "tornado on horizon"
+  ],
+  "body": "A narrow grey funnel descends from the base of a dark storm cloud and meets a shifting patch of dust at ground level far across open land. Its outline changes as rain and dust wrap around it; the lower part may look wider and less defined than the tip above. Foreground fences, grass and buildings provide scale without appearing to bend toward the funnel. Sunlight can still reach parts of the foreground while the storm darkens the horizon. At this distance, wind in nearby vegetation and ordinary ambient sounds are clearer than any low rumble from the tornado."
+ },
+ {
+  "id": "nature.gen.palms-bending-in-a-hurricane",
+  "domain": "nature",
+  "topic": "palms bending in a hurricane",
+  "names": [
+   "نخيل ينحني بالإعصار",
+   "نخل يعوج بالهوريكان",
+   "رياح إعصار تهز النخيل",
+   "palms in a hurricane",
+   "hurricane palm trees"
+  ],
+  "body": "Along a coastal road, palm crowns lean sharply with sustained hurricane winds while the trunks flex in broad arcs rather than folding at a single point. Long fronds stream downwind, twisting and snapping back between gusts; loose leaflets and rain race almost horizontally across the frame. The sky is a flat, storm-dark grey, and visibility fades beyond nearby buildings. Puddles ripple in one direction, with spray lifting from their surfaces. Wind roars around walls and power lines, mixed with the rapid rattle of fronds and rain striking windows. People remain inside or under solid shelter."
+ },
+ {
+  "id": "nature.gen.heat-mirage-on-a-road",
+  "domain": "nature",
+  "topic": "heat mirage on a road",
+  "names": [
+   "سراب الطريق",
+   "سراب الشارع",
+   "لمعان الطريق من الحر",
+   "road heat mirage",
+   "highway mirage"
+  ],
+  "body": "On a straight sun-baked road, a silvery patch near the horizon resembles shallow water, but it retreats as a vehicle approaches. The effect is strongest close to the asphalt: distant tyres, road markings and the lower edges of cars appear stretched, doubled or gently wavering. Hot air rising above the dark surface bends the light; no puddle or wet splash appears when traffic crosses it. Hard midday sunlight casts short shadows, and the roadside looks dry and pale. In still moments, the scene carries a low tyre hum and perhaps insects from the verge, without any sound from the mirage itself."
+ },
+ {
+  "id": "nature.gen.dry-cracked-earth",
+  "domain": "nature",
+  "topic": "dry cracked earth",
+  "names": [
+   "أرض متشققة",
+   "تربة متشققة",
+   "طين يابس",
+   "أرض مشققة",
+   "dry cracked earth",
+   "cracked mud",
+   "parched ground"
+  ],
+  "body": "A flat expanse of dried mud breaks into irregular, many-sided plates, usually a few centimetres to a handspan across. Dark, narrow fissures separate pale tan or grey-brown surfaces; some plate edges curl slightly upward and cast thin shadows. Fine dust settles in the gaps, while occasional pebbles or brittle stems interrupt the pattern. Under strong sun, the surface looks chalky and the fissures appear nearly black. A breeze lifts loose dust but does not move the firm plates. Footsteps crunch on brittle edges and leave pale scuffs. The horizon may shimmer with heat beneath a washed-out sky."
+ },
+ {
+  "id": "nature.gen.oasis-in-the-desert",
+  "domain": "nature",
+  "topic": "oasis in the desert",
+  "names": [
+   "واحة صحراوية",
+   "واحة بالصحراء",
+   "واحة بالنص",
+   "عين بالصحراء",
+   "desert oasis",
+   "oasis pool"
+  ],
+  "body": "A patch of date palms and low reeds gathers around a small pool or spring amid dry, open desert. Palm trunks are rough and ringed, with long green fronds spreading above dense shade; fallen fronds and damp soil collect near the water. The pool reflects bright sky in broken blue patches, with darker green or brown where it is deep or shaded. Light wind rattles dry frond tips and sends small ripples across the surface. Insects hum close to the water, birds call from the palms, and soft splashes come from the spring. Beyond the greenery, bare sand or gravel remains sunlit."
+ },
+ {
+  "id": "nature.gen.sand-dunes-with-wind-ripples",
+  "domain": "nature",
+  "topic": "sand dunes with wind ripples",
+  "names": [
+   "كثبان رملية متموجة",
+   "تموجات الرمل",
+   "عروق الرمل",
+   "كثبان بيها تموجات",
+   "wind-rippled dunes",
+   "sand ripples",
+   "rippled sand dunes"
+  ],
+  "body": "Broad sand dunes rise in smooth slopes to narrow, curved crests. Close up, shallow wind ripples run across the surface in nearly parallel lines, each ridge casting a fine shadow in low sunlight. The windward slope is firm and gently graded; the sheltered side drops more steeply, with occasional small slides of loose grains. Sand ranges from pale beige to warm orange depending on its minerals and the hour. Wind skims grains along the ground and softens footprints, producing a faint dry hiss. Sparse hardy shrubs may stand between dunes, while the open sky makes the crests sharply visible."
+ },
+ {
+  "id": "nature.gen.rocky-canyon-with-a-river",
+  "domain": "nature",
+  "topic": "rocky canyon with a river",
+  "names": [
+   "وادي صخري بنهر",
+   "أخدود صخري ونهر",
+   "نهر وسط الصخور",
+   "وادي بيه نهر",
+   "rocky river canyon",
+   "canyon river"
+  ],
+  "body": "Steep rock walls frame a river winding along the canyon floor. Their layered faces have ledges, vertical cracks and patches of darker staining where water has seeped through. Rounded stones and gravel line the banks; hardy shrubs cling to pockets of soil. The river is darker in deep bends and flashes silver over shallow rocks, where the current splits into choppy threads and eddies. Its sound changes from a low rush to sharp splashes near rapids, sometimes echoing between the walls. Sun reaches the upper rock first, leaving parts of the water in cool shade until later in the day."
+ },
+ {
+  "id": "nature.gen.limestone-cliffs",
+  "domain": "nature",
+  "topic": "limestone cliffs",
+  "names": [
+   "جروف حجر جيري",
+   "منحدرات كلسية",
+   "صخور جيرية شاهقة",
+   "جروف كلسية",
+   "limestone cliffs",
+   "chalky limestone escarpment"
+  ],
+  "body": "Limestone cliffs form pale cream, off-white or light grey faces above a slope of broken rock. Horizontal beds, narrow cracks and weathered pockets interrupt the surface; some sections stand almost vertical while others step back in ledges. Rain can darken the stone to grey and leave streaks below fissures. Sparse grasses and small shrubs root where soil gathers, and birds may cross the cliff face or call from sheltered ledges. At midday the rock reflects harsh light and shows little relief; low sun brings out every layer in long shadows. Loose fragments can click and shift down the slope in wind."
+ },
+ {
+  "id": "nature.gen.sea-cave",
+  "domain": "nature",
+  "topic": "sea cave",
+  "names": [
+   "كهف بحري",
+   "مغارة بحرية",
+   "كهف عالبحر",
+   "مغارة بالبحر",
+   "sea cave",
+   "coastal cave"
+  ],
+  "body": "A sea cave opens as a dark arch in a coastal rock face, with an uneven ceiling and wet, worn walls. Near the entrance, daylight reveals grey, tan or reddish stone and a bright band of water; farther inside, details fade into shadow. Waves enter in pulses, lifting the water against the walls before drawing back in swirling foam. Their hollow wash and slap echo beneath the roof, sometimes joined by drips from cracks overhead. Reflected light flickers across damp rock as the surface moves. At low tide, a strip of pebbles or sand may appear near the entrance."
+ },
+ {
+  "id": "nature.gen.black-sand-beach",
+  "domain": "nature",
+  "topic": "black sand beach",
+  "names": [
+   "شاطئ رمل أسود",
+   "ساحل رمله أسود",
+   "شاطئ رمله سودة",
+   "black sand beach",
+   "volcanic sand beach"
+  ],
+  "body": "Dark sand covers the shore in charcoal to nearly black grains, often mixed with small grey pebbles. Dry grains look matte, while the wet strip beside the water shines and briefly mirrors the sky. Each incoming wave spreads a thin, pale line of foam over the dark surface, then drains back through tiny channels. Footprints hold their shape in damp sand but crumble at the dry edge. Low sunlight can pick out individual grains and make the foam especially bright. The steady surf rolls and hisses, pebbles click as they tumble, and seabirds may call overhead."
+ },
+ {
+  "id": "nature.gen.white-sand-beach-with-turquoise-water",
+  "domain": "nature",
+  "topic": "white sand beach with turquoise water",
+  "names": [
+   "شاطئ رمل أبيض وماء فيروزي",
+   "شاطئ أبيض ومي فيروزي",
+   "رمل أبيض ومي تركوازي",
+   "white sand turquoise water",
+   "turquoise water beach"
+  ],
+  "body": "Fine, pale sand slopes gently toward clear turquoise water. In the shallows, the sandy bottom shows through, making the water look light blue-green; it deepens to richer blue farther out or above darker patches of rock. Small waves fold into translucent edges and leave thin lacework of white foam on the shore. Wet sand appears slightly darker and reflects moving highlights, while dry sand looks almost white under direct sun. A breeze ruffles the water into tiny bright facets and stirs any nearby coastal grasses or palms. The sounds are soft surf, wind and occasional distant seabirds."
+ },
+ {
+  "id": "nature.gen.mangrove",
+  "domain": "nature",
+  "topic": "mangrove",
+  "names": [
+   "المانغروف",
+   "غابة القرم",
+   "أشجار القرم",
+   "مانجروف",
+   "mangrove",
+   "mangrove forest"
+  ],
+  "body": "Mangroves form a low, dense green fringe along sheltered, muddy saltwater shores. Their trunks rise from tangles of arching roots, with smaller root tips poking upright through wet silt. Thick, oval leaves have a waxy sheen; fallen leaves collect around the roots. At low tide, shallow pools reflect a pale sky while small crabs scuttle across exposed mud. As the tide comes in, brown-green water slips quietly between the trunks and lifts floating debris. Leaves rustle in a sea breeze, with soft water laps and occasional bird calls. Strong sunlight makes sharp root shadows; overcast light turns the mud silvery."
+ },
+ {
+  "id": "nature.gen.rainforest-canopy",
+  "domain": "nature",
+  "topic": "rainforest canopy",
+  "names": [
+   "مظلة الغابة المطيرة",
+   "قمم الغابة الاستوائية",
+   "غطاء الغابة المطيرة",
+   "rainforest canopy",
+   "tropical rainforest canopy"
+  ],
+  "body": "The rainforest canopy is an uneven, almost continuous roof of overlapping treetops, with taller crowns rising above it. Leaves range from small and glossy to broad and paddle-shaped; vines drape across branches, and epiphytes cluster in forks. From above, the crowns look like tightly packed mounds in several shades of green, broken by an occasional flowering tree. Moist air softens distant outlines. Sunlight flashes on wet leaves, while brief rain darkens the foliage and sends droplets falling through lower layers. Branches sway at different speeds in the wind. Insects hum steadily beneath scattered bird calls and the patter of rain."
+ },
+ {
+  "id": "nature.gen.bamboo-forest",
+  "domain": "nature",
+  "topic": "bamboo forest",
+  "names": [
+   "غابة الخيزران",
+   "غابة البامبو",
+   "أجمة الخيزران",
+   "bamboo forest",
+   "bamboo grove"
+  ],
+  "body": "Tall bamboo stems stand close together in clusters, their straight, jointed canes ranging from fresh green to dull yellow-green. Narrow leaves gather high overhead, making a broken ceiling that filters sunlight into shifting stripes. The ground holds dry leaf litter, fallen sheaths and occasional young shoots. A breeze moves the leafy tops first; the canes flex slightly and knock together with hollow taps and faint creaks. Loose leaves flutter down slowly. Where the stems thin out, patches of sky show through. Footsteps on the litter sound crisp, while insects and distant birds carry through the still spaces between the canes."
+ },
+ {
+  "id": "nature.gen.pine-forest-in-snow",
+  "domain": "nature",
+  "topic": "pine forest in snow",
+  "names": [
+   "غابة الصنوبر الثلجية",
+   "غابة صنوبر مغطاة بالثلج",
+   "صنوبر بالثلج",
+   "pine forest in snow",
+   "snowy pine forest"
+  ],
+  "body": "Dark evergreen pines rise from a white forest floor, their trunks straight and rough-barked and their branches layered beneath uneven pillows of snow. Needles remain visible where wind has brushed the snow away. Low winter light turns the drifts blue in shade and bright white in open gaps; the sky may be pale and clear or flat grey before snowfall. In a breeze, branches bend and release powder in brief falling curtains. Fresh snow muffles distant sounds, while footsteps make a dry crunch or squeak depending on temperature. A few bird calls or a branch creaking can carry through the quiet."
+ },
+ {
+  "id": "nature.gen.birch-forest-in-autumn",
+  "domain": "nature",
+  "topic": "birch forest in autumn",
+  "names": [
+   "غابة البتولا في الخريف",
+   "غابة البتولا الخريفية",
+   "أشجار البتولا بالخريف",
+   "autumn birch forest",
+   "birch forest in autumn"
+  ],
+  "body": "Slim birch trunks stand fairly close together, their white bark marked with dark horizontal dashes and peeling patches. In autumn, small leaves turn lemon yellow and warm gold, leaving an airy canopy through which a cool blue or cloudy sky remains visible. Fallen leaves scatter over dark soil, moss and low plants. Wind flickers the remaining leaves and sends them spinning between the trunks; underfoot, dry ones crackle while damp ones lie flat and quiet. Slanting sunlight makes the pale bark glow and throws long, narrow shadows. Light rain deepens the bark markings and adds a soft patter beneath occasional bird calls."
+ },
+ {
+  "id": "nature.gen.cherry-blossom-park",
+  "domain": "nature",
+  "topic": "cherry blossom park",
+  "names": [
+   "حديقة أزهار الكرز",
+   "حديقة زهر الكرز",
+   "حديقة الساكورا",
+   "cherry blossom park",
+   "sakura park"
+  ],
+  "body": "Cherry trees spread rounded crowns over park paths and trimmed grass. In bloom, clusters of small pink or nearly white flowers cover the fine branches before many leaves appear. The trunks are dark grey-brown, with low limbs that frame benches and walking paths. A breeze shakes loose individual petals; they drift, turn and gather along path edges or on still pond water. Bright spring light makes the blossoms look almost translucent, while cloudy light brings out their pale pink colour. Visitors may stroll, sit or take photographs beneath the trees. Expect soft conversation, footsteps, bird calls and leaves rustling, not a continuous snowfall of petals."
+ },
+ {
+  "id": "nature.gen.tulip-field",
+  "domain": "nature",
+  "topic": "tulip field",
+  "names": [
+   "حقل التوليب",
+   "حقول التوليب",
+   "مزرعة التوليب",
+   "tulip field",
+   "tulip farm"
+  ],
+  "body": "Tulips grow in long, straight planted rows, each flower held upright on a single green stem above broad, smooth leaves. Rows may form distinct bands of red, yellow, pink, purple or white, with narrow strips of dark soil visible between them. The flowers are cup-shaped, sometimes opening wider in warm sunlight and drawing closer in cool, dim weather. A breeze tips the flexible stems together in small waves without bending the whole field flat. Low light emphasizes the repeating rows; midday sun makes the colours vivid and casts short shadows. Bees may hum nearby, with wind and distant farm sounds in the background."
+ },
+ {
+  "id": "nature.gen.lavender-field",
+  "domain": "nature",
+  "topic": "lavender field",
+  "names": [
+   "حقل الخزامى",
+   "حقل اللافندر",
+   "حقول الخزامى",
+   "lavender field",
+   "lavender farm"
+  ],
+  "body": "Lavender grows in low, rounded bushes arranged in parallel rows over dry, well-drained ground. Thin grey-green leaves sit below upright flower spikes covered in tiny violet or purple blossoms. Bare earth shows between the rows, which narrow toward the horizon. In warm daylight, the purple is strongest near the camera and looks softer in the distance; late sun catches the flower tips and lengthens the bushes’ shadows. Wind bends the slender spikes in gentle ripples, while the woody bases stay firm. Bees and other pollinators move between flowers with a close, steady buzz. The air is often dry and carries a noticeable herbal scent."
+ },
+ {
+  "id": "nature.gen.olive-grove",
+  "domain": "nature",
+  "topic": "olive grove",
+  "names": [
+   "olive grove",
+   "olive orchard",
+   "بستان زيتون",
+   "بستان الزيتون",
+   "مزرعة زيتون",
+   "بستان زيتونات"
+  ],
+  "body": "Rows of olive trees stand on dry, stony ground, often with bare earth or low grass between them. Their trunks are short, thick and irregular, with deeply grooved grey bark; narrow leaves show dark green upper surfaces and silvery undersides. A breeze turns the foliage in soft, shifting flashes rather than moving the whole crown at once. Small olives hang close to the twigs, green early in the season and dark purple or black when ripe. Sunlight makes sharp shadows beneath the trees, while birds call and leaves rustle faintly. Pickers may lay nets under branches during harvest."
+ },
+ {
+  "id": "nature.gen.vineyard",
+  "domain": "nature",
+  "topic": "vineyard",
+  "names": [
+   "vineyard",
+   "grape vineyard",
+   "كرم عنب",
+   "كروم العنب",
+   "مزرعة عنب",
+   "بستان عنب"
+  ],
+  "body": "Parallel rows of grapevines run across open ground, sometimes following the slope of a hill. Woody, twisted stems rise to wires stretched between posts; broad, lobed leaves form a loose green canopy above hanging clusters of grapes. Sunlight filters through the leaves, casting broken shadows on dry soil or short grass. In a breeze, thin shoots and leaves tremble while the heavier fruit barely moves. Irrigation lines may lie along the rows, and footsteps crunch on gravel between them. During harvest, workers move along the vines with baskets or crates, carefully lifting clusters from beneath the foliage."
+ },
+ {
+  "id": "nature.gen.tea-plantation",
+  "domain": "nature",
+  "topic": "tea plantation",
+  "names": [
+   "tea plantation",
+   "tea estate",
+   "مزرعة شاي",
+   "مزارع الشاي",
+   "حقول الشاي",
+   "مزرعة چاي"
+  ],
+  "body": "Tea bushes are pruned into dense, waist-high hedges arranged in long, curving rows over gentle or steep hillsides. Their small, glossy leaves make a textured green surface, with lighter new shoots at the tips. Narrow paths of reddish soil separate the rows; taller shade trees may punctuate the slope. In humid weather, mist drifts through the valleys and softens the distant ridgelines. Rain beads on leaves and drips to the ground, while wind ripples the hedge tops and birds call from surrounding trees. Harvest workers may move between rows, picking tender shoots into bags or baskets."
+ },
+ {
+  "id": "nature.gen.mountain-lake-reflection",
+  "domain": "nature",
+  "topic": "mountain lake reflection",
+  "names": [
+   "mountain lake reflection",
+   "reflected mountains in lake",
+   "انعكاس الجبال بالبحيرة",
+   "انعكاس الجبل بالمي",
+   "بحيرة تعكس الجبال",
+   "منظر انعكاس الجبال"
+  ],
+  "body": "A mountain lake fills a basin below steep, rocky slopes, with a clear line where the shore meets the water. On a calm morning, the surface reflects the peaks, sky and shoreline almost symmetrically, though the reflection is darker and breaks near stones, reeds or a moving bird. A light breeze spreads fine ripples across the lake, stretching the reflected shapes into wavering bands. Snow patches or conifers may appear on the surrounding mountains, depending on season and elevation. Cool light reaches the valley gradually as the sun clears a ridge. Small waves lap at the shore, with wind and distant bird calls audible."
+ },
+ {
+  "id": "nature.gen.alpine-meadow",
+  "domain": "nature",
+  "topic": "alpine meadow",
+  "names": [
+   "alpine meadow",
+   "high mountain meadow",
+   "مرج جبلي",
+   "مروج جبلية عالية",
+   "مرج الألب",
+   "مروج الألب"
+  ],
+  "body": "A broad patch of short grass and low wildflowers opens between rocky mountain slopes, often above the tree line. Small yellow, white, blue or purple blooms sit close to the ground, mixed with sedges, moss and scattered stones. The terrain is uneven, with shallow dips that may hold damp soil or narrow trickles of water. Bright sun produces crisp shadows, but clouds passing overhead can dim the meadow in seconds. Wind bends grasses and flower stems in patches; insects buzz near the blooms, and birds call from rocks. Lingering snow may edge the meadow early in the warmer season."
+ },
+ {
+  "id": "nature.gen.volcanic-landscape",
+  "domain": "nature",
+  "topic": "volcanic landscape",
+  "names": [
+   "volcanic landscape",
+   "volcanic terrain",
+   "أرض بركانية",
+   "منظر بركاني",
+   "تضاريس بركانية",
+   "منطقة براكين"
+  ],
+  "body": "Dark lava rock forms rough, fractured ground with sharp ridges, porous blocks and occasional smooth, rope-like folds from older flows. Ash or fine grit collects in hollows, while sparse grasses and small shrubs take hold where soil has built up. A cone-shaped mountain or a low crater rim may rise beyond the lava field. Sunlight picks out the rock’s jagged texture; overcast skies make the scene look nearly monochrome. Wind whistles across exposed ground and can lift loose dust. Footsteps scrape and crunch on gravel. Steam may rise from an active vent, but solid, cooled rock dominates most volcanic landscapes."
+ },
+ {
+  "id": "nature.gen.geyser",
+  "domain": "nature",
+  "topic": "geyser",
+  "names": [
+   "geyser",
+   "erupting geyser",
+   "نافورة حارة",
+   "نافورة مياه حارة",
+   "نبع فوّار",
+   "عين مي فوارة"
+  ],
+  "body": "A geyser rises from a mineral-crusted opening in the ground, often surrounded by pale deposits and shallow runoff channels. Between eruptions, the vent may bubble, hiss and release wisps of steam. An eruption sends a narrow, turbulent column of hot water upward; it breaks into droplets that fall back around the vent while a larger cloud of steam drifts with the wind. The jet surges rather than holding a perfectly fixed shape, then subsides to splashing and bubbling. Wet mineral surfaces glisten in sunlight. The sound builds from a low gurgle to rushing water and a sustained hiss before fading."
+ },
+ {
+  "id": "nature.gen.hot-springs",
+  "domain": "nature",
+  "topic": "hot springs",
+  "names": [
+   "hot springs",
+   "thermal springs",
+   "ينابيع حارة",
+   "عيون حارة",
+   "عين مي حارة",
+   "نبع مياه حارة"
+  ],
+  "body": "Hot spring water emerges from the ground into a pool or a series of shallow terraces. The surface may be clear blue or green, or appear milky where minerals are suspended; deposits can leave white, tan or orange edges along the channels. Steam lifts from the warm water in cool air and drifts sideways with the breeze. Small bubbles rise near an inlet, while overflow trickles steadily over stone. Sunlight glitters on gentle ripples, and damp rock looks darker than the dry ground nearby. The scene sounds of soft bubbling and running water; visitors, where permitted, keep to marked paths."
+ },
+ {
+  "id": "nature.gen.glacier-lagoon",
+  "domain": "nature",
+  "topic": "glacier lagoon",
+  "names": [
+   "بحيرة جليدية",
+   "بحيرة الأنهار الجليدية",
+   "لاجون جليدي",
+   "glacier lagoon",
+   "glacial lagoon"
+  ],
+  "body": "A glacier lagoon is a broad pool of cold meltwater beside the blunt, fractured end of a glacier. Pale blue, white and gray ice fragments float at different heights, some striped with dark sediment. The water may be milky turquoise from suspended rock flour or dark where it reflects the sky. Small waves rock the ice slowly; a piece breaking away can send ripples across the surface and make a sharp crack followed by a splash. Gravel shores are often bare, with sparse moss or low plants. Low cloud softens the light, while clear sun brings out translucent blue edges."
+ },
+ {
+  "id": "nature.gen.iceberg",
+  "domain": "nature",
+  "topic": "iceberg",
+  "names": [
+   "جبل جليدي",
+   "جبل ثلجي عائم",
+   "آيسبرغ",
+   "iceberg",
+   "floating iceberg"
+  ],
+  "body": "An iceberg is a detached mass of freshwater ice floating in the sea or a glacial lagoon. Its exposed top may be rounded or jagged, white in direct sun and deep blue inside compact, shadowed cracks. Gray sediment can form thin bands. Most of its mass remains underwater, so its visible outline does not reveal its full shape. It drifts with currents, turns slowly and rocks in passing waves; an unstable piece may break off with a loud crack and splash. Water laps against its base, and seabirds may call nearby. Overcast light makes it matte; sunlight makes wet edges glisten."
+ },
+ {
+  "id": "nature.gen.aurora-over-snow",
+  "domain": "nature",
+  "topic": "aurora over snow",
+  "names": [
+   "الشفق القطبي فوق الثلج",
+   "أضواء الشمال فوق الثلج",
+   "شفق فوق الثلج",
+   "aurora over snow",
+   "northern lights snow"
+  ],
+  "body": "Over a dark snowfield, aurora appears as broad, faint green arcs or shifting curtains high in the sky. Brighter sections can form vertical folds that ripple and fade over seconds or minutes; pink or violet may appear near their edges. To the naked eye, the colours are often softer than in long-exposure photographs. Snow reflects a little sky glow, revealing drifts, footprints and dark silhouettes of trees or hills. Stars show through clear portions of sky, while clouds hide the display. The aurora itself makes no audible sound; wind brushing dry snow and boots crunching underfoot supply the scene’s quiet noise."
+ },
+ {
+  "id": "nature.gen.meteor-shower",
+  "domain": "nature",
+  "topic": "meteor shower",
+  "names": [
+   "زخة شهب",
+   "وابل شهب",
+   "مطر شهب",
+   "meteor shower",
+   "shooting stars"
+  ],
+  "body": "A meteor shower appears in a dark night sky as occasional brief streaks of light, not a continuous fall. Most are thin white lines lasting less than a second; a brighter one may glow yellow or green and leave a fading trail. Across an hour, their paths seem to spread outward from one region of sky, though individual streaks can appear far apart. Clear air reveals stars above dark hills, rooftops or desert ground. Moonlight and city lighting wash out faint meteors. Ordinary meteors make no audible sound at the observer’s location; the soundtrack is wind, insects or distant traffic."
+ },
+ {
+  "id": "nature.gen.solar-eclipse",
+  "domain": "nature",
+  "topic": "solar eclipse",
+  "names": [
+   "كسوف الشمس",
+   "الكسوف الشمسي",
+   "كسوف",
+   "solar eclipse",
+   "sun eclipse"
+  ],
+  "body": "During a solar eclipse, the Moon’s dark circular outline moves slowly across the Sun over hours. In a partial eclipse, the Sun looks like a bright disc with a curved bite only through a certified solar filter; the unfiltered sky does not display a sharp bitten Sun. Along the narrow path of totality, daylight dims, the horizon can glow like dusk, and a pale corona surrounds the black Moon for a few minutes. Shadows sharpen before totality, while birds and people may quieten. There is no eclipse sound. Direct viewing requires certified protection except during the brief fully total phase."
+ },
+ {
+  "id": "nature.gen.lunar-eclipse",
+  "domain": "nature",
+  "topic": "lunar eclipse",
+  "names": [
+   "خسوف القمر",
+   "الخسوف القمري",
+   "خسوف",
+   "lunar eclipse",
+   "blood moon"
+  ],
+  "body": "A lunar eclipse unfolds over several hours as Earth’s shadow crosses the full Moon. At first, one edge darkens in a soft curve. During totality the Moon remains visible, usually a subdued copper, brick-red or brown disc rather than a bright red lamp. Its colour and brightness vary with conditions in Earth’s atmosphere. Stars become easier to see as the Moon dims, provided clouds and local lights do not obscure them. The Moon keeps its ordinary slow movement across the sky. Nothing about the eclipse makes a sound; nighttime wind, insects and distant human activity remain the audible background."
+ },
+ {
+  "id": "nature.gen.ramadan-crescent-moon",
+  "domain": "nature",
+  "topic": "Ramadan crescent moon",
+  "names": [
+   "هلال رمضان",
+   "هلال شهر رمضان",
+   "هلال رمضاني",
+   "ramadan crescent",
+   "ramadan moon"
+  ],
+  "body": "The Ramadan crescent is a very thin waxing Moon sought low in the western sky shortly after sunset, with its lit edge facing the recently set Sun. Depending on location and conditions, it may look like a slender silver arc against a pale orange-to-blue dusk sky; the unlit portion can be barely visible through earthshine. It sinks toward the horizon as the sky darkens, and haze or clouds can conceal it. Rooftops, palm silhouettes or an open horizon provide scale. It makes no sound; voices, birds settling and evening traffic belong to the surroundings. Its sighting varies by place and date."
+ },
+ {
+  "id": "nature.gen.full-moon-rising",
+  "domain": "nature",
+  "topic": "full moon rising",
+  "names": [
+   "طلوع البدر",
+   "شروق القمر الكامل",
+   "طلعة البدر",
+   "full moon rising",
+   "moonrise"
+  ],
+  "body": "A full Moon rises near the eastern horizon around sunset, sometimes appearing warm yellow or orange through a thick layer of air. Its circular disc may look unusually large beside buildings, palms or hills, though its apparent size changes very little as it climbs. Low haze softens its edges; higher in a clear sky it looks whiter and sharper, with broad gray markings visible across its face. Clouds may drift in front while the Moon steadily rises behind them. It casts pale shadows once the sky darkens. Moonrise is silent; evening birds, insects, wind and nearby conversation provide the sound."
+ },
+ {
+  "id": "nature.gen.clouds-time-lapse",
+  "domain": "nature",
+  "topic": "clouds time-lapse",
+  "names": [
+   "تصوير الغيوم المتسارع",
+   "تايم لابس غيوم",
+   "حركة السحب السريعة",
+   "clouds time-lapse",
+   "cloud timelapse"
+  ],
+  "body": "A fixed camera shows cloud shapes changing over minutes or hours, compressed into seconds. Small white cumulus clouds swell, flatten and break apart as wind carries them across a blue sky; higher, thin clouds may travel in a different direction. Shadows slide over rooftops, fields or bare ground below. The sun's position changes gradually, shifting the colour of walls and the length of shadows. Cloud movement is smooth but visibly faster than normal, while buildings and the horizon remain still. A time-lapse recording is usually silent or paired with separately recorded ambient wind, birds or distant traffic."
+ },
+ {
+  "id": "nature.gen.storm-clouds-rolling",
+  "domain": "nature",
+  "topic": "storm clouds rolling",
+  "names": [
+   "سحب عاصفة متحركة",
+   "غيوم عاصفة تتقدم",
+   "غيم مطر ثقيل",
+   "storm clouds rolling",
+   "rolling storm clouds"
+  ],
+  "body": "A dark bank of storm cloud advances along the horizon, with a low, uneven leading edge and rounded folds underneath. Charcoal grey areas sit beside paler grey where daylight filters through thinner cloud. Wind lifts dust and bends tree branches before the rain arrives; loose fabric and small leaves flutter sharply. The cloud mass moves steadily rather than spinning like a funnel. Beneath it, distant rain can appear as soft vertical streaks that obscure buildings or hills. Light on the ground dims and cools. Gusts, rustling leaves and an occasional low rumble of thunder are the characteristic sounds."
+ },
+ {
+  "id": "nature.gen.rainbow-over-a-city",
+  "domain": "nature",
+  "topic": "rainbow over a city",
+  "names": [
+   "قوس قزح فوق المدينة",
+   "قوس المطر فوق البنايات",
+   "قوس قزح فوق العمارات",
+   "rainbow over a city",
+   "urban rainbow"
+  ],
+  "body": "A rainbow forms a broad, translucent arc above rooftops after rain, against clouds that are still dark in places. Its outer edge is red and its inner edge violet, with colours soft rather than sharply painted. The sun is low behind the viewer, lighting wet building facades and catching puddles on streets. Parts of the arc may disappear behind taller buildings or fade where the background sky is bright. Cars pass on damp roads, their tyres making a light hiss; water drips from ledges. The rainbow stays fixed relative to the viewer's position, while clouds move slowly behind it."
+ },
+ {
+  "id": "nature.gen.double-rainbow",
+  "domain": "nature",
+  "topic": "double rainbow",
+  "names": [
+   "قوس قزح مزدوج",
+   "قوسين قزح",
+   "قوس المطر المزدوج",
+   "double rainbow",
+   "two rainbows"
+  ],
+  "body": "Two wide arcs appear across a rainy sky, with the lower, inner rainbow brighter and the upper arc wider and much fainter. Red lies on the outer edge of the bright arc; on the faint outer arc the colour order reverses, placing red toward its inner edge. The band of sky between the arcs often looks darker than the sky inside the bright rainbow. Sunlight comes from behind the observer, while rain falls ahead. The arcs can fade unevenly as showers pass. Nearby sounds come from the setting—dripping water, wind, birds or traffic—not from the rainbows themselves."
+ },
+ {
+  "id": "nature.gen.sunbeams-through-clouds",
+  "domain": "nature",
+  "topic": "sunbeams through clouds",
+  "names": [
+   "أشعة الشمس بين الغيوم",
+   "شعاع شمس من الغيم",
+   "خيوط الشمس بين السحب",
+   "sunbeams through clouds",
+   "crepuscular rays"
+  ],
+  "body": "Bright shafts of sunlight emerge through gaps in a broken cloud layer, separated by darker regions where the clouds block the sun. The beams look like broad fans spreading downward, although the light rays are nearly parallel; perspective makes them appear to diverge. They show most clearly in hazy or dusty air and fade gradually at their edges. Cloud gaps drift, so the bright patches travel across hills, buildings or open ground below. Near the sun the sky is bright, while thicker clouds remain grey underneath. There is no sound from the beams; wind and the surrounding landscape supply the audio."
+ },
+ {
+  "id": "nature.gen.foggy-forest-morning",
+  "domain": "nature",
+  "topic": "foggy forest morning",
+  "names": [
+   "غابة ضبابية صباحا",
+   "ضباب الصبح بالغابة",
+   "صباح مغيم بين الأشجار",
+   "foggy forest morning",
+   "morning forest mist"
+  ],
+  "body": "Pale fog hangs between tree trunks on a cool morning, hiding the farthest trees in layers of soft grey. Nearby bark, branches and wet leaves retain clear texture, while distant shapes lose contrast and colour. Moist soil and fallen leaves darken the forest floor. As daylight strengthens, a faint warm glow can show through gaps in the canopy, but the sun remains diffused rather than sharply outlined. Light air stirs high leaves; droplets occasionally fall from branches. The scene sounds subdued, with individual bird calls, soft leaf rustle and dripping water carrying through the otherwise quiet woodland."
+ },
+ {
+  "id": "nature.gen.frost-on-leaves",
+  "domain": "nature",
+  "topic": "frost on leaves",
+  "names": [
+   "صقيع على الأوراق",
+   "طبقة جليد على ورق الشجر",
+   "ندى متجمد على الأوراق",
+   "frost on leaves",
+   "frosted leaves"
+  ],
+  "body": "A thin coating of frost outlines leaf edges and veins with tiny white ice crystals. On dark green or brown leaves, the crystals look granular and sparkling rather than like a smooth layer of snow. Frost is often heaviest on surfaces exposed to the open night sky; sheltered leaves nearby may remain bare or simply damp. Low morning sun catches individual crystals, producing small points of light and long, soft shadows between stems. A leaf may bend slightly under the added moisture, then release droplets as it warms. The frost makes no sound; footsteps on nearby frozen grass can give a faint crunch."
+ },
+ {
+  "id": "nature.gen.dew-drops-on-a-spider-web",
+  "domain": "nature",
+  "topic": "dew drops on a spider web",
+  "names": [
+   "قطرات ندى على شبكة العنكبوت",
+   "ندى على بيت العنكبوت",
+   "قطرات ماي على نسيج العنكبوت",
+   "dew drops on a spider web",
+   "dewy spiderweb"
+  ],
+  "body": "Fine silk threads form a roughly circular web between stems, its spiral and radial lines made visible by many small dew drops. Larger drops gather at thread junctions and hang below the silk, reflecting tiny inverted patches of leaves and sky. In soft early light they glint white or pale gold without glowing on their own. A light breeze makes the whole web sway and stretch slightly; the droplets tremble but usually remain attached. The background falls out of focus behind the delicate pattern. The web is silent, with nearby insects, birds and moving leaves providing the morning sounds."
+ },
+ {
+  "id": "nature.gen.autumn-leaves-falling",
+  "domain": "nature",
+  "topic": "autumn leaves falling",
+  "names": [
+   "autumn leaves falling",
+   "falling leaves",
+   "تساقط أوراق الخريف",
+   "ورق الخريف يتساقط",
+   "ورگ الخريف يطيح"
+  ],
+  "body": "Yellow, russet and brown leaves hang among thinning branches, with some still mottled green. A dry leaf loosens at its stem, tilts, then flutters sideways as it falls; broad leaves spin or rock, while smaller ones drop more directly. Gusts lift fallen leaves briefly across paths and gather them against curbs, roots or low walls. Bare twigs move less than the leaves. Soft autumn daylight picks out curled edges and thin veins, especially when the sun shines through them. Underfoot, dry leaves give a crisp rustle and crunch; damp ones lie darker and quieter."
+ },
+ {
+  "id": "nature.gen.spring-buds-opening",
+  "domain": "nature",
+  "topic": "spring buds opening",
+  "names": [
+   "spring buds opening",
+   "opening flower buds",
+   "تفتح براعم الربيع",
+   "براعم الربيع تتفتح",
+   "براعم الربيع تفتح"
+  ],
+  "body": "Small buds sit at the tips and joints of slender stems, wrapped in green scales or tight petals. As they open, the outer covering separates and pale new leaves or coloured petals unfold, soft and slightly creased at first. This change takes hours or days, not seconds; a visibly opening bud calls for time-lapse photography. In ordinary footage, the movement comes from stems nodding in a light breeze and insects briefly landing nearby. Morning light can make dew shine along bud edges. The surrounding soil may be dark and moist, while birdsong and faint leaf rustling carry through the scene."
+ },
+ {
+  "id": "nature.gen.sunflowers-turning",
+  "domain": "nature",
+  "topic": "sunflowers turning",
+  "names": [
+   "sunflowers turning",
+   "sunflower heliotropism",
+   "دوار الشمس يتبع الشمس",
+   "عباد الشمس يلتفت للشمس",
+   "دوار الشمس يلف ويه الشمس"
+  ],
+  "body": "Young sunflowers have broad, rough green leaves, thick flexible stems and developing flower heads that slowly change direction over a day. Their movement is growth-driven, not a visible swivel in real time: young heads generally face east in the morning and follow the sun westward, resetting overnight. Once mature, the heavy heads usually remain facing roughly east, with yellow petals around a dark, seed-filled centre. Wind bends the stems and shakes the leaves much faster than any turning toward light. In a field, leaves brush together with a papery rustle, and bees may buzz around open flowers under bright sun."
+ },
+ {
+  "id": "nature.gen.wheat-swaying-in-wind",
+  "domain": "nature",
+  "topic": "wheat swaying in wind",
+  "names": [
+   "wheat swaying",
+   "wheat field in wind",
+   "تمايل سنابل القمح",
+   "قمح يتمايل بالريح",
+   "سنابل الحنطة تهتز بالهوا"
+  ],
+  "body": "A wheat field forms a dense, waist-high layer of narrow stems topped with bristled seed heads. Ripe wheat is straw-gold, though patches of green can remain where growth is uneven. Wind pushes the flexible stalks into broad, travelling waves; individual heads dip and spring back, never moving in perfect unison. Stronger gusts briefly flatten a patch before it rises again. Sunlight catches the awns and makes the moving surface shimmer, while cloud shadows pass across it in slower, darker bands. Close by, the stalks make a dry, continuous swishing sound, with a sharper rattle when the heads brush together."
+ },
+ {
+  "id": "nature.gen.tall-grass-in-wind",
+  "domain": "nature",
+  "topic": "tall grass in wind",
+  "names": [
+   "tall grass in wind",
+   "windblown tall grass",
+   "تمايل العشب الطويل",
+   "حشيش طويل بالهوا",
+   "عشب طويل يتحرك بالريح"
+  ],
+  "body": "Tall grass grows in uneven clumps, with long, narrow blades and, in some patches, feathery seed heads rising above them. Its colour varies from fresh green near the base to pale tan at dry tips. A breeze first stirs the fine seed heads, then bends whole stems into loose waves; heavier gusts open temporary gaps that reveal the ground beneath. Unlike a planted crop, the heights and directions are irregular. Low sunlight outlines the thin blades and gives their edges a warm glow. The sound is a soft hiss and swish, interrupted by insects or birds in the surrounding open ground."
  }
 ]
