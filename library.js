@@ -114,13 +114,16 @@ const esc = (k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const AR_PRE = "(?:[وفبلك])?(?:ال|لل)?";
 const AR_SUF = "(?:ها|هم|هن|ات|ين|ون|ان|ي|يه|يات|ك|كم|نا|ته|تها|تي)?";
 const reCache = new Map();
+// one Arabic word with its prefixes and endings; a final ة (normalised to ه) turns into ت before an ending or
+// into ات in the plural: قطة → قطتها، سيارة → سيارتي / سيارات
+const arWord = (w) => AR_PRE + "(?:" + esc(w) + AR_SUF + (w.endsWith("ه") ? "|" + esc(w.slice(0, -1)) + "(?:ات|ت(?:ها|ه|هم|ي|ك|كم|نا|ين|ان))" : "") + ")";
 function nameRe(k) {
   let re = reCache.get(k);
   if (!re) {
     re = /^[a-z0-9 .'&-]+$/.test(k)
       ? new RegExp("(^|[^a-z0-9])" + esc(k) + "(s|es)?([^a-z0-9]|$)")
-      // a final ة (normalised to ه) turns into ت before an ending: قطة → قطتها، سيارة → سيارتي
-      : new RegExp("(^|\\s)" + AR_PRE + "(?:" + esc(k) + AR_SUF + (k.endsWith("ه") ? "|" + esc(k.slice(0, -1)) + "ت(?:ها|ه|هم|ي|ك|كم|نا|ين|ان)" : "") + ")(\\s|$)");
+      // every word of a multi-word name may carry its own prefix/ending: «سيارة شرطة» matches «سيارات الشرطة»
+      : new RegExp("(^|\\s)" + k.split(" ").map(arWord).join("\\s") + "(\\s|$)");
     reCache.set(k, re);
   }
   return re;

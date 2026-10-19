@@ -2,47 +2,59 @@
   {
     "id": "core.video.alive",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 100,
-    "body": "ALIVE, NOT POSED: every person on screen breathes visibly the whole clip (chest and shoulders rise and fall, faster after effort, slower when calm), blinks naturally every 2–5 seconds (both lids together, a quick blink, sometimes a double blink), and the eyes are never frozen: small saccades between points of interest, they look at whoever speaks, follow moving things, glance away when thinking and come back. Micro-expressions pass across the face (brows lift slightly, nostrils flare on an in-breath, cheeks and eye corners move with feeling). Nobody holds a statue-like pose between actions: weight shifts from foot to foot, the head tilts, the hands make small idle movements."
+    "body": "ONLY IF PEOPLE ARE ON SCREEN (skip this point completely when there are none – do not write about breathing, blinking or fingers for cars, landscapes or objects): ALIVE, NOT POSED: every person on screen breathes visibly the whole clip (chest and shoulders rise and fall, faster after effort, slower when calm), blinks naturally every 2–5 seconds (both lids together, a quick blink, sometimes a double blink), and the eyes are never frozen: small saccades between points of interest, they look at whoever speaks, follow moving things, glance away when thinking and come back. Micro-expressions pass across the face (brows lift slightly, nostrils flare on an in-breath, cheeks and eye corners move with feeling). Nobody holds a statue-like pose between actions: weight shifts from foot to foot, the head tilts, the hands make small idle movements."
   },
   {
     "id": "core.video.lips",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 99,
-    "body": "LIPS AND VOICE ARE ONE: only the person who speaks moves the lips, and the mouth shapes follow every syllable of the spoken line (open on long vowels, closed lips on m/b/p, teeth and tongue visible on t/d/l, rounded lips on o/u), with the jaw, cheeks and throat moving with it. The speaker takes a small breath before the line and between phrases. Listeners keep their mouths closed or slightly parted and react (nod, smile, raise eyebrows). When the line ends the mouth relaxes – no silent mouthing, no talking without sound."
+    "body": "ONLY IF SOMEONE SPEAKS ON SCREEN: LIPS AND VOICE ARE ONE: only the person who speaks moves the lips, and the mouth shapes follow every syllable of the spoken line (open on long vowels, closed lips on m/b/p, teeth and tongue visible on t/d/l, rounded lips on o/u), with the jaw, cheeks and throat moving with it. The speaker takes a small breath before the line and between phrases. Listeners keep their mouths closed or slightly parted and react (nod, smile, raise eyebrows). When the line ends the mouth relaxes – no silent mouthing, no talking without sound."
   },
   {
     "id": "core.video.body",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 98,
-    "body": "BODY AND FRAMING: if the action needs the body (walking, dancing, jumping, sport, showing an outfit, playing with children) frame the person head-to-feet with room around them so hands and feet are never cut; for talking to camera use a medium shot (waist up) with both hands visible when they gesture. Correct anatomy always: five fingers per hand, natural joint bends, feet planted on the ground with weight, shoulders that move with the arms, clothes and hair reacting to every movement with a slight delay (secondary motion)."
+    "body": "ONLY FOR PEOPLE OR ANIMALS ON SCREEN: BODY AND FRAMING: if the action needs the body (walking, dancing, jumping, sport, showing an outfit, playing with children) frame the person head-to-feet with room around them so hands and feet are never cut; for talking to camera use a medium shot (waist up) with both hands visible when they gesture. Correct anatomy always: five fingers per hand, natural joint bends, feet planted on the ground with weight, shoulders that move with the arms, clothes and hair reacting to every movement with a slight delay (secondary motion)."
   },
   {
     "id": "core.video.identity",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 97,
-    "body": "EACH CHARACTER STAYS THE SAME PERSON: describe every character once with a fixed identity (age, face shape, skin tone, hair, beard, clothes and colours, accessories) and keep it identical in every shot. Give each one a personality that shows in how they move and react (calm and slow, energetic and quick, shy glances, confident posture, playful child) and a matching voice that never changes (pitch, pace, accent). In a group, people react to each other – they look at the speaker, laugh at the joke, step aside to make room."
+    "body": "EACH CHARACTER STAYS THE SAME (people, animals and vehicles alike): describe every character once with a fixed identity (age, face shape, skin tone, hair, beard, clothes and colours, accessories) and keep it identical in every shot. Give each one a personality that shows in how they move and react (calm and slow, energetic and quick, shy glances, confident posture, playful child) and a matching voice that never changes (pitch, pace, accent). In a group, people react to each other – they look at the speaker, laugh at the joke, step aside to make room."
   },
   {
     "id": "core.video.physics",
     "domain": "reality",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 96,
-    "body": "REAL PHYSICS: gravity, weight and momentum are respected – heavy things move slowly and land with impact, light things flutter; objects keep their shape and size; contacts are real (a hand that grabs a cup tightens on it, a foot that lands compresses the step, a sitting person sinks into the cushion). Wind moves hair, cloth, palm fronds, flags and dust in one consistent direction; water splashes, ripples and reflects; smoke and steam rise and drift. No floating, no sliding feet, no objects passing through each other, no melting or morphing between frames."
+    "body": "REAL PHYSICS: gravity, weight and momentum are respected – heavy things move slowly and land with impact, light things flutter; objects keep their shape and size; contacts are real (a hand that grabs a cup tightens on it, a foot that lands compresses the step, a sitting person sinks into the cushion). Wind moves hair, cloth, palm fronds, flags and dust in one consistent direction; water splashes, ripples and reflects; smoke and steam rise and drift. No floating, no sliding feet, no objects passing through each other, no melting or morphing between frames. Everything that moves goes toward where its front points (faces, heads, car headlights), and followers stay behind what they follow."
   },
   {
     "id": "core.video.sound",
     "domain": "sound",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 95,
     "body": "SOUND IS PART OF THE WORLD: besides the spoken line, describe the human sounds that fit (breathing, a soft laugh, a sigh, footsteps on that floor, clothes rustling, a clap, a sip of tea) and the place's ambience (street traffic, market voices, birds, wind, call to prayer far away, AC hum indoors) plus the sound of every visible action (door, car engine, cup on saucer, splash). Every sound happens at the exact moment its action is seen, comes from the right direction and is quieter far away. Ambience stays under the voice; nothing drowns the speech."
@@ -50,7 +62,9 @@
   {
     "id": "core.video.camera",
     "domain": "style",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 94,
     "body": "REAL CAMERA AND LIGHT: shoot it like a real camera (stated lens such as 35 mm or 50 mm, natural depth of field, gentle handheld or a smooth gimbal move, motion blur on fast movement, no impossible jumps). One consistent light source direction and colour for the whole clip (the sun stays where it is, shadows fall the same way, skin keeps the same tone), real skin texture with pores and fine hair, catch-lights in the eyes, and no plastic or waxy look."
@@ -58,7 +72,9 @@
   {
     "id": "core.image.real",
     "domain": "human",
-    "kinds": ["image"],
+    "kinds": [
+      "image"
+    ],
     "always": true,
     "priority": 100,
     "body": "REAL PEOPLE IN A PICTURE: a natural expression caught mid-moment (a real smile reaches the eyes and lifts the cheeks, eyes looking at something specific with catch-lights), real skin with pores, fine hair, slight asymmetry and natural colour, correct anatomy (five fingers, natural joints, hands holding things with real grip, feet on the ground), clothes with real fabric weight and folds, and each person clearly described (age, face, hair, clothes, colours) so they look like one specific individual, not a generic model."
@@ -66,7 +82,9 @@
   {
     "id": "core.image.light",
     "domain": "style",
-    "kinds": ["image"],
+    "kinds": [
+      "image"
+    ],
     "always": true,
     "priority": 99,
     "body": "REAL LIGHT AND LENS: one believable light setup (time of day and direction stated, soft or hard as it would really be), shadows and reflections that match it, materials that react correctly (metal reflects, glass refracts, fabric absorbs, wet surfaces shine), a stated lens and depth of field, and a clear composition (subject placement, foreground and background). Objects and buildings have correct proportions, straight lines where they should be, readable real details and no melted or merged shapes."

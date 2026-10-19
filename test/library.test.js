@@ -45,6 +45,8 @@ test("Arabic matching is whole-word with prefixes and endings", () => {
   assert.ok(ids("بنت تلعب ويه قطتها").includes("animal.cat"), "ة becomes ت before an ending");
   assert.ok(!ids("حفلة تخرج بالجامعة").includes("sound.adhan"), "«جامعة» (university) is not «جامع» (mosque)");
   assert.ok(ids("صوت الاذان من الجامع").includes("sound.adhan"));
+  assert.ok(ids("سيارات الشرطة وراها").includes("item.gen.police-car"), "plural of the first word of a two-word name");
+  assert.ok(ids("سيارات شرطة وراها").includes("action.car-chase"));
   assert.ok(!ids("اريد نفس الشي بس الناس").some((id) => id.startsWith("sound.breath")), "everyday words are ignored");
 });
 
