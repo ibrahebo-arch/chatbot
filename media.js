@@ -27,6 +27,16 @@ const COST = {
   image: Number(process.env.TRIAL_IMAGE_COST_USD) || 0.003,
   video: (Number(process.env.FAL_VIDEO_COST_PER_SEC) || 0.025) * VIDEO_SECONDS,
 };
+// Premium model for videos WITHOUT a spoken line (TRIAL_PREMIUM_VIDEO=1): Kling 3 Pro – sharper picture, its own
+// synced sound, a real negative prompt. Videos with the Iraqi voice stay on MiniMax, which moves the lips to our track.
+const PREMIUM = {
+  on: clean(process.env.TRIAL_PREMIUM_VIDEO) === "1",
+  video: clean(process.env.FAL_PREMIUM_VIDEO_MODEL) || "fal-ai/kling-video/v3/pro/text-to-video",
+  i2v: clean(process.env.FAL_PREMIUM_I2V_MODEL) || "fal-ai/kling-video/v3/pro/image-to-video",
+};
+COST.premiumVideo = (Number(process.env.FAL_PREMIUM_COST_PER_SEC) || 0.168) * VIDEO_SECONDS;
+/** Cost of one video: the premium model when it is on and the video has no voice track. */
+const videoCost = (hasVoice) => (PREMIUM.on && !hasVoice ? COST.premiumVideo : COST.video);
 const configured = Boolean(FAL_KEY);
 
 // Result links we accept from the provider: fal's CDN, and the queue's own origin (the test double).
@@ -173,6 +183,11 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
   if (kind === "image") {
     model = MODELS.image;
     input = { prompt: `${s.image} ${prompt}`, image_size: "landscape_4_3", num_images: 1, enable_safety_checker: true, output_format: "jpeg" };
+  } else if (PREMIUM.on && !audioUrl) {
+    model = imageUrl ? PREMIUM.i2v : PREMIUM.video;
+    input = { prompt: `${s.video} ${prompt}`, duration: String(VIDEO_SECONDS), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
+      negative_prompt: [negative, "blur, distortion, low quality, warped shapes, flicker, watermark"].filter(Boolean).join(", "),
+      ...(imageUrl ? { start_image_url: imageUrl } : { aspect_ratio: "16:9" }) };
   } else if (imageUrl) {
     model = MODELS.i2v;
     input = { prompt: `${s.video} ${prompt}`, image_url: imageUrl, duration: VIDEO_SECONDS, resolution: "768P", enable_safety_checker: true, prompt_expansion_mode: "disabled" };
@@ -182,7 +197,8 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
   }
   // the spoken line as the soundtrack: the model animates the mouth to it (MiniMax target_audio_url, ≥ 2 s, ≤ 15 MB)
   if (kind === "video" && audioUrl) input.target_audio_url = audioUrl;
-  if (negative && kind === "image") input.prompt += `. Avoid: ${negative}`;
+  // the avoid-list: MiniMax has no negative field, so it goes into the prompt (pictures and videos); Kling has its own field
+  if (negative && !input.negative_prompt) input.prompt += `. Avoid: ${negative}`;
   let r;
   try {
     r = await fal("POST", model, input);
@@ -191,7 +207,7 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
     throw e;
   }
   if (!r.request_id) throw new Error("fal: no request_id");
-  return { provider: "fal", model, jobId: r.request_id, cost: COST[kind] };
+  return { provider: "fal", model, jobId: r.request_id, cost: kind === "video" ? videoCost(Boolean(audioUrl)) : COST[kind] };
 }
 
 // Status/result URLs use the app id – the first two parts of the model id
@@ -218,5 +234,5 @@ async function poll({ model, provider_job_id: id, kind }) {
 module.exports = {
   configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
   resetFal: () => { falDownUntil = 0; },
-  submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE,
+  submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE, PREMIUM, videoCost,
 };

@@ -263,10 +263,10 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const editImage = kind === "image" && useRefs && openaiOk();
   // pictures with writing in them go to the ChatGPT image model too (fal's FLUX misspells Arabic text)
   const routeOf = (pl) => kind === "image" && openaiOk() && (editImage || media.useOpenAIImage(style) || Boolean(pl?.onScreenText));
-  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit : routeOf(pl) ? media.COST.openaiImage : media.COST[kind]) + (sp ? media.COST.speech : 0);
+  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit : routeOf(pl) ? media.COST.openaiImage : kind === "video" ? media.videoCost(Boolean(sp || voice?.clip)) : media.COST[kind]) + (sp ? media.COST.speech : 0);
   // with planFn the plan is written after the visitor already has the job: reserve the highest possible cost
   const cost = planFn
-    ? (kind === "video" ? media.COST.video + media.COST.speech : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image))
+    ? (kind === "video" ? Math.max(media.COST.video + media.COST.speech, media.videoCost(false)) : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image))
     : costOf(plan, speech);
 
   // "animate this image": only one of this visitor's own finished images
