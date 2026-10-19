@@ -1,7 +1,105 @@
 [
-  { "id": "action.car-chase", "domain": "action", "priority": 70, "names": ["مطاردة", "مطارده", "يطاردها", "يطاردونها", "يطارده", "يطاردون", "لاحگتها", "لاحقتها", "لاحگيه", "الشرطة وراها", "الشرطة وراه", "شرطة وراها", "شرطة وراه", "تهرب من الشرطة", "يهرب من الشرطة", "car chase", "police chase", "pursuit", "getaway", "chased by police"], "body": "CAR CHASE GEOMETRY – get the directions right: every vehicle drives the SAME way along the road; the chased car is in front and the pursuers are BEHIND it, never ahead of it and never coming the other way. A car's headlights are at its front and red tail lights at its back, so: with the camera BEHIND the chase you see the chased car's red tail lights far ahead and the police cars' rears closer to the camera; with the camera IN FRONT looking back you see the chased car's headlights nearest and the police headlights and flashing light bars following behind it; from the SIDE all cars point the same way and the police are further back in the frame. Name the camera position explicitly. The gap changes realistically (the chased car pulls away on straights, the pursuers close in on turns), cars change lanes with indicators of motion (body roll, tyre angle), and nobody crashes or gets hurt." },
-  { "id": "sound.police-siren", "domain": "sound", "priority": 65, "names": ["سارينة", "سارينه", "سرينة", "صفارة الشرطة", "صافرة الشرطة", "سيرينة", "صوت الشرطة", "police siren", "siren", "sirens"], "body": "Police siren: a loud electronic wail that rises and falls every 1–2 seconds, sometimes switching to the fast 'yelp' when closing in, plus short horn blasts; with several police cars the sirens overlap slightly out of sync. It is louder and brighter as a car approaches and drops in pitch as it passes (Doppler effect), and fades as it falls behind; it bounces off buildings and under bridges. The siren is present the whole time the light bars flash, in sync with where the police cars are in the frame." },
-  { "id": "item.police-lights", "domain": "item", "priority": 60, "names": ["اضواء الشرطة", "ضوء الشرطة", "الاضواء الزرقاء والحمراء", "ازرق واحمر", "light bar", "police lights", "flashing lights", "red and blue lights"], "body": "Police light bar: a bar on the roof (and small lights in the grille) flashing red and blue in fast alternating bursts, left and right sides out of phase; the coloured light washes over the road, nearby cars, walls and wet asphalt in pulses and reflects in glass and paint; at night it dominates the scene, in daylight it is a bright flicker. Iraqi police cars: white with blue or dark stripes and «شرطة» / POLICE written on the doors; Gulf and Western police use their own liveries." },
-  { "id": "sound.supercar-engine", "domain": "sound", "priority": 60, "names": ["صوت المحرك", "هدير", "تفحيط", "يفحط", "صوت التايرات", "engine roar", "supercar sound", "v12", "v10", "tyre screech", "tire screech", "burnout"], "body": "Supercar sound: a high-pitched V10/V12 roar that climbs with each gear and drops for an instant at every gear change (a crack or pop from the exhaust on the downshift), louder when the car passes close; tyres hum on asphalt and screech on hard turns with white smoke; wind rush rises with speed. The engine note follows the visible speed exactly: idle burble when slow, a howl at full speed, a fading whine as it moves away." },
-  { "id": "reality.vehicle-direction", "domain": "reality", "priority": 62, "names": ["سباق", "يسابق", "طريق سريع", "اوتوستراد", "زحمة سيارات", "race", "racing", "highway", "traffic", "convoy"], "body": "Vehicles always move toward where their front points: headlights lead, tail lights trail; wheels roll forward in the direction of travel at a speed that matches the motion; every car on the same carriageway goes the same way and oncoming traffic stays on its own side; a car never slides sideways or drives backwards unless that is the action. Faster cars overtake on the correct side, and relative speeds stay consistent from frame to frame." }
+  {
+    "id": "action.car-chase",
+    "domain": "action",
+    "priority": 70,
+    "names": [
+      "مطاردة",
+      "مطارده",
+      "يطاردها",
+      "يطاردونها",
+      "يطارده",
+      "يطاردون",
+      "لاحگتها",
+      "لاحقتها",
+      "لاحگيه",
+      "الشرطة وراها",
+      "الشرطة وراه",
+      "شرطة وراها",
+      "شرطة وراه",
+      "تهرب من الشرطة",
+      "يهرب من الشرطة",
+      "car chase",
+      "police chase",
+      "pursuit",
+      "getaway",
+      "chased by police",
+      "من ورا",
+      "من الخلف",
+      "chase from behind"
+    ],
+    "body": "CAR CHASE GEOMETRY – get the directions right: every vehicle drives the SAME way along the road; the chased car is in front and the pursuers are BEHIND it, never ahead of it and never coming the other way. A car's headlights are at its front and red tail lights at its back, so: with the camera BEHIND the chase you see the chased car's red tail lights far ahead and the police cars' rears closer to the camera; with the camera IN FRONT looking back you see the chased car's headlights nearest and the police headlights and flashing light bars following behind it; from the SIDE all cars point the same way and the police are further back in the frame. Name the camera position explicitly. DEFAULT (unless the customer asks for another view): the camera follows BEHIND the whole chase, low and close to the road – the police cars are between the camera and the chased car, we see the police cars' rears with their roof light bars flashing toward us and, further ahead, the chased car's red tail lights pulling away. The gap changes realistically (the chased car pulls away on straights, the pursuers close in on turns), cars change lanes with indicators of motion (body roll, tyre angle), and nobody crashes or gets hurt."
+  },
+  {
+    "id": "sound.police-siren",
+    "domain": "sound",
+    "priority": 65,
+    "names": [
+      "سارينة",
+      "سارينه",
+      "سرينة",
+      "صفارة الشرطة",
+      "صافرة الشرطة",
+      "سيرينة",
+      "صوت الشرطة",
+      "police siren",
+      "siren",
+      "sirens"
+    ],
+    "body": "Police siren: a loud electronic wail that rises and falls every 1–2 seconds, sometimes switching to the fast 'yelp' when closing in, plus short horn blasts; with several police cars the sirens overlap slightly out of sync. It is louder and brighter as a car approaches and drops in pitch as it passes (Doppler effect), and fades as it falls behind; it bounces off buildings and under bridges. The siren is present the whole time the light bars flash, in sync with where the police cars are in the frame."
+  },
+  {
+    "id": "item.police-lights",
+    "domain": "item",
+    "priority": 60,
+    "names": [
+      "اضواء الشرطة",
+      "ضوء الشرطة",
+      "الاضواء الزرقاء والحمراء",
+      "ازرق واحمر",
+      "light bar",
+      "police lights",
+      "flashing lights",
+      "red and blue lights"
+    ],
+    "body": "Police light bar: a bar on the roof (and small lights in the grille) flashing red and blue in fast alternating bursts, left and right sides out of phase; the coloured light washes over the road, nearby cars, walls and wet asphalt in pulses and reflects in glass and paint; at night it dominates the scene, in daylight it is a bright flicker. Iraqi police cars: white with blue or dark stripes and «شرطة» / POLICE written on the doors; Gulf and Western police use their own liveries."
+  },
+  {
+    "id": "sound.supercar-engine",
+    "domain": "sound",
+    "priority": 60,
+    "names": [
+      "صوت المحرك",
+      "هدير",
+      "تفحيط",
+      "يفحط",
+      "صوت التايرات",
+      "engine roar",
+      "supercar sound",
+      "v12",
+      "v10",
+      "tyre screech",
+      "tire screech",
+      "burnout"
+    ],
+    "body": "Supercar sound: a high-pitched V10/V12 roar that climbs with each gear and drops for an instant at every gear change (a crack or pop from the exhaust on the downshift), louder when the car passes close; tyres hum on asphalt and screech on hard turns with white smoke; wind rush rises with speed. The engine note follows the visible speed exactly: idle burble when slow, a howl at full speed, a fading whine as it moves away."
+  },
+  {
+    "id": "reality.vehicle-direction",
+    "domain": "reality",
+    "priority": 62,
+    "names": [
+      "سباق",
+      "يسابق",
+      "طريق سريع",
+      "اوتوستراد",
+      "زحمة سيارات",
+      "race",
+      "racing",
+      "highway",
+      "traffic",
+      "convoy"
+    ],
+    "body": "Vehicles always move toward where their front points: headlights lead, tail lights trail; wheels roll forward in the direction of travel at a speed that matches the motion; every car on the same carriageway goes the same way and oncoming traffic stays on its own side; a car never slides sideways or drives backwards unless that is the action. Faster cars overtake on the correct side, and relative speeds stay consistent from frame to frame."
+  }
 ]
