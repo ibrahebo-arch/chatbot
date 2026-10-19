@@ -95,7 +95,7 @@ async function refresh(force = false) {
 
 /** How strongly an entry matches the text: length of its longest name found (0 = no match). */
 // Everyday words that are also some entry's name: they would trigger it in unrelated requests, so they never count.
-const IGNORE = new Set(["نفس", "ناس", "ظهر", "عصر", "حر", "مي", "شعر", "وجه", "كتب", "حب", "يد", "ايد", "عين", "بر", "سما", "صني",
+const IGNORE = new Set(["نفس", "ناس", "سحاب", "ظهر", "عصر", "حر", "مي", "شعر", "وجه", "كتب", "حب", "يد", "ايد", "عين", "بر", "سما", "صني",
   "box", "hot", "orange", "png", "drc", "fsm", "ad", "pc", "tap", "run", "eat", "sun", "sky", "kid", "boy", "wow", "sad", "cry", "buy", "pen", "bed"].map(norm));
 
 function matchScore(e, t) {
