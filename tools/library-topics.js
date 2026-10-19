@@ -172,3 +172,10 @@ module.exports = {
   module.exports.reality = { domain: "reality", prefix: "reality.gen", guide: "For a physics or material behaviour: exactly how it moves and reacts in the real world (forces, weight, timing, deformation, secondary motion), what the eye sees moment by moment, the matching sound, and the AI mistakes to avoid (floating, sliding, morphing, passing through objects).", topics: more.reality };
   module.exports.style = { domain: "style", prefix: "style.gen", guide: "For a camera move or look: the lens, movement, framing, lighting and colour in concrete terms, when it fits (ads, social, drama), and how it keeps people and motion realistic.", topics: more.style };
 }
+
+// expansion round 2 (tools/library-topics-more2.js): more of every set, plus world cities
+{
+  const more2 = require("./library-topics-more2");
+  for (const [k, list] of Object.entries(more2)) if (module.exports[k]) module.exports[k].topics.push(...list.filter((t) => !module.exports[k].topics.includes(t)));
+  module.exports.cities = { domain: "place", prefix: "place.city", guide: "For a city or district: the real look (skyline, landmarks, streets, buildings and materials, signage language), light and climate, traffic and street life, the sounds, how people dress, and how they greet each other (with the local words).", topics: more2.cities };
+}
