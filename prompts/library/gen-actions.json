@@ -3788,5 +3788,1816 @@
    "candy floss"
   ],
   "body": "At a fairground stall, a vendor pours a small scoop of coloured sugar into the spinning metal head at the centre of a wide stainless-steel bowl. The motor hums; melted sugar shoots through tiny openings and cools into fine strands along the bowl’s rim. Keeping fingers clear of the hot head, the vendor turns a paper stick around the rim, then lifts and rotates it to gather a loose, cloud-shaped puff. The strands stretch lightly before settling onto the stick. A waiting child leans forward and smiles; an adult beside them watches the vendor’s hands. Warm stall lights show the candy’s pale pink translucence against the darker evening background."
+ },
+ {
+  "id": "action.gen.iraqi-bride-zaffa-entrance",
+  "domain": "action",
+  "topic": "Iraqi bride entering the hall with zaffa",
+  "names": [
+   "زفة العروس",
+   "زفة عراقية",
+   "دخول العروس",
+   "دخلة العروس",
+   "iraqi zaffa",
+   "bride entrance"
+  ],
+  "body": "At the entrance of an Iraqi wedding hall, the bride pauses in a white gown with a full skirt, then takes short, careful steps down the aisle. The fabric trails and slides a moment after she moves. A zaffa group ahead of her keeps a steady beat on hand drums; each strike sounds sharp over the guests’ clapping. Women on either side rise, smile, and lift their phones. The bride looks toward the waiting groom, smiles, and steadies her skirt with one hand. Warm ceiling lights catch the dress’s embroidery, while drumbeats and voices fill the hall."
+ },
+ {
+  "id": "action.gen.groom-dancing-with-friends",
+  "domain": "action",
+  "topic": "groom dancing with friends",
+  "names": [
+   "رقصة العريس",
+   "دبكة العريس",
+   "العريس يرقص",
+   "رقص العريس واصحابه",
+   "groom dance",
+   "groom with friends"
+  ],
+  "body": "On a wedding dance floor, the groom steps into a loose circle of friends, his suit jacket shifting as he raises his arms. He plants one foot, taps the other forward, then turns his shoulders toward a friend who answers with the same steps. The others clap on the beat, grin, and make room when he pivots; shoe soles scuff lightly against the floor. A drum rhythm and recorded music sound through the hall speakers, with cheers rising when the groom briefly speeds up. Bright stage lights move across faces and dark suits without changing the dancers’ natural pace."
+ },
+ {
+  "id": "action.gen.wedding-cake-cutting",
+  "domain": "action",
+  "topic": "cake cutting at a wedding",
+  "names": [
+   "قطع كعكة الزفاف",
+   "تقطيع كيكة العرس",
+   "قص الكيكة",
+   "كيكة العرس",
+   "wedding cake cutting",
+   "cutting wedding cake"
+  ],
+  "body": "The couple stands close behind a decorated wedding cake on a waist-high table. One places a hand over the other’s on the knife handle; together they press the blade through soft sponge beneath firm icing. The cake compresses slightly before the slice separates, leaving a little frosting on the knife. They look down to guide the cut, then glance up and smile as nearby relatives clap and raise phones. A plate waits beside the cake, and the serving knife makes a faint scrape against it. Warm hall lighting reflects off the cake stand while music continues underneath the applause."
+ },
+ {
+  "id": "action.gen.wedding-dance-nuqut",
+  "domain": "action",
+  "topic": "throwing money at a wedding dance (nuqut)",
+  "names": [
+   "نقوط العرس",
+   "نقوط الرقص",
+   "رش الفلوس بالعرس",
+   "نثر النقود",
+   "wedding nuqut",
+   "money shower dance"
+  ],
+  "body": "Beside the wedding dance circle, a guest holds a small fan of paper banknotes and flicks a few upward over the dancers. The notes spread apart, flutter, and drift down at different speeds, sometimes turning edge-on before landing on the floor or a shoulder. The dancers keep their steps and smile toward the guest; people around them clap, cheer, and lean back to give the notes space. A relative may gather the fallen notes after the moment passes. Drumbeats and music remain louder than the soft rustle of paper. Hall lights catch the moving notes against a darker dance-floor background."
+ },
+ {
+  "id": "action.gen.henna-party-dancing",
+  "domain": "action",
+  "topic": "henna party dancing",
+  "names": [
+   "رقص ليلة الحنة",
+   "حفلة الحناء",
+   "ليلة الحنة",
+   "رقص الحنة",
+   "henna party dance",
+   "henna night dancing"
+  ],
+  "body": "At a henna party, women dance in a small open space between seated guests. One steps sideways, brings her feet together, and rolls her shoulders to the rhythm while another joins her, mirroring the movement. Flowing sleeves and dress hems follow each turn, then settle when the dancers pause to clap. Fresh henna may be visible as dark patterns on hands held carefully away from clothing. Seated relatives smile, sing along, and clap; a child watches from beside a chair. Recorded music and handclaps fill the decorated room, where warm lights make colourful fabrics and jewellery glint."
+ },
+ {
+  "id": "action.gen.engagement-ring-exchange",
+  "domain": "action",
+  "topic": "engagement ring exchange",
+  "names": [
+   "تبادل خواتم الخطوبة",
+   "لبس خاتم الخطوبة",
+   "تلبيس المحبس",
+   "تبادل المحابس",
+   "engagement ring exchange",
+   "engagement rings"
+  ],
+  "body": "During an engagement gathering, the couple stands or sits close together with relatives watching nearby. One holds the other’s hand steady, aligns a ring with the fingertip, and gently slides it over the knuckle; the recipient may bend the finger slightly to help it pass. They look down during the careful movement, then look up and smile. The second ring is exchanged in the same way. Family members clap, exchange warm looks, and lift phones for a photograph. The rings catch small points of light from lamps or a chandelier, while conversation and quiet music give way briefly to applause."
+ },
+ {
+  "id": "action.gen.new-baby-visit-with-gifts",
+  "domain": "action",
+  "topic": "new baby visit with gifts",
+  "names": [
+   "زيارة المولود",
+   "زيارة البيبي الجديد",
+   "زيارة النفاس",
+   "هدايا المولود",
+   "new baby visit",
+   "baby gift visit"
+  ],
+  "body": "Visitors enter a family sitting room carrying a small gift bag, folded baby clothes, or a wrapped box. They greet the parents softly, set the gifts on a table, and lean in to see the newborn resting in an adult’s arms. The baby’s head is supported at the neck; a blanket shifts as the adult adjusts their hold. Guests smile and speak in lower voices, while a parent looks tired but pleased. Tissue paper crinkles as a gift is opened, and the baby may make a brief, thin cry or quiet breathing sound. Daylight through curtains keeps the room gentle and evenly lit."
+ },
+ {
+  "id": "action.gen.aqiqah-family-feast",
+  "domain": "action",
+  "topic": "aqiqah family feast",
+  "names": [
+   "عقيقة المولود",
+   "وليمة العقيقة",
+   "عزيمة العقيقة",
+   "اكلة العقيقة",
+   "aqiqah feast",
+   "aqiqah meal"
+  ],
+  "body": "At an aqiqah family meal, relatives gather around a table or floor spread laid with large platters of cooked rice and meat, bread, salad, and small dishes. An adult portions food with a serving spoon; rice falls loosely onto plates while guests pass bread and make room for one another. Children sit near older relatives, and the baby may be resting safely in another room or held by a parent away from the food. People greet late arrivals, talk between bites, and smile when someone offers another serving. Spoons tap plates, chairs shift, and conversation fills the warmly lit home."
+ },
+ {
+  "id": "action.gen.circumcision-party",
+  "domain": "action",
+  "topic": "circumcision party (respectful family celebration)",
+  "names": [
+   "حفلة طهور",
+   "حفلة ختان",
+   "طهور الولد",
+   "حفلة الطهور",
+   "circumcision party",
+   "circumcision celebration"
+  ],
+  "body": "In a family sitting room or decorated hall, a young boy sits beside his parents in a clean white or embroidered outfit. Paper garlands and balloons hang above trays of sweets and small cups of juice. Relatives greet him gently, smile for phone photos, and clap as a cake is brought forward. He may smile shyly, lean against a parent, or watch the candles closely. A hand steadies the cake while the flames flicker; someone lifts it away before people gather around him. Voices overlap with soft music, clapping, and children moving between chairs. Show only the respectful celebration, never the procedure."
+ },
+ {
+  "id": "action.gen.first-day-of-school",
+  "domain": "action",
+  "topic": "first day of school",
+  "names": [
+   "أول يوم مدرسة",
+   "اول يوم بالمدرسة",
+   "الدوام الأول",
+   "بداية المدرسة",
+   "first day of school",
+   "school first day"
+  ],
+  "body": "Early sunlight falls across a school gate, pavement, and rows of backpacks. Children arrive in neat uniforms or school clothes, some gripping a parent's hand and others walking ahead to find friends. One child adjusts a slipping backpack strap, pauses at the entrance, then steps toward a teacher who bends slightly to greet them. Parents smile, wave, and sometimes look anxious as they let go. Shoes scuff the ground; zippers, lunch boxes, footsteps, and overlapping greetings punctuate the morning noise. Inside, desks are lined up with exercise books, and children settle onto chairs, turning their heads toward unfamiliar classmates."
+ },
+ {
+  "id": "action.gen.school-trip-bus",
+  "domain": "action",
+  "topic": "school trip bus",
+  "names": [
+   "باص رحلة مدرسية",
+   "باص الرحلة",
+   "رحلة المدرسة بالباص",
+   "حافلة الرحلة المدرسية",
+   "school trip bus",
+   "field trip bus"
+  ],
+  "body": "A school bus waits at the curb while a teacher checks names against a list. Children queue with small backpacks and water bottles, climb the steps one at a time, and shuffle sideways into paired seats. The bus dips slightly as people board; loose bag straps swing when it pulls away. Through the windows, students wave to those outside, then turn to talk to seatmates. The engine hums steadily under bursts of conversation and laughter. At a stop, bodies lean gently forward before settling back. The teacher looks down the aisle and reminds everyone to stay seated while the driver watches the road."
+ },
+ {
+  "id": "action.gen.university-graduation-photos",
+  "domain": "action",
+  "topic": "university graduation photos",
+  "names": [
+   "صور تخرج الجامعة",
+   "تصوير التخرج",
+   "صور التخرج الجامعي",
+   "university graduation photos",
+   "graduation portraits",
+   "graduation photo session"
+  ],
+  "body": "Graduates gather outside a university building in dark gowns, square caps, and coloured stoles that shift in a light breeze. One straightens another's collar while family members hold flowers and phones just outside the frame. For a group portrait, they step shoulder to shoulder, turn toward the camera, and hold their smiles through several shutter clicks. Then the formal pose breaks: friends laugh, embrace, and lift their caps briefly before catching them. Robe fabric swishes over ordinary shoes; voices call people back into position. Bright daylight casts short shadows, with stone steps, campus trees, or an entrance sign behind them."
+ },
+ {
+  "id": "action.gen.friday-family-lunch",
+  "domain": "action",
+  "topic": "Friday family lunch",
+  "names": [
+   "غداء الجمعة",
+   "غدا الجمعة",
+   "لمة غداء الجمعة",
+   "سفرة الجمعة",
+   "friday family lunch",
+   "friday lunch gathering"
+  ],
+  "body": "By early afternoon, relatives gather around a dining table or a cloth spread on the floor. A large serving dish of rice and meat, smaller plates of vegetables, bread, and bowls of salad sit within everyone's reach. Someone sets down the last hot dish using a folded cloth; steam rises as another person offers portions to older relatives and children. People lean forward to pass bread, then settle back to eat and talk. Spoons tap plates, glasses clink, and conversation overlaps without stopping for long. Sunlight enters through a window while younger children sit close to parents or move carefully around the meal."
+ },
+ {
+  "id": "action.gen.visiting-grandparents",
+  "domain": "action",
+  "topic": "visiting grandparents",
+  "names": [
+   "زيارة الجد والجدة",
+   "زيارة الاجداد",
+   "نزور جدي وجدتي",
+   "زيارة بيت الجدة",
+   "visiting grandparents",
+   "grandparents visit"
+  ],
+  "body": "At the doorway, a grandparent opens the door and smiles as family members step in carrying a small bag of fruit or sweets. A child hurries forward, slows near the threshold, and reaches up for a hug; the grandparent bends or steadies the child with both hands. Coats and shoes are put aside before everyone moves into a sitting room with cushioned chairs and family photographs. Tea glasses are set on a tray with a light clink. Adults ask after one another while children show drawings or sit close to listen. Afternoon light falls across the carpet, and greetings gradually soften into conversation."
+ },
+ {
+  "id": "action.gen.eid-morning-new-clothes",
+  "domain": "action",
+  "topic": "Eid morning kids in new clothes",
+  "names": [
+   "صباح العيد للأطفال",
+   "ملابس العيد الجديدة",
+   "هدوم العيد",
+   "لبس العيد الجديد",
+   "eid morning kids",
+   "eid new clothes"
+  ],
+  "body": "Morning light fills a home as children emerge in freshly pressed Eid outfits: crisp shirts and trousers, dresses, or traditional clothes, with clean shoes still slightly stiff. A parent smooths a collar, fastens a small button, and steps back to look; a child turns to inspect the outfit, then grins at a sibling. Outside the room, relatives exchange Eid greetings and prepare for visits. Shoes tap across tile, fabric rustles, and a phone camera clicks when the children stand together. One child shifts impatiently through the photo, eager to go, while another carefully keeps new sleeves clear of breakfast."
+ },
+ {
+  "id": "action.gen.eid-fairground-rides",
+  "domain": "action",
+  "topic": "Eid fairground rides",
+  "names": [
+   "ملاهي العيد",
+   "العاب العيد",
+   "مراجيح العيد",
+   "مدينة ألعاب العيد",
+   "eid fairground rides",
+   "eid amusement rides"
+  ],
+  "body": "At an Eid fairground, strings of coloured lights outline small rides and food stalls. Children wait with parents beside a fenced carousel; an attendant opens the gate, helps riders into seats, checks each restraint, and steps clear before it starts. The platform turns smoothly, carrying bright painted figures past the same waving families again and again. On a nearby gentle swing ride, hanging seats angle outward as it gains speed, then drift inward while slowing. Children laugh or grip the handles with wide eyes; parents follow them with phones and reassuring smiles. Motors whir beneath music, ticket calls, and the intermittent squeak of moving joints."
+ },
+ {
+  "id": "action.gen.ramadan-night-market",
+  "domain": "action",
+  "topic": "Ramadan night market",
+  "names": [
+   "سوق رمضان الليلي",
+   "سوق رمضاني",
+   "سوق رمضان بالليل",
+   "ramadan night market",
+   "ramadan souq"
+  ],
+  "body": "After sunset, narrow market lanes glow under warm bulbs and strings of small lights. Metal carts and folding tables hold dates, sweets, juice bottles and trays of fresh bread. Vendors lift food with tongs, pass paper bags across counters and call out prices over overlapping conversations. Families stroll at an unhurried pace, pausing to inspect a tray or greet someone they know; children stay close as people weave around one another. Steam rises briefly from hot food and disappears into the night air. Glasses clink, paper rustles and footsteps scuff the pavement beneath the steady hum of conversation."
+ },
+ {
+  "id": "action.gen.ramadan-mheibes-game",
+  "domain": "action",
+  "topic": "Ramadan mheibes game",
+  "names": [
+   "لعبة المحيبس",
+   "محيبس رمضان",
+   "لعبة المحابس",
+   "mheibes",
+   "mheibes game",
+   "ramadan ring game"
+  ],
+  "body": "Two teams sit facing each other in rows during a Ramadan evening gathering. One team hides a small ring while its members keep their hands closed; a player from the other team stands, scans their faces and moves along the row. He points to a fist, hesitates, then makes his choice. Players lean forward, trying to keep their expressions steady, while spectators watch for the ring to be revealed. The chosen hand opens, prompting either a burst of cheers or playful groans. Plastic chairs scrape the ground, voices rise together and the small metal ring glints briefly under courtyard or street lights."
+ },
+ {
+  "id": "action.gen.ashura-respectful-procession-distance",
+  "domain": "action",
+  "topic": "Ashura respectful procession (distance)",
+  "names": [
+   "موكب عاشوراء",
+   "مسيرة عاشوراء",
+   "عزاء عاشوراء",
+   "ashura procession",
+   "ashura march"
+  ],
+  "body": "Seen from a respectful distance, an Ashura procession moves slowly along a street in a broad, orderly flow. Many participants wear black; dark banners and green or black flags sway above their heads as walkers adjust their grip. Faces appear solemn and attentive, with people keeping pace beside relatives and neighbours. Volunteers near the edges guide walkers and offer water in small cups. Fabric ripples in the breeze, shoes sound against the road and collective chanting carries across the open space, sometimes fading beneath nearby traffic. Keep the camera outside the procession, showing its scale and atmosphere without singling out private grief."
+ },
+ {
+  "id": "action.gen.christmas-baghdad-church-respectful",
+  "domain": "action",
+  "topic": "Christmas in Baghdad church (respectful)",
+  "names": [
+   "عيد الميلاد في كنيسة بغداد",
+   "قداس الميلاد بغداد",
+   "كريسماس كنيسة بغداد",
+   "christmas baghdad church",
+   "baghdad christmas service"
+  ],
+  "body": "Inside a Baghdad church at Christmas, warm ceiling lights illuminate rows of wooden pews, a cross and modest festive decorations near the front. Worshippers in winter clothes stand or sit together, some holding service sheets and turning pages as they sing. A priest or church leader speaks from the front; listeners face forward, and a few children glance around before settling beside their families. Voices blend with the room's soft echo, punctuated by footsteps and the rustle of coats. Outside, the entrance may be lit against the evening sky. Show the service from an unobtrusive viewpoint, allowing worshippers space for prayer."
+ },
+ {
+  "id": "action.gen.newroz-fire-jumping",
+  "domain": "action",
+  "topic": "Newroz fire jumping",
+  "names": [
+   "القفز على نار نوروز",
+   "نار نوروز",
+   "قفزة نار نوروز",
+   "newroz fire jumping",
+   "nowruz fire jumping"
+  ],
+  "body": "At an outdoor Newroz gathering, a small bonfire burns on clear ground, its orange flames bending with the breeze and sending sparks upward. A participant waits for an opening, takes a short run, lifts both feet over the flame and lands on the far side with bent knees before walking on. Friends standing back watch closely, then smile, clap or call out when the landing is complete. Fire crackles beneath their voices, and shifting light catches faces, colourful clothing and nearby flags. Keep ample space around the fire; each jump is brief, with the jumper's momentum carrying them forward rather than hovering above the flames."
+ },
+ {
+  "id": "action.gen.yazidi-new-year-respectful",
+  "domain": "action",
+  "topic": "Yazidi new year (respectful)",
+  "names": [
+   "رأس السنة الإيزيدية",
+   "عيد رأس السنة الايزيدية",
+   "الأربعاء الأحمر",
+   "yazidi new year",
+   "yezidi new year",
+   "red wednesday"
+  ],
+  "body": "For Yazidi New Year, a family gathering may feature brightly dyed eggs and fresh spring flowers set near a doorway or on a table. People in neat clothes greet arriving relatives, exchange gentle smiles and arrange food while children study the eggs' vivid colours. Fingers turn an egg carefully; flower stems flex as someone sets them down. In daylight, the colours stand out against pale walls and woven cloth; conversation, footsteps and the clink of dishes fill the space. If showing worshippers at Lalish, use a quiet, observant distance and follow the setting's actual customs rather than staging a generic festival or invented ritual."
+ },
+ {
+  "id": "action.gen.national-day-celebration-flags",
+  "domain": "action",
+  "topic": "national day celebration with flags",
+  "names": [
+   "احتفال العيد الوطني العراقي",
+   "اليوم الوطني العراقي أعلام",
+   "احتفالات اليوم الوطني",
+   "iraqi national day flags",
+   "iraq national day celebration"
+  ],
+  "body": "At an Iraqi national day celebration, people gather along a street or public square holding red, white and black Iraqi flags with green lettering. Some carry small paper flags; larger fabric ones billow, fold and snap lightly as their holders raise and lower the poles. Families and groups of friends smile, take phone pictures and wave toward others across the crowd. Children imitate the adults, moving their flags in quick, uneven arcs. Streetlights or late-afternoon sun pick out the flag colours against buildings and passing cars. Music and cheers mix with traffic noise, while people shift aside to make room for others walking through."
+ },
+ {
+  "id": "action.gen.football-fans-street-win",
+  "domain": "action",
+  "topic": "football fans celebrating a win in the street",
+  "names": [
+   "احتفال الجماهير بالفوز",
+   "فرحة فوز المنتخب بالشارع",
+   "مشجعين يحتفلون بالفوز",
+   "football fans celebrating win",
+   "street football victory celebration"
+  ],
+  "body": "After a football win, fans spill onto a street in small, excited groups. Some wear team shirts or drape flags across their shoulders; others hold phones high to record friends jumping, clapping and embracing. A chant starts with a few voices and spreads as people turn toward it, grinning and raising their arms in time. Flags flutter above the crowd while moving bodies bunch together, then open a path for pedestrians. Footsteps slap the pavement, car horns sound from nearby traffic and cheers rise and fall in waves. Under streetlights, faces and shirt colours flash in and out of view as people move."
+ },
+ {
+  "id": "action.gen.iraqi-national-team-scoring",
+  "domain": "action",
+  "topic": "Iraqi national team scoring",
+  "names": [
+   "المنتخب العراقي يسجل",
+   "هدف العراق",
+   "هدف أسود الرافدين",
+   "المنتخب يسجل گول",
+   "iraq national team goal",
+   "iraqi football goal"
+  ],
+  "body": "Under bright stadium floodlights, Iraq’s players wear white or green football kits, with red, white and black flag colours visible among the crowd. A midfielder plants one boot, swings the other through the ball, and sends it skimming toward goal. The goalkeeper shifts, dives with arms outstretched, and lands on the turf as the net snaps backward. For a beat, players and spectators track the ball; then teammates sprint together, grinning and shouting, while opposing players slow and glance toward their keeper. The crowd rises in rippling rows, waving flags. A sharp kick, net rustle, referee’s whistle and swelling roar follow the action in sequence."
+ },
+ {
+  "id": "action.gen.kids-flying-kites-on-a-roof",
+  "domain": "action",
+  "topic": "kids flying kites on a roof",
+  "names": [
+   "أطفال يطيرون طيارات ورق",
+   "لعب الطيارات فوق السطح",
+   "أطفال يطيّرون طيارات",
+   "kids flying rooftop kites",
+   "children flying kites on a roof"
+  ],
+  "body": "On a flat Iraqi rooftop enclosed by a solid parapet, children stand in an open area clear of wires. One holds a light diamond-shaped kite of coloured paper and thin sticks while another backs away, unwinding string from a small spool. A gust lifts the paper; the holder releases it, and the kite wobbles before its tail steadies it. The child with the spool leans back slightly, lets out line, then pulls gently to keep tension. Faces tilt upward, brows tense briefly, then break into smiles. Sand-coloured roofs sit in warm late-afternoon light. Footsteps scrape concrete, the spool clicks, and the paper flutters in the breeze."
+ },
+ {
+  "id": "action.gen.pigeon-flying-from-a-rooftop-mutayyirchi",
+  "domain": "action",
+  "topic": "pigeon flying from a rooftop (mutayyirchi)",
+  "names": [
+   "مطيرجي",
+   "مطيّرچي",
+   "طيور المطيرجي",
+   "حمام يطير من السطح",
+   "mutayyirchi pigeons",
+   "rooftop pigeon flying"
+  ],
+  "body": "On a flat rooftop, a mutayyirchi stands beside a simple pigeon loft of wood and wire mesh. Grey and white pigeons cluster on the ledge, bobbing their heads in the morning sun. The keeper raises an arm and gives a short call. One bird crouches, pushes off with pink feet, and beats its wings hard to clear the parapet; others follow in quick succession. Their wings flash pale underneath as the flock climbs and curves together above nearby roofs. The keeper watches with chin lifted and a focused, pleased expression. Claws tap the ledge, wings clap and rush through the air, and soft coos fade below the circling birds."
+ },
+ {
+  "id": "action.gen.playing-football-in-a-dusty-field",
+  "domain": "action",
+  "topic": "playing football in a dusty field",
+  "names": [
+   "كرة قدم في ساحة ترابية",
+   "لعب طوبة بالتراب",
+   "مباراة كرة بساحة ترابية",
+   "dusty field football",
+   "playing soccer on dirt"
+  ],
+  "body": "On a dry, uneven dirt field, two small goals are marked by stones or spare shoes. Players in mixed T-shirts, shorts and trainers spread out, squinting in the low sun. A pass rolls unevenly over hard earth and loose dust; a runner adjusts their stride, traps it with one foot, then nudges it past a defender. The defender pivots and chases, kicking up a thin cloud that hangs briefly before settling. Teammates call for the ball, one raising an arm, while onlookers at the edge follow the play with eager faces. Shoes scuff, the ball makes a dull thump, and voices carry across the open ground."
+ },
+ {
+  "id": "action.gen.street-basketball",
+  "domain": "action",
+  "topic": "street basketball",
+  "names": [
+   "كرة سلة بالشارع",
+   "لعب سلة بالحارة",
+   "مباراة سلة شارع",
+   "street basketball",
+   "neighborhood basketball game"
+  ],
+  "body": "On a paved neighbourhood court, a metal hoop and backboard stand above faded painted lines. Players in casual sportswear shift on bent knees, their shoes squeaking where the surface is smooth and scuffing where dust has gathered. One dribbler lowers a shoulder, changes hands, takes two quick steps and releases the ball with an extended wrist. A defender reaches upward without contact; both watch its arc. The ball clips the rim with a metallic ring, drops through the net, and bounces away. Teammates grin and point for the next pass while others turn to retrieve it. Afternoon light throws long, crisp shadows across the court."
+ },
+ {
+  "id": "action.gen.kids-swimming-in-a-river",
+  "domain": "action",
+  "topic": "kids swimming in a river",
+  "names": [
+   "أطفال يسبحون بالنهر",
+   "سباحة أطفال في النهر",
+   "جهال يسبحون بالنهر",
+   "kids swimming in a river",
+   "children river swimming"
+  ],
+  "body": "At a calm, shallow stretch of river beside a gently sloping bank, children wade under the close watch of adults. Sunlight breaks into moving flecks on brown-green water. One child steps in carefully, water climbing from ankles to waist, then pushes forward with alternating arm strokes and steady kicks. Another surfaces nearby, brushes wet hair from their forehead and laughs; an adult smiles and keeps eyes on both swimmers. Small ripples spread from their bodies and bend around reeds at the edge. Water slaps softly against the bank, kicks splash in quick bursts, and voices sound open and slightly distant above the current."
+ },
+ {
+  "id": "action.gen.family-boat-trip-on-the-tigris",
+  "domain": "action",
+  "topic": "family boat trip on the Tigris",
+  "names": [
+   "نزهة عائلية في دجلة",
+   "رحلة زورق بنهر دجلة",
+   "طلعة عائلية بالزورق بدجلة",
+   "family boat trip on the tigris",
+   "tigris family boat ride"
+  ],
+  "body": "A small passenger boat moves steadily along the Tigris, its low hull parting opaque brown-green water into a V-shaped wake. Family members sit inside the rails, with children in life jackets beside adults. One child points toward the Baghdad riverbank; the others turn, smile and lean only slightly for a better look. The driver keeps a hand on the tiller, making a small correction as the boat crosses gentle ripples. Sunlight glitters on the water and lights faces beneath the boat’s shade. The motor hums evenly, water taps the hull, and conversation rises and falls against distant traffic sounds."
+ },
+ {
+  "id": "action.gen.picnic-at-abu-nuwas",
+  "domain": "action",
+  "topic": "picnic at Abu Nuwas",
+  "names": [
+   "نزهة أبو نواس",
+   "سفرة بأبو نؤاس",
+   "قعدة عائلية بأبو نواس",
+   "abu nuwas picnic",
+   "abu nawas riverside picnic"
+  ],
+  "body": "Along Baghdad’s Abu Nuwas riverside promenade, a family spreads a patterned mat on a grassy patch beneath trees. Paper cups, water bottles, fruit and covered food containers are arranged within easy reach. An adult sits cross-legged and opens a container while children settle onto the mat, then glance toward the Tigris beyond the walkway. Someone passes a plate; hands reach, pause politely, and draw back with food. Faces are relaxed, with conversation and occasional laughter. Late-afternoon light filters through leaves onto the mat, while a light breeze shifts napkins. Nearby footsteps, soft traffic, birds and overlapping voices form the background sound."
+ },
+ {
+  "id": "action.gen.rooftop-barbecue",
+  "domain": "action",
+  "topic": "barbecue on a rooftop",
+  "names": [
+   "شواء على السطح",
+   "مشاوي عالسطح",
+   "حفلة شواء فوق السطح",
+   "rooftop barbecue",
+   "roof grill"
+  ],
+  "body": "On a flat concrete rooftop, a small charcoal brazier stands clear of laundry lines and the low parapet. One person turns metal skewers with a cloth-wrapped hand; the meat rotates, drips onto glowing coals, and makes a sharp hiss. Another fans the coals, sending brief orange sparks upward and smoke sideways with the breeze. Plates of flatbread, sliced tomatoes, and onions sit on a plastic table. Family members lean in to talk, then step back from the smoke, blinking or smiling. Tongs clink against the brazier. In the evening light, neighboring roofs and water tanks form a dim backdrop."
+ },
+ {
+  "id": "action.gen.late-night-street-tea",
+  "domain": "action",
+  "topic": "late night tea on the street",
+  "names": [
+   "شاي آخر الليل بالشارع",
+   "شاي بالشارع بالليل",
+   "شاي ليلي في الشارع",
+   "late night street tea",
+   "midnight tea stall"
+  ],
+  "body": "A street tea seller stands beside a small cart under a bright bulb. A kettle steams over a burner while rows of narrow glass cups catch reflections from passing headlights. The seller lifts the kettle, pours a thin amber stream, sets it down with a metal tap, and slides a cup across the counter. A customer wraps fingers around the rim or holds the hot glass by its upper edge, blows across the surface, and takes a careful sip. Companions speak quietly, their faces relaxed and slightly tired. Spoons click against glass; traffic hums beyond the pool of light."
+ },
+ {
+  "id": "action.gen.cafe-domino-tournament",
+  "domain": "action",
+  "topic": "domino tournament in a cafe",
+  "names": [
+   "بطولة دومينو بالمقهى",
+   "مسابقة دومينو في المقهى",
+   "منافسة دومنة بالكهوة",
+   "cafe domino tournament",
+   "domino competition"
+  ],
+  "body": "Two players sit across a worn cafe table, with spectators close enough to see the domino pips but not touch the pieces. Each player studies a short row of upright tiles, selects one, and places it against the matching end of the chain with a crisp clack. The chain bends around cups and an ashtray or napkin holder as space runs out. A scorekeeper marks numbers on paper. During a difficult turn, the room quiets; eyebrows lift, fingers hover, and someone leans forward. After a decisive tile, players smile or shake their heads while spectators talk over the rattle of teaspoons and low cafe noise."
+ },
+ {
+  "id": "action.gen.watching-match-in-cafe",
+  "domain": "action",
+  "topic": "watching a match in a cafe",
+  "names": [
+   "مشاهدة مباراة بالمقهى",
+   "متابعة الماتش بالكهوة",
+   "مباراة كرة قدم في المقهى",
+   "watching a match in a cafe",
+   "cafe football viewing"
+  ],
+  "body": "Cafe chairs face a wall-mounted television, its bright green pitch reflecting faintly in tea glasses. Viewers sit forward as a footballer nears the goal; one grips the chair back, another raises a hand without taking their eyes off the screen. The commentator’s voice rises above the cafe murmur. At a near miss, several people exhale together, hands dropping and faces tightening into rueful smiles. At a goal, they spring upright, clap, and call out while glasses tremble slightly on the tables. A server pauses with a tray, watches the replay, then weaves between chairs as conversation resumes."
+ },
+ {
+  "id": "action.gen.eid-clothes-shopping",
+  "domain": "action",
+  "topic": "shopping for Eid clothes",
+  "names": [
+   "تسوق ملابس العيد",
+   "شراء هدوم العيد",
+   "ملابس عيد جديدة",
+   "shopping for eid clothes",
+   "eid outfit shopping"
+  ],
+  "body": "Inside a busy clothing shop, bright dresses, shirts, and pressed trousers hang in dense rows beneath white ceiling lights. A parent holds a garment against a child’s shoulders, steps back to judge the length, then checks the tag. The child turns toward a mirror, smoothing the fabric and looking for approval; a sibling points to another color. Hangers scrape along the rail, tissue paper rustles, and shop staff fold rejected sizes back onto shelves. At the fitting-room curtain, someone waits with spare clothes over one arm. Shoppers compare seams and fit, smiling when an outfit sits comfortably."
+ },
+ {
+  "id": "action.gen.buying-gold-for-bride",
+  "domain": "action",
+  "topic": "buying gold for a bride",
+  "names": [
+   "شراء ذهب للعروس",
+   "ذهب عروس",
+   "شراء ذهب للعروسة",
+   "buying bridal gold",
+   "bride gold shopping"
+  ],
+  "body": "In a jewelry shop, warm spotlights strike rows of gold necklaces and bangles inside glass cases. The jeweler lays a velvet pad on the counter and lifts each piece with careful fingers. The bride tries a necklace; a companion adjusts the clasp behind her neck while she tips her chin up and studies the mirror. A bangle slides over her hand with a soft metallic click. Family members look from the jewelry to her face, exchanging small smiles and questions. The jeweler checks the weight on a digital scale and points out the price, while reflections ripple across the polished glass."
+ },
+ {
+  "id": "action.gen.trying-perfumes",
+  "domain": "action",
+  "topic": "trying perfumes",
+  "names": [
+   "تجربة العطور",
+   "نجرب عطور",
+   "تجريب العطر",
+   "trying perfumes",
+   "testing fragrances"
+  ],
+  "body": "At a perfume counter, small glass bottles stand in neat rows, their caps catching the overhead light. A salesperson sprays a paper strip once, holds it away for a moment, then passes it to a customer. The customer brings the strip near the nose, lowers it, and smells again before choosing another. Fine mist hangs briefly in the air and disappears. A companion compares two labeled strips side by side, raising their eyebrows at a favorite. Bottle caps make light clicks against glass; nearby shoppers talk softly. After several samples, the customer sets the strips apart to keep the scents distinct."
+ },
+ {
+  "id": "action.gen.bargaining-for-carpet",
+  "domain": "action",
+  "topic": "bargaining for a carpet",
+  "names": [
+   "مساومة على سجادة",
+   "مفاصلة على زولية",
+   "مساومة على بساط",
+   "bargaining for a carpet",
+   "carpet price negotiation"
+  ],
+  "body": "In a carpet shop, rolled rugs lean against the wall while one patterned carpet lies open across the floor. The seller grips a corner and flips it back to show the tight weave underneath; the fabric bends, then settles with a soft thump. The customer walks around it, rubs the pile between finger and thumb, and asks the price. The seller names a figure; the customer offers a lower one with a small smile. They trade numbers, gestures, and brief pauses while a companion studies the colors under the shop lights. When they agree, both faces ease and the carpet is rolled tightly for carrying."
+ },
+ {
+  "id": "action.gen.choosing-fish-at-market",
+  "domain": "action",
+  "topic": "choosing fish at the market",
+  "names": [
+   "اختيار السمك",
+   "شراء السمك",
+   "انتخاب السمچ",
+   "شراء سمچ",
+   "choosing fish",
+   "fish market"
+  ],
+  "body": "At a crowded Iraqi fish stall, whole silver-grey fish lie side by side on crushed ice in a shallow metal tray. The buyer leans in, points to one fish, then gently presses its side; the flesh gives slightly and springs back. The seller lifts it by the tail, turns it to show the clear eye and reddish gills, and lowers it onto the ice with a wet tap. The buyer studies it, nods or points to another. Their expressions are attentive rather than theatrical. Meltwater trickles toward a drain while vendors call prices over the soft scrape of ice and the clink of metal trays."
+ },
+ {
+  "id": "action.gen.buying-bread-at-dawn",
+  "domain": "action",
+  "topic": "buying bread at dawn",
+  "names": [
+   "شراء الخبز فجرا",
+   "شراء الصمون فجرا",
+   "شراء الخبز الفجر",
+   "شراء صمون الصبح",
+   "buying bread at dawn",
+   "dawn bread purchase"
+  ],
+  "body": "Before sunrise, a bakery doorway glows warm yellow against a cool blue street. Fresh oval samoon loaves sit in rows on a wooden shelf, their pointed ends and browned, blistered crusts visible through a little steam. The customer steps up and states a quantity. The baker counts the loaves with quick, practiced movements, gathers them into a paper bag, and passes it across the counter. The customer takes the bag from underneath, pays, and turns away with a faint smile. Other customers wait nearby, shifting their weight against the morning chill. Oven heat hums at the doorway; paper rustles, coins click, and a baking tray scrapes against its rack."
+ },
+ {
+  "id": "action.gen.selling-watermelons-from-truck",
+  "domain": "action",
+  "topic": "selling watermelons from a truck",
+  "names": [
+   "بيع البطيخ من شاحنة",
+   "بيع الرقي من شاحنة",
+   "بياع الرگي",
+   "بيع رگي من السيارة",
+   "watermelons from a truck",
+   "truck watermelon seller"
+  ],
+  "body": "A small flatbed truck stands at the edge of a market street, its bed stacked with round and oblong watermelons striped dark and pale green. A folded cloth or cardboard sheet cushions the fruit near the tailgate. The seller calls out, then braces one melon with both hands, lifts it against the torso, and lowers it onto a scale or the truck’s edge. A customer watches the reading and gestures toward another melon; the seller turns it so its lighter ground spot is visible. Faces stay focused, brightening when they agree. Each melon lands with a heavy, dull thud; traffic, voices, and the scale’s faint rattle fill the hot daylight."
+ },
+ {
+  "id": "action.gen.fruit-seller-arranging-pyramids",
+  "domain": "action",
+  "topic": "fruit seller arranging pyramids",
+  "names": [
+   "ترتيب هرم الفاكهة",
+   "ترتيب الفواكه هرمي",
+   "رص الفواكه",
+   "بياع فواكه يرتب",
+   "fruit seller arranging pyramids",
+   "fruit pyramid display"
+  ],
+  "body": "Under a striped market awning, shallow crates support neat pyramids of oranges, apples, or pomegranates. The seller starts with a wide, stable bottom row, sets each round fruit into the gap between two below it, then narrows the rows toward the top. Fingers pause to rotate a bruised side out of sight or steady a piece that begins to roll. A nearby shopper glances over the display while the seller steps back, checks the outline, and makes one small adjustment. The fruit’s waxy skins catch patches of sunlight. Crates creak, fruit knocks softly against fruit, and overlapping market calls carry through the shade."
+ },
+ {
+  "id": "action.gen.spice-seller-scooping",
+  "domain": "action",
+  "topic": "spice seller scooping",
+  "names": [
+   "بائع التوابل يغرف",
+   "بائع البهارات يكيل",
+   "بياع بهارات يغرف",
+   "تعبئة البهارات بالمغرفة",
+   "spice seller scooping",
+   "scooping spices"
+  ],
+  "body": "Mounds of turmeric-yellow powder, brick-red chilli, and warm brown spice blends fill separate metal bins in a narrow market shop. The seller holds a paper pouch open with one hand and drags a small metal scoop through the requested spice with the other. They lift it steadily, tip the powder into the pouch, tap the scoop once against the rim, then fold the paper top. A customer watches the measure and reaches for the finished packet; both keep their eyes on the exchange. Fine dust briefly floats through a shaft of daylight. The scoop rasps against metal, grains hiss into paper, and voices pass along the aisle."
+ },
+ {
+  "id": "action.gen.tea-seller-with-tray-in-market",
+  "domain": "action",
+  "topic": "tea seller with a tray in the market",
+  "names": [
+   "بائع الشاي بصينية",
+   "بائع الشاي في السوق",
+   "بياع چاي بصينية",
+   "چايچي السوق",
+   "tea seller with a tray",
+   "market tea seller"
+  ],
+  "body": "A tea seller threads through a busy market aisle carrying a round metal tray at waist height. Small clear, narrow-waisted glasses of dark amber tea sit on it beside a sugar bowl and teaspoons. The seller shortens each step around shoppers, keeping the tray nearly level as the liquid trembles close to the glass rims. At a stall, a vendor turns from the counter, smiles in recognition, and reaches out only after the seller stops. The seller offers a glass by its upper rim, then waits for payment while the vendor takes a cautious first sip. Spoons chime against glass; footsteps and bargaining calls continue around them."
+ },
+ {
+  "id": "action.gen.shoeshine-boy",
+  "domain": "action",
+  "topic": "shoeshine boy",
+  "names": [
+   "صبي تلميع الأحذية",
+   "ماسح الأحذية الصغير",
+   "ولد يصبغ قنادر",
+   "صبي يلمع أحذية",
+   "shoeshine boy",
+   "boy shining shoes"
+  ],
+  "body": "A young shoeshiner sits beside a compact wooden box holding brushes, polish tins, and a folded cloth. A customer rests one shoe on the box’s angled footrest and looks down while the boy checks the leather, opens a tin, and applies a thin coat with a small brush. He works around the toe and seams, then buffs with a larger brush in brisk, alternating strokes. The leather gradually reflects a sharper patch of daylight. The customer lifts the finished foot, examines it, and offers the other shoe; the boy gives a small acknowledging nod. Brush bristles rasp rhythmically beneath nearby footsteps and market conversation."
+ },
+ {
+  "id": "action.gen.porter-pushing-cart-in-shorja",
+  "domain": "action",
+  "topic": "porter pushing a cart in Shorja",
+  "names": [
+   "حمّال يدفع عربة في الشورجة",
+   "عتال الشورجة",
+   "دفع عربة بالشورجة",
+   "حمّال عربانة الشورجة",
+   "shorja porter pushing cart",
+   "porter cart shorja"
+  ],
+  "body": "In Baghdad’s Shorja market, a porter guides a low, two-wheeled handcart through a narrow aisle lined with stacked cartons and shopfronts. Boxes are tied down with rope; their edges quiver as the wheels cross uneven paving. The porter leans forward into the handles, pushes with short steps, then eases back to slow the load when pedestrians enter the path. A shopper turns sideways to let it pass, and a shopkeeper watches from a doorway before returning to work. The porter’s face stays intent, eyes tracking gaps ahead. Wheels clatter over seams, rope rubs against cardboard, and market calls echo between the buildings."
+ },
+ {
+  "id": "action.gen.restaurant-grill-master",
+  "domain": "action",
+  "topic": "restaurant grill master",
+  "names": [
+   "معلم المشاوي",
+   "شيف المشاوي",
+   "أسطة الكباب",
+   "مشاوي مطعم",
+   "grill master",
+   "kebab chef"
+  ],
+  "body": "At a busy Iraqi restaurant, the grill master stands beside a long metal charcoal brazier, sleeves rolled above the elbows. He lays flat skewers of minced kebab across the rim, then turns each by its handle so the meat browns evenly without touching the coals. Fat drips and hisses; a brief orange flare lights his focused face. He shifts chicken pieces to a cooler section and fans the embers with a stiff board. Metal handles clink, charcoal crackles, and diners talk behind him. An assistant watches for his nod, then carries the cooked skewers toward plates of flatbread, onions, and parsley."
+ },
+ {
+  "id": "action.gen.falafel-maker-frying",
+  "domain": "action",
+  "topic": "falafel maker frying",
+  "names": [
+   "صانع فلافل",
+   "قلي الفلافل",
+   "فلافلجي",
+   "فلافل حار",
+   "falafel maker",
+   "frying falafel"
+  ],
+  "body": "Behind a small falafel counter, the maker scoops green-speckled chickpea mixture into a shallow metal mold, levels it with a thumb, and flicks each round patty into hot oil. It sinks briefly, rises as bubbles gather around its edges, then turns from pale green-brown to deep golden brown. The maker leans back from the steam, watching closely; a waiting customer smiles when the first batch surfaces. Oil crackles steadily as a wire skimmer lifts the crisp patties, pauses to let droplets fall, and tips them into a perforated tray. Bright shop lights catch their rough, crumbly surfaces beside stacks of flatbread and pickles."
+ },
+ {
+  "id": "action.gen.shawarma-cook-slicing",
+  "domain": "action",
+  "topic": "shawarma cook slicing",
+  "names": [
+   "شيف شاورما",
+   "قص الشاورما",
+   "تقطيع الشاورما",
+   "معلم شاورما",
+   "shawarma cook",
+   "shawarma slicing"
+  ],
+  "body": "In a lit shawarma shop, stacked slices of marinated chicken rotate slowly on a vertical spit beside glowing heaters. The cook waits until the outer layer browns, steadies a tray beneath it, and draws a long knife downward in short, controlled strokes. Thin curls fall into the tray while the inner layers keep turning; the blade makes soft scraping sounds over the hiss of dripping fat. His face stays intent, and the sandwich maker beside him glances up, ready with open flatbread. The cook tips the hot slices onto the bread, where they settle among pickles and sauce as customers watch from the counter."
+ },
+ {
+  "id": "action.gen.kubba-makers-shaping",
+  "domain": "action",
+  "topic": "kubba makers shaping",
+  "names": [
+   "عمل الكبة",
+   "تشكيل الكبة",
+   "تكبيب الكبة",
+   "صنع كبة حلب",
+   "kubba shaping",
+   "kubba makers"
+  ],
+  "body": "Around a kitchen table, kubba makers shape small portions of yellow-tinted rice dough for kubba Halab. One person rolls a piece between damp palms, presses a thumb into its center, and turns it to thin the walls into a hollow oval. Another spoons in cooled minced-meat and onion filling; the first pinches the opening shut and smooths the seam without squeezing out the filling. Their concentrated faces soften into smiles when a neatly sealed piece joins the rows on a tray. Damp fingers make faint tapping sounds against bowls, spoons clink, and the finished kubba hold their shape under warm kitchen light."
+ },
+ {
+  "id": "action.gen.dolma-rolling-with-family",
+  "domain": "action",
+  "topic": "dolma rolling with family",
+  "names": [
+   "لف الدولمة",
+   "دولمة عائلية",
+   "حشي الدولمة",
+   "لف ورق العنب",
+   "family dolma",
+   "rolling dolma"
+  ],
+  "body": "Family members sit close around a low table covered with grape leaves, hollowed vegetables, and a bowl of rice mixed with herbs and tomato. One person lays a leaf vein-side up, places a small spoonful of filling near its base, folds both sides inward, and rolls it into a compact cylinder. Another lines the rolls tightly in a heavy pot so they cannot unravel during cooking. A child watches, tries a loose roll, and grins as an older relative gently tucks its edges in. Leaves rustle, spoons tap the bowl, and conversation runs beneath the work. Window light shows the leaves’ olive-green veins and glossy surfaces."
+ },
+ {
+  "id": "action.gen.baking-kleicha-for-eid",
+  "domain": "action",
+  "topic": "baking kleicha for Eid",
+  "names": [
+   "خبز كليجة العيد",
+   "كليجة العيد",
+   "عمل الكليجة",
+   "كليجة تمر",
+   "eid kleicha",
+   "baking kleicha"
+  ],
+  "body": "In a home kitchen before Eid, hands flatten small rounds of soft dough and set a narrow strip of dark date paste across each center. The baker folds the dough over, pinches the seam closed, then presses a patterned wooden mold onto the top. A helper arranges the pieces on a metal tray with finger-width gaps and smiles at the clean impressions. The tray slides into a hot oven with a metallic scrape. As the kleicha bakes, its pale surface turns lightly golden at the edges while the stamped lines remain visible. Oven heat shimmers at the open door; trays clatter and the family talks nearby."
+ },
+ {
+  "id": "action.gen.making-iraqi-breakfast-geymar",
+  "domain": "action",
+  "topic": "making Iraqi breakfast geymar",
+  "names": [
+   "عمل قيمر عراقي",
+   "قيمر الفطور",
+   "كيمر عراقي",
+   "قشطة الجاموس",
+   "iraqi geymar",
+   "making geymar"
+  ],
+  "body": "For Iraqi breakfast geymar, buffalo milk is heated gently in a wide, shallow pan, then left undisturbed to cool for hours. In the morning, a thick cream layer rests on top, ivory with faint beige patches and soft wrinkles. The cook slides a broad spoon beneath one edge and lifts slowly, keeping the delicate sheet from tearing. It folds under its own weight into a shallow serving dish with a quiet wet sound. The cook looks closely while a family member sets out warm bread and date syrup, smiling at the generous portion. Morning light catches the geymar’s moist surface; it spreads softly when touched, rather than pouring like milk."
+ },
+ {
+  "id": "action.gen.pouring-date-syrup",
+  "domain": "action",
+  "topic": "pouring date syrup",
+  "names": [
+   "صب دبس التمر",
+   "دبس تمر",
+   "عسل التمر",
+   "سكب الدبس",
+   "pouring date syrup",
+   "date syrup"
+  ],
+  "body": "A hand tilts a small glass jar of date syrup above a dish of Iraqi geymar. The syrup gathers at the lip before descending in a thick, continuous ribbon, dark reddish brown in the light and nearly black where it pools. The pourer rotates the wrist to trace a loose spiral; the ribbon bends slowly and settles into glossy raised lines instead of splashing. A final strand stretches from the jar, narrows, and snaps onto the dish with a faint sticky tap. Someone beside the table leans in with an expectant smile. A spoon touches the ceramic with a light clink, while morning light reflects in narrow highlights across the syrup."
+ },
+ {
+  "id": "action.gen.cutting-whole-roasted-lamb",
+  "domain": "action",
+  "topic": "cutting a whole roasted lamb",
+  "names": [
+   "تقطيع خروف مشوي",
+   "تقطيع خاروف مشوي",
+   "قص الخاروف المشوي",
+   "carving roast lamb",
+   "cutting roasted lamb"
+  ],
+  "body": "A whole roasted lamb lies on a broad metal platter, its browned skin glossy with rendered fat and its legs tucked close to the body. An adult steadies one shoulder with a serving fork, then draws a knife through the crisp skin and soft meat in short, controlled strokes. The blade taps bone; a slice separates and settles onto the platter, showing pale, steaming meat beneath the dark crust. Nearby diners lean in or wait with plates, smiling and speaking quietly. Warm indoor light catches the platter’s rim. Each cut brings a faint crackle, a scrape of metal and a soft clink."
+ },
+ {
+  "id": "action.gen.serving-rice-on-big-tray",
+  "domain": "action",
+  "topic": "serving rice on a big tray",
+  "names": [
+   "تقديم الرز بصينية كبيرة",
+   "تقديم الأرز في صينية كبيرة",
+   "غرف التمن بالصينية",
+   "serving rice on a large tray",
+   "big tray of rice"
+  ],
+  "body": "A wide, shallow metal tray holds a mound of long-grain rice, white and lightly golden where seasoning or cooking juices have touched it. The grains sit loosely rather than forming a solid block. A server slides a broad spoon under one portion, lifts it with a small turn of the wrist and lowers it onto a waiting plate; a few grains tumble back with a dry patter. Family or guests sit close around the table, watching for their turn and making room for each plate. Overhead light glints on the tray and spoon. Porcelain clinks softly beneath conversation."
+ },
+ {
+  "id": "action.gen.washing-hands-before-meal",
+  "domain": "action",
+  "topic": "washing hands before a meal",
+  "names": [
+   "غسل اليدين قبل الأكل",
+   "غسل اليدين قبل الطعام",
+   "غسل الإيدين قبل الأكل",
+   "washing hands before eating",
+   "handwashing before a meal"
+  ],
+  "body": "At a sink near the dining area, a person rolls their sleeves clear of the wrists and turns on the tap. Water strikes the basin with a steady splash. They wet both hands, rub soap across palms, between fingers, around thumbs and over the backs of the hands, then rinse until the suds run away. Droplets gather at the fingertips before falling into the basin. A towel absorbs the remaining water with a soft rustle. Other diners may wait nearby or finish setting the table. Bright bathroom or kitchen light reveals the water on skin and the clean ceramic or steel sink."
+ },
+ {
+  "id": "action.gen.eating-watermelon-in-summer",
+  "domain": "action",
+  "topic": "eating watermelon in summer",
+  "names": [
+   "أكل البطيخ بالصيف",
+   "أكل الرقي بالصيف",
+   "تناول البطيخ في الصيف",
+   "eating watermelon in summer",
+   "summer watermelon slice"
+  ],
+  "body": "In summer light, chilled watermelon sits in thick triangular slices on a plate, its red flesh wet and grainy, bordered by a thin pale layer and dark green rind. A seated person lifts one slice by the rind, leans forward and bites into the soft flesh. The cut edge breaks with a quiet crunch; juice shines on the lips and runs toward the rind, so the person pauses to catch it with a napkin. Companions eat or chat nearby, their expressions relaxed. A fan hums or outdoor insects sound in the background. Sunlight makes the red slices look especially translucent at their edges."
+ },
+ {
+  "id": "action.gen.car-racing-on-track",
+  "domain": "action",
+  "topic": "car racing on a track",
+  "names": [
+   "سباق سيارات على الحلبة",
+   "سباق سيارات بالمضمار",
+   "سباق سيارات بالحلبة",
+   "car racing on a track",
+   "circuit car race"
+  ],
+  "body": "On a closed racing circuit, low cars with numbered doors approach a bend between painted curbs and safety barriers. Helmeted drivers remain strapped inside, looking through the turn. Each driver brakes before the corner, the car’s nose dipping slightly as weight moves onto the front tires, then steers through and accelerates onto the straight. Tires grip with a brief squeal; engine notes fall under braking and rise sharply on exit. Marshals and spectators stay behind barriers, following the cars with their heads. Clear daylight throws compact shadows beneath the vehicles, while heat shimmer softens the distant asphalt."
+ },
+ {
+  "id": "action.gen.car-showroom-walkaround",
+  "domain": "action",
+  "topic": "car showroom walkaround",
+  "names": [
+   "جولة حول سيارة بالمعرض",
+   "استعراض سيارة في المعرض",
+   "لفة حول السيارة بالمعرض",
+   "car showroom walkaround",
+   "showroom car tour"
+  ],
+  "body": "A clean display car stands under broad showroom lights on a polished floor. A presenter walks slowly from the front corner along one side, leaving space for a clear view of the grille, headlights, wheel arches and doors. They gesture toward a detail, open a door with one hand and step aside as it swings outward on its hinges. The cabin’s seats, dashboard and door trim come into view. A customer watches, nods and leans closer without blocking the doorway. Reflections slide across the paint as the viewpoint moves. Footsteps, a door latch click and low conversation carry through the bright indoor space."
+ },
+ {
+  "id": "action.gen.car-test-drive",
+  "domain": "action",
+  "topic": "test drive",
+  "names": [
+   "تجربة قيادة سيارة",
+   "تجربة سياقة سيارة",
+   "تجربة سواقة سيارة",
+   "car test drive",
+   "test driving a car"
+  ],
+  "body": "On an ordinary road, a prospective driver adjusts the seat and mirrors, fastens the belt and checks for traffic before pulling away. A salesperson sits in the passenger seat, facing forward and speaking calmly. The driver’s hands turn the wheel smoothly; the car rolls from a stop, its body settling slightly as it accelerates. At a junction, the driver eases off, brakes gently and looks both ways before continuing. Tire noise changes with the road surface, while the indicator ticks and the engine or motor responds to the pedal. Daylight moves across the dashboard and the occupants’ attentive faces."
+ },
+ {
+  "id": "action.gen.car-wash-with-foam",
+  "domain": "action",
+  "topic": "car wash with foam",
+  "names": [
+   "غسيل سيارة بالرغوة",
+   "غسل السيارة بالفوم",
+   "غسيل السيارة بالفوم",
+   "foam car wash",
+   "washing a car with foam"
+  ],
+  "body": "A parked car stands in a wash bay with its windows closed. A worker sweeps a foam lance from the roof downward, laying thick white suds across the glass, paint and wheels. Foam clings briefly, then slides in uneven trails, gathering along trim and dripping onto the wet floor. The worker moves around the car at a steady pace, keeps the nozzle clear of the paint and rinses from top to bottom. Water pushes the suds off in sheets, revealing glossy panels and bright reflections from the bay lights. The spray hisses, droplets rattle against the floor and runoff gurgles toward a drain."
+ },
+ {
+  "id": "action.gen.changing-engine-oil",
+  "domain": "action",
+  "topic": "changing engine oil",
+  "names": [
+   "تغيير زيت المحرك",
+   "تبديل زيت السيارة",
+   "تغيير دهن المكينة",
+   "تبديل دهن الماطور",
+   "changing engine oil",
+   "car oil change"
+  ],
+  "body": "In a shaded garage, a mechanic parks on level concrete, switches off the engine and raises the car onto sturdy stands. With a drain pan beneath the engine, they loosen the sump plug; dark oil first drips, then streams into the pan with a hollow patter. Their focused face turns aside from the flow while a helper watches from beside the car. The mechanic replaces the plug and cylindrical filter, then pours clear amber oil through a funnel under the hood. Plastic bottles crinkle, tools click, and a rag wipes the dipstick clean before the level is checked."
+ },
+ {
+  "id": "action.gen.towing-a-car",
+  "domain": "action",
+  "topic": "towing a car",
+  "names": [
+   "سحب سيارة",
+   "قطر سيارة",
+   "سحب السيارة بالسطحة",
+   "ونش سحب سيارات",
+   "towing a car",
+   "car tow truck"
+  ],
+  "body": "On a roadside, a flatbed truck lowers its steel bed until the rear edge meets the asphalt. The tow operator, in a reflective vest, attaches a winch hook to the car’s approved tow point and steps clear. The cable straightens, the motor whines, and the car rolls slowly up the tilted bed, its suspension bobbing over the edge. A concerned driver watches from the pavement while the operator checks the wheels with a concentrated expression. Once centered, the operator secures wheel straps; ratchets click tightly. Passing traffic hums beyond the truck’s flashing amber lights."
+ },
+ {
+  "id": "action.gen.construction-crane-lifting",
+  "domain": "action",
+  "topic": "construction crane lifting",
+  "names": [
+   "رفع مواد برافعة البناء",
+   "رافعة بناء ترفع حمولة",
+   "كرين يرفع مواد",
+   "رفع بالونش الإنشائي",
+   "construction crane lifting",
+   "crane hoisting load"
+  ],
+  "body": "At a dusty building site, a crane’s long lattice boom rises above unfinished concrete floors. A rigger checks the slings around a bundled load, then backs away and signals the operator. The hoist cable tightens; the bundle lifts slowly, hangs nearly level and sways slightly as the crane turns. The operator watches from the cab with a fixed, attentive gaze, while workers on the receiving floor look up and keep clear of the space beneath it. A steady engine rumble, cable hum and occasional radio calls accompany the movement. The load settles gently onto timber blocks."
+ },
+ {
+  "id": "action.gen.laying-bricks",
+  "domain": "action",
+  "topic": "laying bricks",
+  "names": [
+   "بناء جدار طابوق",
+   "رص الطابوق",
+   "صف الطابوق",
+   "بناء حائط بالطوب",
+   "laying bricks",
+   "bricklaying"
+  ],
+  "body": "Beside a partly built wall, a mason scoops grey mortar from a board and spreads a thick strip along the top course with a steel trowel. They butter one end of a reddish brick, set it against its neighbour and press down until mortar squeezes from the joints. A tap of the trowel aligns it with a taut string; excess mortar is scraped away. The mason’s eyes follow the line, while a helper calmly passes bricks from a nearby stack. Trowel edges scrape, bricks knock softly together, and damp mortar squelches in the bright, dusty work area."
+ },
+ {
+  "id": "action.gen.tiling-a-floor",
+  "domain": "action",
+  "topic": "tiling a floor",
+  "names": [
+   "تبليط أرضية",
+   "تركيب بلاط الأرض",
+   "فرش سيراميك الأرض",
+   "تطبيق كاشي الأرضية",
+   "tiling a floor",
+   "floor tile installation"
+  ],
+  "body": "In an unfinished room, a tiler kneels on knee pads beside a grid of pale ceramic tiles. They spread grey adhesive across the concrete with a notched trowel, leaving even ridges. Holding a tile by its edges, they lower it into place, slide it a few millimetres to bed it, then insert small plastic spacers at the corners. A rubber mallet makes muted taps as they check the surface with a straightedge. The tiler squints along the grout lines; a helper watches for alignment and hands over clean tiles. Scraping and tapping echo off bare walls."
+ },
+ {
+  "id": "action.gen.painting-a-mural",
+  "domain": "action",
+  "topic": "painting a mural",
+  "names": [
+   "رسم جدارية",
+   "طلاء جدارية",
+   "رسم على جدار",
+   "رسم لوحة جدارية",
+   "painting a mural",
+   "mural painting"
+  ],
+  "body": "At a permitted outdoor wall, an artist works across a large sketch in chalk, filling broad shapes with a paint roller before changing to a smaller brush for edges. Wet colour looks glossy at first, then dries flatter against the wall’s rough plaster. They step back, eyes narrowed in concentration, and compare the painted sections with the outline; an assistant smiles and holds a tray of paint. The roller makes a soft rasp, bristles swish and the tray rattles lightly when moved. Afternoon light reveals patches of texture beneath the colour, while pedestrians pass without touching the fresh paint."
+ },
+ {
+  "id": "action.gen.graffiti-artist",
+  "domain": "action",
+  "topic": "graffiti artist",
+  "names": [
+   "فنان غرافيتي",
+   "رسام غرافيتي",
+   "فنان جرافيتي",
+   "رسام بخاخ على جدار",
+   "graffiti artist",
+   "spray paint artist"
+  ],
+  "body": "At a designated art wall, a graffiti artist stands an arm’s length from the concrete, wearing paint-marked clothes and a respirator. They shake a spray can with a sharp rattle, then press the nozzle; a fine coloured mist lands in a soft-edged band. Moving their whole arm steadily makes a long line, while a brief close spray creates a denser patch. They pause, tilt their head and study the spacing with a focused expression. A companion watches from outside the work area and nods. The can hisses in short bursts; daylight catches the fresh paint’s slight sheen."
+ },
+ {
+  "id": "action.gen.arabic-calligrapher-writing",
+  "domain": "action",
+  "topic": "calligrapher writing Arabic",
+  "names": [
+   "خطاط عربي",
+   "كتابة الخط العربي",
+   "خطاط يكتب بالعربي",
+   "كتابة بالقصبة والحبر",
+   "arabic calligrapher",
+   "arabic calligraphy writing"
+  ],
+  "body": "At a quiet desk, a calligrapher steadies cream paper with one hand and guides a broad-cut reed pen with the other. Starting at the right, they draw dark Arabic letters toward the left, pulling measured curves and straight strokes; the angled nib makes thick marks in one direction and thin edges in another. They lift the pen between forms, dip it lightly in black ink and place dots with deliberate taps. Their face stays intent, eyes shifting between the nib and the spacing of the line. Paper rustles, the nib gives a faint scratch, and a desk lamp catches the wet ink before it dries matte."
+ },
+ {
+  "id": "action.gen.goldsmith-polishing",
+  "domain": "action",
+  "topic": "goldsmith polishing",
+  "names": [
+   "تلميع الذهب",
+   "صائغ يلمع ذهب",
+   "صياغة وتلميع ذهب",
+   "تلميع مجوهرات",
+   "goldsmith polishing",
+   "gold polishing"
+  ],
+  "body": "At a compact jewellery bench, a goldsmith holds a small ring firmly between fingertips and touches it lightly to a spinning cloth wheel. The ring turns a few degrees at a time so the wheel reaches its outer curve without catching an edge. Polishing compound darkens the cloth; fine residue settles on the bench, but there are no sparks. The motor hums steadily, rising slightly when the metal touches the wheel. Under a bright task lamp, the ring changes from a hazy yellow to a crisp reflection. The goldsmith pauses to inspect it, then wipes it with a soft cloth while a customer watches from across the counter."
+ },
+ {
+  "id": "action.gen.carpenter-carving-wood",
+  "domain": "action",
+  "topic": "carpenter carving wood",
+  "names": [
+   "نحت الخشب",
+   "نجار ينحت الخشب",
+   "حفر الخشب باليد",
+   "wood carving",
+   "carpenter carving wood"
+  ],
+  "body": "A carpenter clamps a pale wooden board to a scarred workbench and marks a shallow curved pattern in pencil. One hand guides a narrow carving gouge while the other pushes its handle along the grain. Thin curled shavings lift from the cut and fall beside the clamp; across the grain, the carpenter takes shorter strokes to avoid splitting the wood. The tool makes a dry, scraping whisper, interrupted by light taps from a wooden mallet on deeper sections. In daylight from a workshop window, the fresh cuts look lighter than the surrounding surface. The carpenter leans close, studies the line, brushes away shavings and continues carefully."
+ },
+ {
+  "id": "action.gen.upholsterer-fixing-a-sofa",
+  "domain": "action",
+  "topic": "upholsterer fixing a sofa",
+  "names": [
+   "تصليح كنبة",
+   "تصليح صوفة",
+   "منجد يصلح صوفة",
+   "تنجيد أريكة",
+   "sofa repair",
+   "upholsterer fixing a sofa"
+  ],
+  "body": "In an upholstery workshop, a sofa cushion lies open on a wide table, its old fabric folded back to expose yellow foam and white lining. The upholsterer pulls worn staples out with pliers; each comes free with a small metallic snap. After replacing a compressed foam section, they smooth fresh fabric over the cushion, pull opposite edges taut and fasten the underside with a staple gun. Each sharp click fixes another small fold in place. The fabric bends around the rounded corners without floating or wrinkling. The upholsterer presses the cushion with both palms, checks that it rebounds evenly and shows the finished seam to the waiting owner."
+ },
+ {
+  "id": "action.gen.tailor-sewing-an-abaya",
+  "domain": "action",
+  "topic": "tailor sewing an abaya",
+  "names": [
+   "خياطة عباية",
+   "خياط يخيط عباية",
+   "تفصيل عباية",
+   "خياطة العباءة",
+   "sewing an abaya",
+   "abaya tailoring"
+  ],
+  "body": "A tailor sits at a sewing machine with black abaya fabric spread across a broad table. The lightweight cloth drapes over the table edge in soft folds, while a narrow hem stays flat beneath the presser foot. One hand guides the folded edge and the other supports the fabric’s weight; the feed dogs pull it forward in small, even steps. The needle chatters in rhythm with the motor, then stops as the tailor lifts the foot and turns a corner. Bright overhead light reveals the dark stitching against a slightly lighter crease. The tailor trims the loose threads, holds the seam up to check its straightness and nods to the customer nearby."
+ },
+ {
+  "id": "action.gen.jeweller-setting-stones",
+  "domain": "action",
+  "topic": "jeweller setting stones",
+  "names": [
+   "ترصيع الأحجار",
+   "تثبيت فصوص المجوهرات",
+   "صائغ يرصع فص",
+   "ترصيع خاتم",
+   "jeweller setting stones",
+   "stone setting"
+  ],
+  "body": "At a jeweller’s bench, a ring is secured in a padded clamp beneath a bright adjustable lamp. The jeweller picks up a tiny faceted stone with fine tweezers and lowers it into a prepared metal seat. It settles flat rather than balancing above the rim. Working around the setting, the jeweller presses each small prong inward with a steel tool, rotating the clamp between presses. There are faint taps and metal-on-metal scratches, not loud hammer blows. The stone flashes brief points of light as its angle changes. Through a loupe, the jeweller checks that the prongs touch evenly, then gently tests whether the stone moves."
+ },
+ {
+  "id": "action.gen.watch-repair",
+  "domain": "action",
+  "topic": "watch repair",
+  "names": [
+   "تصليح ساعة",
+   "إصلاح ساعات",
+   "مصلح ساعات",
+   "صيانة ساعة يد",
+   "watch repair",
+   "wristwatch repair"
+  ],
+  "body": "A watch repairer works over a clean mat under a concentrated white lamp. An open wristwatch rests in a small holder, with its case back and screws arranged in separate trays. Looking through a loupe, the repairer steadies a fine screwdriver vertically, turns it in tiny increments and lifts a loose component with tweezers. The hands remain close to the mat so nothing drops far. A faint tick is audible when the movement runs; a screw makes a tiny click as it enters its tray. The repairer’s face stays intent, then relaxes after checking the moving hands. Finally, the case back is aligned and pressed into place."
+ },
+ {
+  "id": "action.gen.mobile-phone-repair-shop",
+  "domain": "action",
+  "topic": "mobile phone repair shop",
+  "names": [
+   "محل تصليح موبايلات",
+   "محل صيانة موبايلات",
+   "تصليح تلفونات",
+   "محل صيانة هواتف",
+   "mobile phone repair shop",
+   "phone repair shop"
+  ],
+  "body": "A mobile phone repair shop has a glass counter, shelves of boxed accessories and a bright work lamp above a rubber mat. A technician warms the edge of a phone gently, attaches a suction cup and eases a thin plastic pick into the softened screen adhesive. The screen lifts slowly like a hinged lid, held close so its cables do not stretch. After disconnecting the battery, the technician checks a small connector with tweezers. Plastic gives a soft crackle, screws click into a magnetic tray and a test phone chimes from the counter. The customer watches attentively as the technician seats the connector and tests the display."
+ },
+ {
+  "id": "action.gen.computer-technician",
+  "domain": "action",
+  "topic": "computer technician",
+  "names": [
+   "فني كمبيوتر",
+   "فني حاسوب",
+   "صيانة حاسوب",
+   "تصليح كومبيوتر",
+   "computer technician",
+   "pc technician"
+  ],
+  "body": "At a service desk, a computer technician places an unplugged desktop tower on its side and slides off the metal panel. A desk lamp reveals flat circuit boards, bundled cables and a thin layer of dust around the fan grille. The technician releases both memory-module latches, lifts the module straight out, checks its contacts and presses it back evenly until the latches click shut. Their expression is focused; a waiting customer leans in to see. After replacing the panel and connecting power, the technician presses the front button. The fans start with a low rush of air, indicator lights come on and the monitor brightens with the startup screen."
+ },
+ {
+  "id": "action.gen.data-center-engineer",
+  "domain": "action",
+  "topic": "data center engineer",
+  "names": [
+   "مهندس مركز بيانات",
+   "مهندس داتا سنتر",
+   "فني سيرفرات",
+   "مهندس سيرفرات",
+   "data center engineer",
+   "server engineer"
+  ],
+  "body": "An engineer stands in a cool, brightly lit aisle between tall black server racks with perforated doors. Rows of small status lights blink behind the mesh; thick cable bundles disappear into trays overhead. Wearing an ID badge, the engineer checks a rack label, opens the door, and compares indicator lights with a tablet before touching a component. One hand steadies the door while the other slides a drive tray partway out and seats it firmly again. Fans make a constant, broad rushing noise, with a short click from the latch. Their expression stays focused; nearby coworkers speak close to one another to be heard."
+ },
+ {
+  "id": "action.gen.programmer-coding-at-night",
+  "domain": "action",
+  "topic": "programmer coding at night",
+  "names": [
+   "مبرمج يعمل ليلا",
+   "برمجة بالليل",
+   "مبرمج يكتب كود",
+   "مبرمج يشتغل بالليل",
+   "programmer coding at night",
+   "late night coding"
+  ],
+  "body": "A programmer sits at a desk after dark, shoulders slightly forward, looking between a monitor showing lines of code and a smaller window of test results. A desk lamp casts warm light on the keyboard and a glass of water; the monitor adds a cooler glow to their face. They type in short bursts, pause to read, scroll back a few lines, then make a small change and run the test again. Keys tap unevenly, the mouse clicks, and a quiet fan hums. Their eyes narrow while checking an error, then their jaw relaxes when the new result appears."
+ },
+ {
+  "id": "action.gen.startup-team-brainstorming",
+  "domain": "action",
+  "topic": "startup team brainstorming",
+  "names": [
+   "فريق شركة ناشئة",
+   "عصف ذهني لشركة ناشئة",
+   "فريق ستارت أب",
+   "فريق ناشئ يتناقش",
+   "startup team brainstorming",
+   "startup brainstorming"
+  ],
+  "body": "Four coworkers gather around a table scattered with notebooks, laptops, and a few coloured sticky notes. A whiteboard holds a rough flowchart rather than polished artwork. One person stands to draw a box and arrow while speaking; another leans forward to point at a gap, and the others look from the board to the speaker. A teammate writes down a suggestion, then turns the notebook so everyone can see it. Faces shift between concentration, raised eyebrows, and brief smiles as ideas are tested. Marker squeaks, paper rustles, and voices overlap for a moment before someone pauses to listen."
+ },
+ {
+  "id": "action.gen.video-editor-at-work",
+  "domain": "action",
+  "topic": "video editor at work",
+  "names": [
+   "مونتير فيديو",
+   "محرر فيديو",
+   "مونتاج فيديو بالشغل",
+   "مونتير يشتغل",
+   "video editor at work",
+   "video editing workstation"
+  ],
+  "body": "A video editor sits close to a wide monitor showing a timeline of clips, audio waveforms, and a preview image. One hand rests on the keyboard and the other moves a mouse in small, precise motions. The editor scrubs through a shot, stops at a frame, trims its edge, and plays the transition again. A nearby speaker produces a short piece of dialogue followed by room tone; keyboard taps and mouse clicks fill the pauses. The editor tilts their head and watches the cut with a concentrated expression. Soft desk lighting illuminates notes beside the monitor while the rest of the room stays subdued."
+ },
+ {
+  "id": "action.gen.photographer-at-a-wedding",
+  "domain": "action",
+  "topic": "photographer at a wedding",
+  "names": [
+   "مصور عرس",
+   "مصور زفاف",
+   "مصور بالعرس",
+   "تصوير حفلة زفاف",
+   "wedding photographer",
+   "photographer at a wedding"
+  ],
+  "body": "A wedding photographer moves along the edge of a decorated gathering, holding a camera with both hands and keeping the strap close to the body. Warm ceiling lights reflect from glassware and pale tablecloths. The photographer raises the camera as the couple turn toward relatives, takes several frames, then lowers it to check the screen. They step sideways to keep guests out of the foreground and crouch slightly for a clearer angle. The couple smile; a relative straightens a sleeve, and nearby guests lean together to fit the picture. Shutter clicks punctuate conversation, footsteps, and music from the room."
+ },
+ {
+  "id": "action.gen.drone-pilot",
+  "domain": "action",
+  "topic": "drone pilot",
+  "names": [
+   "طيار درون",
+   "مشغل طائرة مسيرة",
+   "شخص يطير درون",
+   "طيار طيارة درون",
+   "drone pilot",
+   "drone operator"
+  ],
+  "body": "A drone pilot stands in an open area, holding a two-stick controller at waist height and watching both the aircraft and its small display. A compact four-rotor drone rests on level ground several metres from other people. Its propellers begin to spin with a rising whine; loose dust stirs beneath it before it lifts straight up and steadies, making tiny corrections against the breeze. The pilot nudges one stick, looks up to confirm the movement, then checks the display again. Their face is attentive rather than dramatic. Bystanders remain back, following the drone with their eyes as its buzzing grows softer with distance."
+ },
+ {
+  "id": "action.gen.news-reporter-live-on-location",
+  "domain": "action",
+  "topic": "news reporter live on location",
+  "names": [
+   "مراسل مباشر",
+   "مراسلة على الهواء",
+   "مراسل ميداني لايف",
+   "مراسل ينقل مباشر",
+   "live news reporter",
+   "reporter on location"
+  ],
+  "body": "A reporter stands beside a street or public square, framed from the waist up, holding a handheld microphone near their chest. A small earpiece wire runs discreetly behind one ear. Before speaking, they glance toward the camera operator, wait for a cue, then look into the lens and deliver measured sentences. Their free hand makes one restrained gesture before settling again. People pass in the background without stopping; traffic and distant voices remain audible under the reporter’s clear speech. The reporter briefly pauses to hear a question through the earpiece, then answers, keeping a composed face despite movement and sound around them."
+ },
+ {
+  "id": "action.gen.radio-presenter",
+  "domain": "action",
+  "topic": "radio presenter",
+  "names": [
+   "مذيع راديو",
+   "مذيعة إذاعة",
+   "مقدم برنامج إذاعي",
+   "مذيع بالراديو",
+   "radio presenter",
+   "radio host"
+  ],
+  "body": "A radio presenter sits at a studio desk facing a microphone on an adjustable arm, with headphones covering both ears. The microphone has a foam windscreen and sits a hand’s width from their mouth. They glance at notes, wait for a cue light, then lean in and speak steadily while one hand rests near the mixing console. Between sentences, they lower a fader and listen to a recorded segment; their expression changes subtly with the conversation they are introducing. The room is softly lit and lined with sound-absorbing panels. Close speech, a quiet button click, and a brief music bed are heard without street noise."
+ },
+ {
+  "id": "action.gen.tv-studio-recording",
+  "domain": "action",
+  "topic": "TV studio recording",
+  "names": [
+   "تسجيل برنامج تلفزيوني",
+   "تصوير في استوديو تلفزيوني",
+   "تسجيل برنامج بالتلفزيون",
+   "tv studio recording",
+   "television studio taping"
+  ],
+  "body": "A presenter sits upright behind a matte desk, facing a large camera with a boxy teleprompter hood. Another camera waits on a wheeled pedestal beside the set. Soft panels cast even light across faces while coloured accent lights separate the background from the presenter. A floor manager raises a hand, counts down with fingers, then points; the presenter lifts their gaze to the lens and begins speaking. Camera operators roll slowly, keeping cables clear. A small tally light glows red on the live camera. Speech sounds crisp, with faint footsteps and equipment hum beneath it."
+ },
+ {
+  "id": "action.gen.influencer-filming-a-reel",
+  "domain": "action",
+  "topic": "influencer filming a reel",
+  "names": [
+   "تصوير ريلز",
+   "تصوير ريل",
+   "مؤثر يصور ريلز",
+   "انفلونسر يصور ريل",
+   "influencer filming a reel",
+   "filming an instagram reel"
+  ],
+  "body": "A creator stands an arm’s length from a vertical phone clamped to a tripod, checking their reflection on its screen. A ring light or soft window light brightens the face and leaves small highlights in the eyes. They tap record, step back to a floor mark, and deliver a short line with deliberate hand gestures and an animated expression. They pause, glance at the screen, then repeat a movement for another take. A friend may quietly hold a reflector or watch the frame. Footsteps, clothing rustle and the creator’s voice are audible; the tripod stays still."
+ },
+ {
+  "id": "action.gen.doctor-surgery-team-no-gore",
+  "domain": "action",
+  "topic": "doctor surgery team (no gore)",
+  "names": [
+   "فريق الجراحة في غرفة العمليات",
+   "طاقم عملية جراحية",
+   "فريق جراحة بغرفة العمليات",
+   "surgery team",
+   "operating room team"
+  ],
+  "body": "In a bright operating room, a patient lies beneath blue or green sterile drapes, with only the prepared work area visible from a distance. Surgeons in gowns, masks, caps and gloves lean in together; their eyes show concentration above their masks. One requests an instrument, and a scrub nurse places it firmly into an open gloved hand. An anaesthesia clinician watches the patient and monitor at the head of the bed, while a circulating nurse moves outside the sterile field. Hands move precisely rather than hurriedly. Ventilation hums, monitors beep evenly, and brief instructions pass in calm voices. No wound or blood is shown."
+ },
+ {
+  "id": "action.gen.dentist-cleaning",
+  "domain": "action",
+  "topic": "dentist cleaning",
+  "names": [
+   "تنظيف الأسنان عند طبيب الأسنان",
+   "جلسة تنظيف أسنان",
+   "تنظيف الجير عند الدكتور",
+   "dentist cleaning",
+   "dental cleaning"
+  ],
+  "body": "A patient reclines under a focused dental lamp, wearing a paper bib and protective glasses. The dentist, masked and gloved, steadies a small mirror while guiding a slim ultrasonic scaler along the teeth. Water sprays lightly; an assistant holds a suction tube near the working area, making a low slurping sound beneath the scaler’s high buzz. The dentist pauses so the patient can swallow or adjust, then continues from tooth to tooth. The patient’s eyes may narrow at a sensitive spot, and the dentist checks in before proceeding. Surfaces are clean, and movements are controlled and close."
+ },
+ {
+  "id": "action.gen.eye-doctor-exam",
+  "domain": "action",
+  "topic": "eye doctor exam",
+  "names": [
+   "فحص النظر عند طبيب العيون",
+   "كشف عيون",
+   "فحص عين عند الدكتور",
+   "eye doctor exam",
+   "eye examination"
+  ],
+  "body": "In a softly lit examination room, the patient rests their chin and forehead against the supports of a slit-lamp microscope. The eye doctor sits opposite, adjusts the instrument with a small joystick and shines a narrow white beam across one eye. The patient keeps still, blinks when asked and looks in different directions; the doctor’s face remains attentive behind the eyepieces. A chart with rows of letters may be visible nearby for a separate vision check. The lamp slides smoothly on its base, with faint clicks from the controls. Quiet instructions and the patient’s short replies dominate the sound."
+ },
+ {
+  "id": "action.gen.pharmacist-counting-pills",
+  "domain": "action",
+  "topic": "pharmacist counting pills",
+  "names": [
+   "صيدلي يعد الحبوب",
+   "صيدلي يحسب الحبوب",
+   "عد الأقراص بالصيدلية",
+   "pharmacist counting pills",
+   "pharmacy pill counting"
+  ],
+  "body": "Behind a pharmacy counter, a pharmacist checks a prescription label against a stock bottle, then pours tablets onto a shallow counting tray. Using a flat spatula, they slide small groups across the tray’s dividing edge, keeping their fingers away from the pills. Each tablet makes a light plastic tap. The pharmacist tips the counted tablets through the tray’s spout into an amber vial, caps it and checks the printed label again. Their expression is focused, with brief glances between the tray, bottle and screen. Shelves of boxed medicines fill the background; scanner beeps and quiet customer voices carry through the pharmacy."
+ },
+ {
+  "id": "action.gen.lab-technician-pipetting",
+  "domain": "action",
+  "topic": "lab technician pipetting",
+  "names": [
+   "فني مختبر يستخدم ماصة",
+   "سحب عينة بالماصة",
+   "فني مختبر يقطر عينة",
+   "lab technician pipetting",
+   "laboratory pipetting"
+  ],
+  "body": "At a clean laboratory bench, a technician in a coat, gloves and eye protection holds an adjustable micropipette upright. They press a disposable tip onto its end, lower the tip into a small labelled tube and ease the thumb button upward to draw a measured amount of liquid. At a rack of receiving tubes, they touch the tip near the inner wall, press the button to dispense, then eject the used tip into a waste container. The liquid forms a tiny bead before joining the sample. Plastic tips click, tube caps snap and ventilation hums softly. Their eyes track the tip and labels throughout."
+ },
+ {
+  "id": "action.gen.paramedics-helping-a-patient",
+  "domain": "action",
+  "topic": "paramedics helping a patient",
+  "names": [
+   "مسعفون يساعدون مريض",
+   "فريق إسعاف يساعد مريض",
+   "مسعفين يساعدون مريض",
+   "paramedics helping a patient",
+   "ambulance crew helping patient"
+  ],
+  "body": "Beside an open ambulance, two paramedics kneel near a conscious patient seated on the ground. One speaks at eye level, watching the patient’s face and breathing while checking a wrist pulse; the other opens a medical bag and readies a stretcher. The patient answers in short sentences and looks anxious but responsive. After explaining each step, the paramedics help the patient rise together and settle onto the stretcher, keeping its wheels locked until they are ready to move. Straps lie flat across the patient without covering the face. Gloves rustle, stretcher latches click, and calm voices carry over nearby traffic."
+ },
+ {
+  "id": "action.gen.firefighters-training",
+  "domain": "action",
+  "topic": "firefighters training",
+  "names": [
+   "تدريب رجال الإطفاء",
+   "تدريب الإطفائيين",
+   "تمرين الدفاع المدني",
+   "تدريب المطافي",
+   "firefighters training",
+   "fire drill training"
+  ],
+  "body": "At a training yard, firefighters wear tan protective coats and trousers with reflective yellow bands, helmets, gloves, and heavy boots. An instructor points toward a metal practice structure while two trainees check each other’s breathing equipment. They pull a hose from a parked fire engine; its weight makes the line bend and drag across the concrete. One braces the nozzle, another supports the hose behind them, and a broad spray strikes a marked target. Water splashes back and runs toward a drain. The instructor watches, then signals them to stop. Voices sound muffled behind face masks; boots scrape, equipment buckles click, and the pump hums steadily in daylight."
+ },
+ {
+  "id": "action.gen.calm-city-police-patrol",
+  "domain": "action",
+  "topic": "police patrol in a city (calm)",
+  "names": [
+   "دورية شرطة هادئة",
+   "دورية الشرطة في المدينة",
+   "دورية شرطة بالشارع",
+   "دورية شرطة بالسوق",
+   "calm police patrol",
+   "city police patrol"
+  ],
+  "body": "A marked police car moves slowly along a paved commercial street, its roof lights off. Sunlight reflects in its windows and on nearby shopfronts. Two uniformed officers look out at traffic and pedestrians; the driver signals before pulling gently to the curb. They step out, close the doors, and walk past parked cars without hurrying. One answers a shopkeeper’s greeting with a small nod while the other glances down a side street. People continue shopping and talking, and a child stays beside an adult. Tire noise fades under ordinary street sounds: footsteps, distant engines, conversation, and the soft click of a radio at an officer’s shoulder."
+ },
+ {
+  "id": "action.gen.ceremonial-soldiers-parade",
+  "domain": "action",
+  "topic": "soldiers parade (ceremonial)",
+  "names": [
+   "استعراض عسكري احتفالي",
+   "عرض عسكري رسمي",
+   "مسير الجنود الاحتفالي",
+   "استعراض جنود",
+   "ceremonial soldiers parade",
+   "military ceremonial march"
+  ],
+  "body": "On a broad parade ground, soldiers in matching pressed uniforms form straight ranks, with even gaps between shoulders. A leader gives a brief command; the front row steps off first, and the rows behind follow on the same beat. Arms swing to a controlled height while polished shoes land together, producing a repeating, sharp rhythm on the hard surface. Faces stay forward and composed. At the edge of the ground, spectators stand behind a barrier; some lift phones, while others watch quietly. Fabric shifts at elbows and knees as the formation passes. In bright daylight, the measured footfalls and spoken commands carry farther than the low crowd murmur."
+ },
+ {
+  "id": "action.gen.airport-security-check",
+  "domain": "action",
+  "topic": "airport security check",
+  "names": [
+   "تفتيش أمن المطار",
+   "الفحص الأمني بالمطار",
+   "تفتيش المطار",
+   "سيطرة المطار الأمنية",
+   "airport security check",
+   "airport screening"
+  ],
+  "body": "At an airport checkpoint, passengers queue between retractable belts under bright ceiling lights. A security officer gestures toward plastic trays. A traveler places a bag and loose items in one tray, then watches it roll into the scanner on a rubber conveyor. The traveler walks through the screening gate when directed, pauses briefly, and continues after the officer nods. Another officer checks the scanner display; no image details are visible to the waiting crowd. The tray emerges, and the traveler gathers their belongings before moving aside so the next person can step forward. Wheels rattle over floor seams, trays knock lightly together, and short instructions mix with terminal announcements."
+ },
+ {
+  "id": "action.gen.customs-officer",
+  "domain": "action",
+  "topic": "customs officer",
+  "names": [
+   "موظف جمارك",
+   "ضابط جمارك",
+   "مأمور جمرك",
+   "موظف كمرك",
+   "customs officer",
+   "customs inspection"
+  ],
+  "body": "At an airport customs counter, an officer in a neat uniform stands beside an inspection table and a small sign marking the customs lane. A traveler rolls a suitcase up, stops, and presents a document when asked. The officer reads it, asks a brief question, then gestures for the bag to be placed on the table. Its wheels leave the floor with a small bump. The traveler unzips it while the officer looks over the neatly packed contents without scattering them. Both keep neutral, attentive expressions. After the check, the officer returns the document and indicates the exit; the traveler closes the case. Zipper teeth rasp beneath the steady sound of arriving passengers."
+ },
+ {
+  "id": "action.gen.lifeguard-on-duty",
+  "domain": "action",
+  "topic": "lifeguard on duty",
+  "names": [
+   "منقذ سباحة",
+   "منقذ مسبح",
+   "حارس شاطئ",
+   "منقذ على الواجب",
+   "lifeguard on duty",
+   "pool lifeguard"
+  ],
+  "body": "A lifeguard sits on a raised chair overlooking a swimming pool, wearing a bright top and carrying a whistle on a cord. A rescue tube rests against the chair within reach. Their gaze moves steadily across the shallow and deep ends rather than following one swimmer. When a child starts moving too quickly along the wet edge, the lifeguard raises a hand and gives one short whistle blast. The child slows, looks up, and walks; a nearby adult glances over, then relaxes. Water slaps against the pool wall, voices echo under the shade canopy, and sunlight flickers across blue tiles and moving ripples."
+ },
+ {
+  "id": "action.gen.teacher-reading-to-kids",
+  "domain": "action",
+  "topic": "teacher reading to kids",
+  "names": [
+   "معلم يقرأ للأطفال",
+   "معلمة تقرأ للأطفال",
+   "قراءة قصة للتلاميذ",
+   "المعلمة تقري للأطفال",
+   "teacher reading to kids",
+   "storytime teacher"
+  ],
+  "body": "In a classroom, a teacher sits facing a small group of children on a rug and holds an illustrated book open so the pages face them. The teacher reads a sentence, turns the book slightly to show a picture, then pauses for a child’s answer. One child leans forward and points; another looks from the page to the teacher’s face. The teacher smiles, acknowledges the answer, and turns a thick paper page with a soft flick. The children settle again, though a few shift their knees or straighten their backs. Daylight comes through a window, and the teacher’s changing voice stays clear above faint chair scrapes and room hum."
+ },
+ {
+  "id": "action.gen.kids-science-experiment",
+  "domain": "action",
+  "topic": "kids science experiment",
+  "names": [
+   "تجربة علمية للأطفال",
+   "تجارب علوم للأطفال",
+   "تجربة مدرسية للطلاب",
+   "تجربة علوم للجهال",
+   "kids science experiment",
+   "children science activity"
+  ],
+  "body": "At a classroom table, children wearing simple protective goggles gather around a clear cup on a plastic tray. An adult measures a spoonful of baking soda, then lets one child tip it into the cup. Another child slowly pours in a little vinegar. Bubbles rise at once, swell into pale foam, and spill over the rim onto the tray without spraying far. The children pull their hands back, widen their eyes, then lean in again to watch the foam settle. The adult keeps the cup centered and asks what they notice. Liquid glugs softly, the spoon taps the tray, and excited voices overlap in the bright room."
+ },
+ {
+  "id": "action.gen.robotics-class",
+  "domain": "action",
+  "topic": "robotics class",
+  "names": [
+   "حصة روبوتات",
+   "درس الروبوتات",
+   "صف روبوتات",
+   "ورشة روبوتات",
+   "robotics class",
+   "robotics lesson"
+  ],
+  "body": "Students sit in pairs at light-coloured tables, fitting small plastic wheels and sensors onto palm-sized robot chassis. One holds a motor steady while the other presses a connector into place; neither part bends or floats. A teacher crouches beside them, points to a tablet screen, then waits as a student taps a control. The robot's wheels whirr and carry it across the table until its sensor detects a block and it stops. Faces shift from concentration to delighted smiles. Overhead lights reflect on the tabletop; quiet conversation, plastic clicks and short electronic beeps fill the classroom."
+ },
+ {
+  "id": "action.gen.music-lesson",
+  "domain": "action",
+  "topic": "music lesson",
+  "names": [
+   "درس موسيقى",
+   "حصة موسيقى",
+   "تعليم موسيقى",
+   "درس موسيقه",
+   "music lesson",
+   "music class"
+  ],
+  "body": "A teacher stands beside a keyboard while students sit with small hand drums and shakers. The teacher plays four clear notes, lifts one hand to mark the beat, and watches the group copy the rhythm. Students' wrists rise and fall; drumheads flex slightly under each tap, while shaker beads rattle a fraction after each turn. One student misses a beat, smiles sheepishly, and joins again when the teacher nods. Sheet music rests on stands at eye level. Daylight enters through a window, and the layered notes, taps and soft counting stay in sync with each visible movement."
+ },
+ {
+  "id": "action.gen.art-class",
+  "domain": "action",
+  "topic": "art class",
+  "names": [
+   "حصة رسم",
+   "درس فنون",
+   "درس رسم",
+   "حصة فن",
+   "art class",
+   "drawing class"
+  ],
+  "body": "Students work around a shared table covered with paper, paint trays and jars of cloudy rinse water. A teacher demonstrates a brushstroke: the bristles spread against the page, drag a blue line, then spring back as the brush lifts. Students lean forward to watch before trying it themselves. One steadies a sheet with a clean hand while another rinses a brush, making a faint clink against the jar. Wet paint catches the window light and dries flatter and less glossy at the edges. Faces are attentive and relaxed; voices stay low beneath the swish of brushes."
+ },
+ {
+  "id": "action.gen.sports-coach-training-kids",
+  "domain": "action",
+  "topic": "sports coach training kids",
+  "names": [
+   "مدرب أطفال رياضة",
+   "تدريب رياضي للأطفال",
+   "مدرب صغار",
+   "تمارين أطفال مع مدرب",
+   "kids sports coach",
+   "children's sports training"
+  ],
+  "body": "On an outdoor court, a coach places bright cones in a zigzag and demonstrates a short run at an easy pace. Children line up with space between them, watching the coach's feet and smiling in anticipation. At a signal, one child runs around each cone, plants a foot to change direction, and slows after the finish line rather than stopping abruptly. The coach claps, offers a brief correction with an open-handed gesture, and sends the next child forward. Trainers squeak on the court; breaths, claps and cheerful calls carry through the warm afternoon air."
+ },
+ {
+  "id": "action.gen.gym-personal-trainer",
+  "domain": "action",
+  "topic": "gym personal trainer",
+  "names": [
+   "مدرب شخصي بالنادي",
+   "مدرب جيم",
+   "تمرين مع مدرب شخصي",
+   "كابتن جيم",
+   "personal trainer",
+   "gym trainer"
+  ],
+  "body": "A personal trainer stands beside a client on a rubber gym floor, leaving room for a controlled squat. The trainer demonstrates first: feet planted shoulder-width apart, hips moving back, knees bending, then legs extending until upright. The client repeats while holding a light dumbbell close to the chest. The trainer watches from the side, offers a quiet cue and gestures toward the client's heel without grabbing or pushing. Both faces show concentration; the client exhales on the way up. Metal weights clink elsewhere, ventilation hums, and overhead lights pick out the dumbbell's matte finish."
+ },
+ {
+  "id": "action.gen.yoga-class",
+  "domain": "action",
+  "topic": "yoga class",
+  "names": [
+   "حصة يوغا",
+   "درس يوغا",
+   "تمارين يوغا جماعية",
+   "صف يوغا",
+   "yoga class",
+   "yoga lesson"
+  ],
+  "body": "Yoga mats lie in staggered rows across a clean, softly lit room. An instructor faces the group and moves slowly from standing into a forward fold, bending at the hips and allowing the arms to hang. Participants follow at their own range of motion; some bend their knees, and one uses a foam block for support. The instructor glances around, gives a calm verbal cue, and straightens gradually before the group rises. Expressions are relaxed and focused. Mats grip the floor without sliding, bare feet shift quietly, and steady breathing is audible between instructions."
+ },
+ {
+  "id": "action.gen.martial-arts-class",
+  "domain": "action",
+  "topic": "martial arts class",
+  "names": [
+   "حصة فنون قتالية",
+   "درس فنون قتالية",
+   "تدريب كاراتيه",
+   "حصة كاراتيه",
+   "martial arts class",
+   "karate class"
+  ],
+  "body": "Students stand in evenly spaced rows on padded mats, facing an instructor in a simple training uniform. The instructor demonstrates a controlled stance: feet slide apart, knees soften, and one forearm moves across the body before returning to guard. Students copy the sequence without touching one another. A younger student looks uncertain, then relaxes when the instructor repeats it slowly and nods encouragement. Fabric rustles with each turn; bare feet make soft, brief contacts with the mat. Bright ceiling lights show the mat's textured surface and the students' attentive faces."
+ },
+ {
+  "id": "action.gen.swimming-lesson",
+  "domain": "action",
+  "topic": "swimming lesson",
+  "names": [
+   "درس سباحة",
+   "حصة سباحة",
+   "تعليم السباحة",
+   "مدرب سباحة أطفال",
+   "swimming lesson",
+   "swim class"
+  ],
+  "body": "At the shallow end of an indoor pool, an instructor stands in the water beside children holding the edge. The instructor shows how to take a breath, place the face in the water and blow bubbles, then lifts their head and smiles. Each child tries in turn while the instructor watches closely. Hands keep a firm grip on the wet tile; small kicks push water backward and make overlapping splashes. One child hesitates, receives a reassuring nod and tries again. Pool lights ripple across blue tiles, and voices echo softly above the bubbling water."
+ },
+ {
+  "id": "action.gen.horse-riding-lesson",
+  "domain": "action",
+  "topic": "horse riding lesson",
+  "names": [
+   "درس ركوب الخيل",
+   "تعلم الفروسية",
+   "تعليم ركوب الخيل",
+   "درس ركوب حصان",
+   "horse riding lesson",
+   "horseback riding class"
+  ],
+  "body": "In a sandy riding arena, a student wearing a fitted helmet and boots approaches a saddled horse from its left side while an instructor holds the reins. The student places a foot in the stirrup, pushes upward, swings the other leg over, and settles gently into the saddle. At a walk, the horse’s four hooves land in a steady sequence, raising small puffs of dust; its head nods slightly with each stride. The student’s hips follow the movement, hands low on the reins, eyes forward. The instructor walks nearby, speaking calmly over soft hoofbeats, leather creaks, and an occasional snort."
+ },
+ {
+  "id": "action.gen.driving-lesson",
+  "domain": "action",
+  "topic": "driving lesson",
+  "names": [
+   "درس قيادة السيارة",
+   "تعلم السواقة",
+   "درس سياقة",
+   "تعليم السياقة",
+   "driving lesson",
+   "driving class"
+  ],
+  "body": "Inside a compact training car, the learner sits upright with the seat adjusted so both feet reach the pedals and both hands rest on the steering wheel. The instructor sits beside them, watching the mirrors and the road ahead. After checking the mirrors and signalling, the learner eases off the brake and presses the accelerator lightly. The car rolls forward without a lurch, tyres making a faint hum on the road. At a turn, the learner rotates the wheel smoothly, then lets it return under control. Their face is concentrated; the instructor gives brief directions in a level voice amid the indicator’s rhythmic clicks."
+ },
+ {
+  "id": "action.gen.elderly-couple-walking-slowly",
+  "domain": "action",
+  "topic": "elderly couple walking slowly",
+  "names": [
+   "زوجان مسنان يمشيان",
+   "زوجين كبار بالعمر يمشون",
+   "شايب وعجوز يمشون",
+   "مسن ومسنّة يتمشيان",
+   "elderly couple walking",
+   "older couple strolling"
+  ],
+  "body": "An elderly couple walks side by side along a level neighbourhood pavement in late-afternoon light. Their steps are short and unhurried, with a small pause as each foot takes weight. One carries a light shopping bag; the other offers an arm, and their elbows touch as they adjust to each other’s pace. Their clothes shift gently with each step. They look ahead, then turn toward one another to exchange a few quiet words and a smile. Shoes scuff softly against the pavement while distant traffic and nearby conversation remain in the background. They slow together at a curb before stepping down carefully."
+ },
+ {
+  "id": "action.gen.grandfather-playing-with-grandchild",
+  "domain": "action",
+  "topic": "grandfather playing with grandchild",
+  "names": [
+   "جد يلعب مع حفيده",
+   "الجد وحفيده يلعبون",
+   "جدو يلعب ويه حفيده",
+   "لعب الجد مع الحفيد",
+   "grandfather playing with grandchild",
+   "grandpa playing with grandkid"
+  ],
+  "body": "On a living-room rug, a grandfather sits with his legs comfortably bent while his young grandchild stacks broad plastic blocks between them. He steadies the bottom block with two fingers as the child reaches up to add another. The tower sways; both lean back when it tumbles, and the blocks clatter across the rug and tiled floor. The child laughs and reaches for the pieces. The grandfather smiles, laughs with them, and passes a block back rather than rebuilding it himself. Warm window light falls across their hands and faces; a sofa and scattered toys sit nearby."
+ },
+ {
+  "id": "action.gen.mother-hugging-returning-son",
+  "domain": "action",
+  "topic": "mother hugging a returning son",
+  "names": [
+   "أم تعانق ابنها العائد",
+   "حضن الأم لابنها الراجع",
+   "أم تحضن ولدها الراجع",
+   "لقاء الأم بابنها",
+   "mother hugging returning son",
+   "mother son homecoming hug"
+  ],
+  "body": "At a home doorway, a returning adult son sets a travel bag down before his mother reaches him. She steps forward with both arms open; he bends slightly to meet her, and they wrap their arms around each other’s shoulders and backs. Their bodies come to a gentle stop, shifting weight to stay balanced, then hold still for a moment. Her face presses near his shoulder, eyes closed; he smiles with visible relief. They separate just enough to look at each other while keeping their hands on each other’s arms. A bag strap settles with a soft rustle amid quiet greetings and household sounds."
+ },
+ {
+  "id": "action.gen.friends-reunion-at-an-airport",
+  "domain": "action",
+  "topic": "friends reunion at an airport",
+  "names": [
+   "لقاء الأصدقاء في المطار",
+   "لمّة الأصدقاء بالمطار",
+   "الأصدقاء يتلاقون بالمطار",
+   "استقبال صديق في المطار",
+   "friends airport reunion",
+   "friends meeting at airport"
+  ],
+  "body": "Beyond the airport arrivals doors, a traveller pushes a wheeled suitcase into a bright concourse and spots two waiting friends. One friend raises a hand; all three smile and quicken their steps, weaving around other travellers without running. The suitcase wheels rattle over tile joints before the traveller stops it by the handle. They exchange brief hugs and shoulder pats, shifting bags aside so nobody trips. One friend laughs while another speaks over the airport announcements. Glass panels reflect the overhead lights; trolley wheels, rolling luggage, footsteps, and overlapping greetings fill the space. Afterward they turn together toward the exit."
+ },
+ {
+  "id": "action.gen.farewell-at-a-bus-station",
+  "domain": "action",
+  "topic": "farewell at a bus station",
+  "names": [
+   "وداع في محطة الحافلات",
+   "وداع بمحطة الباصات",
+   "توديع مسافر بالكراج",
+   "وداع عند الباص",
+   "farewell at bus station",
+   "bus station goodbye"
+  ],
+  "body": "Beside a parked intercity bus, a departing passenger stands with a small carry-on while a relative faces them near the boarding door. They exchange a few last words, then step close for a brief hug. The relative’s hand stays on the passenger’s arm as they part; both smile faintly, their eyes lingering on each other. The passenger climbs the steps holding the rail, turns for a final wave, and moves down the aisle. Outside, the relative waves back and remains standing as the bus pulls away slowly. The diesel engine idles, luggage doors close with a dull thud, and voices echo under the station canopy."
+ },
+ {
+  "id": "action.gen.welcome-home-surprise",
+  "domain": "action",
+  "topic": "welcome home surprise",
+  "names": [
+   "مفاجأة العودة للبيت",
+   "مفاجأة أهلا بالعودة",
+   "مفاجأة الرجوع للبيت",
+   "استقبال مفاجئ بالبيت",
+   "welcome home surprise",
+   "surprise homecoming"
+  ],
+  "body": "In a living room, family and friends wait beside a simple welcome sign and a few balloons, leaving a clear path from the doorway. When the returning person opens the door, the group calls out together. Their faces brighten; one person claps while another steps forward smiling. The arrival stops with one hand on the door, looks around in surprise, then laughs and sets a bag down before accepting hugs. Balloons bob from the moving air and hands, their ribbons twisting; applause overlaps with greetings and the soft thump of the bag on the floor. Warm indoor light keeps every expression visible."
+ },
+ {
+  "id": "action.gen.proposal-in-a-restaurant",
+  "domain": "action",
+  "topic": "proposal in a restaurant",
+  "names": [
+   "طلب زواج في مطعم",
+   "عرض زواج بمطعم",
+   "خطوبة بالمطعم",
+   "يتقدم لها بالمطعم",
+   "restaurant proposal",
+   "dinner proposal"
+  ],
+  "body": "At a restaurant table, one partner pauses while the other sets down a fork and reaches into a jacket pocket or handbag. A small hinged ring box opens toward the seated partner; the ring catches a sharp glint from a pendant light. The proposer may remain seated or lower onto one knee beside the table, speaking softly over cutlery clinks and nearby conversation. The other partner looks from the box to their face, perhaps smiling, covering their mouth, or taking a breath before answering. A server waits at a respectful distance. Chairs shift against the floor as the couple lean toward each other."
+ },
+ {
+  "id": "action.gen.anniversary-dinner",
+  "domain": "action",
+  "topic": "anniversary dinner",
+  "names": [
+   "عشاء ذكرى الزواج",
+   "عشاء عيد الزواج",
+   "عشا ذكرى الزواج",
+   "عشا عيد زواجنا",
+   "anniversary dinner",
+   "wedding anniversary dinner"
+  ],
+  "body": "Two partners sit across a small table with plated food, water glasses and a modest candle or warm table lamp between them. One slides a wrapped gift or handwritten card across the cloth; the other puts down their cutlery, opens it carefully and smiles while reading. They lean forward to talk, sometimes reaching across to touch hands, then sit back as a server places dessert on the table. Paper rustles, glasses tap lightly and plates make soft sounds against the tabletop. Warm light reflects in the glassware, while other diners remain visible but indistinct behind them."
+ },
+ {
+  "id": "action.gen.birthday-surprise-at-the-office",
+  "domain": "action",
+  "topic": "birthday surprise at the office",
+  "names": [
+   "مفاجأة عيد ميلاد في المكتب",
+   "مفاجأة عيد ميلاد بالدوام",
+   "عيد ميلاد بالشغل",
+   "مفاجأة عيد ميلاد بالعمل",
+   "office birthday surprise",
+   "workplace birthday surprise"
+  ],
+  "body": "Coworkers gather beside desks or a meeting-room door, holding a small cake and a few balloons clear of computer screens. When the birthday colleague enters, someone switches on the room lights or steps aside to reveal the group. The colleague stops mid-stride, looks from face to face and smiles or laughs in surprise as the group calls out a greeting and claps. The cake bearer walks slowly to keep the plate level; candle flames, if present, flicker with the movement. Balloons bob on their strings, chairs roll back slightly, and voices echo against office walls before everyone makes space to set down the cake."
+ },
+ {
+  "id": "action.gen.baby-gender-reveal",
+  "domain": "action",
+  "topic": "baby gender reveal",
+  "names": [
+   "إعلان جنس المولود",
+   "كشف جنس الجنين",
+   "حفلة كشف جنس الجنين",
+   "نعرف ولد لو بنية",
+   "baby gender reveal",
+   "gender reveal party"
+  ],
+  "body": "At a small family gathering, expectant parents stand beside a table while a relative presents a covered cake or sealed gift box. They exchange a glance, then lift the lid together or cut one slice. The revealed colour appears inside the cake or beneath the lid, rather than filling the room with smoke. Guests lean forward to see it; some clap, smile or call out, while others look first to the parents’ faces. The knife meets the plate with a light tap, tissue paper crackles, and voices briefly rise. The parents may hug as the group settles back around the table."
+ },
+ {
+  "id": "action.gen.moving-into-a-new-house",
+  "domain": "action",
+  "topic": "moving into a new house",
+  "names": [
+   "الانتقال إلى بيت جديد",
+   "نقلة لبيت جديد",
+   "ننقل لبيت جديد",
+   "دخول بيتنا الجديد",
+   "moving into a new house",
+   "new house move"
+  ],
+  "body": "At the entrance of an empty new home, residents turn a key, push open the door and pause to look inside. One carries a small bag while others bring in taped cartons, turning sideways to clear the doorframe. A box is lowered with bent knees and a dull thud; keys jingle, shoes sound against bare tile, and voices echo more than they will once furniture fills the rooms. Daylight from uncurtained windows makes bright rectangles on the floor. People smile, point toward possible furniture positions and walk from room to room, checking corners and doorways before bringing in more belongings."
+ },
+ {
+  "id": "action.gen.unpacking-boxes",
+  "domain": "action",
+  "topic": "unpacking boxes",
+  "names": [
+   "تفريغ كراتين النقل",
+   "فتح كراتين العفش",
+   "نرتب كراتين النقل",
+   "unpacking moving boxes",
+   "unpacking cartons"
+  ],
+  "body": "A person kneels beside a taped cardboard carton, steadies it with one hand and peels back the tape with the other. The flaps spring partly upright; packing paper crackles as they lift out a wrapped cup, check it and place it on a nearby shelf. Another person folds empty paper flat and sorts heavier objects onto a low surface rather than stacking them on fragile items. Boxes scrape lightly across the floor, ceramic taps against ceramic, and brief questions pass between the unpackers. In daylight, loose tape curls at the box edges while a growing pile of flattened cartons marks their progress."
+ },
+ {
+  "id": "action.gen.decorating-for-ramadan",
+  "domain": "action",
+  "topic": "decorating for Ramadan",
+  "names": [
+   "زينة رمضان",
+   "تزيين البيت لرمضان",
+   "نعلق زينة رمضان",
+   "نزين البيت برمضان",
+   "ramadan decorations",
+   "decorating for ramadan"
+  ],
+  "body": "Family members prepare a living room or doorway for Ramadan by unfolding paper stars, crescent ornaments or a string of small lantern-shaped lights. One person holds the string at shoulder height while another fixes it in place, stepping back to check that it hangs evenly and does not cross a walkway. A child may pass over decorations or watch an adult plug in the lights. Paper edges flutter in the indoor air; clips click, packaging rustles and family members speak over one another. At dusk, warm points of light show against the darker window, with the rest of the room still softly lit."
+ },
+ {
+  "id": "action.gen.decorating-a-christmas-tree-other-cultures",
+  "domain": "action",
+  "topic": "decorating a Christmas tree (other cultures)",
+  "names": [
+   "تزيين شجرة الميلاد",
+   "تزيين شجرة الكريسماس",
+   "نزين شجرة الميلاد",
+   "زينة شجرة الكريسماس",
+   "decorating a christmas tree",
+   "christmas tree decorating"
+  ],
+  "body": "In a home celebrating Christmas, family or friends stand around an upright green tree secured in a broad base. One person winds a light strand loosely through the branches while another hangs ornaments by their loops, choosing branches that will not bend too far under the weight. A child reaches for a lower branch as an adult places a fragile ornament higher up. Needles or artificial branch tips brush sleeves; hooks make tiny clicks and ornaments tap gently together. People step back, notice an uneven patch and move a decoration. When the lights switch on, their glow catches glossy ornaments and softly lights nearby faces."
+ },
+ {
+  "id": "action.gen.planting-flowers-on-a-balcony",
+  "domain": "action",
+  "topic": "planting flowers on a balcony",
+  "names": [
+   "زراعة الورد في البلكونة",
+   "زرع زهور في الشرفة",
+   "أزرع ورد بالبلكونة",
+   "زرع ورد بالبالكونة",
+   "planting balcony flowers",
+   "balcony flower pots"
+  ],
+  "body": "On a tiled apartment balcony, a person kneels beside terracotta or plastic pots with drainage holes and a bag of dark potting mix. They scoop loose soil into a pot, settle a small flowering plant upright, then press soil gently around its roots. Petals and leaves tremble in the breeze; a little soil spills onto the tiles. Water from a narrow spout darkens the surface and briefly drips from the pot’s base. The planter concentrates, then smiles while checking that the stem stands straight. Expect a soft scrape of soil, a watering-can trickle, distant traffic, and daylight filtered through the balcony railing."
+ },
+ {
+  "id": "action.gen.feeding-street-cats",
+  "domain": "action",
+  "topic": "feeding street cats",
+  "names": [
+   "إطعام قطط الشارع",
+   "تغذية القطط الضالة",
+   "أكل لقطط الشارع",
+   "أطعم البزازين بالشارع",
+   "feeding street cats",
+   "feeding stray cats"
+  ],
+  "body": "At the edge of a quiet pavement, a person crouches and sets down a shallow dish of cat food and a separate bowl of clean water, away from passing feet. Two street cats approach cautiously: noses forward, ears swivelling, bodies low and tails moving in small arcs. The person draws back and watches with a gentle, attentive expression. One cat sniffs, then eats in quick bites while the other waits a step behind before joining. Dry food rattles into the dish; paws tap lightly on concrete, with faint traffic and occasional meows nearby. Afterwards, the person collects any packaging and leaves the bowls tidy."
+ },
+ {
+  "id": "action.gen.walking-a-dog-in-a-park",
+  "domain": "action",
+  "topic": "walking a dog in a park",
+  "names": [
+   "تمشية كلب في الحديقة",
+   "المشي مع الكلب بالمنتزه",
+   "أمشي الكلب بالحديقة",
+   "أتمشى ويا الكلب بالمتنزه",
+   "walking a dog in a park",
+   "park dog walk"
+  ],
+  "body": "On a park path, a dog in a fitted harness walks beside its handler on a loose leash. Its shoulders and hips sway with each alternating step; its nose dips toward the grass, and the handler slows to let it sniff without pulling. The handler looks ahead, then down at the dog, relaxed but attentive. A passerby gives them room and smiles; the dog glances over, tail swaying, before moving on. Leash clips jingle softly against the harness, nails click on paving and turn nearly silent on grass. Trees cast broken patches of shade across the path. The handler carries a waste bag and cleans up if needed."
+ },
+ {
+  "id": "action.gen.bathing-a-puppy",
+  "domain": "action",
+  "topic": "bathing a puppy",
+  "names": [
+   "تحميم جرو",
+   "استحمام الجرو",
+   "أحمم الجرو",
+   "تسبح الجرو",
+   "bathing a puppy",
+   "puppy bath"
+  ],
+  "body": "In a bathroom, a small puppy stands on a non-slip mat in a shallow tub while a person supports its chest with one hand. They wet the puppy’s body with lukewarm water, avoiding its eyes and ears, work a little dog shampoo through its coat, then rinse until the water runs clear. Wet fur lies close to the body, making the puppy look smaller. It blinks and shifts its paws; the person stays calm and reassuring, watching its face. Water splashes against the tub, the puppy’s tags give a brief jingle, and its paws squeak on the mat. Wrapped in a towel afterward, it wriggles and shakes off droplets."
  }
 ]

@@ -745,5 +745,646 @@
    "selfie vlog shot"
   ],
   "body": "A person holds a phone at arm’s length, usually just above eye level, so their face fills the near half of the frame and the surroundings remain visible. The phone’s wide camera gives mild perspective enlargement to the nearest hand and face, not extreme distortion. Framing bobs gently with footsteps and shifts when the person turns to show a place or companion. Automatic exposure adjusts briefly when moving between sun and shade; skin texture remains visible. The speaker glances between the lens and screen, with speech synchronized to their mouth. Capture nearby footsteps, traffic, or room noise beneath the voice, plus occasional handling noise."
+ },
+ {
+  "id": "style.gen.iraqi-tv-commercial-look",
+  "domain": "style",
+  "topic": "Iraqi TV commercial look",
+  "names": [
+   "إعلان تلفزيوني عراقي",
+   "اعلان عراقي للتلفزيون",
+   "دعاية تلفزيونية عراقية",
+   "إعلان عراقي",
+   "iraqi tv commercial",
+   "iraqi television ad"
+  ],
+  "body": "Frame everyday Iraqi settings with recognizable details: a tiled kitchen, a neighborhood shop with Arabic signage, or a family living room with patterned cushions. Use a 35 mm lens for medium shots and a 50 mm lens for natural faces, with a brief wider shot to establish the place. Daylight through windows mixes with warm indoor bulbs; keep skin tones varied and natural. Camera moves are short, steady pushes or simple cuts, not sweeping flights. Hands pass products at ordinary speed, clothing folds and settles, and people speak with believable pauses. Include room tone, street sounds, and clear Arabic dialogue beneath restrained music."
+ },
+ {
+  "id": "style.gen.gulf-luxury-commercial-look",
+  "domain": "style",
+  "topic": "Gulf luxury commercial look",
+  "names": [
+   "إعلان فاخر خليجي",
+   "اعلان فخم خليجي",
+   "دعاية خليجية فاخرة",
+   "gulf luxury commercial",
+   "gulf luxury ad"
+  ],
+  "body": "Show luxury through precise surfaces and generous space: pale stone floors, brushed metal, textured fabric, shaded glass, and clean architectural lines. A 35 mm lens holds people within the setting; an 85 mm lens isolates a watch, fabric seam, or carefully placed product without distorting it. Move slowly on a stabilized track, keeping vertical walls straight and reflections consistent. Soft daylight or large diffused sources make restrained highlights on metal and stone, with cream, sand, charcoal, and muted gold tones. People walk and handle objects at natural speed. Footsteps, fabric movement, and quiet room ambience remain audible under sparse music; this suits premium Gulf ads."
+ },
+ {
+  "id": "style.gen.ramadan-advert-warm-look",
+  "domain": "style",
+  "topic": "Ramadan advert warm look",
+  "names": [
+   "إعلان رمضان دافئ",
+   "اعلان رمضاني دافي",
+   "دعاية رمضان دافئة",
+   "warm ramadan advert",
+   "ramadan warm ad"
+  ],
+  "body": "Set the scene around a real shared evening: dates and water on a table, serving dishes arriving, and people making room for one another. Use 35–50 mm lenses at seated eye level, alternating a wider family view with close shots of hands setting plates. Amber practical lamps mix with the last cool blue light at a window; preserve detail in both rather than turning the room orange. A gentle handheld drift or slow push feels intimate. Plates touch the table with weight, sleeves brush its edge, and conversation overlaps naturally. Keep music low enough for greetings, cutlery, and room ambience to be heard."
+ },
+ {
+  "id": "style.gen.eid-advert-bright-look",
+  "domain": "style",
+  "topic": "Eid advert bright look",
+  "names": [
+   "إعلان العيد المشرق",
+   "اعلان عيد فرح",
+   "دعاية عيد مشرقة",
+   "bright eid advert",
+   "eid bright ad"
+  ],
+  "body": "Use clean morning light for an Eid visit: a doorway opening, guests exchanging greetings, fresh clothes moving as people turn, and sweets arranged on a tray. Frame groups on a 35 mm lens and faces on a 50 mm lens, leaving space for people to enter and leave the shot. White walls and light fabrics stay bright without losing texture; color comes from clothing, flowers, and small decorations rather than heavy saturation. Track a few steps beside arriving guests or use lively, well-timed cuts. Let hugs and handshakes finish at human speed. Capture footsteps, greetings, a door closing, and the light clink of serving cups."
+ },
+ {
+  "id": "style.gen.wedding-highlight-film",
+  "domain": "style",
+  "topic": "wedding highlight film",
+  "names": [
+   "فيلم ملخص زفاف",
+   "فيديو هايلايت عرس",
+   "مونتاج عرس",
+   "wedding highlight film",
+   "wedding highlights"
+  ],
+  "body": "Build the film from observable moments: clothing details, guests arriving, greetings, the couple entering, and brief reactions across the room. Use a 35 mm lens for moving groups and a 70–85 mm lens for unposed expressions from a respectful distance. Keep faces exposed under mixed venue lighting while preserving the color of decorative lights. A stabilized walk follows entrances; quieter handheld shots can stay near table height. Dresses and jackets should sway and crease with movement, while dancing feet keep contact with the floor. Cut to the rhythm of real music, retaining applause, conversation, and ambient sound instead of making every moment silent or slow-motion."
+ },
+ {
+  "id": "style.gen.real-estate-luxury-video",
+  "domain": "style",
+  "topic": "real estate luxury video",
+  "names": [
+   "فيديو عقار فاخر",
+   "تصوير فيلا فاخرة",
+   "جولة عقارية فاخرة",
+   "luxury real estate video",
+   "luxury property tour"
+  ],
+  "body": "Show the property's actual layout with a level 20–24 mm lens, avoiding an ultra-wide view that stretches rooms or bends doorframes. Begin at an entrance, move through connected spaces at walking pace, and pause where windows reveal the view. Use straight, slow gimbal moves and a few locked frames to show proportions, ceiling height, stone, wood grain, and the edges of built-in furniture. Balance daylight at windows with interior lamps so neither the view nor the room disappears. Curtains move only if air reaches them; reflections follow the camera. Keep footsteps, a door latch, and faint room tone under minimal music."
+ },
+ {
+  "id": "style.gen.restaurant-promo-with-food-close-ups",
+  "domain": "style",
+  "topic": "restaurant promo with food close-ups",
+  "names": [
+   "إعلان مطعم لقطات طعام",
+   "تصوير أكل مطعم قريب",
+   "دعاية مطعم وتصوير أكل",
+   "restaurant food close-ups",
+   "restaurant promo video"
+  ],
+  "body": "Film food as it is prepared and served: a spoon spreading sauce, a knife cutting a cooked portion, and a plate settling onto the table. Use a 50–100 mm lens close enough to show crust, grains, and droplets without making a normal portion look enormous. Side light gives texture to food while keeping its colors credible; hold highlights on oil and glass. Make short, steady pushes and cut to a wider view of the diner or counter for scale. Steam should rise and disperse only from hot dishes. Record the sizzle, plate contact, cutlery, and restaurant murmur beneath the music."
+ },
+ {
+  "id": "style.gen.fashion-lookbook-video",
+  "domain": "style",
+  "topic": "fashion lookbook video",
+  "names": [
+   "فيديو لوك بوك أزياء",
+   "تصوير لوكبوك ملابس",
+   "فيديو عرض أزياء",
+   "fashion lookbook video",
+   "fashion lookbook"
+  ],
+  "body": "Show each outfit in a full-length view before moving closer to seams, fabric texture, footwear, and accessories. Use a 50 mm lens at about chest height for accurate proportions, switching to 85 mm for details. Set a simple wall, studio backdrop, or uncluttered street behind the model; broad soft light reveals fabric without flattening dark clothes or bleaching light ones. A locked camera or slow sideways track lets the model walk, turn, and pause naturally. Hems lag behind a turn, heavier fabrics fall sooner, and shoes meet the ground with weight. Keep footsteps and fabric rustle audible under clean, unobtrusive music."
+ },
+ {
+  "id": "style.gen.perfume-advert-dark-luxury",
+  "domain": "style",
+  "topic": "perfume advert dark luxury",
+  "names": [
+   "إعلان عطر فاخر",
+   "إعلان عطر داكن",
+   "دعاية عطر فخم",
+   "perfume advert",
+   "dark luxury perfume"
+  ],
+  "body": "Frame a heavy glass perfume bottle on black stone with a restrained gold or silver label. Use a 90 mm macro lens for sharp engraving and soft background reflections; let one narrow strip light travel across the curved glass as the camera slides a few centimetres. Amber liquid shifts slowly and settles when the bottle is placed down. Show a hand lifting the cap with natural finger pressure, not a floating object. Keep skin texture visible against the dark set. A quiet cap click, soft fabric movement and low, restrained music suit a premium social advert."
+ },
+ {
+  "id": "style.gen.car-advert-dynamic",
+  "domain": "style",
+  "topic": "car advert dynamic",
+  "names": [
+   "إعلان سيارة حركي",
+   "دعاية سيارة سريعة",
+   "تصوير سيارة ديناميكي",
+   "car advert",
+   "dynamic car ad"
+  ],
+  "body": "Film a clean car on an open, permitted road at dawn, with its bodywork reflecting the sky and roadside shapes. A stabilized tracking shot from another vehicle keeps the car at a steady three-quarter angle; a 35 mm lens shows the road without stretching its proportions. Cut to brief, grounded views of turning wheels and the driver’s hands. The chassis leans slightly through a bend, tyres stay in contact with the road, and reflections slide consistently over the panels. Preserve realistic engine, tyre and wind sound beneath the music. This look suits an energetic advert without implying dangerous driving."
+ },
+ {
+  "id": "style.gen.tech-product-launch",
+  "domain": "style",
+  "topic": "tech product launch",
+  "names": [
+   "إطلاق منتج تقني",
+   "تدشين جهاز جديد",
+   "عرض منتج تكنولوجي",
+   "tech product launch",
+   "gadget launch video"
+  ],
+  "body": "Place the device on a matte neutral surface, with enough side light to reveal its thickness, ports and material finish. Use a 50 mm lens for a level hero view, then a slow macro move across buttons and seams. A hand should grip it at a believable scale; screen content stays aligned with the glass as the device tilts. In a launch presentation, alternate these details with a medium shot of the speaker and audience under even stage lighting. Keep labels legible, colours consistent and reflections controlled. Use a soft button click, light handling sounds and clear speech rather than exaggerated electronic effects."
+ },
+ {
+  "id": "style.gen.medical-clinic-trust-video",
+  "domain": "style",
+  "topic": "medical clinic trust video",
+  "names": [
+   "فيديو عيادة طبية",
+   "إعلان عيادة موثوقة",
+   "تصوير عيادة",
+   "medical clinic video",
+   "clinic trust advert"
+  ],
+  "body": "Show a bright, orderly clinic with clean counters, labelled rooms and comfortable chairs, avoiding an unrealistically spotless showroom. Use a 35 mm lens at eye level as a patient checks in and a clinician speaks with them while seated. Keep faces in soft window light, with natural skin texture and unhurried expressions. Hands wash, gloves fit snugly and equipment rests where staff can reach it; do not imply a diagnosis or guaranteed outcome. A quiet door latch, low conversation and gentle room ambience support the scene. Frame any paperwork so private details cannot be read."
+ },
+ {
+  "id": "style.gen.school-university-promo",
+  "domain": "style",
+  "topic": "school or university promo",
+  "names": [
+   "إعلان مدرسة",
+   "فيديو ترويجي جامعة",
+   "دعاية مدرسة",
+   "school promo",
+   "university promo"
+  ],
+  "body": "Begin with a wide view of a real classroom or campus walkway in morning light, then move at walking speed into a lesson or workshop. A 35 mm lens keeps desks, people and room proportions natural. Show students listening, asking questions, writing and handling materials with ordinary pauses rather than perfectly synchronized gestures. Include varied ages appropriate to the institution, and film children with suitable supervision. Chalk, pages, footsteps and low conversation should remain audible under light music. Keep signs, uniforms and study equipment consistent between shots. This approach works for a welcoming school or university promo."
+ },
+ {
+  "id": "style.gen.government-awareness-video",
+  "domain": "style",
+  "topic": "government awareness video",
+  "names": [
+   "فيديو توعوي حكومي",
+   "إعلان توعية رسمي",
+   "حملة توعية حكومية",
+   "government awareness video",
+   "public awareness campaign"
+  ],
+  "body": "Set the message in a recognizable everyday place, such as a service counter, street crossing or family home, chosen to match the advice being given. Use steady eye-level medium shots and clear close-ups of the specific action; a 35 mm lens keeps people and surroundings in proportion. Let a person read a sign, ask a question or complete a simple step at a natural pace. Daylight or even indoor light makes details easy to see. Keep speech distinct above restrained music and ordinary ambient sound. Put essential instructions in large, high-contrast Arabic text, with no invented official seals or claims."
+ },
+ {
+  "id": "style.gen.charity-appeal-respectful",
+  "domain": "style",
+  "topic": "charity appeal (respectful)",
+  "names": [
+   "نداء تبرع محترم",
+   "فيديو حملة خيرية",
+   "إعلان جمعية خيرية",
+   "respectful charity appeal",
+   "charity campaign video"
+  ],
+  "body": "Show people as participants in their own lives, not as anonymous symbols of hardship. In a home, classroom or community centre, use eye-level framing and soft natural light to capture a conversation, shared task or practical service. A 50 mm lens allows a comfortable distance and keeps faces undistorted. Include ordinary details such as cups, notebooks and footsteps, and leave space for a person’s own words. Avoid intrusive close-ups of distress or staged reactions. State the requested support plainly with readable text and verified specifics. Keep music quiet enough for speech, and respect privacy and consent throughout."
+ },
+ {
+  "id": "style.gen.sports-highlight-edit",
+  "domain": "style",
+  "topic": "sports highlight edit",
+  "names": [
+   "مونتاج لقطات رياضية",
+   "ملخص مباراة",
+   "هايلايت رياضي",
+   "sports highlight edit",
+   "match highlights"
+  ],
+  "body": "Cut around complete athletic actions so viewers can follow cause and result: the approach, contact, ball or body movement, and reaction. A wide sideline shot establishes player positions; a 70–200 mm lens then isolates a run, pass or finish without making distances look impossible. Keep the ball’s path, shadows and uniforms consistent across angles. Use a brief slow-motion replay for one decisive movement, then return to normal speed for the outcome. Shoe squeaks, footfalls, crowd response and the impact sound should align with the picture. Punchy edits suit social clips, but leave enough frames to understand the play."
+ },
+ {
+  "id": "style.gen.music-video-arabic-pop",
+  "domain": "style",
+  "topic": "music video Arabic pop",
+  "names": [
+   "كليب بوب عربي",
+   "فيديو أغنية عربية",
+   "كليب عراقي",
+   "اغنية بوب عربية",
+   "arabic pop music video",
+   "iraqi pop clip"
+  ],
+  "body": "A singer performs to camera in a real location or a dressed studio set, with musicians or dancers visible when the song calls for them. Use a 35 mm or 50 mm lens for waist-up performance shots, then wider frames that show feet touching the floor and people keeping their own spacing. A slow dolly or handheld move follows the beat without making hair, fabric or jewellery move unnaturally. Warm practical lamps and coloured accent lights give faces dimension while preserving natural skin tones. Playback is loud on set; in the finished video, the recorded song dominates, with footsteps or claps audible only if deliberately mixed in. Fits polished ads and social clips."
+ },
+ {
+  "id": "style.gen.documentary-interview-setup",
+  "domain": "style",
+  "topic": "documentary interview setup",
+  "names": [
+   "مقابلة وثائقية",
+   "تصوير مقابلة وثائقية",
+   "مقابلة فيلم وثائقي",
+   "حوار وثائقي",
+   "documentary interview setup",
+   "documentary talking head"
+  ],
+  "body": "Seat the speaker on a stable chair, slightly angled toward an interviewer just beside the lens. A 50 mm to 85 mm lens frames the head and upper chest, leaving modest space above the hair and showing some of the real room behind. Soft window light or a diffused lamp shapes the face; a dimmer practical lamp adds depth without turning the background into a set. Keep the camera still or use a barely perceptible push-in. The speaker breathes, blinks and pauses before answering. Record clear close-microphone speech with quiet room tone, faint air-conditioning or distant traffic, but no exaggerated cinematic echo."
+ },
+ {
+  "id": "style.gen.street-interview-vox-pop",
+  "domain": "style",
+  "topic": "street interview vox pop",
+  "names": [
+   "مقابلة شارع",
+   "آراء الناس في الشارع",
+   "مقابلات الشارع",
+   "نسأل الناس بالشارع",
+   "street interview vox pop",
+   "street vox pop"
+  ],
+  "body": "An interviewer stands at arm’s length from a passerby on a pavement or pedestrian street, holding a small branded or plain microphone below the person’s mouth. A handheld camera at eye level uses a 24 mm to 35 mm lens, framing both faces or alternating with chest-up replies. Small reframing movements follow turns of the head; pedestrians continue walking behind them at normal speed. Daylight gives soft shadows in open shade and sharper ones in direct sun. Speech remains understandable over traffic, footsteps and nearby conversations. People glance toward the lens, hesitate, smile or interrupt naturally rather than delivering identical, polished answers."
+ },
+ {
+  "id": "style.gen.unboxing-top-down",
+  "domain": "style",
+  "topic": "unboxing top-down",
+  "names": [
+   "فتح صندوق من الأعلى",
+   "تصوير فتح العلبة",
+   "انبوكسنغ من فوق",
+   "فتح كارتون منتج",
+   "top-down unboxing",
+   "overhead unboxing"
+  ],
+  "body": "A fixed overhead camera points straight down at a clean table, keeping the entire carton and both hands in frame. A 35 mm to 50 mm equivalent lens avoids stretched fingers and bowed box edges. Soft lights from both sides reveal printed labels, cardboard grain, clear tape and the slight shine of plastic wrapping without harsh glare. Hands cut or peel the seal, lift flaps against their folds and remove fitted packaging in a believable order. Cardboard creaks, tape crackles and accessories tap the tabletop; narration can be recorded separately. This precise, uncluttered view suits product ads and short social demonstrations."
+ },
+ {
+  "id": "style.gen.asmr-close-up",
+  "domain": "style",
+  "topic": "ASMR close-up",
+  "names": [
+   "تصوير ايه اس ام ار",
+   "أصوات هادئة مقربة",
+   "تصوير أصوات قريبة",
+   "اسمر كلوز اب",
+   "asmr close-up",
+   "asmr macro video"
+  ],
+  "body": "Frame hands and a small object tightly with a macro lens or a 50 mm lens focused close; keep fingernails, surface texture and contact points sharp while the background falls softly out of focus. Diffused side light catches tiny ridges and highlights without making skin look waxy. Fingers press, brush, fold or tap at a measured pace, and soft materials compress and spring back according to their texture. Place a microphone near the action without showing it unless intended. Record distinct taps, rustles, scrapes and breaths at low room-noise levels, with no artificial thunderous bass. Slow, steady camera movement suits calming social clips."
+ },
+ {
+  "id": "style.gen.cooking-top-down-recipe",
+  "domain": "style",
+  "topic": "cooking top-down recipe",
+  "names": [
+   "وصفة تصوير من فوق",
+   "طبخ من الأعلى",
+   "تصوير وصفة من فوق",
+   "وصفة طبخ علوية",
+   "top-down cooking recipe",
+   "overhead recipe video"
+  ],
+  "body": "A locked overhead camera shows the board, bowl or pan and enough surrounding counter for ingredients to enter the frame. Use a 35 mm to 50 mm equivalent lens so plates stay round and hands keep natural proportions. Broad, soft light reveals the colour of spices, chopped vegetables and oil without bleaching steam. Hands measure, pour and stir in a usable sequence; liquids flow downhill, chopped pieces scatter and hot food steams only when heat is present. Capture knife taps, sizzling, spoon scrapes and the extractor fan at plausible levels. Wipe spills between steps rather than letting ingredients vanish between cuts. Fits clear recipe videos and food ads."
+ },
+ {
+  "id": "style.gen.before-and-after-split",
+  "domain": "style",
+  "topic": "before and after split",
+  "names": [
+   "قبل وبعد شاشة مقسومة",
+   "مقارنة قبل وبعد",
+   "قبل وبعد جنب بعض",
+   "تصوير قبل وبعد",
+   "before and after split",
+   "split screen before after"
+  ],
+  "body": "Two views sit side by side with a straight central divider and small, legible before and after labels. Match camera height, lens, subject distance and crop on both sides: a 35 mm or 50 mm lens keeps faces, rooms or products at comparable scale. Hold exposure and white balance steady so any difference comes from the actual change, not misleading lighting. If people move, synchronize ordinary gestures loosely rather than mirroring them perfectly; hair and clothing retain natural movement. A static frame makes details easy to compare, while a restrained divider slide suits a short ad. Use consistent room sound or quiet music, without a jarring audio switch."
+ },
+ {
+  "id": "style.gen.testimonial-customer-video",
+  "domain": "style",
+  "topic": "testimonial customer video",
+  "names": [
+   "رأي زبون بالفيديو",
+   "تجربة عميل مصورة",
+   "شهادة زبون",
+   "زبون يحجي عن تجربته",
+   "customer testimonial video",
+   "customer review video"
+  ],
+  "body": "A real customer speaks in a place connected to their experience, such as a shop, home or workplace, with ordinary objects visible behind them. Frame from mid-chest upward on a 50 mm lens at eye level, and light the face softly with a window or diffused lamp. Keep the camera on a tripod or let it drift only slightly. The person looks toward an interviewer or directly into the lens, pauses to find words and uses natural facial expressions and hand gestures. A lavalier or nearby microphone captures clear speech alongside faint room ambience. Brief cutaways can show the product in use without implying actions the customer did not describe."
+ },
+ {
+  "id": "style.gen.cinematic-trailer",
+  "domain": "style",
+  "topic": "cinematic trailer",
+  "names": [
+   "إعلان سينمائي",
+   "تريلر سينمائي",
+   "برومو سينمائي",
+   "cinematic trailer",
+   "movie trailer"
+  ],
+  "body": "Use a 35 mm or 50 mm lens for faces, alternating close details with wider views that establish the setting. A slow push toward a person can lead into a clean cut as they turn or begin walking; keep their position and direction consistent across shots. Give practical lamps and window light clear sources, with deep but readable shadows and restrained amber and blue tones. Leave brief quiet gaps between footsteps, a door closing, and a low musical rise. Trailer pacing suits a film or product teaser: several short glimpses build toward one longer, steady shot that lets the viewer understand the scene."
+ },
+ {
+  "id": "style.gen.mild-horror-mood",
+  "domain": "style",
+  "topic": "horror mood (mild)",
+  "names": [
+   "رعب خفيف",
+   "جو رعب خفيف",
+   "أجواء مرعبة خفيفة",
+   "mild horror mood",
+   "gentle spooky mood"
+  ],
+  "body": "Frame an ordinary hallway or room at eye level with a 35 mm lens, leaving an unlit doorway visible behind the person. One warm bulb or a strip of cool light from a window should explain what can be seen; preserve detail in the shadows rather than making them black. Move the camera slowly enough that doorframes slide naturally past the lens. A faint electrical hum, distant wind, or floorboard creak can create unease without a sudden attack. Let the person pause and look toward a sound, breathing normally. This restrained approach fits a family-friendly mystery or suspenseful social clip."
+ },
+ {
+  "id": "style.gen.comedy-sketch-framing",
+  "domain": "style",
+  "topic": "comedy sketch framing",
+  "names": [
+   "تصوير سكيتش كوميدي",
+   "كادر مشهد كوميدي",
+   "لقطة تمثيلية مضحكة",
+   "comedy sketch framing",
+   "comedy skit framing"
+  ],
+  "body": "Place a 35 mm lens at seated or standing eye level and frame two performers in a medium-wide shot, with their faces, hands, and the important prop visible together. Keep the camera mostly still so a glance, a delayed reaction, or an awkward step lands without an unnecessary cut. Soft window or studio light should reveal expressions clearly, with neutral colour and no dramatic shadows. Record dialogue cleanly while retaining small sounds such as a chair scrape or a cup touching a table. Cut closer only when a detail matters, then return to the shared frame so viewers can see both reactions and where everyone stands."
+ },
+ {
+  "id": "style.gen.romantic-soft-focus",
+  "domain": "style",
+  "topic": "romantic soft focus",
+  "names": [
+   "تركيز رومانسي ناعم",
+   "فوكس رومانسي ناعم",
+   "تصوير رومانسي ضبابي",
+   "romantic soft focus",
+   "soft romantic focus"
+  ],
+  "body": "Use an 85 mm lens at a moderate aperture so the background falls gently out of focus while both visible eyes remain sharp. Place the pair near a window or beneath shaded afternoon light; pale reflections and warm skin tones should come from real light sources, not a white haze covering their faces. Frame hands meeting, a small smile, or two people walking together, and move the camera slowly at their pace. Clothing and hair should respond naturally to a light breeze. Keep conversation, footsteps, and surrounding room tone audible beneath quiet music. This look suits a tender scene or an understated celebration advertisement."
+ },
+ {
+  "id": "style.gen.action-chase-camera",
+  "domain": "style",
+  "topic": "action chase camera",
+  "names": [
+   "كاميرا مطاردة",
+   "تصوير مشهد مطاردة",
+   "لقطة ركض ومطاردة",
+   "action chase camera",
+   "chase camera"
+  ],
+  "body": "Follow a runner with a 24 mm or 35 mm lens from a safe distance, keeping their full body or upper body readable against a clear route. A handheld operator may rise and dip with each step, but the horizon should not whip unpredictably; a stabilized side-tracking shot can show how fast the person passes doors or parked cars. Match travel direction between cuts and show turns from a wider angle so the route remains understandable. Footfalls, fabric movement, breathing, and passing traffic should change with camera distance. Use available street or daylight sources, and let shadows and motion blur behave consistently with the runner’s speed."
+ },
+ {
+  "id": "style.gen.epic-wide-landscape",
+  "domain": "style",
+  "topic": "epic wide landscape",
+  "names": [
+   "منظر طبيعي ملحمي",
+   "لقطة طبيعة واسعة ملحمية",
+   "مشهد بانورامي ملحمي",
+   "epic wide landscape",
+   "epic landscape shot"
+  ],
+  "body": "Use a 24 mm lens from a stable viewpoint to show distinct foreground, middle ground, and horizon: stones or grasses close to the camera, a small road or figure farther away, and mountains, dunes, or water beyond. A slow sideways move makes the near objects shift faster than distant ridges, giving the scene believable scale. Early or late sunlight can cast long shadows while preserving detail in the sky; distant features should look paler through atmospheric haze. Wind moves grass unevenly and lifts loose dust in brief patches. Keep natural wind and distant bird or vehicle sounds spacious, without making a person appear larger than the terrain allows."
+ },
+ {
+  "id": "style.gen.anime-inspired-look",
+  "domain": "style",
+  "topic": "anime-inspired look",
+  "names": [
+   "ستايل أنمي",
+   "أسلوب أنمي",
+   "مظهر مستوحى من الأنمي",
+   "anime-inspired look",
+   "anime style"
+  ],
+  "body": "Build a clearly stylized image with clean contour lines, simplified facial planes, large but consistently placed eyes, and hair grouped into distinct shapes. Use two or three deliberate shadow tones per surface rather than photographic skin texture, while keeping joints, clothing weight, and walking speed coherent from frame to frame. A 35 mm-equivalent view at eye level preserves believable room proportions; a gentle push-in can emphasize an expression without changing the character’s face shape. Daylight through a window can create broad, graphic patches of colour. Add synchronized footsteps, cloth movement, and room tone. This look suits an animated story, music clip, or illustrated advertisement."
+ },
+ {
+  "id": "style.gen.claymation-look",
+  "domain": "style",
+  "topic": "claymation look",
+  "names": [
+   "شكل صلصال متحرك",
+   "ستايل ستوب موشن صلصال",
+   "تحريك بالصلصال",
+   "claymation look",
+   "clay animation look"
+  ],
+  "body": "Show small, hand-shaped clay figures with rounded edges, slight finger impressions, matte colour, and tiny variations between poses. Their eyes and mouths can be separate clay pieces, but their size and placement should remain consistent through an expression. Film the miniature set with a fixed, close camera angle and broad soft light that casts real shadows beneath feet and props. Movement advances in small, deliberate increments; a quick gesture may have a playful stepped rhythm, while a heavy object takes more effort to shift. Use modest taps, soft scrapes, and fitted voice recordings. This tactile look suits a playful advertisement or short animated sketch."
+ },
+ {
+  "id": "style.gen.watercolour-look",
+  "domain": "style",
+  "topic": "watercolour look",
+  "names": [
+   "ألوان مائية",
+   "رسم مائي",
+   "تلوين مائي",
+   "ألوان ماي",
+   "watercolour look",
+   "watercolor style"
+  ],
+  "body": "Use translucent washes on off-white paper, with visible fine grain and slightly uneven pigment at the edges of each shape. Skin, fabric and buildings keep their real proportions; details soften rather than disappear. A damp brush leaves pale blooms where water pushes colour outward, while darker strokes collect in folds and shadows. In video, let these textures follow moving subjects consistently instead of sliding across them. Use a steady eye-level frame or a slow push-in, with soft daylight and restrained colours. Footsteps, voices and room ambience remain natural; the painted surface adds no sound. This suits illustrated ads and gentle social clips."
+ },
+ {
+  "id": "style.gen.comic-book-look",
+  "domain": "style",
+  "topic": "comic book look",
+  "names": [
+   "أسلوب القصص المصورة",
+   "ستايل كومكس",
+   "رسم كوميكس",
+   "ستايل كوميكس",
+   "comic book look",
+   "comic style"
+  ],
+  "body": "Give faces and objects clean ink contours, flat colour areas and small halftone dots in shadow or background planes. Keep body proportions believable and hands, eyes and clothing folds consistent from frame to frame. A 35 mm lens at eye level preserves depth while making the composition direct; panels can crop tightly around a glance or a moving hand. Use bright, controlled light and a limited palette rather than random neon. If action crosses a panel edge, its speed and direction should carry through smoothly. Voices, steps and street ambience sound ordinary, with no automatic impact noises. This fits playful ads and short social stories."
+ },
+ {
+  "id": "style.gen.retro-80s-vhs-look",
+  "domain": "style",
+  "topic": "retro 80s VHS look",
+  "names": [
+   "شريط فيديو قديم",
+   "ستايل فيديو الثمانينات",
+   "شكل شريط vhs",
+   "تصوير في اتش اس",
+   "80s vhs look",
+   "retro vhs"
+  ],
+  "body": "Frame the image like an old home-video recording: a slightly soft 4:3 picture, modest contrast, warm skin tones and colours that bleed a little beyond sharp edges. Add fine tape noise, occasional horizontal tracking flicker and a faint wobble near the bottom, never enough to hide a face. A handheld camera at standing height drifts and corrects naturally as people walk; indoor lamps leave mild glare and bright windows lose detail. Clothing and movement stay physically ordinary beneath the tape effect. Audio has a low hiss and slightly muffled voices, while footsteps and room sounds remain recognisable. It suits nostalgic family scenes and social clips."
+ },
+ {
+  "id": "style.gen.black-and-white-noir",
+  "domain": "style",
+  "topic": "black and white noir",
+  "names": [
+   "أبيض وأسود نوار",
+   "تصوير نوار",
+   "ستايل فيلم نوار",
+   "اسود وابيض نوار",
+   "black and white noir",
+   "noir lighting"
+  ],
+  "body": "Use deep blacks, bright highlights and a full range of greys between them, keeping skin texture and dark clothing distinguishable. A hard lamp from one side draws a crisp nose shadow; light through a window or blind can lay straight bands across a wall. Frame a face on a 50 mm lens, leaving controlled shadow beside it, or track slowly down a corridor without floating camera movement. Reflections on glass and polished floors follow the real light source. Colour is absent, not merely desaturated with tinted blacks. Voices, shoes and distant traffic sound natural in the space. This fits restrained drama and cinematic portraits."
+ },
+ {
+  "id": "style.gen.candlelight-mood",
+  "domain": "style",
+  "topic": "candlelight mood",
+  "names": [
+   "ضوء الشموع",
+   "إضاءة شموع",
+   "جو شموع",
+   "ضو الشموع",
+   "candlelight mood",
+   "candlelit scene"
+  ],
+  "body": "Let one or several candle flames provide small, warm points of light, with amber highlights on cheeks, glass rims and nearby fabric. The flame bends briefly in moving air, making shadows shift softly across a wall; distant corners remain dark rather than evenly orange. A 50 mm lens at table height can hold a face and the visible candle in one intimate frame. Skin retains natural colour where the light reaches it, and exposure protects the bright flame without turning every shadow black. Listen for quiet voices, a faint wick crackle and ordinary room ambience. This works for reflective drama or a calm product scene."
+ },
+ {
+  "id": "style.gen.moonlight-blue-mood",
+  "domain": "style",
+  "topic": "moonlight blue mood",
+  "names": [
+   "ضوء القمر الأزرق",
+   "إضاءة قمرية زرقاء",
+   "جو ضو القمر",
+   "لون قمري أزرق",
+   "blue moonlight look",
+   "moonlight blue mood"
+  ],
+  "body": "Show a dim, cool night scene with soft blue-grey light on surfaces facing the sky and deep neutral shadows underneath. Moonlight should cast a consistent shadow direction; a nearby window, porch lamp or streetlamp may add a separate, warmer pool of light. Keep faces readable through gentle reflected light, not an electric-blue glow across every object. A 35 mm lens can hold a person and enough of the street or courtyard to establish the light source; move the camera slowly so night detail does not smear. Fabric sways with the breeze, and footsteps, insects or distant traffic keep their natural volume. This suits quiet drama."
+ },
+ {
+  "id": "style.gen.sunset-silhouette",
+  "domain": "style",
+  "topic": "sunset silhouette",
+  "names": [
+   "ظل وقت الغروب",
+   "سيلويت الغروب",
+   "تصوير ظلال الغروب",
+   "خيال وقت الغروب",
+   "sunset silhouette",
+   "golden hour silhouette"
+  ],
+  "body": "Place the person or object between the camera and a low sun, making its outline dark against a bright orange, peach or pale-pink sky. Expose for the sky so facial features fall into shadow; keep gaps between arms, body and nearby objects clear enough to read the shape. A 70 mm lens compresses the horizon for a simple portrait, while a wider 35 mm frame shows ground and surroundings. Hair and loose clothing move with the actual breeze, and a walking figure rises and falls naturally. If the sun enters the lens, flare follows its position rather than appearing everywhere. Footsteps, wind and distant voices remain unaltered."
+ },
+ {
+  "id": "style.gen.rim-light-portrait",
+  "domain": "style",
+  "topic": "rim light portrait",
+  "names": [
+   "إضاءة حواف البورتريه",
+   "ضوء حواف الوجه",
+   "إضاءة خلفية للبورتريه",
+   "ضو حواف الصورة",
+   "rim light portrait",
+   "backlit portrait"
+  ],
+  "body": "Set a small light behind and to one side of the subject so it traces a narrow bright edge along hair, a cheek, a shoulder and clothing. The edge should break where the body blocks the light and widen naturally in loose or translucent hair. A softer source in front keeps the face readable without removing its shape. Frame head and shoulders on an 85 mm lens, with the background far enough away to stay subdued; hold focus on the near eye during a small turn. Skin colour remains believable, and the backlight does not spill across the whole face. Voices and room tone stay natural. This suits portraits, interviews and polished ads."
+ },
+ {
+  "id": "style.gen.split-lighting",
+  "domain": "style",
+  "topic": "split lighting",
+  "names": [
+   "split lighting",
+   "split light",
+   "إضاءة نصف الوجه",
+   "إضاءة منقسمة",
+   "إضاءة سبليت"
+  ],
+  "body": "Place one small, diffused light roughly 90 degrees to one side of a person’s face, close to eye level. One cheek, eye socket and side of the nose remain bright while the opposite half falls into soft shadow; the divide follows the nose rather than forming a perfectly straight line. A faint bounce can preserve detail in dark skin and clothing. Use a medium or portrait lens and expose for the lit cheek without bleaching its texture. The person can blink and turn naturally, causing the shadow boundary to shift. This quiet, high-contrast look suits intimate interviews, portraits and drama."
+ },
+ {
+  "id": "style.gen.butterfly-lighting-beauty",
+  "domain": "style",
+  "topic": "butterfly lighting beauty",
+  "names": [
+   "butterfly lighting",
+   "beauty lighting",
+   "إضاءة الفراشة",
+   "إضاءة تجميلية",
+   "إضاءة بترفلاي"
+  ],
+  "body": "Set a broad, soft light above the camera and angle it down toward the face. It creates even brightness across the forehead and cheeks, small catchlights high in both eyes, and a short, symmetrical shadow beneath the nose shaped like butterfly wings. A white reflector below the chin softens shadows without erasing them. Frame from the shoulders up with a portrait lens so facial proportions stay natural. Skin should retain pores, fine hair and gentle highlights rather than looking airbrushed. As the person tilts their head, the nose shadow moves with them. This clean look fits cosmetics ads and beauty portraits."
+ },
+ {
+  "id": "style.gen.macro-product-sparkle",
+  "domain": "style",
+  "topic": "macro product sparkle",
+  "names": [
+   "macro product sparkle",
+   "product sparkle",
+   "لمعة المنتج ماكرو",
+   "تصوير منتج ماكرو",
+   "بريق المنتج"
+  ],
+  "body": "Frame a small product detail tightly with a macro lens: a ring setting, watch edge or glass bottle rim may fill most of the image. Use a narrow light source against darker surroundings so polished edges produce tiny, sharp specular glints. As the camera slides a few centimetres or the product rotates slowly, those glints travel across the surface and disappear at believable angles; they do not hover in empty air. Shallow depth of field lets the nearest engraving stay crisp while farther edges blur smoothly. Keep fingerprints, material texture and reflections controlled but plausible. This look fits jewellery and premium product ads."
+ },
+ {
+  "id": "style.gen.slow-push-on-a-face",
+  "domain": "style",
+  "topic": "slow push on a face",
+  "names": [
+   "slow push on a face",
+   "slow push in",
+   "اقتراب بطيء من الوجه",
+   "دخول بطيء على الوجه",
+   "زوم بطيء على الوجه"
+  ],
+  "body": "Begin on a head-and-shoulders frame, then move the camera forward on a steady dolly or stabilizer over several seconds until the face fills more of the shot. A medium portrait lens keeps the nose, ears and jaw in natural proportion; the background grows slightly softer and shifts in perspective as the camera advances. Keep the eyes in focus while allowing normal blinks, breathing and small changes of expression. The move should not lurch or make the face stretch like a digital warp. Soft window light or a motivated room light suits the restrained motion, often used in drama and personal interviews."
+ },
+ {
+  "id": "style.gen.snorricam",
+  "domain": "style",
+  "topic": "snorricam",
+  "names": [
+   "snorricam",
+   "snorri cam",
+   "كاميرا مثبتة على الجسم",
+   "كاميرا مربوطة بالممثل",
+   "كاميرا سنوري"
+  ],
+  "body": "Mount a compact camera on a rigid arm attached to the performer’s torso, pointing back at their face from about an arm’s length. The head and shoulders stay nearly fixed in the frame while the street, corridor or room behind them swings and bobs as they walk. A moderately wide lens shows enough background motion without grotesquely enlarging the nose. Footsteps cause small rhythmic jolts; breathing and fabric movement remain visible and audible. The arm’s position should not change independently of the body. Use practical ambient light and a believable walking pace for a disorienting but physical drama or music-video shot."
+ },
+ {
+  "id": "style.gen.bullet-time",
+  "domain": "style",
+  "topic": "bullet time",
+  "names": [
+   "bullet time",
+   "time slice effect",
+   "تجميد الزمن بالكاميرات",
+   "تصوير بولت تايم",
+   "تأثير توقف الزمن"
+  ],
+  "body": "Arrange multiple cameras along a curved path around a performer and capture the same instant from successive viewpoints. In the finished shot, the camera viewpoint appears to sweep around while the person’s pose, loose hair and airborne dust remain nearly frozen. The changing background perspective is essential: nearby objects shift more than distant ones. Lighting and exposure must match across all views, with no extra limbs or changing facial features between frames. A brief transition into and out of normal speed helps the effect read clearly. It suits stylized ads and music videos, especially around a jump or a turn."
+ },
+ {
+  "id": "style.gen.match-cut",
+  "domain": "style",
+  "topic": "match cut",
+  "names": [
+   "match cut",
+   "graphic match cut",
+   "قطع متطابق",
+   "مونتاج تطابق الحركة",
+   "ماتش كت"
+  ],
+  "body": "Cut between two separate shots at the moment their shapes, positions or actions align. A round coffee cup seen from above might become a round ceiling light in the same part of the frame; a hand closing one door might continue the motion on another. Match the camera angle, screen direction and approximate scale so the eye follows the action across the edit. Light and colour can change to reveal the new place, but faces and hands should not morph during the cut. Keep the sound continuous or let one clear sound bridge both shots. This precise edit suits ads, travel reels and drama."
+ },
+ {
+  "id": "style.gen.seamless-transition",
+  "domain": "style",
+  "topic": "seamless transition",
+  "names": [
+   "seamless transition",
+   "invisible transition",
+   "انتقال سلس",
+   "انتقال مخفي",
+   "ترانزيشن بدون قطع"
+  ],
+  "body": "Hide an edit inside a natural moment of visual cover or matching motion. The camera might follow a person past a dark doorway, let their coat fill the lens for an instant, then emerge into a second location moving in the same direction and at the same speed. Match lens height, exposure, motion blur and the position of the person before and after the join. Footsteps and room tone should change gradually or at the point where the new space becomes visible. Avoid melting walls, duplicated hands or an unexplained jump in body position. This flowing move suits social videos, tours and ads."
  }
 ]

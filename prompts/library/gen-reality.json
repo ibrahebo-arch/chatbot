@@ -1086,5 +1086,985 @@
    "train pulling away"
   ],
   "body": "A train pulling away gathers speed gradually because of its weight. The powered wheels turn against the rails without visibly slipping in normal conditions; the carriages follow on the same track, with slight changes in the spacing or tension at their couplings as the pull reaches them. Passengers may lean back briefly or steady a hand on a rail, while hanging straps sway opposite the initial acceleration and then settle. Platform columns and markings pass faster and faster, giving a clear speed cue. Expect motor or engine noise to rise over wheel rumble and track-joint clicks where present. Avoid carriages stretching, wheels sliding sideways, or an entire long train jumping instantly to speed."
+ },
+ {
+  "id": "reality.gen.standing-up-from-chair",
+  "domain": "reality",
+  "topic": "how a person stands up from a chair",
+  "names": [
+   "القيام من الكرسي",
+   "النهوض من الكرسي",
+   "يكوم من الكرسي",
+   "يكعد من الكرسي",
+   "stand up from chair",
+   "rise from chair"
+  ],
+  "body": "From a seated position, the feet plant on the floor, usually beneath or slightly behind the knees. The torso leans forward before the hips lift, bringing body weight over the feet. Knees and hips then straighten together; the head rises along a smooth, slightly forward path. Hands may press briefly on the seat, armrests, or thighs. Clothing pulls across the knees and settles as the person becomes upright. A chair may creak or scrape lightly, followed by a shoe shuffle. Keep the feet anchored during the push: the person should not float vertically, slide away from the chair, or pass through its arms."
+ },
+ {
+  "id": "reality.gen.sitting-down",
+  "domain": "reality",
+  "topic": "how a person sits down",
+  "names": [
+   "الجلوس على كرسي",
+   "القعود على كرسي",
+   "يكعد عالكرسي",
+   "يقعد عالكرسي",
+   "sit down",
+   "sitting on chair"
+  ],
+  "body": "A person approaches until the backs of the legs are near the chair, then shifts weight over the seat. Knees and hips bend as the torso tips slightly forward for balance. The pelvis travels backward and downward; contact with the cushion or hard seat stops the descent, followed by a small compression and settling of the body. Hands may touch armrests or thighs. Fabric folds at the waist and knees. Shoes make short adjusting scuffs; the chair may creak or give a muted thump. Avoid an unsupported vertical drop, feet sliding across the floor, or the body clipping through the seat."
+ },
+ {
+  "id": "reality.gen.head-turning",
+  "domain": "reality",
+  "topic": "how people turn their heads",
+  "names": [
+   "التفات الرأس",
+   "تحريك الرأس",
+   "يلفت راسه",
+   "يدير راسه",
+   "turn head",
+   "head turn"
+  ],
+  "body": "A head turn often begins with the eyes shifting toward the target. The neck then rotates the skull while the shoulders stay mostly in place for a small turn; for a larger turn, the upper torso follows. The chin traces a shallow arc rather than sliding sideways, and the nose changes direction with the face. Hair, earrings, or loose headwear may lag briefly and settle after the head stops. Motion typically eases into its final position instead of stopping sharply. There is usually no distinct sound beyond faint hair or fabric movement. Avoid a swiveling, detached head, a stretching neck, or a face that morphs during rotation."
+ },
+ {
+  "id": "reality.gen.eye-blink-timing",
+  "domain": "reality",
+  "topic": "eye blink timing",
+  "names": [
+   "رمش العين",
+   "طرف العين",
+   "يرمش",
+   "يغمض عينه",
+   "eye blink",
+   "blinking"
+  ],
+  "body": "In an ordinary blink, the upper eyelid moves quickly down across the eye while the lower lid rises only slightly. The lids meet for a brief instant, then reopen, often more slowly than they closed. The eyeball remains in its socket; eyelashes travel with the lid. Blinks vary with attention, speech, dryness, and bright light, rather than repeating at perfectly even intervals. A longer closure can accompany a pause or reaction. Blinking is normally silent, though close-up footage may catch a faint skin movement. Avoid flashing the whole eye dark, moving both lids equally, or making every blink identical in speed and spacing."
+ },
+ {
+  "id": "reality.gen.eye-focus-and-convergence",
+  "domain": "reality",
+  "topic": "eye focus and convergence",
+  "names": [
+   "تركيز النظر",
+   "تقارب العينين",
+   "يركز نظره",
+   "يثبت عيونه",
+   "eye focus",
+   "eye convergence"
+  ],
+  "body": "When a person looks from a distant object to a nearby one, both eyes rotate inward slightly so their lines of sight meet at the closer point. The pupils move together toward the new target, usually in a quick jump followed by tiny corrections; the eyelids and head may adjust afterward. Looking farther away reverses the inward angle. The lens changes shape inside each eye to sharpen focus, but that change is not visibly dramatic in a normal shot. There is no sound from the eyes themselves. Keep the gaze aligned with the object: avoid independently wandering pupils, excessive cross-eye angles, or eyes that stay fixed while the head turns."
+ },
+ {
+  "id": "reality.gen.arabic-lip-shapes",
+  "domain": "reality",
+  "topic": "lip shapes for Arabic sounds",
+  "names": [
+   "حركة الشفاه بالعربية",
+   "مخارج الحروف العربية",
+   "حركة الشفايف",
+   "لفظ الحروف العربية",
+   "arabic lip shapes",
+   "arabic speech lips"
+  ],
+  "body": "Arabic speech changes the mouth shape sound by sound. For ب, م, and ف, the lips visibly meet or the lower lip touches the upper teeth; م can hold the closure as the voice continues through the nose. و and the long vowel وو round and project the lips, while ا often opens the jaw and spreads the opening vertically. Sounds such as ع, ح, and ق are formed farther back and should not receive an exaggerated lip pose. Adjacent sounds blend, so shapes flow rather than snap between fixed positions. Match visible closures to the audio, and avoid random mouth flapping or perfectly symmetrical, rubbery lips."
+ },
+ {
+  "id": "reality.gen.speaking-throat-and-jaw",
+  "domain": "reality",
+  "topic": "throat and jaw movement when speaking",
+  "names": [
+   "حركة الفك أثناء الكلام",
+   "حركة الحلق أثناء الكلام",
+   "حركة الحنك والحلك",
+   "الفك من يحچي",
+   "speaking jaw movement",
+   "speaking throat movement"
+  ],
+  "body": "During speech, the lower jaw drops and rises in small, uneven cycles that follow syllables and vowel openness. The chin moves with the jaw, while the upper teeth and skull remain comparatively steady. Lips and tongue refine each sound; the throat may show subtle movement around the larynx, especially during swallowing or a forceful phrase, but it should not pulse visibly on every syllable. Breath starts and stops around phrases, with tiny pauses and audible consonants shaped by the mouth. Skin beneath the jaw shifts gently as muscles work. Avoid a hinged puppet-mouth rhythm, a wobbling upper jaw, or throat motion disconnected from the spoken audio."
+ },
+ {
+  "id": "reality.gen.laughing-body-mechanics",
+  "domain": "reality",
+  "topic": "laughing body mechanics",
+  "names": [
+   "حركة الجسم عند الضحك",
+   "ضحك الشخص",
+   "يضحك من قلبه",
+   "ينضحك",
+   "laughing body",
+   "body laughing"
+  ],
+  "body": "Laughter comes in bursts of exhaled sound separated by quick breaths. The mouth opens and changes shape with each burst; cheeks lift, eyes narrow, and the jaw moves without repeating one exact pose. The chest and abdomen contract in short pulses, making the shoulders bob slightly after each breath. A stronger laugh may tip the torso forward, bend the knees, or prompt a hand to brace on a thigh or table. Hair and loose clothing follow those movements and settle between bursts. Match the shoulder and chest pulses to the audible laugh; avoid a motionless torso, continuous bouncing, or movement that slides the feet across the floor."
+ },
+ {
+  "id": "reality.gen.crying-facial-mechanics",
+  "domain": "reality",
+  "topic": "crying facial mechanics",
+  "names": [
+   "بكاء الوجه",
+   "ملامح البكاء",
+   "وجه يبچي",
+   "crying face",
+   "tearful expression"
+  ],
+  "body": "Crying changes the face unevenly, not all at once. The inner eyebrows lift and draw together, the lower eyelids tighten, and the mouth corners pull down or tremble. Tears collect along the lower eyelid before spilling across the cheek, following its contours; blinking briefly interrupts the flow. Breathing becomes irregular, with short inhales that may shake the nose and upper lip. The cheeks flush gradually, especially around the eyes. Close audio may catch sniffles, breath and a wavering voice, while tears themselves are silent. Avoid perfectly synchronized facial movements, rigid cheeks, or tears appearing halfway down a dry face."
+ },
+ {
+  "id": "reality.gen.breathing-visible-in-chest",
+  "domain": "reality",
+  "topic": "breathing visible in the chest",
+  "names": [
+   "حركة الصدر مع التنفس",
+   "تنفس الصدر",
+   "الصدر يتنفس",
+   "chest breathing",
+   "visible breathing"
+  ],
+  "body": "During quiet breathing, the chest expands subtly outward and upward over an inhale of roughly two seconds, then settles during a slightly longer exhale. The upper abdomen may move too; loose clothing follows a fraction later, forming and relaxing small folds. Shoulders usually stay nearly still unless the person is breathing hard. A deep breath widens the ribs more visibly, then releases without a sudden collapse. Sound is a soft nasal or mouth airflow, often inaudible at normal camera distance. Keep the movement continuous and modest: avoid a chest inflating like a balloon, clothing moving independently, or the torso sliding against a chair."
+ },
+ {
+  "id": "reality.gen.heartbeat-visible-in-neck-close-up",
+  "domain": "reality",
+  "topic": "heartbeat visible in the neck (close-up)",
+  "names": [
+   "نبض الرقبة",
+   "دقات القلب في الرقبة",
+   "عرق الرقبة ينبض",
+   "neck pulse",
+   "visible heartbeat"
+  ],
+  "body": "In a tight, steady close-up, a neck pulse appears as a tiny, brief lift of skin beside the windpipe, below the jaw rather than across the whole throat. Each beat rises quickly and subsides smoothly before the next; its visibility changes with head angle, light and how relaxed the neck is. Fine skin texture and any nearby hairs remain in place. Ordinary breathing adds a slower, broader motion underneath. The pulse itself makes no audible sound; use breathing and room tone unless a microphone or stethoscope is part of the scene. Avoid a glowing vein, large rhythmic bulges, or skin stretching like rubber."
+ },
+ {
+  "id": "reality.gen.goosebumps-on-skin",
+  "domain": "reality",
+  "topic": "goosebumps on skin",
+  "names": [
+   "قشعريرة الجلد",
+   "جلد الوزة",
+   "جلدي اقشعر",
+   "goosebumps",
+   "gooseflesh"
+  ],
+  "body": "Goosebumps form as many tiny, separate raised points around hair follicles, often visible on a forearm in grazing light. They appear over a few seconds in uneven patches when someone feels cold or a strong emotion; fine hairs may stand slightly more upright. The skin does not ripple across the arm, change colour uniformly, or acquire large lumps. As the response fades, the points flatten gradually while pores and natural skin texture remain. Goosebumps make no sound. In a cold scene, any audible cue comes from a shiver, clothing rustle or breath, not the skin. Avoid morphing the entire arm into a patterned surface."
+ },
+ {
+  "id": "reality.gen.skin-wrinkling-when-smiling",
+  "domain": "reality",
+  "topic": "skin wrinkling when smiling",
+  "names": [
+   "تجاعيد الابتسامة",
+   "ثنيات الجلد مع الضحك",
+   "خطوط الابتسامة",
+   "smile wrinkles",
+   "smiling skin"
+  ],
+  "body": "As a smile develops, the mouth corners travel outward and upward, lifting the cheeks. Skin bunches softly beside the nose and at the outer corners of the eyes; small lines deepen as the cheeks rise, then ease when the smile relaxes. Existing fine lines and age affect how visible the folds are. The two sides need not move at exactly the same instant. In close-up, pores and skin texture stay consistent as light catches the raised cheek. Skin makes no sound; a quiet exhale or laugh may accompany the expression. Avoid permanent carved grooves, wrinkles popping on instantly, or cheeks sliding separately from the face."
+ },
+ {
+  "id": "reality.gen.veins-on-hands",
+  "domain": "reality",
+  "topic": "veins on hands",
+  "names": [
+   "عروق اليد",
+   "أوردة اليد",
+   "عروگ اليد",
+   "hand veins",
+   "veins on hands"
+  ],
+  "body": "On the back of a hand, superficial veins appear as branching blue-green or skin-coloured lines with soft edges, depending on skin tone and light. Some rise slightly above the surface, especially in a warm hand held low, while they may look less prominent when the hand is raised. Tendons create straighter ridges when fingers extend; do not mistake those for veins. As the hand bends, the skin and its visible veins shift together, with small folds at the knuckles. Veins make no sound; finger contact or clothing may. Avoid glowing blue tubes, identical branching on both hands, or lines moving independently of the skin."
+ },
+ {
+  "id": "reality.gen.how-fingers-grip-a-cup",
+  "domain": "reality",
+  "topic": "how fingers grip a cup",
+  "names": [
+   "مسك الكوب",
+   "قبضة اليد على الكوب",
+   "شلون أمسك الكوب",
+   "gripping a cup",
+   "holding a mug"
+  ],
+  "body": "To lift a handleless cup, the thumb presses one side while two or three fingers curve around the opposite side; the remaining fingers may support its lower edge. Finger pads flatten slightly against the surface, and the wrist adjusts to keep the cup upright. The hand closes before the cup leaves the table. When setting it down, the base touches first, the weight transfers to the surface, and only then do the fingers release. A ceramic cup may make a small clink; a paper cup gives a faint crinkle if squeezed. Avoid fingertips passing through the cup, a weightless lift, or a full cup tilting without its liquid moving."
+ },
+ {
+  "id": "reality.gen.how-hands-type-on-a-phone",
+  "domain": "reality",
+  "topic": "how hands type on a phone",
+  "names": [
+   "الكتابة على الهاتف",
+   "الطباعة بالموبايل",
+   "أكتب بالتلفون",
+   "typing on phone",
+   "phone texting"
+  ],
+  "body": "A person typing on a phone usually steadies it with curled fingers while one or both thumbs make short, separate reaches across the screen. Each thumb bends at its joints, touches the glass briefly, then lifts before the next key; the supporting fingers make small adjustments as the phone shifts weight. Long reaches may tilt the device a little, followed by a corrective grip. On-screen text appears after taps, not before them. Finger contact with glass is nearly silent, though a case may creak or keyboard feedback may click if enabled. Avoid hovering taps, fingers passing through the screen, or the phone floating motionless in an open hand."
+ },
+ {
+  "id": "reality.gen.hair-falls-when-turning-head",
+  "domain": "reality",
+  "topic": "how hair falls when turning the head",
+  "names": [
+   "حركة الشعر عند تدوير الرأس",
+   "الشعر عند لف الرأس",
+   "الشعر من يلف الراس",
+   "hair turning head",
+   "hair swing on turn"
+  ],
+  "body": "When a person turns their head, the roots move immediately with the scalp while loose lengths lag behind. Strands sweep outward, then cross toward the new direction and settle over the shoulders or back in uneven layers. Long hair may brush a cheek before falling; shorter hair lifts briefly around the ears. Individual strands separate and rejoin rather than moving as one solid sheet. The motion is usually nearly silent, with a faint swish against fabric in a quiet room. Avoid hair floating after the head stops, sliding through shoulders, or changing length and shape between frames."
+ },
+ {
+  "id": "reality.gen.hijab-moves-with-head",
+  "domain": "reality",
+  "topic": "how a hijab moves with the head",
+  "names": [
+   "حركة الحجاب مع الرأس",
+   "حركة الحجاب ويه الراس",
+   "لفة الحجاب عند الالتفات",
+   "hijab head movement",
+   "hijab turning head"
+  ],
+  "body": "A fitted hijab follows the head closely across the forehead, crown and cheeks. When the wearer turns, the secured section moves at once; a loose end or shoulder drape lags, swings a little, then settles against the chest or upper back. Light chiffon ripples more visibly than heavier cotton jersey, which stretches slightly and falls in broader folds. The fabric makes a soft rustle when it brushes itself or clothing. Pins or tucked folds keep their positions. Avoid a scarf rotating independently of the head, exposing areas that remain covered, floating upward, or passing through the neck and shoulders."
+ },
+ {
+  "id": "reality.gen.dishdasha-moves-when-walking",
+  "domain": "reality",
+  "topic": "how a dishdasha moves when walking",
+  "names": [
+   "حركة الدشداشة عند المشي",
+   "الدشداشة من يمشي",
+   "ثوب رجالي أثناء المشي",
+   "dishdasha walking",
+   "thobe walking movement"
+  ],
+  "body": "A dishdasha hangs from the shoulders as a long, loose garment, often white or cream, with vertical folds down to the ankles. Each walking step shifts the fabric around the legs: the front rises slightly over the advancing knee, while the hem swings forward and back with a small delay. Folds narrow where fabric brushes a leg and open again as the feet separate. Lightweight cloth flutters at the hem; heavier cloth moves in slower, broader waves. It makes a faint swish, sometimes alongside footsteps. Keep the shoulders anchored and the hem clear of the floor; avoid rigid tube-like movement or fabric clipping through legs."
+ },
+ {
+  "id": "reality.gen.shemagh-moves-in-wind",
+  "domain": "reality",
+  "topic": "how a shemagh moves in wind",
+  "names": [
+   "حركة الشماغ بالهواء",
+   "الشماغ مع الريح",
+   "شماغ من تهب الهوا",
+   "shemagh in wind",
+   "keffiyeh wind movement"
+  ],
+  "body": "A shemagh is a square woven cloth folded over the head, often showing a red-and-white or black-and-white pattern. In wind, secured fabric stays close to the crown while free corners lift, pull downwind and flutter at their edges. A gust first tightens one fold, then sends a ripple along the hanging panel; when it eases, the cloth drops against the shoulders under its own weight. The sound is a soft, quick flapping or rustle, not a loud snap in ordinary wind. Keep the checked pattern attached to the deforming fabric. Avoid corners hovering motionless, stretching like rubber, or passing through the face."
+ },
+ {
+  "id": "reality.gen.sleeves-fold-at-elbow",
+  "domain": "reality",
+  "topic": "how sleeves fold at the elbow",
+  "names": [
+   "طيات الكم عند المرفق",
+   "تجعد الأكمام عند الكوع",
+   "الكم من ينثني المرفق",
+   "sleeve elbow folds",
+   "sleeve bending elbow"
+  ],
+  "body": "As an arm bends, sleeve fabric compresses on the inside of the elbow and gathers into short, overlapping folds. On the outside, it pulls smoother and slightly tighter from upper arm to forearm. A loose cotton sleeve forms broad wrinkles that deepen through the bend; a fitted jersey sleeve stretches more and makes smaller creases. When the arm straightens, the compressed folds open, though a few soft wrinkles remain. Cloth may make a quiet rustle during a quick movement. The cuff stays around the wrist unless the sleeve rides up. Avoid folds appearing on the wrong side, fabric passing through the arm, or the sleeve changing length."
+ },
+ {
+  "id": "reality.gen.shoes-bend-when-walking",
+  "domain": "reality",
+  "topic": "how shoes bend when walking",
+  "names": [
+   "انثناء الحذاء عند المشي",
+   "ثني الجزمة وقت المشي",
+   "النعال من يمشي",
+   "shoes bending while walking",
+   "shoe sole flex walking"
+  ],
+  "body": "During a walking step, the heel lands first on many ordinary strides, the sole bears weight, and the body rolls forward over the foot. As the heel lifts, a flexible shoe bends near the ball of the foot: the toe stays on the ground briefly while the upper creases across the toes. The shoe then leaves the ground and mostly regains its shape before the next landing. A stiff dress shoe bends less than a soft trainer. Footsteps make distinct contact sounds suited to the sole and ground; the upper may faintly squeak. Avoid soles folding at the arch, feet sliding through the floor, or hovering during weight transfer."
+ },
+ {
+  "id": "reality.gen.backpack-bounces-while-walking",
+  "domain": "reality",
+  "topic": "how a backpack bounces",
+  "names": [
+   "اهتزاز حقيبة الظهر",
+   "حركة الجنطة على الظهر",
+   "الجنطة من يمشي",
+   "backpack bounce walking",
+   "rucksack walking bounce"
+  ],
+  "body": "A backpack hangs from two shoulder straps and rests against the upper or middle back. As a person walks, the body rises and falls slightly; the bag follows with a short delay, nudging downward after each step and then lifting as the straps pull taut. A lightly packed bag may swing side to side, while a heavy, snug bag moves less and presses visibly into clothing. Loose strap ends flick with each bounce. The sound is a subdued fabric rustle, with occasional zipper or buckle taps. Keep the straps connected and their tension consistent. Avoid the bag floating away, bouncing independently of footsteps, or passing through the torso."
+ },
+ {
+  "id": "reality.gen.jewellery-swings",
+  "domain": "reality",
+  "topic": "how jewellery swings",
+  "names": [
+   "حركة المجوهرات عند المشي",
+   "تأرجح الحلي",
+   "الحلق من يتحرك",
+   "jewellery swinging",
+   "earrings swinging"
+  ],
+  "body": "Hanging jewellery moves from its attachment point: an earring pivots at the ear, a pendant pulls on its chain, and a bracelet shifts around the wrist. When the wearer starts moving, each piece lags briefly, swings past its resting position and makes smaller swings as motion slows. A long, light earring responds to small head turns; a heavier pendant traces a slower arc and may tap the chest. Metal can make a faint clink where pieces touch, while a single piece may be silent. Reflections slide across its surfaces as it turns. Avoid jewellery floating, stretching its chain, or passing through skin and clothing."
+ },
+ {
+  "id": "reality.gen.car-suspension-over-bumps",
+  "domain": "reality",
+  "topic": "car suspension over bumps",
+  "names": [
+   "نظام تعليق السيارة",
+   "مساعدات السيارة",
+   "مطبات السيارة",
+   "سسبنشن السيارة",
+   "car suspension",
+   "car over bumps"
+  ],
+  "body": "As a car reaches a raised bump, the front tyres climb it first. Each wheel moves upward relative to the body, compressing its spring; the body rises a fraction later, then settles as the damper slows the rebound. The rear wheels repeat the motion after a delay set by wheelbase and speed. Occupants may bob slightly in their seats. Over a small bump, the tyres stay in contact with the road. Listen for a brief, muted tyre thump and a low cabin rattle, not a metallic crash. In daylight, watch the gap between tyre and wheel arch change. Avoid wheels passing through bodywork, floating tyres, or endless bouncing."
+ },
+ {
+  "id": "reality.gen.car-tyres-turning-when-steering",
+  "domain": "reality",
+  "topic": "car tyres turning when steering",
+  "names": [
+   "التفاف إطارات السيارة",
+   "دوران عجلات السيارة",
+   "توجيه الإطارات",
+   "لف التواير",
+   "steering tyres",
+   "turning car wheels"
+  ],
+  "body": "When a driver turns the steering wheel, the front tyres pivot left or right within their wheel arches while continuing to rotate forward as the car moves. In a tight turn, the inside front wheel points slightly more sharply than the outside one. The tyre contact patches grip the road, and the car changes direction progressively rather than snapping sideways. At parking speed, steering is more visible and may bring a faint rubber scrub on dry pavement, alongside engine and road noise. Headlights and glossy wheel rims turn with the front wheels. Keep the rear wheels following the car’s path; avoid sideways-sliding tyres or wheels rotating through the fenders."
+ },
+ {
+  "id": "reality.gen.car-body-roll-in-turns",
+  "domain": "reality",
+  "topic": "car body roll in turns",
+  "names": [
+   "ميلان هيكل السيارة",
+   "تمايل السيارة بالمنعطف",
+   "رول السيارة",
+   "car body roll",
+   "car leaning in turn"
+  ],
+  "body": "As a car enters a turn, its body leans slightly toward the outside of the curve while the tyres remain planted. The outside suspension compresses and the inside suspension extends, changing the gaps above the wheels. The lean builds over a brief moment, holds through a steady corner, then eases back as the steering straightens; a quick change of direction can produce a small secondary sway. Passengers tilt or brace subtly with it. Sunlight shifts across the side panels, making the changing angle visible. Hear steady tyre and engine noise, perhaps a mild seat or trim creak. Avoid a rigid, level body or a car tipping without its wheels supporting it."
+ },
+ {
+  "id": "reality.gen.dust-trail-behind-a-car",
+  "domain": "reality",
+  "topic": "dust trail behind a car",
+  "names": [
+   "غبار خلف السيارة",
+   "غبرة ورا السيارة",
+   "أثر غبار السيارة",
+   "car dust trail",
+   "dust behind car"
+  ],
+  "body": "On a dry dirt road, rolling tyres and turbulent air lift fine tan or grey dust from the surface. It starts low around the rear tyres, streams backward, then billows into an uneven cloud that widens and thins with distance. Heavier grains fall quickly; fine particles hang longer and drift with the crosswind. A faster car raises more dust, but the cloud lags behind rather than following it as a solid shape. In strong sunlight, the dust softens the view of the road and catches bright edges. Hear gravel ticking beneath the car and a soft rushing hiss. Avoid smoke-like black plumes, dust on clean wet asphalt, or a trail that moves ahead of the car."
+ },
+ {
+  "id": "reality.gen.water-spray-from-tyres",
+  "domain": "reality",
+  "topic": "water spray from tyres",
+  "names": [
+   "رذاذ الماء من الإطارات",
+   "رش الماي من التواير",
+   "ماء خلف عجلات السيارة",
+   "tyre water spray",
+   "tire spray"
+  ],
+  "body": "A tyre rolling through a puddle pushes water outward and backward from its contact patch. The first splash forms a low, forceful fan; smaller droplets break away, arc through the air, then fall under gravity. On a continuously wet road, each tyre produces a thinner trailing mist that hangs briefly behind a moving car. Wheel arches interrupt and redirect part of the spray, while the car body may collect small droplets. Headlights or streetlights make the mist sparkle against dark pavement. Listen for a sharp splash followed by a steady wet hiss. Avoid water rising before the tyre reaches it, spray passing through panels, or droplets floating unchanged in the air."
+ },
+ {
+  "id": "reality.gen.motorbike-lean-angle",
+  "domain": "reality",
+  "topic": "motorbike lean angle",
+  "names": [
+   "ميلان الدراجة النارية",
+   "زاوية ميل الموتور",
+   "ميلان الدباب",
+   "motorbike lean angle",
+   "motorcycle cornering"
+  ],
+  "body": "In a smooth paved turn, a moving motorbike leans toward the inside of the curve, with its tyres maintaining narrow contact patches on the road. The rider usually leans with it and looks ahead through the turn; at low speed, the rider may sit more upright. The lean develops as the bike steers into the curve and reduces as it exits. Wheels keep spinning in their own plane, and the suspension makes small, quick movements over surface imperfections. Sunlight reveals the changing angle of the tank and handlebars. Hear engine pitch, wind and tyre noise, not a scrape unless a part actually touches pavement. Avoid an upright bike tracing a sharp curve or tyres sliding sideways without cause."
+ },
+ {
+  "id": "reality.gen.plane-wings-flexing",
+  "domain": "reality",
+  "topic": "plane wings flexing",
+  "names": [
+   "مرونة أجنحة الطائرة",
+   "انحناء جناح الطيارة",
+   "اهتزاز أجنحة الطائرة",
+   "plane wing flex",
+   "aircraft wing bending"
+  ],
+  "body": "On a passenger jet in flight, the long wings curve gently upward under aerodynamic lift, with the tips moving more than the thick roots attached to the fuselage. Gusts can raise or lower a tip, followed by a small, damped oscillation; the metal structure bends smoothly without changing its overall shape. As the aircraft slows after landing and lift falls, the wings settle lower. From a cabin window in daylight, the wingtip’s motion is easiest to see against the horizon. Inside, hear continuous engine and airflow noise, sometimes with a faint cabin rattle. Avoid stiff, motionless wings, flapping like a bird, sharp kinks, or tips passing through the runway."
+ },
+ {
+  "id": "reality.gen.landing-gear-touchdown-smoke",
+  "domain": "reality",
+  "topic": "landing gear touchdown smoke",
+  "names": [
+   "دخان إطارات هبوط الطائرة",
+   "دخان عجلات الطيارة",
+   "دخان ملامسة المدرج",
+   "landing gear touchdown smoke",
+   "airplane tire smoke"
+  ],
+  "body": "At touchdown, a passenger aircraft’s main tyres meet the runway while initially spinning slower than the aircraft’s ground speed. Friction spins them up rapidly, producing a short puff of pale grey or white rubber smoke at each contact patch. The smoke trails briefly behind the moving wheels and disperses in the airflow; it does not pour from the engines or remain attached to the tyres. The struts compress under the aircraft’s weight, and the fuselage settles before the nose gear reaches the runway. In daylight, the smoke stands out against dark tarmac. Hear a firm rolling thump followed by tyre rumble. Avoid smoke appearing before contact, wheels passing through pavement, or gear bouncing without the aircraft responding."
+ },
+ {
+  "id": "reality.gen.boat-wake",
+  "domain": "reality",
+  "topic": "boat wake",
+  "names": [
+   "موج القارب",
+   "أثر القارب بالماء",
+   "موجة الزورق",
+   "موج الزورق",
+   "boat wake",
+   "boat waves"
+  ],
+  "body": "Behind a moving boat, water parts at the stern and spreads into two angled, widening lines of ripples. A faster boat leaves a longer, brighter V, with churning white foam closest to the propeller; the foam breaks into scattered bubbles as the waves travel outward. Each crest rises, passes, and settles rather than following the boat as a rigid shape. Reflections of sky and shore stretch and wobble across the moving surface. Near a bank, arriving waves slap against mud, stone, or a moored hull a few seconds later. The sound is a steady rush behind the engine, followed by softer, spaced splashes. Avoid floating foam, waves sliding through a bank, or a wake that stays fixed after the boat passes."
+ },
+ {
+  "id": "reality.gen.sail-filling-with-wind",
+  "domain": "reality",
+  "topic": "sail filling with wind",
+  "names": [
+   "امتلاء الشراع بالريح",
+   "الشراع ينتفخ",
+   "الشراع يمتلئ هوا",
+   "نفخ الشراع",
+   "sail filling with wind",
+   "sail catching wind"
+  ],
+  "body": "A loose sail hangs in soft folds between its mast and edges. As wind reaches it, the cloth flutters sharply, then its middle bows into a smooth, shallow curve while the seams and edges pull taut. The boat begins to lean slightly and move as the sail takes load; ropes straighten and may tremble. Gusts deepen the curve for a moment, while a lull lets small wrinkles return, usually near the edge. Sunlight makes thin sailcloth glow and reveals stitched panels. Hear quick cloth flaps before it fills, then rope creaks and a low, steady wind hiss. Avoid a sail inflating like a round balloon, clipping through the mast, or changing shape without the boat and rigging reacting."
+ },
+ {
+  "id": "reality.gen.flag-on-a-moving-car",
+  "domain": "reality",
+  "topic": "flag on a moving car",
+  "names": [
+   "علم على سيارة ماشية",
+   "علم السيارة المتحركة",
+   "علم عالسيارة",
+   "راية عالسيارة",
+   "flag on a moving car",
+   "car flag"
+  ],
+  "body": "A small cloth flag fixed to a car window or short pole streams backward relative to the car as it moves through air. Its edge near the pole stays anchored; folds travel toward the free tip, which snaps and curls irregularly. At higher speed the fabric pulls flatter and flaps faster. When the car slows, it sags and makes wider, softer waves; in a crosswind it may angle sideways. The pole can flex slightly but remains attached to the car. Daylight catches raised folds while recessed folds darken. Outside the car, the sound is a thin, rapid fabric flutter beneath road and engine noise. Avoid a flag pointing forward without a strong headwind, sliding off its mount, or passing through the car roof."
+ },
+ {
+  "id": "reality.gen.moving-cloud-shadows",
+  "domain": "reality",
+  "topic": "shadows of moving clouds on ground",
+  "names": [
+   "ظلال الغيوم المتحركة",
+   "ظل السحاب على الأرض",
+   "ظل الغيم يتحرك",
+   "فيّة الغيم عالأرض",
+   "moving cloud shadows",
+   "cloud shadows on ground"
+  ],
+  "body": "On a sunlit plain, field, or street, a passing cloud makes a broad, soft-edged patch of shade that glides across the ground. Brightness dims over a wide area first, then returns as the cloud moves on; grass, buildings, and vehicles keep their shapes and positions. A small, high cloud can cast a clearer patch than a broad cloud with thin, uneven edges. Several patches may overlap and merge without behaving like solid objects. The motion follows the cloud’s drift and the sun’s angle, not nearby people. There is no sound from the shadow itself; wind in leaves or distant traffic continues unchanged. Avoid hard black outlines, shadows floating above terrain, or unrelated surfaces dimming at different times."
+ },
+ {
+  "id": "reality.gen.fire-smoke-in-wind",
+  "domain": "reality",
+  "topic": "fire smoke direction with wind",
+  "names": [
+   "اتجاه دخان النار بالريح",
+   "دخان النار مع الريح",
+   "الدخان وين يروح بالهوا",
+   "دخان النار بالهوا",
+   "fire smoke direction with wind",
+   "windblown fire smoke"
+  ],
+  "body": "Smoke from a small outdoor cooking fire rises briefly above the flame, then bends downwind into a widening, uneven plume. Hot smoke nearest the fire climbs fastest; farther away it cools, thins, and breaks into wisps carried past people and objects. A gust pushes the plume more nearly horizontal and makes it billow and curl, while a lull lets it rise more vertically. Backlighting shows pale gray edges; against a dark wall, denser smoke looks gray or brownish. Hear wood crackling and wind moving through the surroundings, not a sound assigned to the smoke itself. Avoid smoke flowing steadily against the wind, remaining a solid tube, or passing through walls without curling around them."
+ },
+ {
+  "id": "reality.gen.steam-condensing-on-mirror",
+  "domain": "reality",
+  "topic": "steam condensing on a mirror",
+  "names": [
+   "تكاثف البخار على المرآة",
+   "ضباب على المراية",
+   "المراية تبخرت",
+   "بخار عالجام",
+   "steam condensing on a mirror",
+   "fogged mirror"
+  ],
+  "body": "In a warm, humid bathroom, water vapor touching a cooler mirror becomes a thin mist of tiny droplets. The clear reflection first turns hazy in patches, often near the coldest areas, then loses fine detail across more of the glass. As droplets grow and join, a few form beads and creep downward, leaving narrow clear trails. Light from a lamp blooms into a soft glow in the fogged reflection; the mirror remains flat and solid. The change takes seconds to minutes, not a single-frame wipe. A shower or tap may hiss nearby, but condensation itself is nearly silent. Avoid thick clouds emerging from the mirror, droplets sliding upward, or water passing through the glass."
+ },
+ {
+  "id": "reality.gen.fog-forming",
+  "domain": "reality",
+  "topic": "fog forming",
+  "names": [
+   "تكوّن الضباب",
+   "تشكل الضباب",
+   "الضباب يتكون",
+   "الغيم نزل عالأرض",
+   "fog forming",
+   "fog rolling in"
+  ],
+  "body": "As air near the ground cools in moist, calm conditions, distant details lose contrast first: a tree line fades, then nearer lights gain soft halos. Low, pale gray-white fog can collect in hollows and spread across a road or field in uneven sheets. Its edges shift and curl gently with light air movement; it does not arrive as a solid wall. Nearby objects remain sharply shaped until fog occupies the space between them and the viewer. Formation usually takes minutes or longer. Fog itself makes no sound, though insects, traffic, or footsteps may sound muffled at a distance. Avoid instant opaque cutouts, fog sliding through sealed interiors, or a ground layer moving without regard to wind and terrain."
+ },
+ {
+  "id": "reality.gen.dew-forming",
+  "domain": "reality",
+  "topic": "dew forming",
+  "names": [
+   "تكوّن الندى",
+   "تشكل الندى",
+   "الندى على العشب",
+   "الندا عالحشيش",
+   "dew forming",
+   "dew on grass"
+  ],
+  "body": "On a clear, calm night, cool grass, leaves, metal, or a car roof may gather moisture from the air. Tiny transparent beads appear gradually on exposed surfaces, becoming easier to see toward dawn as they grow and catch low light. On a sloping leaf, joined droplets can become heavy enough to roll to its tip and fall; smaller beads stay pinned in place. Dew reflects bright pinpoints and does not look like a uniform painted glaze. Its formation is silent, with only surrounding night sounds or an occasional drop tapping a surface below. The change takes many minutes to hours. Avoid droplets appearing all at once, floating above leaves, or forming on warm surfaces exactly like cooler ones."
+ },
+ {
+  "id": "reality.gen.ice-cubes-clinking",
+  "domain": "reality",
+  "topic": "ice cubes clinking",
+  "names": [
+   "مكعبات ثلج تتصادم",
+   "صوت مكعبات الثلج",
+   "ثلج يطقطق",
+   "ice cubes clinking",
+   "clinking ice",
+   "ice clink"
+  ],
+  "body": "Clear or slightly cloudy ice cubes sit partly submerged in a drinking glass, with rounded edges, tiny trapped bubbles and wet, reflective faces. When someone lifts or tilts the glass, the liquid moves first; the buoyant cubes lag, rotate, then strike the glass and one another. Each contact makes a short, bright click, sometimes followed by a lower glass ring and a soft liquid slosh. The cubes separate and bob back into place as the drink settles. Small droplets cling to the outside of the glass and catch nearby light. Avoid cubes floating above the liquid, passing through each other or rattling continuously after the glass stops."
+ },
+ {
+  "id": "reality.gen.carbonation-bubbles-rising",
+  "domain": "reality",
+  "topic": "carbonation bubbles rising",
+  "names": [
+   "فقاعات المشروبات الغازية",
+   "فقاعات الصودا تصعد",
+   "فقاعات البيبسي",
+   "carbonation bubbles rising",
+   "soda bubbles",
+   "fizzy drink bubbles"
+  ],
+  "body": "In a freshly poured fizzy drink, pin-sized bubbles form along scratches in the glass, submerged ice and other rough surfaces. They detach in uneven streams, rise through the tinted or clear liquid, and grow slightly as pressure decreases. A few merge; many reach the surface and pop, leaving brief circular ripples beneath a thin, shifting foam. The drink makes a quiet, continuous fizz with occasional sharper ticks close to the glass. Side light reveals bright bubble rims and a denser cluster near the surface. Avoid identical bubbles in perfect rows, bubbles falling downward, or a foam cap that stays rigid and unchanged."
+ },
+ {
+  "id": "reality.gen.honey-drip",
+  "domain": "reality",
+  "topic": "honey drip",
+  "names": [
+   "تقطير العسل",
+   "قطرات العسل",
+   "عسل يقطر",
+   "honey drip",
+   "dripping honey",
+   "honey drizzle"
+  ],
+  "body": "Amber honey gathers at the lip of a spoon into a heavy, glossy bead. Gravity draws it into a narrow strand that lengthens slowly while the bead above feeds it. The strand may thin, fold onto a plate or slice of bread, and pile into soft loops before spreading outward. When the flow breaks, a fine thread snaps back toward the spoon and a small drop rounds off the end. The motion is quiet, with a faint sticky tap where honey lands. Warm side light shows translucent gold edges and darker thick areas. Avoid watery splashes, rigid strands, instant separation or honey sliding without adhering to the surface."
+ },
+ {
+  "id": "reality.gen.chocolate-melting",
+  "domain": "reality",
+  "topic": "chocolate melting",
+  "names": [
+   "ذوبان الشوكولاتة",
+   "شوكولاتة تذوب",
+   "جكليت يذوب",
+   "chocolate melting",
+   "melting chocolate",
+   "chocolate melt"
+  ],
+  "body": "A piece of chocolate on a warm plate keeps its block shape briefly while its edges soften and turn glossy. As heat moves inward, sharp corners slump, shallow grooves fill, and a thick pool spreads slowly from points touching the plate. A spoon pressing it leaves a furrow that closes gradually; the softened chocolate clings to the spoon rather than splashing. Melting itself is nearly silent, apart from a faint scrape if stirred. Window or kitchen light makes the wet surface shine while unmelted areas remain more matte. Avoid chocolate vanishing between frames, flowing like water, bubbling without strong heat or passing through the plate."
+ },
+ {
+  "id": "reality.gen.cheese-pull",
+  "domain": "reality",
+  "topic": "cheese pull",
+  "names": [
+   "مط الجبن",
+   "جبن يتمطّط",
+   "جبن يتمطط",
+   "cheese pull",
+   "stretchy cheese",
+   "melted cheese stretch"
+  ],
+  "body": "When a warm pizza slice is lifted, melted cheese first holds the slice to its neighbours in broad, glossy bridges. Continued lifting stretches those bridges into uneven strands: thick near the toppings, thin at their centres, and slightly sagging under their own weight. Some strands snap one after another and recoil onto the slice or pizza; others remain attached until the slice moves farther away. A soft tacky tearing sound may accompany the pull, against the faint scrape of the crust. Overhead light picks out pale yellow highlights and small oil glints. Avoid perfectly parallel strings, endless stretching, floating toppings or cheese cutting cleanly all at once."
+ },
+ {
+  "id": "reality.gen.bread-rising",
+  "domain": "reality",
+  "topic": "bread rising",
+  "names": [
+   "تخمير العجين",
+   "ارتفاع العجين",
+   "العجين ينتفخ",
+   "bread rising",
+   "dough rising",
+   "proofing bread"
+  ],
+  "body": "Yeasted dough in a bowl expands over many minutes, not seconds. Its rounded top gradually lifts and spreads toward the sides as trapped gas enlarges tiny pockets inside the soft, elastic mass. The surface stays continuous, with slight dimples and tension around folds; flour dust remains patchy rather than moving independently. In a time-lapse, marks on the bowl make the increasing volume clear. At normal speed the dough is effectively silent, with only a faint tacky sound if someone touches or releases it. Soft kitchen light shows a matte cream surface and gentle shadows. Avoid balloon-fast inflation, pulsing, morphing or dough passing through the bowl."
+ },
+ {
+  "id": "reality.gen.meat-sizzling-and-shrinking",
+  "domain": "reality",
+  "topic": "meat sizzling and shrinking",
+  "names": [
+   "أزيز اللحم",
+   "اللحم ينكمش بالمقلاة",
+   "تشويح اللحم",
+   "meat sizzling and shrinking",
+   "meat sizzling",
+   "meat shrinking in pan"
+  ],
+  "body": "A piece of meat laid on a hot, lightly oiled pan makes immediate contact along its lowest points. Tiny bubbles form at the edges as surface moisture escapes, producing a steady, irregular sizzle and occasional sharper pops. Over the next minutes, the underside browns where it touches the pan; edges tighten, curl slightly and draw inward as moisture leaves and proteins contract. Small beads of juice appear on top, while a thin sheen of fat moves across the pan. The piece stays anchored by friction until lifted or turned with tongs. Avoid instant uniform browning, dramatic shrinking in a second, hovering meat or sizzling without visible heat and moisture."
+ },
+ {
+  "id": "reality.gen.oil-splatter",
+  "domain": "reality",
+  "topic": "oil splatter",
+  "names": [
+   "تطاير الزيت",
+   "رذاذ الزيت الحار",
+   "الزيت يطرطش",
+   "oil splatter",
+   "hot oil splatter",
+   "frying oil pops"
+  ],
+  "body": "In a hot frying pan, oil forms a thin, shimmering film around the food. When a water droplet reaches it, a brief burst sends tiny beads outward in short arcs; they strike the pan, nearby stovetop or splash guard and settle as separate glossy dots. Larger droplets move less far and fall quickly, while the finest spray catches the light for an instant. Sharp, irregular pops sit over the steadier frying hiss. Repeated bursts come from wet patches, not from every part of the pan at once. Avoid floating beads, sparks in place of oil, droplets passing through solid surfaces or a continuous fountain from a dry pan."
+ },
+ {
+  "id": "reality.gen.glass-reflections-double",
+  "domain": "reality",
+  "topic": "glass reflections double",
+  "names": [
+   "انعكاس مزدوج على الزجاج",
+   "انعكاسين بالجام",
+   "صورة مزدوجة بالزجاج",
+   "double glass reflection",
+   "double pane reflection",
+   "glass ghost reflection"
+  ],
+  "body": "In a windowpane, a bright lamp or face can appear twice: one sharp reflection from the near surface and a fainter, slightly offset copy from the far surface. The separation grows when viewed at a steeper angle or through thicker glass. Both copies move together as the camera shifts, while the view beyond the pane remains visible beneath them. Indoor reflections stand out against a dark exterior; in daylight they may nearly disappear. The pane itself makes no sound, so keep only the room or street ambience. Do not make the copies drift independently, float in front of the window, or appear equally bright."
+ },
+ {
+  "id": "reality.gen.curved-glass-distortion",
+  "domain": "reality",
+  "topic": "curved glass distortion",
+  "names": [
+   "تشوه الزجاج المنحني",
+   "اعوجاج الجام المنحني",
+   "تكبير القنينة الزجاجية",
+   "curved glass distortion",
+   "bent glass view",
+   "glass bottle distortion"
+  ],
+  "body": "Through a curved drinking glass or bottle, straight background lines bend toward its edges, and objects may appear wider, narrower, or briefly inverted depending on the vessel’s shape and contents. As the camera moves sideways, the distorted image slides across the glass faster than the background; highlights travel along the curved surface. Thick rims and bases create stronger warping than thin walls. Clear glass has faint grey-green edges and small white reflections. It makes no sound unless handled, when it gives a light clink. Keep the distortion confined to the glass silhouette; do not warp the surrounding scene or make objects pass through the vessel."
+ },
+ {
+  "id": "reality.gen.water-refraction-of-a-straw",
+  "domain": "reality",
+  "topic": "water refraction of a straw",
+  "names": [
+   "انكسار القشة بالماء",
+   "انكسار المصاصة بالماء",
+   "الشلمونة تبين مكسورة",
+   "straw water refraction",
+   "bent straw in water",
+   "straw in glass"
+  ],
+  "body": "A straight straw leaning through a glass of water appears kinked at the waterline. The submerged section looks shifted sideways and sometimes slightly wider because light bends when it passes between water, glass, and air. From a fixed viewpoint, the kink stays exactly at the visible water surface, not halfway down the straw. Moving the camera changes the apparent offset; moving the straw makes both sections move together. The waterline curves gently upward against the glass, with small ripples after a touch and a soft tap if the straw meets the rim. Do not physically bend the straw or let its lower section slide independently."
+ },
+ {
+  "id": "reality.gen.rainbow-in-a-sprinkler",
+  "domain": "reality",
+  "topic": "rainbow in a sprinkler",
+  "names": [
+   "قوس قزح بالرشاش",
+   "قوس قزح برشاش المي",
+   "ألوان قوس المطر بالمرشة",
+   "sprinkler rainbow",
+   "rainbow in water spray",
+   "garden sprinkler rainbow"
+  ],
+  "body": "In low, direct sunlight, fine sprinkler droplets can show a rainbow to someone looking toward the spray with the sun behind them. The coloured arc sits against the mist, with red on its outer edge and violet toward its inner edge; it appears strongest against dark trees or shade. As the sprinkler head turns, individual droplets fall in short curved paths and sparkle, while the visible arc brightens or fades where dense mist crosses the viewing angle. The spray makes a steady hiss and patter, with a faint mechanical click from some rotating heads. Do not attach painted colour bands to the water stream or show the rainbow from every camera position."
+ },
+ {
+  "id": "reality.gen.light-caustics-in-a-pool",
+  "domain": "reality",
+  "topic": "light caustics in a pool",
+  "names": [
+   "تموج الضوء بقاع المسبح",
+   "انعكاس الشمس بقاع البركة",
+   "بقع الضوء تحت المي",
+   "pool light caustics",
+   "underwater sun patterns",
+   "swimming pool caustics"
+  ],
+  "body": "Sunlight passing through a rippling pool surface makes thin, bright, shifting lines on the floor, steps, and swimmers below. The lines meet in irregular loops and flare briefly where small surface waves focus the light; darker blue-green gaps remain between them. Their motion follows the waves but is not locked to any one ripple: patterns stretch, split, and reconnect continuously. They bend across a person’s skin or a tiled step without leaving those surfaces. Hear water lapping, splashes, and the muffled pool ambience, not a sound from the light itself. Avoid static grid patterns, glowing lines in midair, or highlights that pass through opaque objects."
+ },
+ {
+  "id": "reality.gen.sunlight-through-leaves",
+  "domain": "reality",
+  "topic": "sunlight through leaves",
+  "names": [
+   "شمس من خلال الأوراق",
+   "ضوء الشمس بين ورق الشجر",
+   "شمس تتخلل أوراق الشجر",
+   "sunlight through leaves",
+   "dappled leaf shadows",
+   "sun through foliage"
+  ],
+  "body": "Under a leafy tree in direct sun, patches of light and shadow cover the ground, walls, and people. Small gaps in the canopy cast soft-edged bright spots, often rounder than the leaf shapes; closer leaves cast clearer silhouettes. A breeze makes branches sway with a slight delay, so the patches drift, overlap, narrow, and reopen rather than flashing randomly. Leaves backlit by the sun look translucent green, with darker veins and occasional bright edges. The sound is leaf rustle, birds, and nearby ambience; sunlight itself is silent. Do not make the light patches float off the surfaces or move without corresponding movement in the foliage."
+ },
+ {
+  "id": "reality.gen.neon-reflections-on-wet-streets",
+  "domain": "reality",
+  "topic": "neon reflections on wet streets",
+  "names": [
+   "انعكاس النيون على الشارع المبلل",
+   "ضو النيون عالشارع الماطر",
+   "لمعان اللافتات على الأسفلت المبلل",
+   "neon wet street reflections",
+   "neon on wet asphalt",
+   "rainy neon reflections"
+  ],
+  "body": "At night, neon signs and illuminated shopfronts stretch into broken coloured reflections across wet asphalt. Shallow puddles can show a recognizable inverted sign; rough pavement breaks it into short red, blue, or green streaks aligned with the viewing angle. As a car passes, tyres push water aside and ripples briefly bend the reflected letters. People and kerbs interrupt the reflections, while raised dry patches stay comparatively dark. Streetlights add pale highlights and the sky usually remains darker than the signs. Hear tyre hiss, dripping water, footsteps, and traffic. Avoid a perfectly mirrored road, colours glowing without a source, or reflections sliding independently of the water."
+ },
+ {
+  "id": "reality.gen.headlight-glare",
+  "domain": "reality",
+  "topic": "headlight glare",
+  "names": [
+   "وهج مصابيح السيارة",
+   "وهج ضو السيارة",
+   "توهج الليتات الأمامية",
+   "headlight glare",
+   "oncoming headlights glare",
+   "car headlamp flare"
+  ],
+  "body": "At night, oncoming headlights appear as two bright points at a fixed spacing, growing larger and brighter as the vehicle approaches. The lit road and nearby objects brighten too; on a damp road, each lamp may leave a long broken reflection. In a camera, intense light can produce a soft halo, limited lens streaks, or a small ghost image that moves when the camera angle changes. Haze makes the beams visible as broad cones, while clear air usually does not. Hear the approaching engine and tyre noise, rising then fading after the car passes. Avoid glare that covers unrelated parts of the frame or headlights that move separately from the vehicle."
+ },
+ {
+  "id": "reality.gen.lens-flare-realism",
+  "domain": "reality",
+  "topic": "lens flare realism",
+  "names": [
+   "توهج العدسة",
+   "وهج العدسة",
+   "انعكاس العدسة",
+   "فلير العدسة",
+   "lens flare",
+   "camera flare"
+  ],
+  "body": "A bright sun, headlight or bare bulb can scatter light inside a camera lens. The image may show a soft veil around the source, small coloured ghost shapes along a line through the frame centre, or a streak from an anamorphic lens. As the camera tilts, these shapes shift in relation to the light source; they do not stick to a building or a person. Flare can briefly lower contrast and wash out nearby detail, especially at sunset. It makes no sound of its own: keep the street or room audio unchanged. Avoid decorative rainbows without a bright source, and avoid identical flare on every shot."
+ },
+ {
+  "id": "reality.gen.motion-blur-fast-action",
+  "domain": "reality",
+  "topic": "motion blur on fast action",
+  "names": [
+   "ضبابية الحركة",
+   "تمويه الحركة",
+   "غباشة الحركة",
+   "motion blur",
+   "action blur"
+  ],
+  "body": "During a fast pan, a passing motorcycle or a quick arm movement, blur follows the direction of movement during the camera’s exposure. A fast object leaves a short, continuous smear of its own colours while still keeping a readable leading edge; a longer exposure makes the smear wider. When the camera tracks the object, it can stay relatively sharp while the background streaks sideways. Blur changes from frame to frame as speed changes, and stops when movement stops. The matching sound follows the real action: an engine passes and recedes, or fabric swishes. Avoid doubled limbs, crisp frozen wheels beside heavily blurred surroundings, and objects smearing through solid obstacles."
+ },
+ {
+  "id": "reality.gen.rolling-shutter-avoid",
+  "domain": "reality",
+  "topic": "rolling shutter avoid",
+  "names": [
+   "تجنب الغالق المتدحرج",
+   "تشوه الغالق المتدحرج",
+   "تشوه رولينغ شتر",
+   "rolling shutter",
+   "rolling shutter artifact"
+  ],
+  "body": "Many digital sensors record the frame line by line rather than all at once. During a rapid pan, vertical poles can lean slightly in the same direction; a fast rotating fan can look bent. For ordinary handheld footage, keep these effects subtle: walls, faces and parked cars should retain stable shapes. A sudden camera jolt may cause a brief wobble that settles with the movement, not a permanent wave across the picture. The sensor effect has no sound; any accompanying noise comes from the camera handling or the scene. Avoid rubbery buildings, faces that stretch between frames, and objects morphing or sliding independently of the camera."
+ },
+ {
+  "id": "reality.gen.depth-of-field-falloff",
+  "domain": "reality",
+  "topic": "depth of field falloff",
+  "names": [
+   "عمق الميدان",
+   "عمق المجال",
+   "عزل الخلفية",
+   "ضبابية الخلفية",
+   "depth of field",
+   "focus falloff"
+  ],
+  "body": "Depth of field is a gradual change in sharpness around the focused distance, not a cutout around a subject. If a camera focuses on a person’s eyes, their ears may be a little softer, people several metres behind them softer still, and distant streetlights may become rounded highlights. A nearby hand reaching toward the lens can go out of focus before the face does. As focus shifts, sharpness moves smoothly through the space; objects do not change size or position. Focus itself is silent, apart from any faint camera motor noise. Avoid uniformly blurred backgrounds, razor-sharp hair edges against blur, and foreground objects that stay sharp at every distance."
+ },
+ {
+  "id": "reality.gen.crowd-density-realism",
+  "domain": "reality",
+  "topic": "crowd density realism",
+  "names": [
+   "كثافة الحشود",
+   "كثافة الزحام",
+   "ازدحام الناس",
+   "crowd density",
+   "crowd spacing"
+  ],
+  "body": "A crowd has uneven spacing. Friends and families form small clusters; gaps open around a cart, doorway or seated person, while a narrow entrance brings shoulders closer together. From a high angle, heads vary in height and size with distance. People slow before a bottleneck, take short steps, adjust their paths and resume speed when space opens. Clothing moves with each stride, and bags swing slightly behind the body’s motion. Voices overlap into a soft, changing murmur, with footsteps and occasional nearby calls distinct. Avoid evenly gridded people, duplicate faces, bodies passing through one another, and a packed group moving at identical speed."
+ },
+ {
+  "id": "reality.gen.background-people-behaviour",
+  "domain": "reality",
+  "topic": "background people behaviour",
+  "names": [
+   "تصرفات الناس بالخلفية",
+   "حركة الناس بالخلفية",
+   "أشخاص في الخلفية",
+   "background people",
+   "background extras"
+  ],
+  "body": "Background people have their own small purposes rather than performing for the camera. On a pavement, one person checks a phone while walking, another pauses at a shop window, and two others talk as they continue past. Their pace differs; someone waiting shifts weight between feet or turns toward an approaching companion. Farther figures appear smaller and less detailed, and they disappear behind parked cars or doorframes before reappearing. Footsteps, snippets of conversation and rustling clothing mix into the location sound without every voice becoming clear. Avoid synchronized head turns, repeated gesture loops, people staring at the lens, and figures sliding without foot contact."
+ },
+ {
+  "id": "reality.gen.traffic-realism-baghdad",
+  "domain": "reality",
+  "topic": "traffic realism in Baghdad",
+  "names": [
+   "مرور بغداد",
+   "زحمة بغداد",
+   "سير السيارات ببغداد",
+   "baghdad traffic",
+   "baghdad road traffic"
+  ],
+  "body": "On a busy Baghdad street, compact cars, taxis, SUVs, minibuses and occasional motorcycles share the road. Vehicle spacing varies: a queue compresses near a junction, then opens as cars accelerate. Drivers edge forward at low speed, brake visibly before stopping, and steer around a parked vehicle without passing through its mirrors. Tyres remain on the road; bodies dip slightly under braking and rise as speed steadies. Sunlight flashes across windscreens, while dust softens distant contrasts. Engines idle and rev, horns sound briefly, and tyre noise changes with speed. Avoid identical cars in perfect lanes, synchronized starts, silent traffic, and vehicles sliding sideways without turning their wheels."
+ },
+ {
+  "id": "reality.gen.pedestrians-crossing-realism",
+  "domain": "reality",
+  "topic": "pedestrians crossing realism",
+  "names": [
+   "عبور المشاة",
+   "قطع الشارع",
+   "عبور الشارع",
+   "pedestrian crossing",
+   "people crossing road"
+  ],
+  "body": "At a street crossing, pedestrians look toward approaching traffic, judge an opening and step off the kerb at different moments. One person may walk steadily while another briefly slows beside a family member; neither teleports into the road. Feet plant in alternating steps, weight passes over each foot, and a carried bag lags and swings as the walker changes pace. Drivers approaching the crossing slow before reaching people, leaving visible space. Footsteps become clearer near the camera, mixed with engines and street voices. Avoid everyone starting together, walkers gliding without steps, people passing through vehicles, and cars stopping instantly without a braking distance."
+ },
+ {
+  "id": "reality.gen.queue-behaviour",
+  "domain": "reality",
+  "topic": "queue behaviour",
+  "names": [
+   "طابور",
+   "صف انتظار",
+   "دور",
+   "الطابور",
+   "queue",
+   "waiting line"
+  ],
+  "body": "At a bakery counter or ticket window, people stand in a loose line facing the service point, usually about an arm’s length apart. The front person steps away after being served; the next person advances, followed by small, delayed steps farther back. Feet lift and settle rather than sliding, bags swing briefly, and shoulders turn to make room. Someone may check a phone or speak to a companion without losing their place. Shoes scuff the floor beneath low conversation and the counter worker’s voice. Keep each person’s position and clothing recognizable as the camera angle changes; do not let people float through one another."
+ },
+ {
+  "id": "reality.gen.market-crowd-flow",
+  "domain": "reality",
+  "topic": "market crowd flow",
+  "names": [
+   "زحمة السوق",
+   "ازدحام السوق",
+   "حركة السوق",
+   "حركة الزحمة",
+   "market crowd",
+   "souq crowd"
+  ],
+  "body": "In a busy Iraqi market lane, shoppers move in both directions between stalls, slowing near displays of produce, fabric, or household goods. Small gaps open and close as people turn their shoulders, pause, or step sideways to pass. A person carrying bags needs more clearance; the bags swing after each change of direction. Vendors remain near their counters while customers gather in short, shifting clusters. Footsteps, bargaining voices, rustling bags, and an occasional cart wheel blend together. Sunlight from the open lane meets softer shade beneath awnings. Keep bodies grounded and routes continuous, without people sliding sideways or passing through stalls."
+ },
+ {
+  "id": "reality.gen.object-permanence-across-frames",
+  "domain": "reality",
+  "topic": "object permanence across frames",
+  "names": [
+   "ثبات الأشياء",
+   "استمرارية الأغراض",
+   "بقاء الغرض",
+   "الغرض يبقى بمكانه",
+   "object permanence",
+   "prop continuity"
+  ],
+  "body": "A blue ceramic cup placed beside a brass tray should remain the same cup in every frame and camera angle. Its handle stays on the same side relative to the cup, its rim keeps its shape, and its position changes only if a hand touches and moves it. When lifted, the cup rises with the hand, briefly tilts with the wrist, and makes a light ceramic tap when set down. Its shadow shifts with the light and its new position. In a home or café scene, nearby keys, chairs, and plates follow the same rule: no popping into view, duplication, morphing, or passing through the tabletop."
+ },
+ {
+  "id": "reality.gen.consistent-fingers-and-limbs",
+  "domain": "reality",
+  "topic": "consistent number of fingers and limbs",
+  "names": [
+   "عدد الأصابع",
+   "ثبات الأصابع",
+   "عدد الأطراف",
+   "إيد بخمس أصابع",
+   "finger consistency",
+   "limb consistency"
+  ],
+  "body": "A visible human hand has a thumb and four fingers attached to one palm, with joints that bend in consistent directions. When a person lifts a tea glass, the fingers close around it, some becoming hidden behind the glass rather than vanishing; they reappear in the correct positions when the hand turns. Arms connect naturally at shoulders and elbows, while legs remain attached at the hips as a person walks. Sleeves fold at bending joints, and footsteps sound when shoes meet the ground. In close shots of customers talking or paying, avoid extra fingers, fused hands, duplicated arms, or limbs that switch sides between frames."
+ },
+ {
+  "id": "reality.gen.text-on-signs-staying-the-same",
+  "domain": "reality",
+  "topic": "text on signs staying the same",
+  "names": [
+   "ثبات كتابة اللافتة",
+   "نص اللافتة",
+   "الكتابة على اليافطة",
+   "كلام اللوحة",
+   "stable sign text",
+   "sign text continuity"
+  ],
+  "body": "A shop sign’s Arabic or English lettering stays identical across wide shots, close-ups, and camera movement. Each letter keeps its order, spacing, colour, and position on the sign; perspective may make the text narrower at an angle, but it must not change the wording. Painted letters follow the wall’s flat surface, while raised plastic letters cast small shadows and do not drift separately. If a person crosses in front, the person briefly hides the text, which appears unchanged afterward. Street voices and traffic continue beneath the shot; a loose metal sign may rattle in wind. Avoid invented letters or text that flickers between frames."
+ },
+ {
+  "id": "reality.gen.logo-consistency",
+  "domain": "reality",
+  "topic": "logo consistency",
+  "names": [
+   "ثبات الشعار",
+   "تناسق الشعار",
+   "شعار ثابت",
+   "اللوغو ثابت",
+   "logo consistency",
+   "brand mark continuity"
+  ],
+  "body": "A logo printed on a paper cup, delivery bag, or shopfront keeps the same symbol, colours, lettering, and proportions in every shot. On a curved cup, the print wraps around the surface and narrows toward its edges; on a swinging bag, it moves with the bag and may crease where the material folds. A glossy sign catches highlights, while matte ink stays comparatively flat. Paper rustles, a bag handle creaks, and nearby café or street sounds remain natural. When a hand covers part of the mark, the hidden portion does not change. Avoid mirrored logos, drifting prints, altered spelling, or a new design after a cut."
+ },
+ {
+  "id": "reality.gen.clothing-consistency",
+  "domain": "reality",
+  "topic": "clothing consistency",
+  "names": [
+   "ثبات الملابس",
+   "استمرارية اللبس",
+   "نفس الملابس",
+   "الهدوم نفسها",
+   "clothing continuity",
+   "outfit consistency"
+  ],
+  "body": "A person’s outfit keeps the same garments, colours, patterns, and accessories across cuts. A cream shirt remains tucked or untucked as established; its collar, buttons, and sleeve length do not change when the camera moves. Walking makes fabric sway and form folds at elbows, knees, and the waist, with heavier denim moving less than a light scarf. A shoulder bag stays on the same shoulder unless the person visibly shifts it. Cloth gives a faint rustle beneath footsteps and conversation. In a family gathering or market scene, track each person separately, avoiding swapped outfits, disappearing jewellery, changing patterns, or sleeves that morph through the hands."
+ },
+ {
+  "id": "reality.gen.lighting-continuity-between-shots",
+  "domain": "reality",
+  "topic": "lighting continuity between shots",
+  "names": [
+   "استمرارية الإضاءة",
+   "ثبات الضوء",
+   "نفس الإضاءة",
+   "الضوة نفسها",
+   "lighting continuity",
+   "shot lighting continuity"
+  ],
+  "body": "Light should retain a believable source and direction across shots of the same moment. In a room with daylight entering from a window on the left, faces, furniture, and wall textures remain brighter on that side; shadows fall consistently to the right, even when the camera reverses angle. A warm ceiling bulb adds a softer amber pool beneath it. People crossing the window briefly interrupt the light, while moving curtains make gentle changes in brightness. Room conversation, footsteps, and a faint fan hum continue naturally. Do not let daylight jump to another window, shadows flip without cause, or skin and clothing change colour between cuts."
  }
 ]

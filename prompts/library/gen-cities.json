@@ -1,0 +1,2346 @@
+[
+ {
+  "id": "place.city.riyadh",
+  "domain": "place",
+  "topic": "Riyadh",
+  "names": [
+   "الرياض",
+   "مدينة الرياض",
+   "رياض السعودية",
+   "riyadh",
+   "ar riyadh"
+  ],
+  "body": "Riyadh spreads across a flat, dry plateau, with broad multilane roads, beige low-rise neighborhoods and clusters of glass towers. The tapered Kingdom Centre, with its open arch near the top, and the faceted Al Faisaliah Tower stand out in the skyline. Arabic signs dominate, often paired with English on shops and road signs. Strong midday sun makes hard shadows; evenings bring warm light, traffic and crowded café terraces. White and silver cars pass date palms and highway barriers with a steady tire hiss. Men often wear white thobes, women abayas or varied contemporary clothing. Greetings include “السلام عليكم” and “حياك الله”."
+ },
+ {
+  "id": "place.city.jeddah",
+  "domain": "place",
+  "topic": "Jeddah",
+  "names": [
+   "جدة",
+   "جدّة",
+   "جده",
+   "jeddah",
+   "jidda"
+  ],
+  "body": "Jeddah faces the Red Sea: humid air softens the light over waterfront roads, palms, promenades and modern apartment blocks. In Al-Balad, narrow lanes run between tall coral-stone houses with projecting wooden rawasheen screens, weathered plaster and small ground-floor shops. Elsewhere, wide roads carry cars past malls and Arabic-and-English storefront signs. The Corniche has paved walks, sea railings, families, food carts and the distant splash of waves; traffic hum mixes with conversation and mosque calls to prayer. People wear thobes, abayas and casual clothes, with many visitors among residents. A common greeting is “السلام عليكم,” answered “وعليكم السلام”."
+ },
+ {
+  "id": "place.city.makkah-city-streets",
+  "domain": "place",
+  "topic": "Makkah city streets",
+  "names": [
+   "شوارع مكة",
+   "شوارع مكه",
+   "مكة المكرمة",
+   "مكه المكرمه",
+   "makkah streets",
+   "mecca streets"
+  ],
+  "body": "Makkah’s streets climb and curve between rocky brown hills, hotels, apartment blocks and dense commercial strips. Near the Grand Mosque, broad pedestrian approaches meet bus lanes, taxi queues and tall hotel façades; the Abraj Al Bait clock tower can rise above surrounding buildings from suitable viewpoints. Arabic signs commonly include English, Urdu or other languages. Bright sun reflects off pale stone paving and glass, while shaded passages remain busy. Footsteps, rolling luggage, buses, shopkeepers and calls to prayer overlap. Pilgrims may wear white ihram garments or modest clothing from many countries; residents wear everyday Saudi dress. People greet one another with “السلام عليكم”."
+ },
+ {
+  "id": "place.city.madinah-city",
+  "domain": "place",
+  "topic": "Madinah city",
+  "names": [
+   "المدينة المنورة",
+   "المدينه المنوره",
+   "مدينة النبي",
+   "madinah",
+   "medina saudi"
+  ],
+  "body": "Madinah has broad roads, pale hotel blocks, date palms and low brown hills beyond the built-up areas. Around the Prophet’s Mosque, polished stone courtyards, rows of columns and large shade umbrellas create repeating patterns; the green dome is visible from some approaches, not every street. Arabic-and-English hotel and street signs guide visitors. Sunlight is bright and dry, with long soft shadows around dawn and sunset. Buses, taxis and pedestrians move steadily near the mosque; footsteps, quiet conversation and calls to prayer carry across open paving. Visitors wear varied modest clothing, alongside residents in thobes and abayas. Greetings include “السلام عليكم” and “أهلاً وسهلاً”."
+ },
+ {
+  "id": "place.city.dammam-and-khobar",
+  "domain": "place",
+  "topic": "Dammam and Khobar",
+  "names": [
+   "الدمام والخبر",
+   "دمام وخبر",
+   "الدمام و الخبر",
+   "dammam and khobar",
+   "dammam khobar"
+  ],
+  "body": "Dammam and nearby Al Khobar form a coastal urban stretch of wide roads, concrete apartment buildings, office towers, malls and landscaped roundabouts. Arabic-and-English signs mark shops and highway exits. Along the Gulf, paved corniches have palms, lawns, railings and families walking beside calm, shallow water; Al Khobar’s waterfront offers views toward the King Fahd Causeway. Summer air is hot and humid, often hazing distant buildings, while glass façades catch sharp afternoon light. Cars and air conditioners make a constant low hum, joined by gulls and waterfront conversation. Men wear thobes or casual clothes, women abayas or other everyday dress. Greetings include “السلام عليكم” and “حياك الله”."
+ },
+ {
+  "id": "place.city.abha",
+  "domain": "place",
+  "topic": "Abha",
+  "names": [
+   "أبها",
+   "ابها",
+   "مدينة أبها",
+   "abha",
+   "abha asir"
+  ],
+  "body": "Abha sits among the Asir highlands, where roads bend around steep green slopes and clusters of cream and white buildings. Parks, hillside viewpoints and the dark, jagged ridges of nearby mountains break up the skyline. The air is cooler than in much of Saudi Arabia; summer afternoons can bring low cloud, mist or rain that darkens asphalt and softens distant contours. Arabic shop signs line streets with cars, cafés and pedestrians. Tire noise on winding roads mixes with birds and conversation. Residents wear thobes, abayas and contemporary casual clothes; visitors often carry light jackets. People greet each other with “السلام عليكم” or “مرحبا”."
+ },
+ {
+  "id": "place.city.alula",
+  "domain": "place",
+  "topic": "AlUla",
+  "names": [
+   "العلا",
+   "العلاء السعودية",
+   "مدينة العلا",
+   "alula",
+   "al ula"
+  ],
+  "body": "AlUla’s oasis sits between immense sandstone cliffs and rounded rock formations in warm red, tan and ochre. Date palms and cultivated green plots contrast with dusty ground, while the town has low buildings, paved roads and Arabic-and-English visitor signs. At Hegra, isolated carved façades appear in rock outcrops amid open desert, reached on designated visitor routes rather than ordinary town streets. Dry daylight makes crisp shadows under ledges; near sunset, the stone glows orange and the air cools. Vehicles crunch on gravel, wind brushes palm fronds and voices carry across quiet spaces. Guides and residents wear Saudi dress or casual clothes. Greetings include “السلام عليكم” and “يا هلا”."
+ },
+ {
+  "id": "place.city.dubai-downtown",
+  "domain": "place",
+  "topic": "Dubai Downtown",
+  "names": [
+   "داون تاون دبي",
+   "وسط دبي",
+   "داونتاون دبي",
+   "downtown dubai",
+   "dubai downtown"
+  ],
+  "body": "Downtown Dubai is a dense district of glass-and-steel towers, broad paved sidewalks, landscaped roads and beige stone shopping façades. The slender Burj Khalifa rises far above neighboring high-rises; around its base are Dubai Mall, the lake and pedestrian bridges. Arabic and English appear together on road, mall and storefront signs. Strong sun glints off windows, while evening lighting traces towers and reflects in the water. Cars move smoothly but queue at busy junctions; fountain shows, when running, send timed jets upward with music and splashing. Residents and visitors wear everything from kanduras and abayas to office clothes and tourist attire. Greetings include “السلام عليكم” and “مرحبا”."
+ },
+ {
+  "id": "place.city.dubai-marina",
+  "domain": "place",
+  "topic": "Dubai Marina",
+  "names": [
+   "دبي مارينا",
+   "مارينا دبي",
+   "مرسى دبي",
+   "dubai marina",
+   "marina dubai"
+  ],
+  "body": "Dubai Marina is a narrow, curving waterway enclosed by closely packed glass-and-concrete residential towers, many with stacked balconies and blue or silver reflective façades. A paved promenade follows the water past cafés, palms and moored white yachts; small boats travel slowly, leaving short wakes that ripple against the quay. Road bridges cross the channel, while tram tracks and busy car lanes run nearby. At dusk, tower windows and restaurant signs reflect in broken streaks on the water. Expect engine hum, footsteps and café chatter. Residents, tourists and service workers wear everything from casual summer clothes to kanduras and abayas, greeting friends with “hala” or “as-salamu alaykum.”"
+ },
+ {
+  "id": "place.city.old-dubai-deira-creek",
+  "domain": "place",
+  "topic": "Old Dubai Deira and the creek",
+  "names": [
+   "ديرة خور دبي",
+   "خور دبي ديرة",
+   "ديرة والخور",
+   "old dubai deira creek",
+   "deira creek dubai"
+  ],
+  "body": "On the Deira side of Dubai Creek, low- and mid-rise beige buildings crowd behind narrow shop streets. Arabic and English signs hang over gold, spice and textile shops; sacks, display trays and shaded awnings fill the pavements. Wooden abras with canopy roofs cross the brown-green water, their small engines chugging as passengers sit close together. Larger wooden trading boats line parts of the bank beside coiled ropes and stacked cargo. Sunlight is harsh at midday and warm on the creek at sunset. Listen for boat engines, shopkeepers calling and traffic. Shoppers and workers wear varied everyday clothes, kanduras or abayas, and say “as-salamu alaykum” or “marhaba.”"
+ },
+ {
+  "id": "place.city.abu-dhabi-corniche",
+  "domain": "place",
+  "topic": "Abu Dhabi corniche",
+  "names": [
+   "كورنيش أبوظبي",
+   "كورنيش ابوظبي",
+   "abu dhabi corniche",
+   "abudhabi corniche"
+  ],
+  "body": "Abu Dhabi’s Corniche is a broad seafront of pale sand, turquoise water, cycle paths and palm-lined walking areas. Across the road stands a long row of glass office and apartment towers, with traffic moving steadily between the buildings and shore. Beach sections have orderly umbrellas, changing facilities and low barriers; the sea is usually gently rippled rather than surf-heavy. Late-afternoon light turns the façades gold and throws long palm shadows across the paving. Expect bicycle bells, passing cars, children playing and soft water sounds. Families, joggers and visitors wear sportswear, casual clothes, kanduras and abayas; greetings include “marhaba” and “as-salamu alaykum.”"
+ },
+ {
+  "id": "place.city.sharjah-uae",
+  "domain": "place",
+  "topic": "Sharjah",
+  "names": [
+   "الشارقة",
+   "شارجه",
+   "الشارگة",
+   "sharjah",
+   "sharjah uae"
+  ],
+  "body": "Sharjah mixes cream and sand-coloured mid-rise blocks with newer towers, broad traffic roads and waterfront promenades. Around Al Majaz, palms, lawns and paved paths border Khalid Lagoon; the Blue Souk has two long, blue-tiled wings with arched openings. Elsewhere, older shopping streets show Arabic and English signs above tightly spaced storefronts. Summer sunlight is strong and often hazy, while evenings bring softer reflections to the lagoon. Cars, buses and pedestrians move steadily; traffic noise blends with children’s voices and café conversation near the water. Families and workers wear varied casual clothes, kanduras and abayas, greeting one another with “as-salamu alaykum” or “hala.”"
+ },
+ {
+  "id": "place.city.al-ain-uae",
+  "domain": "place",
+  "topic": "Al Ain",
+  "names": [
+   "العين الإمارات",
+   "مدينة العين",
+   "العين ابوظبي",
+   "al ain uae",
+   "al ain abu dhabi"
+  ],
+  "body": "Al Ain has a low, spread-out skyline of cream and beige buildings, wide roads, roundabouts and planted verges, with the rocky mass of Jebel Hafeet rising beyond the city. In the oasis, dense date palms cast broken shade over sandy paths and narrow irrigation channels; fronds rustle while water runs quietly. Outside the greenery, sunlight is bright and dry, making pale walls and mountain slopes look sharply defined. Traffic is calmer-looking than in the coastal tower districts, with cars passing shops signed in Arabic and English. Residents and visitors wear casual clothes, kanduras or abayas and commonly greet each other with “as-salamu alaykum” or “marhaba.”"
+ },
+ {
+  "id": "place.city.ras-al-khaimah",
+  "domain": "place",
+  "topic": "Ras Al Khaimah",
+  "names": [
+   "رأس الخيمة",
+   "راس الخيمة",
+   "راس الخيمه",
+   "ras al khaimah",
+   "ras al khaima",
+   "rak emirate"
+  ],
+  "body": "Ras Al Khaimah’s central waterfront has modest mid-rise blocks, a few taller buildings, palm-lined roads and calm creek water edged in places by mangroves. Brown, rugged mountains form a distinct backdrop rather than a wall of skyscrapers. Along the corniche, people walk or sit near the water as cars pass on broad streets; shopfront signs appear in Arabic and English. The light is bright and often hazy, turning the mountains muted beige, with warmer colour near sunset. Expect road noise, birds around the mangroves and gentle water sounds. Families and workers dress in casual clothes, kanduras and abayas, saying “hala” or “as-salamu alaykum.”"
+ },
+ {
+  "id": "place.city.kuwait-city",
+  "domain": "place",
+  "topic": "Kuwait City",
+  "names": [
+   "مدينة الكويت",
+   "العاصمة الكويتية",
+   "كويت سيتي",
+   "kuwait city",
+   "kuwait capital"
+  ],
+  "body": "Kuwait City rises from a flat Gulf shoreline in clusters of glass office towers, pale concrete buildings and wide multilane roads. The three Kuwait Towers stand by the seafront, with blue-green patterned spheres on slender shafts; the Liberation Tower rises farther inland. Arabic and English shop signs, roadside palms and large car parks break up the dense commercial areas. Hazy midday light softens distant buildings, while evening sun warms the pale façades and sea. Traffic hum and horns dominate busy streets; cafés add conversation and clinking cups. People wear contemporary casual or business clothes, dishdashas and abayas, greeting acquaintances with “hala wallah” or “as-salamu alaykum.”"
+ },
+ {
+  "id": "place.city.doha-west-bay",
+  "domain": "place",
+  "topic": "Doha West Bay",
+  "names": [
+   "الدوحة الخليج الغربي",
+   "الخليج الغربي الدوحة",
+   "ويست باي الدوحة",
+   "doha west bay",
+   "west bay doha"
+  ],
+  "body": "Doha’s West Bay is a compact skyline of distinct glass towers beside the curved Corniche. Burj Doha has a rounded form and intricate outer lattice; Tornado Tower narrows at the middle, while other façades flash blue, silver and gold in the sun. From across the bay, calm water and a paved waterfront frame the towers. At street level, broad roads carry steady car traffic between office entrances, hotels and landscaped patches of palms. Bright daylight can be hazy; after dark, tower lights ripple across the water. Expect tyre noise, occasional horns and waterfront conversation. Office workers, families and visitors wear business clothes, casual outfits, thobes and abayas, greeting with “marhaba” or “as-salamu alaykum.”"
+ },
+ {
+  "id": "place.city.manama",
+  "domain": "place",
+  "topic": "Manama",
+  "names": [
+   "المنامة",
+   "المنامه",
+   "منامة البحرين",
+   "manama",
+   "al manama"
+  ],
+  "body": "Manama mixes glass office towers along the waterfront with the narrow, shaded lanes of the souq near Bab Al Bahrain. Older shopfronts have cream plaster, wooden doors and tightly packed Arabic and English signs; broad roads carry cars past palms and modern malls. Strong sun throws sharp shadows for much of the year, while humid air can soften the skyline. Traffic hum, shop conversations and calls to prayer overlap. People wear thobes and ghutras, abayas, or everyday international clothes. At a shop entrance, a natural greeting is “salaam alaikum” or “hala wallah,” often followed by “shlonak?”"
+ },
+ {
+  "id": "place.city.muscat",
+  "domain": "place",
+  "topic": "Muscat",
+  "names": [
+   "مسقط",
+   "مسقط عمان",
+   "muscat",
+   "masqat",
+   "muscat oman"
+  ],
+  "body": "Muscat stretches between bare, steep mountains and the sea rather than rising into a dense skyline. White and cream low-rise buildings, carved balconies, domes and minarets sit beside wide roads. At Muttrah, the curved corniche faces anchored boats, while the souq has covered passages and Arabic and English shop signs. Sunlight is bright and hard against pale walls; summer air is hot and humid near the water. Cars swish along the coast, gulls call, and voices echo under the souq roof. Men may wear white dishdashas and embroidered kumma caps; others wear everyday international clothes. “Salaam alaikum” and “marhaba” are common greetings."
+ },
+ {
+  "id": "place.city.salalah",
+  "domain": "place",
+  "topic": "Salalah",
+  "names": [
+   "صلالة",
+   "صلاله",
+   "صلالة عمان",
+   "salalah",
+   "salala"
+  ],
+  "body": "Salalah has low white and beige buildings, coconut palms, banana plantations and roads running toward the Dhofar mountains and Arabian Sea. Arabic and English signs mark shops and hotels; the Al Haffa area has small stalls selling frankincense. During the summer khareef, low cloud, drizzle and mist soften the light and turn hills green. Outside that season, sunlight is stronger and many slopes look dry. Cars hiss over wet roads in khareef; at other times, traffic, market voices and surf are more distinct. People wear dishdashas, abayas or casual clothes and commonly greet one another with “salaam alaikum” or “marhaba.”"
+ },
+ {
+  "id": "place.city.nizwa",
+  "domain": "place",
+  "topic": "Nizwa",
+  "names": [
+   "نزوى",
+   "نزوى عمان",
+   "nizwa",
+   "nizwah",
+   "nizwa oman"
+  ],
+  "body": "Nizwa’s round, earth-coloured fort tower rises above the souq, with the rocky Hajar Mountains beyond. Around it are pale plaster walls, stone paving, shaded shop passages and low modern buildings; signs are chiefly Arabic, often with English beneath. Date stalls and pottery shops bring baskets, clay jars and closely spaced displays into the narrow market lanes. Sunlight makes crisp shadows, while covered passages stay dimmer. Cars pass outside the old centre; footsteps and bargaining voices carry inside. The Friday livestock market adds animal calls early in the day. Men may wear dishdashas and kumma caps; “salaam alaikum” is a customary greeting."
+ },
+ {
+  "id": "place.city.amman-downtown",
+  "domain": "place",
+  "topic": "Amman downtown",
+  "names": [
+   "وسط البلد عمان",
+   "وسط البلد عمّان",
+   "وسط عمان",
+   "داون تاون عمان",
+   "amman downtown",
+   "downtown amman",
+   "al balad amman"
+  ],
+  "body": "Downtown Amman, or Al Balad, sits at the foot of hills crowded with pale limestone apartment blocks. The Roman Theatre opens onto a broad plaza, while nearby streets tighten into shop-lined slopes and stairways. Arabic signs dominate above clothing stores, bakeries and cafés, sometimes paired with English. Cream stone looks bright in the dry sun; evening shadows gather quickly between buildings. Yellow taxis, buses and delivery vehicles thread through busy streets amid horns, vendor calls and conversations. People wear everyday urban clothes, with some women in headscarves. A shopkeeper might say “ahlein” or “ya‘teek el-‘afyeh,” a familiar wish of well-being."
+ },
+ {
+  "id": "place.city.aqaba",
+  "domain": "place",
+  "topic": "Aqaba",
+  "names": [
+   "العقبة",
+   "العقبه",
+   "عقبة الأردن",
+   "aqaba",
+   "aqabah",
+   "al aqaba"
+  ],
+  "body": "Aqaba sits beside the narrow blue Gulf of Aqaba, with dry, reddish mountains behind its white and sand-coloured low- and mid-rise buildings. Palm-lined streets lead toward the waterfront, where small boats bob on short waves and the port’s cranes stand farther away. Shop, hotel and restaurant signs commonly mix Arabic and English. Bright sun reflects off pale paving and water; summers are very hot, with clearer, gentler light in winter. Traffic, boat engines, gulls and promenade conversations provide the sound. Residents and visitors wear everything from casual summer clothes to thobes and headscarves. “Ahlein” and “salaam alaikum” are ordinary greetings."
+ },
+ {
+  "id": "place.city.beirut-downtown",
+  "domain": "place",
+  "topic": "Beirut downtown",
+  "names": [
+   "وسط بيروت",
+   "وسط بيروت التجاري",
+   "داون تاون بيروت",
+   "وسط البلد بيروت",
+   "beirut downtown",
+   "downtown beirut",
+   "beirut central district"
+  ],
+  "body": "Downtown Beirut has broad paved streets and restored cream-stone façades with arches, balconies and shuttered windows. The clock tower at Nejmeh Square, the blue domes of Mohammad Al Amin Mosque and nearby church towers give the centre distinct silhouettes. Arabic, French and English appear on storefronts. Mediterranean sun warms the stone, while trees and tall buildings cast patches of shade; winter brings rain. Footsteps and café voices can be prominent on quieter blocks, with car engines and horns on busier roads nearby. People dress in varied contemporary styles. Friends commonly greet each other with “marhaba,” “ahlan,” or the Lebanese “kifak?”"
+ },
+ {
+  "id": "place.city.byblos",
+  "domain": "place",
+  "topic": "Byblos",
+  "names": [
+   "جبيل",
+   "بيبلوس",
+   "جبيل لبنان",
+   "byblos",
+   "jbeil",
+   "byblos lebanon"
+  ],
+  "body": "Byblos, also called Jbeil, has a compact old quarter of pale sandstone walls, arched doorways, stone steps and narrow souq lanes. The castle’s blocky towers overlook a small harbour, where fishing boats and pleasure craft rock against the quay. Beyond the old streets are modern roads with Arabic, French and English signs. Sunlight picks out the rough stone; near the water it can turn hazy, and winter rain darkens the paving. Footsteps echo in the lanes, while café conversation, gulls and boat engines carry across the harbour. Visitors and residents wear casual clothes. “Marhaba” and “kifak?” are familiar greetings."
+ },
+ {
+  "id": "place.city.tripoli-lebanon",
+  "domain": "place",
+  "topic": "Tripoli Lebanon",
+  "names": [
+   "طرابلس لبنان",
+   "طرابلس الشام",
+   "طرابلس اللبنانية",
+   "tripoli lebanon"
+  ],
+  "body": "Tripoli has a dense core of pale sandstone buildings, vaulted souks, narrow lanes and small shops with Arabic signs. The citadel rises above the Abu Ali River; farther west, the Mina waterfront has fishing boats, low-rise buildings and open views of the Mediterranean. Sunlight turns the stone warm beige, while winter rain darkens it. Cars and shared taxis edge past pedestrians on wider streets; in the souks, footsteps and delivery carts move through tighter passages. Expect vendors calling, engines, mosque calls to prayer and, by the water, gulls. People wear everyday shirts, jeans, dresses or headscarves and greet one another with “marhaba” or “kifak?”"
+ },
+ {
+  "id": "place.city.damascus-old-city",
+  "domain": "place",
+  "topic": "Damascus old city",
+  "names": [
+   "دمشق القديمة",
+   "البلدة القديمة دمشق",
+   "الشام القديمة",
+   "old damascus",
+   "damascus old city"
+  ],
+  "body": "Inside Damascus’s old city, straight and winding lanes pass pale stone walls, dark wooden doors and courtyard houses with projecting upper floors. Market stretches have high metal or vaulted roofs over closely packed stalls; near the Umayyad Mosque, broad stone paving opens around monumental arches. Arabic shop signs hang above textiles, spices and sweets. Dry summer light is strong outside but soft and cool beneath souk roofs; winter brings damp stone and low sun. Pedestrians, handcarts and occasional small vehicles negotiate the lanes. Footsteps, shopkeepers’ calls and the call to prayer carry between walls. Locals wear varied modern clothing and say “marhaba” or “ahlan.”"
+ },
+ {
+  "id": "place.city.aleppo-citadel-area",
+  "domain": "place",
+  "topic": "Aleppo citadel area",
+  "names": [
+   "قلعة حلب",
+   "منطقة قلعة حلب",
+   "محيط قلعة حلب",
+   "aleppo citadel",
+   "citadel of aleppo"
+  ],
+  "body": "Aleppo’s citadel sits on a steep, broad mound above the surrounding streets, its sand-coloured stone walls reached by a long arched bridge across a dry moat. Around the base are open paved areas, traffic and older limestone buildings; nearby market streets have Arabic signs, shutters and sections in varying states of repair. Dusty summer sun brings out the stone’s yellow tones, while rain makes paving darker and slippery. Cars, taxis and pedestrians circulate below the entrance; footsteps echo on the bridge. Street conversations, engines, vendors and occasional calls to prayer overlap. Dress is everyday Syrian urban clothing; a common greeting is “marhaba” or “ahlan.”"
+ },
+ {
+  "id": "place.city.homs-syria",
+  "domain": "place",
+  "topic": "Homs",
+  "names": [
+   "حمص",
+   "حُمص",
+   "مدينة حمص",
+   "حمص سوريا",
+   "homs",
+   "homs syria"
+  ],
+  "body": "Homs has broad traffic streets, apartment blocks, ground-floor shops with Arabic signs and older stone buildings among newer construction. Around the central clock tower, pedestrians cross open paved spaces while cars and minibuses pass in steady bursts. The large, pale-stone Khalid ibn al-Walid Mosque is a recognisable landmark. Building conditions vary from street to street, so avoid making every block uniformly new or damaged. Summer light is dry and bright; winter can be grey and chilly. Sounds include engines, horns, shop talk and calls to prayer. People wear ordinary shirts, trousers, dresses, coats in colder weather and some headscarves, greeting friends with “marhaba” or “shlonak?”"
+ },
+ {
+  "id": "place.city.latakia",
+  "domain": "place",
+  "topic": "Latakia",
+  "names": [
+   "اللاذقية",
+   "الاذقية",
+   "لاذقية",
+   "latakia",
+   "lattakia"
+  ],
+  "body": "Latakia faces the Mediterranean, with a working port, cranes and ships visible from parts of the city. Its streets mix mid-rise concrete apartment buildings, balconies, storefronts with Arabic lettering, trees and busier intersections. Along the seafront, waves meet stone edges and beaches, while cafés and walkers gather where access is open. Summer light is bright and humid, often softened by sea haze; winter brings rain and wind. Traffic rolls over uneven pavement, gulls call above the waterfront and café conversations mix with horns. People dress in varied everyday clothes, from light shirts to winter jackets, and commonly greet one another with “marhaba” or “ahlan.”"
+ },
+ {
+  "id": "place.city.jerusalem-old-city",
+  "domain": "place",
+  "topic": "Jerusalem old city (respectful)",
+  "names": [
+   "القدس القديمة",
+   "البلدة القديمة القدس",
+   "مدينة القدس القديمة",
+   "jerusalem old city",
+   "old city of jerusalem"
+  ],
+  "body": "Jerusalem’s old city has narrow limestone lanes, polished stone steps, arched passages and shops set into thick walls. Arabic, Hebrew and English appear on signs. The golden Dome of the Rock, church towers and the Western Wall belong to distinct sacred spaces; show worshippers and visitors observing each place’s customs. Strong sun brightens pale stone, while covered markets fall into deep shade and winter rain makes steps slick. People walk slowly through crowds, carrying shopping bags or guiding family members. Footsteps, shop voices, bells and calls to prayer are heard in different areas. Clothing varies, including modest dress and religious garments; greetings include “marhaba,” “ahlan” and “shalom.”"
+ },
+ {
+  "id": "place.city.gaza-seaside",
+  "domain": "place",
+  "topic": "Gaza seaside (respectful, everyday life)",
+  "names": [
+   "شاطئ غزة",
+   "بحر غزة",
+   "كورنيش غزة",
+   "gaza seaside",
+   "gaza beach"
+  ],
+  "body": "Gaza’s Mediterranean shore has pale sand, blue-grey water, fishing boats and a horizon that turns silver in hazy afternoon light. In accessible stretches, families may walk near the surf, children play with sand and fishers handle nets or small boats; the state of paths, cafés and nearby buildings varies by place and time. Do not assume a spotless resort promenade or portray ordinary people only through hardship. Waves break in short foamy lines, wind tugs at clothing and seabirds call above conversation. Arabic signs appear on nearby streets. People wear varied everyday clothing, often with practical layers or headscarves, and greet neighbours with “marhaba” or “keef halak?”"
+ },
+ {
+  "id": "place.city.ramallah",
+  "domain": "place",
+  "topic": "Ramallah",
+  "names": [
+   "رام الله",
+   "رامالله",
+   "مدينة رام الله",
+   "ramallah",
+   "ram allah"
+  ],
+  "body": "Ramallah spreads over hills, with pale limestone façades, concrete apartment blocks, balconies, shopfronts and newer glass-fronted offices. Around al-Manara Square, its lion statues mark a busy meeting point where taxis and pedestrians weave through traffic. Arabic signs dominate, often alongside English. Steep streets give brief views across closely built neighbourhoods and distant hills. Summer sunlight is clear and dry; winter can be cold, wet and misty. Expect horns, idling engines, café talk and footsteps on sloping pavements. People wear varied modern clothes, jackets in winter and some headscarves. Friends commonly greet each other with “marhaba,” “ahlan” or “keefak?”"
+ },
+ {
+  "id": "place.city.cairo-downtown",
+  "domain": "place",
+  "topic": "Cairo downtown",
+  "names": [
+   "وسط البلد القاهرة",
+   "وسط القاهرة",
+   "وسط القاهره",
+   "داون تاون القاهرة",
+   "downtown cairo",
+   "cairo downtown"
+  ],
+  "body": "Downtown Cairo has broad streets feeding into crowded side roads, with cream and ochre apartment blocks, wrought-iron balconies, stone cornices, and shopfronts at pavement level. Around Talaat Harb Square, Arabic signs mix with English brand names; near Tahrir Square, traffic circles open toward the Egyptian Museum’s pinkish façade. Yellow-and-black taxis, buses, motorcycles, and pedestrians move in uneven bursts around honking cars. Street vendors call beside cafés where chairs face the pavement. Sunlight catches dusty façades sharply, while shaded arcades look cooler. People wear jeans, shirts, dresses, and hijabs; acquaintances greet each other with “izzayyak?” or “sabah el kheir.”"
+ },
+ {
+  "id": "place.city.giza-streets",
+  "domain": "place",
+  "topic": "Giza streets",
+  "names": [
+   "شوارع الجيزة",
+   "شوارع الجيزه",
+   "الجيزة",
+   "الجيزه",
+   "giza streets",
+   "giza"
+  ],
+  "body": "Giza’s everyday streets are dense with mid-rise concrete apartment buildings, brick side walls, balconies crowded with laundry, and ground-floor pharmacies, bakeries, and phone shops. Arabic shop signs dominate, sometimes paired with English. On roads such as Faisal and Al Haram, minibuses pull over abruptly, motorcycles slip through gaps, and pedestrians step around parked cars and uneven pavement. The pyramids are not visible from most blocks; nearer the plateau, the buildings thin toward sandy open ground. Afternoon light is bright and dusty, with horns, engines, and vendors’ calls overlapping. People commonly wear practical city clothes and greet neighbors with “izzayyak?” or “salam alaykum.”"
+ },
+ {
+  "id": "place.city.alexandria-egypt",
+  "domain": "place",
+  "topic": "Alexandria",
+  "names": [
+   "الإسكندرية",
+   "الاسكندرية",
+   "اسكندرية",
+   "اسكندريه",
+   "alexandria egypt",
+   "alexandria"
+  ],
+  "body": "Alexandria stretches along a curving Mediterranean waterfront, where waves slap against the Corniche seawall and sea spray softens the light. Tall, weathered apartment blocks face the water; inland streets narrow between balconies, cafés, bakeries, and Arabic storefront signs. Qaitbay Citadel stands pale and solid near the harbor, while the Bibliotheca Alexandrina has a broad, sloping circular form farther east. Cars, taxis, buses, and occasional trams share busy streets; horns mingle with gulls and the rush of surf. Summer afternoons are bright and humid, winter skies often gray. People wear ordinary urban clothes, including hijabs and light jackets in cooler months, and say “izzayyak?” or “sabah el kheir.”"
+ },
+ {
+  "id": "place.city.luxor",
+  "domain": "place",
+  "topic": "Luxor",
+  "names": [
+   "الأقصر",
+   "الاقصر",
+   "مدينة الأقصر",
+   "مدينة الاقصر",
+   "luxor",
+   "al uqsur"
+  ],
+  "body": "Luxor sits beside a wide, slow Nile, with a paved corniche, moored cruise boats, small motorboats, and feluccas whose triangular sails fill and slacken with the wind. Low ochre buildings and palms frame streets where Arabic signs mix with English signs for hotels and tour services. Luxor Temple’s sandstone columns rise close to the town center; across the river, greener fields lead toward dry hills. Taxis, horse-drawn carriages, bicycles, and pedestrians move at different speeds, with hoofbeats, engines, boat motors, and calls from the quay. Desert sun makes hard shadows; evenings turn the stone warm gold. Locals and visitors dress in light clothing and exchange “salam alaykum” or “sabah el kheir.”"
+ },
+ {
+  "id": "place.city.aswan",
+  "domain": "place",
+  "topic": "Aswan",
+  "names": [
+   "أسوان",
+   "اسوان",
+   "مدينة أسوان",
+   "مدينة اسوان",
+   "aswan",
+   "assouan"
+  ],
+  "body": "Aswan’s Nile bends around rocky islands and smooth granite outcrops, with feluccas crossing blue water beneath steep triangular sails. Along the corniche are palms, moored boats, cafés, and mid-rise buildings with Arabic signs and some English for visitors. Across the river, sandy slopes, scattered Nubian-style houses, and patches of green make a sharp contrast. Motorboats leave spreading V-shaped wakes; their engines and the flap of canvas carry over the water, while horns sound on busier streets. The light is strong and dry, turning granite pinkish at sunset. People wear everyday shirts, dresses, hijabs, and sometimes long galabeyas, greeting one another with “salam alaykum” or “izzayyak?”"
+ },
+ {
+  "id": "place.city.sharm-el-sheikh",
+  "domain": "place",
+  "topic": "Sharm El Sheikh",
+  "names": [
+   "شرم الشيخ",
+   "شرم الشيخ مصر",
+   "شرم الشِيخ",
+   "sharm el sheikh",
+   "sharm el-sheikh",
+   "sharm"
+  ],
+  "body": "Sharm El Sheikh spreads between the arid Sinai mountains and clear Red Sea water. Wide roads link low, pale resort buildings, planted palms, shopping areas, and beaches with wooden jetties extending over shallow reef. Arabic and English signs appear together around Naama Bay and other visitor areas. Taxis and minibuses travel between hotels; on the waterfront, excursion boats rock gently against their lines and water laps at the piers. The air is usually dry, the midday sun harsh, and evening lighting glows against tan stone and stucco. Residents and visitors wear light summer clothes; swimwear belongs at beaches and pools. Greetings include “sabah el kheir” and “izzayyak?”"
+ },
+ {
+  "id": "place.city.hurghada",
+  "domain": "place",
+  "topic": "Hurghada",
+  "names": [
+   "الغردقة",
+   "غردقة",
+   "الغردقه",
+   "غردقه",
+   "hurghada",
+   "el gouna hurghada"
+  ],
+  "body": "Hurghada runs along a mostly flat Red Sea coast, with resort compounds, apartment blocks, unfinished concrete buildings, and palm-lined stretches separated by broad roads. In older El Dahar, narrower streets hold cafés, produce shops, and Arabic signs; around the marina and visitor strips, English appears more often. White dive boats and excursion vessels bob at their moorings, their ropes tapping against hulls, while engines and car horns sound farther inland. The sea shifts from turquoise in the shallows to deeper blue; inland, bare desert stays beige under intense sun. People wear light everyday clothes, with beachwear near the water, and greet each other with “salam alaykum” or “sabah el kheir.”"
+ },
+ {
+  "id": "place.city.khartoum",
+  "domain": "place",
+  "topic": "Khartoum",
+  "names": [
+   "الخرطوم",
+   "خرطوم",
+   "الخرطوم السودان",
+   "خرطوم السودان",
+   "khartoum",
+   "al khartoum"
+  ],
+  "body": "Khartoum lies on broad, flat ground beside the Blue and White Nile, with riverfront trees, sandy open patches, low concrete neighborhoods, and scattered taller office buildings. Arabic signs dominate storefronts, sometimes accompanied by English. Wide paved roads meet smaller dusty streets where minibuses, cars, and pedestrians move at a pace that varies greatly by area; engines, horns, and conversation carry in the dry air. Sunlight is stark for much of the day, with a pale, dusty sky during haze. Present-day street conditions differ sharply between neighborhoods, and some buildings and services are damaged or inactive. People wear shirts, dresses, headscarves, and white jalabiyas; greetings include “as-salamu alaykum” and “keifak?”"
+ },
+ {
+  "id": "place.city.tunis",
+  "domain": "place",
+  "topic": "Tunis",
+  "names": [
+   "تونس",
+   "تونس العاصمة",
+   "tunis",
+   "tunis capital"
+  ],
+  "body": "Tunis has a low, pale skyline around a dense medina of narrow lanes, cream plaster, carved wooden doors and the square minaret of the Zitouna Mosque. Avenue Habib Bourguiba opens into a broad, tree-lined street with cafés, a clock tower and French-era stone façades. Shop signs are mostly Arabic and French. Yellow taxis weave around cars; light-rail trains glide past with a metallic rattle. Summers bring bright, dry-looking light, softened near the coast by humidity. Café chairs scrape, horns sound briefly and vendors call from shaded stalls. People wear everyday shirts, jeans, dresses or headscarves, and greet one another with “عسلامة” and “لاباس؟”"
+ },
+ {
+  "id": "place.city.sousse",
+  "domain": "place",
+  "topic": "Sousse",
+  "names": [
+   "سوسة",
+   "سوسه",
+   "sousse",
+   "soussa"
+  ],
+  "body": "Sousse rises gently from a Mediterranean waterfront toward a compact medina enclosed by sandy-brown stone walls. The Ribat’s square tower and the plain, fortified-looking Great Mosque stand above alleys of whitewashed walls, blue doors and small Arabic-and-French shop signs. Beyond the old quarter are apartment blocks, hotels, palms and a working port. Sunlight is sharp on stone and sea; a breeze moves awnings and palm fronds. Yellow taxis stop and pull away beside scooters and pedestrians. Listen for gulls, boat engines, café conversation and footsteps on worn paving. People in casual clothes or headscarves commonly say “عسلامة” and “لاباس؟”"
+ },
+ {
+  "id": "place.city.algiers",
+  "domain": "place",
+  "topic": "Algiers",
+  "names": [
+   "الجزائر العاصمة",
+   "مدينة الجزائر",
+   "دزاير",
+   "algiers",
+   "alger"
+  ],
+  "body": "Algiers climbs steep hills above its bay: the Casbah is a tightly packed slope of whitewashed houses, flat roofs, steps and narrow passages, while lower boulevards have cream French-era façades, balconies and arcades. The Martyrs’ Memorial stands high above the city. Arabic and French appear together on street and shop signs. White buildings glare in strong Mediterranean sun, with sea haze softening distant hills. Cars inch along curving roads; buses and metro trains add engine hum and braking squeal. Café voices, horns and gulls carry between buildings. People wear varied contemporary clothes and headscarves; familiar greetings include “السلام عليكم” and “واش راك؟”"
+ },
+ {
+  "id": "place.city.oran",
+  "domain": "place",
+  "topic": "Oran",
+  "names": [
+   "وهران",
+   "وهرن",
+   "oran",
+   "wahran"
+  ],
+  "body": "Oran wraps around a broad bay beneath Mount Murdjadjo, with the pale Santa Cruz fort visible on the hillside. Downtown streets mix cream colonial-era apartment blocks, shuttered balconies, concrete buildings and Arabic-and-French storefronts; Place du 1er Novembre opens around its monument and theatre. The waterfront catches bright, hazy Mediterranean light and a breeze that lifts loose clothing and café awnings. Cars, buses and the Oran tram share busy streets, sounding horns, motors and the tram’s soft rail squeal. Sidewalk cafés fill with conversation, and gulls sound near the harbour. People dress casually, sometimes with headscarves, and greet friends with “السلام عليكم” or “واش راك؟”"
+ },
+ {
+  "id": "place.city.tripoli-libya",
+  "domain": "place",
+  "topic": "Tripoli Libya",
+  "names": [
+   "طرابلس ليبيا",
+   "طرابلس الغرب",
+   "طرابلس الليبية",
+   "tripoli libya",
+   "tripoli al gharb"
+  ],
+  "body": "Tripoli, Libya, spreads along the Mediterranean in a mostly low skyline of pale concrete apartments, with newer glass-fronted buildings and palms near the seafront. In the old medina, tight passages run between cream walls, wooden doors and small shops; the Arch of Marcus Aurelius stands among the older stonework. Martyrs’ Square is broad and open. Signs are chiefly Arabic, sometimes paired with English. Strong sun throws hard shadows, while sea haze softens distant buildings. Cars and taxis bunch at junctions; engines, short horn taps, café voices and gulls form the street sound. Clothing ranges from shirts and jeans to headscarves and traditional garments. People greet one another with “السلام عليكم” and “شن حالك؟”"
+ },
+ {
+  "id": "place.city.benghazi",
+  "domain": "place",
+  "topic": "Benghazi",
+  "names": [
+   "بنغازي",
+   "بنغازى",
+   "benghazi",
+   "banghazi"
+  ],
+  "body": "Benghazi has a spread-out Mediterranean waterfront, broad roads and a skyline of mid-rise concrete blocks rather than tall towers. Near the older centre, pale arcaded façades and weathered balconies face squares and streets lined with Arabic signs. The Benghazi lighthouse marks the harbour edge; cafés and parked cars cluster along parts of the corniche. The light is bright and often slightly hazy, with wind moving sea spray, palms and loose shop awnings. Traffic brings a steady engine wash and occasional horns, joined by gulls and conversations outside cafés. People wear everyday clothes, headscarves or traditional Libyan garments, and say “السلام عليكم” or “شن حالك؟”"
+ },
+ {
+  "id": "place.city.casablanca",
+  "domain": "place",
+  "topic": "Casablanca",
+  "names": [
+   "الدار البيضاء",
+   "كازابلانكا",
+   "كازا",
+   "casablanca",
+   "casa blanca"
+  ],
+  "body": "Casablanca is a dense Atlantic city of white and cream apartment blocks, Art Deco façades, balconies and newer glass towers. The Hassan II Mosque’s tall square minaret rises beside the ocean; inland, broad avenues carry Arabic-and-French signs and red-and-white tramcars. Small red taxis change lanes among buses, motorcycles and delivery vans. Coastal haze and humidity soften the daylight, while wet sea air dulls distant building edges. Tram bells, horns, engines, gulls and café chatter overlap, and Atlantic surf is audible near the shore. Sidewalks fill with commuters in shirts, jeans, dresses or headscarves. Everyday greetings include “السلام عليكم,” “لاباس؟” and “كيداير؟”"
+ },
+ {
+  "id": "place.city.rabat",
+  "domain": "place",
+  "topic": "Rabat",
+  "names": [
+   "الرباط",
+   "رباط المغرب",
+   "rabat",
+   "ar-rabat"
+  ],
+  "body": "Rabat sits where the Bouregreg River meets the Atlantic. The unfinished Hassan Tower and the white Mausoleum of Mohammed V stand on an open stone esplanade; across town, the Kasbah of the Udayas has narrow lanes, blue-and-white walls and heavy painted doors. Elsewhere, broad planted avenues pass cream government buildings, apartment blocks and Arabic-and-French shop signs. Ocean breeze shifts leaves and flags, and coastal haze softens the otherwise bright light. White trams cross busy junctions beside blue small taxis, with bells, motors and occasional horns. Gulls sound near the river. People in varied everyday clothing greet one another with “السلام عليكم,” “لاباس؟” or “كيداير؟”"
+ },
+ {
+  "id": "place.city.fes",
+  "domain": "place",
+  "topic": "Fes",
+  "names": [
+   "فاس",
+   "فاس المغرب",
+   "fes",
+   "fez"
+  ],
+  "body": "Fes spreads from a dense old medina into newer districts of wider roads and pale apartment blocks. Inside the medina, narrow stone lanes bend between tall ochre walls, carved wooden doors, tiled fountains and small shops; donkeys and handcarts move goods where cars cannot fit. The blue-tiled Bab Bou Jeloud gate opens toward busy market streets, while the tanneries show clusters of round dye vats. Signs are mainly Arabic and French. Warm sun strikes roof terraces while lanes remain cool and shaded. Footsteps, shopkeepers, carts and calls to prayer overlap. People in djellabas, headscarves and everyday modern clothes greet one another with “salam alaykum” and “labas?”"
+ },
+ {
+  "id": "place.city.tangier",
+  "domain": "place",
+  "topic": "Tangier",
+  "names": [
+   "طنجة",
+   "طنجه",
+   "tangier",
+   "tanger"
+  ],
+  "body": "Tangier climbs hills above a broad bay and the Strait of Gibraltar. White and cream apartment buildings face the water; the old medina has steep lanes, painted doors and close-set shops beneath the Kasbah. Around Grand Socco, traffic circles past palms and older façades, while port roads carry buses, taxis and delivery vans. Signs appear in Arabic and French, sometimes Spanish. Atlantic light can turn hazy in the sea breeze, and winter skies are often grey. Expect gulls, engines, café conversation and calls to prayer. People wear jeans, jackets, headscarves or djellabas and greet friends with “salam” and “labas?”"
+ },
+ {
+  "id": "place.city.nouakchott",
+  "domain": "place",
+  "topic": "Nouakchott",
+  "names": [
+   "نواكشوط",
+   "انواكشوط",
+   "nouakchott",
+   "nuakchot"
+  ],
+  "body": "Nouakchott is low and spread out on flat, sandy ground near the Atlantic. Broad paved roads alternate with dusty side streets, walled compounds and modest cream or pastel concrete buildings. At the fishing port, brightly painted wooden boats line the shore and fish sellers work beside stacked crates; markets farther inland use tarps for shade. Arabic and French appear on shop signs. The light is strong and often softened by airborne dust or coastal haze. Cars, minibuses and motorcycles raise brief trails of sand; wind, horns and market voices fill the air. People wear flowing daraa robes, melhfas, headscarves and modern clothes, greeting others with “as-salamu alaykum” and “labas?”"
+ },
+ {
+  "id": "place.city.sanaa-old-city",
+  "domain": "place",
+  "topic": "Sanaa old city",
+  "names": [
+   "صنعاء القديمة",
+   "صنعاء القديمه",
+   "مدينة صنعاء القديمة",
+   "old sanaa",
+   "sanaa old city"
+  ],
+  "body": "Sanaa old city is a tight maze of stone-paved lanes and tall earth-toned tower houses. Brown brick and rammed-earth walls carry crisp white gypsum patterns around windows; arched stained-glass qamariyah windows catch the sun above wooden doors. Near Bab al-Yaman, stalls display fabrics, spices and household goods beneath Arabic signs. Afternoon light brings out the buildings’ warm red-brown colour, while narrow lanes stay shaded and high-altitude evenings feel cool. Footsteps, handcarts, market voices and calls to prayer echo between walls; movement is slow through the crowded passages. People wear traditional wraps, shawls, headscarves or modern clothes and greet one another with “as-salamu alaykum” and “marhaba.”"
+ },
+ {
+  "id": "place.city.aden",
+  "domain": "place",
+  "topic": "Aden",
+  "names": [
+   "عدن",
+   "مدينة عدن",
+   "aden"
+  ],
+  "body": "Aden wraps around a harbour and dark, rocky volcanic hills. In Crater, dense streets sit inside the ring of hills; Tawahi has waterfront roads, older balconied buildings and views across the port. Low concrete shops, weathered plaster, Arabic signs and newer apartment blocks sit under harsh coastal sun. Container ships and small boats move steadily across the water; taxis, buses and motorcycles weave through streets at a quicker pace. The air is hot and humid, with sea haze softening distant ridges. Horns, engines, gulls and calls to prayer carry through open windows. People in shirts, futahs, headscarves and everyday modern clothes greet neighbours with “as-salamu alaykum” and “kayf halak?”"
+ },
+ {
+  "id": "place.city.mogadishu",
+  "domain": "place",
+  "topic": "Mogadishu",
+  "names": [
+   "مقديشو",
+   "مقاديشو",
+   "mogadishu",
+   "muqdisho"
+  ],
+  "body": "Mogadishu faces the Indian Ocean, with pale sandy beaches, turquoise water and a skyline of low concrete buildings, minarets and newer mid-rise blocks. Older districts show weathered white plaster, arcades and narrow commercial streets; around Lido Beach, cafés and open seafront roads catch the breeze. Shop signs are chiefly in Somali Latin script, with some Arabic and English. Bright sun makes walls almost white, and humid sea air softens the horizon. Small three-wheeled bajaaj taxis, cars and pedestrians keep streets busy; expect horns, vendors, surf and calls to prayer. People wear colourful dresses, hijabs, shirts, trousers or traditional wraps, greeting each other with “salaan” and “iska warran?”"
+ },
+ {
+  "id": "place.city.djibouti-city",
+  "domain": "place",
+  "topic": "Djibouti city",
+  "names": [
+   "مدينة جيبوتي",
+   "جيبوتي العاصمة",
+   "djibouti city",
+   "ville de djibouti"
+  ],
+  "body": "Djibouti city sits beside a busy harbour on a dry coast. Central streets mix pale colonial-era buildings with shaded arcades, concrete shopfronts and newer blocks; minarets rise above flat roofs. At Place Menelik, cafés and shops face broad streets, while trucks and containers dominate routes toward the port. Signs commonly use French and Arabic, with Somali also visible. The sun is intense, shadows are sharp and heat haze often blurs distant roads; a breeze comes off the Gulf of Tadjoura. Minibuses, taxis and trucks bring engines and horns alongside market voices and calls to prayer. People wear lightweight shirts, colourful wraps, headscarves or business clothes, greeting others with “salaam alaykum,” “iska warran?” or “bonjour.”"
+ },
+ {
+  "id": "place.city.tehran",
+  "domain": "place",
+  "topic": "Tehran",
+  "names": [
+   "طهران",
+   "تهران",
+   "tehran",
+   "teheran"
+  ],
+  "body": "Tehran stretches across a broad plain toward the Alborz Mountains, which can appear snow-covered behind dense apartment districts. Concrete and glass mid-rises, tree-lined avenues and elevated roads frame landmarks such as Azadi Tower and the slender Milad Tower. Shop signs use Persian script. Traffic is thick with cars, buses and motorcycles; riders slip between slow lanes while pedestrians gather at crossings and bazaars. Summer light is bright and dry, sometimes dulled by haze; winter brings colder air and clearer mountain views. Horns, engines, street sellers and calls to prayer mix with conversation. People wear coats, shirts and trousers, with women wearing headscarves, and greet one another with “salam” and “khubi?”"
+ },
+ {
+  "id": "place.city.isfahan",
+  "domain": "place",
+  "topic": "Isfahan",
+  "names": [
+   "أصفهان",
+   "اصفهان",
+   "اصفهان ايران",
+   "isfahan",
+   "esfahan"
+  ],
+  "body": "Isfahan has broad boulevards and low beige buildings around Naqsh-e Jahan Square, where arcades frame turquoise-tiled mosque domes and slender minarets. The Si-o-se-pol bridge repeats its pale brick arches across the Zayandeh Rud riverbed, which may be flowing or dry. Persian signs hang over shopfronts selling textiles and metalwork. Dry, bright daylight gives the tiles sharp colour; evenings turn the square warm gold. Cars and motorcycles move along nearby streets while people cross the square on foot. Footsteps echo under the arcades, mixed with traffic and conversation. People wear everyday city clothes, with women in headscarves, and greet each other with “salam” or “khoobi?”"
+ },
+ {
+  "id": "place.city.shiraz",
+  "domain": "place",
+  "topic": "Shiraz",
+  "names": [
+   "شيراز",
+   "شيراز ايران",
+   "شيراز فارس",
+   "shiraz",
+   "shiraz iran"
+  ],
+  "body": "Shiraz combines busy modern streets with pale stone courtyards, brick bazaar passages and gardens of cypress and orange trees. The Vakil Bazaar has vaulted ceilings over closely spaced stalls; Nasir al-Mulk Mosque shows patterned pink tiles and coloured window light on its interior floor. Persian shop signs face streets of sedans, motorcycles and pedestrians. Summers are hot and dry, with hard midday shadows; mornings and evenings bring softer light. In gardens, leaves rustle and water trickles, while horns and vendor voices carry near the bazaar. People wear contemporary clothes, with women in headscarves, and exchange “salam” and “halet chetore?”"
+ },
+ {
+  "id": "place.city.mashhad",
+  "domain": "place",
+  "topic": "Mashhad",
+  "names": [
+   "مشهد",
+   "مشهد ايران",
+   "مشهد الرضا",
+   "mashhad",
+   "mashhad iran"
+  ],
+  "body": "Mashhad’s skyline mixes apartment and hotel towers with the gold dome and turquoise minarets of the Imam Reza shrine. Its expansive courtyards have smooth pale paving that reflects sunlight and the movement of dense but orderly pedestrian streams. Broad roads outside carry buses, taxis and motorcycles past Persian signs for hotels and shops. The climate is dry, with bright summers and cold winters that can bring snow. Traffic hum gives way near the shrine to footsteps, quiet conversation and prayer calls. Visitors dress modestly; women wear head coverings and follow shrine clothing rules. A common greeting is “salam,” often answered with “salam.”"
+ },
+ {
+  "id": "place.city.tabriz",
+  "domain": "place",
+  "topic": "Tabriz",
+  "names": [
+   "تبريز",
+   "تبریز",
+   "تبريز ايران",
+   "tabriz",
+   "tebriz"
+  ],
+  "body": "Tabriz has broad, traffic-filled avenues, mid-rise concrete and stone buildings, and the long brick vaults of its covered bazaar. Inside, low domes and repeated arches cast soft light over carpet, spice and fabric shops. The Blue Mosque shows turquoise tilework set against weathered brick, while El Goli’s large pool opens onto park paths. Shop signs are mainly in Persian. Summers are dry and sunny; winters can leave snow on roofs and distant hills. Cars, buses and motorcycles sound louder outside the bazaar, where footsteps and bargaining voices take over. People wear modern coats or lighter seasonal clothes and greet one another with Persian “salam” or Azerbaijani “salam, necəsiz?”"
+ },
+ {
+  "id": "place.city.istanbul-taksim-istiklal",
+  "domain": "place",
+  "topic": "Istanbul Taksim and Istiklal",
+  "names": [
+   "تقسيم واستقلال",
+   "ميدان تقسيم وشارع الاستقلال",
+   "تكسيم والاستقلال",
+   "taksim istiklal",
+   "istiklal avenue",
+   "taksim square"
+  ],
+  "body": "Taksim Square is a broad paved meeting space bordered by hotels, shops and busy roads. Istiklal Avenue runs from it as a crowded pedestrian street between tall nineteenth-century façades and newer storefronts, with Turkish signs, café terraces and narrow side lanes. A small red heritage tram moves slowly along tracks through the crowd, ringing its bell as people step aside. Taxis and buses cluster near the square rather than on the pedestrian avenue. Light reflects off shop windows; damp paving shines after rain. Voices, music from shops, footsteps and tram wheels overlap. Locals and visitors wear varied contemporary clothes and greet one another with “merhaba” or “selam.”"
+ },
+ {
+  "id": "place.city.istanbul-sultanahmet",
+  "domain": "place",
+  "topic": "Istanbul Sultanahmet",
+  "names": [
+   "السلطان أحمد",
+   "سلطان احمد اسطنبول",
+   "منطقة السلطان احمد",
+   "sultanahmet",
+   "istanbul sultanahmet",
+   "sultan ahmet"
+  ],
+  "body": "Sultanahmet is a walkable area of stone paving, landscaped squares and low historic buildings beneath the large domes and minarets of the Sultan Ahmed Mosque and Hagia Sophia. Their stone walls, lead-grey domes and the mosque’s blue-tiled interiors look different in each light: crisp in midday sun, warm at dusk. Turkish signs mark cafés, tram stops and small shops. Pedestrians move in steady groups across the square; the modern tram glides along its edge with a bell and rail hum. Conversations, footsteps, gulls and calls to prayer carry through the open space. Visitors wear varied everyday clothes and greet each other with “merhaba.”"
+ },
+ {
+  "id": "place.city.ankara",
+  "domain": "place",
+  "topic": "Ankara",
+  "names": [
+   "أنقرة",
+   "انقرة",
+   "انكرا",
+   "ankara",
+   "ankara turkey"
+  ],
+  "body": "Ankara spreads over dry hills in layers of apartment blocks, office towers and wide multilane roads. Anıtkabir’s pale stone, columned form stands above a broad ceremonial plaza; Kızılay is denser, with shops, bus stops and Turkish signs. Atakule rises as a narrow tower topped by a round observation structure. Strong summer sun cuts sharp shadows across concrete and stone, while winter can bring grey skies and snow. Buses, cars and the metro keep regular flows through junctions; traffic noise, crossing signals and pavement conversations fill the centre. People wear contemporary work and casual clothes, adding heavy coats in winter, and say “merhaba” or “selam.”"
+ },
+ {
+  "id": "place.city.izmir",
+  "domain": "place",
+  "topic": "Izmir",
+  "names": [
+   "إزمير",
+   "ازمير",
+   "أزمير",
+   "izmir",
+   "izmir turkey"
+  ],
+  "body": "Izmir curves around a wide gulf, with apartment-lined streets rising behind the waterfront and newer glass towers visible toward Bayraklı. At Konak Square, the slender clock tower stands among palms near ferry terminals; the Kordon promenade has open views across blue-grey water. Turkish signs mark shops and cafés. Ferries push steadily through the bay, leaving spreading wakes, while cars and buses move along streets behind the shore. Bright, often hazy sunlight, warm summers and a sea breeze shape the scene. Gulls, ferry horns, footsteps and café conversations overlap. People wear relaxed contemporary clothes and commonly greet each other with “merhaba” or “selam.”"
+ },
+ {
+  "id": "place.city.antalya",
+  "domain": "place",
+  "topic": "Antalya",
+  "names": [
+   "أنطاليا",
+   "انطاليا",
+   "أنطاليه",
+   "antalya",
+   "antalia"
+  ],
+  "body": "Antalya’s waterfront sits below the pale Taurus Mountains, with blue Mediterranean water, palm-lined roads and apartment blocks climbing inland. In Kaleiçi, narrow stone lanes run between whitewashed Ottoman houses with dark timber balconies and red roof tiles; the old harbor holds small tour boats that rock against their moorings. Modern streets carry cars, buses and the red-and-white tram past signs in Turkish, often with English near hotels. Summer light is sharp and the air is hot; winter is milder and sometimes rainy. Hear gulls, boat engines, tram bells and café conversation. People wear everyday summer clothes and greet shopkeepers with “Merhaba” or “Selam.”"
+ },
+ {
+  "id": "place.city.bursa",
+  "domain": "place",
+  "topic": "Bursa",
+  "names": [
+   "بورصة",
+   "بورصه",
+   "بورسا",
+   "bursa"
+  ],
+  "body": "Bursa spreads across a broad green slope beneath Uludağ, with apartment districts below wooded hills and snowy upper peaks in winter. Around the old center, domed mosques, stone market passages and the Ulu Cami’s two minarets stand among shopfronts selling textiles, sweets and towels. Streets mix pale stone paving with asphalt; modern trams glide past Turkish signs and crowded bus stops. Summer sun can be warm, while winter brings rain and occasional snow in town. Hear tram wheels, vendors calling, tea glasses clinking and the call to prayer. People wear ordinary urban clothes, with coats in colder months, and say “Merhaba” or “Selam.”"
+ },
+ {
+  "id": "place.city.trabzon",
+  "domain": "place",
+  "topic": "Trabzon",
+  "names": [
+   "طرابزون",
+   "ترابزون",
+   "طرابزُن",
+   "trabzon",
+   "trapzon"
+  ],
+  "body": "Trabzon faces the dark blue Black Sea, with steep green hills rising behind dense blocks of apartments. Roads climb sharply from the coastal highway toward neighborhoods of concrete buildings, balconies and small shops. Around Meydan, trees, cafés and busy crossings frame Turkish shop signs; from Boztepe, rooftops and the sea fill the view. Clouds often soften the light, and rain leaves asphalt glossy. Traffic includes minibuses and cars working slowly up the hills. Hear gulls, horns, rain on awnings and lively café talk. People wear practical city clothes and rain jackets when needed, greeting one another with “Merhaba” or “Selam.”"
+ },
+ {
+  "id": "place.city.gaziantep",
+  "domain": "place",
+  "topic": "Gaziantep",
+  "names": [
+   "غازي عنتاب",
+   "غازيانتِب",
+   "عينتاب",
+   "gaziantep",
+   "antep"
+  ],
+  "body": "Gaziantep’s older streets are built in warm beige stone, with narrow lanes, heavy wooden doors and shaded courtyards. The hilltop castle rises above busy roads and markets; nearby bazaars display hammered copper trays, bright fabrics and stacks of pistachios. Newer districts have broad avenues and mid-rise concrete apartment buildings. Turkish signs dominate, with some Arabic signs around shops. Summer light is hard and dry, while winters are cool. Cars and small delivery vehicles thread past pedestrians; hear copper being tapped, shopkeepers calling, traffic and tea glasses striking saucers. People wear everyday urban clothes and greet customers with “Merhaba” or “Hoş geldiniz.”"
+ },
+ {
+  "id": "place.city.baku",
+  "domain": "place",
+  "topic": "Baku",
+  "names": [
+   "باكو",
+   "باكي",
+   "baku",
+   "baki"
+  ],
+  "body": "Baku curves around the Caspian shore, where the wide seaside boulevard has pale paving, trees and views of the Flame Towers above the city. Inside İçərişəhər, narrow cobbled lanes wind between honey-colored limestone walls, carved doorways and the cylindrical Maiden Tower. Beyond it stand broad roads, ornate stone façades and modern glass buildings. Signs use Azerbaijani in Latin letters, with some English and Russian. Wind from the sea moves coats, hair and tree branches even on bright days. Hear traffic, gulls, footsteps on stone and café voices. People wear contemporary city clothes and commonly greet each other with “Salam.”"
+ },
+ {
+  "id": "place.city.tbilisi",
+  "domain": "place",
+  "topic": "Tbilisi",
+  "names": [
+   "تبليسي",
+   "تفليس",
+   "تبليس",
+   "tbilisi",
+   "tiflis"
+  ],
+  "body": "Tbilisi follows the Mtkvari River between steep hills. Old streets show cream and pastel plaster, brickwork, wooden balconies and uneven cobbles, while glass offices and apartment blocks rise nearby. The Narikala fortress sits high above the old town; the curved glass-and-steel Bridge of Peace crosses the river below. Signs are mainly in Georgian script, often with English on tourist streets. Afternoon light picks out warm walls, and summer streets can feel hot and dry. Cars and buses move along the river roads; hear engines, footsteps and conversations from pavement cafés. People wear varied modern clothing and greet each other with “Gamarjoba.”"
+ },
+ {
+  "id": "place.city.yerevan",
+  "domain": "place",
+  "topic": "Yerevan",
+  "names": [
+   "يريفان",
+   "إيريفان",
+   "ايريفان",
+   "yerevan",
+   "erevan"
+  ],
+  "body": "Yerevan’s center is built in pink, peach and gray volcanic tuff, especially around Republic Square, where arched government buildings face a broad paved space. Tree-lined avenues lead past cafés, low stone buildings and newer apartment towers. Mount Ararat appears beyond the city on clear days, its pale slopes distant against the sky. Signs use Armenian script, with some English and Russian. Summer light is bright and dry; winters are cold and can bring snow. Cars, buses and pedestrians fill the wide streets. Hear fountains, traffic and café talk. People wear contemporary city clothes and say “Barev” when greeting one another."
+ },
+ {
+  "id": "place.city.tashkent",
+  "domain": "place",
+  "topic": "Tashkent",
+  "names": [
+   "طشقند",
+   "تاشقند",
+   "طاشقند",
+   "tashkent",
+   "toshkent"
+  ],
+  "body": "Tashkent has unusually wide, tree-lined avenues, spacious squares and a mix of Soviet-era apartment blocks, white modern buildings and blue-tiled Islamic architecture. At Chorsu, a large turquoise dome covers market stalls; underground, metro stations have polished stone, columns and decorative ceilings. Signs commonly use Uzbek in Latin letters, alongside Russian in Cyrillic. Summer sun is intense and dry, while winter can bring cold rain or snow. Cars, buses and metro trains move through the city; hear crossing signals, engines, train doors and market sellers. People wear varied modern clothing, and a common greeting is “Assalomu alaykum” or the shorter “Salom.”"
+ },
+ {
+  "id": "place.city.samarkand",
+  "domain": "place",
+  "topic": "Samarkand",
+  "names": [
+   "سمرقند",
+   "سمرگند",
+   "samarkand",
+   "samarqand"
+  ],
+  "body": "Samarkand’s Registan has three monumental madrasas facing a broad stone-paved square, with pointed arches, turquoise domes and dense blue-and-white geometric tilework. Beyond it are low-rise houses, newer apartment blocks, broad roads and tree-shaded streets. Signs are mainly in Uzbek Latin script, with some Cyrillic and Russian. Dry summer sun makes pale stone glare; winter light is low and cool. Cars and buses roll past with tire hiss and occasional horns, while footsteps echo across the square. Visitors move slowly to photograph the facades; residents wear everyday modern clothes, alongside occasional traditional patterned garments. A common greeting is “Assalomu alaykum.”"
+ },
+ {
+  "id": "place.city.almaty",
+  "domain": "place",
+  "topic": "Almaty",
+  "names": [
+   "ألماتي",
+   "ألماطي",
+   "almaty",
+   "alma-ata"
+  ],
+  "body": "Almaty sits beneath the steep, often snow-capped Tian Shan foothills. Its streets mix Soviet-era apartment blocks, glass towers, wide sidewalks and rows of mature trees; the mountain backdrop appears sharply on clear days and fades behind haze on others. Signs commonly use Kazakh and Russian, with some English. Summers are green and bright, while winter brings snow, slush and visible breath. Buses, cars and occasional trolleybuses move through broad intersections; tires swish on wet pavement and pedestrians talk beneath the traffic hum. People generally wear contemporary city clothes, adding heavy coats in winter. A polite Kazakh greeting is “Sälemetsiz be?”"
+ },
+ {
+  "id": "place.city.kabul",
+  "domain": "place",
+  "topic": "Kabul",
+  "names": [
+   "كابل",
+   "كابول",
+   "kabul",
+   "kabol"
+  ],
+  "body": "Kabul spreads across a high, dry valley, with rugged brown mountains visible behind closely packed neighborhoods. Low mud-brick walls, concrete houses, unfinished upper floors and shopfronts line roads that range from paved avenues to dusty side streets. Signs appear in Dari and Pashto, sometimes alongside English. Strong midday sun casts hard shadows; winter can bring snow and cold, gray light. Cars, minibuses, motorcycles and pedestrians share busy streets, with engine noise, horns and vendors’ voices carrying through markets. Clothing includes long tunics and trousers, scarves, shawls and modern jackets, varying by person and season. People commonly greet one another with “Salaam alaikum.”"
+ },
+ {
+  "id": "place.city.islamabad",
+  "domain": "place",
+  "topic": "Islamabad",
+  "names": [
+   "إسلام آباد",
+   "اسلام اباد",
+   "اسلام آباد باكستان",
+   "islamabad",
+   "islambad"
+  ],
+  "body": "Islamabad has broad, gridded avenues, planted medians and green residential sectors beneath the wooded Margalla Hills. The white Faisal Mosque stands out with its angular roof and four slender minarets; elsewhere, low buildings, offices and shops sit among trees. Road and shop signs use Urdu and English. Summer light can be hazy and humid, while rain darkens the asphalt and leaves it glossy. Cars and motorcycles flow through large intersections; birds call in quieter streets, and traffic hum rises near markets. People wear shalwar kameez or contemporary office clothes. A familiar greeting is “Assalam-o-alaikum,” often answered “Wa alaikum assalam.”"
+ },
+ {
+  "id": "place.city.lahore",
+  "domain": "place",
+  "topic": "Lahore",
+  "names": [
+   "لاهور",
+   "لاهور باكستان",
+   "lahore",
+   "lahor"
+  ],
+  "body": "Lahore shifts from broad modern roads to the tight lanes of its old walled city. Near the Badshahi Mosque and Lahore Fort, red sandstone, pale marble, domes and gateways frame busy open spaces; nearby shops crowd beneath signs in Urdu and English. Rickshaws, motorcycles, cars and pedestrians negotiate narrow streets with frequent horns and vendors calling over the engines. Summer sun is fierce, winter mornings can be foggy, and monsoon rain leaves reflective puddles. People wear shalwar kameez, dupattas and everyday Western-style clothes. Alongside “Assalam-o-alaikum,” friends may greet each other in Punjabi with “Ki haal ae?”"
+ },
+ {
+  "id": "place.city.karachi",
+  "domain": "place",
+  "topic": "Karachi",
+  "names": [
+   "كراتشي",
+   "كراچي",
+   "كراتشي باكستان",
+   "karachi",
+   "karaci"
+  ],
+  "body": "Karachi is a dense coastal metropolis of concrete apartment blocks, commercial towers, flyovers and crowded shopfronts. The white marble Mazar-e-Quaid is a distinct landmark; at Clifton, the Arabian Sea meets a sandy shore under a humid, often hazy sky. Signs commonly use Urdu and English. Buses, rickshaws, motorcycles and cars bunch together and pull apart in traffic, with horns, engines and street vendors making a steady urban noise. Sea wind moves loose clothing and carries surf sounds near the beach. Residents wear shalwar kameez, scarves, jeans or office wear. “Assalam-o-alaikum” is a common greeting."
+ },
+ {
+  "id": "place.city.delhi-old-city",
+  "domain": "place",
+  "topic": "Delhi old city",
+  "names": [
+   "دلهي القديمة",
+   "دلي القديمة",
+   "دلهي العتيقة",
+   "old delhi",
+   "delhi old city",
+   "purani dilli"
+  ],
+  "body": "Old Delhi has narrow, crowded lanes threaded with overhead wires, tightly packed shops, balconies and weathered plaster facades. Chandni Chowk’s bustle sits near the Red Fort’s long red-sandstone walls and the broad steps and domes of Jama Masjid. Signs appear in Hindi, Urdu and English. Cycle rickshaws inch past pedestrians and handcarts; bicycle bells, horns, shopkeepers’ calls and cooking sounds overlap. Summer heat can look dusty and harsh, while winter mornings are often hazy. People wear kurtas, saris, salwar suits and contemporary clothes. Depending on whom they meet, locals may say “Namaste,” “Adaab” or “Salaam.”"
+ },
+ {
+  "id": "place.city.mumbai-marine-drive",
+  "domain": "place",
+  "topic": "Mumbai Marine Drive",
+  "names": [
+   "مارين درايف مومباي",
+   "مارين درايف بومباي",
+   "كورنيش مومباي مارين درايف",
+   "mumbai marine drive",
+   "marine drive mumbai",
+   "queen's necklace mumbai"
+  ],
+  "body": "Mumbai’s Marine Drive is a sweeping arc of roadway and broad seafront promenade beside the Arabian Sea. A low seawall and large concrete wave breakers edge the water; across the road stand pale Art Deco buildings and taller modern blocks, with signs in Marathi, Hindi and English. Walkers, joggers and people sitting in groups face the horizon as taxis, cars and buses pass behind them. Traffic hum mixes with conversation, wind and waves striking the shore. Humid daylight can be hazy; after dusk, streetlights trace the curve called the Queen’s Necklace. Greetings include “Namaskar” and “Kase aahat?”"
+ },
+ {
+  "id": "place.city.jaipur",
+  "domain": "place",
+  "topic": "Jaipur",
+  "names": [
+   "جايبور",
+   "جيبور",
+   "جايپور",
+   "jaipur",
+   "jaipur rajasthan"
+  ],
+  "body": "Jaipur’s older streets are lined with terracotta-pink plaster façades, repeated arches, carved balconies and shopfronts beneath arcades. Hawa Mahal rises as a narrow wall of small latticed windows; newer districts have wider roads and concrete buildings. Hindi and English signs hang above textile and jewellery shops. Auto-rickshaws buzz between motorbikes, cars and occasional camels pulling carts on outer roads. In the dry heat, hard sunlight casts deep shadows under the arches; monsoon rain darkens the plaster. People wear shirts and trousers, saris or salwar kameez. Vendors call over horns and engines; greetings include “namaste” and “ram ram.”"
+ },
+ {
+  "id": "place.city.varanasi-ghats",
+  "domain": "place",
+  "topic": "Varanasi ghats",
+  "names": [
+   "غات فاراناسي",
+   "غاطات فاراناسي",
+   "درج بنارس",
+   "varanasi ghats",
+   "banaras ghats"
+  ],
+  "body": "The Varanasi ghats form long runs of broad stone steps descending into the Ganges, broken by terraces, shrines, painted walls and tall, weathered buildings. At dawn, pale orange light catches the river haze while wooden boats drift or move with slow, audible oar strokes. People wash, pray, talk and sit on the steps; boatmen call to passengers. Bells, voices and boat motors carry across the water. Signs use Hindi and English. Visitors and residents wear shirts, saris, kurtas or salwar kameez. The steps can be wet and slippery near the water, and river levels change seasonally. Greetings include “namaste.”"
+ },
+ {
+  "id": "place.city.kathmandu",
+  "domain": "place",
+  "topic": "Kathmandu",
+  "names": [
+   "كاتماندو",
+   "كتمندو",
+   "كاتمندو",
+   "kathmandu",
+   "kathmandu nepal"
+  ],
+  "body": "Kathmandu mixes narrow brick lanes and carved wooden windows with concrete shopfronts, rooftop water tanks and tangled overhead cables. Temple roofs and prayer flags punctuate busy squares; distant hills appear clearly after rain but often soften in haze. Signs commonly use Nepali Devanagari and English. Motorbikes weave around small cars and pedestrians, their engines and horns echoing between buildings. Dust lifts in the dry season; monsoon rain makes the paving shine. People wear shirts and trousers, kurtas, saris or modern outdoor clothes. At stalls, vendors speak over traffic and footsteps, and people commonly greet one another with “namaste.”"
+ },
+ {
+  "id": "place.city.dhaka",
+  "domain": "place",
+  "topic": "Dhaka",
+  "names": [
+   "دكا",
+   "دكّا",
+   "دهاكا",
+   "dhaka",
+   "dhaka bangladesh"
+  ],
+  "body": "Dhaka streets are dense with concrete apartment blocks, glass-fronted offices, market awnings and overhead wires. Bengali-script signs cover shopfronts and buses. Decorated cycle rickshaws roll slowly beside green CNG auto-rickshaws, buses and motorbikes, compressing into tight streams of traffic. Horns, bicycle bells, vendors’ calls and engines fill the humid air. Strong sun reflects from pale walls; monsoon downpours quickly leave puddles and glossy roads. People wear shirts and trousers, salwar kameez, saris or lungis, depending on setting. Tea stalls and pavement sellers stay active into the evening. Common greetings include “assalamu alaikum” and “kemon achhen?”"
+ },
+ {
+  "id": "place.city.colombo",
+  "domain": "place",
+  "topic": "Colombo",
+  "names": [
+   "كولومبو",
+   "كلومبو",
+   "كولومبو سريلانكا",
+   "colombo",
+   "colombo sri lanka"
+  ],
+  "body": "Colombo’s coastal roads open toward the Indian Ocean, while inland streets mix glass towers, colonial-era façades, concrete shops and leafy residential walls. The Lotus Tower stands above the skyline; at Galle Face, people walk beside the sea under a broad, humid sky. Signs appear in Sinhala, Tamil and English. Red buses, cars, motorbikes and three-wheeled tuk-tuks move through traffic, with horns and engine rattles mixing with surf and market calls. Tropical sunlight is bright, and heavy rain can sweep across the streets. People wear shirts, trousers, saris or casual dresses. Greetings include “ayubowan” in Sinhala and “vanakkam” in Tamil."
+ },
+ {
+  "id": "place.city.male-maldives",
+  "domain": "place",
+  "topic": "Male",
+  "names": [
+   "ماليه المالديف",
+   "ماليه عاصمة المالديف",
+   "مدينة ماليه",
+   "malé maldives",
+   "male maldives"
+  ],
+  "body": "Malé is a compact island of tightly packed mid-rise concrete buildings, narrow streets, balconies, shop signs and visible air-conditioning units. There are few broad open spaces; the turquoise sea, harbour walls and moored ferries appear at the edges rather than at every street corner. Signs use Dhivehi Thaana script and English. Scooters pass closely, slowing around pedestrians; their engines, ferry horns and waterfront water sounds carry through the humid air. Bright sun makes sharp shadows, while sudden tropical rain darkens the road. People wear shirts, trousers, dresses, headscarves or modest casual clothing. A common greeting is “assalaamu alaikum.”"
+ },
+ {
+  "id": "place.city.bangkok",
+  "domain": "place",
+  "topic": "Bangkok",
+  "names": [
+   "بانكوك",
+   "بنكوك",
+   "بانكوك تايلند",
+   "bangkok",
+   "bangkok thailand"
+  ],
+  "body": "Bangkok layers glass high-rises and elevated train tracks over crowded streets, concrete shopfronts, tangled cables and occasional gold-roofed temples. Thai-script signs dominate, often paired with English near hotels and transport. Pink and green taxis, buses, motorbikes and tuk-tuks move through slow traffic; BTS trains glide above with a low rolling sound. Long-tail boats throw spray along the Chao Phraya River. Heat and humidity soften the skyline, while tropical rain briefly turns roads reflective. Street vendors cook beside office workers and shoppers in light shirts, trousers or casual dresses. Horns, engines and market chatter overlap. People greet with “sawatdee khrap” or “sawatdee kha,” often with a wai."
+ },
+ {
+  "id": "place.city.chiang-mai",
+  "domain": "place",
+  "topic": "Chiang Mai",
+  "names": [
+   "تشيانغ ماي",
+   "شيانغ ماي",
+   "تشيانج ماي",
+   "chiang mai",
+   "chiangmai"
+  ],
+  "body": "Chiang Mai’s old town sits within a square moat and surviving brick gates, with low shopfronts, leafy lanes and temples topped by layered Lanna-style roofs. Beyond it, concrete hotels and apartment blocks spread toward the hills; Doi Suthep rises to the west, clearer after rain. Thai-script signs line markets and cafés, sometimes alongside English. Red songthaew pickup taxis, scooters and cars move around the moat, their engines and horns mixing with market voices and temple bells. The warm air can be hazy in the dry season; monsoon showers deepen the green foliage. People wear light casual clothes or temple-appropriate modest dress and greet with “sawatdee khrap” or “sawatdee kha.”"
+ },
+ {
+  "id": "place.city.phuket",
+  "domain": "place",
+  "topic": "Phuket",
+  "names": [
+   "فوكيت",
+   "بوكيت",
+   "جزيرة فوكيت",
+   "phuket",
+   "phuket island"
+  ],
+  "body": "Phuket has steep green hills, humid tropical light and a coastline of pale sand, headlands and turquoise-to-grey water that changes with the weather. Around Patong, hotels, shopfronts and tour signs in Thai and English line busy roads of scooters, cars and pickup trucks; long-tail boats and speedboats bob and slap against the water. Phuket Old Town looks different: low Sino-Portuguese shophouses have pastel façades, shutters and covered walkways. Expect engine hum, surf, cicadas and short scooter horns. People wear light cotton clothes, beachwear near the shore and helmets on scooters. Greetings include “sawatdee khrap” or “sawatdee kha.”"
+ },
+ {
+  "id": "place.city.kuala-lumpur",
+  "domain": "place",
+  "topic": "Kuala Lumpur",
+  "names": [
+   "كوالالمبور",
+   "كوالا لمبور",
+   "كوالا لمپور",
+   "kuala lumpur",
+   "kl malaysia"
+  ],
+  "body": "Kuala Lumpur’s skyline mixes the silver, paired Petronas Towers with other glass high-rises, while older shophouses and low concrete blocks fill streets below. Elevated rail lines cross multilane roads packed with cars and motorcycles; covered walkways, food stalls and malls offer shade from humid heat and sudden heavy rain. Signs appear mainly in Malay and English, with Chinese and Tamil in many areas. Daylight is bright but often hazy, reflecting off glass and wet asphalt. Train brakes, traffic, rain on awnings and food-court chatter overlap. People wear office clothes, T-shirts, dresses and hijabs; common greetings include “hai” and “selamat pagi.”"
+ },
+ {
+  "id": "place.city.singapore-chinatown-marina",
+  "domain": "place",
+  "topic": "Singapore Chinatown and Marina",
+  "names": [
+   "الحي الصيني ومارينا سنغافورة",
+   "مارينا باي والحي الصيني",
+   "سنغافورة الحي الصيني مارينا",
+   "singapore chinatown marina",
+   "chinatown marina bay"
+  ],
+  "body": "Singapore’s Chinatown has closely spaced, two- and three-storey shophouses with painted plaster fronts, shuttered windows and sheltered five-foot walkways. Red lanterns may hang above streets with signs in Chinese and English. At Marina Bay, open paved promenades face glass towers, the three-tower Marina Bay Sands and the small white Merlion fountain. The bay reflects sharp daylight or coloured evening lights; tropical air is humid, with brief hard rain. MRT trains, buses and cars run smoothly nearby, while footsteps, conversation and fountain water carry across pedestrian areas. Dress ranges from office wear to light casual clothes; greetings include “hello,” “ni hao” and “selamat pagi.”"
+ },
+ {
+  "id": "place.city.jakarta",
+  "domain": "place",
+  "topic": "Jakarta",
+  "names": [
+   "جاكرتا",
+   "جاكارتا",
+   "جاكرتا اندونيسيا",
+   "jakarta",
+   "jakarta indonesia"
+  ],
+  "body": "Jakarta is broad and dense: glass office towers rise behind low concrete shops, roadside trees, flyovers and the white National Monument with its gold-coloured flame. Indonesian-language signs crowd storefronts and billboards, often alongside English brand names. Cars, motorcycles, blue-and-white taxis and TransJakarta buses move through humid, stop-start traffic; headlights streak across wet roads after tropical rain. Motorcycle engines, bus brakes, horns and food sellers create a steady street sound. Sidewalks vary from broad modern paving to narrow, uneven paths. People wear office shirts, casual clothes and hijabs, with rain ponchos on motorcycles. Everyday greetings include “halo” and “selamat pagi.”"
+ },
+ {
+  "id": "place.city.bali-ubud",
+  "domain": "place",
+  "topic": "Bali Ubud",
+  "names": [
+   "أوبود بالي",
+   "اوبود بالي",
+   "أبود",
+   "ubud bali",
+   "bali ubud"
+  ],
+  "body": "Ubud sits inland among deep-green rice fields, palms and steep river valleys; it is not a beach town. Its streets mix low shops and cafés with Balinese family compounds, carved stone gateways, mossy walls and small woven offerings placed carefully near entrances. Signs commonly use Indonesian and English. Scooters thread slowly around pedestrians, parked cars and delivery vans; their engines mingle with birds, insects, roosters and occasional gamelan music from a performance or ceremony. Warm, humid light filters through trees, and stone paths darken quickly in rain. Visitors wear light casual clothes; temple visitors dress appropriately. Greetings include “om swastiastu” and “selamat pagi.”"
+ },
+ {
+  "id": "place.city.manila",
+  "domain": "place",
+  "topic": "Manila",
+  "names": [
+   "مانيلا",
+   "مانيلا الفلبين",
+   "عاصمة الفلبين مانيلا",
+   "manila",
+   "manila philippines"
+  ],
+  "body": "Manila has tightly packed concrete buildings, glass towers in newer districts, tangled overhead cables and streets crowded with cars, motorcycles, buses and colourful jeepneys. English and Filipino fill shop signs, route boards and billboards. Jeepneys have long narrow bodies, open side windows and rear entrances; they lurch forward in traffic with diesel rumble and quick horn taps. Under strong, humid sunlight, awnings cast hard patches of shade; sudden rain makes roads glossy and drains noisy. Street vendors, commuters in office clothes and people in light casual wear share sidewalks of varying width. Greetings include “kumusta po” and “magandang umaga.”"
+ },
+ {
+  "id": "place.city.ho-chi-minh-city",
+  "domain": "place",
+  "topic": "Ho Chi Minh City",
+  "names": [
+   "مدينة هو تشي منه",
+   "هوشي منه",
+   "سايغون",
+   "ho chi minh city",
+   "saigon",
+   "hcmc"
+  ],
+  "body": "Ho Chi Minh City has dense rows of narrow shopfronts beneath taller glass buildings, especially around central District 1. The red-brick Central Post Office area and tree-lined boulevards contrast with crowded side streets. Vietnamese signs dominate, with English on many businesses. Scooters flow around corners in continuous streams, riders wearing helmets and often face coverings; buses and cars move more slowly among them. Small plastic stools sit outside food shops. Heat softens distant buildings into haze, while afternoon rain drums on metal awnings. Scooter motors, horns and street conversations form a constant layer of sound. Greetings include “xin chào” and “chào anh” or “chào chị.”"
+ },
+ {
+  "id": "place.city.hanoi-old-quarter",
+  "domain": "place",
+  "topic": "Hanoi old quarter",
+  "names": [
+   "حي هانوي القديم",
+   "الحي القديم هانوي",
+   "هانوي اولد كوارتر",
+   "hanoi old quarter",
+   "old quarter hanoi"
+  ],
+  "body": "Hanoi’s Old Quarter is a tight grid of narrow streets lined with slender, closely joined tube houses, weathered plaster façades, balconies and shop signs mostly in Vietnamese. Low stools, produce baskets and parked scooters squeeze beside uneven pavements; Hoàn Kiếm Lake lies just south of the busiest lanes. Scooters weave at modest speeds around pedestrians and delivery carts, their engines and brief horns mixing with cooking sounds and conversations. Overhead cables cross between buildings. Light falls in narrow strips between façades; summers are humid, while winter can be cool and grey. People wear helmets, everyday casual clothes and seasonal jackets. Greetings include “xin chào” and “chào bạn.”"
+ },
+ {
+  "id": "place.city.seoul",
+  "domain": "place",
+  "topic": "Seoul",
+  "names": [
+   "سيول",
+   "سيؤول",
+   "سول",
+   "seoul"
+  ],
+  "body": "Seoul spreads across hills on both sides of the Han River, with dense apartment towers, glass office blocks, and older low-rise shopping streets. Wide roads carry buses, taxis, and cars; side streets have steep slopes, parked scooters, overhead cables, and glowing shop signs in Hangul. From some viewpoints, N Seoul Tower stands above the rooftops on Namsan. Summers are humid and green; winter light is pale, with bare trees and occasional snow. Subway entrances pulse with foot traffic and recorded announcements. People wear contemporary office clothes, casual layers, or winter coats, and commonly greet one another with “안녕하세요” (annyeonghaseyo)."
+ },
+ {
+  "id": "place.city.busan",
+  "domain": "place",
+  "topic": "Busan",
+  "names": [
+   "بوسان",
+   "بوصان",
+   "بوسن",
+   "busan",
+   "pusan"
+  ],
+  "body": "Busan climbs steep coastal hills around a busy port. At Gwangalli Beach, pale sand faces the long Gwangan Bridge, while Haeundae has a broad beach backed by tall glass towers. Elsewhere, streets rise sharply between apartment blocks, small restaurants, and signs mostly in Hangul. Harbour areas have cranes, fishing boats, gulls, and a briny breeze; waves slap seawalls and traffic hums through tunnels. Summer is hot and humid, with bright, hazy sea light; winter can be clear and windy. Commuters and beachgoers dress in modern casual clothing. People may greet each other with “안녕하세요” (annyeonghaseyo)."
+ },
+ {
+  "id": "place.city.tokyo-shinjuku",
+  "domain": "place",
+  "topic": "Tokyo Shinjuku",
+  "names": [
+   "شينجوكو طوكيو",
+   "شنجوكو طوكيو",
+   "شينجوكو",
+   "tokyo shinjuku",
+   "shinjuku"
+  ],
+  "body": "Shinjuku packs several distinct streetscapes around an enormous rail station. To the west, broad pavements pass glass and concrete office towers; to the east, narrow streets glow with stacked signs in Japanese characters, LED screens, and small restaurants. Kabukicho is particularly bright after dark, while quieter lanes nearby hold low bars and vending machines. Trains brake and chime, station announcements overlap with crossing signals, and crowds flow around one another without stopping. Rain turns the asphalt into soft reflections of red and blue light. People wear business suits, casual streetwear, or coats and may say “こんにちは” (konnichiwa) or “おはようございます” (ohayō gozaimasu)."
+ },
+ {
+  "id": "place.city.osaka-dotonbori",
+  "domain": "place",
+  "topic": "Osaka Dotonbori",
+  "names": [
+   "دوتونبوري أوساكا",
+   "دوتونبوري اوساكا",
+   "دوتونبوري",
+   "osaka dotonbori",
+   "dotonbori"
+  ],
+  "body": "Dotonbori is a crowded canal-side entertainment strip in Osaka. Buildings crowd close to the water, covered in oversized food signs, illuminated Japanese lettering, and the familiar running-man billboard above Ebisubashi Bridge. A giant crab sign projects from one restaurant frontage. Narrow walkways and bridges fill with pedestrians; sightseeing boats leave small wakes against the canal walls. Frying food sizzles beneath conversation, shop calls, and traffic from nearby streets. After dark, pink, yellow, and blue signs shimmer in the dark water; daytime reveals concrete, metal shutters, and dense wiring. Visitors and locals wear everyday city clothes and commonly greet each other with “こんにちは” (konnichiwa)."
+ },
+ {
+  "id": "place.city.kyoto-gion",
+  "domain": "place",
+  "topic": "Kyoto Gion",
+  "names": [
+   "غيون كيوتو",
+   "جيون كيوتو",
+   "حي غيون كيوتو",
+   "kyoto gion",
+   "gion kyoto"
+  ],
+  "body": "Gion’s narrower streets have dark wooden façades, vertical lattice screens, tiled roofs, cloth shop curtains, and discreet Japanese signs. Along Hanamikoji, low traditional buildings sit beside paved lanes; farther toward Yasaka Shrine, streets grow busier with shops and pedestrians. Warm lantern light pools under deep eaves after dusk, while summer air is humid and winter light falls sharply across timber and stone. Footsteps, bicycle bells, quiet conversation, and the occasional taxi are more typical than loud traffic on the smaller lanes. Most people wear contemporary clothing; kimono-clad visitors are occasional, and geiko or maiko are not constant fixtures. A usual greeting is “こんにちは” (konnichiwa)."
+ },
+ {
+  "id": "place.city.hong-kong-victoria-harbour",
+  "domain": "place",
+  "topic": "Hong Kong Victoria Harbour",
+  "names": [
+   "ميناء فيكتوريا هونغ كونغ",
+   "ميناء فيكتوريا هونج كونج",
+   "خليج فيكتوريا هونغ كونغ",
+   "hong kong victoria harbour",
+   "victoria harbour",
+   "victoria harbor"
+  ],
+  "body": "Victoria Harbour is a wide, busy channel between Hong Kong Island’s wall of glass towers and Kowloon’s waterfront. From Tsim Sha Tsui, the green-and-white Star Ferries cross past larger boats, leaving rolling wakes that rock against the piers. Hills rise behind the island skyline; at night, office windows and signs reflect in broken streaks across the water. The air is often humid or hazy, with brighter, clearer days in cooler months. Ferry engines rumble, horns carry across the channel, and crowds speak Cantonese around waterfront railings. People wear everyday city clothes and greet one another with “你好” (néih hóu) or “早晨” (jóu sàhn)."
+ },
+ {
+  "id": "place.city.shanghai-bund",
+  "domain": "place",
+  "topic": "Shanghai Bund",
+  "names": [
+   "بوند شنغهاي",
+   "البوند شنغهاي",
+   "واجهة البوند شنغهاي",
+   "shanghai bund",
+   "bund shanghai"
+  ],
+  "body": "The Bund runs beside the brown-green Huangpu River, with a broad pedestrian promenade, stone balustrades, and a busy road behind it. On the Bund side stand substantial pale stone buildings with columns, domes, and early twentieth-century façades; across the water, Pudong’s glass towers include the spherical Oriental Pearl Tower. Ferries and riverboats push low wakes along the current. In humid summer, haze softens the skyline; after dark, building lights ripple on the water and vehicle lamps stream along the road. Signs and notices use Simplified Chinese characters. Locals and visitors wear contemporary city clothes and may greet each other with “你好” (nǐ hǎo) or “侬好” (nong hao)."
+ },
+ {
+  "id": "place.city.beijing-hutongs",
+  "domain": "place",
+  "topic": "Beijing hutongs",
+  "names": [
+   "أزقة هوتونغ بكين",
+   "حارات هوتونغ بكين",
+   "هوتونغ بكين",
+   "beijing hutongs",
+   "beijing hutong"
+  ],
+  "body": "Beijing hutongs are narrow lanes between low courtyard compounds, with grey-brick walls, tiled roofs, and heavy wooden gates, some painted red. Utility wires cross overhead; bicycles and electric scooters squeeze past parked cars, while small shops display signs in Simplified Chinese. Courtyard trees may rise above the walls, casting patchy shade across worn paving. Dry winter air brings crisp light and visible breath; summer can be hot, dusty, or humid after rain. Sounds include bicycle bells, scooter motors, neighbours talking, and street vendors calling. Residents generally wear modern everyday clothes. A polite greeting is “您好” (nín hǎo), while neighbours may simply say “早” (zǎo)."
+ },
+ {
+  "id": "place.city.shenzhen",
+  "domain": "place",
+  "topic": "Shenzhen",
+  "names": [
+   "شنتشن",
+   "شنزن",
+   "شينزين",
+   "shenzhen"
+  ],
+  "body": "Shenzhen’s skyline rises in close ranks of glass and steel towers, with the slender Ping An Finance Center prominent in Futian. Broad roads, landscaped medians and elevated pedestrian links run between office blocks and shopping malls. Signs are mainly in simplified Chinese, often with English below. Humid air softens distant buildings; summer light reflects sharply from curtain walls, while rain leaves dark, glossy pavement. Electric cars and buses move with little engine noise, but tires hiss and crossing signals beep. Commuters in office clothes carry phones and umbrellas; delivery riders weave toward curbside stops. People commonly greet one another with “nǐ hǎo.”"
+ },
+ {
+  "id": "place.city.taipei",
+  "domain": "place",
+  "topic": "Taipei",
+  "names": [
+   "تايبيه",
+   "تايبي",
+   "تايبيه تايوان",
+   "taipei"
+  ],
+  "body": "Taipei mixes tiled mid-rise apartment blocks, narrow shopfronts and dense green hills behind a compact skyline. Taipei 101 stands above the Xinyi district, its stacked, tiered shape visible between newer glass towers. Streets carry streams of scooters that bunch at marked stop boxes, then buzz forward together when the light changes. Shop signs use traditional Chinese characters; night-market lanes glow with hanging bulbs and illuminated menus. The air is often humid, with sudden rain darkening asphalt and leaving reflections under covered sidewalks. People wear casual clothes or office attire and carry umbrellas. Greetings include “nǐ hǎo,” while an informal “hāi” is also common."
+ },
+ {
+  "id": "place.city.sydney-harbour",
+  "domain": "place",
+  "topic": "Sydney Harbour",
+  "names": [
+   "ميناء سيدني",
+   "مرفأ سيدني",
+   "خليج سيدني",
+   "sydney harbour",
+   "sydney harbor"
+  ],
+  "body": "Sydney Harbour is a broad, branching stretch of blue-green water edged by sandstone shores, apartment buildings, parks and ferry wharves. The steel arch of the Harbour Bridge spans the water near the Sydney Opera House’s pale, curved roof shells. White ferries leave spreading V-shaped wakes; smaller boats bob against moorings as wind wrinkles the surface. Bright sun throws crisp shadows, while overcast weather turns the water grey. Ferries rumble and sound their horns, gulls call, and waves slap against pontoons. Commuters, walkers and visitors gather along quays in casual clothes, greeting one another with “hi” or “g’day.”"
+ },
+ {
+  "id": "place.city.melbourne-laneways",
+  "domain": "place",
+  "topic": "Melbourne laneways",
+  "names": [
+   "أزقة ملبورن",
+   "ازقة ملبورن",
+   "حواري ملبورن",
+   "melbourne laneways",
+   "melbourne lanes"
+  ],
+  "body": "Melbourne’s central laneways are narrow passages between brick and concrete buildings, often barely wide enough for a small vehicle. Walls carry layered murals, paste-ups and painted tags; café windows, small signs and outdoor tables fill some lanes, while others have loading doors and bins. Bluestone or asphalt paving can look slick after rain. Light enters in thin strips between tall façades, leaving doorways in shadow even at midday. Footsteps echo, cups clink, espresso machines hiss and nearby trams ring their bells. Baristas, office workers and visitors pass in coats or light layers as the weather shifts, greeting each other with “hi” or “g’day.”"
+ },
+ {
+  "id": "place.city.auckland",
+  "domain": "place",
+  "topic": "Auckland",
+  "names": [
+   "أوكلاند",
+   "اوكلاند",
+   "أوكلند",
+   "auckland"
+  ],
+  "body": "Auckland’s centre slopes toward the Waitematā Harbour, where ferry terminals, marinas and waterfront promenades sit below glass office towers. The needle-like Sky Tower rises above a mix of modern blocks and older shopfronts. Beyond the centre, green volcanic cones and low residential neighbourhoods shape the horizon. Changeable coastal light alternates between sharp sun and fast-moving cloud; wind ruffles water and tree canopies. Buses pull through busy streets, ferries churn away from docks, and gulls call over traffic and conversation. People wear casual layers, business clothes or rain jackets. Common greetings include “hi,” “kia ora” and “mōrena” in the morning."
+ },
+ {
+  "id": "place.city.moscow-city",
+  "domain": "place",
+  "topic": "Moscow city",
+  "names": [
+   "موسكو سيتي",
+   "موسكو ستي",
+   "مركز موسكو الدولي للأعمال",
+   "moscow city",
+   "moscow international business center"
+  ],
+  "body": "Moscow City is a dense cluster of high-rise office and residential towers beside the Moskva River, distinct from Moscow’s older streets. Curved and faceted glass façades rise above broad plazas, road ramps and enclosed shopping entrances; some towers have pointed or twisting silhouettes. Signs appear mainly in Russian Cyrillic, with some English business names. In winter, pale daylight catches snowy pavement and glass while people cross quickly in heavy coats and boots. In summer, reflections move across the façades as clouds pass. Cars hum along multilane roads, ventilation fans drone, and footsteps echo in underpasses. People greet each other with “zdravstvuyte” formally or “privet” casually."
+ },
+ {
+  "id": "place.city.saint-petersburg-canals",
+  "domain": "place",
+  "topic": "Saint Petersburg canals",
+  "names": [
+   "قنوات سانت بطرسبرغ",
+   "قنوات سانت بطرسبورغ",
+   "قنوات بطرسبورغ",
+   "saint petersburg canals",
+   "st petersburg canals"
+  ],
+  "body": "Saint Petersburg’s canals run between stone embankments and rows of pastel, cream and ochre buildings with tall windows and ornate façades. Low bridges cross the water at frequent intervals; iron railings, granite steps and moored tour boats line the edges. Russian Cyrillic signs mark shops and streets. Flat northern light makes the water look grey-green, while long summer evenings bring soft reflections; in cold months, ice may cover quieter stretches. Boat engines hum beneath bridges, water laps against stone, and traffic rattles over bridge joints. Walkers in season-appropriate coats or light jackets pass along the embankments, greeting acquaintances with “privet” or the more formal “zdravstvuyte.”"
+ },
+ {
+  "id": "place.city.kyiv",
+  "domain": "place",
+  "topic": "Kyiv",
+  "names": [
+   "كييف",
+   "كييف أوكرانيا",
+   "كييف اوكرانيا",
+   "kyiv",
+   "kiev"
+  ],
+  "body": "Kyiv spreads across hills above the Dnipro River, with chestnut-lined boulevards, apartment blocks and broad public squares. The golden domes of Saint Sophia Cathedral and Kyiv Pechersk Lavra stand among pale façades; modern glass buildings appear along busier corridors. Street signs and shopfronts are mainly in Ukrainian Cyrillic. Summer brings leafy shade and warm light; winter can leave pavements wet, snowy or icy. Cars, buses and the metro carry commuters, while footsteps and conversation fill pedestrian streets. Clothing ranges from casual layers to heavy winter coats. People greet each other with “pryvit” informally or “dobryi den” politely."
+ },
+ {
+  "id": "place.city.warsaw-old-town",
+  "domain": "place",
+  "topic": "Warsaw old town",
+  "names": [
+   "وارسو القديمة",
+   "البلدة القديمة في وارسو",
+   "وارسو اولد تاون",
+   "warsaw old town",
+   "stare miasto warszawa"
+  ],
+  "body": "Warsaw’s Old Town has a compact market square edged by narrow, brightly painted townhouses in ochre, pink and cream, with steep roofs and decorated gables. Cobblestone lanes lead toward the red-brick Royal Castle and Sigismund’s Column; a bronze mermaid stands in the square. Polish shop signs hang above ground-floor cafés. People walk slowly over the uneven stones, while café chairs scrape and church bells carry between the facades. Summer light warms the plaster; winter skies are often pale and overcast. Visitors wear casual coats or light summer clothes. Locals may greet someone with “dzień dobry” or the informal “cześć.”"
+ },
+ {
+  "id": "place.city.krakow",
+  "domain": "place",
+  "topic": "Krakow",
+  "names": [
+   "كراكوف",
+   "كراكـوف",
+   "كراكو",
+   "krakow",
+   "kraków"
+  ],
+  "body": "Krakow’s central Rynek Główny is a broad paved square dominated by the long Renaissance Cloth Hall and the two unequal towers of St. Mary’s Basilica. Pale stone buildings with arcades and café fronts frame the space; Polish signs identify shops and streets. Horses pulling tourist carriages clop over the paving, while trams rattle through surrounding streets. The hourly trumpet call sounds from the basilica tower. Warm afternoon light catches cream facades, but autumn and winter can be grey and damp. People cross the square in everyday coats, scarves or summer shirts, greeting acquaintances with “dzień dobry” or “cześć.”"
+ },
+ {
+  "id": "place.city.budapest-danube",
+  "domain": "place",
+  "topic": "Budapest Danube",
+  "names": [
+   "دانوب بودابست",
+   "نهر الدانوب في بودابست",
+   "بودابست دانوب",
+   "budapest danube",
+   "duna budapest"
+  ],
+  "body": "The Danube runs wide through Budapest, separating the hilly Buda bank from flatter Pest. The pale, many-spired Parliament rises on the Pest waterfront; across the water, Castle Hill carries long stone walls and domed buildings. The Chain Bridge stretches between banks on heavy stone towers and suspended cables. Yellow trams glide along the riverfront as boats leave spreading wakes below them. Hungarian signs appear at stops and quays. Water slaps against embankment steps, mixed with tram bells, traffic and boat engines. Sunset turns the facades gold; winter light is cooler and hazier. Walkers in ordinary coats or summer clothes may say “szia” or “jó napot.”"
+ },
+ {
+  "id": "place.city.vienna",
+  "domain": "place",
+  "topic": "Vienna",
+  "names": [
+   "فيينا",
+   "ڤيينا",
+   "فينا النمسا",
+   "vienna",
+   "wien"
+  ],
+  "body": "Central Vienna pairs broad boulevards and pale stone facades with narrower shopping streets. Around Stephansplatz, St. Stephen’s Cathedral rises in dark Gothic stone beneath a patterned, multicoloured tile roof. Elsewhere, ornate buildings line the Ringstrasse as red-and-white trams roll smoothly past German-language signs and café terraces. Footsteps echo on stone paving; tram bells, bicycle tires and café conversation fill the streets. Soft overcast light brings out grey and cream masonry, while low sun makes windows flash. People in business clothes, practical coats or summer wear queue at crossings and café doors. Greetings include “Grüß Gott,” “Servus” and “Guten Tag.”"
+ },
+ {
+  "id": "place.city.prague",
+  "domain": "place",
+  "topic": "Prague",
+  "names": [
+   "براغ",
+   "براگ",
+   "براج",
+   "prague",
+   "praha"
+  ],
+  "body": "Prague’s centre rises in layers of pale plaster facades and red tile roofs above the Vltava. The stone Charles Bridge crosses the river between dark towers, with statues spaced along its parapets; Prague Castle stretches across the hill beyond. Narrow cobbled streets open into squares with Gothic spires and outdoor tables. Czech signs mark shops and tram stops. Red-and-white trams squeal around bends, while footsteps tap on stone and riverboats hum below the bridge. Mist can soften the skyline in the morning; afternoon sun sharpens the rooflines. People wear ordinary city coats or summer clothes and greet others with “dobrý den” or “ahoj.”"
+ },
+ {
+  "id": "place.city.berlin-mitte",
+  "domain": "place",
+  "topic": "Berlin Mitte",
+  "names": [
+   "برلين ميته",
+   "برلين مته",
+   "وسط برلين ميته",
+   "berlin mitte",
+   "berlin-mitte"
+  ],
+  "body": "Berlin Mitte mixes broad avenues, stone civic buildings, modern glass fronts and stretches of older apartment blocks. The sandstone Brandenburg Gate stands on Pariser Platz; the Reichstag’s glass dome and the tall Fernsehturm offer distinct skyline markers. Around Museum Island, heavy museum facades face the Spree. German signs sit beside international shop lettering. Trams run in the eastern part of the district, while bicycles, buses and pedestrians cross wide intersections. Tire noise and crossing signals mingle with conversation and occasional church bells. Light is crisp in summer and often flat in winter. People dress casually or for office work, saying “Hallo” or “Guten Tag.”"
+ },
+ {
+  "id": "place.city.munich",
+  "domain": "place",
+  "topic": "Munich",
+  "names": [
+   "ميونخ",
+   "ميونيخ",
+   "مونشن",
+   "munich",
+   "münchen"
+  ],
+  "body": "Munich’s Marienplatz is framed by the elaborate stone New Town Hall, with pointed turrets and a central clock tower. Nearby, the Frauenkirche’s two rounded tower caps rise above lower rooftops. Pedestrian streets have pale facades, German shop signs and orderly café seating; blue trams and suburban trains serve the wider centre. Footsteps on paving, bicycle bells and conversations mix with tram and train sounds. Summer sun makes the stone glow, while winter brings low light and heavy coats. Residents and visitors wear everyday city clothes, with some traditional Bavarian dress visible at festivals. A local greeting is “Grüß Gott” or the informal “Servus.”"
+ },
+ {
+  "id": "place.city.hamburg-harbour",
+  "domain": "place",
+  "topic": "Hamburg harbour",
+  "names": [
+   "ميناء هامبورغ",
+   "مرفأ هامبورغ",
+   "هامبورغ هافن",
+   "hamburg harbour",
+   "hamburg harbor",
+   "hamburger hafen"
+  ],
+  "body": "Hamburg’s harbour spreads along the broad, tidal Elbe. Container cranes stand above stacked steel boxes and long ships; near the waterfront, the Elbphilharmonie’s rippling glass top rises from a red-brick base. Speicherstadt’s brick warehouses and narrow canals lie close by. At the Landungsbrücken piers, ferries rock gently, then pull away leaving foamy wakes. German signs mark terminals and quays. Gulls call over engine rumble, ferry horns and water slapping against pilings. The light is often cool under moving cloud, with wind lifting coats and hair. Dock workers, commuters and visitors wear practical layers and may greet one another with “Moin.”"
+ },
+ {
+  "id": "place.city.amsterdam",
+  "domain": "place",
+  "topic": "Amsterdam",
+  "names": [
+   "أمستردام",
+   "امستردام",
+   "أمستردام هولندا",
+   "امستردام هولندا",
+   "amsterdam"
+  ],
+  "body": "Amsterdam’s center has narrow brick canal houses, often four or five stories tall, with steep gables, tall windows and occasional hoisting beams above the top floor. Dark canal water reflects stone bridges, moored boats and rows of trees. Bicycles pass in steady streams along marked lanes, their bells ringing as riders slow for pedestrians; trams rumble and squeal around bends. Dutch-language signs hang above ground-floor shops and cafés. Overcast light makes the brick look deep red-brown, while low sun glints off windows. People wear practical coats or rain jackets and greet one another with “hoi” or “goedemorgen.”"
+ },
+ {
+  "id": "place.city.brussels-grand-place",
+  "domain": "place",
+  "topic": "Brussels Grand Place",
+  "names": [
+   "غراند بلاس بروكسل",
+   "الجراند بلاس بروكسل",
+   "الساحة الكبرى بروكسل",
+   "ميدان غراند بلاس",
+   "brussels grand place",
+   "grote markt brussels"
+  ],
+  "body": "Brussels Grand Place is a broad paved square enclosed by closely packed, ornate guildhall façades with gilded details, sculpted stonework and steep roofs. The taller Gothic Town Hall has a slender, pointed tower that rises well above the surrounding buildings. Café tables occupy parts of the square; visitors walk across uneven stone paving and pause to photograph the façades. French and Dutch appear on nearby signs and menus. Warm evening lighting picks out gold trim against gray stone, while cloudy daylight flattens the colors. Footsteps, conversation and occasional church bells carry across the open space. People in coats or casual travel clothes say “bonjour” or “goedendag.”"
+ },
+ {
+  "id": "place.city.paris-montmartre",
+  "domain": "place",
+  "topic": "Paris Montmartre",
+  "names": [
+   "مونمارتر باريس",
+   "مونمارت باريس",
+   "حي مونمارتر",
+   "تلة مونمارتر",
+   "montmartre paris",
+   "paris montmartre"
+  ],
+  "body": "Montmartre climbs through narrow Paris streets and long flights of stone steps toward the white domes of Sacré-Cœur. Cream and pale-gray buildings have wrought-iron balconies, mansard roofs and small street-level cafés with French signs. Around Place du Tertre, artists set easels beside closely spaced restaurant terraces. Pedestrians climb at uneven speeds, and a funicular carries passengers up the steep slope. On clear days, the hill overlooks a dense spread of gray Paris rooftops; in damp weather, the paving darkens and reflects shop lights. Expect footsteps, café chatter and distant traffic rather than constant music. Locals wear everyday urban clothes and greet shopkeepers with “bonjour.”"
+ },
+ {
+  "id": "place.city.paris-champs-elysees",
+  "domain": "place",
+  "topic": "Paris Champs-Elysees",
+  "names": [
+   "الشانزليزيه باريس",
+   "الشانزليزيه",
+   "جادة الشانزليزيه",
+   "شارع الشانزليزيه",
+   "champs elysees paris",
+   "paris champs elysees"
+  ],
+  "body": "The Champs-Élysées is a long, broad avenue with several lanes of moving cars, wide pavements and double rows of clipped trees. Looking uphill, the pale stone Arc de Triomphe anchors the far end; looking downhill, the avenue opens toward Place de la Concorde. Large shop windows, café terraces and French-language signs line the pavements. Traffic surges and pauses at lights, with engine noise beneath footsteps and overlapping conversation. Summer sunlight falls through the trees in broken patches; after rain, headlights stretch across the wet roadway. Shoppers, commuters and tourists wear varied city clothes. A typical greeting inside a shop is “bonjour.”"
+ },
+ {
+  "id": "place.city.nice-and-the-riviera",
+  "domain": "place",
+  "topic": "Nice and the Riviera",
+  "names": [
+   "نيس والريفيرا",
+   "نيس الريفيرا الفرنسية",
+   "نيس وكوت دازور",
+   "نيس وساحل اللازورد",
+   "nice and the riviera",
+   "nice french riviera"
+  ],
+  "body": "Nice’s seafront curves along the Baie des Anges, with a broad paved promenade, palm trees, pebble beaches and blue-green Mediterranean water. Pale cream and ochre apartment façades face the coast; farther along the Riviera, built-up bays alternate with rocky headlands and crowded marinas. Waves rattle the beach pebbles as they retreat. Bicycles and walkers move along the promenade, while cars pass steadily behind it. Strong sun gives the sea a bright turquoise edge, though wind can make the water choppy. French signs dominate, with Italian visible in some restaurants. People wear light summer clothes or jackets in cooler months and greet others with “bonjour.”"
+ },
+ {
+  "id": "place.city.lyon",
+  "domain": "place",
+  "topic": "Lyon",
+  "names": [
+   "ليون فرنسا",
+   "مدينة ليون الفرنسية",
+   "ليون الفرنسية",
+   "lyon france",
+   "lyon"
+  ],
+  "body": "Lyon sits between the Rhône and Saône rivers, crossed by bridges carrying cars, cyclists and pedestrians. In Vieux Lyon, narrow cobbled lanes run between warm ochre and pink Renaissance façades with shuttered windows; elsewhere, broader streets have pale stone apartment blocks and French shop signs. The white Basilica of Notre-Dame de Fourvière stands high above the old town. River water moves slowly beneath the bridges, catching bands of evening light. Footsteps echo in older passages, while buses, trams and conversation fill busier streets. Weather shifts from bright, warm afternoons to gray, damp days. People wear ordinary city clothes and greet one another with “bonjour.”"
+ },
+ {
+  "id": "place.city.london-westminster",
+  "domain": "place",
+  "topic": "London Westminster",
+  "names": [
+   "وستمنستر لندن",
+   "ويستمنستر لندن",
+   "حي وستمنستر",
+   "لندن وستمنستر",
+   "london westminster",
+   "westminster london"
+  ],
+  "body": "Around Westminster, the Elizabeth Tower’s clock face rises above the Gothic stone of the Palace of Westminster beside the Thames. Westminster Abbey has pointed arches and twin west towers; nearby roads carry red double-decker buses, black cabs, cyclists and pedestrians. Stone façades range from pale cream to weathered gray, with English street signs and bus-stop boards. Traffic crawls and accelerates in short bursts, buses hiss at stops, and bells may sound above river and road noise. London light is often soft under cloud, with brief sharp reflections after rain. Office workers, visitors and officials wear anything from suits to raincoats; greetings include “hello” and “morning.”"
+ },
+ {
+  "id": "place.city.london-camden",
+  "domain": "place",
+  "topic": "London Camden",
+  "names": [
+   "كامدن لندن",
+   "كامدن تاون",
+   "سوق كامدن لندن",
+   "حي كامدن",
+   "london camden",
+   "camden town"
+  ],
+  "body": "Camden’s main streets mix brick shopfronts, large colorful storefront signs and dense crowds around the markets. Along the Regent’s Canal, narrowboats sit low in dark water beside towpaths, iron bridges and old brick warehouse buildings. Market passages contain small clothing stalls, food counters and English-language signs, sometimes with other languages on menus. People weave around one another at walking pace; buses brake on Camden High Street while market voices, buskers and traffic overlap. Cloudy daylight leaves brick and painted metal subdued, but shop lights brighten the covered stalls. Visitors and locals wear everything from office clothes to bold alternative fashion; a casual greeting is “hello” or “alright?”"
+ },
+ {
+  "id": "place.city.manchester",
+  "domain": "place",
+  "topic": "Manchester",
+  "names": [
+   "مانشستر",
+   "منچستر",
+   "مانشستر بريطانيا",
+   "manchester",
+   "manchester uk"
+  ],
+  "body": "Manchester’s centre mixes dark red-brick warehouses with pale stone civic buildings and glass office towers. The Manchester Town Hall’s clock tower rises above Albert Square, while canals cut between former mills in nearby districts. Streets are often damp beneath a low grey sky, making tram tracks and brickwork shine. Yellow-and-silver Metrolink trams glide through the centre with a soft motor whine and warning bell; buses and delivery vans add a steady rumble. English shop signs, football shirts, coats and trainers are common. Around cafés and tram stops, people greet each other with “Hiya” or “You alright?”"
+ },
+ {
+  "id": "place.city.edinburgh",
+  "domain": "place",
+  "topic": "Edinburgh",
+  "names": [
+   "إدنبرة",
+   "ادنبره",
+   "إدنبره اسكتلندا",
+   "edinburgh",
+   "edinburgh scotland"
+  ],
+  "body": "Edinburgh Castle sits on a dark volcanic rock above the Old Town’s tightly packed grey-brown stone buildings. The Royal Mile slopes over uneven paving between narrow closes; across the valley, the New Town has orderly pale sandstone terraces and broad streets. Wind moves through the lanes, and changing cloud cover shifts the stone from warm beige to charcoal within minutes. Buses hiss at stops, footsteps strike stone, and bagpipes may be heard near busy visitor spots. English signs dominate. People wear practical coats and scarves much of the year, greeting acquaintances with “Hiya” or “You alright?”"
+ },
+ {
+  "id": "place.city.dublin",
+  "domain": "place",
+  "topic": "Dublin",
+  "names": [
+   "دبلن",
+   "دبلين",
+   "دبلن ايرلندا",
+   "dublin",
+   "dublin ireland"
+  ],
+  "body": "The River Liffey divides central Dublin, crossed by low bridges including the white, arched Ha’penny Bridge. Georgian streets show rows of red-brown brick houses with tall sash windows and brightly painted front doors; commercial streets mix older stone fronts with modern glass. Cloudy daylight and brief rain showers leave the pavements reflective. Green-and-silver Luas trams roll past with a bell, alongside buses, bicycles and lively conversation outside pubs. Signs are commonly in English, with Irish on public signs and transport. People in jackets and everyday work clothes greet each other with “Howya?” or “Hiya.”"
+ },
+ {
+  "id": "place.city.madrid-gran-via",
+  "domain": "place",
+  "topic": "Madrid Gran Via",
+  "names": [
+   "غران فيا مدريد",
+   "غران ڤيا مدريد",
+   "شارع غران فيا مدريد",
+   "gran via madrid",
+   "madrid gran via"
+  ],
+  "body": "Madrid’s Gran Vía is a broad avenue lined with ornate early twentieth-century stone façades, projecting balconies, domes and modern shopfronts. The dark dome and gilded figure of the Metrópolis Building mark its eastern end; near Callao, tall signs and illuminated screens rise above crowds. Strong sun throws sharp shadows across pale façades, while evening brings bright storefront light. Cars, taxis and buses flow between marked crossings, with engines, horns and footsteps echoing off the buildings. Signs are mainly in Spanish. Shoppers and office workers wear contemporary city clothes and often greet someone with “Hola” or “Buenas.”"
+ },
+ {
+  "id": "place.city.barcelona-gothic-quarter",
+  "domain": "place",
+  "topic": "Barcelona Gothic Quarter",
+  "names": [
+   "الحي القوطي برشلونة",
+   "الحي القوطي ببرشلونة",
+   "باريو غوتيك برشلونة",
+   "barcelona gothic quarter",
+   "barri gotic"
+  ],
+  "body": "Barcelona’s Gothic Quarter is a web of narrow pedestrian lanes between weathered beige stone buildings. Shuttered windows, iron balconies, small squares and the soaring stone façade of Barcelona Cathedral appear around sudden corners. Direct sun reaches the wider plazas, but many lanes stay shaded even at midday. Footsteps echo on paving stones; café voices, rolling suitcase wheels and an occasional delivery cart carry through the passages. Scooters and buses are heard mainly along the surrounding roads. Signs often appear in Catalan as well as Spanish. Locals and visitors wear casual clothes, greeting people with “Bon dia” or “Hola.”"
+ },
+ {
+  "id": "place.city.seville",
+  "domain": "place",
+  "topic": "Seville",
+  "names": [
+   "إشبيلية",
+   "اشبيلية",
+   "سيفيا",
+   "seville",
+   "sevilla"
+  ],
+  "body": "Seville has pale stucco walls, wrought-iron balconies, colourful ceramic tiles and orange trees along its streets and squares. The Giralda bell tower rises above the cathedral, while the narrow lanes of Santa Cruz open into small, shaded courtyards. Summer sunlight is intense, making white walls glow and casting crisp shadows beneath awnings; people seek shade or gather outside later in the evening. Footsteps, café conversation, scooters and occasional church bells fill the air. A horse-drawn carriage may pass near the cathedral with measured hoofbeats. Signs are in Spanish. People dress lightly in hot weather and greet others with “Hola” or “Buenas.”"
+ },
+ {
+  "id": "place.city.lisbon-trams",
+  "domain": "place",
+  "topic": "Lisbon trams",
+  "names": [
+   "ترام لشبونة",
+   "ترامواي لشبونة",
+   "ترام لشبونه",
+   "lisbon trams",
+   "lisbon tram 28"
+  ],
+  "body": "Lisbon’s historic trams are compact, usually yellow cars with rounded fronts, cream roofs, large windows and narrow interiors. Tram 28 winds slowly through steep, tight streets beside tiled façades and worn stone pavements. Its wheels follow steel rails set into the road; on bends they squeal, and the body rocks gently as it climbs or descends. A trolley pole touches the overhead wire, while the motor hums and a sharp bell warns pedestrians. Bright sun can flash across windows before the tram enters deep street shade. Stop signs are in Portuguese; passengers commonly say “Bom dia” or “Olá.”"
+ },
+ {
+  "id": "place.city.porto",
+  "domain": "place",
+  "topic": "Porto",
+  "names": [
+   "بورتو",
+   "پورتو",
+   "بورتو البرتغال",
+   "porto",
+   "porto portugal"
+  ],
+  "body": "Porto climbs steeply above the Douro River. Along the Ribeira waterfront, narrow houses in ochre, cream and faded red stand close together beneath red tile roofs; blue-and-white azulejo tiles cover many walls elsewhere. The two-level iron Dom Luís I Bridge spans the river, with metro trains crossing its upper deck. Streets shift between cobblestones and smoother paving, and low sun picks out the uneven façades. Riverfront voices, gulls, traffic and the soft rumble of trains overlap. Portuguese shop signs hang above cafés and small stores. People in casual jackets and walking shoes greet each other with “Olá” or “Bom dia.”"
+ },
+ {
+  "id": "place.city.rome-trastevere",
+  "domain": "place",
+  "topic": "Rome Trastevere",
+  "names": [
+   "تراستيفيري روما",
+   "تراستيفيريه",
+   "حي تراستيفيري",
+   "rome trastevere",
+   "trastevere"
+  ],
+  "body": "Trastevere has narrow, uneven streets paved with dark sampietrini cobbles, ochre and terracotta stucco buildings, green shutters, and ivy climbing around doorways. Small cars and scooters ease around pedestrians; wheels rattle sharply over the stones. In Piazza di Santa Maria, a fountain faces the church’s broad facade, while outdoor tables fill the edges. Warm evening light catches worn plaster and hanging signs in Italian. Expect conversation, clinking glasses, church bells, and scooter engines rather than constant heavy traffic. Residents in everyday city clothes pass visitors with cameras; greetings include “buongiorno” during the day and “ciao” between acquaintances."
+ },
+ {
+  "id": "place.city.milan-duomo-square",
+  "domain": "place",
+  "topic": "Milan Duomo square",
+  "names": [
+   "ساحة دومو ميلانو",
+   "ميدان الدومو ميلانو",
+   "دومو ميلان",
+   "milan duomo",
+   "piazza del duomo milano"
+  ],
+  "body": "Piazza del Duomo is a broad stone-paved square dominated by Milan Cathedral’s pale marble facade, crowded with pointed spires and statues. The arched entrance to Galleria Vittorio Emanuele II opens off the square, revealing iron-and-glass roofing and mosaic floors. Trams, including older yellow cars, move along nearby streets with a metallic rumble and bell; footsteps, voices, and pigeons fill the open space. Sunlight makes the marble nearly white, while overcast skies bring out its gray veining. Commuters in coats or business clothes cross among visitors taking photographs. Shop signs are mainly Italian; people greet one another with “buongiorno” or “ciao.”"
+ },
+ {
+  "id": "place.city.florence",
+  "domain": "place",
+  "topic": "Florence",
+  "names": [
+   "فلورنسا",
+   "فلورنس",
+   "فيرنزي",
+   "florence",
+   "firenze"
+  ],
+  "body": "Florence’s center has tight stone streets opening onto piazzas framed by cream and ochre buildings with green shutters. The cathedral’s patterned white, green, and pink marble and huge red-tiled dome rise above the roofs; the Arno passes beneath Ponte Vecchio’s shop-lined span. Sun warms the pale facades and casts deep shadows across narrow lanes. Footsteps echo on paving stones, bicycle bells ring, and scooters buzz through streets where vehicles are permitted; church bells carry over the squares. Street signs and menus are in Italian. Locals in ordinary city clothes walk beside visitors, greeting shopkeepers with “buongiorno” and friends with “ciao.”"
+ },
+ {
+  "id": "place.city.naples",
+  "domain": "place",
+  "topic": "Naples",
+  "names": [
+   "نابولي",
+   "ناپولي",
+   "نيپلز",
+   "naples",
+   "napoli"
+  ],
+  "body": "Naples stacks dense cream, peach, and weathered gray buildings against steep streets above its bay; on clear days, Vesuvius forms a broad, low silhouette across the water. In the older center, narrow lanes run between tall facades with balconies, shutters, laundry, and ground-floor food shops. Scooters thread carefully through pedestrians, their engines mixing with calls from shopfronts, traffic horns, and church bells. Bright sun hits the upper walls while the lanes stay shaded; sea air and haze soften distant views. Signs are in Italian. People wear everyday city clothes, and greetings include “buongiorno,” “ciao,” and the Neapolitan “uè” between acquaintances."
+ },
+ {
+  "id": "place.city.athens-plaka",
+  "domain": "place",
+  "topic": "Athens Plaka",
+  "names": [
+   "بلاكا أثينا",
+   "پلاكا أثينا",
+   "حي بلاكا",
+   "athens plaka",
+   "plaka"
+  ],
+  "body": "Plaka climbs the slopes beneath the Acropolis through narrow stone lanes and steps. Low neoclassical houses have pale yellow, cream, or pink plaster, shuttered windows, balconies, and flowering vines; higher up, Anafiotika’s small whitewashed houses sit close together. The Acropolis walls and columns appear above the roofs. Hard summer sunlight leaves crisp shadows, while outdoor tables occupy shaded corners. Footsteps, conversation, dishes, and occasional distant traffic are more prominent than engines in the pedestrian lanes. Greek lettering appears on street signs, often alongside English on menus. Residents and visitors dress casually; local greetings include “kaliméra” in the morning and “yássas” when addressing someone politely."
+ },
+ {
+  "id": "place.city.mykonos",
+  "domain": "place",
+  "topic": "Mykonos",
+  "names": [
+   "ميكونوس",
+   "ميكونس",
+   "ميكونوس اليونان",
+   "mykonos",
+   "mikonos"
+  ],
+  "body": "Mykonos town is a maze of low, whitewashed cubic buildings with blue, green, or red wooden doors and shutters. Its narrow stone walkways are traced with white-painted joints; near the waterfront, Little Venice’s balconies project toward the sea, and the Kato Mili windmills stand on a bare ridge. Strong sun creates brilliant white walls and hard blue shadows. Wind moves awnings and loose clothing, while waves slap the harbor edge and boats hum beyond it; footsteps and conversation fill the lanes. Signs mix Greek and English. Visitors in light summer clothes pass local workers, who may greet them with “kaliméra” or “yássas.”"
+ },
+ {
+  "id": "place.city.zurich",
+  "domain": "place",
+  "topic": "Zurich",
+  "names": [
+   "زيورخ",
+   "زيورك",
+   "زوريخ",
+   "zurich",
+   "zürich"
+  ],
+  "body": "Zurich’s old town lines both sides of the Limmat with narrow lanes, painted and stone facades, steep roofs, and church towers; Grossmünster’s twin towers are a clear landmark. Along larger streets, blue-and-white trams glide on rails with a soft whine and bell, while people walk or cycle beside the river. Lake Zürich opens beyond the center, reflecting pale winter light or bright summer skies. Shop signs are mainly German, with other languages visible around the station. People wear practical city clothes, often coats in colder months. Footsteps, tram bells, and riverside conversation accompany greetings such as the Swiss German “grüezi” and familiar “hoi.”"
+ },
+ {
+  "id": "place.city.geneva-lake",
+  "domain": "place",
+  "topic": "Geneva lake",
+  "names": [
+   "بحيرة جنيف",
+   "بحيرة جنيڤ",
+   "بحيرة ليمان",
+   "lake geneva",
+   "geneva lake",
+   "lac léman"
+  ],
+  "body": "At Geneva’s lakeside, broad quays, stone embankments, trees, and flower beds frame blue-gray water dotted with swans and boats. The Jet d’Eau sends a tall white plume upward when operating; wind bends its spray and can wet the nearby walkway. Paddle steamers and smaller ferries cross the lake, their engines and horns audible beneath conversation and the soft slap of water against the shore. Clear weather reveals mountains beyond the far end; cloud or mist can hide them. French dominates signs and announcements. Commuters, walkers, and visitors share the quays, greeting others with “bonjour” or, among friends, “salut.”"
+ },
+ {
+  "id": "place.city.stockholm",
+  "domain": "place",
+  "topic": "Stockholm",
+  "names": [
+   "ستوكهولم",
+   "ستوكهلم",
+   "ستكهولم",
+   "stockholm",
+   "stockholm sweden"
+  ],
+  "body": "Stockholm spreads across islands, with pale stone waterfront buildings, copper-green roofs and bridges crossing dark blue water. Gamla Stan has narrow cobbled lanes, ochre and rust-coloured façades, while the brick City Hall rises beside a broad quay. Signs are mainly in Swedish. Buses, blue-and-white ferries, cyclists and pedestrians move steadily; ferry wakes slap against the stone edges, and trams hum past their stops. Summer light lingers into the evening; winter daylight is brief, with wet pavement or snow reflecting streetlamps. People wear practical coats and scarves in cold weather and greet each other with “hej” or “god morgon.”"
+ },
+ {
+  "id": "place.city.oslo",
+  "domain": "place",
+  "topic": "Oslo",
+  "names": [
+   "أوسلو",
+   "اوسلو",
+   "oslo",
+   "oslo norway"
+  ],
+  "body": "Oslo sits between wooded hills and a harbour lined with ferries, cranes and newer glass-and-stone buildings. The white marble Opera House slopes down to the water, and trams pass older plaster and brick blocks farther inland. Shop and street signs are mostly Norwegian. Electric buses, bicycles and cars move through broad, orderly streets; listen for tram bells, tyres on damp asphalt and gulls near the quay. Summer evenings are bright, while winter brings low sun, snow or icy patches. People wear rain jackets or insulated coats according to season and commonly greet each other with “hei” or “god morgen.”"
+ },
+ {
+  "id": "place.city.copenhagen-nyhavn",
+  "domain": "place",
+  "topic": "Copenhagen Nyhavn",
+  "names": [
+   "نيهافن",
+   "نيهـافن",
+   "نيهافن كوبنهاغن",
+   "copenhagen nyhavn",
+   "nyhavn"
+  ],
+  "body": "Nyhavn is a short Copenhagen canal bordered by narrow, tightly packed houses painted mustard yellow, orange, red and blue, with steep roofs and café tables along the cobbled quays. Wooden boats and low canal-tour vessels sit beneath dense lines of masts and rigging. Danish signs hang from ground-floor restaurants; bicycles are parked in clusters nearby. Boats advance slowly, pushing small ripples against the quay, while footsteps, conversation, bicycle bells and gulls carry across the water. Sunlight catches the bright façades, though cloud and rain can turn the canal grey. Visitors mingle with locals in casual layers; a usual greeting is “hej.”"
+ },
+ {
+  "id": "place.city.helsinki",
+  "domain": "place",
+  "topic": "Helsinki",
+  "names": [
+   "هلسنكي",
+   "هلسنكى",
+   "هلسنكي فنلندا",
+   "helsinki",
+   "helsinki finland"
+  ],
+  "body": "Helsinki has broad streets, pale neoclassical façades and blocks of granite, brick and modern glass. The white Helsinki Cathedral rises above Senate Square; near the harbour, market stalls face ferries and open water. Signs are chiefly Finnish and Swedish. Blue-green trams glide around bends with a rail squeal, while gulls call over the waterfront and tyres hiss on wet streets. Summer light lasts late; winter is dim, with snowbanks and a low sun. People wear dark coats, boots and hats in the cold, lighter layers in summer, and greet one another with “moi” or “hei.”"
+ },
+ {
+  "id": "place.city.reykjavik",
+  "domain": "place",
+  "topic": "Reykjavik",
+  "names": [
+   "ريكيافيك",
+   "رييكيافيك",
+   "ريكيافيك ايسلندا",
+   "reykjavik",
+   "reykjavík"
+  ],
+  "body": "Reykjavik’s centre is low-rise, with colourful houses clad in painted corrugated metal beside concrete shops and cafés. Hallgrímskirkja’s stepped grey tower stands above the streets; the faceted glass Harpa concert hall faces the harbour. Signs are mostly Icelandic, with English common around visitor businesses. Cars pass on compact roads, and pedestrians lean into sudden gusts. Wind rattles signs and coats, gulls cry near the water, and tyres swish over rain-dark asphalt. The light changes quickly between sun and cloud; winter days are short. People dress in waterproof layers and sturdy shoes, greeting others with “hæ” or “góðan dag.”"
+ },
+ {
+  "id": "place.city.new-york-brooklyn",
+  "domain": "place",
+  "topic": "New York Brooklyn",
+  "names": [
+   "بروكلين",
+   "بروكلن",
+   "بروكلين نيويورك",
+   "brooklyn",
+   "new york brooklyn"
+  ],
+  "body": "Brooklyn varies by neighbourhood: rows of brick and brownstone stoops line residential blocks, while DUMBO has converted brick warehouses, cobbles and views toward the Manhattan and Brooklyn bridges. Taller apartment towers cluster near parts of the waterfront. Signs are mainly English, with Arabic storefront lettering on Atlantic Avenue and other languages across the borough. Yellow taxis, delivery bikes, buses and pedestrians share busy crossings; subway trains rumble overhead on elevated stretches. Light bounces between buildings, and summer pavement shimmers with heat. Residents dress in everything from office clothes to casual streetwear and greet acquaintances with “hey” or “how you doing?”"
+ },
+ {
+  "id": "place.city.new-york-central-park",
+  "domain": "place",
+  "topic": "New York Central Park",
+  "names": [
+   "سنترال بارك",
+   "سنترال بارك نيويورك",
+   "حديقة سنترال بارك",
+   "central park nyc",
+   "new york central park"
+  ],
+  "body": "Central Park is a long green space framed by Manhattan apartment towers. Curving asphalt paths cross lawns and wooded slopes; stone arches, the tiled Bethesda Terrace and the slender Bow Bridge provide recognisable landmarks. Signs are in English, and park maps stand near entrances. Joggers pass at a steady pace, cyclists follow marked drives, and rowboats drift slowly across the lake. Footsteps, birdsong, bicycle bells and distant traffic overlap; fountains add a steady splash near Bethesda Terrace. Summer trees cast dense shade, autumn leaves turn orange, and winter can leave bare branches over snow. Visitors and locals wear seasonal casual clothes and say “hi” or “good morning.”"
+ },
+ {
+  "id": "place.city.los-angeles-hollywood",
+  "domain": "place",
+  "topic": "Los Angeles Hollywood",
+  "names": [
+   "هوليوود",
+   "هوليود",
+   "هوليوود لوس انجلوس",
+   "hollywood la",
+   "los angeles hollywood"
+  ],
+  "body": "Hollywood Boulevard has low and mid-rise shops, theatres and hotels, with star-shaped plaques set into the dark sidewalk. The ornate TCL Chinese Theatre and the Hollywood and Highland shopping complex draw crowds; the white Hollywood Sign sits far away on a hillside, visible only from suitable viewpoints. Storefront signs are mostly English, with Spanish also common. Cars and buses roll through wide intersections as pedestrians stop for photos; engines, conversations and crossing signals fill the air. Strong sun casts sharp palm-tree shadows, while evenings glow with marquees and headlights. Clothing ranges from casual T-shirts to workwear, and greetings include “hey,” “how’s it going?” and “hola.”"
+ },
+ {
+  "id": "place.city.los-angeles-santa-monica",
+  "domain": "place",
+  "topic": "Los Angeles Santa Monica",
+  "names": [
+   "سانتا مونيكا",
+   "سانتا مونيكا لوس انجلوس",
+   "سانتا مونيكا لوس أنجلوس",
+   "santa monica",
+   "santa monica la",
+   "los angeles santa monica"
+  ],
+  "body": "Santa Monica meets the Pacific at a broad pale-sand beach below low bluffs. The pier projects over moving green-blue water, with its Ferris wheel, timber decking, railings and small rides visible from the shore. Downtown streets have palms, low-rise shops, apartments and English storefront signs; Ocean Avenue faces lawns and the coast. Afternoon light is bright but often softened by marine haze, with cooler air near the water. Cyclists roll along the beach path while pedestrians, joggers and visitors cross the pier. Hear surf, gulls, bicycle bells and traffic. Casual shorts, light jackets and sunglasses are common; greetings include “Hey” and “How’s it going?”"
+ },
+ {
+  "id": "place.city.las-vegas-strip",
+  "domain": "place",
+  "topic": "Las Vegas Strip",
+  "names": [
+   "لاس فيغاس ستريب",
+   "ستريب لاس فيغاس",
+   "شارع لاس فيغاس",
+   "las vegas strip",
+   "vegas strip"
+  ],
+  "body": "The Las Vegas Strip is a wide desert boulevard edged by enormous hotel towers, themed façades, illuminated signs and elevated pedestrian bridges. At street level, cars inch past taxi stands while crowds move between casino entrances and shaded walkways. The Bellagio fountains send straight columns of water upward, then drop them back into the pool; their rush briefly rises above traffic and voices. Daylight is hard and dry, with pale mountains beyond the buildings; after dark, LEDs colour glass, stone and pavement. Most signs are in English. Visitors wear everything from T-shirts to evening clothes and greet one another with “Hi” or “Hey.”"
+ },
+ {
+  "id": "place.city.san-francisco",
+  "domain": "place",
+  "topic": "San Francisco",
+  "names": [
+   "سان فرانسيسكو",
+   "سان فرانسيـسكو",
+   "san francisco",
+   "sf california",
+   "سان فرانسيسكو كاليفورنيا"
+  ],
+  "body": "San Francisco rises in steep blocks of narrow Victorian and Edwardian houses, bay windows, painted timber and closely parked cars. Downtown glass towers contrast with older brick buildings; English street signs mark intersections, and the Golden Gate Bridge appears across the water from suitable viewpoints. Fog can spill through the bridge towers and soften the afternoon light, though other neighbourhoods stay sunny. Buses and cars climb the grades slowly; cable cars run on a few central routes with a metallic bell and track rumble. Wind, gulls and traffic carry across the hills. People wear layers and often say “Hey” or “How’s it going?”"
+ },
+ {
+  "id": "place.city.miami-beach",
+  "domain": "place",
+  "topic": "Miami Beach",
+  "names": [
+   "ميامي بيتش",
+   "شاطئ ميامي",
+   "miami beach",
+   "south beach miami",
+   "ميامي ساوث بيتش"
+  ],
+  "body": "Miami Beach has broad white-sand beaches, turquoise shallows, palms and pastel Art Deco hotels, especially along Ocean Drive. Their rounded corners, horizontal bands and neon signs face outdoor café tables and slow-moving cars. Away from the beach, low apartment blocks and taller waterfront towers line flat streets with English and Spanish signs. Humid light is strong, afternoon clouds build quickly, and a short shower can leave glossy pavement. Hear surf, music from restaurants, bus engines and conversations over café dishes. Visitors wear swimwear with cover-ups; residents dress casually in the heat. Common greetings include “Hi,” “Hola” and “¿Qué tal?”"
+ },
+ {
+  "id": "place.city.chicago",
+  "domain": "place",
+  "topic": "Chicago",
+  "names": [
+   "شيكاغو",
+   "شيكاغو الينوي",
+   "chicago",
+   "chicago illinois"
+  ],
+  "body": "Chicago’s central skyline mixes dark steel-and-glass towers with pale stone and brick buildings beside the Chicago River. Elevated train tracks run between downtown façades, their trains clattering overhead as cars and pedestrians pass beneath. Eastward, Lake Michigan looks like a broad horizon of blue-grey water; wind can ruffle it into short waves. English signs mark streets, transit stops and shops. Summer brings bright light and waterfront walkers; winter light is low, with coats, scarves and sometimes snow piled at curbs. Hear train wheels, crossing bells, buses, wind and riverboat engines. On sidewalks, people commonly greet each other with “Hi” or “How are you?”"
+ },
+ {
+  "id": "place.city.washington-dc-mall",
+  "domain": "place",
+  "topic": "Washington DC Mall",
+  "names": [
+   "ناشونال مول واشنطن",
+   "مول واشنطن دي سي",
+   "المول الوطني واشنطن",
+   "washington dc mall",
+   "national mall dc",
+   "national mall washington"
+  ],
+  "body": "Washington’s National Mall is a long, open landscape of lawns, gravel paths and rows of trees, with the white Washington Monument rising near its centre. The US Capitol anchors the eastward view; the Lincoln Memorial sits beyond the Reflecting Pool to the west. Large stone museum buildings border the lawns, with English wayfinding signs and broad steps. Light falls across open grass with little shade at midday; summers are humid and winters can be bare and cold. Visitors walk, photograph landmarks and rest on benches while cyclists pass along the paths. Hear footsteps, birds, distant traffic and conversation. Greetings are usually “Hi” or “Hello.”"
+ },
+ {
+  "id": "place.city.houston",
+  "domain": "place",
+  "topic": "Houston",
+  "names": [
+   "هيوستن",
+   "هيوستن تكساس",
+   "houston",
+   "houston texas"
+  ],
+  "body": "Houston spreads across flat ground in wide roads, overpasses, parking areas and neighbourhoods of brick houses, low shopping strips and trees. Downtown has a compact cluster of glass office towers; elsewhere, English and Spanish signs appear on businesses and roads. Summer air is hot and humid, sunlight reflects off car roofs, and thunderstorms can darken the sky and wet the asphalt within minutes. Cars dominate the movement, though people walk around parks, campuses and shopping districts. Hear traffic, air-conditioning units, insects in green areas and rain on pavement. Dress is generally casual and weather-conscious; greetings include “Hey,” “How y’all doing?” and “Howdy.”"
+ },
+ {
+  "id": "place.city.dearborn-michigan-arab-community",
+  "domain": "place",
+  "topic": "Dearborn Michigan (Arab community)",
+  "names": [
+   "ديربورن ميشيغان",
+   "ديربورن العرب",
+   "الجالية العربية ديربورن",
+   "dearborn michigan",
+   "arab dearborn",
+   "dearborn arab community"
+  ],
+  "body": "Dearborn’s Arab commercial streets have low brick storefronts, bakeries, groceries and restaurants with Arabic and English lettering side by side. Along Warren Avenue, shop windows show bread trays, sweets and produce; nearby residential blocks have detached houses, lawns and parked cars. Mosques and community buildings appear among ordinary suburban streets, rather than defining every view. Summers are green and warm; winter brings bare trees, coats and sometimes snow along the curbs. Hear road traffic, shop doors, café conversation and occasional Arabic music indoors. Dress varies from jeans and work clothes to hijabs and modest coats. Neighbours may say “Hi,” “السلام عليكم” or “كيفك؟”"
+ },
+ {
+  "id": "place.city.toronto",
+  "domain": "place",
+  "topic": "Toronto",
+  "names": [
+   "تورونتو",
+   "ترونتو",
+   "toronto",
+   "toronto canada"
+  ],
+  "body": "Toronto’s downtown mixes glass condo towers with older brick storefronts, with the CN Tower rising above the waterfront skyline. Wide streets have painted cycle lanes, streetcars running on rails, buses and frequent pedestrian crossings. English signs dominate, while many shops also display Chinese, Arabic or other languages. Summer light glints off Lake Ontario; winter brings low sun, slush and heavy coats. Streetcars hum and ring their bells, traffic hisses on wet pavement, and gulls call near the water. Commuters wear practical layers and carry backpacks or takeaway coffee. A casual greeting is “Hi” or “How’s it going?”"
+ },
+ {
+  "id": "place.city.vancouver",
+  "domain": "place",
+  "topic": "Vancouver",
+  "names": [
+   "فانكوفر",
+   "ڤانكوفر",
+   "vancouver",
+   "vancouver bc"
+  ],
+  "body": "Vancouver has glass residential towers beside the water, with dark green mountains visible beyond the streets on clear days. Downtown blocks have broad crossings, bike lanes and English storefront signs; some neighbourhood shops also display Chinese characters. The SkyTrain glides on elevated tracks with a smooth electric whine, while buses brake and seaplanes buzz over the harbour. Rain often leaves pavement reflective under soft grey light, though summer afternoons can be bright and crisp. People wear rain jackets, trainers and backpacks, with cycling clothes common near the seawall. In cafés and on sidewalks, greetings are usually “Hi” or “How are you?”"
+ },
+ {
+  "id": "place.city.montreal",
+  "domain": "place",
+  "topic": "Montreal",
+  "names": [
+   "مونتريال",
+   "مونتريل",
+   "montreal",
+   "montréal"
+  ],
+  "body": "Montreal’s streets mix pale stone buildings, brick apartment rows and exterior metal staircases with newer glass towers downtown. French dominates street signs and shop windows, sometimes alongside English. Mount Royal forms a low green backdrop, while the old port has cobbled stretches and masonry façades. Buses and cars roll past cyclists; below ground, Métro trains arrive with a rising electric sound. Summer café terraces glow in long evening light, while winter brings snowbanks, salt-streaked boots and thick parkas. People commonly say “Bonjour” on entering a shop, or “Salut” to someone they know. Church bells, conversation and traffic overlap on busy streets."
+ },
+ {
+  "id": "place.city.mexico-city",
+  "domain": "place",
+  "topic": "Mexico City",
+  "names": [
+   "مكسيكو سيتي",
+   "مدينة مكسيكو",
+   "مكسيكو",
+   "mexico city",
+   "ciudad de mexico"
+  ],
+  "body": "Mexico City spreads across a high basin: broad avenues, dense low-rise neighbourhoods, modern towers and the stone buildings around the Zócalo. Spanish lettering fills shopfronts, street stalls and road signs. Pink-and-white taxis, buses, motorcycles and pedestrians move through busy crossings; vendors push metal carts that rattle over paving. Daylight can be sharp in the dry season, with distant hills softened by haze, while summer afternoons often bring sudden rain. People dress in everyday urban clothes, from office wear to trainers and light jackets for cool mornings. Voices, horns and food-stall sizzles mix together. Common greetings include “Hola,” “Buenos días” and “¿Qué tal?”"
+ },
+ {
+  "id": "place.city.cancun",
+  "domain": "place",
+  "topic": "Cancun",
+  "names": [
+   "كانكون",
+   "كانكن",
+   "cancun",
+   "cancún"
+  ],
+  "body": "Cancun’s hotel zone is a narrow strip of resorts between turquoise Caribbean water and the darker lagoon. White sand reflects strong sunlight; palms bend in sea breezes, and small waves hiss as they break. Hotel façades are pale concrete and glass, with Spanish and English signs at entrances. Inland, downtown streets have lower concrete buildings, shops, buses and Spanish storefront lettering. R1 and R2 buses rumble along Boulevard Kukulcán, mixed with taxis and tour vans. Visitors wear swimwear or light cotton near the beach; workers and residents wear uniforms or everyday clothes. Humid heat brings brief heavy showers. “Hola” and “Buenos días” are ordinary greetings."
+ },
+ {
+  "id": "place.city.havana",
+  "domain": "place",
+  "topic": "Havana",
+  "names": [
+   "هافانا",
+   "هاڤانا",
+   "لا هابانا",
+   "havana",
+   "la habana"
+  ],
+  "body": "Havana’s streets show pastel stucco walls, weathered balconies, arcades and taller apartment blocks beyond the older centre. Along the Malecón, a low seawall borders the road; wind pushes spray over it when the sea is rough. Spanish signs hang above shops and doorways. Older rounded cars share streets with newer vehicles, buses and pedestrians, their engines sounding different as they pass over uneven pavement. Bright tropical sun casts hard shadows, while humid air softens the distance. People wear light shirts, dresses and sandals, often pausing to talk in doorways. Conversations, traffic and occasional music carry between buildings. Greetings include “Hola” and “¿Qué tal?”"
+ },
+ {
+  "id": "place.city.rio-de-janeiro-copacabana",
+  "domain": "place",
+  "topic": "Rio de Janeiro Copacabana",
+  "names": [
+   "كوباكابانا",
+   "كوبا كابانا",
+   "ريو كوباكابانا",
+   "copacabana",
+   "rio copacabana"
+  ],
+  "body": "Copacabana curves around a broad sandy beach backed by closely packed apartment and hotel towers. Its seaside promenade has unmistakable black-and-white wave-pattern stone paving, with a busy road running alongside. Portuguese signs appear on shops, kiosks and beach-service stands. Atlantic waves break in white bands; vendors call out, cyclists pass, and traffic forms a steady low roar. Bright sun makes the sand glare, while humid, cloudy days flatten the colours and rain darkens the paving. Beachgoers wear swimwear and flip-flops; on the inland streets, people wear light casual clothes. Common greetings are “Oi,” “Bom dia” and “Tudo bem?”"
+ },
+ {
+  "id": "place.city.sao-paulo",
+  "domain": "place",
+  "topic": "Sao Paulo",
+  "names": [
+   "ساو باولو",
+   "ساو پاولو",
+   "سان باولو",
+   "sao paulo",
+   "são paulo"
+  ],
+  "body": "São Paulo has a dense skyline of concrete and glass towers stretching far beyond the centre. Avenida Paulista is a wide corridor of office buildings, shops, buses and crowds; the red supports of MASP lift its main building above an open space. Portuguese signs fill storefronts and traffic directions. Cars, motorcycles and buses stream through broad junctions, with engines, horns and bus brakes audible above conversation. Daylight is often bright but softened by haze; warm-season downpours quickly turn gutters into rushing channels. Commuters wear office clothes, jeans or trainers and carry bags against sudden rain. People greet each other with “Oi,” “Bom dia” or “Tudo bem?”"
+ },
+ {
+  "id": "place.city.buenos-aires",
+  "domain": "place",
+  "topic": "Buenos Aires",
+  "names": [
+   "بوينس آيرس",
+   "بوينس ايرس",
+   "بوينس آيريس",
+   "buenos aires",
+   "buenosaires"
+  ],
+  "body": "Broad avenues lined with plane trees run past cream stone façades, ornate balconies and mid-rise apartment blocks. The white Obelisk rises above Avenida 9 de Julio; older streets near Plaza de Mayo have domes and ironwork. Black-and-yellow taxis, buses called colectivos and motorcycles move through busy intersections, with engines, horns and conversations audible at crossings. Shop signs are in Spanish. Summer sun is strong and humid; winter light is lower and cooler, with fallen leaves along the pavements. Commuters wear casual or office clothes, and people commonly greet each other with “hola,” “buen día” or “¿cómo andás?”"
+ },
+ {
+  "id": "place.city.lima",
+  "domain": "place",
+  "topic": "Lima",
+  "names": [
+   "ليما",
+   "ليمــا",
+   "ليما بيرو",
+   "lima",
+   "lima peru"
+  ],
+  "body": "Lima spreads across a dry coastal plain, with dense low-rise neighbourhoods, unfinished brick walls and newer glass towers around Miraflores and San Isidro. The Miraflores cliffs drop toward the Pacific, where surf breaks below parks and roads. Downtown has carved balconies and pale historic façades. Signs are mostly Spanish. Buses, taxis and motorcycles fill the roads; engines and frequent horns mix with vendors’ calls and the sound of waves near the coast. Winter often brings a flat grey marine mist called garúa, while summer is brighter and warm. People wear everyday casual or office clothes and greet others with “buenos días” or “¿qué tal?”"
+ },
+ {
+  "id": "place.city.nairobi",
+  "domain": "place",
+  "topic": "Nairobi",
+  "names": [
+   "نيروبي",
+   "نايروبي",
+   "نيروبي كينيا",
+   "nairobi",
+   "nairobi kenya"
+  ],
+  "body": "Nairobi’s centre mixes concrete office blocks and glass towers with street trees, while outlying roads pass markets, apartment buildings and walled compounds. Some avenues turn purple when jacarandas bloom. Signs commonly use English and Swahili. Colourfully painted matatus stop and pull into traffic alongside cars, buses and boda boda motorcycles; expect engine noise, horns, music from vehicles and street conversations. Daylight is often bright at this high elevation, with cooler mornings and evenings and heavy showers in rainy periods. People wear anything from office shirts and suits to casual clothes. Familiar greetings include “habari?” and “sasa?”, often answered with “poa.”"
+ },
+ {
+  "id": "place.city.cape-town",
+  "domain": "place",
+  "topic": "Cape Town",
+  "names": [
+   "كيب تاون",
+   "كيب تاون جنوب أفريقيا",
+   "كيب تاون جنوب افريقيا",
+   "cape town",
+   "kaapstad"
+  ],
+  "body": "Flat-topped Table Mountain stands behind Cape Town, with Lion’s Head beside it and the harbour facing the sea. Central streets mix glass offices, older plastered buildings and cafés; Bo-Kaap has tightly packed houses painted vivid pink, blue and green. Signs appear in English, Afrikaans and isiXhosa. Cars, buses and minibus taxis travel beneath the mountain, accompanied by traffic noise, wind and seabirds near the waterfront. Summer light is sharp and often windy; winter can be cool, cloudy and rainy. Clothing ranges from office wear to light casual layers. Depending on language and company, greetings include “howzit,” “molo” and “hoe gaan dit?”"
+ },
+ {
+  "id": "place.city.johannesburg",
+  "domain": "place",
+  "topic": "Johannesburg",
+  "names": [
+   "جوهانسبرغ",
+   "جوهانسبرج",
+   "جوهانسبيرغ",
+   "johannesburg",
+   "joburg"
+  ],
+  "body": "Johannesburg sits inland on rolling high ground, not beside the sea. Its centre has older stone buildings and tall concrete towers; Sandton has reflective glass high-rises, while residential areas mix brick houses, walls, trees and apartment blocks. Pale mine dumps are visible from some roads. Signs appear in English and several local languages. Minibus taxis, buses and cars crowd major routes; engines, horns, taxi-rank calls and conversations shape the street sound. Winter brings dry air, yellow grass and crisp sunshine; summer brings green trees and afternoon thunderstorms. People wear varied casual and business clothes, greeting each other with “howzit,” “sawubona” or “dumela,” depending on language."
+ },
+ {
+  "id": "place.city.lagos",
+  "domain": "place",
+  "topic": "Lagos",
+  "names": [
+   "لاغوس",
+   "لاجوس",
+   "لاغوس نيجيريا",
+   "lagos",
+   "lagos nigeria"
+  ],
+  "body": "Lagos stretches around lagoons and bridges. Glass towers and offices rise on Victoria Island, while many mainland streets are lined with concrete shops, painted walls, market stalls and dense housing. English signage sits alongside Yoruba names and locally worded advertisements. Yellow danfo minibuses, cars, motorcycles and pedestrians negotiate heavy traffic; horns, conductors calling destinations, music and market voices overlap. Humid light can turn hazy, and tropical downpours leave roads shining before the sun returns. Office workers, traders and students wear varied Western and traditional clothing. Common greetings include “good morning,” Nigerian Pidgin “how far?” and, among Yoruba speakers, “ẹ káàárọ̀.”"
+ },
+ {
+  "id": "place.city.accra",
+  "domain": "place",
+  "topic": "Accra",
+  "names": [
+   "أكرا",
+   "اكرا",
+   "أكرا غانا",
+   "accra",
+   "accra ghana"
+  ],
+  "body": "Accra has low- and mid-rise concrete buildings, busy roadside shops and newer glass offices, with Atlantic surf along parts of the coast. The Independence Arch is a pale landmark near broad roads; older Jamestown streets have weathered façades and fishing activity. Signs are largely in English, often beside brightly coloured advertisements. Tro-tro minibuses stop for passengers among taxis and cars, creating a mix of horns, conductors’ calls, conversation and coastal wind. Sunlight is strong and humid; rainy periods bring sudden heavy showers. People wear office clothes, casual outfits or patterned fabrics according to the occasion. Greetings include “good morning” and, in Twi, “ɛte sɛn?”"
+ },
+ {
+  "id": "place.city.addis-ababa",
+  "domain": "place",
+  "topic": "Addis Ababa",
+  "names": [
+   "أديس أبابا",
+   "اديس ابابا",
+   "أديس أبا",
+   "addis ababa",
+   "addis"
+  ],
+  "body": "Addis Ababa climbs across highland slopes, mixing new glass-and-concrete buildings with older plastered shops, corrugated roofs and eucalyptus-lined roads. Meskel Square opens into a broad paved gathering space, and light-rail tracks cross parts of the city. Signs are primarily in Amharic script, often with English. Blue-and-white minibuses, cars and pedestrians fill junctions; engines, horns, conductors calling routes and café conversations carry through the streets. The elevation makes mornings and evenings cool even under bright sun, and rain can fall hard in the wet season. Dress ranges from office wear to casual clothes and white netela shawls near churches. People greet one another with “selam” and “dehna neh?” or “dehna nesh?”"
+ },
+ {
+  "id": "place.city.zanzibar-stone-town",
+  "domain": "place",
+  "topic": "Zanzibar Stone Town",
+  "names": [
+   "ستون تاون زنجبار",
+   "المدينة الحجرية زنجبار",
+   "ستون تاون",
+   "زنزبار ستون تاون",
+   "zanzibar stone town",
+   "stone town zanzibar"
+  ],
+  "body": "Stone Town is a dense maze of narrow, uneven lanes between pale coral-stone buildings coated in weathered lime plaster. Shaded balconies project above carved wooden doors, some fitted with brass studs. Small shops display signs in Swahili and English; pedestrians step aside for bicycles and handcarts. At the seafront, Forodhani Gardens opens onto the water, with fishing boats rocking gently offshore. Humid light softens cream walls by day and turns warm at sunset. Expect footsteps on stone, bicycle bells, conversation and calls to prayer. People wear everything from light shirts to kanzu and headscarves; a common greeting is “Habari?”"
+ },
+ {
+  "id": "place.city.marrakech-medina",
+  "domain": "place",
+  "topic": "Marrakech medina",
+  "names": [
+   "المدينة العتيقة مراكش",
+   "مدينة مراكش القديمة",
+   "مراكش المدينة",
+   "مراگش المدينة",
+   "marrakech medina",
+   "marrakesh medina"
+  ],
+  "body": "Marrakech medina is packed with red-ochre plaster walls, tall blank facades, arched passages and shopfronts crowded with leather goods, metal lanterns and textiles. Its lanes alternate between bright sun and deep shade; scooters thread slowly past walkers, handcarts and occasional donkeys. Near Jemaa el-Fnaa, the square opens wide beneath the visible Koutoubia minaret. Dry air and dusty afternoon light make the pink-brown buildings glow. Listen for scooter engines, bargaining voices, cart wheels and the call to prayer. Locals wear both contemporary clothes and djellabas. Greetings include “Salam alaykum” and the Moroccan Arabic “Labas?”"
+ },
+ {
+  "id": "place.city.dakar",
+  "domain": "place",
+  "topic": "Dakar",
+  "names": [
+   "داكار",
+   "دكار",
+   "داكار السنغال",
+   "dakar",
+   "dakar senegal"
+  ],
+  "body": "Dakar stretches across a coastal peninsula, mixing concrete apartment blocks, glass office towers in the Plateau district and low-rise streets painted in bright, fading colours. The Atlantic is visible from seafront roads; the African Renaissance Monument stands high above the city on the Mamelles hills. Yellow-and-black taxis, buses and decorated car rapides jostle through traffic, while vendors walk between stopped vehicles. Sunlight is strong, sometimes softened by sea mist or dusty Harmattan haze. Hear horns, engines, street conversation and surf near the shore. Clothing ranges from T-shirts and jeans to colourful boubous. In Wolof, people greet one another with “Nanga def?”"
+ },
+ {
+  "id": "place.city.kigali",
+  "domain": "place",
+  "topic": "Kigali",
+  "names": [
+   "كيغالي",
+   "كيجالي",
+   "كيغالي رواندا",
+   "kigali",
+   "kigali rwanda"
+  ],
+  "body": "Kigali spreads over steep green hills, with clusters of terracotta and metal roofs below modern glass-fronted buildings in the centre. Paved roads curve around the slopes; motorcycle taxis lean into bends, their drivers and passengers wearing helmets. Roadside shops and billboards carry Kinyarwanda and English, sometimes French. Clear morning light reveals distant ridgelines, while rain can darken the asphalt and make leafy verges shine. Expect motorcycle engines, birds, conversations and traffic rather than a continuous roar. People wear contemporary office clothes, casual wear and patterned fabrics. A Kinyarwanda greeting is “Muraho”; friends may ask “Amakuru?” and answer “Ni meza.”"
+ }
+]

@@ -43,6 +43,8 @@ test("Arabic matching is whole-word with prefixes and endings", () => {
   assert.ok(ids("a barista making latte in Dubai").includes("item.coffee-machine"));
   assert.ok(ids("two cats playing").includes("animal.cat"), "English plural");
   assert.ok(ids("بنت تلعب ويه قطتها").includes("animal.cat"), "ة becomes ت before an ending");
+  assert.ok(!ids("حفلة تخرج بالجامعة").includes("sound.adhan"), "«جامعة» (university) is not «جامع» (mosque)");
+  assert.ok(ids("صوت الاذان من الجامع").includes("sound.adhan"));
   assert.ok(!ids("اريد نفس الشي بس الناس").some((id) => id.startsWith("sound.breath")), "everyday words are ignored");
 });
 

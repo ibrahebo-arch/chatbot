@@ -112,7 +112,7 @@ const esc = (k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // Arabic names match whole words, allowing the usual attached prefixes (و ف ب ل ك + ال/لل) and endings (pronouns,
 // plurals, nisba), so «تحاليل» does not trigger «ليل» and «زرنة» does not trigger «رنة».
 const AR_PRE = "(?:[وفبلك])?(?:ال|لل)?";
-const AR_SUF = "(?:ه|ها|هم|هن|ات|ين|ون|ان|ي|يه|يات|ك|كم|نا|ته|تها|تي)?";
+const AR_SUF = "(?:ها|هم|هن|ات|ين|ون|ان|ي|يه|يات|ك|كم|نا|ته|تها|تي)?";
 const reCache = new Map();
 function nameRe(k) {
   let re = reCache.get(k);
