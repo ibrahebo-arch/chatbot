@@ -982,6 +982,7 @@
       tile.innerHTML = `<div class="frame"><video muted loop playsinline preload="metadata" controls></video></div>
         <div class="meta"><b title="${v.file}">${v.name}</b><a href="${v.url}" target="_blank" rel="noopener">${fmtSize(v.size)} · فتح</a></div>`;
       const vid = tile.querySelector("video"), frame = tile.querySelector(".frame");
+      if (v.name.startsWith("قبل وبعد")) frame.classList.add("compare");
       setTimeout(() => {
         vid.src = v.url;
         vid.addEventListener("loadeddata", () => { frame.classList.add("ready"); vid.play().catch(() => {}); }, { once: true });
