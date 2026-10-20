@@ -1,29 +1,400 @@
 [
-  { "id": "action.dance", "domain": "action", "names": ["يرقص", "ترقص", "رقص", "رقصة", "dance", "dancing", "dancer"], "body": "Real dancing: the movement comes from the whole body – knees soft, hips and shoulders moving with the beat, arms following through, weight transferring clearly from foot to foot, the head and hair following a little late; dancers smile and look at each other or the audience, breathe harder as they go, feet land on the beat, and clothes swing with each turn." },
-  { "id": "action.dabke", "domain": "action", "names": ["دبكة", "جوبي", "چوبي", "هچع", "dabke", "chobi", "line dance"], "body": "Iraqi chobi / dabke: a line of men (or mixed in families) linked by little fingers or shoulders, the leader at the front waving a handkerchief or prayer beads, stamping steps in rhythm with kicks and dips, the line moving sideways in a semicircle, shouts of encouragement, the drum and zurna driving the beat; dust rises from the ground outdoors." },
-  { "id": "action.football", "domain": "action", "names": ["كرة القدم", "طوبة", "فوتبول", "ملعب", "هدف", "كول", "football", "soccer", "goal"], "body": "Football played for real: players run with the ball close to the feet, the body leans over the ball when shooting, the standing foot plants beside it, the ball spins and curves with correct physics, the net bulges on a goal, players celebrate with arms out, slides and team hugs; kits with numbers, grass or a dusty neighbourhood pitch with kids in mixed shirts." },
-  { "id": "action.cooking", "domain": "action", "names": ["طبخ", "يطبخ", "تطبخ", "شيف", "مطبخ", "cooking", "cook", "chef"], "body": "Real cooking: hands chop on a board with steady rhythm, oil shimmers then sizzles when food goes in, steam and smoke rise, the cook stirs, tastes from a spoon, adds salt with a pinch, flips food with a pan toss; ingredients change colour and texture as they cook (onions turn golden, meat browns); sounds of sizzling, bubbling and knife on board." },
-  { "id": "action.bakery", "domain": "action", "names": ["خبز", "صمون", "فرن", "تنور", "خباز", "bakery", "bread", "baker", "oven"], "body": "Iraqi bakery: the baker slaps dough onto the inside wall of a clay tannour (تنور) or slides samoon onto paddles into a hot oven, the bread puffs up and browns, flames glow inside, fresh bread is stacked steaming on the counter, customers hold bags; flour dusts the hands and air." },
-  { "id": "action.barber", "domain": "action", "names": ["حلاق", "حلاقة", "زيان", "يزين", "barber", "haircut", "shave"], "body": "Barber at work: clippers buzz along the side of the head, scissors snip quickly over a comb, the hair falls on the cape, the barber turns the head gently with one hand, thread or a straight razor shapes the beard with foam, a mirror shows the customer's reflection; final spray, brush off the neck, the customer checks with a smile." },
-  { "id": "action.shopping", "domain": "action", "names": ["تسوق", "يتسوق", "تتسوق", "يشتري", "تشتري", "محل", "مول", "shopping", "buy", "store", "mall"], "body": "Shopping for real: the customer picks items up, turns them to look, feels fabric, asks the price, the seller smiles and recommends, money or card changes hands, bags rustle; in a mall: bright clean lighting, glass shopfronts, escalators, families walking with bags." },
-  { "id": "action.driving", "domain": "action", "names": ["سياقة", "يسوق", "تسوق السيارة", "سايق", "driving", "driver"], "body": "Driving: both hands on the wheel or one hand relaxed, eyes on the road with quick mirror checks, the seat belt on, the dashboard and road visible through the windscreen, light and shadows sliding across the face, the car moving at a believable speed with the road and buildings passing correctly." },
-  { "id": "action.swim", "domain": "action", "names": ["سباحة", "يسبح", "تسبح", "swim", "swimming", "swimmer"], "body": "Swimming: arms reach and pull in alternating strokes, the head turns to breathe with a visible gasp, legs kick creating white water, water streams off the arms, the body rolls slightly with each stroke; wet hair sticks to the head." },
-  { "id": "action.cycling", "domain": "action", "names": ["بايسكل", "دراجة", "سيكل", "bike", "bicycle", "cycling"], "body": "Cycling: the pedals go round in a steady circle with the knees rising and falling, the bike leans into turns, the wheels turn at the right speed, the rider's hands on the bars and body balancing, the chain clicking softly, clothes fluttering with the speed." },
-  { "id": "action.horse", "domain": "action", "names": ["حصان", "خيل", "خيال", "فروسية", "horse", "riding", "rider"], "body": "Horse riding: the horse's legs move in the right gait (walk: four beats, gallop: a rocking stride with all hooves off the ground for a moment), the mane and tail flow, muscles ripple, the rider moves with the horse's rhythm, reins in hand; dust kicks up, hooves thud, the horse snorts." },
-  { "id": "action.fishing", "domain": "action", "names": ["صيد", "سمك", "يصيد", "شبكة", "بلم", "fishing", "fisherman", "fish"], "body": "Fishing on the river or marshes: a fisherman in a wooden boat (بلم) or on the bank casts a line with a smooth arc, the line lands with a small splash, waits patiently, the rod bends when a fish bites, the fish flips and splashes as it is pulled in, scales glinting; nets are thrown wide and pulled in dripping." },
-  { "id": "action.studying", "domain": "action", "names": ["يدرس", "تدرس", "دراسة", "طالب", "طالبة", "مدرسة", "جامعة", "study", "student", "school", "university"], "body": "Students for real: writing in notebooks with a pen held correctly, flipping pages, highlighting, tired heads on hands, quick discussions, a teacher at a whiteboard pointing, raised hands; school uniforms where fitting (Iraqi schools: grey/blue uniforms, white shirts)." },
-  { "id": "action.graduation", "domain": "action", "names": ["تخرج", "حفل تخرج", "graduation", "graduate"], "body": "Graduation: gowns and caps in the university's colours, students throw caps in the air (they rise, spin and fall with gravity), families cheer and hug, flowers and balloons, photos with the certificate, tears of joy from parents." },
-  { "id": "action.birthday", "domain": "action", "names": ["عيد ميلاد", "ميلاد", "كيكة", "شموع", "birthday", "cake", "candles"], "body": "Birthday: a cake with lit candles whose flames flicker, everyone sings, the person makes a wish with closed eyes and blows – the flames bend and go out with thin smoke trails – then clapping, balloons, party hats, cake cut and served on small plates." },
-  { "id": "action.ramadan", "domain": "action", "names": ["رمضان", "فطور", "افطار", "سحور", "ramadan", "iftar", "suhoor"], "body": "Ramadan in Iraq: the family waits at a full table before sunset (dates, water, lentil soup, rice, kubba, dolma), the call to prayer signals iftar, everyone breaks the fast with a date and water, lanterns (فوانيس) and string lights, the street empties at sunset and fills after; a mesaharati drummer at suhoor time." },
-  { "id": "action.eid", "domain": "action", "names": ["عيد", "العيد", "عيدية", "eid"], "body": "Eid in Iraq: new clothes, children receiving eidiya money and running to swings and fairground rides, families visiting with kleicha and sweets, men praying the Eid prayer together, people hugging and saying 'عيدكم مبارك', the streets colourful and busy." },
-  { "id": "action.gym", "domain": "action", "names": ["جيم", "رياضة", "تمارين", "حديد", "gym", "workout", "exercise", "fitness"], "body": "Gym training: muscles tense and bulge under load, the face strains with a held breath and exhale on effort, sweat on the forehead and neck, the barbell bends slightly with heavy weight, plates clank, controlled up-and-down movement, then a rest with hands on knees and heavy breathing." },
-  { "id": "action.boxing", "domain": "action", "names": ["ملاكمة", "بوكس", "boxing", "boxer"], "body": "Boxing training (sport, no injuries): gloves up guarding the face, the body turns into each punch from the hips, quick footwork bouncing on the toes, the bag swings back on impact with a thud, breathing in sharp bursts, sweat flying off." },
-  { "id": "action.selfie", "domain": "action", "names": ["سيلفي", "يصور", "تصور", "تصوير", "selfie", "filming", "photo"], "body": "Selfie or filming with a phone: the arm extended holding the phone at a slight high angle, the person checks the screen, adjusts, smiles or poses, friends squeeze into the frame; for a phone-shot style the image is vertical with the slight wide-angle look of a front camera." },
-  { "id": "action.hug", "domain": "action", "names": ["حضن", "يحضن", "تحضن", "عناق", "hug", "hugging", "embrace"], "body": "A real hug: arms wrap around the back and shoulders, bodies lean in, the heads turn to the side, hands pat the back or hold tight, eyes close, a smile or tears; clothes compress where bodies meet, and they step back still holding the arms and looking at each other." },
-  { "id": "action.handshake", "domain": "action", "names": ["مصافحة", "يصافح", "صفقة", "اتفاق", "handshake", "deal", "agreement"], "body": "A handshake: right hands meet palm to palm, thumbs locked, a firm squeeze with two or three small pumps, eye contact and smiles, the left hand may cover the joined hands as a sign of warmth (common in Iraq), then they release naturally." },
-  { "id": "action.carry", "domain": "action", "names": ["يشيل", "تشيل", "يحمل", "شنطة", "كارتون", "carry", "carrying", "lift", "box"], "body": "Carrying things with weight: the person bends the knees to lift, the back and arms strain, the body leans away from a heavy load to balance it, steps get shorter; light things swing easily, heavy bags pull the shoulder down." },
-  { "id": "action.play-kids", "domain": "action", "names": ["يلعبون", "لعب", "العاب", "مرجوحة", "حديقة", "playing", "play", "playground", "swing", "park"], "body": "Children playing: running and chasing with sudden turns and laughter, swings arcing back and forth with the chains taut and the child leaning back, slides with a whoosh, a ball kicked badly and chased, falling onto grass and getting up laughing; parents watching from a bench." },
-  { "id": "action.work-office", "domain": "action", "names": ["شغل", "دوام", "موظف", "اجتماع", "شركة", "work", "office", "meeting", "company", "business"], "body": "Office work for real: people typing and looking at screens, a meeting around a table with someone presenting on a screen and others nodding and taking notes, coffee cups, a handshake at the end; modern Iraqi offices: glass partitions, ID badges, business casual clothes." },
-  { "id": "action.medical-lab", "domain": "action", "names": ["مختبر", "تحليل", "تحاليل", "عينة", "دكتور", "طبيب", "مستشفى", "عيادة", "laboratory", "lab", "clinic", "doctor", "hospital", "test"], "body": "Medical laboratory or clinic: clean white and pale-blue interior, technicians in white coats and gloves, pipettes drawing samples into labelled tubes, centrifuges spinning with a hum, microscopes, analysers with screens showing results, a friendly receptionist and a comfortable waiting area, a patient smiling while a nurse gently takes a blood sample (no needles close-up, no blood emphasis); trust and care in every face." },
-  { "id": "action.restaurant-service", "domain": "action", "names": ["مطعم", "ويتر", "طلبية", "توصيل", "restaurant", "waiter", "delivery", "serving"], "body": "Restaurant service: a waiter carries plates balanced on the arm, sets them down gently and presents the dish, steam rises from hot food, customers' eyes light up, they lean in to smell, the first bite and a satisfied nod; a delivery rider hands over a bag with a smile." }
+  {
+    "id": "action.dance",
+    "domain": "action",
+    "names": [
+      "يرقص",
+      "ترقص",
+      "رقص",
+      "رقصة",
+      "dance",
+      "dancing",
+      "dancer"
+    ],
+    "body": "Real dancing: the movement comes from the whole body – knees soft, hips and shoulders moving with the beat, arms following through, weight transferring clearly from foot to foot, the head and hair following a little late; dancers smile and look at each other or the audience, breathe harder as they go, feet land on the beat, and clothes swing with each turn."
+  },
+  {
+    "id": "action.dabke",
+    "domain": "action",
+    "names": [
+      "دبكة",
+      "جوبي",
+      "چوبي",
+      "هچع",
+      "dabke",
+      "chobi",
+      "line dance"
+    ],
+    "body": "Iraqi chobi / dabke: a line of men (or mixed in families) linked by little fingers or shoulders, the leader at the front waving a handkerchief or prayer beads, stamping steps in rhythm with kicks and dips, the line moving sideways in a semicircle, shouts of encouragement, the drum and zurna driving the beat; dust rises from the ground outdoors."
+  },
+  {
+    "id": "action.football",
+    "domain": "action",
+    "names": [
+      "كرة القدم",
+      "طوبة",
+      "فوتبول",
+      "ملعب",
+      "هدف",
+      "كول",
+      "football",
+      "soccer",
+      "goal"
+    ],
+    "body": "Football played for real: players run with the ball close to the feet, the body leans over the ball when shooting, the standing foot plants beside it, the ball spins and curves with correct physics, the net bulges on a goal, players celebrate with arms out, slides and team hugs; kits with numbers, grass or a dusty neighbourhood pitch with kids in mixed shirts."
+  },
+  {
+    "id": "action.cooking",
+    "domain": "action",
+    "names": [
+      "طبخ",
+      "يطبخ",
+      "تطبخ",
+      "شيف",
+      "مطبخ",
+      "cooking",
+      "cook",
+      "chef"
+    ],
+    "body": "Real cooking: hands chop on a board with steady rhythm, oil shimmers then sizzles when food goes in, steam and smoke rise, the cook stirs, tastes from a spoon, adds salt with a pinch, flips food with a pan toss; ingredients change colour and texture as they cook (onions turn golden, meat browns); sounds of sizzling, bubbling and knife on board."
+  },
+  {
+    "id": "action.bakery",
+    "domain": "action",
+    "names": [
+      "خبز",
+      "صمون",
+      "فرن",
+      "تنور",
+      "خباز",
+      "bakery",
+      "bread",
+      "baker",
+      "oven"
+    ],
+    "body": "Iraqi bakery: the baker slaps dough onto the inside wall of a clay tannour (تنور) or slides samoon onto paddles into a hot oven, the bread puffs up and browns, flames glow inside, fresh bread is stacked steaming on the counter, customers hold bags; flour dusts the hands and air."
+  },
+  {
+    "id": "action.barber",
+    "domain": "action",
+    "names": [
+      "حلاق",
+      "حلاقة",
+      "زيان",
+      "يزين",
+      "barber",
+      "haircut",
+      "shave"
+    ],
+    "body": "Barber at work: clippers buzz along the side of the head, scissors snip quickly over a comb, the hair falls on the cape, the barber turns the head gently with one hand, thread or a straight razor shapes the beard with foam, a mirror shows the customer's reflection; final spray, brush off the neck, the customer checks with a smile."
+  },
+  {
+    "id": "action.shopping",
+    "domain": "action",
+    "names": [
+      "تسوق",
+      "يتسوق",
+      "تتسوق",
+      "يشتري",
+      "تشتري",
+      "محل",
+      "مول",
+      "shopping",
+      "buy",
+      "store",
+      "mall"
+    ],
+    "body": "Shopping for real: the customer picks items up, turns them to look, feels fabric, asks the price, the seller smiles and recommends, money or card changes hands, bags rustle; in a mall: bright clean lighting, glass shopfronts, escalators, families walking with bags."
+  },
+  {
+    "id": "action.driving",
+    "domain": "action",
+    "names": [
+      "سياقة",
+      "يسوق",
+      "تسوق السيارة",
+      "سايق",
+      "driving",
+      "driver"
+    ],
+    "body": "Driving: both hands on the wheel or one hand relaxed, eyes on the road with quick mirror checks, the seat belt on, the dashboard and road visible through the windscreen, light and shadows sliding across the face, the car moving at a believable speed with the road and buildings passing correctly."
+  },
+  {
+    "id": "action.swim",
+    "domain": "action",
+    "names": [
+      "سباحة",
+      "يسبح",
+      "تسبح",
+      "swim",
+      "swimming",
+      "swimmer"
+    ],
+    "body": "Swimming: arms reach and pull in alternating strokes, the head turns to breathe with a visible gasp, legs kick creating white water, water streams off the arms, the body rolls slightly with each stroke; wet hair sticks to the head."
+  },
+  {
+    "id": "action.cycling",
+    "domain": "action",
+    "names": [
+      "بايسكل",
+      "دراجة",
+      "سيكل",
+      "bike",
+      "bicycle",
+      "cycling"
+    ],
+    "body": "Cycling: the pedals go round in a steady circle with the knees rising and falling, the bike leans into turns, the wheels turn at the right speed, the rider's hands on the bars and body balancing, the chain clicking softly, clothes fluttering with the speed."
+  },
+  {
+    "id": "action.horse",
+    "domain": "action",
+    "names": [
+      "حصان",
+      "خيل",
+      "خيال",
+      "فروسية",
+      "horse",
+      "riding",
+      "rider"
+    ],
+    "body": "Horse riding: the horse's legs move in the right gait (walk: four beats, gallop: a rocking stride with all hooves off the ground for a moment), the mane and tail flow, muscles ripple, the rider moves with the horse's rhythm, reins in hand; dust kicks up, hooves thud, the horse snorts."
+  },
+  {
+    "id": "action.fishing",
+    "domain": "action",
+    "names": [
+      "صيد",
+      "سمك",
+      "يصيد",
+      "شبكة",
+      "بلم",
+      "fishing",
+      "fisherman",
+      "fish"
+    ],
+    "body": "Fishing on the river or marshes: a fisherman in a wooden boat (بلم) or on the bank casts a line with a smooth arc, the line lands with a small splash, waits patiently, the rod bends when a fish bites, the fish flips and splashes as it is pulled in, scales glinting; nets are thrown wide and pulled in dripping."
+  },
+  {
+    "id": "action.studying",
+    "domain": "action",
+    "names": [
+      "يدرس",
+      "تدرس",
+      "دراسة",
+      "طالب",
+      "طالبة",
+      "مدرسة",
+      "جامعة",
+      "study",
+      "student",
+      "school",
+      "university"
+    ],
+    "body": "Students for real: writing in notebooks with a pen held correctly, flipping pages, highlighting, tired heads on hands, quick discussions, a teacher at a whiteboard pointing, raised hands; school uniforms where fitting (Iraqi schools: grey/blue uniforms, white shirts)."
+  },
+  {
+    "id": "action.graduation",
+    "domain": "action",
+    "names": [
+      "تخرج",
+      "حفل تخرج",
+      "graduation",
+      "graduate"
+    ],
+    "body": "Graduation: gowns and caps in the university's colours, students throw caps in the air (they rise, spin and fall with gravity), families cheer and hug, flowers and balloons, photos with the certificate, tears of joy from parents."
+  },
+  {
+    "id": "action.birthday",
+    "domain": "action",
+    "names": [
+      "عيد ميلاد",
+      "ميلاد",
+      "كيكة",
+      "شموع",
+      "birthday",
+      "cake",
+      "candles"
+    ],
+    "body": "Birthday: a cake with lit candles whose flames flicker, everyone sings, the person makes a wish with closed eyes and blows – the flames bend and go out with thin smoke trails – then clapping, balloons, party hats, cake cut and served on small plates."
+  },
+  {
+    "id": "action.ramadan",
+    "domain": "action",
+    "names": [
+      "رمضان",
+      "فطور",
+      "افطار",
+      "سحور",
+      "ramadan",
+      "iftar",
+      "suhoor"
+    ],
+    "body": "Ramadan in Iraq: the family waits at a full table before sunset (dates, water, lentil soup, rice, kubba, dolma), the call to prayer signals iftar, everyone breaks the fast with a date and water, lanterns (فوانيس) and string lights, the street empties at sunset and fills after; a mesaharati drummer at suhoor time."
+  },
+  {
+    "id": "action.eid",
+    "domain": "action",
+    "names": [
+      "عيد",
+      "العيد",
+      "عيدية",
+      "eid"
+    ],
+    "body": "Eid in Iraq: new clothes, children receiving eidiya money and running to swings and fairground rides, families visiting with kleicha and sweets, men praying the Eid prayer together, people hugging and saying 'عيدكم مبارك', the streets colourful and busy."
+  },
+  {
+    "id": "action.gym",
+    "domain": "action",
+    "names": [
+      "جيم",
+      "رياضة",
+      "تمارين",
+      "حديد",
+      "gym",
+      "workout",
+      "exercise",
+      "fitness"
+    ],
+    "body": "Gym training: muscles tense and bulge under load, the face strains with a held breath and exhale on effort, sweat on the forehead and neck, the barbell bends slightly with heavy weight, plates clank, controlled up-and-down movement, then a rest with hands on knees and heavy breathing."
+  },
+  {
+    "id": "action.boxing",
+    "domain": "action",
+    "names": [
+      "ملاكمة",
+      "بوكس",
+      "boxing",
+      "boxer"
+    ],
+    "body": "Boxing training (sport, no injuries): gloves up guarding the face, the body turns into each punch from the hips, quick footwork bouncing on the toes, the bag swings back on impact with a thud, breathing in sharp bursts, sweat flying off."
+  },
+  {
+    "id": "action.selfie",
+    "domain": "action",
+    "names": [
+      "سيلفي",
+      "يصور",
+      "تصور",
+      "تصوير",
+      "selfie",
+      "filming",
+      "photo"
+    ],
+    "body": "Selfie or filming with a phone: the arm extended holding the phone at a slight high angle, the person checks the screen, adjusts, smiles or poses, friends squeeze into the frame; for a phone-shot style the image is vertical with the slight wide-angle look of a front camera."
+  },
+  {
+    "id": "action.hug",
+    "domain": "action",
+    "names": [
+      "حضن",
+      "يحضن",
+      "تحضن",
+      "عناق",
+      "hug",
+      "hugging",
+      "embrace"
+    ],
+    "body": "A real hug: arms wrap around the back and shoulders, bodies lean in, the heads turn to the side, hands pat the back or hold tight, eyes close, a smile or tears; clothes compress where bodies meet, and they step back still holding the arms and looking at each other."
+  },
+  {
+    "id": "action.handshake",
+    "domain": "action",
+    "names": [
+      "مصافحة",
+      "يصافح",
+      "صفقة",
+      "اتفاق",
+      "handshake",
+      "deal",
+      "agreement"
+    ],
+    "body": "A handshake: right hands meet palm to palm, thumbs locked, a firm squeeze with two or three small pumps, eye contact and smiles, the left hand may cover the joined hands as a sign of warmth (common in Iraq), then they release naturally."
+  },
+  {
+    "id": "action.carry",
+    "domain": "action",
+    "names": [
+      "يشيل",
+      "تشيل",
+      "يحمل",
+      "شنطة",
+      "كارتون",
+      "carry",
+      "carrying",
+      "lift",
+      "box"
+    ],
+    "body": "Carrying things with weight: the person bends the knees to lift, the back and arms strain, the body leans away from a heavy load to balance it, steps get shorter; light things swing easily, heavy bags pull the shoulder down."
+  },
+  {
+    "id": "action.play-kids",
+    "domain": "action",
+    "names": [
+      "اطفال يلعبون",
+      "جهال يلعبون",
+      "مرجوحة",
+      "مراجيح",
+      "زحليقة",
+      "ساحة العاب",
+      "مدينة العاب",
+      "playground",
+      "swing",
+      "kids playing",
+      "children playing"
+    ],
+    "body": "Children playing: running and chasing with sudden turns and laughter, swings arcing back and forth with the chains taut and the child leaning back, slides with a whoosh, a ball kicked badly and chased, falling onto grass and getting up laughing; parents watching from a bench."
+  },
+  {
+    "id": "action.work-office",
+    "domain": "action",
+    "names": [
+      "شغل",
+      "دوام",
+      "موظف",
+      "اجتماع",
+      "شركة",
+      "work",
+      "office",
+      "meeting",
+      "company",
+      "business"
+    ],
+    "body": "Office work for real: people typing and looking at screens, a meeting around a table with someone presenting on a screen and others nodding and taking notes, coffee cups, a handshake at the end; modern Iraqi offices: glass partitions, ID badges, business casual clothes."
+  },
+  {
+    "id": "action.medical-lab",
+    "domain": "action",
+    "names": [
+      "مختبر",
+      "تحليل",
+      "تحاليل",
+      "عينة",
+      "دكتور",
+      "طبيب",
+      "مستشفى",
+      "عيادة",
+      "laboratory",
+      "lab",
+      "clinic",
+      "doctor",
+      "hospital",
+      "test"
+    ],
+    "body": "Medical laboratory or clinic: clean white and pale-blue interior, technicians in white coats and gloves, pipettes drawing samples into labelled tubes, centrifuges spinning with a hum, microscopes, analysers with screens showing results, a friendly receptionist and a comfortable waiting area, a patient smiling while a nurse gently takes a blood sample (no needles close-up, no blood emphasis); trust and care in every face."
+  },
+  {
+    "id": "action.restaurant-service",
+    "domain": "action",
+    "names": [
+      "مطعم",
+      "ويتر",
+      "طلبية",
+      "توصيل",
+      "restaurant",
+      "waiter",
+      "delivery",
+      "serving"
+    ],
+    "body": "Restaurant service: a waiter carries plates balanced on the arm, sets them down gently and presents the dish, steam rises from hot food, customers' eyes light up, they lean in to smell, the first bite and a satisfied nod; a delivery rider hands over a bag with a smile."
+  }
 ]
