@@ -88,5 +88,35 @@
     "always": true,
     "priority": 99,
     "body": "REAL LIGHT AND LENS: one believable light setup (time of day and direction stated, soft or hard as it would really be), shadows and reflections that match it, materials that react correctly (metal reflects, glass refracts, fabric absorbs, wet surfaces shine), a stated lens and depth of field, and a clear composition (subject placement, foreground and background). Objects and buildings have correct proportions, straight lines where they should be, readable real details and no melted or merged shapes."
+  },
+  {
+    "id": "core.video.continuity",
+    "domain": "reality",
+    "kinds": [
+      "video"
+    ],
+    "always": true,
+    "priority": 99,
+    "body": "CONTINUITY – NOTHING POPS IN OR OUT: name every important object, person, animal and vehicle once, give it a fixed place and keep it for the whole clip – same number, shape, size, colour, logo and position unless the action moves it. Anything that leaves the frame or goes behind something comes back exactly the same; nothing appears from nowhere, vanishes, duplicates, merges or morphs. Keep the scene simple enough to follow (few key objects, one main action, one smooth camera move); background buildings, trees, signs and furniture stay fixed in place while the camera moves."
+  },
+  {
+    "id": "core.video.environment",
+    "domain": "nature",
+    "kinds": [
+      "video"
+    ],
+    "always": true,
+    "priority": 93,
+    "body": "THE WORLD AROUND IS REAL TOO: the environment behaves consistently – one weather and time of day, wind from one direction moving everything that can move (hair, cloth, leaves, flags, dust, water), real crowds and traffic flowing in their own directions with individual behaviour, nature with organic irregular shapes (no repeated trees or rocks), cities with correct architecture for the place, readable real signage, wet or dry surfaces matching the weather, and light that falls on everything from the same sources."
+  },
+  {
+    "id": "core.image.items",
+    "domain": "item",
+    "kinds": [
+      "image"
+    ],
+    "always": true,
+    "priority": 98,
+    "body": "EVERY ITEM LOOKS MANUFACTURED AND REAL: correct parts in the right places (a car has four round wheels and matching mirrors, a phone has its real camera layout, a cup has a handle that joins it), real materials (metal, glass, wood, fabric, plastic each reflecting light their own way), correct scale to people, readable real text and logos only where they belong, objects resting on surfaces with contact shadows, nothing merged, melted, duplicated or floating, and an environment that fits the place, season and time of day."
   }
 ]

@@ -199,6 +199,9 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
   if (kind === "video" && audioUrl) input.target_audio_url = audioUrl;
   // the avoid-list: MiniMax has no negative field, so it goes into the prompt (pictures and videos); Kling has its own field
   if (negative && !input.negative_prompt) input.prompt += `. Avoid: ${negative}`;
+  // video models reject very long prompts: keep the description, shorten the avoid-list first
+  const MAX = Number(process.env.FAL_MAX_PROMPT_CHARS) || 1900;
+  if (input.prompt.length > MAX) input.prompt = input.prompt.slice(0, MAX).replace(/[,;]s*[^,;]*$/, "");
   let r;
   try {
     r = await fal("POST", model, input);

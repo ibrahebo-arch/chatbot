@@ -215,6 +215,11 @@ The task line may say that pictures are attached, each with a role. Look at ever
 
 - Video: every visible person breathes, blinks and reacts with the face (§4b); the prompt has the sentence for it.
 - A named place is shown through its real landmarks or the LOCATION REFERENCE (§5b).
+- Continuity (video): every important object, person, animal and vehicle is named once with a fixed place and stays the
+  same for the whole clip – nothing vanishes, appears from nowhere, duplicates or changes shape, number or colour.
+  Keep it followable: few key objects, one main action, one smooth camera move.
+- Reality of things: items are described as manufactured and correct (parts, materials, scale, logos where they really
+  are); environments behave consistently (one weather, wind direction, light sources, traffic and crowd flow).
 
 - Is every element of the customer's idea in the prompt? (people, place, product, action, mood, language)
 - Would a stranger reading the prompt see the same picture the customer imagined?

@@ -13,6 +13,7 @@ const db = require("./db");
 const media = require("./media");
 const storage = require("./storage");
 const watermark = require("./watermark");
+const qa = require("./qa");
 const orders = require("./orders");
 const voices = require("./voices");
 
@@ -113,10 +114,23 @@ async function stampAndStore(job, original) {
  * If stamping fails twice the job fails (and is not counted) – an unstamped file is never shown.
  */
 async function finalize(job, original = null) {
-  let lastError;
+  let lastError, raw = original;
+  // videos: the realism/continuity check first; a clear failure is made once more with the problems to avoid
+  if (job.kind === "video" && !original && qa.ENABLED) {
+    try {
+      raw = await download(job.raw_url);
+      const verdict = await qa.check(raw, job.model_prompt || job.prompt);
+      if (verdict) {
+        await db.query("UPDATE trial_jobs SET qa = coalesce(qa, '[]'::jsonb) || $2::jsonb WHERE id = $1",
+          [job.id, JSON.stringify([{ ...verdict, model: job.model, at: new Date().toISOString() }])]);
+        console.log(`free ticket ${job.ticket}: qa ${verdict.score}/10${verdict.issues.length ? " – " + verdict.issues.join("; ") : ""}`);
+        if (verdict.retry && (job.qa_retries || 0) < 1 && !job.image_first_frame && (await remake(job, verdict))) return;
+      }
+    } catch (e) { console.error(`trial qa ${job.ticket}:`, e.message); }
+  }
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      const buf = original || (await download(job.raw_url));
+      const buf = raw || (await download(job.raw_url));
       if (job.kind === "image") await storage.put(`trial/src/${job.ticket}.jpg`, buf, { contentType: "image/jpeg" });
       const key = await stampAndStore(job, buf);
       const done = (await db.query(
@@ -134,6 +148,31 @@ async function finalize(job, original = null) {
   }
   await db.query("UPDATE trial_jobs SET status = 'failed', error = $2, finished_at = now() WHERE id = $1 AND status IN ('queued','running')", [job.id, `could not finish: ${lastError.message}`.slice(0, 300)])
     .catch((e2) => console.error(`trial finalize ${job.ticket} (saving the failure):`, e2.message)); // e.g. during a shutdown
+}
+
+/**
+ * Makes a video again after a failed quality check: same prompt and voice track, plus the problems the check found
+ * as things to avoid. Only within the daily budget; the job stays "running" and is picked up by the normal polling.
+ */
+async function remake(job, verdict) {
+  try {
+    const audio = job.audio_key && storage.ready ? await storage.getBuffer(job.audio_key, 15 * 1048576).catch(() => null) : null;
+    const audioUrl = audio ? media.audioDataUri(audio) : null;
+    const cost = media.videoCost(Boolean(audioUrl));
+    if ((await spentToday()) + cost > DAILY_BUDGET) return false;
+    const plan = typeof job.plan === "string" ? JSON.parse(job.plan) : job.plan || {};
+    const prompt = `${job.model_prompt || job.prompt} Keep every object, person and building continuous and unchanged for the whole clip. Avoid especially: ${qa.retryAvoid(verdict.issues)}.`;
+    const r = await media.submit("video", { prompt, style: job.style, imageUrl: null, audioUrl, negative: plan.negative || "" });
+    const row = (await db.query(
+      `UPDATE trial_jobs SET provider_job_id = $2, model = $3, cost_usd = cost_usd + $4, raw_url = NULL, checked_at = now(), qa_retries = qa_retries + 1
+        WHERE id = $1 AND status IN ('queued','running') RETURNING id`, [job.id, r.jobId, r.model, r.cost]
+    )).rows[0];
+    if (row) console.log(`free ticket ${job.ticket}: remade after qa (${verdict.score}/10)`);
+    return Boolean(row);
+  } catch (e) {
+    console.error(`trial remake ${job.ticket}:`, e.message);
+    return false;
+  }
 }
 
 /** Results made before the mark existed: stamp the stored copy in place (and keep the clean original). */
@@ -328,8 +367,8 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
       }
       const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "" });
       const row = (await db.query(
-        "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running' WHERE id = $1 RETURNING *",
-        [job.id, r.provider, r.model, r.jobId, r.cost]
+        "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running', image_first_frame = $6 WHERE id = $1 RETURNING *",
+        [job.id, r.provider, r.model, r.jobId, r.cost, Boolean(imageUrl)]
       )).rows[0];
       return { job: row, token: job.token };
     } catch (e) {

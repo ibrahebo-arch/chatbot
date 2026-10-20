@@ -202,6 +202,11 @@ async function plan(conversation, opts) {
   const p = fixed || d.plan;
   applyVoice(p, o);
   if (o.kind === "video" && !/frozen|mannequin/i.test(p.negative || "")) p.negative = [p.negative, "frozen face, mannequin stillness, statue-like pose, no blinking, dead eyes, rigid stare"].filter(Boolean).join(", ");
+  // reality and continuity are always on the avoid-list (objects popping in/out was the most common flaw)
+  const always = o.kind === "video"
+    ? "objects disappearing, objects appearing from nowhere, objects changing number or shape, popping, morphing, melting, warped buildings, floating objects, sliding feet, flicker"
+    : "merged objects, extra parts, melted shapes, warped text, impossible geometry, floating objects";
+  if (!/appearing from nowhere|merged objects/i.test(p.negative || "")) p.negative = [p.negative, always].filter(Boolean).join(", ").slice(0, 600);
   return { plan: p, by: claude ? `${d.by}+${CLAUDE_MODEL}` : second ? `${d.by}+review` : d.by, library: lib.ids };
 }
 
