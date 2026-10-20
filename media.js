@@ -22,6 +22,8 @@ const MODELS = {
   video: clean(process.env.FAL_VIDEO_MODEL) || "minimax/h3-max-turbo/text-to-video",
   i2v: clean(process.env.FAL_I2V_MODEL) || "minimax/h3-max-turbo/image-to-video",
 };
+// MiniMax video resolution (h3-max: 480P / 768P / 1080P)
+const VIDEO_RESOLUTION = ["480P", "768P", "1080P"].includes(clean(process.env.FAL_VIDEO_RESOLUTION)) ? clean(process.env.FAL_VIDEO_RESOLUTION) : "768P";
 const VIDEO_SECONDS = Math.min(10, Math.max(2, Number(process.env.TRIAL_VIDEO_SECONDS) || 10));
 const COST = {
   image: Number(process.env.TRIAL_IMAGE_COST_USD) || 0.003,
@@ -190,10 +192,10 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
       ...(imageUrl ? { start_image_url: imageUrl } : { aspect_ratio: "16:9" }) };
   } else if (imageUrl) {
     model = MODELS.i2v;
-    input = { prompt: `${s.video} ${prompt}`, image_url: imageUrl, duration: VIDEO_SECONDS, resolution: "768P", enable_safety_checker: true, prompt_expansion_mode: "disabled" };
+    input = { prompt: `${s.video} ${prompt}`, image_url: imageUrl, duration: VIDEO_SECONDS, resolution: VIDEO_RESOLUTION, enable_safety_checker: true, prompt_expansion_mode: "disabled" };
   } else {
     model = MODELS.video;
-    input = { prompt: `${s.video} ${prompt}`, duration: VIDEO_SECONDS, resolution: "768P", aspect_ratio: "16:9", enable_safety_checker: true, prompt_expansion_mode: "disabled" };
+    input = { prompt: `${s.video} ${prompt}`, duration: VIDEO_SECONDS, resolution: VIDEO_RESOLUTION, aspect_ratio: "16:9", enable_safety_checker: true, prompt_expansion_mode: "disabled" };
   }
   // the spoken line as the soundtrack: the model animates the mouth to it (MiniMax target_audio_url, ≥ 2 s, ≤ 15 MB)
   if (kind === "video" && audioUrl) input.target_audio_url = audioUrl;
