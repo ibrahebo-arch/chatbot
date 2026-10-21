@@ -25,7 +25,7 @@ const MODELS = {
 // MiniMax video resolution (h3-max: 480P / 768P / 1080P)
 const VIDEO_RESOLUTION = ["480P", "768P", "1080P"].includes(clean(process.env.FAL_VIDEO_RESOLUTION)) ? clean(process.env.FAL_VIDEO_RESOLUTION) : "768P";
 // picture size for the fal picture model: a preset name or WIDTHxHEIGHT (FAL_IMAGE_SIZE, e.g. 1536x1152)
-const IMAGE_SIZE = (() => { const v = clean(process.env.FAL_IMAGE_SIZE); const m = v.match(/^(d{3,4})x(d{3,4})$/); return m ? { width: Number(m[1]), height: Number(m[2]) } : v || "landscape_4_3"; })();
+const IMAGE_SIZE = (() => { const v = clean(process.env.FAL_IMAGE_SIZE); const m = v.match(/^(\d{3,4})x(\d{3,4})$/); return m ? { width: Number(m[1]), height: Number(m[2]) } : v || "landscape_4_3"; })();
 const VIDEO_SECONDS = Math.min(10, Math.max(2, Number(process.env.TRIAL_VIDEO_SECONDS) || 10));
 const COST = {
   image: Number(process.env.TRIAL_IMAGE_COST_USD) || 0.003,
