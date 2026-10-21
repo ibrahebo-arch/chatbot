@@ -26,6 +26,7 @@ const MODELS = {
 const VIDEO_RESOLUTION = ["480P", "768P", "1080P"].includes(clean(process.env.FAL_VIDEO_RESOLUTION)) ? clean(process.env.FAL_VIDEO_RESOLUTION) : "768P";
 // picture size for the fal picture model: a preset name or WIDTHxHEIGHT (FAL_IMAGE_SIZE, e.g. 1536x1152)
 const IMAGE_SIZE = (() => { const v = clean(process.env.FAL_IMAGE_SIZE); const m = v.match(/^(\d{3,4})x(\d{3,4})$/); return m ? { width: Number(m[1]), height: Number(m[2]) } : v || "landscape_4_3"; })();
+const IMAGE_RESOLUTION = ["1K", "2K", "4K"].includes(clean(process.env.FAL_IMAGE_RESOLUTION)) ? clean(process.env.FAL_IMAGE_RESOLUTION) : "2K";
 const VIDEO_SECONDS = Math.min(10, Math.max(2, Number(process.env.TRIAL_VIDEO_SECONDS) || 10));
 const COST = {
   image: Number(process.env.TRIAL_IMAGE_COST_USD) || 0.003,
@@ -186,7 +187,10 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
   let model, input;
   if (kind === "image") {
     model = MODELS.image;
-    input = { prompt: `${s.image} ${prompt}`, image_size: IMAGE_SIZE, num_images: 1, enable_safety_checker: true, output_format: "jpeg" };
+    input = /nano-banana/.test(model)
+      // Google's Nano Banana (Pro): aspect ratio + resolution instead of a pixel size
+      ? { prompt: `${s.image} ${prompt}`, aspect_ratio: "4:3", resolution: IMAGE_RESOLUTION, num_images: 1, output_format: "jpeg" }
+      : { prompt: `${s.image} ${prompt}`, image_size: IMAGE_SIZE, num_images: 1, enable_safety_checker: true, output_format: "jpeg" };
   } else if (PREMIUM.on && !audioUrl) {
     model = imageUrl ? PREMIUM.i2v : PREMIUM.video;
     input = { prompt: `${s.video} ${prompt}`, duration: String(VIDEO_SECONDS), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
