@@ -816,6 +816,10 @@
   function voiceFromText(text) {
     const t = String(text || ""), changed = [];
     const about = /صوت|يتكلم|تتكلم|يحچي|تحچي|يحكي|تحكي|يكول|تكول|يقول|تقول|المتكلم|الشخصية/.test(t);
+    const spoken = [[/بالفصحى|فصحى|فصيحة|عربية فصحى/, "ar", "فصحى"], [/باللهجة العراقية|لهجة عراقية|بالعراقي|عراقي (لهجة)|باللهجة البغدادية/, "ar-IQ", "عراقي"],
+      [/بالانجليزي|بالإنجليزي|بالانكليزي|باللغة الانجليزية|باللغة الإنجليزية|in english|english voice/i, "en", "English"], [/بالكردي|بالكوردي|باللغة الكردية|باللهجة الكردية/, "ku", "كوردي"], [/بالتركي|باللغة التركية/, "tr", "Türkçe"], [/بالفارسي|باللغة الفارسية/, "fa", "فارسی"]];
+    const sp = spoken.find(([re]) => re.test(t));
+    if (sp && $("trialVoice").value !== sp[1]) { $("trialVoice").value = sp[1]; renderVoice(); changed.push(`لغة الكلام: ${sp[2]}`); }
     if (/بدون صوت|بلا صوت|بدون كلام/.test(t)) { if (trial.mode === "free") $("trialVoice").value = "none"; else setLanguage("بدون كلام"); renderVoice(); changed.push("بدون صوت"); return changed; }
     if (voice.clip?.ok && /(حول|حوّل|غير|غيّر|بدل|بدّل)\s*صوتي|كلامي بصوت/.test(t)) { setVoiceMode("convert"); changed.push("كلامك بصوت الشخصية"); }
     else if (voice.clip?.ok && /بصوتي|صوتي آني|نفس صوتي|صوتي كما/.test(t)) { setVoiceMode("own"); changed.push("صوتك كما هو"); }
