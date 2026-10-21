@@ -431,7 +431,11 @@ async function refresh(job) {
   }
   if (job.checked_at && Date.now() - new Date(job.checked_at).getTime() < 3000) return job;
   let r;
-  try { r = await media.poll(job); } catch (e) { console.error(`trial poll ${job.id}:`, e.message); r = { status: "running" }; }
+  try { r = await media.poll(job); } catch (e) {
+    console.error(`trial poll ${job.id}:`, e.message.slice(0, 200));
+    // the provider rejected the request itself (bad input): fail now (not counted) instead of waiting 30 minutes
+    r = /^fal (400|404|422)/.test(e.message) ? { status: "failed", error: e.message.slice(0, 300) } : { status: "running" };
+  }
   // a job that never finishes is closed after 30 minutes (and not counted)
   if (r.status === "running" && Date.now() - new Date(job.created_at).getTime() > 30 * 60e3) r = { status: "failed", error: "timed out" };
   if (r.status === "done") {
