@@ -989,6 +989,8 @@
       if (v.name.startsWith("قبل وبعد") || v.name.startsWith("مقارنة")) frame.classList.add("compare");
       setTimeout(() => {
         vid.src = v.url;
+        // vertical (9:16) videos: show the whole frame instead of a 16:9 crop
+        vid.addEventListener("loadedmetadata", () => { if (!frame.classList.contains("compare") && vid.videoHeight > vid.videoWidth) frame.classList.add("tall"); }, { once: true });
         vid.addEventListener("loadeddata", () => { frame.classList.add("ready"); vid.play().catch(() => {}); }, { once: true });
         setTimeout(() => frame.classList.add("ready"), 9000);
       }, 200 + i * 250);
