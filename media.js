@@ -100,13 +100,15 @@ const audioDataUri = (buf) => `data:audio/mpeg;base64,${buf.toString("base64")}`
 const openaiReady = Boolean(OPENAI_KEY);
 
 COST.openaiEdit = Number(process.env.OPENAI_EDIT_COST_USD) || 0.10;
+// GPT Image 2.5 (gpt-image-2.5-flare / -sunburst) keeps faces on its own and rejects input_fidelity
+const takesFidelity = (model) => !/^gpt-image-2\.5/.test(model);
 const ROLE_TEXT = { char1: "Character 1", char2: "Character 2", char3: "Character 3", ref: "style/place/product reference (not a person to copy)" };
 
 /**
  * A picture made FROM the customer's photos (ChatGPT image edit): the people in the photos appear in the
  * described scene with the same faces, hair and clothes. refs: [{ role, buf }] (JPEG buffers, max 3).
  */
-async function openaiImageEdit(prompt, style, refs) {
+async function openaiImageEdit(prompt, style, refs, { size = "auto" } = {}) {
   const s = STYLE[style] || STYLE.realistic;
   const roles = refs.map((r, i) => `Picture ${i + 1} is ${ROLE_TEXT[r.role] || ROLE_TEXT.ref}`).join("; ");
   const text = `${s.image} ${prompt}\n${roles}. Every person in a character picture must appear in the scene with exactly the same face, hair, skin tone and clothing as in their picture. A reference picture only gives style, place or product – do not copy its people.`;
@@ -115,11 +117,11 @@ async function openaiImageEdit(prompt, style, refs) {
     fd.append("model", OPENAI_IMAGE_MODEL);
     fd.append("prompt", text);
     refs.forEach((r, i) => fd.append("image[]", new Blob([r.buf], { type: "image/jpeg" }), `picture-${i + 1}.jpg`));
-    fd.append("size", "auto"); fd.append("quality", OPENAI_IMAGE_QUALITY); fd.append("output_format", "jpeg");
+    fd.append("size", size); fd.append("quality", OPENAI_IMAGE_QUALITY); fd.append("output_format", "jpeg");
     if (withFidelity) fd.append("input_fidelity", "high"); // keeps the faces
     return fetch(`${OPENAI_BASE}/v1/images/edits`, { method: "POST", headers: { Authorization: `Bearer ${OPENAI_KEY}` }, body: fd, signal: AbortSignal.timeout(180000) });
   };
-  let r = await send(true);
+  let r = await send(takesFidelity(OPENAI_IMAGE_MODEL));
   if (r.status === 400) r = await send(false); // a model without input_fidelity
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(`openai image edit ${r.status} ${String(j.error?.message || "").slice(0, 200)}`);
@@ -138,12 +140,12 @@ function markFalDown(err) {
 const useOpenAIImage = (style) => openaiReady && (!falUp() || OPENAI_STYLES.includes(style));
 
 /** One picture from the ChatGPT image model → JPEG Buffer. */
-async function openaiImage(prompt, style) {
+async function openaiImage(prompt, style, { size = "1024x1024" } = {}) {
   const s = STYLE[style] || STYLE.realistic;
   const r = await fetch(`${(clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "")}/v1/images/generations`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENAI_KEY}` },
-    body: JSON.stringify({ model: OPENAI_IMAGE_MODEL, prompt: `${s.image} ${prompt}`, size: "1024x1024", quality: OPENAI_IMAGE_QUALITY, output_format: "jpeg", n: 1 }),
+    body: JSON.stringify({ model: OPENAI_IMAGE_MODEL, prompt: `${s.image} ${prompt}`, size, quality: OPENAI_IMAGE_QUALITY, output_format: "jpeg", n: 1 }),
     signal: AbortSignal.timeout(120000),
   });
   const j = await r.json().catch(() => ({}));
@@ -151,6 +153,49 @@ async function openaiImage(prompt, style) {
   const b64 = j.data?.[0]?.b64_json;
   if (!b64) throw new Error("openai image: nothing returned");
   return Buffer.from(b64, "base64");
+}
+
+// Realism pass (IMAGE_REALISM_PASS=1): the ChatGPT picture goes through Nano Banana Pro once more, told to keep
+// everything (faces, pose, place) and only make it a real camera photo. The customer's character photos go along
+// so the faces stay theirs. Any failure keeps the ChatGPT picture – the pass never costs the visitor a result.
+const falRun = () => (clean(process.env.FAL_RUN_URL) || "https://fal.run").replace(/\/+$/, "");
+const REALISM_MODEL = clean(process.env.FAL_REALISM_MODEL) || "fal-ai/nano-banana-pro/edit";
+COST.realism = Number(process.env.REALISM_COST_USD) || 0.15;
+const realismOn = () => clean(process.env.IMAGE_REALISM_PASS) === "1" && configured;
+const jpegUri = (buf) => `data:image/jpeg;base64,${buf.toString("base64")}`;
+async function realism(buf, refs = []) {
+  const people = refs.filter((r) => r.role !== "ref");
+  const prompt = `Picture 1 is the final picture. Keep it EXACTLY as it is – the same people, faces, expressions, pose, framing, clothes, objects, place and light; do not change anyone's identity.${people.length ? ` The other pictures show the real people – their faces in the result must stay identical to these.` : ""} Only raise the realism to a high-end full-frame camera photograph: real skin texture with pores, individual hair strands, real fabric and material detail, crisp catchlights in the eyes, natural lens depth of field, correct hands with five fingers. No airbrushing, no text, no watermark.`;
+  try {
+    const r = await fetch(`${falRun()}/${REALISM_MODEL}`, {
+      method: "POST",
+      headers: { Authorization: `Key ${FAL_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt, image_urls: [jpegUri(buf), ...people.map((p) => jpegUri(p.buf))], aspect_ratio: "auto", resolution: IMAGE_RESOLUTION, num_images: 1, output_format: "jpeg" }),
+      signal: AbortSignal.timeout(180000),
+    });
+    const d = await r.json().catch(() => ({}));
+    const url = d.images?.[0]?.url;
+    if (!r.ok || !url) throw new Error(`${r.status} ${JSON.stringify(d.detail || d).slice(0, 160)}`);
+    if (d.has_nsfw_concepts?.[0]) throw new Error("blocked by the safety filter");
+    if (!isProviderUrl(url)) throw new Error("unexpected result link");
+    const img = await fetch(url, { signal: AbortSignal.timeout(60000) });
+    if (!img.ok) throw new Error(`download ${img.status}`);
+    return Buffer.from(await img.arrayBuffer());
+  } catch (e) {
+    console.error(`realism pass skipped (${String(e.message).slice(0, 160)}) – the ChatGPT picture is used`);
+    return buf;
+  }
+}
+
+// Start frame for every video (VIDEO_START_FRAME=1): the opening moment is made as a picture first (ChatGPT
+// image – an edit of the customer's photos when there are any – then the realism pass), and the video is
+// animated from it. Steadier faces, places and objects than text-to-video.
+const startFrameOn = () => clean(process.env.VIDEO_START_FRAME) === "1" && openaiReady;
+const frameCost = (hasRefs, style) => (hasRefs ? COST.openaiEdit : COST.openaiImage) + (style === "realistic" && realismOn() ? COST.realism : 0);
+async function startFrame(prompt, style, refs = []) {
+  const text = `The first frame of a video – one still photo of its opening moment: ${prompt}`;
+  const buf = refs.length ? await openaiImageEdit(text, style, refs, { size: "1536x1024" }) : await openaiImage(text, style, { size: "1536x1024" });
+  return style === "realistic" && realismOn() ? realism(buf, refs) : buf;
 }
 
 // Style is added in English (models follow English prompts best); the visitor's idea comes after it.
@@ -244,6 +289,7 @@ async function poll({ model, provider_job_id: id, kind }) {
 
 module.exports = {
   configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
+  realism, realismOn, startFrame, startFrameOn, frameCost, REALISM_MODEL,
   resetFal: () => { falDownUntil = 0; },
   submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE, PREMIUM, videoCost,
 };

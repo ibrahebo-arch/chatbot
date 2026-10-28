@@ -1048,7 +1048,7 @@ async function start() {
     sweepUploads().catch((e) => console.error("upload cleanup:", e.message));
     setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();
     if (trial.enabled()) {
-      console.log(`Free trial: on (prompts ${PROMPT_MODEL}${planner.reviewEnabled ? " + review " + planner.CLAUDE_MODEL : ""} · voice ${media.TTS_MODEL} · pictures: fal ${media.MODELS.image}${media.openaiReady && storage.ready ? ` + ChatGPT ${media.OPENAI_IMAGE_MODEL} for ${process.env.TRIAL_OPENAI_STYLES ?? "cartoon"} and when fal is out` : ""} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
+      console.log(`Free trial: on (prompts ${PROMPT_MODEL}${planner.reviewEnabled ? " + review " + planner.CLAUDE_MODEL : ""} · voice ${media.TTS_MODEL} · pictures: fal ${media.MODELS.image}${media.openaiReady && storage.ready ? ` + ChatGPT ${media.OPENAI_IMAGE_MODEL} for ${process.env.TRIAL_OPENAI_STYLES ?? "cartoon"} and when fal is out` : ""}${media.realismOn() ? ` + realism pass ${media.REALISM_MODEL}` : ""}${media.startFrameOn() ? " · videos start from a made picture" : ""} · video ${media.MODELS.video} ${media.VIDEO_SECONDS}s · ${trial.LIMIT.image} images + ${trial.LIMIT.video} video per IP · $${trial.DAILY_BUDGET}/day cap)`);
       console.log("Free trial watermark: on (VI-Iraq mark, bottom-right, on every picture and video)");
       trial.startSweeper();
     } else console.log(`Free trial: OFF (needs FAL_KEY or OPENAI_API_KEY, storage${require("./watermark").ready ? "" : ", and ffmpeg"})`);

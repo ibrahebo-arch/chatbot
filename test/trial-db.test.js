@@ -22,6 +22,8 @@ const fixtures = {};
 function makeFixtures() {
   const ff = (args) => spawnSync(watermark.FFMPEG, ["-v", "error", "-y", ...args]);
   ff(["-f", "lavfi", "-i", "color=c=0x707070:s=1024x768", "-frames:v", "1", path.join(work, "img.jpg")]);
+  ff(["-f", "lavfi", "-i", "color=c=0x305070:s=1024x768", "-frames:v", "1", path.join(work, "real.jpg")]);
+  fixtures.real = fs.readFileSync(path.join(work, "real.jpg"));
   ff(["-f", "lavfi", "-i", "color=c=0x707070:s=640x360:d=1:r=24", "-f", "lavfi", "-i", "sine=frequency=440:duration=1", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac", "-shortest", path.join(work, "vid.mp4")]);
   fixtures.jpg = fs.readFileSync(path.join(work, "img.jpg"));
   fixtures.mp4 = fs.readFileSync(path.join(work, "vid.mp4"));
@@ -33,6 +35,7 @@ let failNextSubmit = false;
 const openaiCalls = [];
 const editCalls = []; // /v1/images/edits (multipart): { type, body }
 const ttsCalls = [];
+const realismCalls = [];
 let base = "";
 const fake = http.createServer((req, res) => {
   let body = "";
@@ -40,6 +43,12 @@ const fake = http.createServer((req, res) => {
     const send = (code, data) => { res.writeHead(code, { "Content-Type": "application/json" }); res.end(JSON.stringify(data)); };
     if (req.url === "/f/img.jpg") { res.writeHead(200, { "Content-Type": "image/jpeg" }); return res.end(fixtures.jpg); }
     if (req.url === "/f/vid.mp4") { res.writeHead(200, { "Content-Type": "video/mp4" }); return res.end(fixtures.mp4); }
+    if (req.url === "/f/real.jpg") { res.writeHead(200, { "Content-Type": "image/jpeg" }); return res.end(fixtures.real); }
+    if (req.method === "POST" && req.url === "/fal-ai/nano-banana-pro/edit") { // the realism pass (fal's direct, synchronous endpoint)
+      if (req.headers.authorization !== "Key test-fal-key") return send(401, { detail: "bad key" });
+      realismCalls.push(JSON.parse(body));
+      return send(200, { images: [{ url: `${base}/f/real.jpg` }], has_nsfw_concepts: [false] });
+    }
     if (req.url === "/v1/audio/speech") {
       ttsCalls.push(JSON.parse(body));
       res.writeHead(200, { "Content-Type": "audio/mpeg" }); return res.end(Buffer.alloc(4000, 1)); // 4 KB of "mp3"
@@ -331,6 +340,44 @@ test("animating a trial picture keeps its own first frame – chat pictures are 
   const refs = await trial.refsFrom([{ role: "user", content: "x", files: [await chatPicture("char1")] }]);
   const vid = await trial.start({ ip, kind: "video", style: "realistic", prompt: "move", sourceJobId: img.job.id, sourceToken: img.token, refs });
   assert.equal(jobs.get(vid.job.provider_job_id).input.image_url, `data:image/jpeg;base64,${fixtures.jpg.toString("base64")}`);
+});
+
+test("realism pass: a realistic ChatGPT picture goes through Nano Banana Pro with the customer's faces; cartoons do not", { skip }, async () => {
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  Object.assign(process.env, { IMAGE_REALISM_PASS: "1", FAL_RUN_URL: base });
+  try {
+    const refs = await trial.refsFrom([{ role: "user", content: "x", files: [await chatPicture("char1"), await chatPicture("ref")] }]);
+    const { job, token } = await trial.start({ ip: "198.51.100.50", kind: "image", style: "realistic", prompt: "us at dinner", modelPrompt: "A couple at dinner", refs });
+    assert.equal(Number(job.cost_usd), 0.25, "edit + realism pass");
+    const done = await settle(job.id, token);
+    assert.equal(done.status, "done");
+    assert.ok((await storage.getBuffer(`trial/src/${job.ticket}.jpg`)).equals(fixtures.real), "the realism result is what the visitor gets");
+    const call = realismCalls.at(-1);
+    assert.equal(call.image_urls.length, 2, "the picture + the Character 1 photo (a reference picture is not a face)");
+    assert.match(call.prompt, /Keep it EXACTLY/);
+    const before = realismCalls.length;
+    const c = await trial.start({ ip: "198.51.100.51", kind: "image", style: "cartoon", prompt: "a cat", modelPrompt: "a cat" });
+    assert.equal((await settle(c.job.id, c.token)).status, "done");
+    assert.equal(realismCalls.length, before, "a cartoon stays a cartoon");
+  } finally { delete process.env.IMAGE_REALISM_PASS; delete process.env.FAL_RUN_URL; }
+});
+
+test("video start frame: the opening moment is made as a picture first, the video animates it, and it is kept", { skip }, async () => {
+  await db.query("UPDATE trial_jobs SET cost_usd = 0");
+  require("../media").resetFal();
+  process.env.VIDEO_START_FRAME = "1";
+  try {
+    const { job } = await trial.start({ ip: "198.51.100.52", kind: "video", style: "realistic", prompt: "a man in a café", modelPrompt: "A man drinks tea in a Baghdad café" });
+    const gen = openaiCalls.at(-1);
+    assert.equal(gen.size, "1536x1024");
+    assert.match(gen.prompt, /first frame of a video/i);
+    assert.match(gen.prompt, /Baghdad café/);
+    const sent = jobs.get(job.provider_job_id);
+    assert.match(job.model, /image-to-video/);
+    assert.equal(sent.input.image_url, `data:image/jpeg;base64,${fixtures.jpg.toString("base64")}`, "the made picture is the first frame");
+    assert.equal(job.image_first_frame, true);
+    assert.ok((await storage.getBuffer(`trial/frame/${job.ticket}.jpg`)).equals(fixtures.jpg), "kept for a quality-check remake");
+  } finally { delete process.env.VIDEO_START_FRAME; }
 });
 
 test("results made before the mark existed are stamped in place, and are not shown until then", { skip }, async () => {

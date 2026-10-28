@@ -124,7 +124,7 @@ async function finalize(job, original = null) {
         await db.query("UPDATE trial_jobs SET qa = coalesce(qa, '[]'::jsonb) || $2::jsonb WHERE id = $1",
           [job.id, JSON.stringify([{ ...verdict, model: job.model, at: new Date().toISOString() }])]);
         console.log(`free ticket ${job.ticket}: qa ${verdict.score}/10${verdict.issues.length ? " – " + verdict.issues.join("; ") : ""}`);
-        if (verdict.retry && (job.qa_retries || 0) < 1 && !job.image_first_frame && (await remake(job, verdict))) return;
+        if (verdict.retry && (job.qa_retries || 0) < 1 && (await remake(job, verdict))) return;
       }
     } catch (e) { console.error(`trial qa ${job.ticket}:`, e.message); }
   }
@@ -158,11 +158,15 @@ async function remake(job, verdict) {
   try {
     const audio = job.audio_key && storage.ready ? await storage.getBuffer(job.audio_key, 15 * 1048576).catch(() => null) : null;
     const audioUrl = audio ? media.audioDataUri(audio) : null;
+    // a video that started from a picture is made again from the same picture (our start frame); without it
+    // (a customer photo or an animated trial picture that was not kept) it is not remade
+    const frame = job.image_first_frame && storage.ready ? await storage.getBuffer(`trial/frame/${job.ticket}.jpg`, 25 * 1048576).catch(() => null) : null;
+    if (job.image_first_frame && !frame) return false;
     const cost = media.videoCost(Boolean(audioUrl));
     if ((await spentToday()) + cost > DAILY_BUDGET) return false;
     const plan = typeof job.plan === "string" ? JSON.parse(job.plan) : job.plan || {};
     const prompt = `${job.model_prompt || job.prompt} Keep every object, person and building continuous and unchanged for the whole clip. Avoid especially: ${qa.retryAvoid(verdict.issues)}.`;
-    const r = await media.submit("video", { prompt, style: job.style, imageUrl: null, audioUrl, negative: plan.negative || "" });
+    const r = await media.submit("video", { prompt, style: job.style, imageUrl: frame ? `data:image/jpeg;base64,${frame.toString("base64")}` : null, audioUrl, negative: plan.negative || "" });
     const row = (await db.query(
       `UPDATE trial_jobs SET provider_job_id = $2, model = $3, cost_usd = cost_usd + $4, raw_url = NULL, checked_at = now(), qa_retries = qa_retries + 1
         WHERE id = $1 AND status IN ('queued','running') RETURNING id`, [job.id, r.jobId, r.model, r.cost]
@@ -239,7 +243,8 @@ const view = (j, token = null) => {
 async function runOpenAI(job, refs = []) {
   try {
     const prompt = job.model_prompt || job.prompt;
-    const buf = refs.length ? await media.openaiImageEdit(prompt, job.style, refs) : await media.openaiImage(prompt, job.style);
+    let buf = refs.length ? await media.openaiImageEdit(prompt, job.style, refs) : await media.openaiImage(prompt, job.style);
+    if (job.style === "realistic" && media.realismOn()) buf = await media.realism(buf, refs); // keeps the ChatGPT picture if it fails
     await finalize(job, buf);
   } catch (e) {
     console.error(`trial openai ${job.id}:`, e.message);
@@ -250,7 +255,7 @@ async function runOpenAI(job, refs = []) {
 async function startOpenAI(job, refs = []) {
   const row = (await db.query(
     "UPDATE trial_jobs SET provider = 'openai', model = $2, provider_job_id = $3, cost_usd = $4, status = 'running' WHERE id = $1 RETURNING *",
-    [job.id, media.OPENAI_IMAGE_MODEL, `openai:${job.id}`, refs.length ? media.COST.openaiEdit : media.COST.openaiImage]
+    [job.id, media.OPENAI_IMAGE_MODEL, `openai:${job.id}`, (refs.length ? media.COST.openaiEdit : media.COST.openaiImage) + (job.style === "realistic" && media.realismOn() ? media.COST.realism : 0)]
   )).rows[0];
   runOpenAI(row, refs).catch(() => {}); // not awaited: the visitor's page polls the job
   return row;
@@ -302,10 +307,14 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const editImage = kind === "image" && useRefs && openaiOk();
   // pictures with writing in them go to the ChatGPT image model too (fal's FLUX misspells Arabic text)
   const routeOf = (pl) => kind === "image" && openaiOk() && (editImage || media.useOpenAIImage(style) || Boolean(pl?.onScreenText));
-  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit : routeOf(pl) ? media.COST.openaiImage : kind === "video" ? media.videoCost(Boolean(sp || voice?.clip)) : media.COST[kind]) + (sp ? media.COST.speech : 0);
+  // every video starts from a made picture (VIDEO_START_FRAME=1) – not when animating a trial picture, that has its own
+  const framed = kind === "video" && !sourceJobId && media.startFrameOn() && storage.ready;
+  const frameCost = framed ? media.frameCost(useRefs, style) : 0;
+  const realismCost = kind === "image" && style === "realistic" && media.realismOn() ? media.COST.realism : 0;
+  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit + realismCost : routeOf(pl) ? media.COST.openaiImage + realismCost : kind === "video" ? media.videoCost(Boolean(sp || voice?.clip)) + frameCost : media.COST[kind]) + (sp ? media.COST.speech : 0);
   // with planFn the plan is written after the visitor already has the job: reserve the highest possible cost
   const cost = planFn
-    ? (kind === "video" ? Math.max(media.COST.video + media.COST.speech, media.videoCost(false)) : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image))
+    ? (kind === "video" ? Math.max(media.COST.video + media.COST.speech, media.videoCost(false)) + frameCost : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image) + realismCost)
     : costOf(plan, speech);
 
   // "animate this image": only one of this visitor's own finished images
@@ -364,6 +373,15 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
             await db.query("UPDATE trial_jobs SET audio_key = $2, voice = $3 WHERE id = $1", [job.id, storage.ready ? akey : null, JSON.stringify(st.info)]);
           }
         } catch (e) { console.error(`trial ${job.ticket}: voice failed (${e.message.slice(0, 120)}) – video without voice`); }
+      }
+      // the opening moment as a picture first (ChatGPT image + realism pass, from the customer's photos when given);
+      // kept for a quality-check remake. If it fails the video is made the way it was before.
+      if (framed) {
+        try {
+          const frame = await media.startFrame(modelPrompt || text, style, useRefs ? refs : []);
+          await storage.put(`trial/frame/${job.ticket}.jpg`, frame, { contentType: "image/jpeg" });
+          imageUrl = `data:image/jpeg;base64,${frame.toString("base64")}`;
+        } catch (e) { console.error(`trial ${job.ticket}: start frame failed (${e.message.slice(0, 120)}) – video without it`); }
       }
       const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "" });
       const row = (await db.query(
