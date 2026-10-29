@@ -418,7 +418,8 @@ async function report(db, { hours = 24 } = {}) {
   const cands = (await db.query(`SELECT * FROM trained_candidates WHERE created_at > now() - $1::interval OR reviewed_at > now() - $1::interval ORDER BY id`, [since])).rows;
   const added = cands.filter((c) => c.status === "approved");
   const trends = (await db.query(`SELECT region, topic FROM trained_trends WHERE seen_at > now() - $1::interval ORDER BY (region='IQ') DESC, id DESC`, [since])).rows;
-  const arab = (v) => ARAB.test(`${v.query} ${v.trend || ""} ${v.title}`);
+  // Iraqi/Arab by what the clip is (its title, Arabic voices heard in it) – not by the search that found it
+  const arab = (v) => ARAB.test(v.title || "") || (v.check_result?.sound?.voices || []).some((x) => /arab/i.test(x.language));
   vids.sort((a, b) => Number(arab(b)) - Number(arab(a)));
   const img = async (key) => {
     if (!key) return "";
