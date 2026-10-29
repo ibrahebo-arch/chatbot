@@ -8,6 +8,8 @@
  *   node tools/trained-model.js reject <id...> [--note "why"] [--by name]
  *   node tools/trained-model.js stats
  *   node tools/trained-model.js review                 the automatic editor reviews the waiting drafts now
+ *   node tools/trained-model.js youtube-gemini [--videos 5]  trending YouTube videos watched by Google Gemini through
+ *                                                       their public link (GEMINI_API_KEY) – second-by-second realism
  *   node tools/trained-model.js youtube-cc [--videos 10]  studies YouTube videos their owners released under Creative
  *                                                       Commons (copied to Wikimedia Commons) – Iraqi/Arab first
  *   node tools/trained-model.js inbox                  studies the videos in the owner's folder now ("study my folder":
@@ -43,6 +45,7 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
     log("cycle done", JSON.stringify(r));
     try { const f = await trained.studyInbox(db, { log }); if (f.studied || f.failed) log("my folder", JSON.stringify(f)); } catch (e) { log("my folder:", e.message); }
     try { log("youtube cc", JSON.stringify(await trained.studyYouTubeCC(db, { log }))); } catch (e) { log("youtube cc:", e.message); }
+    try { log("youtube gemini", JSON.stringify(await trained.studyYouTubeGemini(db, { log }))); } catch (e) { log("youtube gemini:", e.message); }
     if (String(process.env.TRAIN_AUTO_REVIEW || "").trim() !== "0") {
       try { log("auto-review", JSON.stringify(await trained.autoReview(db, { log }))); } catch (e) { log("auto-review failed:", e.message); }
     }
@@ -54,6 +57,10 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
     console.log(JSON.stringify({ approved: await trained.approve(db, ids, { reviewer: opt("by", "claude"), edits }) }));
   } else if (cmd === "reject") {
     console.log(JSON.stringify({ rejected: await trained.reject(db, ids, { reviewer: opt("by", "claude"), note: opt("note", "") }) }));
+  } else if (cmd === "youtube-gemini") {
+    log("youtube gemini", JSON.stringify(await trained.studyYouTubeGemini(db, { videos: Number(opt("videos", 5)), log })));
+    if (String(process.env.TRAIN_AUTO_REVIEW || "").trim() !== "0") log("auto-review", JSON.stringify(await trained.autoReview(db, { log })));
+    log("report saved", await trained.saveDayReport(db));
   } else if (cmd === "youtube-cc") {
     log("youtube cc", JSON.stringify(await trained.studyYouTubeCC(db, { videos: Number(opt("videos", 10)), log })));
     if (String(process.env.TRAIN_AUTO_REVIEW || "").trim() !== "0") log("auto-review", JSON.stringify(await trained.autoReview(db, { log })));
@@ -72,7 +79,7 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
   } else if (cmd === "stats") {
     console.log(JSON.stringify(await trained.stats(db), null, 1));
   } else {
-    console.error("usage: node tools/trained-model.js <cycle|youtube-cc|inbox|review|pending|approve|reject|stats|report> …");
+    console.error("usage: node tools/trained-model.js <cycle|youtube-gemini|youtube-cc|inbox|review|pending|approve|reject|stats|report> …");
     process.exitCode = 1;
   }
 })().catch((e) => { log("ERR", e.message); process.exitCode = 1; }).finally(() => db.pool && db.pool.end());

@@ -483,6 +483,8 @@ function validateDraft(raw, known = new Map()) {
 }
 
 /** The reality check of one clip: frames → what makes it real, what AI gets wrong, 0–2 draft entries. */
+const ENTRY_RULES = `0–3 NEW library entries (only if the clip teaches something specific and reusable; when the soundtrack has voices or strong sounds, one entry may be about that sound or about how a person sounds and looks when angry, happy, sad or excited – domain sound or human, with an Iraqi-dialect tone line a TTS voice can follow). Iraqi and Arab places, food, customs, voices and everyday life are the most valuable. Our customers are Iraqi and Arab: never write about pork or alcohol (if the clip shows them, write the same technique with lamb, beef, chicken or tea/juice); prefer knowledge that transfers to many scenes (physics, light, behaviour, materials) over one niche sport or event; no legible text or logos. Each: {"slug":"short-ascii-kebab","domain":one of ${DOMAINS.join("|")},"kinds":["video"] or ["video","image"],"names":[4–10 trigger words a customer might type: Iraqi/Arabic AND English, specific, never generic words],"body":"70–130 words, English, concrete visible and audible details that a prompt writer can copy into a video prompt; no history, no opinions, no real people's names, no brands, no links"}.`;
+
 async function study(v, imgs, sound = null) {
   const heard = sound && sound.has_sound ? `\nWhat its soundtrack sounds like (from listening): ${JSON.stringify({ layers: sound.layers, music: sound.music, voices: sound.voices, lesson: sound.lesson })}` : "";
   const out = await askJson(`These ${imgs.length} frames (in order) come from a REAL video: "${v.title}" (searched as "${v.query}"${v.trend ? `, studied because "${v.trend}" is trending` : ""}).${heard}
@@ -490,7 +492,7 @@ You train an AI video studio for Iraqi and Arab customers so its generated video
 1. reality: concrete visible facts that make this footage real – motion and physics (how liquids, fabric, hair, smoke, bodies, vehicles really move), light and shadow, camera behaviour (handheld, lens, focus, exposure), materials and textures, how people behave, sound you can infer.
 2. ai_mistakes: what AI video generators usually get WRONG for this kind of scene.
 3. score: 0–10, how much this clip teaches about real life (if the clip is NOT real camera footage of the real world – a video game, animation, cartoon, CGI, AI-generated video, film trailer effects, music visualizer, slideshow or screen recording – score 0 and write no entries) – reality (10 = rich, clear real-world detail; 0 = useless: slideshow, text, animation, graphics, blurry).
-4. entries: 0–3 NEW library entries (only if the clip teaches something specific and reusable; when the soundtrack has voices or strong sounds, one entry may be about that sound or about how a person sounds and looks when angry, happy, sad or excited – domain sound or human, with an Iraqi-dialect tone line a TTS voice can follow). Iraqi and Arab places, food, customs, voices and everyday life are the most valuable. Our customers are Iraqi and Arab: never write about pork or alcohol (if the clip shows them, write the same technique with lamb, beef, chicken or tea/juice); prefer knowledge that transfers to many scenes (physics, light, behaviour, materials) over one niche sport or event; no legible text or logos. Each: {"slug":"short-ascii-kebab","domain":one of ${DOMAINS.join("|")},"kinds":["video"] or ["video","image"],"names":[4–10 trigger words a customer might type: Iraqi/Arabic AND English, specific, never generic words],"body":"70–130 words, English, concrete visible and audible details that a prompt writer can copy into a video prompt; no history, no opinions, no real people's names, no brands, no links"}.
+4. entries: ${ENTRY_RULES}
 Return JSON only: {"score":0-10,"reality":["..."],"ai_mistakes":["..."],"entries":[...]}`, imgs, 3000);
   return {
     score: Math.max(0, Math.min(10, Number(out.score) || 0)),
@@ -555,17 +557,96 @@ async function studyFile(db, v, file, dir, known, report, log = console.log) {
   await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1",
     [v.id, s.score, { reality: s.reality, ai_mistakes: s.ai_mistakes, sound, sheet: sheetKey, times: imgs.times }]);
   report.studied++;
-  if (s.score >= 5) {
-    for (const raw of s.entries) {
-      const c = validateDraft(raw, known);
-      if (!c.ok) { report.rejected++; continue; }
-      const status = c.duplicateOf ? "duplicate" : "pending";
-      await db.query("INSERT INTO trained_candidates (video_id, entry, status, note) VALUES ($1,$2,$3,$4)", [v.id, c.entry, status, c.duplicateOf ? `library already has ${c.duplicateOf}` : null]);
-      if (status === "pending") { report.drafts++; for (const n of c.entry.names) known.set(library.norm(n).trim(), c.entry.id); } else report.duplicates++;
-    }
-  }
+  if (s.score >= 5) await saveDrafts(db, v, s.entries, known, report);
   log(`studied ${v.id} "${v.title}" score ${s.score}`);
   return s;
+}
+
+/** Validates the drafts of one studied video and stores them for review (duplicates of the library are marked). */
+async function saveDrafts(db, v, entries, known, report) {
+  for (const raw of entries || []) {
+    const c = validateDraft(raw, known);
+    if (!c.ok) { report.rejected++; continue; }
+    const status = c.duplicateOf ? "duplicate" : "pending";
+    await db.query("INSERT INTO trained_candidates (video_id, entry, status, note) VALUES ($1,$2,$3,$4)", [v.id, c.entry, status, c.duplicateOf ? `library already has ${c.duplicateOf}` : null]);
+    if (status === "pending") { report.drafts++; for (const n of c.entry.names) known.set(library.norm(n).trim(), c.entry.id); } else report.duplicates++;
+  }
+}
+
+/**
+ * Trending YouTube videos studied by Google's own Gemini API: Gemini opens the public YouTube link itself (an official
+ * Gemini feature – nothing is downloaded by VI-Iraq) and returns a second-by-second realism analysis, the sound and
+ * voices, and draft library entries. Real-life kinds first (people, comedy, entertainment, sport, how-to, cars,
+ * travel, series), Iraq first; short videos only and a daily budget so it stays inside Google's free YouTube limit.
+ */
+const GEMINI_KEY = () => clean(process.env.GEMINI_API_KEY);
+const GEMINI_MODEL = () => clean(process.env.GEMINI_MODEL) || "gemini-flash-latest";
+async function geminiStudy(v, videoId) {
+  const prompt = `Watch this public YouTube video ("${v.title}", trending in the Arab world) as a cinematographer and a physicist. You train an AI video studio for Iraqi and Arab customers so its generated videos become indistinguishable from real footage. Learn its realism – never copy its people, story or brand.
+1. real_life: false if it is a video game, cartoon, animation, CGI or AI video.
+2. timeline: the video second by second in segments of about 3 s: {"t":"0:00-0:03","what":"what happens","realism":"the concrete detail that makes it look real – motion, faces, hands, light, camera, materials"}.
+3. sound: {"layers":["each background sound and how it behaves"],"voices":[{"language":"dialect","emotion":"angry|happy|sad|excited|calm|…","delivery":"pace, loudness, pitch, breaths, laughter","tts_tone":"one sentence a TTS voice could follow"}]}.
+4. reality: concrete reusable facts that make it real. ai_mistakes: what AI video generators usually get wrong for this kind of scene.
+5. score: 0–10, how much it teaches about real life (0 if not real life).
+6. entries: ${ENTRY_RULES}
+Return JSON only: {"real_life":true|false,"score":0-10,"timeline":[...],"sound":{...},"reality":["..."],"ai_mistakes":["..."],"entries":[...]}`;
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL()}:generateContent`, {
+    method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_KEY() },
+    body: JSON.stringify({ contents: [{ parts: [{ file_data: { file_uri: `https://www.youtube.com/watch?v=${videoId}` } }, { text: prompt }] }], generationConfig: { responseMimeType: "application/json" } }),
+    signal: AbortSignal.timeout(600000),
+  });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(`gemini ${r.status} ${String(d.error?.message || "").slice(0, 160)}`);
+  const txt = (d.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
+  const out = JSON.parse(txt.slice(txt.indexOf("{"), txt.lastIndexOf("}") + 1));
+  const list = (x, n, len = 300) => (Array.isArray(x) ? x : []).map((y) => clean(y).slice(0, len)).filter(Boolean).slice(0, n);
+  const real = out.real_life !== false;
+  return {
+    real, score: real ? Math.max(0, Math.min(10, Number(out.score) || 0)) : 0,
+    timeline: (Array.isArray(out.timeline) ? out.timeline : []).slice(0, 40).map((x) => ({ t: clean(x?.t).slice(0, 20), what: clean(x?.what).slice(0, 220), realism: clean(x?.realism).slice(0, 260) })).filter((x) => x.what),
+    sound: parseSound({ has_sound: true, layers: out.sound?.layers, voices: out.sound?.voices, lesson: "" }),
+    reality: list(out.reality, 12), ai_mistakes: list(out.ai_mistakes, 10),
+    entries: real ? (Array.isArray(out.entries) ? out.entries : []).slice(0, 3) : [],
+  };
+}
+
+const KIND_ORDER = ["People & vlogs", "Comedy", "Entertainment", "Sport", "How-to & style", "Cars", "Travel & events", "Movies & series", "Trailers", "Top", "Music"];
+async function studyYouTubeGemini(db, { videos = Number(process.env.TRAIN_YT_GEMINI_PER_CYCLE ?? 3), log = console.log } = {}) {
+  const report = { studied: 0, failed: 0, drafts: 0, duplicates: 0, rejected: 0 };
+  if (!GEMINI_KEY() || !(videos > 0)) return report;
+  const maxSecs = Number(process.env.TRAIN_YT_MAX_SECS) || 300, daySecs = Number(process.env.TRAIN_YT_DAILY_SECS) || 6 * 3600;
+  const { since } = dayRange(iraqDay());
+  let used = Number((await db.query("SELECT coalesce(sum(duration_sec),0) AS s FROM trained_videos WHERE source='youtube-gemini' AND created_at >= $1", [since])).rows[0].s) || 0;
+  const rows = (await db.query(`SELECT DISTINCT ON (info->'video'->>'id') region, topic, info FROM trained_trends
+    WHERE source='youtube' AND seen_at > now() - interval '24 hours' ORDER BY info->'video'->>'id', id DESC`)).rows;
+  const seen = new Set((await db.query("SELECT id FROM trained_videos WHERE source='youtube-gemini'")).rows.map((r) => r.id));
+  const rank = (r) => ({ IQ: 0, SA: 1, AE: 2, EG: 3 }[r] ?? 4);
+  const todo = rows.map((r) => ({ region: r.region, title: r.topic, ...r.info.video }))
+    .filter((x) => x.id && x.secs >= 5 && x.secs <= maxSecs && !seen.has(`youtube:${x.id}`) && !NOT_REAL.test(x.title) && !RELIGIOUS.test(`${x.title} ${x.channel}`) && !BLOCK.test(x.title))
+    .sort((a, b) => rank(a.region) - rank(b.region) || KIND_ORDER.indexOf(a.kind) - KIND_ORDER.indexOf(b.kind) || (b.views || 0) - (a.views || 0));
+  const known = knownNames([...library.loadFiles(), ...(await db.query("SELECT id, names FROM prompt_library")).rows]);
+  for (const x of todo.slice(0, videos)) {
+    if (used + x.secs > daySecs) { log("youtube gemini: daily budget reached"); break; }
+    used += x.secs;
+    const v = { id: `youtube:${x.id}`, source: "youtube-gemini", query: `youtube ${x.kind || "trend"}`, trend: x.title, title: x.title,
+      page_url: `https://www.youtube.com/watch?v=${x.id}`, license: "Public YouTube video watched by Google Gemini through its link – not downloaded", author: x.channel || "", duration_sec: x.secs };
+    await db.query(`INSERT INTO trained_videos (id, source, query, trend, title, page_url, media_url, license, author, duration_sec) VALUES ($1,$2,$3,$4,$5,$6,NULL,$7,$8,$9) ON CONFLICT (id) DO NOTHING`,
+      [v.id, v.source, v.query, v.trend, v.title.slice(0, 200), v.page_url, v.license, v.author, v.duration_sec]);
+    try {
+      const g = await geminiStudy(v, x.id);
+      await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1",
+        [v.id, g.score, { reality: g.reality, ai_mistakes: g.ai_mistakes, sound: g.sound, timeline: g.timeline, thumb: x.thumb, region: x.region, kind: x.kind }]);
+      report.studied++;
+      if (g.real && g.score >= 5) await saveDrafts(db, v, g.entries, known, report);
+      log(`studied ${v.id} [${x.region} ${x.kind}] "${x.title.slice(0, 60)}" score ${g.score}`);
+    } catch (e) {
+      report.failed++;
+      await db.query("UPDATE trained_videos SET status='failed', error=$2 WHERE id=$1", [v.id, String(e.message).slice(0, 300)]);
+      log(`failed ${v.id}: ${e.message}`);
+      if (/ 429 /.test(e.message)) break; // Google's free limit for today
+    }
+  }
+  return report;
 }
 
 /**
@@ -688,7 +769,8 @@ async function report(db, { hours = 24, day = "" } = {}) {
     cards.push(`<section class="card${arab(v) ? " arab" : ""}" id="${clipId(v)}">
       <h2>${arab(v) ? "🇮🇶 " : ""}${esc(v.title)}</h2>
       <p class=meta>score <b>${esc(v.score)}</b>/10 · search “${esc(v.query)}”${v.trend ? ` · trend: ${esc(v.trend)}` : ""} · ${esc(v.source)} · ${esc(v.license)}${v.author ? ` · by ${esc(v.author)}` : ""} · <a href="${esc(v.page_url)}">source</a>${r.times ? ` · frames at ${r.times.map((t) => t + " s").join(", ")}` : ""}</p>
-      ${await img(r.sheet)}
+      ${r.sheet ? await img(r.sheet) : /^https:\/\/i\.ytimg\.com\//.test(r.thumb || "") ? `<img src="${esc(r.thumb)}" alt="" style="max-width:480px">` : ""}
+      ${r.timeline?.length ? `<h3>Second by second (watched by Google Gemini)</h3><table><tr><th>time</th><th>what happens</th><th>what makes it real</th></tr>${r.timeline.map((x) => `<tr><td>${esc(x.t)}</td><td>${esc(x.what)}</td><td>${esc(x.realism)}</td></tr>`).join("")}</table>` : ""}
       <div class=cols><div><h3>What makes it real</h3>${li(r.reality)}</div><div><h3>What AI gets wrong here</h3>${li(r.ai_mistakes)}</div></div>
       <h3>Sound and voices</h3>${snd && snd.has_sound ? `${li(snd.layers)}${snd.music ? "<p class=muted>music in the soundtrack</p>" : ""}${voices}${snd.lesson ? `<p><b>Lesson:</b> ${esc(snd.lesson)}</p>` : ""}` : "<p class=muted>no usable sound</p>"}
       <h3>Drafts for the library</h3>${cands.filter((c) => c.video_id === v.id).map(entryHtml).join("") || "<p class=muted>none</p>"}
@@ -791,4 +873,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { studyYouTubeCC, studyInbox, INBOX, learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
+module.exports = { studyYouTubeGemini, geminiStudy, studyYouTubeCC, studyInbox, INBOX, learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
