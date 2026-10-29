@@ -983,7 +983,7 @@ const adminOnly = (req, res, next) => {
 // One page per Iraqi day: every clip studied with its frames, reality check, sound and voices, drafts and decisions,
 // and what entered the library. Same lockout as the token routes.
 const trained = require("./trained");
-const REPORT_CSP = "default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+const REPORT_CSP = "default-src 'none'; style-src 'unsafe-inline'; img-src data: https://i.ytimg.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
 const adminPage = (req, res, next) => {
   const ip = clientIp(req);
   const f = adminFails.get(ip);

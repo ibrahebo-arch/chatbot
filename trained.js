@@ -88,8 +88,12 @@ async function fetchTrends() {
   if (yt) {
     for (const geo of GEOS.slice(0, 3)) {
       try {
-        const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=15&regionCode=${geo}&key=${encodeURIComponent(yt)}`);
-        for (const v of d.items || []) all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: "", news: (v.snippet?.tags || []).slice(0, 6) });
+        const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=15&regionCode=${geo}&key=${encodeURIComponent(yt)}`);
+        for (const v of d.items || []) {
+          const views = Number(v.statistics?.viewCount) || 0;
+          all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
+            video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, thumb: clean(v.snippet?.thumbnails?.medium?.url || v.snippet?.thumbnails?.default?.url) } });
+        }
       } catch (e) { console.error(`youtube ${geo}:`, e.message); }
     }
   }
@@ -334,7 +338,7 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
   const report = { trends: 0, queries: 0, studied: 0, failed: 0, drafts: 0, duplicates: 0, rejected: 0 };
   const trends = await fetchTrends();
   report.trends = trends.length;
-  for (const t of trends) await db.query("INSERT INTO trained_trends (source, region, topic, traffic, info) VALUES ($1,$2,$3,$4,$5)", [t.source, t.region, t.topic.slice(0, 300), t.traffic || null, { news: t.news || [] }]);
+  for (const t of trends) await db.query("INSERT INTO trained_trends (source, region, topic, traffic, info) VALUES ($1,$2,$3,$4,$5)", [t.source, t.region, t.topic.slice(0, 300), t.traffic || null, { news: t.news || [], ...(t.video ? { video: t.video } : {}) }]);
   const cycleNo = Number((await db.query("SELECT count(DISTINCT date_trunc('hour', created_at)) AS n FROM trained_videos")).rows[0].n) || 0;
   const queries = await planTopics(trends, Math.max(2, videos + 2), cycleNo);
   report.queries = queries.length;
@@ -431,6 +435,14 @@ async function report(db, { hours = 24, day = "" } = {}) {
   const cands = (await db.query(`SELECT * FROM trained_candidates WHERE (created_at >= $1 AND created_at < $2) OR (reviewed_at >= $1 AND reviewed_at < $2) ORDER BY id`, R)).rows;
   const added = cands.filter((c) => c.status === "approved");
   const trends = (await db.query(`SELECT region, topic FROM trained_trends WHERE seen_at >= $1 AND seen_at < $2 ORDER BY (region='IQ') DESC, id DESC`, R)).rows;
+  // YouTube's official most-popular list (titles, channels, views, thumbnails – nothing downloaded), latest first
+  const ytRows = (await db.query(`SELECT region, topic, info FROM trained_trends WHERE source='youtube' AND seen_at >= $1 AND seen_at < $2 ORDER BY (region='IQ') DESC, id DESC`, R)).rows;
+  const yt = {};
+  for (const r of ytRows) {
+    const v = r.info?.video; if (!v?.id) continue;
+    const list = (yt[r.region] ||= []);
+    if (list.length < 10 && !list.some((x) => x.id === v.id)) list.push({ ...v, title: r.topic });
+  }
   // Iraqi/Arab by what the clip is (its title, Arabic voices heard in it) – not by the search that found it
   const arab = (v) => ARAB.test(v.title || "") || (v.check_result?.sound?.voices || []).some((x) => /arab/i.test(x.language));
   vids.sort((a, b) => Number(arab(b)) - Number(arab(a)));
@@ -463,8 +475,10 @@ h1{margin:.2em 0}.sum{display:flex;gap:12px;flex-wrap:wrap}.sum div{background:#
 .meta,.muted{color:#6b6b70;font-size:.9em}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.cols{grid-template-columns:1fr}}
 table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid #e3e0d8;padding:6px;text-align:left;vertical-align:top}
 .entry{border-left:4px solid #bbb;padding:6px 10px;margin:8px 0;background:#fafafa}.entry.ok{border-color:#2e9d5b}.entry.no{border-color:#c0392b}.entry.wait{border-color:#d4a017}
-.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
+.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ytv{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:#1d1d1f;font-size:.85em}.ytv img{width:100%;border-radius:8px}.ytv small{color:#6b6b70}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
 <h1>VI-Iraq · Trained Model</h1><p class=muted>${day ? `Day ${esc(day)} (Iraq time)` : `Last ${esc(hours)} hours`} · updated ${esc(new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 16).replace("T", " "))} Iraq time</p>
+${Object.keys(yt).length ? `<section class=card><h2>Trending on YouTube today</h2><p class=muted>YouTube's official most-popular list. The next studies pick their real-footage searches from these topics; the YouTube videos themselves are never downloaded.</p>
+${Object.entries(yt).map(([region, list]) => `<h3>${esc(region)}</h3><div class=yt>${list.map((v) => `<a class=ytv href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}">${/^https:\/\/i\.ytimg\.com\//.test(v.thumb || "") ? `<img src="${esc(v.thumb)}" alt="">` : ""}<span>${esc(v.title)}</span><small>${esc(v.channel)}${v.views ? ` · ${esc(Number(v.views).toLocaleString("en-US"))} views` : ""}</small></a>`).join("")}</div>`).join("")}</section>` : ""}
 <div class=sum><div><b>${vids.length}</b>clips studied</div><div><b>${vids.filter(arab).length}</b>Iraqi / Arab</div><div><b>${vids.length ? (vids.reduce((n, v) => n + Number(v.score || 0), 0) / vids.length).toFixed(1) : "–"}</b>avg score</div>
 <div><b>${vids.filter((v) => v.check_result?.sound?.voices?.length).length}</b>with voices studied</div><div><b>${added.length}</b>added to VI-Iraq</div><div><b>${cands.filter((c) => c.status === "pending").length}</b>waiting for review</div></div>
 <section class=card><h2>Added to the VI-Iraq library</h2>${added.map(entryHtml).join("") || "<p class=muted>nothing yet in this period</p>"}</section>
