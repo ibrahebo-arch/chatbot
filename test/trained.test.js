@@ -91,6 +91,8 @@ test("footage search: only clips whose title fits the search, never violence or 
   assert.equal(trained.relevant({ title: "Fan Tased at Florida vs Georgia Game.webm" }, "football game crowd"), false, "blocked word");
   assert.equal(trained.relevant({ title: "Pimlico Strollers CC v I Don't Like CC.webm" }, "person talking to camera close up"), false, "no search word in the title");
   assert.equal(trained.relevant({ title: "Woman pouring milk into coffee.webm" }, "pouring milk"), true, "pouring → pour");
+  assert.equal(trained.relevant({ title: "Ali Khamenei speech at the Hussainiya of Lovers of Karbala.webm" }, "karbala"), false, "politics is not studied");
+  assert.equal(trained.relevant({ title: "F35 Lighting II Aerial Refuel.webm" }, "car refueling station"), false, "military");
 });
 
 test("sound study: layers, voices with emotion and a tone line, nothing invented", () => {
