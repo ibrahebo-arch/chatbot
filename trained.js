@@ -286,7 +286,9 @@ async function findClips(q) {
   for (let i = 0; i < words.length; i++) {
     const sub = words.slice(i).join(" ");
     if (i > 0 && sub.length < 4) break;
-    const found = [...(await searchPexels(sub).catch(() => [])), ...(await searchPixabay(sub).catch(() => [])), ...(await searchCommons(sub).catch(() => []))];
+    // stock sites tag AI, 3D and animated clips too – the same real-life / religion / politics filters apply to every source
+    const stock = [...(await searchPexels(sub).catch(() => [])), ...(await searchPixabay(sub).catch(() => []))].filter((v) => relevant(v, sub));
+    const found = [...stock, ...(await searchCommons(sub).catch(() => []))];
     if (found.length) return found.map((v) => ({ ...v, query: q }));
   }
   return [];
