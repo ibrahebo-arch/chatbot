@@ -2,72 +2,226 @@
   {
     "id": "core.video.candid",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 96,
     "body": "ONLY IF PEOPLE ARE ON SCREEN: CANDID, NOT ACTED: reactions are small and real, like a phone video of real people – a quick surprised blink, a pause, a half laugh, eyebrows up, an eye-roll – never cartoon faces (no saucer-round eyes, no mouth held wide open, no frozen grimace). No expression is held longer than about 1.5 s; the face keeps changing with breath and thought. Skin stays real while moving: pores, fine lines, small blemishes, a little shine, uneven tone – no beauty filter, no airbrushed or waxy smoothing. Every action is done by the person it was written for (name them by position and clothes) – never swap who does what."
   },
   {
+    "id": "core.image.candid",
+    "domain": "human",
+    "kinds": [
+      "image"
+    ],
+    "always": true,
+    "priority": 95,
+    "body": "ONLY IF PEOPLE ARE IN THE PICTURE: CANDID, NOT POSED: a real moment caught by a camera – a natural half smile, a glance to the side, a word in mid-sentence, relaxed hands – never a frozen grin, saucer-round eyes or a cartoon face. Real skin: pores, fine lines, small blemishes, a little shine, uneven tone, stray hairs – no beauty filter, no airbrushed or waxy smoothing, no glow. Eyes with catch-lights and one believable focus point. Each person does exactly what was asked of them (name them by position and clothes) – never swap who holds or does what."
+  },
+  {
     "id": "reality.liquid-spill",
     "domain": "reality",
-    "kinds": ["video", "image"],
-    "names": ["انسكب", "انسكبت", "سكب", "دلق", "اندلق", "انكب", "انكبت", "كب", "حليب", "spill", "spilled", "spilling", "splash", "spilt milk", "milk"],
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "انسكب",
+      "انسكبت",
+      "سكب",
+      "دلق",
+      "اندلق",
+      "انكب",
+      "انكبت",
+      "كب",
+      "حليب",
+      "spill",
+      "spilled",
+      "spilling",
+      "splash",
+      "spilt milk",
+      "milk"
+    ],
     "priority": 70,
     "body": "LIQUID SPILLED ON A SURFACE: first a visible continuous stream from the container to the surface, then the impact splash with flying droplets, then the puddle keeps spreading and thinning for seconds, following the slope; edges are irregular and wet-shiny (never a crisp star-shaped decal that stops moving). It flows around and soaks into what lies in it (a pile of coffee grounds darkens, turns into wet sludge and smears), runs over the edge in drips, and leaves small splatter on nearby objects, hands and clothes. The container loses exactly as much as is spilled; a stream aimed into a cup ends in the cup."
   },
   {
     "id": "reality.powder-fall",
     "domain": "reality",
-    "kinds": ["video", "image"],
-    "names": ["بودرة", "مسحوق", "طحين", "قهوة مطحونة", "نسكافيه", "ملح", "ملعقة", "powder", "flour", "ground coffee", "instant coffee", "sugar", "spoon", "teaspoon"],
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "بودرة",
+      "مسحوق",
+      "طحين",
+      "قهوة مطحونة",
+      "نسكافيه",
+      "ملح",
+      "ملعقة",
+      "powder",
+      "flour",
+      "ground coffee",
+      "instant coffee",
+      "sugar",
+      "spoon",
+      "teaspoon"
+    ],
     "priority": 66,
     "body": "POWDER OR GRAINS FROM A SPOON: the grains are SEEN falling in a short stream from the tipped spoon to the surface, with a small puff of dust on impact; the pile is loose and uneven with stray grains around it (never a neat moulded dome); the spoon is empty afterwards and has to be filled again before the next drop; the pile only grows when more is visibly added, and it keeps its exact place."
   },
   {
     "id": "reality.food-dumped",
     "domain": "reality",
-    "kinds": ["video"],
-    "names": ["كب الاكل", "رمى الاكل", "مغسلة", "سنك", "بالمغسلة", "بالسنك", "تمن", "رز", "sink", "dump", "dumped", "rice", "food in the sink"],
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "كب الاكل",
+      "رمى الاكل",
+      "مغسلة",
+      "سنك",
+      "بالمغسلة",
+      "بالسنك",
+      "تمن",
+      "رز",
+      "sink",
+      "dump",
+      "dumped",
+      "rice",
+      "food in the sink"
+    ],
     "priority": 62,
     "body": "FOOD TIPPED OUT OF A POT OR PAN: the lid is visibly taken off first (or slides off and clatters into the sink – it never just vanishes); the food slides out in clumps following gravity, lands loosely and spreads, some grains stick to the pot and the sink walls, hot food steams. It never forms a perfect dome and it never appears in the sink without being seen falling."
   },
   {
     "id": "item.hot-cookware",
     "domain": "item",
-    "kinds": ["video", "image"],
-    "names": ["جدر", "قدر", "طاوة", "مقلاية", "مقلاة", "غطا", "غطاء", "منشفة", "خاولي", "pot", "pan", "saucepan", "lid", "towel", "oven mitts"],
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "جدر",
+      "قدر",
+      "طاوة",
+      "مقلاية",
+      "مقلاة",
+      "غطا",
+      "غطاء",
+      "منشفة",
+      "خاولي",
+      "pot",
+      "pan",
+      "saucepan",
+      "lid",
+      "towel",
+      "oven mitts"
+    ],
     "priority": 60,
     "body": "HOT COOKWARE AND KITCHEN TEXTILES: a hot pot or pan is held by its handles with a folded kitchen towel or oven mitts, people keep it away from the body and flinch from the steam when the lid opens; the lid has a knob and stays a separate object that is put down somewhere visible. A kitchen towel stays the same thin cotton towel (same colour and size) when it is picked up, swung or thrown; mitts are taken off before the hands do something else."
   },
   {
     "id": "style.phone-home-video",
     "domain": "style",
-    "kinds": ["video", "image"],
-    "names": ["فيديو موبايل", "تصوير موبايل", "ريلز", "ريل", "ستوري", "تيك توك", "تيكتوك", "انستا", "انستغرام", "يوميات", "فلوك", "vlog", "reel", "reels", "tiktok", "instagram", "home video", "phone video", "couple video"],
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "فيديو موبايل",
+      "تصوير موبايل",
+      "ريلز",
+      "ريل",
+      "ستوري",
+      "تيك توك",
+      "تيكتوك",
+      "انستا",
+      "انستغرام",
+      "يوميات",
+      "فلوك",
+      "vlog",
+      "reel",
+      "reels",
+      "tiktok",
+      "instagram",
+      "home video",
+      "phone video",
+      "couple video"
+    ],
     "priority": 72,
     "body": "REAL PHONE HOME VIDEO: one continuous take, as if filmed on a phone – either propped on a shelf (almost still, a tiny wobble, slight auto-exposure and focus breathing) or held by hand (gentle sway); no cuts between wide and close shots, no zooms or cinematic moves unless asked. Ordinary home light from the ceiling lamps and windows, natural colours, slight sensor grain and mild compression, a little noise in the shadows; no film grading, no studio light, no glow. People behave as if nobody is filming; at most a short glance at the phone."
   },
   {
     "id": "human.distracted-gaze",
     "domain": "human",
-    "kinds": ["video"],
-    "names": ["مو منتبه", "مو منتبهين", "مو منتبهة", "مشغول", "مشغولين", "سرحان", "سرحانة", "يباوعون", "مو يباوعون", "distracted", "not looking", "watching tv", "busy", "absent-minded"],
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "مو منتبه",
+      "مو منتبهين",
+      "مو منتبهة",
+      "مشغول",
+      "مشغولين",
+      "سرحان",
+      "سرحانة",
+      "يباوعون",
+      "مو يباوعون",
+      "distracted",
+      "not looking",
+      "watching tv",
+      "busy",
+      "absent-minded"
+    ],
     "priority": 68,
     "body": "DISTRACTED PEOPLE: state exactly where each person looks and keep it – their eyes stay locked on what distracts them (the TV, a phone) for the whole action, with small reactions to it (smile, nod, raised eyebrow); they do NOT look at each other or at their hands unless the plan says so. The hands work by feel – reaching, searching, missing by a few centimetres. Only when the mistake is complete do they look down, with one beat of realisation."
   },
   {
     "id": "sound.tv-in-room",
     "domain": "sound",
-    "kinds": ["video"],
-    "names": ["تلفزيون", "تلفاز", "التلفزيون شغال", "اخبار", "نشرة", "نشرة اخبار", "عاجل", "tv", "television", "news on tv", "breaking news"],
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "تلفزيون",
+      "تلفاز",
+      "التلفزيون شغال",
+      "اخبار",
+      "نشرة",
+      "نشرة اخبار",
+      "عاجل",
+      "tv",
+      "television",
+      "news on tv",
+      "breaking news"
+    ],
     "priority": 64,
     "body": "A TV PLAYING OFF-SCREEN: its sound is thin and boxy (little bass), with the room's echo, quieter than the people in the room and it dips whenever someone speaks; a news bulletin is a formal Arabic anchor voice with a short breaking-news sting. The TV light flickers softly on the faces and the wall facing it in changing cool tones; the screen itself stays out of frame unless asked."
   },
   {
     "id": "action.prank-comedy",
     "domain": "action",
-    "kinds": ["video"],
-    "names": ["مقلب", "مقالب", "نكتة", "كوميدي", "كوميديا", "مضحك", "سكيتش", "prank", "comedy", "funny", "skit", "sketch", "joke"],
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "مقلب",
+      "مقالب",
+      "نكتة",
+      "كوميدي",
+      "كوميديا",
+      "مضحك",
+      "سكيتش",
+      "prank",
+      "comedy",
+      "funny",
+      "skit",
+      "sketch",
+      "joke"
+    ],
     "priority": 66,
     "body": "REAL-LIFE COMEDY: a simple, clear setup; the joke happens fully visible in frame (the miss, the spill, the fall) with real cause and effect; timing is action – one beat of silence – realisation – the punchline line – a small reaction (eye-roll, shrug, half laugh). Performances stay natural and underplayed, nobody mugs at the camera; the funny part is the situation, not exaggerated faces."
   }
