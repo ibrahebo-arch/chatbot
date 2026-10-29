@@ -97,6 +97,10 @@ test("footage search: only clips whose title fits the search, never violence or 
   assert.equal(trained.relevant({ title: "Cyberpunk Rainy Street (Hailuo AI).webm" }, "rainy street"), false, "AI-made clips are not reality");
   for (const t of ["Escape the Backrooms OST - Platonic Purgatory.webm", "Fortnite Treasure Hunters | Live Action Trailer", "Granny Game Challenge With Spiderman", "Dune: Part Three | Final Trailer", "Rahma Riad [Official Visualizer]", "لعبة الاختباء في مدينة معلقة", "محل الايفون ضد محل سامسونك في ماين كرافت !", "دخلت القصر السري و سرقت أندر بيضة في التحديث الجديد!", "[FIL] GamerLegion vs Legion (BO3)"])
     assert.ok(trained.NOT_REAL.test(t), `not real: ${t}`);
+  for (const t of ["Beautiful Views of Harem Imam Ali Najaf.webm", "فاطم تسأل | الحاج باسم الكربلائي", "دموع مصابك | لطمية", "Prayer wheels samyeling dec 09.ogv"])
+    assert.ok(trained.RELIGIOUS.test(t), `religious, left out: ${t}`);
+  for (const t of ["Afgan Bread Production.webm", "Baghdad cafe dominoes", "كرمال عيونك أركان خروب", "Iraqi wedding dabke"])
+    assert.ok(!trained.RELIGIOUS.test(t), `everyday life: ${t}`);
   for (const t of ["Afgan Bread Production.webm", "New Year's Eve in Najaf, Al Rawan St .webm", "A man pours Arabic coffee.ogv", "Revitalizing Commerce in Mosul"])
     assert.ok(!trained.NOT_REAL.test(t), `real: ${t}`);
 });

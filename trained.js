@@ -31,11 +31,13 @@ const DOMAINS = ["reality", "human", "sound", "place", "item", "action", "nature
 
 // What the model keeps coming back to, whatever is trending: Iraqi and Arab life first, then voices and emotions
 // (angry, happy, sad, laughing, arguing – with their sound), then general realism. One slice of each per cycle.
+// everyday life – people, streets, food, work, sport, celebrations (religious topics are left out on purpose)
 const BASICS_IQ = [
-  "baghdad street", "iraqi market", "iraq bazaar", "tigris river", "basra", "erbil citadel", "mosul", "najaf", "karbala",
+  "baghdad street", "iraqi market", "iraq bazaar", "tigris river", "basra corniche", "erbil market", "mosul street",
   "iraqi tea", "arabic coffee", "iraqi bread", "falafel", "kebab grill", "dates palm", "iraqi marshes", "iraq desert",
-  "iraqi wedding", "dabke dance", "arab wedding", "mosque call to prayer", "arabic calligraphy", "camel desert",
+  "iraqi wedding", "dabke dance", "arab wedding", "baghdad cafe", "iraqi street food", "camel desert", "iraqi family",
   "arab family dinner", "middle east street food", "baghdad traffic", "kurdistan mountains", "arabic music oud",
+  "iraqi football fans", "iraqi barber", "baghdad bookshop", "iraqi kitchen cooking", "baghdad taxi", "iraqi bakery",
 ];
 const BASICS_VOICE = [
   "people arguing", "man shouting angry", "woman laughing", "child laughing", "people crying", "crowd cheering",
@@ -92,7 +94,8 @@ async function fetchTrends() {
         const referer = clean(process.env.YOUTUBE_REFERER) || `${(clean(process.env.PUBLIC_URL) || "https://www.vi-iraq.com").replace(/\/+$/, "")}/`;
         const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=15&regionCode=${geo}&key=${encodeURIComponent(yt)}`, { headers: { Referer: referer } });
         for (const v of d.items || []) {
-          if (NOT_REAL_YT.has(String(v.snippet?.categoryId)) || NOT_REAL.test(`${v.snippet?.title || ""} ${(v.snippet?.tags || []).join(" ")}`)) continue;
+          const words = `${v.snippet?.title || ""} ${(v.snippet?.tags || []).join(" ")} ${v.snippet?.channelTitle || ""}`;
+          if (NOT_REAL_YT.has(String(v.snippet?.categoryId)) || NOT_REAL.test(words) || RELIGIOUS.test(words)) continue;
           const views = Number(v.statistics?.viewCount) || 0;
           all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
             video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, thumb: clean(v.snippet?.thumbnails?.medium?.url || v.snippet?.thumbnails?.default?.url) } });
@@ -112,7 +115,7 @@ async function realOnly(all) {
   const yt = all.map((t, i) => ({ t, i })).filter((x) => x.t.source === "youtube");
   if (!yt.length || !OPENAI_KEY) return all;
   try {
-    const v = await askJson(`For each YouTube video below decide: is it REAL LIFE filmed by a camera (real people, real places, real events, cooking, sport, vlogs, real music performances, news-free everyday life) – or NOT real (video games, Minecraft/Roblox/mobile games, game challenges, cartoons, animation, anime, CGI, AI videos, film or game trailers, music visualizers, slideshows, screen recordings)?
+    const v = await askJson(`For each YouTube video below decide: is it REAL LIFE filmed by a camera (real people, real places, real events, cooking, sport, vlogs, real music performances, news-free everyday life) – or NOT wanted: religious content (recitations, latmiyat, nasheeds, sermons, Quran, religious lectures or ceremonies) – or NOT real (video games, Minecraft/Roblox/mobile games, game challenges, cartoons, animation, anime, CGI, AI videos, film or game trailers, music visualizers, slideshows, screen recordings)?
 ${yt.map((x, k) => `${k}. ${x.t.topic} — ${x.t.video?.channel || ""}`).join("\n")}
 Return JSON only: {"real":[numbers of the REAL-LIFE videos]}`, [], 1500);
     const keep = new Set((Array.isArray(v.real) ? v.real : []).map(Number));
@@ -148,7 +151,7 @@ async function planTopics(trends, count, cycleNo = 0) {
     const list = ordered.slice(0, 80).map((t) => `- [${t.region}/${t.source}] ${t.topic}${t.news?.length ? ` (${t.news.join(" | ")})` : ""}`).join("\n");
     const v = await askJson(`You plan what an AI video studio for Iraqi and Arab customers should study in REAL footage this week.
 Today's trends:\n${list}
-Pick the trends people could order a short video about (events, places, foods, sports, celebrations, products, everyday life, how people talk and react) and turn each into ONE short English search for real stock footage (2–4 words, things a camera can film: "football stadium crowd", "lamb grilling", "rain flood street"). Iraqi trends come first, then the rest of the Arab world, then global ones – at least half of your searches must be about Iraqi or Arab life (put "iraqi", "baghdad", "arab" or a city in the search when it fits). Only REAL LIFE that a camera films in the real world: never video games, game or film trailers, movies, animation, cartoons, CGI, music visualizers or screen recordings – if a trend is one of those, skip it. Skip politics, war, crime, accidents, tragedies, real people's names, brands and anything sexual.
+Pick the trends people could order a short video about (events, places, foods, sports, celebrations, products, everyday life, how people talk and react) and turn each into ONE short English search for real stock footage (2–4 words, things a camera can film: "football stadium crowd", "lamb grilling", "rain flood street"). Iraqi trends come first, then the rest of the Arab world, then global ones – at least half of your searches must be about Iraqi or Arab life (put "iraqi", "baghdad", "arab" or a city in the search when it fits). Prefer everyday life (streets, markets, food, cafés, families, work, sport, weddings, music, travel, nature) and leave out religious topics (prayers, sermons, recitations, shrines, religious ceremonies). Only REAL LIFE that a camera films in the real world: never video games, game or film trailers, movies, animation, cartoons, CGI, music visualizers or screen recordings – if a trend is one of those, skip it. Skip politics, war, crime, accidents, tragedies, real people's names, brands and anything sexual.
 Return JSON only: {"queries":[{"q":"...","trend":"<the trend it comes from>"}]} with at most ${Math.max(1, count - basics.length)} items.`, [], 1200);
     const picked = (Array.isArray(v.queries) ? v.queries : []).map((x) => ({ q: clean(x.q).toLowerCase().slice(0, 60), trend: clean(x.trend).slice(0, 160) })).filter((x) => /^[a-z0-9 '-]{3,60}$/.test(x.q));
     return [...picked.slice(0, count - basics.length), ...basics].slice(0, count);
@@ -164,10 +167,12 @@ const keyWords = (q) => q.toLowerCase().split(/\s+/).filter((w) => w.length > 2 
 const NOT_REAL = /\b(gaming|gameplay|game ?play|gamer|video ?games?|game challenge|game trailer|mobile game|pc game|fortnite|minecraft|roblox|gta|pubg|free ?fire|call of duty|valorant|simulator|ost|soundtrack|trailer|teaser|animation|animated|cartoon|anime|cgi|3d|render|vfx|unreal engine|unity engine|visuali[sz]er|lyric|lyrics|official audio|music video|backrooms|screen ?recording|slideshow|spiderman|superman|hulk|granny|esports?|e-sports|counter-strike|cs2|dota|league of legends|gamerlegion)\b|لعبة|العاب|ألعاب|كرتون|انمي|أنمي|تريلر|اعلان فيلم|ماين ?كرافت|فورتنايت|روبلوكس|ببجي|فري فاير|التحديث الجديد|محاكي/i;
 // YouTube categories that are not real life: Film & Animation (1), Gaming (20), Trailers (44)
 const NOT_REAL_YT = new Set(["1", "20", "44"]);
+// The studio's study focuses on everyday life, not religion: religious ceremonies, sermons, recitations, shrines.
+const RELIGIOUS = /\b(shrine|holy shrine|imam|hussainiya|husseiniya|sermon|quran|koran|recitation|latmiya|nasheed|ashura|arbaeen|arbaein|pilgrim|pilgrimage|mosque|masjid|church|temple|monastery|prayer wheels?|prayers?|religious|cleric|sheikh)\b|حسينية|حسينيه|لطمية|لطميه|عزاء|قرآن|قران|خطبة|خطبه|ضريح|مرقد|زيارة|زياره|حرم الامام|حرم الإمام|صلاة|الصلاة|ديني|دينية|نعي|رادود|الحاج باسم|الكربلائي|الخاقاني/i;
 /** Pure – tested. */
 function relevant(v, q) {
   const t = String(v.title || "").toLowerCase();
-  return !BLOCK.test(t) && !NOT_REAL.test(t) && keyWords(q).some((w) => w.length > 2 && t.includes(w));
+  return !BLOCK.test(t) && !NOT_REAL.test(t) && !RELIGIOUS.test(t) && keyWords(q).some((w) => w.length > 2 && t.includes(w));
 }
 
 /** Wikimedia Commons video search → candidate clips (free licences, author + licence kept). */
@@ -467,7 +472,7 @@ async function report(db, { hours = 24, day = "" } = {}) {
   const ytRows = (await db.query(`SELECT region, topic, info FROM trained_trends WHERE source='youtube' AND seen_at >= $1 AND seen_at < $2 ORDER BY (region='IQ') DESC, id DESC`, R)).rows;
   const yt = {};
   for (const r of ytRows) {
-    const v = r.info?.video; if (!v?.id || NOT_REAL.test(r.topic || "")) continue;
+    const v = r.info?.video; if (!v?.id || NOT_REAL.test(r.topic || "") || RELIGIOUS.test(`${r.topic || ""} ${v.channel || ""}`)) continue;
     const list = (yt[r.region] ||= []);
     if (list.length < 10 && !list.some((x) => x.id === v.id)) list.push({ ...v, title: r.topic });
   }
@@ -590,4 +595,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { NOT_REAL, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
+module.exports = { NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
