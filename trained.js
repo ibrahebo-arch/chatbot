@@ -487,28 +487,7 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
       const dir = fs.mkdtempSync(path.join(os.tmpdir(), "trained-"));
       try {
         const file = await download(v, dir);
-        const imgs = await frames(file, v.duration_sec);
-        if (imgs.length < 3) throw new Error("could not read frames");
-        let sheetKey = null;
-        try {
-          const key = `trained/sheets/${v.id.replace(/[^a-z0-9]+/gi, "-")}.jpg`;
-          if (storage.ready) { await storage.put(key, await sheet(dir, imgs.length), { contentType: "image/jpeg" }); sheetKey = key; }
-        } catch (e) { log(`sheet ${v.id}: ${e.message}`); }
-        const sound = await listenClip(file, dir);
-        const s = await study(v, imgs, sound);
-        await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1",
-          [v.id, s.score, { reality: s.reality, ai_mistakes: s.ai_mistakes, sound, sheet: sheetKey, times: imgs.times }]);
-        report.studied++;
-        if (s.score >= 5) {
-          for (const raw of s.entries) {
-            const c = validateDraft(raw, known);
-            if (!c.ok) { report.rejected++; continue; }
-            const status = c.duplicateOf ? "duplicate" : "pending";
-            await db.query("INSERT INTO trained_candidates (video_id, entry, status, note) VALUES ($1,$2,$3,$4)", [v.id, c.entry, status, c.duplicateOf ? `library already has ${c.duplicateOf}` : null]);
-            if (status === "pending") { report.drafts++; for (const n of c.entry.names) known.set(library.norm(n).trim(), c.entry.id); } else report.duplicates++;
-          }
-        }
-        log(`studied ${v.id} "${v.title}" score ${s.score}`);
+        await studyFile(db, v, file, dir, known, report, log);
       } catch (e) {
         report.failed++;
         await db.query("UPDATE trained_videos SET status='failed', error=$2 WHERE id=$1", [v.id, String(e.message).slice(0, 300)]);
@@ -516,6 +495,72 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
       } finally { fs.rmSync(dir, { recursive: true, force: true }); }
       await sleep(1500);
     }
+  }
+  return report;
+}
+
+/** Studies one clip that is on disk: frames, frame sheet, soundtrack, reality check, drafts. Throws on failure. */
+async function studyFile(db, v, file, dir, known, report, log = console.log) {
+  const imgs = await frames(file, v.duration_sec);
+  if (imgs.length < 3) throw new Error("could not read frames");
+  let sheetKey = null;
+  try {
+    const key = `trained/sheets/${v.id.replace(/[^a-z0-9]+/gi, "-")}.jpg`;
+    if (storage.ready) { await storage.put(key, await sheet(dir, imgs.length), { contentType: "image/jpeg" }); sheetKey = key; }
+  } catch (e) { log(`sheet ${v.id}: ${e.message}`); }
+  const sound = await listenClip(file, dir);
+  const s = await study(v, imgs, sound);
+  await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1",
+    [v.id, s.score, { reality: s.reality, ai_mistakes: s.ai_mistakes, sound, sheet: sheetKey, times: imgs.times }]);
+  report.studied++;
+  if (s.score >= 5) {
+    for (const raw of s.entries) {
+      const c = validateDraft(raw, known);
+      if (!c.ok) { report.rejected++; continue; }
+      const status = c.duplicateOf ? "duplicate" : "pending";
+      await db.query("INSERT INTO trained_candidates (video_id, entry, status, note) VALUES ($1,$2,$3,$4)", [v.id, c.entry, status, c.duplicateOf ? `library already has ${c.duplicateOf}` : null]);
+      if (status === "pending") { report.drafts++; for (const n of c.entry.names) known.set(library.norm(n).trim(), c.entry.id); } else report.duplicates++;
+    }
+  }
+  log(`studied ${v.id} "${v.title}" score ${s.score}`);
+  return s;
+}
+
+/**
+ * "Study my folder": videos the owner has the right to use – his own clips, his YouTube Studio downloads, clips a
+ * creator sent with permission, licensed viral clips – put into the inbox folder (TRAIN_INBOX, default
+ * STORAGE_DIR/trained/inbox) are studied like the stock clips and moved to inbox/done. A text file with the same name
+ * (clip.mp4 + clip.txt) gives the credit / permission line shown in the report. The videos stay private on the server.
+ */
+const INBOX = () => clean(process.env.TRAIN_INBOX) || path.join(clean(process.env.STORAGE_DIR) || "/var/lib/vi-iraq/storage", "trained", "inbox");
+const VIDEO_EXT = /\.(mp4|mov|m4v|webm|mkv|avi|3gp)$/i;
+async function studyInbox(db, { log = console.log, limit = Number(process.env.TRAIN_INBOX_PER_CYCLE) || 10 } = {}) {
+  const report = { studied: 0, failed: 0, drafts: 0, duplicates: 0, rejected: 0 };
+  const dir = INBOX(), done = path.join(dir, "done");
+  try { fs.mkdirSync(done, { recursive: true }); } catch { return report; }
+  const files = fs.readdirSync(dir).filter((f) => VIDEO_EXT.test(f) && fs.statSync(path.join(dir, f)).isFile()).slice(0, limit);
+  if (!files.length) return report;
+  const known = knownNames([...library.loadFiles(), ...(await db.query("SELECT id, names FROM prompt_library")).rows]);
+  for (const f of files) {
+    const file = path.join(dir, f), st = fs.statSync(file);
+    const id = `inbox:${require("crypto").createHash("sha1").update(`${f}|${st.size}`).digest("hex").slice(0, 16)}`;
+    const side = path.join(dir, f.replace(VIDEO_EXT, ".txt"));
+    const credit = fs.existsSync(side) ? clean(fs.readFileSync(side, "utf8")).replace(/\s+/g, " ").slice(0, 200) : "";
+    let duration = 0;
+    try { const m = /Duration: (\d+):(\d+):([\d.]+)/.exec((await watermark.run(["-i", file])).stderr || ""); if (m) duration = Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3]); } catch {}
+    const v = { id, source: "inbox", query: "my folder", trend: null, title: f.slice(0, 200), page_url: null, media_url: null,
+      license: credit || "Provided by the owner (own clip or with permission)", author: "", duration_sec: duration };
+    await db.query(`INSERT INTO trained_videos (id, source, query, trend, title, page_url, media_url, license, author, duration_sec) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+      ON CONFLICT (id) DO UPDATE SET status='new', license=$8, duration_sec=$10`, [v.id, v.source, v.query, v.trend, v.title, v.page_url, v.media_url, v.license, v.author, v.duration_sec]);
+    const work = fs.mkdtempSync(path.join(os.tmpdir(), "trained-inbox-"));
+    try {
+      await studyFile(db, v, file, work, known, report, log);
+    } catch (e) {
+      report.failed++;
+      await db.query("UPDATE trained_videos SET status='failed', error=$2 WHERE id=$1", [v.id, String(e.message).slice(0, 300)]);
+      log(`failed ${v.id}: ${e.message}`);
+    } finally { fs.rmSync(work, { recursive: true, force: true }); }
+    for (const x of [file, side]) if (fs.existsSync(x)) fs.renameSync(x, path.join(done, path.basename(x)));
   }
   return report;
 }
@@ -704,4 +749,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
+module.exports = { studyInbox, INBOX, learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
