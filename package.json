@@ -7,7 +7,7 @@
     "test": "node --test \"test/*.test.js\"",
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "check": "node --check server.js && node --check db.js && node --check orders.js && node --check payments.js && node --check media.js && node --check trial.js && node --check planner.js && node --check watermark.js && node --check storage.js && node --check telegram.js && node --check validate.js && node --check public/app.js && node --check voices.js && node --check library.js && node --check qa.js"
+    "check": "node --check server.js && node --check db.js && node --check orders.js && node --check payments.js && node --check media.js && node --check trial.js && node --check planner.js && node --check watermark.js && node --check storage.js && node --check telegram.js && node --check validate.js && node --check public/app.js && node --check voices.js && node --check library.js && node --check qa.js && node --check trained.js && node --check tools/trained-model.js"
   },
   "repository": {
     "type": "git",
