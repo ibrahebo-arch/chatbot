@@ -683,9 +683,39 @@ async function studyInbox(db, { log = console.log, limit = Number(process.env.TR
       await db.query("UPDATE trained_videos SET status='failed', error=$2 WHERE id=$1", [v.id, String(e.message).slice(0, 300)]);
       log(`failed ${v.id}: ${e.message}`);
     } finally { fs.rmSync(work, { recursive: true, force: true }); }
-    for (const x of [file, side]) if (fs.existsSync(x)) fs.renameSync(x, path.join(done, path.basename(x)));
+    // storage stays small: the video is deleted once studied (TRAIN_INBOX_KEEP=1 keeps it in inbox/done)
+    const keep = clean(process.env.TRAIN_INBOX_KEEP) === "1";
+    for (const x of [file, side]) if (fs.existsSync(x)) { if (keep) fs.renameSync(x, path.join(done, path.basename(x))); else fs.rmSync(x, { force: true }); }
   }
   return report;
+}
+
+/**
+ * Keeps the Trained Model small on disk: day reports older than TRAIN_KEEP_REPORT_DAYS (30), frame sheets older than
+ * TRAIN_KEEP_SHEET_DAYS (90), leftover work folders older than a day and studied inbox videos (unless TRAIN_INBOX_KEEP=1).
+ * Studied clips themselves are never kept – they are deleted right after each study. Returns { files, bytes } removed.
+ */
+function pruneStorage({ now = Date.now() } = {}) {
+  const out = { files: 0, bytes: 0 };
+  const base = path.join(clean(process.env.STORAGE_DIR) || "/var/lib/vi-iraq/storage", "trained");
+  const sweep = (dir, days, test = () => true) => {
+    if (!fs.existsSync(dir)) return;
+    for (const f of fs.readdirSync(dir)) {
+      const full = path.join(dir, f);
+      let st; try { st = fs.statSync(full); } catch { continue; }
+      if (!st.isFile() || !test(f) || now - st.mtimeMs < days * 864e5) continue;
+      try { fs.rmSync(full, { force: true }); out.files++; out.bytes += st.size; } catch {}
+    }
+  };
+  sweep(path.join(base, "reports"), Number(process.env.TRAIN_KEEP_REPORT_DAYS) || 30);
+  sweep(path.join(base, "sheets"), Number(process.env.TRAIN_KEEP_SHEET_DAYS) || 90);
+  if (clean(process.env.TRAIN_INBOX_KEEP) !== "1") sweep(path.join(INBOX(), "done"), 0);
+  for (const f of fs.existsSync(os.tmpdir()) ? fs.readdirSync(os.tmpdir()) : []) {
+    if (!/^trained-/.test(f)) continue;
+    const full = path.join(os.tmpdir(), f);
+    try { if (now - fs.statSync(full).mtimeMs > 864e5) { fs.rmSync(full, { recursive: true, force: true }); out.files++; } } catch {}
+  }
+  return out;
 }
 
 /** Drafts waiting for review, with the reality check of their clip. */
@@ -873,4 +903,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { studyYouTubeGemini, geminiStudy, studyYouTubeCC, studyInbox, INBOX, learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
+module.exports = { pruneStorage, studyYouTubeGemini, geminiStudy, studyYouTubeCC, studyInbox, INBOX, learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };

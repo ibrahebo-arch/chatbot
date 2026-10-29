@@ -50,6 +50,7 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
       try { log("auto-review", JSON.stringify(await trained.autoReview(db, { log }))); } catch (e) { log("auto-review failed:", e.message); }
     }
     try { log("report saved", await trained.saveDayReport(db)); } catch (e) { log("report:", e.message); }
+    try { const p = trained.pruneStorage(); if (p.files) log("storage cleaned", `${p.files} files, ${(p.bytes / 1e6).toFixed(1)} MB`); } catch (e) { log("prune:", e.message); }
   } else if (cmd === "pending") {
     console.log(JSON.stringify(await trained.pending(db, Number(opt("limit", 30))), null, 1));
   } else if (cmd === "approve") {

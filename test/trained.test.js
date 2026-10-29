@@ -144,3 +144,23 @@ test("YouTube lengths are read from ISO 8601", () => {
   assert.equal(trained.isoSeconds("P0D"), 0);
   assert.equal(trained.isoSeconds(""), 0);
 });
+
+test("storage stays small: old reports, old sheets and studied inbox videos are removed", () => {
+  const fs = require("fs"), os = require("os"), path = require("path");
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), "vi-prune-"));
+  const before = process.env.STORAGE_DIR;
+  process.env.STORAGE_DIR = base;
+  try {
+    const t = path.join(base, "trained");
+    for (const d of ["reports", "sheets", "inbox/done"]) fs.mkdirSync(path.join(t, d), { recursive: true });
+    const put = (f, daysOld) => { fs.writeFileSync(f, "x".repeat(100)); const tm = (Date.now() - daysOld * 864e5) / 1000; fs.utimesSync(f, tm, tm); };
+    put(path.join(t, "reports", "old.html"), 40); put(path.join(t, "reports", "new.html"), 2);
+    put(path.join(t, "sheets", "old.jpg"), 100); put(path.join(t, "sheets", "new.jpg"), 10);
+    put(path.join(t, "inbox", "done", "clip.mp4"), 0);
+    const r = trained.pruneStorage();
+    assert.ok(r.files >= 3);
+    assert.deepEqual(fs.readdirSync(path.join(t, "reports")), ["new.html"]);
+    assert.deepEqual(fs.readdirSync(path.join(t, "sheets")), ["new.jpg"]);
+    assert.deepEqual(fs.readdirSync(path.join(t, "inbox", "done")), []);
+  } finally { if (before === undefined) delete process.env.STORAGE_DIR; else process.env.STORAGE_DIR = before; fs.rmSync(base, { recursive: true, force: true }); }
+});
