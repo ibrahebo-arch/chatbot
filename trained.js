@@ -341,10 +341,10 @@ async function download(v, dir) {
 }
 
 /** n JPEG frames (base64) spread over the clip (first 90 s at most). */
-async function frames(file, duration, n = 6) {
+async function frames(file, duration, n = 6, dir = path.dirname(file)) {
   const span = Math.min(duration || 10, 90), out = [], times = [];
   for (let i = 0; i < n; i++) {
-    const f = path.join(path.dirname(file), `f${out.length}.jpg`), t = (span * (i + 0.5) / n).toFixed(1);
+    const f = path.join(dir, `f${out.length}.jpg`), t = (span * (i + 0.5) / n).toFixed(1);
     try {
       await watermark.run(["-y", "-ss", t, "-i", file, "-frames:v", "1", "-vf", "scale=768:-2", "-q:v", "4", f], 60000);
       if (fs.existsSync(f)) { out.push(fs.readFileSync(f).toString("base64")); times.push(Number(t)); }
@@ -501,7 +501,7 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
 
 /** Studies one clip that is on disk: frames, frame sheet, soundtrack, reality check, drafts. Throws on failure. */
 async function studyFile(db, v, file, dir, known, report, log = console.log) {
-  const imgs = await frames(file, v.duration_sec);
+  const imgs = await frames(file, v.duration_sec, 6, dir); // into the work folder – never next to an inbox video
   if (imgs.length < 3) throw new Error("could not read frames");
   let sheetKey = null;
   try {
