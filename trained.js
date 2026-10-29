@@ -105,19 +105,26 @@ async function fetchTrends() {
   }
   const yt = clean(process.env.YOUTUBE_API_KEY);
   if (yt) {
-    for (const geo of GEOS.slice(0, 3)) {
-      try {
-        // the key is restricted to our website in Google Cloud, so the request says where it comes from
-        const referer = clean(process.env.YOUTUBE_REFERER) || `${(clean(process.env.PUBLIC_URL) || "https://www.vi-iraq.com").replace(/\/+$/, "")}/`;
-        const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=15&regionCode=${geo}&key=${encodeURIComponent(yt)}`, { headers: { Referer: referer } });
-        for (const v of d.items || []) {
-          const words = `${v.snippet?.title || ""} ${(v.snippet?.tags || []).join(" ")} ${v.snippet?.channelTitle || ""}`;
-          if (NOT_REAL_YT.has(String(v.snippet?.categoryId)) || NOT_REAL.test(words) || RELIGIOUS.test(words)) continue;
-          const views = Number(v.statistics?.viewCount) || 0;
-          all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
-            video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, thumb: clean(v.snippet?.thumbnails?.medium?.url || v.snippet?.thumbnails?.default?.url) } });
-        }
-      } catch (e) { console.error(`youtube ${geo}:`, e.message); }
+    // the key is restricted to our website in Google Cloud, so the request says where it comes from
+    const referer = clean(process.env.YOUTUBE_REFERER) || `${(clean(process.env.PUBLIC_URL) || "https://www.vi-iraq.com").replace(/\/+$/, "")}/`;
+    for (const geo of GEOS.slice(0, 4)) {
+      const seen = new Set();
+      // the overall chart is mostly music, so every category is read on its own (a region without one answers 400)
+      for (const [cat, label] of [["", "Top"], ...Object.entries(YT_CATEGORIES)]) {
+        try {
+          const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=${cat ? 8 : 15}&regionCode=${geo}${cat ? `&videoCategoryId=${cat}` : ""}&key=${encodeURIComponent(yt)}`, { headers: { Referer: referer } });
+          for (const v of d.items || []) {
+            if (seen.has(v.id)) continue;
+            seen.add(v.id);
+            const words = `${v.snippet?.title || ""} ${(v.snippet?.tags || []).join(" ")} ${v.snippet?.channelTitle || ""}`;
+            if (NOT_REAL_YT.has(String(v.snippet?.categoryId)) || NOT_REAL.test(words) || RELIGIOUS.test(words)) continue;
+            const views = Number(v.statistics?.viewCount) || 0;
+            all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
+              video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, kind: YT_CATEGORIES[String(v.snippet?.categoryId)] || label,
+                thumb: clean(v.snippet?.thumbnails?.medium?.url || v.snippet?.thumbnails?.default?.url) } });
+          }
+        } catch (e) { if (!/ 400$| 404$/.test(e.message)) console.error(`youtube ${geo} ${label}:`, e.message); }
+      }
     }
   }
   return realOnly(all);
@@ -132,7 +139,7 @@ async function realOnly(all) {
   const yt = all.map((t, i) => ({ t, i })).filter((x) => x.t.source === "youtube");
   if (!yt.length || !OPENAI_KEY) return all;
   try {
-    const v = await askJson(`For each YouTube video below decide: is it REAL LIFE filmed by a camera (real people, real places, real events, cooking, sport, vlogs, real music performances, news-free everyday life) – or NOT wanted: religious content (recitations, latmiyat, nasheeds, sermons, Quran, religious lectures or ceremonies) – or NOT real (video games, Minecraft/Roblox/mobile games, game challenges, cartoons, animation, anime, CGI, AI videos, film or game trailers, music visualizers, slideshows, screen recordings)?
+    const v = await askJson(`For each YouTube video below decide: is it REAL LIFE filmed by a camera with real people – vlogs, people and family channels, comedy sketches and pranks, live-action TV series and movies and their trailers (real actors), talk shows, cooking, sport, travel, cars, beauty and style, real music performances and music videos with real people, everyday life – or NOT wanted: religious content (recitations, latmiyat, nasheeds, sermons, Quran, religious lectures or ceremonies) – or NOT real (video games, Minecraft/Roblox/mobile games, game challenges, cartoons, animation, anime, CGI, AI videos, music visualizers or lyric videos without people, slideshows, screen recordings)?
 ${yt.map((x, k) => `${k}. ${x.t.topic} — ${x.t.video?.channel || ""}`).join("\n")}
 Return JSON only: {"real":[numbers of the REAL-LIFE videos]}`, [], 1500);
     const keep = new Set((Array.isArray(v.real) ? v.real : []).map(Number));
@@ -181,9 +188,13 @@ const STOP = new Set(["a", "an", "the", "of", "and", "in", "on", "to", "with", "
 const BLOCK = /\b(kill|killed|killing|murder|shoot|shooting|shot dead|tased|taser|war|bomb|attack|terror|protest|riot|police brutality|blood|dead|death|corpse|execution|porn|sex|nude|naked|president|minister|parliament|election|khamenei|khomeini|saddam|isis|daesh|militia|military|army|soldier|troops|airstrike|fighter jet|f-?35|tank|abrams|humvee|convoy|senator|congress|governor|attorney general|affirmative action|campaign|rally|unions?|sanders|trump|biden|obama|clinton|putin|politician|congressman|congresswoman|ai generated|ai-generated|generated by ai|hailuo|sora|runway|midjourney|kling|veo|stable diffusion|deepfake|cgi|3d render|animation)\b|\(ai\)/i;
 const keyWords = (q) => q.toLowerCase().split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w)).map((w) => w.replace(/(ing|s)$/, ""));
 // Only real camera footage of the real world: no games, trailers, animation, CGI, music visuals or screen recordings.
-const NOT_REAL = /\b(gaming|gameplay|game ?play|gamer|video ?games?|game challenge|game trailer|mobile game|pc game|fortnite|minecraft|roblox|gta|pubg|free ?fire|call of duty|valorant|simulator|ost|soundtrack|trailer|teaser|animation|animated|cartoon|anime|cgi|3d|render|vfx|unreal engine|unity engine|visuali[sz]er|lyric|lyrics|official audio|music video|backrooms|screen ?recording|slideshow|spiderman|superman|hulk|granny|esports?|e-sports|counter-strike|cs2|dota|league of legends|gamerlegion)\b|لعبة|العاب|ألعاب|كرتون|انمي|أنمي|تريلر|اعلان فيلم|ماين ?كرافت|فورتنايت|روبلوكس|ببجي|فري فاير|التحديث الجديد|محاكي/i;
+const NOT_REAL = /\b(gaming|gameplay|game ?play|gamer|video ?games?|game challenge|game trailer|mobile game|pc game|fortnite|minecraft|roblox|gta|pubg|free ?fire|call of duty|valorant|simulator|ost|soundtrack|animation|animated|cartoon|anime|cgi|3d|render|vfx|unreal engine|unity engine|visuali[sz]er|lyric|lyrics|official audio|music video|backrooms|screen ?recording|slideshow|spiderman|superman|hulk|granny|esports?|e-sports|counter-strike|cs2|dota|league of legends|gamerlegion)\b|لعبة|العاب|ألعاب|كرتون|انمي|أنمي|تريلر|اعلان فيلم|ماين ?كرافت|فورتنايت|روبلوكس|ببجي|فري فاير|التحديث الجديد|محاكي/i;
 // YouTube categories that are not real life: Film & Animation (1), Gaming (20), Trailers (44)
-const NOT_REAL_YT = new Set(["1", "20", "44"]);
+const NOT_REAL_YT = new Set(["20"]);
+// The YouTube categories read one by one (Film & Animation and Trailers stay: live-action films and series are real
+// people – cartoons in them are dropped by the check below). Gaming, News & Politics and religion are never read.
+const YT_CATEGORIES = { "22": "People & vlogs", "23": "Comedy", "24": "Entertainment", "1": "Movies & series", "44": "Trailers", "17": "Sport",
+  "26": "How-to & style", "19": "Travel & events", "2": "Cars", "10": "Music" };
 // The studio's study focuses on everyday life, not religion: religious ceremonies, sermons, recitations, shrines.
 const RELIGIOUS = /\b(shrine|holy shrine|imam|hussainiya|husseiniya|sermon|quran|koran|recitation|latmiya|nasheed|ashura|arbaeen|arbaein|pilgrim|pilgrimage|mosque|masjid|church|temple|monastery|prayer wheels?|prayers?|religious|cleric|sheikh)\b|حسينية|حسينيه|لطمية|لطميه|عزاء|قرآن|قران|خطبة|خطبه|ضريح|مرقد|زيارة|زياره|حرم الامام|حرم الإمام|صلاة|الصلاة|ديني|دينية|نعي|رادود|الحاج باسم|الكربلائي|الخاقاني/i;
 /** Pure – tested. */
@@ -491,7 +502,7 @@ async function report(db, { hours = 24, day = "" } = {}) {
   for (const r of ytRows) {
     const v = r.info?.video; if (!v?.id || NOT_REAL.test(r.topic || "") || RELIGIOUS.test(`${r.topic || ""} ${v.channel || ""}`)) continue;
     const list = (yt[r.region] ||= []);
-    if (list.length < 10 && !list.some((x) => x.id === v.id)) list.push({ ...v, title: r.topic });
+    if (list.length < 18 && !list.some((x) => x.id === v.id)) list.push({ ...v, title: r.topic });
   }
   // Iraqi/Arab by what the clip is (its title, Arabic voices heard in it) – not by the search that found it
   const allQ = Object.fromEntries((await db.query("SELECT query, count(*)::int AS n FROM trained_videos WHERE status='studied' GROUP BY query")).rows.map((r) => [r.query, r.n]));
@@ -529,10 +540,10 @@ h1{margin:.2em 0}.sum{display:flex;gap:12px;flex-wrap:wrap}.sum div{background:#
 .meta,.muted{color:#6b6b70;font-size:.9em}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.cols{grid-template-columns:1fr}}
 table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid #e3e0d8;padding:6px;text-align:left;vertical-align:top}
 .entry{border-left:4px solid #bbb;padding:6px 10px;margin:8px 0;background:#fafafa}.entry.ok{border-color:#2e9d5b}.entry.no{border-color:#c0392b}.entry.wait{border-color:#d4a017}
-.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ytv{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:#1d1d1f;font-size:.85em}.ytv img{width:100%;border-radius:8px}.ytv small{color:#6b6b70}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
+.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ytv{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:#1d1d1f;font-size:.85em}.ytv img{width:100%;border-radius:8px}.ytv small{color:#6b6b70}h4{margin:12px 0 6px;color:#0b6e75}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
 <h1>VI-Iraq · Trained Model</h1><p class=muted>${day ? `Day ${esc(day)} (Iraq time)` : `Last ${esc(hours)} hours`} · updated ${esc(new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 16).replace("T", " "))} Iraq time</p>
 ${Object.keys(yt).length ? `<section class=card><h2>Trending on YouTube today</h2><p class=muted>YouTube's official most-popular list. The next studies pick their real-footage searches from these topics; the YouTube videos themselves are never downloaded.</p>
-${Object.entries(yt).map(([region, list]) => `<h3>${esc(region)}</h3><div class=yt>${list.map((v) => `<a class=ytv href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}">${/^https:\/\/i\.ytimg\.com\//.test(v.thumb || "") ? `<img src="${esc(v.thumb)}" alt="">` : ""}<span>${esc(v.title)}</span><small>${esc(v.channel)}${v.views ? ` · ${esc(Number(v.views).toLocaleString("en-US"))} views` : ""}</small></a>`).join("")}</div>`).join("")}</section>` : ""}
+${Object.entries(yt).map(([region, list]) => `<h3>${esc(region)}</h3>${[...new Set(list.map((v) => v.kind || "Top"))].map((kind) => `<h4>${esc(kind)}</h4><div class=yt>${list.filter((v) => (v.kind || "Top") === kind).map((v) => `<a class=ytv href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}">${/^https:\/\/i\.ytimg\.com\//.test(v.thumb || "") ? `<img src="${esc(v.thumb)}" alt="">` : ""}<span>${esc(v.title)}</span><small>${esc(v.channel)}${v.views ? ` · ${esc(Number(v.views).toLocaleString("en-US"))} views` : ""}</small></a>`).join("")}</div>`).join("")}`).join("")}</section>` : ""}
 <div class=sum><div><b>${vids.length}</b>clips studied</div><div><b>${vids.filter(arab).length}</b>Iraqi / Arab</div><div><b>${vids.length ? (vids.reduce((n, v) => n + Number(v.score || 0), 0) / vids.length).toFixed(1) : "–"}</b>avg score</div>
 <div><b>${vids.filter((v) => v.check_result?.sound?.voices?.length).length}</b>with voices studied</div><div><b>${added.length}</b>added to VI-Iraq</div><div><b>${cands.filter((c) => c.status === "pending").length}</b>waiting for review</div></div>
 ${coverageHtml}
