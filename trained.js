@@ -29,29 +29,46 @@ const MAX_MB = Number(process.env.TRAIN_MAX_MB) || 60;
 const UA = `VI-Iraq-trained-model/1.0 (+${clean(process.env.PUBLIC_URL) || "https://www.vi-iraq.com"})`;
 const DOMAINS = ["reality", "human", "sound", "place", "item", "action", "nature", "animal", "style"];
 
-// What the model keeps coming back to, whatever is trending: Iraqi and Arab life first, then voices and emotions
-// (angry, happy, sad, laughing, arguing – with their sound), then general realism. One slice of each per cycle.
-// everyday life – people, streets, food, work, sport, celebrations (religious topics are left out on purpose)
-const BASICS_IQ = [
-  "baghdad street", "iraqi market", "iraq bazaar", "tigris river", "basra corniche", "erbil market", "mosul street",
-  "iraqi tea", "arabic coffee", "iraqi bread", "falafel", "kebab grill", "dates palm", "iraqi marshes", "iraq desert",
-  "iraqi wedding", "dabke dance", "arab wedding", "baghdad cafe", "iraqi street food", "camel desert", "iraqi family",
-  "arab family dinner", "middle east street food", "baghdad traffic", "kurdistan mountains", "arabic music oud",
-  "iraqi football fans", "iraqi barber", "baghdad bookshop", "iraqi kitchen cooking", "baghdad taxi", "iraqi bakery",
-];
-const BASICS_VOICE = [
-  "people arguing", "man shouting angry", "woman laughing", "child laughing", "people crying", "crowd cheering",
-  "interview speech", "arabic speech", "man telling story", "people celebrating", "woman talking", "public speech",
-  "wind storm", "strong wind", "thunder storm", "rain sound", "crowd market noise", "street vendor calling",
-];
-const BASICS = [
-  "person talking to camera close up", "hands pouring tea", "pouring milk", "coffee pouring", "water splash",
-  "cooking in a kitchen", "street traffic", "car driving city night", "child playing", "walking in the street",
-  "rain on street", "wind in palm trees", "desert sand wind", "river boat", "cat", "horse running", "birds flying",
-  "fire burning", "smoke", "bread baking", "eating food", "phone in hand", "hair in wind", "fabric moving", "running",
-  "football", "night city lights", "sunset sea waves",
-];
-const slice = (list, n, cycleNo) => Array.from({ length: n }, (_, i) => list[(cycleNo * n + i) % list.length]);
+// The coverage map: everything a customer could ask a video of, so the library covers all of real life evenly. Every
+// cycle studies the areas studied least so far (one search each, Iraqi/Arab variants mixed in); trends are only a share
+// of each cycle (TRAIN_TREND_SHARE, default 0.3). No religion, no games – real everyday life.
+const COVERAGE = {
+  "people & emotions": ["man laughing", "woman crying", "surprised face", "angry man shouting", "old man smiling", "friends hugging", "nervous woman", "tired man yawning"],
+  "voices & conversation": ["two people talking", "arabic speech", "phone call talking", "street interview", "woman talking", "man telling story", "people arguing", "crowd cheering"],
+  "family & home": ["iraqi family", "family dinner", "mother and child", "grandmother kitchen", "living room family", "kids playing home", "cleaning house", "father baby"],
+  "food & cooking": ["iraqi kitchen cooking", "kebab grill", "bread baking", "frying food", "chopping vegetables", "rice cooking", "street food", "iraqi bakery"],
+  "drinks & liquids": ["pouring milk", "coffee pouring", "pouring tea", "water splash", "juice pouring", "boiling water", "arabic coffee", "iraqi tea"],
+  "streets & cities": ["baghdad street", "city traffic", "busy sidewalk", "street vendor", "night city lights", "baghdad traffic", "arab old town", "mosul street"],
+  "work & jobs": ["barber shop", "carpenter working", "car mechanic", "tailor sewing", "construction worker", "farmer field", "office work", "delivery driver"],
+  "shopping & markets": ["iraqi market", "bazaar", "supermarket shopping", "gold shop", "fruit market", "clothes shop", "spice market", "erbil market"],
+  "transport": ["car driving", "baghdad taxi", "bus passengers", "motorcycle riding", "train station", "airport travelers", "boat river", "truck highway"],
+  "sport & play": ["football match", "iraqi football fans", "kids football street", "gym workout", "running", "swimming pool", "basketball", "cycling"],
+  "celebrations & music": ["iraqi wedding", "dabke dance", "arab wedding", "birthday party", "oud music", "drummers", "fireworks", "graduation"],
+  "nature & weather": ["rain street", "dust storm", "wind palm trees", "sunset sky", "thunderstorm", "desert dunes", "river flowing", "snow falling"],
+  "animals": ["cat", "horse running", "camel desert", "birds flying", "dog playing", "sheep herd", "chickens farm", "fish aquarium"],
+  "children & school": ["children classroom", "child drawing", "school kids", "kids playground", "baby crawling", "teenagers laughing"],
+  "fashion & beauty": ["woman makeup", "hair salon", "man shaving", "fabric moving", "trying clothes", "jewelry", "perfume", "tailor fitting"],
+  "phones & technology": ["phone in hand", "selfie", "laptop typing", "video call", "taking photo phone", "tech store", "headphones music", "charging phone"],
+  "light & camera": ["golden hour", "neon lights night", "candle light", "car headlights night", "sunlight window", "street lamps", "fluorescent light", "backlight"],
+  "physics & materials": ["fire burning", "smoke", "glass breaking", "paper falling", "balloon", "sand pouring", "ice melting", "fabric wind"],
+  "places": ["tigris river", "basra corniche", "erbil citadel", "kurdistan mountains", "iraqi marshes", "iraq desert", "dates palm", "baghdad cafe"],
+  "health & care": ["doctor clinic", "pharmacy", "dentist", "nurse", "elderly care", "exercise stretching"],
+  "travel & leisure": ["hotel lobby", "beach tourists", "suitcase airport", "picnic park", "road trip", "camping"],
+  "life stages": ["old woman", "baby", "teenagers", "young couple", "grandfather", "newborn"],
+};
+const COVER_OF = new Map(Object.entries(COVERAGE).flatMap(([area, qs]) => qs.map((q) => [q, area])));
+
+/** The next coverage searches (pure – tested): least-studied areas first, inside an area its least-used search. */
+function pickCoverage(n, studied = {}) {
+  const areaCount = (a) => COVERAGE[a].reduce((sum, q) => sum + (studied[q] || 0), 0);
+  const areas = Object.keys(COVERAGE).sort((a, b) => areaCount(a) - areaCount(b) || a.localeCompare(b));
+  const out = [];
+  for (const a of areas.slice(0, n)) {
+    const q = [...COVERAGE[a]].sort((x, y) => (studied[x] || 0) - (studied[y] || 0))[0];
+    out.push({ q, trend: "", area: a });
+  }
+  return out;
+}
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const decode = (s) => String(s || "").replace(/<!\[CDATA\[|\]\]>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
@@ -139,10 +156,10 @@ async function askJson(text, images = [], maxTokens = 2500) {
 }
 
 /** Trends + a slice of the basics → footage searches (English, filmable), each tagged with its trend. */
-async function planTopics(trends, count, cycleNo = 0) {
-  // half of every cycle is fixed study: Iraqi/Arab life, voices and emotions, general realism
-  const fixed = Math.ceil(count / 2), nIq = Math.ceil(fixed / 2), nVoice = Math.ceil((fixed - nIq) / 2);
-  const basics = [...slice(BASICS_IQ, nIq, cycleNo), ...slice(BASICS_VOICE, nVoice, cycleNo), ...slice(BASICS, Math.max(0, fixed - nIq - nVoice), cycleNo)].map((q) => ({ q, trend: "" }));
+async function planTopics(trends, count, studied = {}) {
+  // most of every cycle covers real life evenly; trends are only a share of it
+  const share = Math.min(1, Math.max(0, Number(process.env.TRAIN_TREND_SHARE ?? 0.3)));
+  const basics = pickCoverage(count - Math.round(count * share), studied);
   if (!trends.length) return basics.slice(0, count);
   try {
     // Iraq first, then the Arab world, then the rest – YouTube and Google side by side within each region
@@ -372,8 +389,8 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
   const trends = await fetchTrends();
   report.trends = trends.length;
   for (const t of trends) await db.query("INSERT INTO trained_trends (source, region, topic, traffic, info) VALUES ($1,$2,$3,$4,$5)", [t.source, t.region, t.topic.slice(0, 300), t.traffic || null, { news: t.news || [], ...(t.video ? { video: t.video } : {}) }]);
-  const cycleNo = Number((await db.query("SELECT count(DISTINCT date_trunc('hour', created_at)) AS n FROM trained_videos")).rows[0].n) || 0;
-  const queries = await planTopics(trends, Math.max(2, videos + 2), cycleNo);
+  const studied = Object.fromEntries((await db.query("SELECT query, count(*)::int AS n FROM trained_videos GROUP BY query")).rows.map((r) => [r.query, r.n]));
+  const queries = await planTopics(trends, Math.max(2, videos + 2), studied);
   report.queries = queries.length;
   log("searches:", queries.map((x) => x.q + (x.trend ? ` [${x.trend}]` : "")).join(" · "));
   const known = knownNames([...library.loadFiles(), ...(await db.query("SELECT id, names FROM prompt_library")).rows]);
@@ -477,6 +494,10 @@ async function report(db, { hours = 24, day = "" } = {}) {
     if (list.length < 10 && !list.some((x) => x.id === v.id)) list.push({ ...v, title: r.topic });
   }
   // Iraqi/Arab by what the clip is (its title, Arabic voices heard in it) – not by the search that found it
+  const allQ = Object.fromEntries((await db.query("SELECT query, count(*)::int AS n FROM trained_videos WHERE status='studied' GROUP BY query")).rows.map((r) => [r.query, r.n]));
+  const dayQ = {}; for (const v of vids) dayQ[v.query] = (dayQ[v.query] || 0) + 1;
+  const areaSum = (qs, m) => qs.reduce((n, q) => n + (m[q] || 0), 0);
+  const coverageHtml = `<section class=card><h2>Coverage of real life</h2><p class=muted>Clips studied per area (all time · today). The least-covered areas are studied next.</p><table><tr><th>area</th><th>all time</th><th>today</th></tr>${Object.entries(COVERAGE).map(([a, qs]) => [a, areaSum(qs, allQ), areaSum(qs, dayQ)]).sort((x, y) => x[1] - y[1]).map(([a, n, d]) => `<tr><td>${esc(a)}</td><td>${n}</td><td>${d}</td></tr>`).join("")}</table></section>`;
   const arab = (v) => ARAB.test(v.title || "") || (v.check_result?.sound?.voices || []).some((x) => /arab/i.test(x.language));
   vids.sort((a, b) => Number(arab(b)) - Number(arab(a)));
   const img = async (key) => {
@@ -514,6 +535,7 @@ ${Object.keys(yt).length ? `<section class=card><h2>Trending on YouTube today</h
 ${Object.entries(yt).map(([region, list]) => `<h3>${esc(region)}</h3><div class=yt>${list.map((v) => `<a class=ytv href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}">${/^https:\/\/i\.ytimg\.com\//.test(v.thumb || "") ? `<img src="${esc(v.thumb)}" alt="">` : ""}<span>${esc(v.title)}</span><small>${esc(v.channel)}${v.views ? ` · ${esc(Number(v.views).toLocaleString("en-US"))} views` : ""}</small></a>`).join("")}</div>`).join("")}</section>` : ""}
 <div class=sum><div><b>${vids.length}</b>clips studied</div><div><b>${vids.filter(arab).length}</b>Iraqi / Arab</div><div><b>${vids.length ? (vids.reduce((n, v) => n + Number(v.score || 0), 0) / vids.length).toFixed(1) : "–"}</b>avg score</div>
 <div><b>${vids.filter((v) => v.check_result?.sound?.voices?.length).length}</b>with voices studied</div><div><b>${added.length}</b>added to VI-Iraq</div><div><b>${cands.filter((c) => c.status === "pending").length}</b>waiting for review</div></div>
+${coverageHtml}
 <section class=card><h2>Added to the VI-Iraq library</h2>${added.map(entryHtml).join("") || "<p class=muted>nothing yet in this period</p>"}</section>
 <section class=card><h2>Trends</h2><p><b>Iraq:</b> ${iq.map(esc).join(" · ") || "–"}</p><p class=muted><b>Other regions:</b> ${other.slice(0, 40).map(esc).join(" · ")}</p></section>
 ${cards.join("\n")}
@@ -595,4 +617,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
+module.exports = { COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };

@@ -121,3 +121,19 @@ test("report days are Iraqi days (UTC+3, no daylight saving)", () => {
   assert.equal(trained.iraqDay(new Date("2026-10-28T21:30:00Z")), "2026-10-29", "00:30 in Baghdad is already the next day");
   assert.throws(() => trained.dayRange("29/10/2026"));
 });
+
+test("coverage: the least-studied areas come first and every area gets its turn", () => {
+  const areas = Object.keys(trained.COVERAGE);
+  assert.ok(areas.length >= 20, "covers all of real life");
+  const first = trained.pickCoverage(5, {});
+  assert.equal(first.length, 5);
+  assert.equal(new Set(first.map((x) => x.area)).size, 5, "one search per area");
+  const studied = {};
+  const seen = new Set();
+  for (let cycle = 0; cycle < Math.ceil(areas.length / 7) + 1; cycle++) {
+    for (const x of trained.pickCoverage(7, studied)) { studied[x.q] = (studied[x.q] || 0) + 1; seen.add(x.area); }
+  }
+  assert.equal(seen.size, areas.length, "after a few cycles every area was studied");
+  const all = Object.values(trained.COVERAGE).flat().join(" ");
+  assert.ok(!trained.NOT_REAL.test(all) && !trained.RELIGIOUS.test(all), "no games, no religion in the map");
+});
