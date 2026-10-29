@@ -5,7 +5,7 @@
  *   1. trends  – Google Trends daily searches (keyless RSS, TRAIN_GEOS) + YouTube most popular titles/tags (only with
  *                YOUTUBE_API_KEY, official API, nothing downloaded)
  *   2. topics  – the prompt model turns the trends + a rotating list of realism basics into short footage searches
- *   3. footage – freely licensed real videos: Wikimedia Commons (keyless) and Pexels (PEXELS_API_KEY)
+ *   3. footage – freely licensed real videos: Pexels (PEXELS_API_KEY), Pixabay (PIXABAY_API_KEY), Wikimedia Commons (keyless)
  *   4. study   – frames of each clip → the prompt model writes a reality check (what makes it real, what AI usually
  *                gets wrong) and 0–2 draft library entries
  *   5. record  – every clip with its licence and author, the reality check and the drafts (trained_* tables)
@@ -152,14 +152,14 @@ async function searchCommons(q, limit = 12) {
   }).filter((v) => v.media_url && v.duration_sec >= 3 && v.duration_sec <= 600 && relevant(v, q));
 }
 
-/** Clips for one search: Pexels first (stock footage of real life), then Commons; a search without hits is retried
+/** Clips for one search: Pexels and Pixabay first (HD stock footage of real life), then Commons; a search without hits is retried
  *  with its last words only ("rainy iraqi street" → "iraqi street" → "street"). */
 async function findClips(q) {
   const words = q.split(/\s+/);
   for (let i = 0; i < words.length; i++) {
     const sub = words.slice(i).join(" ");
     if (i > 0 && sub.length < 4) break;
-    const found = [...(await searchPexels(sub).catch(() => [])), ...(await searchCommons(sub).catch(() => []))];
+    const found = [...(await searchPexels(sub).catch(() => [])), ...(await searchPixabay(sub).catch(() => [])), ...(await searchCommons(sub).catch(() => []))];
     if (found.length) return found.map((v) => ({ ...v, query: q }));
   }
   return [];
@@ -171,9 +171,21 @@ async function searchPexels(q, limit = 4) {
   if (!key) return [];
   const d = await getJson(`https://api.pexels.com/videos/search?query=${encodeURIComponent(q)}&per_page=${limit}&size=small`, { headers: { Authorization: key } });
   return (d.videos || []).map((v) => {
-    const file = (v.video_files || []).filter((f) => f.link && (f.width || 0) <= 1280).sort((a, b) => (b.width || 0) - (a.width || 0))[0];
+    const file = (v.video_files || []).filter((f) => f.link && (f.width || 0) <= 1920).sort((a, b) => (b.width || 0) - (a.width || 0))[0];
     return file && { id: `pexels:${v.id}`, source: "pexels", query: q, title: clean(v.url).split("/").filter(Boolean).pop()?.slice(0, 200) || `pexels ${v.id}`,
       page_url: v.url, media_url: file.link, license: "Pexels License", author: clean(v.user?.name).slice(0, 120), duration_sec: Number(v.duration) || 0, size: 0 };
+  }).filter(Boolean).filter((v) => v.duration_sec >= 3 && v.duration_sec <= 600);
+}
+
+/** Pixabay video search (only with PIXABAY_API_KEY; the Pixabay Content License allows this use) – HD files. */
+async function searchPixabay(q, limit = 4) {
+  const key = clean(process.env.PIXABAY_API_KEY);
+  if (!key) return [];
+  const d = await getJson(`https://pixabay.com/api/videos/?key=${encodeURIComponent(key)}&q=${encodeURIComponent(q)}&per_page=${Math.max(3, limit)}&safesearch=true`);
+  return (d.hits || []).slice(0, limit).map((v) => {
+    const file = [v.videos?.large, v.videos?.medium, v.videos?.small].find((f) => f && f.url && (f.width || 0) <= 1920 && (!f.size || f.size <= MAX_MB * 1e6));
+    return file && { id: `pixabay:${v.id}`, source: "pixabay", query: q, title: clean(v.tags).slice(0, 200) || `pixabay ${v.id}`,
+      page_url: v.pageURL, media_url: file.url, license: "Pixabay Content License", author: clean(v.user).slice(0, 120), duration_sec: Number(v.duration) || 0, size: Number(file.size) || 0 };
   }).filter(Boolean).filter((v) => v.duration_sec >= 3 && v.duration_sec <= 600);
 }
 
@@ -536,4 +548,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
+module.exports = { searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
