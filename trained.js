@@ -138,14 +138,26 @@ async function fetchTrends() {
 async function realOnly(all) {
   const yt = all.map((t, i) => ({ t, i })).filter((x) => x.t.source === "youtube");
   if (!yt.length || !OPENAI_KEY) return all;
+  // in batches: one long list cuts the model's answer short, and a missing answer must never mean "nothing is real"
+  const drop = new Set();
+  for (let at = 0; at < yt.length; at += 30) {
+    const part = yt.slice(at, at + 30);
+    const out = await realBatch(part);
+    if (out) for (const i of out) drop.add(i);
+  }
+  return all.filter((_, i) => !drop.has(i));
+}
+
+/** One batch of the real-life check: the list indexes to drop, or null when the model gave no usable answer. */
+async function realBatch(yt) {
   try {
     const v = await askJson(`For each YouTube video below decide: is it REAL LIFE filmed by a camera with real people – vlogs, people and family channels, comedy sketches and pranks, live-action TV series and movies and their trailers (real actors), talk shows, cooking, sport, travel, cars, beauty and style, real music performances and music videos with real people, everyday life – or NOT wanted: religious content (recitations, latmiyat, nasheeds, sermons, Quran, religious lectures or ceremonies) – or NOT real (video games, Minecraft/Roblox/mobile games, game challenges, cartoons, animation, anime, CGI, AI videos, music visualizers or lyric videos without people, slideshows, screen recordings)?
 ${yt.map((x, k) => `${k}. ${x.t.topic} — ${x.t.video?.channel || ""}`).join("\n")}
-Return JSON only: {"real":[numbers of the REAL-LIFE videos]}`, [], 1500);
-    const keep = new Set((Array.isArray(v.real) ? v.real : []).map(Number));
-    const drop = new Set(yt.filter((x, k) => !keep.has(k)).map((x) => x.i));
-    return all.filter((_, i) => !drop.has(i));
-  } catch (e) { console.error("youtube real-only check:", e.message); return all; }
+Return JSON only: {"real":[numbers of the REAL-LIFE videos]}`, [], 4000);
+    if (!Array.isArray(v.real)) return null;
+    const keep = new Set(v.real.map(Number));
+    return yt.filter((x, k) => !keep.has(k)).map((x) => x.i);
+  } catch (e) { console.error("youtube real-only check:", e.message); return null; }
 }
 
 /** One OpenAI JSON call (text + optional images). */
