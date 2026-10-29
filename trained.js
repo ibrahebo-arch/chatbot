@@ -130,7 +130,7 @@ Return JSON only: {"queries":[{"q":"...","trend":"<the trend it comes from>"}]} 
 // Commons full-text search is loose: a clip is only studied when its title carries a word of the search, and never
 // when the title points to violence, crime, politics or adult content.
 const STOP = new Set(["a", "an", "the", "of", "and", "in", "on", "to", "with", "at", "person", "people", "close", "up", "into", "from"]);
-const BLOCK = /\b(kill|killed|killing|murder|shoot|shooting|shot dead|tased|taser|war|bomb|attack|terror|protest|riot|police brutality|blood|dead|death|corpse|execution|porn|sex|nude|naked|president|minister|parliament|election|khamenei|khomeini|saddam|isis|daesh|militia|military|army|soldier|troops|airstrike|fighter jet|f-?35)\b/i;
+const BLOCK = /\b(kill|killed|killing|murder|shoot|shooting|shot dead|tased|taser|war|bomb|attack|terror|protest|riot|police brutality|blood|dead|death|corpse|execution|porn|sex|nude|naked|president|minister|parliament|election|khamenei|khomeini|saddam|isis|daesh|militia|military|army|soldier|troops|airstrike|fighter jet|f-?35|tank|abrams|humvee|convoy|senator|congress|governor|attorney general|affirmative action|campaign)\b/i;
 const keyWords = (q) => q.toLowerCase().split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w)).map((w) => w.replace(/(ing|s)$/, ""));
 /** Pure – tested. */
 function relevant(v, q) {
