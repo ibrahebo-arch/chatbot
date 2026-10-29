@@ -137,3 +137,10 @@ test("coverage: the least-studied areas come first and every area gets its turn"
   const all = Object.values(trained.COVERAGE).flat().join(" ");
   assert.ok(!trained.NOT_REAL.test(all) && !trained.RELIGIOUS.test(all), "no games, no religion in the map");
 });
+
+test("YouTube lengths are read from ISO 8601", () => {
+  assert.equal(trained.isoSeconds("PT1H2M10S"), 3730);
+  assert.equal(trained.isoSeconds("PT45S"), 45);
+  assert.equal(trained.isoSeconds("P0D"), 0);
+  assert.equal(trained.isoSeconds(""), 0);
+});

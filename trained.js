@@ -112,7 +112,7 @@ async function fetchTrends() {
       // the overall chart is mostly music, so every category is read on its own (a region without one answers 400)
       for (const [cat, label] of [["", "Top"], ...Object.entries(YT_CATEGORIES)]) {
         try {
-          const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=${cat ? 8 : 15}&regionCode=${geo}${cat ? `&videoCategoryId=${cat}` : ""}&key=${encodeURIComponent(yt)}`, { headers: { Referer: referer } });
+          const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&maxResults=${cat ? 8 : 15}&regionCode=${geo}${cat ? `&videoCategoryId=${cat}` : ""}&key=${encodeURIComponent(yt)}`, { headers: { Referer: referer } });
           for (const v of d.items || []) {
             if (seen.has(v.id)) continue;
             seen.add(v.id);
@@ -121,6 +121,7 @@ async function fetchTrends() {
             const views = Number(v.statistics?.viewCount) || 0;
             all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
               video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, kind: YT_CATEGORIES[String(v.snippet?.categoryId)] || label,
+                secs: isoSeconds(v.contentDetails?.duration), about: clean(v.snippet?.description).replace(/https?:\/\/\S+/g, "").slice(0, 300),
                 thumb: clean(v.snippet?.thumbnails?.medium?.url || v.snippet?.thumbnails?.default?.url) } });
           }
         } catch (e) { if (!/ 400$| 404$/.test(e.message)) console.error(`youtube ${geo} ${label}:`, e.message); }
@@ -128,6 +129,55 @@ async function fetchTrends() {
     }
   }
   return realOnly(all);
+}
+
+/** "PT1H2M10S" → 3730 (pure). */
+function isoSeconds(d) {
+  const m = /^P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/.exec(String(d || ""));
+  return m ? (Number(m[1] || 0) * 86400) + (Number(m[2] || 0) * 3600) + (Number(m[3] || 0) * 60) + Number(m[4] || 0) : 0;
+}
+
+/**
+ * What VI-Iraq learns from each trending YouTube video – from the official data only (title, channel, category,
+ * length, views, tags, a bit of the description; nothing is downloaded): its format, its hook, why people watch it,
+ * what must look real if VI-Iraq makes something in that spirit, and one ORIGINAL video idea for VI-Iraq customers
+ * (never a copy of the video or its people). A video already learned in the last 7 days keeps its notes. Also writes
+ * the day's short lessons. Mutates trends[].video.learned; returns the lessons (or null).
+ */
+async function learnYouTube(db, trends, { log = console.log } = {}) {
+  const yt = trends.filter((t) => t.source === "youtube" && t.video?.id);
+  if (!yt.length || !OPENAI_KEY) return null;
+  const known = new Map((await db.query(`SELECT DISTINCT ON (info->'video'->>'id') info->'video'->>'id' AS id, info->'video'->'learned' AS learned
+    FROM trained_trends WHERE source='youtube' AND seen_at > now() - interval '7 days' AND info->'video' ? 'learned' ORDER BY info->'video'->>'id', id DESC`)).rows.map((r) => [r.id, r.learned]));
+  const todo = [];
+  for (const t of yt) { const l = known.get(t.video.id); if (l) t.video.learned = l; else todo.push(t); }
+  const cut = (x, n = 220) => clean(x).slice(0, n);
+  for (let at = 0; at < todo.length; at += 20) {
+    const part = todo.slice(at, at + 20);
+    try {
+      const v = await askJson(`You study what is trending on YouTube in Iraq and the Arab world for VI-Iraq, an AI video studio whose customers order short realistic videos. For each video below (official YouTube data only – you have not watched it) write what can be learned:
+- format: what kind of video it is (e.g. family vlog, comedy sketch, street prank, cooking short, car review, series episode, music video with real people)
+- hook: what grabs the viewer, from the title/description style (curiosity, emoji, question, challenge, emotion…)
+- why: why people watch and share it
+- real: what must look and sound REAL if VI-Iraq made a video in this spirit (concrete: faces, timing, place, sound, camera)
+- idea: ONE original short-video idea for VI-Iraq customers inspired by the trend – new characters and story, never a copy of this video, its people or its brand; Iraqi flavour when it fits
+Keep each field under 200 characters, plain English.
+${part.map((t, k) => `${k}. [${t.region} · ${t.video.kind || ""} · ${t.video.secs ? `${Math.round(t.video.secs)} s` : "?"} · ${t.video.views || 0} views] ${t.topic} — ${t.video.channel}${t.news?.length ? ` · tags: ${t.news.join(", ")}` : ""}${t.video.about ? ` · about: ${t.video.about}` : ""}`).join("\n")}
+Return JSON only: {"videos":[{"n":<number>,"format":"…","hook":"…","why":"…","real":"…","idea":"…"}]}`, [], 6000);
+      for (const x of Array.isArray(v.videos) ? v.videos : []) {
+        const t = part[Number(x.n)];
+        if (t) t.video.learned = { format: cut(x.format, 80), hook: cut(x.hook), why: cut(x.why), real: cut(x.real), idea: cut(x.idea) };
+      }
+    } catch (e) { log(`youtube learn: ${e.message}`); }
+  }
+  const learned = yt.filter((t) => t.video.learned);
+  if (!learned.length) return null;
+  try {
+    const v = await askJson(`From today's trending YouTube videos in Iraq and the Arab world (notes below), write 6–8 short lessons for VI-Iraq, an AI studio making realistic short videos for Iraqi customers: what formats, hooks, lengths, moods and subjects people watch now, and what that means for the videos VI-Iraq should offer and how real they must feel. Plain English, each under 220 characters.
+${learned.slice(0, 80).map((t) => `- [${t.region} · ${t.video.kind} · ${t.video.secs || "?"} s · ${t.video.views} views] ${t.topic.slice(0, 90)} → ${t.video.learned.format}; ${t.video.learned.why}`).join("\n")}
+Return JSON only: {"lessons":["…"]}`, [], 3000);
+    return (Array.isArray(v.lessons) ? v.lessons : []).map((x) => cut(x, 260)).filter(Boolean).slice(0, 8);
+  } catch (e) { log(`youtube lessons: ${e.message}`); return null; }
 }
 
 /**
@@ -411,6 +461,9 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
   const report = { trends: 0, queries: 0, studied: 0, failed: 0, drafts: 0, duplicates: 0, rejected: 0 };
   const trends = await fetchTrends();
   report.trends = trends.length;
+  let lessons = null;
+  try { lessons = await learnYouTube(db, trends, { log }); } catch (e) { log(`youtube learn: ${e.message}`); }
+  if (lessons?.length) await db.query("INSERT INTO trained_trends (source, region, topic, info) VALUES ('youtube-lessons', 'ALL', 'lessons', $1)", [{ lessons }]);
   for (const t of trends) await db.query("INSERT INTO trained_trends (source, region, topic, traffic, info) VALUES ($1,$2,$3,$4,$5)", [t.source, t.region, t.topic.slice(0, 300), t.traffic || null, { news: t.news || [], ...(t.video ? { video: t.video } : {}) }]);
   const studied = Object.fromEntries((await db.query("SELECT query, count(*)::int AS n FROM trained_videos GROUP BY query")).rows.map((r) => [r.query, r.n]));
   const queries = await planTopics(trends, Math.max(2, videos + 2), studied);
@@ -509,6 +562,7 @@ async function report(db, { hours = 24, day = "" } = {}) {
   const added = cands.filter((c) => c.status === "approved");
   const trends = (await db.query(`SELECT region, topic FROM trained_trends WHERE seen_at >= $1 AND seen_at < $2 ORDER BY (region='IQ') DESC, id DESC`, R)).rows;
   // YouTube's official most-popular list (titles, channels, views, thumbnails – nothing downloaded), latest first
+  const ytLessons = (await db.query(`SELECT info FROM trained_trends WHERE source='youtube-lessons' AND seen_at >= $1 AND seen_at < $2 ORDER BY id DESC LIMIT 1`, R)).rows[0]?.info?.lessons || [];
   const ytRows = (await db.query(`SELECT region, topic, info FROM trained_trends WHERE source='youtube' AND seen_at >= $1 AND seen_at < $2 ORDER BY (region='IQ') DESC, id DESC`, R)).rows;
   const yt = {};
   for (const r of ytRows) {
@@ -552,10 +606,11 @@ h1{margin:.2em 0}.sum{display:flex;gap:12px;flex-wrap:wrap}.sum div{background:#
 .meta,.muted{color:#6b6b70;font-size:.9em}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.cols{grid-template-columns:1fr}}
 table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid #e3e0d8;padding:6px;text-align:left;vertical-align:top}
 .entry{border-left:4px solid #bbb;padding:6px 10px;margin:8px 0;background:#fafafa}.entry.ok{border-color:#2e9d5b}.entry.no{border-color:#c0392b}.entry.wait{border-color:#d4a017}
-.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ytv{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:#1d1d1f;font-size:.85em}.ytv img{width:100%;border-radius:8px}.ytv small{color:#6b6b70}h4{margin:12px 0 6px;color:#0b6e75}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
+.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.learn{font-size:.82em;line-height:1.45;background:#f7f5ef;border-radius:8px;padding:6px 8px;color:#333}.ytv{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:#1d1d1f;font-size:.85em}.ytv img{width:100%;border-radius:8px}.ytv small{color:#6b6b70}h4{margin:12px 0 6px;color:#0b6e75}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
 <h1>VI-Iraq · Trained Model</h1><p class=muted>${day ? `Day ${esc(day)} (Iraq time)` : `Last ${esc(hours)} hours`} · updated ${esc(new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 16).replace("T", " "))} Iraq time</p>
-${Object.keys(yt).length ? `<section class=card><h2>Trending on YouTube today</h2><p class=muted>YouTube's official most-popular list. The next studies pick their real-footage searches from these topics; the YouTube videos themselves are never downloaded.</p>
-${Object.entries(yt).map(([region, list]) => `<h3>${esc(region)}</h3>${[...new Set(list.map((v) => v.kind || "Top"))].map((kind) => `<h4>${esc(kind)}</h4><div class=yt>${list.filter((v) => (v.kind || "Top") === kind).map((v) => `<a class=ytv href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}">${/^https:\/\/i\.ytimg\.com\//.test(v.thumb || "") ? `<img src="${esc(v.thumb)}" alt="">` : ""}<span>${esc(v.title)}</span><small>${esc(v.channel)}${v.views ? ` · ${esc(Number(v.views).toLocaleString("en-US"))} views` : ""}</small></a>`).join("")}</div>`).join("")}`).join("")}</section>` : ""}
+${Object.keys(yt).length ? `<section class=card><h2>Trending on YouTube today</h2><p class=muted>YouTube's official most-popular list. What VI-Iraq learned is written under every video – from YouTube's official data (title, channel, category, length, views, tags, description); the videos themselves are never downloaded.</p>
+${ytLessons.length ? `<h3>What VI-Iraq learned from YouTube today</h3><ul>${ytLessons.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+${Object.entries(yt).map(([region, list]) => `<h3>${esc(region)}</h3>${[...new Set(list.map((v) => v.kind || "Top"))].map((kind) => `<h4>${esc(kind)}</h4><div class=yt>${list.filter((v) => (v.kind || "Top") === kind).map((v) => `<a class=ytv href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}">${/^https:\/\/i\.ytimg\.com\//.test(v.thumb || "") ? `<img src="${esc(v.thumb)}" alt="">` : ""}<span>${esc(v.title)}</span><small>${esc(v.channel)}${v.views ? ` · ${esc(Number(v.views).toLocaleString("en-US"))} views` : ""}${v.secs ? ` · ${v.secs >= 60 ? `${Math.floor(v.secs / 60)} min ` : ""}${v.secs % 60} s` : ""}</small>${v.learned ? `<div class=learn><b>${esc(v.learned.format)}</b><br><i>Hook:</i> ${esc(v.learned.hook)}<br><i>Why it trends:</i> ${esc(v.learned.why)}<br><i>Must look real:</i> ${esc(v.learned.real)}<br><i>VI-Iraq idea:</i> ${esc(v.learned.idea)}</div>` : ""}</a>`).join("")}</div>`).join("")}`).join("")}</section>` : ""}
 <div class=sum><div><b>${vids.length}</b>clips studied</div><div><b>${vids.filter(arab).length}</b>Iraqi / Arab</div><div><b>${vids.length ? (vids.reduce((n, v) => n + Number(v.score || 0), 0) / vids.length).toFixed(1) : "–"}</b>avg score</div>
 <div><b>${vids.filter((v) => v.check_result?.sound?.voices?.length).length}</b>with voices studied</div><div><b>${added.length}</b>added to VI-Iraq</div><div><b>${cands.filter((c) => c.status === "pending").length}</b>waiting for review</div></div>
 ${coverageHtml}
@@ -640,4 +695,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
+module.exports = { learnYouTube, isoSeconds, COVERAGE, pickCoverage, NOT_REAL, RELIGIOUS, searchPixabay, report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, DOMAINS };
