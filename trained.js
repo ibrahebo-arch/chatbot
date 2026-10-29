@@ -111,8 +111,19 @@ Return JSON only: {"queries":[{"q":"...","trend":"<the trend it comes from>"}]} 
   } catch (e) { console.error("trained topics:", e.message); return basics.slice(0, count); }
 }
 
+// Commons full-text search is loose: a clip is only studied when its title carries a word of the search, and never
+// when the title points to violence, crime, politics or adult content.
+const STOP = new Set(["a", "an", "the", "of", "and", "in", "on", "to", "with", "at", "person", "people", "close", "up", "into", "from"]);
+const BLOCK = /\b(kill|killed|killing|murder|shoot|shooting|shot dead|tased|taser|war|bomb|attack|terror|protest|riot|police brutality|blood|dead|death|corpse|execution|porn|sex|nude|naked)\b/i;
+const keyWords = (q) => q.toLowerCase().split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w)).map((w) => w.replace(/(ing|s)$/, ""));
+/** Pure – tested. */
+function relevant(v, q) {
+  const t = String(v.title || "").toLowerCase();
+  return !BLOCK.test(t) && keyWords(q).some((w) => w.length > 2 && t.includes(w));
+}
+
 /** Wikimedia Commons video search → candidate clips (free licences, author + licence kept). */
-async function searchCommons(q, limit = 6) {
+async function searchCommons(q, limit = 12) {
   const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${encodeURIComponent(`filetype:video ${q}`)}&gsrnamespace=6&gsrlimit=${limit}&prop=imageinfo&iiprop=url|size|mime|extmetadata&iiextmetadatafilter=LicenseShortName|Artist`;
   const d = await getJson(u);
   return Object.values(d.query?.pages || {}).map((p) => {
@@ -122,7 +133,20 @@ async function searchCommons(q, limit = 6) {
       page_url: i.descriptionurl, media_url: clean(i.url).split("?")[0], license: stripTags(i.extmetadata?.LicenseShortName?.value),
       author: stripTags(i.extmetadata?.Artist?.value).slice(0, 120), duration_sec: Number(i.duration) || 0, size: Number(i.size) || 0,
     };
-  }).filter((v) => v.media_url && v.duration_sec >= 3 && v.duration_sec <= 600);
+  }).filter((v) => v.media_url && v.duration_sec >= 3 && v.duration_sec <= 600 && relevant(v, q));
+}
+
+/** Clips for one search: Pexels first (stock footage of real life), then Commons; a search without hits is retried
+ *  with its last words only ("rainy iraqi street" → "iraqi street" → "street"). */
+async function findClips(q) {
+  const words = q.split(/\s+/);
+  for (let i = 0; i < words.length; i++) {
+    const sub = words.slice(i).join(" ");
+    if (i > 0 && sub.length < 4) break;
+    const found = [...(await searchPexels(sub).catch(() => [])), ...(await searchCommons(sub).catch(() => []))];
+    if (found.length) return found.map((v) => ({ ...v, query: q }));
+  }
+  return [];
 }
 
 /** Pexels video search (only with PEXELS_API_KEY; the Pexels licence allows this use). */
@@ -228,16 +252,18 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
   report.trends = trends.length;
   for (const t of trends) await db.query("INSERT INTO trained_trends (source, region, topic, traffic, info) VALUES ($1,$2,$3,$4,$5)", [t.source, t.region, t.topic.slice(0, 300), t.traffic || null, { news: t.news || [] }]);
   const cycleNo = Number((await db.query("SELECT count(DISTINCT date_trunc('hour', created_at)) AS n FROM trained_videos")).rows[0].n) || 0;
-  const queries = await planTopics(trends, Math.max(2, Math.ceil(videos / 2)), cycleNo);
+  const queries = await planTopics(trends, Math.max(2, videos + 2), cycleNo);
   report.queries = queries.length;
+  log("searches:", queries.map((x) => x.q + (x.trend ? ` [${x.trend}]` : "")).join(" · "));
   const known = knownNames([...library.loadFiles(), ...(await db.query("SELECT id, names FROM prompt_library")).rows]);
   let left = videos;
   for (const { q, trend } of queries) {
     if (left <= 0) break;
     let found = [];
-    try { found = [...(await searchPexels(q)), ...(await searchCommons(q))]; } catch (e) { log(`search "${q}": ${e.message}`); }
+    try { found = await findClips(q); } catch (e) { log(`search "${q}": ${e.message}`); }
+    if (!found.length) { log(`no clip for "${q}"`); continue; }
     const seen = new Set((await db.query("SELECT id FROM trained_videos WHERE id = ANY($1)", [found.map((v) => v.id)])).rows.map((r) => r.id));
-    for (const v of found.filter((x) => !seen.has(x.id)).slice(0, 2)) {
+    for (const v of found.filter((x) => !seen.has(x.id)).slice(0, 1)) {
       if (left <= 0) break;
       left--;
       await db.query(`INSERT INTO trained_videos (id, source, query, trend, title, page_url, media_url, license, author, duration_sec) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) ON CONFLICT (id) DO NOTHING`,
@@ -310,4 +336,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { parseTrends, validateDraft, knownNames, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
+module.exports = { parseTrends, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };

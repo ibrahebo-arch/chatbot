@@ -83,3 +83,10 @@ test("a reviewed draft goes into prompt_library as source 'trained' and the libr
     await admin.end();
   }
 });
+
+test("footage search: only clips whose title fits the search, never violence or adult titles", () => {
+  assert.equal(trained.relevant({ title: "Princeton vs yale football game 1903.ogg" }, "football stadium crowd"), true);
+  assert.equal(trained.relevant({ title: "Fan Tased at Florida vs Georgia Game.webm" }, "football game crowd"), false, "blocked word");
+  assert.equal(trained.relevant({ title: "Pimlico Strollers CC v I Don't Like CC.webm" }, "person talking to camera close up"), false, "no search word in the title");
+  assert.equal(trained.relevant({ title: "Woman pouring milk into coffee.webm" }, "pouring milk"), true, "pouring → pour");
+});
