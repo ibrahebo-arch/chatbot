@@ -989,8 +989,12 @@ const adminPage = (req, res, next) => {
   const f = adminFails.get(ip);
   if (f && f.n >= 10 && Date.now() - f.t < 3600e3) return res.status(429).type("text").send("Too many attempts – try again in an hour.");
   const m = /^Basic\s+(.+)$/i.exec(String(req.get("authorization") || ""));
-  const pass = Buffer.from(m ? Buffer.from(m[1], "base64").toString("utf8").replace(/^[^:]*:/, "") : "");
-  if (!ADMIN_TOKEN || pass.length !== Buffer.byteLength(ADMIN_TOKEN) || !crypto.timingSafeEqual(pass, Buffer.from(ADMIN_TOKEN))) {
+  const raw = m ? Buffer.from(m[1], "base64").toString("utf8") : "", cut = raw.indexOf(":");
+  const user = cut >= 0 ? raw.slice(0, cut) : "", pass = cut >= 0 ? raw.slice(cut + 1) : "";
+  const same = (a, b) => Boolean(b) && Buffer.byteLength(a) === Buffer.byteLength(b) && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
+  // the owner's own report login (REPORT_USER / REPORT_PASS in .env) or the admin token with any user name
+  const ok = (same(user, clean(process.env.REPORT_USER)) && same(pass, clean(process.env.REPORT_PASS))) || same(pass, ADMIN_TOKEN);
+  if (!ok) {
     if (m) { if (!f || Date.now() - f.t >= 3600e3) adminFails.set(ip, { t: Date.now(), n: 1 }); else f.n++; }
     return res.status(401).set("WWW-Authenticate", 'Basic realm="VI-Iraq trained model", charset="UTF-8"').type("text").send("Admin password needed.");
   }
