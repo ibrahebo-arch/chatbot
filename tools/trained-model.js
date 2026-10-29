@@ -7,8 +7,13 @@
  *   node tools/trained-model.js approve <id...> [--by name] [--edit edits.json]   into prompt_library (source 'trained')
  *   node tools/trained-model.js reject <id...> [--note "why"] [--by name]
  *   node tools/trained-model.js stats
- *   node tools/trained-model.js report [--hours 24] [--out file.html]   the study report (frames, reality check, sound
- *                                                       and voices, drafts, what entered the library), also kept in storage
+ *   node tools/trained-model.js review                 the automatic editor reviews the waiting drafts now
+ *   node tools/trained-model.js report [--day YYYY-MM-DD] [--out file.html]   the day's report (frames, reality check,
+ *                                                       sound and voices, drafts and decisions, what entered the library)
+ *
+ * After every cycle the automatic editor reviews the new drafts (TRAIN_AUTO_REVIEW=0 turns that off, then drafts wait
+ * for approve/reject) and the day's report is rewritten: STORAGE_DIR/trained/reports/<Iraq day>.html, also shown at
+ * https://www.vi-iraq.com/admin/trained (admin password).
  *
  * On the server: cd /opt/vi-iraq && sudo -u viiraq -H node --env-file=.env tools/trained-model.js stats
  * TRAINED_MODEL=0 in the environment stops the cycles (review commands still work).
@@ -32,6 +37,10 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
     log("cycle start");
     const r = await trained.cycle(db, { videos: Number(opt("videos", 0)) || undefined, log });
     log("cycle done", JSON.stringify(r));
+    if (String(process.env.TRAIN_AUTO_REVIEW || "").trim() !== "0") {
+      try { log("auto-review", JSON.stringify(await trained.autoReview(db, { log }))); } catch (e) { log("auto-review failed:", e.message); }
+    }
+    try { log("report saved", await trained.saveDayReport(db)); } catch (e) { log("report:", e.message); }
   } else if (cmd === "pending") {
     console.log(JSON.stringify(await trained.pending(db, Number(opt("limit", 30))), null, 1));
   } else if (cmd === "approve") {
@@ -39,15 +48,17 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
     console.log(JSON.stringify({ approved: await trained.approve(db, ids, { reviewer: opt("by", "claude"), edits }) }));
   } else if (cmd === "reject") {
     console.log(JSON.stringify({ rejected: await trained.reject(db, ids, { reviewer: opt("by", "claude"), note: opt("note", "") }) }));
+  } else if (cmd === "review") {
+    log("auto-review", JSON.stringify(await trained.autoReview(db, { log })));
+    log("report saved", await trained.saveDayReport(db));
   } else if (cmd === "report") {
-    const html = await trained.report(db, { hours: Number(opt("hours", 24)) });
-    const key = `trained/reports/${new Date().toISOString().slice(0, 13).replace("T", "-")}.html`;
-    try { await require("../storage").put(key, Buffer.from(html), { contentType: "text/html; charset=utf-8" }); log("saved", key); } catch (e) { log("storage:", e.message); }
-    if (opt("out")) { fs.writeFileSync(opt("out"), html); log("written", opt("out")); }
+    const day = opt("day", trained.iraqDay());
+    log("saved", await trained.saveDayReport(db, day));
+    if (opt("out")) { fs.writeFileSync(opt("out"), await trained.report(db, { day })); log("written", opt("out")); }
   } else if (cmd === "stats") {
     console.log(JSON.stringify(await trained.stats(db), null, 1));
   } else {
-    console.error("usage: node tools/trained-model.js <cycle|pending|approve|reject|stats|report> …");
+    console.error("usage: node tools/trained-model.js <cycle|review|pending|approve|reject|stats|report> …");
     process.exitCode = 1;
   }
 })().catch((e) => { log("ERR", e.message); process.exitCode = 1; }).finally(() => db.pool && db.pool.end());

@@ -412,12 +412,13 @@ const ARAB = /\b(iraq|iraqi|baghdad|basra|erbil|mosul|najaf|karbala|kurd|tigris|
  * check, what was heard (sound layers, each voice's emotion and tone), its drafts and their review, and everything that
  * entered the VI-Iraq library. Iraqi/Arab clips come first.
  */
-async function report(db, { hours = 24 } = {}) {
-  const since = `${Number(hours) || 24} hours`;
-  const vids = (await db.query(`SELECT * FROM trained_videos WHERE status='studied' AND studied_at > now() - $1::interval ORDER BY studied_at`, [since])).rows;
-  const cands = (await db.query(`SELECT * FROM trained_candidates WHERE created_at > now() - $1::interval OR reviewed_at > now() - $1::interval ORDER BY id`, [since])).rows;
+async function report(db, { hours = 24, day = "" } = {}) {
+  const range = day ? dayRange(day) : { since: new Date(Date.now() - (Number(hours) || 24) * 3600e3), until: new Date(Date.now() + 60e3) };
+  const R = [range.since, range.until];
+  const vids = (await db.query(`SELECT * FROM trained_videos WHERE status='studied' AND studied_at >= $1 AND studied_at < $2 ORDER BY studied_at`, R)).rows;
+  const cands = (await db.query(`SELECT * FROM trained_candidates WHERE (created_at >= $1 AND created_at < $2) OR (reviewed_at >= $1 AND reviewed_at < $2) ORDER BY id`, R)).rows;
   const added = cands.filter((c) => c.status === "approved");
-  const trends = (await db.query(`SELECT region, topic FROM trained_trends WHERE seen_at > now() - $1::interval ORDER BY (region='IQ') DESC, id DESC`, [since])).rows;
+  const trends = (await db.query(`SELECT region, topic FROM trained_trends WHERE seen_at >= $1 AND seen_at < $2 ORDER BY (region='IQ') DESC, id DESC`, R)).rows;
   // Iraqi/Arab by what the clip is (its title, Arabic voices heard in it) – not by the search that found it
   const arab = (v) => ARAB.test(v.title || "") || (v.check_result?.sound?.voices || []).some((x) => /arab/i.test(x.language));
   vids.sort((a, b) => Number(arab(b)) - Number(arab(a)));
@@ -427,7 +428,7 @@ async function report(db, { hours = 24 } = {}) {
   };
   const li = (list) => (list || []).length ? `<ul>${list.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "<p class=muted>–</p>";
   const badge = { approved: "ok", pending: "wait", rejected: "no", duplicate: "no" };
-  const entryHtml = (c) => `<div class="entry ${badge[c.status] || ""}"><b>${esc(c.entry.id)}</b> <span class=tag>${esc(c.status)}</span>${c.note ? ` <span class=muted>– ${esc(c.note)}</span>` : ""}
+  const entryHtml = (c) => `<div class="entry ${badge[c.status] || ""}"><b>${esc(c.entry.id)}</b> <span class=tag>${esc(c.status)}${c.reviewer ? ` · ${esc(c.reviewer)}` : ""}</span>${c.note ? ` <span class=muted>– ${esc(c.note)}</span>` : ""}
     <div class=names>${(c.entry.names || []).map(esc).join(" · ")}</div><div>${esc(c.entry.body)}</div></div>`;
   const cards = [];
   for (const v of vids) {
@@ -451,7 +452,7 @@ h1{margin:.2em 0}.sum{display:flex;gap:12px;flex-wrap:wrap}.sum div{background:#
 table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid #e3e0d8;padding:6px;text-align:left;vertical-align:top}
 .entry{border-left:4px solid #bbb;padding:6px 10px;margin:8px 0;background:#fafafa}.entry.ok{border-color:#2e9d5b}.entry.no{border-color:#c0392b}.entry.wait{border-color:#d4a017}
 .tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
-<h1>VI-Iraq · Trained Model</h1><p class=muted>Last ${esc(hours)} hours · made ${esc(new Date().toISOString().slice(0, 16).replace("T", " "))} UTC</p>
+<h1>VI-Iraq · Trained Model</h1><p class=muted>${day ? `Day ${esc(day)} (Iraq time)` : `Last ${esc(hours)} hours`} · updated ${esc(new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 16).replace("T", " "))} Iraq time</p>
 <div class=sum><div><b>${vids.length}</b>clips studied</div><div><b>${vids.filter(arab).length}</b>Iraqi / Arab</div><div><b>${vids.length ? (vids.reduce((n, v) => n + Number(v.score || 0), 0) / vids.length).toFixed(1) : "–"}</b>avg score</div>
 <div><b>${vids.filter((v) => v.check_result?.sound?.voices?.length).length}</b>with voices studied</div><div><b>${added.length}</b>added to VI-Iraq</div><div><b>${cands.filter((c) => c.status === "pending").length}</b>waiting for review</div></div>
 <section class=card><h2>Added to the VI-Iraq library</h2>${added.map(entryHtml).join("") || "<p class=muted>nothing yet in this period</p>"}</section>
@@ -459,6 +460,69 @@ table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid 
 ${cards.join("\n")}
 <p class=muted>Clips are freely licensed (Wikimedia Commons / Pexels); frames are shown for study with their source and licence. The clips themselves are not kept.</p>
 </main></body></html>`;
+}
+
+/** Iraq has no daylight saving: its day is UTC+3. "2026-10-29" → that day's start and end as Dates (pure – tested). */
+function dayRange(day) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(day))) throw new Error("day must be YYYY-MM-DD");
+  const since = new Date(Date.parse(`${day}T00:00:00Z`) - 3 * 3600e3);
+  return { since, until: new Date(since.getTime() + 24 * 3600e3) };
+}
+const iraqDay = (d = new Date()) => new Date(d.getTime() + 3 * 3600e3).toISOString().slice(0, 10);
+
+/** Days that have studies or reviews, newest first, with what happened on each. */
+async function reportDays(db, limit = 90) {
+  return (await db.query(`SELECT d AS day, sum(clips)::int AS clips, sum(added)::int AS added FROM (
+      SELECT to_char(studied_at + interval '3 hours', 'YYYY-MM-DD') AS d, 1 AS clips, 0 AS added FROM trained_videos WHERE status='studied' AND studied_at IS NOT NULL
+      UNION ALL SELECT to_char(reviewed_at + interval '3 hours', 'YYYY-MM-DD'), 0, 1 FROM trained_candidates WHERE status='approved' AND reviewed_at IS NOT NULL
+    ) x GROUP BY d ORDER BY d DESC NULLS LAST LIMIT $1`, [limit])).rows;
+}
+
+/** Writes the day's report into storage (trained/reports/<day>.html) – called after every cycle and review. */
+async function saveDayReport(db, day = iraqDay()) {
+  const key = `trained/reports/${day}.html`;
+  await storage.put(key, Buffer.from(await report(db, { day })), { contentType: "text/html; charset=utf-8" });
+  return key;
+}
+
+/**
+ * The automatic editor (TRAIN_AUTO_REVIEW, on unless "0"): the prompt model reviews the waiting drafts with the same
+ * rules a human reviewer uses and approves (optionally with narrower names / a cleaner body) or rejects each one, with
+ * a short reason. Every decision is recorded with reviewer "auto-editor" and shown in the day's report.
+ */
+async function autoReview(db, { log = console.log } = {}) {
+  const out = { approved: 0, rejected: 0 };
+  const list = await pending(db, 40);
+  if (!list.length) return out;
+  const trainedNow = (await db.query("SELECT id, names FROM prompt_library WHERE source='trained' ORDER BY updated_at DESC LIMIT 300")).rows;
+  const drafts = list.map((c) => ({ id: Number(c.id), entry: c.entry, clip: c.title, trend: c.trend || "", clip_score: c.score }));
+  const v = await askJson(`You are the strict editor of the reality library of an AI video studio for Iraqi and Arab customers. Each draft below was written from a real, freely licensed video clip. Decide for EVERY draft.
+APPROVE when it is concrete (visible/audible details a prompt writer can copy), transferable to many scenes, and makes generated videos more real: physics of liquids, fabric, hair, smoke, crowds; real human behaviour, voices and emotions; light, camera, materials, sounds; places, food, animals – Iraqi and Arab ones are the most valuable.
+REJECT when it: repeats another draft of this batch (approve only the best one) or an entry the library already has (listed below), is niche (one sport match, one building, one event), describes the look of an old/archival or black-and-white clip while its names are general, is about pork or alcohol, violence, war, military, politics or religion-political speeches, names real people or brands, depends on legible text or logos, or is vague.
+EDIT when a draft is good but a trigger name is too general (it would fire for unrelated requests – e.g. "children laughing" for a Mosul-wall scene) or the body carries a detail of that one clip that must not apply everywhere: give replacement "names" (3–12, Arabic incl. Iraqi spellings AND English) and/or "body" (70–130 words, English).
+Library entries already learned (id: names): ${trainedNow.map((e) => `${e.id}: ${(e.names || []).slice(0, 4).join(", ")}`).join(" | ").slice(0, 9000)}
+Drafts: ${JSON.stringify(drafts).slice(0, 60000)}
+Return JSON only: {"decisions":[{"id":<draft id>,"decision":"approve"|"reject","note":"short reason","names":[...optional],"body":"...optional"}]}`, [], 6000);
+  const decisions = Array.isArray(v.decisions) ? v.decisions : [];
+  const ids = new Set(drafts.map((d) => d.id));
+  for (const d of decisions) {
+    const id = Number(d.id);
+    if (!ids.has(id)) continue;
+    ids.delete(id);
+    if (d.decision === "approve") {
+      const edits = {};
+      if (Array.isArray(d.names) && d.names.length) edits.names = d.names;
+      if (typeof d.body === "string" && d.body.trim()) edits.body = d.body;
+      const done = await approve(db, [id], { reviewer: "auto-editor", edits: { [id]: edits } });
+      if (done.length) { out.approved++; if (d.note) await db.query("UPDATE trained_candidates SET note=$2 WHERE id=$1", [id, clean(d.note).slice(0, 300)]); }
+      else out.rejected++;
+    } else if (d.decision === "reject") {
+      await reject(db, [id], { reviewer: "auto-editor", note: clean(d.note).slice(0, 300) || "rejected by the editor" });
+      out.rejected++;
+    }
+  }
+  if (ids.size) log(`auto-review: no decision for ${[...ids].join(", ")} – they wait for the next review`);
+  return out;
 }
 
 async function stats(db) {
@@ -472,4 +536,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { report, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
+module.exports = { report, reportDays, saveDayReport, autoReview, dayRange, iraqDay, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };

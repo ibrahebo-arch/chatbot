@@ -77,7 +77,8 @@ test("a reviewed draft goes into prompt_library as source 'trained' and the libr
     assert.ok((await db.query("SELECT 1 FROM prompt_library WHERE id='trained.item.lamb-grilling'")).rows.length, "the file sync keeps trained rows");
     const s = await trained.stats(db);
     assert.equal(s.library_trained, 1);
-    const html = await trained.report(db, { hours: 24 });
+    const html = await trained.report(db, { day: trained.iraqDay() });
+    assert.equal((await trained.reportDays(db))[0].added, 1, "today lists one entry added");
     assert.match(html, /Added to the VI-Iraq library[\s\S]*trained\.item\.lamb-grilling/, "the report lists what entered the library");
   } finally {
     await db.pool.end();
@@ -102,4 +103,12 @@ test("sound study: layers, voices with emotion and a tone line, nothing invented
   assert.equal(s.voices.length, 1, "empty voices are dropped");
   assert.equal(s.voices[0].emotion, "angry");
   assert.equal(trained.parseSound(null), null);
+});
+
+test("report days are Iraqi days (UTC+3, no daylight saving)", () => {
+  const r = trained.dayRange("2026-10-29");
+  assert.equal(r.since.toISOString(), "2026-10-28T21:00:00.000Z");
+  assert.equal(r.until.toISOString(), "2026-10-29T21:00:00.000Z");
+  assert.equal(trained.iraqDay(new Date("2026-10-28T21:30:00Z")), "2026-10-29", "00:30 in Baghdad is already the next day");
+  assert.throws(() => trained.dayRange("29/10/2026"));
 });

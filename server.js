@@ -979,6 +979,41 @@ const adminOnly = (req, res, next) => {
   }
   next();
 };
+// ---------- Trained Model reports (browser page, admin password via the browser's login box) ----------
+// One page per Iraqi day: every clip studied with its frames, reality check, sound and voices, drafts and decisions,
+// and what entered the library. Same lockout as the token routes.
+const trained = require("./trained");
+const REPORT_CSP = "default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+const adminPage = (req, res, next) => {
+  const ip = clientIp(req);
+  const f = adminFails.get(ip);
+  if (f && f.n >= 10 && Date.now() - f.t < 3600e3) return res.status(429).type("text").send("Too many attempts – try again in an hour.");
+  const m = /^Basic\s+(.+)$/i.exec(String(req.get("authorization") || ""));
+  const pass = Buffer.from(m ? Buffer.from(m[1], "base64").toString("utf8").replace(/^[^:]*:/, "") : "");
+  if (!ADMIN_TOKEN || pass.length !== Buffer.byteLength(ADMIN_TOKEN) || !crypto.timingSafeEqual(pass, Buffer.from(ADMIN_TOKEN))) {
+    if (m) { if (!f || Date.now() - f.t >= 3600e3) adminFails.set(ip, { t: Date.now(), n: 1 }); else f.n++; }
+    return res.status(401).set("WWW-Authenticate", 'Basic realm="VI-Iraq trained model", charset="UTF-8"').type("text").send("Admin password needed.");
+  }
+  res.set({ "Content-Security-Policy": REPORT_CSP, "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" });
+  next();
+};
+app.get("/admin/trained", adminPage, async (_req, res) => {
+  try {
+    const days = await trained.reportDays(db);
+    const s = await trained.stats(db);
+    const row = (d) => `<li><a href="/admin/trained/${d.day}">${d.day}</a> – ${d.clips} clips studied · ${d.added} added to VI-Iraq</li>`;
+    res.type("html").send(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VI-Iraq Trained Model</title>
+<style>body{font-family:system-ui,Segoe UI,Tahoma,sans-serif;background:#f4f1ea;margin:0}main{max-width:760px;margin:auto;padding:16px}li{background:#fff;border-radius:10px;padding:10px 14px;margin:8px 0;list-style:none}ul{padding:0}a{color:#0b6e75;font-weight:600}.muted{color:#6b6b70}</style></head>
+<body><main><h1>VI-Iraq · Trained Model</h1><p class=muted>${s.library_trained} trained entries live in the library · last study ${s.last_study ? new Date(new Date(s.last_study).getTime() + 3 * 3600e3).toISOString().slice(0, 16).replace("T", " ") + " Iraq time" : "–"}</p>
+<p><a href="/admin/trained/${trained.iraqDay()}">Open today's report →</a></p><h2>Every day</h2><ul>${days.map(row).join("") || "<li>No studies yet.</li>"}</ul></main></body></html>`);
+  } catch (e) { console.error("trained index:", e.message); res.status(500).type("text").send("Could not load the reports."); }
+});
+app.get("/admin/trained/:day", adminPage, async (req, res) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(req.params.day)) return res.status(404).type("text").send("Not found.");
+  try { res.type("html").send(await trained.report(db, { day: req.params.day })); }
+  catch (e) { console.error("trained report:", e.message); res.status(500).type("text").send("Could not build the report."); }
+});
+
 app.get("/api/requests", adminOnly, async (_req, res) => {
   const rows = await orders.listOrders({ limit: 200 });
   res.json({
