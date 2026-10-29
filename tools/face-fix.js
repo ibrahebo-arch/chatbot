@@ -22,9 +22,13 @@ const names = opt("names", "");
 const rounds = Number(opt("rounds", 2));
 if (!input || !output || !refs.length) { console.error("usage: node tools/face-fix.js <picture.jpg> <out.jpg> --refs a.jpg,b.jpg [--names \"man,woman\"] [--rounds 2]"); process.exit(1); }
 
+// one check, tried twice – a failed check must never count as "score 0" (that would replace a good picture with a worse one)
 function check(file) {
-  const r = require("child_process").spawnSync(process.execPath, [path.join(__dirname, "face-check.js"), file, ...refs, ...(names ? ["--names", names] : [])], { encoding: "utf8" });
-  try { return JSON.parse(String(r.stdout).trim().split("\n").pop()); } catch { return { score: 0, notes: ["check failed"] }; }
+  for (let i = 0; i < 2; i++) {
+    const r = require("child_process").spawnSync(process.execPath, [path.join(__dirname, "face-check.js"), file, ...refs, ...(names ? ["--names", names] : [])], { encoding: "utf8", env: process.env });
+    try { const v = JSON.parse(String(r.stdout).trim().split("\n").pop()); if (v && v.score > 0) return v; } catch {}
+  }
+  return null;
 }
 async function upload(file) {
   const iu = await (await fetch("https://rest.alpha.fal.ai/storage/upload/initiate?storage_type=fal-cdn-v3", { method: "POST", headers: { Authorization: `Key ${KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ content_type: "image/jpeg", file_name: path.basename(file) }) })).json();
@@ -43,14 +47,16 @@ Real camera photo, no airbrushing, no text, no watermark.`;
   fs.writeFileSync(out, Buffer.from(await (await fetch(d.images[0].url)).arrayBuffer()));
 }
 (async () => {
-  let best = { file: input, ...check(input) };
+  const first = check(input);
+  if (!first) throw new Error("the face check did not answer – nothing changed");
+  let best = { file: input, ...first };
   console.log(JSON.stringify({ round: 0, score: best.score, notes: best.notes }));
   for (let i = 1; i <= rounds && best.score < MIN; i++) {
     const next = output.replace(/\.jpe?g$/i, `-r${i}.jpg`);
     await fix(best.file, best.notes || [], next);
     const c = check(next);
-    console.log(JSON.stringify({ round: i, score: c.score, notes: c.notes }));
-    if (c.score >= best.score) best = { file: next, ...c };
+    console.log(JSON.stringify({ round: i, score: c ? c.score : null, notes: c ? c.notes : ["check failed"] }));
+    if (c && c.score > best.score) best = { file: next, ...c }; // only a better face replaces the picture
   }
   fs.copyFileSync(best.file, output);
   console.log(JSON.stringify({ final: output, score: best.score, locked: best.score >= MIN }));
