@@ -95,6 +95,10 @@ test("footage search: only clips whose title fits the search, never violence or 
   assert.equal(trained.relevant({ title: "Ali Khamenei speech at the Hussainiya of Lovers of Karbala.webm" }, "karbala"), false, "politics is not studied");
   assert.equal(trained.relevant({ title: "F35 Lighting II Aerial Refuel.webm" }, "car refueling station"), false, "military");
   assert.equal(trained.relevant({ title: "Cyberpunk Rainy Street (Hailuo AI).webm" }, "rainy street"), false, "AI-made clips are not reality");
+  for (const t of ["Escape the Backrooms OST - Platonic Purgatory.webm", "Fortnite Treasure Hunters | Live Action Trailer", "Granny Game Challenge With Spiderman", "Dune: Part Three | Final Trailer", "Rahma Riad [Official Visualizer]", "لعبة الاختباء في مدينة معلقة"])
+    assert.ok(trained.NOT_REAL.test(t), `not real: ${t}`);
+  for (const t of ["Afgan Bread Production.webm", "New Year's Eve in Najaf, Al Rawan St .webm", "A man pours Arabic coffee.ogv", "Revitalizing Commerce in Mosul"])
+    assert.ok(!trained.NOT_REAL.test(t), `real: ${t}`);
 });
 
 test("sound study: layers, voices with emotion and a tone line, nothing invented", () => {
