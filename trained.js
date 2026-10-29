@@ -18,6 +18,7 @@ const os = require("os");
 const path = require("path");
 const watermark = require("./watermark");
 const library = require("./library");
+const storage = require("./storage");
 
 const clean = (v) => String(v || "").trim();
 const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
@@ -28,14 +29,27 @@ const MAX_MB = Number(process.env.TRAIN_MAX_MB) || 60;
 const UA = `VI-Iraq-trained-model/1.0 (+${clean(process.env.PUBLIC_URL) || "https://www.vi-iraq.com"})`;
 const DOMAINS = ["reality", "human", "sound", "place", "item", "action", "nature", "animal", "style"];
 
-// Realism basics the model keeps coming back to, one slice per cycle, whatever is trending.
-const BASICS = [
-  "person talking to camera close up", "people laughing together", "hands pouring tea", "pouring milk", "coffee pouring",
-  "water splash", "cooking in a kitchen", "market crowd", "street traffic", "car driving city night", "child playing",
-  "walking in the street", "wedding dance", "rain on street", "wind in palm trees", "desert sand wind", "river boat",
-  "cat", "horse running", "birds flying", "fire burning", "smoke", "bread baking", "eating food", "phone in hand",
-  "hair in wind", "fabric moving", "running", "football", "night city lights", "sunset sea waves", "snow falling",
+// What the model keeps coming back to, whatever is trending: Iraqi and Arab life first, then voices and emotions
+// (angry, happy, sad, laughing, arguing – with their sound), then general realism. One slice of each per cycle.
+const BASICS_IQ = [
+  "baghdad street", "iraqi market", "iraq bazaar", "tigris river", "basra", "erbil citadel", "mosul", "najaf", "karbala",
+  "iraqi tea", "arabic coffee", "iraqi bread", "falafel", "kebab grill", "dates palm", "iraqi marshes", "iraq desert",
+  "iraqi wedding", "dabke dance", "arab wedding", "mosque call to prayer", "arabic calligraphy", "camel desert",
+  "arab family dinner", "middle east street food", "baghdad traffic", "kurdistan mountains", "arabic music oud",
 ];
+const BASICS_VOICE = [
+  "people arguing", "man shouting angry", "woman laughing", "child laughing", "people crying", "crowd cheering",
+  "interview speech", "arabic speech", "man telling story", "people celebrating", "woman talking", "public speech",
+  "wind storm", "strong wind", "thunder storm", "rain sound", "crowd market noise", "street vendor calling",
+];
+const BASICS = [
+  "person talking to camera close up", "hands pouring tea", "pouring milk", "coffee pouring", "water splash",
+  "cooking in a kitchen", "street traffic", "car driving city night", "child playing", "walking in the street",
+  "rain on street", "wind in palm trees", "desert sand wind", "river boat", "cat", "horse running", "birds flying",
+  "fire burning", "smoke", "bread baking", "eating food", "phone in hand", "hair in wind", "fabric moving", "running",
+  "football", "night city lights", "sunset sea waves",
+];
+const slice = (list, n, cycleNo) => Array.from({ length: n }, (_, i) => list[(cycleNo * n + i) % list.length]);
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const decode = (s) => String(s || "").replace(/<!\[CDATA\[|\]\]>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
@@ -98,13 +112,15 @@ async function askJson(text, images = [], maxTokens = 2500) {
 
 /** Trends + a slice of the basics → footage searches (English, filmable), each tagged with its trend. */
 async function planTopics(trends, count, cycleNo = 0) {
-  const basics = Array.from({ length: Math.ceil(count / 2) }, (_, i) => BASICS[(cycleNo * 4 + i) % BASICS.length]).map((q) => ({ q, trend: "" }));
+  // half of every cycle is fixed study: Iraqi/Arab life, voices and emotions, general realism
+  const fixed = Math.ceil(count / 2), nIq = Math.ceil(fixed / 2), nVoice = Math.ceil((fixed - nIq) / 2);
+  const basics = [...slice(BASICS_IQ, nIq, cycleNo), ...slice(BASICS_VOICE, nVoice, cycleNo), ...slice(BASICS, Math.max(0, fixed - nIq - nVoice), cycleNo)].map((q) => ({ q, trend: "" }));
   if (!trends.length) return basics.slice(0, count);
   try {
     const list = trends.slice(0, 60).map((t) => `- [${t.region}/${t.source}] ${t.topic}${t.news?.length ? ` (${t.news.join(" | ")})` : ""}`).join("\n");
     const v = await askJson(`You plan what an AI video studio for Iraqi and Arab customers should study in REAL footage this week.
 Today's trends:\n${list}
-Pick the trends people could order a short video about (events, places, foods, sports, celebrations, products, everyday life) and turn each into ONE short English search for real stock footage (2–4 words, things a camera can film: "football stadium crowd", "lamb grilling", "rain flood street"). Skip politics, war, crime, accidents, tragedies, real people's names, brands and anything sexual.
+Pick the trends people could order a short video about (events, places, foods, sports, celebrations, products, everyday life, how people talk and react) and turn each into ONE short English search for real stock footage (2–4 words, things a camera can film: "football stadium crowd", "lamb grilling", "rain flood street"). Iraqi trends come first, then the rest of the Arab world, then global ones – at least half of your searches must be about Iraqi or Arab life (put "iraqi", "baghdad", "arab" or a city in the search when it fits). Skip politics, war, crime, accidents, tragedies, real people's names, brands and anything sexual.
 Return JSON only: {"queries":[{"q":"...","trend":"<the trend it comes from>"}]} with at most ${Math.max(1, count - basics.length)} items.`, [], 1200);
     const picked = (Array.isArray(v.queries) ? v.queries : []).map((x) => ({ q: clean(x.q).toLowerCase().slice(0, 60), trend: clean(x.trend).slice(0, 160) })).filter((x) => /^[a-z0-9 '-]{3,60}$/.test(x.q));
     return [...picked.slice(0, count - basics.length), ...basics].slice(0, count);
@@ -185,15 +201,70 @@ async function download(v, dir) {
 
 /** n JPEG frames (base64) spread over the clip (first 90 s at most). */
 async function frames(file, duration, n = 6) {
-  const span = Math.min(duration || 10, 90), out = [];
+  const span = Math.min(duration || 10, 90), out = [], times = [];
   for (let i = 0; i < n; i++) {
-    const f = path.join(path.dirname(file), `f${i}.jpg`);
+    const f = path.join(path.dirname(file), `f${out.length}.jpg`), t = (span * (i + 0.5) / n).toFixed(1);
     try {
-      await watermark.run(["-y", "-ss", (span * (i + 0.5) / n).toFixed(2), "-i", file, "-frames:v", "1", "-vf", "scale=768:-2", "-q:v", "4", f], 60000);
-      if (fs.existsSync(f)) out.push(fs.readFileSync(f).toString("base64"));
+      await watermark.run(["-y", "-ss", t, "-i", file, "-frames:v", "1", "-vf", "scale=768:-2", "-q:v", "4", f], 60000);
+      if (fs.existsSync(f)) { out.push(fs.readFileSync(f).toString("base64")); times.push(Number(t)); }
     } catch {}
   }
+  out.times = times;
   return out;
+}
+
+/** The frames side by side in one picture (the "screenshot" of the clip for the report). */
+async function sheet(dir, count) {
+  const f = path.join(dir, "sheet.jpg");
+  await watermark.run(["-y", "-framerate", "1", "-i", path.join(dir, "f%d.jpg"), "-frames:v", "1", "-vf", `scale=-2:300,pad=ceil(iw/2)*2:300:(ow-iw)/2:0,tile=${count}x1:padding=6:color=white`, "-q:v", "5", f], 60000);
+  return fs.readFileSync(f);
+}
+
+/**
+ * Listens to the clip's soundtrack (first 30 s): sound layers (wind, rain, crowd, traffic…), music, and every voice –
+ * language/dialect, emotion (angry, happy, sad, excited…), how it is delivered and a one-line tone a TTS voice could
+ * follow. null when there is no sound or no audio model answered.
+ */
+async function listenClip(file, dir) {
+  if (!OPENAI_KEY) return null;
+  const mp3 = path.join(dir, "a.mp3");
+  try { await watermark.run(["-y", "-i", file, "-vn", "-t", "30", "-ac", "1", "-ar", "24000", "-b:a", "48k", mp3], 60000); } catch { return null; }
+  if (!fs.existsSync(mp3) || fs.statSync(mp3).size < 4000) return null;
+  const ask = `This is the soundtrack of a real video. You help an AI video studio for Iraqi and Arab customers make generated voices and sounds indistinguishable from real ones. Listen closely and answer with ONE JSON object only:
+{"has_sound":true|false,"layers":["each background sound with how it behaves, e.g. wind gusting in waves and rattling something metal, crowd murmur rising and falling, cars passing left to right"],"music":true|false,
+"voices":[{"language":"iraqi arabic|other arabic dialect|standard arabic|english|other|none","emotion":"angry|happy|sad|excited|calm|scared|tired|annoyed|laughing|crying|neutral|mixed","delivery":"concrete: pace, loudness, pitch movement, breaths, laughter, shouting, pauses, voice cracks","tts_tone":"one sentence a voice actor or TTS could follow to sound exactly like this"}],
+"lesson":"the most useful thing this soundtrack teaches about how real sound or real voices behave"}
+Describe only what you hear; do not guess anyone's identity.`;
+  const data = fs.readFileSync(mp3).toString("base64");
+  for (const model of [clean(process.env.TRAIN_AUDIO_MODEL) || clean(process.env.AUDIO_ANALYZE_MODEL) || "gpt-audio", "gpt-audio-mini"]) {
+    try {
+      const r = await fetch(`${OPENAI_BASE}/v1/chat/completions`, {
+        method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${OPENAI_KEY}` },
+        body: JSON.stringify({ model, modalities: ["text"], messages: [{ role: "user", content: [{ type: "text", text: ask }, { type: "input_audio", input_audio: { data, format: "mp3" } }] }] }),
+        signal: AbortSignal.timeout(90000),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(j?.error?.message || `status ${r.status}`);
+      const txt = String(j.choices?.[0]?.message?.content || ""), a = txt.indexOf("{"), b = txt.lastIndexOf("}");
+      if (a < 0) throw new Error("no JSON");
+      return parseSound(JSON.parse(txt.slice(a, b + 1)));
+    } catch (e) { console.error(`trained listen (${model}):`, String(e.message).slice(0, 140)); }
+  }
+  return null;
+}
+
+/** The sound verdict, normalised (pure – tested). */
+function parseSound(v) {
+  if (!v || typeof v !== "object") return null;
+  const list = (x, n, len = 220) => (Array.isArray(x) ? x : []).map((y) => clean(y).slice(0, len)).filter(Boolean).slice(0, n);
+  return {
+    has_sound: v.has_sound !== false, music: Boolean(v.music), layers: list(v.layers, 8),
+    voices: (Array.isArray(v.voices) ? v.voices : []).slice(0, 5).map((x) => ({
+      language: clean(x?.language).slice(0, 40), emotion: clean(x?.emotion).toLowerCase().slice(0, 30),
+      delivery: clean(x?.delivery).slice(0, 300), tts_tone: clean(x?.tts_tone).slice(0, 300),
+    })).filter((x) => x.emotion || x.delivery),
+    lesson: clean(v.lesson).slice(0, 400),
+  };
 }
 
 /** Existing names, for spotting drafts the library already covers. */
@@ -229,19 +300,20 @@ function validateDraft(raw, known = new Map()) {
 }
 
 /** The reality check of one clip: frames → what makes it real, what AI gets wrong, 0–2 draft entries. */
-async function study(v, imgs) {
-  const out = await askJson(`These ${imgs.length} frames (in order) come from a REAL video: "${v.title}" (searched as "${v.query}"${v.trend ? `, studied because "${v.trend}" is trending` : ""}).
+async function study(v, imgs, sound = null) {
+  const heard = sound && sound.has_sound ? `\nWhat its soundtrack sounds like (from listening): ${JSON.stringify({ layers: sound.layers, music: sound.music, voices: sound.voices, lesson: sound.lesson })}` : "";
+  const out = await askJson(`These ${imgs.length} frames (in order) come from a REAL video: "${v.title}" (searched as "${v.query}"${v.trend ? `, studied because "${v.trend}" is trending` : ""}).${heard}
 You train an AI video studio for Iraqi and Arab customers so its generated videos become indistinguishable from real footage. Study the frames like a cinematographer and a physicist:
 1. reality: concrete visible facts that make this footage real – motion and physics (how liquids, fabric, hair, smoke, bodies, vehicles really move), light and shadow, camera behaviour (handheld, lens, focus, exposure), materials and textures, how people behave, sound you can infer.
 2. ai_mistakes: what AI video generators usually get WRONG for this kind of scene.
 3. score: 0–10, how much this clip teaches about reality (10 = rich, clear real-world detail; 0 = useless: slideshow, text, animation, graphics, blurry).
-4. entries: 0–2 NEW library entries (only if the clip teaches something specific and reusable). Our customers are Iraqi and Arab: never write about pork or alcohol (if the clip shows them, write the same technique with lamb, beef, chicken or tea/juice); prefer knowledge that transfers to many scenes (physics, light, behaviour, materials) over one niche sport or event; no legible text or logos. Each: {"slug":"short-ascii-kebab","domain":one of ${DOMAINS.join("|")},"kinds":["video"] or ["video","image"],"names":[4–10 trigger words a customer might type: Iraqi/Arabic AND English, specific, never generic words],"body":"70–130 words, English, concrete visible and audible details that a prompt writer can copy into a video prompt; no history, no opinions, no real people's names, no brands, no links"}.
+4. entries: 0–3 NEW library entries (only if the clip teaches something specific and reusable; when the soundtrack has voices or strong sounds, one entry may be about that sound or about how a person sounds and looks when angry, happy, sad or excited – domain sound or human, with an Iraqi-dialect tone line a TTS voice can follow). Iraqi and Arab places, food, customs, voices and everyday life are the most valuable. Our customers are Iraqi and Arab: never write about pork or alcohol (if the clip shows them, write the same technique with lamb, beef, chicken or tea/juice); prefer knowledge that transfers to many scenes (physics, light, behaviour, materials) over one niche sport or event; no legible text or logos. Each: {"slug":"short-ascii-kebab","domain":one of ${DOMAINS.join("|")},"kinds":["video"] or ["video","image"],"names":[4–10 trigger words a customer might type: Iraqi/Arabic AND English, specific, never generic words],"body":"70–130 words, English, concrete visible and audible details that a prompt writer can copy into a video prompt; no history, no opinions, no real people's names, no brands, no links"}.
 Return JSON only: {"score":0-10,"reality":["..."],"ai_mistakes":["..."],"entries":[...]}`, imgs, 3000);
   return {
     score: Math.max(0, Math.min(10, Number(out.score) || 0)),
     reality: (Array.isArray(out.reality) ? out.reality : []).map((x) => clean(x).slice(0, 300)).filter(Boolean).slice(0, 12),
     ai_mistakes: (Array.isArray(out.ai_mistakes) ? out.ai_mistakes : []).map((x) => clean(x).slice(0, 300)).filter(Boolean).slice(0, 10),
-    entries: (Array.isArray(out.entries) ? out.entries : []).slice(0, 2),
+    entries: (Array.isArray(out.entries) ? out.entries : []).slice(0, 3),
   };
 }
 
@@ -273,8 +345,15 @@ async function cycle(db, { videos = Number(process.env.TRAIN_VIDEOS_PER_CYCLE) |
         const file = await download(v, dir);
         const imgs = await frames(file, v.duration_sec);
         if (imgs.length < 3) throw new Error("could not read frames");
-        const s = await study(v, imgs);
-        await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1", [v.id, s.score, { reality: s.reality, ai_mistakes: s.ai_mistakes }]);
+        let sheetKey = null;
+        try {
+          const key = `trained/sheets/${v.id.replace(/[^a-z0-9]+/gi, "-")}.jpg`;
+          if (storage.ready) { await storage.put(key, await sheet(dir, imgs.length), { contentType: "image/jpeg" }); sheetKey = key; }
+        } catch (e) { log(`sheet ${v.id}: ${e.message}`); }
+        const sound = await listenClip(file, dir);
+        const s = await study(v, imgs, sound);
+        await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1",
+          [v.id, s.score, { reality: s.reality, ai_mistakes: s.ai_mistakes, sound, sheet: sheetKey, times: imgs.times }]);
         report.studied++;
         if (s.score >= 5) {
           for (const raw of s.entries) {
@@ -325,6 +404,62 @@ async function reject(db, ids, { reviewer = "claude", note = "" } = {}) {
   return r.rows.map((x) => x.id);
 }
 
+const esc = (x) => String(x == null ? "" : x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const ARAB = /\b(iraq|iraqi|baghdad|basra|erbil|mosul|najaf|karbala|kurd|tigris|euphrates|arab|arabic|middle east|dabke|oud|mosque|falafel|kebab|dates|camel|desert|gulf|saudi|emirates|dubai|egypt|cairo)\b/i;
+
+/**
+ * The study report as one self-contained HTML page: every clip of the period with its frames side by side, its reality
+ * check, what was heard (sound layers, each voice's emotion and tone), its drafts and their review, and everything that
+ * entered the VI-Iraq library. Iraqi/Arab clips come first.
+ */
+async function report(db, { hours = 24 } = {}) {
+  const since = `${Number(hours) || 24} hours`;
+  const vids = (await db.query(`SELECT * FROM trained_videos WHERE status='studied' AND studied_at > now() - $1::interval ORDER BY studied_at`, [since])).rows;
+  const cands = (await db.query(`SELECT * FROM trained_candidates WHERE created_at > now() - $1::interval OR reviewed_at > now() - $1::interval ORDER BY id`, [since])).rows;
+  const added = cands.filter((c) => c.status === "approved");
+  const trends = (await db.query(`SELECT region, topic FROM trained_trends WHERE seen_at > now() - $1::interval ORDER BY (region='IQ') DESC, id DESC`, [since])).rows;
+  const arab = (v) => ARAB.test(`${v.query} ${v.trend || ""} ${v.title}`);
+  vids.sort((a, b) => Number(arab(b)) - Number(arab(a)));
+  const img = async (key) => {
+    if (!key) return "";
+    try { return `<img src="data:image/jpeg;base64,${(await storage.getBuffer(key, 5 * 1024 * 1024)).toString("base64")}" alt="frames">`; } catch { return ""; }
+  };
+  const li = (list) => (list || []).length ? `<ul>${list.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "<p class=muted>–</p>";
+  const badge = { approved: "ok", pending: "wait", rejected: "no", duplicate: "no" };
+  const entryHtml = (c) => `<div class="entry ${badge[c.status] || ""}"><b>${esc(c.entry.id)}</b> <span class=tag>${esc(c.status)}</span>${c.note ? ` <span class=muted>– ${esc(c.note)}</span>` : ""}
+    <div class=names>${(c.entry.names || []).map(esc).join(" · ")}</div><div>${esc(c.entry.body)}</div></div>`;
+  const cards = [];
+  for (const v of vids) {
+    const r = v.check_result || {}, snd = r.sound;
+    const voices = snd?.voices?.length ? `<table><tr><th>language</th><th>emotion</th><th>delivery</th><th>tone for our voices</th></tr>${snd.voices.map((x) => `<tr><td>${esc(x.language)}</td><td><b>${esc(x.emotion)}</b></td><td>${esc(x.delivery)}</td><td>${esc(x.tts_tone)}</td></tr>`).join("")}</table>` : "";
+    cards.push(`<section class=card${arab(v) ? " id=arab" : ""}>
+      <h2>${arab(v) ? "🇮🇶 " : ""}${esc(v.title)}</h2>
+      <p class=meta>score <b>${esc(v.score)}</b>/10 · search “${esc(v.query)}”${v.trend ? ` · trend: ${esc(v.trend)}` : ""} · ${esc(v.source)} · ${esc(v.license)}${v.author ? ` · by ${esc(v.author)}` : ""} · <a href="${esc(v.page_url)}">source</a>${r.times ? ` · frames at ${r.times.map((t) => t + " s").join(", ")}` : ""}</p>
+      ${await img(r.sheet)}
+      <div class=cols><div><h3>What makes it real</h3>${li(r.reality)}</div><div><h3>What AI gets wrong here</h3>${li(r.ai_mistakes)}</div></div>
+      <h3>Sound and voices</h3>${snd && snd.has_sound ? `${li(snd.layers)}${snd.music ? "<p class=muted>music in the soundtrack</p>" : ""}${voices}${snd.lesson ? `<p><b>Lesson:</b> ${esc(snd.lesson)}</p>` : ""}` : "<p class=muted>no usable sound</p>"}
+      <h3>Drafts for the library</h3>${cands.filter((c) => c.video_id === v.id).map(entryHtml).join("") || "<p class=muted>none</p>"}
+    </section>`);
+  }
+  const iq = trends.filter((t) => t.region === "IQ").map((t) => t.topic), other = [...new Set(trends.filter((t) => t.region !== "IQ").map((t) => t.topic))];
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VI-Iraq Trained Model report</title>
+<style>body{font-family:system-ui,Segoe UI,Tahoma,sans-serif;margin:0;background:#f4f1ea;color:#1d1d1f}main{max-width:1100px;margin:auto;padding:16px}
+h1{margin:.2em 0}.sum{display:flex;gap:12px;flex-wrap:wrap}.sum div{background:#fff;border-radius:10px;padding:10px 14px}.sum b{font-size:1.5em;display:block}
+.card{background:#fff;border-radius:14px;padding:14px 16px;margin:16px 0;box-shadow:0 1px 3px #0001}.card img{width:100%;border-radius:8px;background:#eee}
+.meta,.muted{color:#6b6b70;font-size:.9em}.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.cols{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;font-size:.9em}td,th{border:1px solid #e3e0d8;padding:6px;text-align:left;vertical-align:top}
+.entry{border-left:4px solid #bbb;padding:6px 10px;margin:8px 0;background:#fafafa}.entry.ok{border-color:#2e9d5b}.entry.no{border-color:#c0392b}.entry.wait{border-color:#d4a017}
+.tag{font-size:.8em;background:#eee;border-radius:6px;padding:1px 6px}.names{font-size:.85em;color:#555;margin:2px 0 4px}a{color:#0b6e75}</style></head><body><main>
+<h1>VI-Iraq · Trained Model</h1><p class=muted>Last ${esc(hours)} hours · made ${esc(new Date().toISOString().slice(0, 16).replace("T", " "))} UTC</p>
+<div class=sum><div><b>${vids.length}</b>clips studied</div><div><b>${vids.filter(arab).length}</b>Iraqi / Arab</div><div><b>${vids.length ? (vids.reduce((n, v) => n + Number(v.score || 0), 0) / vids.length).toFixed(1) : "–"}</b>avg score</div>
+<div><b>${vids.filter((v) => v.check_result?.sound?.voices?.length).length}</b>with voices studied</div><div><b>${added.length}</b>added to VI-Iraq</div><div><b>${cands.filter((c) => c.status === "pending").length}</b>waiting for review</div></div>
+<section class=card><h2>Added to the VI-Iraq library</h2>${added.map(entryHtml).join("") || "<p class=muted>nothing yet in this period</p>"}</section>
+<section class=card><h2>Trends</h2><p><b>Iraq:</b> ${iq.map(esc).join(" · ") || "–"}</p><p class=muted><b>Other regions:</b> ${other.slice(0, 40).map(esc).join(" · ")}</p></section>
+${cards.join("\n")}
+<p class=muted>Clips are freely licensed (Wikimedia Commons / Pexels); frames are shown for study with their source and licence. The clips themselves are not kept.</p>
+</main></body></html>`;
+}
+
 async function stats(db) {
   const one = async (sql) => (await db.query(sql)).rows;
   return {
@@ -336,4 +471,4 @@ async function stats(db) {
   };
 }
 
-module.exports = { parseTrends, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };
+module.exports = { report, parseTrends, parseSound, validateDraft, knownNames, relevant, findClips, fetchTrends, planTopics, searchCommons, searchPexels, study, cycle, pending, approve, reject, stats, BASICS, DOMAINS };

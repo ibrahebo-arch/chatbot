@@ -95,7 +95,7 @@ systemctl daemon-reload
 systemctl enable vi-iraq >/dev/null
 systemctl restart vi-iraq
 
-log "trained model (studies real footage and trends every 6 hours; TRAINED_MODEL=0 in .env pauses it)"
+log "trained model (studies real footage and trends every 3 hours, report daily; TRAINED_MODEL=0 in .env pauses it)"
 cat > /etc/systemd/system/vi-iraq-trained-model.service <<EOF
 [Unit]
 Description=VI Iraq trained model - one study cycle
@@ -115,18 +115,44 @@ ProtectHome=yes
 EOF
 cat > /etc/systemd/system/vi-iraq-trained-model.timer <<EOF
 [Unit]
-Description=VI Iraq trained model every 6 hours
+Description=VI Iraq trained model every 3 hours
 
 [Timer]
-OnCalendar=*-*-* 00/6:20:00
+OnCalendar=*-*-* 00/3:20:00
 RandomizedDelaySec=10m
 Persistent=true
 
 [Install]
 WantedBy=timers.target
 EOF
+cat > /etc/systemd/system/vi-iraq-trained-report.service <<EOF
+[Unit]
+Description=VI Iraq trained model - daily report
+After=network.target postgresql.service
+
+[Service]
+Type=oneshot
+User=$APP_USER
+WorkingDirectory=$APP_DIR
+ExecStart=/usr/bin/node --env-file=$APP_DIR/.env tools/trained-model.js report --hours 24
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectHome=yes
+EOF
+cat > /etc/systemd/system/vi-iraq-trained-report.timer <<EOF
+[Unit]
+Description=VI Iraq trained model report every evening
+
+[Timer]
+OnCalendar=*-*-* 19:45:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
 systemctl daemon-reload
-systemctl enable --now vi-iraq-trained-model.timer >/dev/null
+systemctl enable --now vi-iraq-trained-model.timer vi-iraq-trained-report.timer >/dev/null
 
 log "nginx reverse proxy (port 80 -> $PORT)"
 # once certbot has added HTTPS to the site, leave the config alone (rewriting it drops the 443 block)

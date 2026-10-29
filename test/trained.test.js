@@ -77,6 +77,8 @@ test("a reviewed draft goes into prompt_library as source 'trained' and the libr
     assert.ok((await db.query("SELECT 1 FROM prompt_library WHERE id='trained.item.lamb-grilling'")).rows.length, "the file sync keeps trained rows");
     const s = await trained.stats(db);
     assert.equal(s.library_trained, 1);
+    const html = await trained.report(db, { hours: 24 });
+    assert.match(html, /Added to the VI-Iraq library[\s\S]*trained\.item\.lamb-grilling/, "the report lists what entered the library");
   } finally {
     await db.pool.end();
     await admin.query(`DROP SCHEMA ${schema} CASCADE`);
@@ -89,4 +91,13 @@ test("footage search: only clips whose title fits the search, never violence or 
   assert.equal(trained.relevant({ title: "Fan Tased at Florida vs Georgia Game.webm" }, "football game crowd"), false, "blocked word");
   assert.equal(trained.relevant({ title: "Pimlico Strollers CC v I Don't Like CC.webm" }, "person talking to camera close up"), false, "no search word in the title");
   assert.equal(trained.relevant({ title: "Woman pouring milk into coffee.webm" }, "pouring milk"), true, "pouring → pour");
+});
+
+test("sound study: layers, voices with emotion and a tone line, nothing invented", () => {
+  const s = trained.parseSound({ has_sound: true, music: 0, layers: ["wind gusting in waves", ""], voices: [{ language: "iraqi arabic", emotion: "ANGRY", delivery: "fast, loud, rising pitch", tts_tone: "shout like a fed-up Baghdadi uncle" }, { language: "", emotion: "", delivery: "" }], lesson: "anger rises in bursts" });
+  assert.deepEqual(s.layers, ["wind gusting in waves"]);
+  assert.equal(s.music, false);
+  assert.equal(s.voices.length, 1, "empty voices are dropped");
+  assert.equal(s.voices[0].emotion, "angry");
+  assert.equal(trained.parseSound(null), null);
 });
