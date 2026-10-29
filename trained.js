@@ -88,7 +88,9 @@ async function fetchTrends() {
   if (yt) {
     for (const geo of GEOS.slice(0, 3)) {
       try {
-        const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=15&regionCode=${geo}&key=${encodeURIComponent(yt)}`);
+        // the key is restricted to our website in Google Cloud, so the request says where it comes from
+        const referer = clean(process.env.YOUTUBE_REFERER) || `${(clean(process.env.PUBLIC_URL) || "https://www.vi-iraq.com").replace(/\/+$/, "")}/`;
+        const d = await getJson(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&chart=mostPopular&maxResults=15&regionCode=${geo}&key=${encodeURIComponent(yt)}`, { headers: { Referer: referer } });
         for (const v of d.items || []) {
           const views = Number(v.statistics?.viewCount) || 0;
           all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
