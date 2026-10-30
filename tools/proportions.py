@@ -37,17 +37,32 @@ def measure(path):
         base_options=mpt.BaseOptions(model_asset_path=f"{MODELS}/face_landmarker.task"), num_faces=6))
     pl = vision.PoseLandmarker.create_from_options(vision.PoseLandmarkerOptions(
         base_options=mpt.BaseOptions(model_asset_path=f"{MODELS}/pose_landmarker_heavy.task"), num_poses=6, output_segmentation_masks=True))
-    faces = []
-    for lm in fl.detect(rgb).face_landmarks:
-        p = lambda i: (lm[i].x * w, lm[i].y * h)
-        xs = [q.x * w for q in lm]; ys = [q.y * h for q in lm]
-        faces.append({
-            "center": (sum(xs) / len(xs), sum(ys) / len(ys)),
-            "face_h": dist(p(10), p(152)),      # forehead (hairline area) → chin
-            "face_w": dist(p(234), p(454)),     # cheek → cheek
-            "box": [min(xs), min(ys), max(xs), max(ys)],
-            "chin": p(152),
-        })
+    def faces_in(x0, y0, cw, ch):
+        """Faces in one window of the picture, in full-picture pixels."""
+        crop = np.ascontiguousarray(cv2.cvtColor(img[y0:y0 + ch, x0:x0 + cw], cv2.COLOR_BGR2RGB))
+        found = []
+        for lm in fl.detect(mp.Image(image_format=mp.ImageFormat.SRGB, data=crop)).face_landmarks:
+            p = lambda i: (x0 + lm[i].x * cw, y0 + lm[i].y * ch)
+            xs = [x0 + q.x * cw for q in lm]; ys = [y0 + q.y * ch for q in lm]
+            found.append({
+                "center": (sum(xs) / len(xs), sum(ys) / len(ys)),
+                "face_h": dist(p(10), p(152)),      # forehead (hairline area) → chin
+                "face_w": dist(p(234), p(454)),     # cheek → cheek
+                "box": [min(xs), min(ys), max(xs), max(ys)],
+                "chin": p(152),
+                "points": [(x0 + q.x * cw, y0 + q.y * ch) for q in lm],  # all 478 landmarks (face-paste.py)
+            })
+        return found
+    faces = faces_in(0, 0, w, h)
+    # the face model is made for faces that fill a good part of the frame: for people further away, look again in
+    # overlapping half-size windows and keep each face once
+    if len(faces) < 2:
+        cw, ch = w // 2, h // 2
+        for y0 in (0, h // 4, h // 2):
+            for x0 in (0, w // 4, w // 2):
+                for f in faces_in(x0, y0, cw, ch):
+                    if all(dist(f["center"], g["center"]) > g["face_w"] * 0.5 for g in faces):
+                        faces.append(f)
     poses = []
     res = pl.detect(rgb)
     for k, lm in enumerate(res.pose_landmarks):
