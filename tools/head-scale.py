@@ -94,7 +94,7 @@ if ys.size:
         cv2.xphoto.inpaint(roi, np.where(holeRoi > 0, 0, 255).astype(np.uint8), filled, cv2.xphoto.INPAINT_FSR_FAST)
     else:
         filled = cv2.inpaint(roi, holeRoi, max(3, int(fw * 0.03)), cv2.INPAINT_TELEA)
-    bg[r0:r1, c0:c1] = filled
+    np.copyto(bg[r0:r1, c0:c1], filled, where=holeRoi[..., None] > 0)  # only the hole – nothing else may change
 
 # the smaller real head (and its outline as the alpha), scaled around the chin
 M = np.float32([[S, 0, ax * (1 - S)], [0, S, ay * (1 - S)]])

@@ -11,7 +11,7 @@ For each person (MediaPipe face + pose landmarks, body outline from the pose seg
 Checks (real adults standing side by side at the same distance from the camera):
   - face size between people follows their heights: a 183 cm man's face is about 1.04–1.12× a 163 cm woman's
   - shoulder width ÷ face width: men about 2.6–3.1, women about 2.3–2.8
-  - body bulk = chest outline ÷ shoulder width, judged against BMI (lean < ~1.25, heavier above)
+  - body bulk = chest outline (arms included) ÷ shoulder width, judged against BMI (a lean man with his arms down ≈ 1.5)
 Prints the fixes (e.g. "scale the man's head by 1.06") so a picture can be corrected to real proportions.
 Models: /opt/vi-iraq-py/models/{face_landmarker,pose_landmarker_heavy}.task (MediaPipe).
 """
@@ -119,7 +119,9 @@ def check(data, spec):
         s = spec[i]
         if "bulk" in (out["people"][i] or {}) and s.get("weight") and s.get("height"):
             b = bmi(s["height"], s["weight"]); bulk = out["people"][i]["bulk"]
-            limit = 1.18 if b < 23 else 1.28 if b < 26 else 1.40
+            # the chest outline includes the arms hanging beside the body: calibrated on a real photo of a lean
+            # 179 cm / 75 kg man standing with his arms down (1.50)
+            limit = 1.55 if b < 25 else 1.70 if b < 28 else 1.90
             if bulk > limit:
                 out["fixes"].append({"what": f"slim {s['label']}'s body", "by": round(limit / bulk, 3),
                                      "why": f"chest outline is {bulk:.2f}× the shoulder joints; a BMI {b:.1f} build is ≤ {limit}"})
