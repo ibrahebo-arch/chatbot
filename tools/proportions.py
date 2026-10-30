@@ -46,6 +46,7 @@ def measure(path):
             "face_h": dist(p(10), p(152)),      # forehead (hairline area) → chin
             "face_w": dist(p(234), p(454)),     # cheek → cheek
             "box": [min(xs), min(ys), max(xs), max(ys)],
+            "chin": p(152),
         })
     poses = []
     res = pl.detect(rgb)
@@ -85,7 +86,8 @@ def check(data, spec):
     ppl = data["people"]
     for i, q in enumerate(ppl):
         s = spec[i] if i < len(spec) else {"label": f"person {i + 1}"}
-        r = {"label": s["label"], "face_h_px": round(q["face_h"]), "face_w_px": round(q["face_w"])}
+        r = {"label": s["label"], "face_h_px": round(q["face_h"]), "face_w_px": round(q["face_w"]),
+             "box": [round(v) for v in q["box"]], "chin": [round(v) for v in q["chin"]]}
         # shoulders are only trusted when both are in the picture and plausibly placed (≥ 1.8 face widths apart);
         # cut-off or overlapping people give nonsense, so the body is then reported as not measurable
         shoulders_ok = "shoulder_w" in q and q["shoulder_w"] >= 1.8 * q["face_w"]
