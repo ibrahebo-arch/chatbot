@@ -68,13 +68,15 @@ def measure(path):
                 entry["chest_w"] = float(run[-1] - run[0] + 1)
                 entry["chest_y"] = chest_y
         poses.append(entry)
-    # pair each face with the pose whose nose is closest
-    people = []
-    for f in faces:
-        best = min(poses, key=lambda q: dist(q["nose"], f["center"]), default=None)
-        if best is not None and dist(best["nose"], f["center"]) > f["face_h"] * 1.2:
-            best = None
-        people.append({**f, **({k: v for k, v in best.items() if k != "nose"} if best else {})})
+    # pair faces and poses by the closest nose, each pose to one face only (a missed pose must not lend its body to
+    # the other person)
+    pairs = sorted((dist(q["nose"], f["center"]), fi, pi) for fi, f in enumerate(faces) for pi, q in enumerate(poses)
+                   if dist(q["nose"], f["center"]) <= f["face_h"] * 1.2)
+    match, used = {}, set()
+    for _, fi, pi in pairs:
+        if fi not in match and pi not in used:
+            match[fi] = pi; used.add(pi)
+    people = [{**f, **({k: v for k, v in poses[match[fi]].items() if k != "nose"} if fi in match else {})} for fi, f in enumerate(faces)]
     people.sort(key=lambda q: q["center"][0])
     return {"size": [w, h], "people": people}
 
