@@ -28,6 +28,27 @@ test("pick: explicit preset, then gender+age default, then a sensible fallback",
   assert.equal(voices.pick({}).id, voices.DEFAULTS["male.adult"]);
 });
 
+test("studio voices (Veo) are never offered to customers", () => {
+  const studio = voices.CATALOG.filter((v) => v.studio);
+  assert.ok(studio.length >= 2 && studio.every((v) => v.provider === "veo"));
+  const pub = voices.publicCatalog();
+  assert.ok(!pub.voices.some((v) => v.id.startsWith("veo-")), "not on the page");
+  assert.ok(!Object.values(voices.DEFAULTS).some((id) => voices.byId(id).studio), "never a default");
+  assert.notEqual(voices.pick({ preset: "veo-young-woman", gender: "female", age: "young" }).provider, "veo", "a request naming it gets the normal voice");
+  assert.equal(voices.byId("veo-young-woman").provider, "veo", "the studio still reaches it by id");
+});
+
+test("veoSeconds + veoPrompt: one speaker, the exact words, a clip just long enough", () => {
+  assert.equal(voices.veoSeconds("لو تطلع نخلة براسك، ما أتزوجك!"), 4);
+  assert.equal(voices.veoSeconds("كلمة ".repeat(12)), 6);
+  assert.equal(voices.veoSeconds("كلمة ".repeat(20)), 8);
+  const p = voices.veoPrompt(voices.byId("veo-young-woman"), "لو تطلع نخلة براسك، ما أتزوجك!", "ar-IQ", "slightly annoyed");
+  assert.ok(p.includes("\"لو تطلع نخلة براسك، ما أتزوجك!\""), "the exact words, quoted");
+  assert.match(p, /25-year-old woman from Baghdad/);
+  assert.match(p, /Only this one person speaks/);
+  assert.match(p, /slightly annoyed/);
+});
+
 test("typeFromSpeech: old plans (voice male|female|child) and new ones (gender, age)", () => {
   assert.deepEqual(voices.typeFromSpeech({ voice: "female" }), { gender: "female", age: "adult" });
   assert.deepEqual(voices.typeFromSpeech({ voice: "child" }).age, "child");
@@ -70,6 +91,22 @@ test("planner.applyVoice: the customer's voice choice always wins", () => {
   const fromNothing = planner.applyVoice({ prompt: "y".repeat(20), speech: null }, { kind: "video", voiceLang: "ar-IQ", voice: { mode: "convert", fixedText: "هلا" } });
   assert.equal(fromNothing.speech.text, "هلا", "fixed words appear even when the model wrote no speech");
   assert.match(planner.voiceNote({ mode: "own", gender: "male", age: "old", fixedText: "هلا", audioSeconds: 4 }), /elderly.*FIXED.*4\.0 s/s);
+});
+
+test("voiceOfVideo: only the clip's sound is kept, silence before and after trimmed", { skip: !wm.ready && "ffmpeg not available" }, async () => {
+  const { spawnSync } = require("child_process");
+  const os = require("os"), fsSync = require("fs"), path = require("path");
+  const f = path.join(os.tmpdir(), `veo-test-${process.pid}.mp4`);
+  // 4 s clip: 1 s silence, 2 s tone (the "voice"), 1 s silence
+  const r = spawnSync(wm.FFMPEG, ["-hide_banner", "-v", "error", "-y", "-f", "lavfi", "-i", "color=black:s=64x112:d=4", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono:d=1",
+    "-f", "lavfi", "-i", "sine=frequency=300:duration=2", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono:d=1", "-filter_complex", "[1:a][2:a][3:a]concat=n=3:v=0:a=1[a]",
+    "-map", "0:v", "-map", "[a]", "-c:v", "libx264", "-c:a", "aac", "-shortest", f]);
+  assert.equal(r.status, 0, String(r.stderr));
+  try {
+    const mp3 = await voices.voiceOfVideo(fsSync.readFileSync(f));
+    const m = await voices.measure(mp3);
+    assert.ok(m.duration > 1.7 && m.duration < 2.5, `trimmed to the spoken part: ${m.duration}`);
+  } finally { fsSync.rmSync(f, { force: true }); }
 });
 
 test("toMp3 + fit: a 13-second recording becomes a 10-second soundtrack", { skip: !wm.ready && "ffmpeg not available" }, async () => {

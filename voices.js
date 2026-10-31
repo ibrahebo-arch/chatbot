@@ -10,6 +10,8 @@
  *        "convert" the same words read by the chosen character voice.
  *   3. Every soundtrack is fitted to the video: up to 25 % faster when a little too long, otherwise cut with a
  *      short fade; very short audio is padded to the 2 s the video model needs.
+ *   4. Studio voices (studio: true, never offered to customers): Google Veo speaks the line in a short clip and
+ *      only its sound is kept – the most natural Iraqi delivery, but each line costs a short video.
  *
  * Provider names never reach the customer: the catalog shows only Arabic labels.
  */
@@ -27,6 +29,8 @@ const FAL_KEY = clean(process.env.FAL_KEY);
 const FAL_RUN = (clean(process.env.FAL_RUN_URL) || "https://fal.run").replace(/\/+$/, "");
 const MINIMAX_MODEL = clean(process.env.VOICE_MINIMAX_MODEL) || "fal-ai/minimax/speech-2.8-hd";
 const ELEVEN_MODEL = clean(process.env.VOICE_ELEVEN_MODEL) || "fal-ai/elevenlabs/tts/eleven-v3";
+// fal retires "fal-ai/veo3.1/fast" on 2026-11-17 – set VOICE_VEO_MODEL to its successor then
+const VEO_MODEL = clean(process.env.VOICE_VEO_MODEL) || "fal-ai/veo3.1/fast";
 const TRANSCRIBE_MODEL = clean(process.env.TRANSCRIBE_MODEL) || "whisper-1";
 const AUDIO_MODELS = [clean(process.env.AUDIO_ANALYZE_MODEL) || "gpt-audio", "gpt-audio-mini"];
 const MIN_SECONDS = 2; // the video model needs at least 2 s of audio
@@ -65,6 +69,11 @@ const CATALOG = [
   { id: "man-friendly", label: "رجل – ودود", gender: "male", age: "adult", provider: "minimax", voice: "Arabic_FriendlyGuy" },
   { id: "old-woman", label: "حجية كبيرة بالعمر", gender: "female", age: "old", provider: "openai", voice: "sage" },
   { id: "old-man", label: "حجي كبير بالعمر", gender: "male", age: "old", provider: "openai", voice: "ash" },
+  // studio only (our own reels): a Veo clip speaks the line, only its sound is kept
+  { id: "veo-young-woman", label: "شابة – عراقية طبيعية", gender: "female", age: "young", provider: "veo", studio: true },
+  { id: "veo-young-man", label: "شاب – عراقي طبيعي", gender: "male", age: "young", provider: "veo", studio: true },
+  { id: "veo-woman", label: "امرأة – عراقية طبيعية", gender: "female", age: "adult", provider: "veo", studio: true },
+  { id: "veo-man", label: "رجل – عراقي طبيعي", gender: "male", age: "adult", provider: "veo", studio: true },
 ];
 const BY_ID = Object.fromEntries(CATALOG.map((v) => [v.id, v]));
 // the first choice for each character type (the voices the team liked in the listening test come first)
@@ -81,21 +90,22 @@ const TYPE_LABEL = {
 const GENDERS = ["female", "male"];
 const AGES = ["child", "young", "adult", "old"];
 const providerReady = (p) => (p === "openai" ? Boolean(OPENAI_KEY) : Boolean(FAL_KEY));
+const offered = (v) => !v.studio && providerReady(v.provider); // what a customer request may get
 
-/** Public catalog for the page (no provider names). */
+/** Public catalog for the page (no provider names, no studio voices). */
 const publicCatalog = () => ({
-  voices: CATALOG.filter((v) => providerReady(v.provider)).map(({ id, label, gender, age }) => ({ id, label, gender, age })),
+  voices: CATALOG.filter(offered).map(({ id, label, gender, age }) => ({ id, label, gender, age })),
   types: Object.entries(TYPE_LABEL).map(([key, label]) => ({ key, label, gender: key.split(".")[0], age: key.split(".")[1], preset: DEFAULTS[key] })),
 });
 
-/** The preset for a request: an explicit ready preset, else the default for gender+age, else a sensible fallback. */
+/** The preset for a request: an explicit ready preset, else the default for gender+age, else a sensible fallback (never a studio voice). */
 function pick({ preset, gender, age } = {}) {
-  if (preset && BY_ID[preset] && providerReady(BY_ID[preset].provider)) return BY_ID[preset];
+  if (preset && BY_ID[preset] && offered(BY_ID[preset])) return BY_ID[preset];
   const g = GENDERS.includes(gender) ? gender : "male";
   const a = AGES.includes(age) ? age : "adult";
   const want = BY_ID[DEFAULTS[`${g}.${a}`]];
-  if (want && providerReady(want.provider)) return want;
-  return CATALOG.find((v) => v.gender === g && v.age === a && providerReady(v.provider)) || CATALOG.find((v) => providerReady(v.provider)) || null;
+  if (want && offered(want)) return want;
+  return CATALOG.find((v) => v.gender === g && v.age === a && offered(v)) || CATALOG.find(offered) || null;
 }
 /** Same character type on OpenAI (used when fal fails). */
 const openaiTwin = (v) => CATALOG.find((x) => x.provider === "openai" && x.gender === v.gender && x.age === v.age) || CATALOG.find((x) => x.provider === "openai" && x.gender === v.gender);
@@ -209,6 +219,60 @@ async function openaiSpeak(v, { text, lang, tone }) {
   return buf;
 }
 
+// ---------- studio voices: Veo speaks the line, only its sound is kept ----------
+const VEO_SPEAKER = {
+  "female.young": "a 25-year-old woman from Baghdad", "male.young": "a 25-year-old man from Baghdad",
+  "female.adult": "a 35-year-old woman from Baghdad", "male.adult": "a 40-year-old man from Baghdad",
+};
+const VEO_NEGATIVE = "music, background music, singing, humming, other voices, second speaker, crowd, narration, voice-over, subtitles, captions, text";
+
+/** Clip length for a line (Veo makes 4, 6 or 8 s): about 2.5 Iraqi words a second plus breathing room. Pure – tested. */
+function veoSeconds(text) {
+  const words = clean(text).split(/\s+/).filter(Boolean).length;
+  return words <= 8 ? 4 : words <= 14 ? 6 : 8;
+}
+
+/** The Veo prompt for one spoken line: one person, the exact words, nothing else audible. Pure – tested. */
+function veoPrompt(v, text, lang = "ar-IQ", tone = "") {
+  const who = VEO_SPEAKER[`${v.gender}.${v.age}`] || VEO_SPEAKER[`${v.gender}.adult`] || "a person from Baghdad";
+  return [
+    `A real, unedited close-up phone video of ${who}, talking to someone just off camera in a quiet room.`,
+    media.ACCENT[lang] || media.ACCENT["ar-IQ"],
+    tone ? `Delivery: ${tone}.` : "Delivery: natural and conversational, like everyday speech, not acting.",
+    `The person says exactly these words, once, and nothing else: "${clean(text)}"`,
+    "Only this one person speaks. No music, no other voices, no narration, no subtitles or text on screen.",
+  ].join(" ");
+}
+
+/** A finished clip → its voice only: mono MP3 with the silence before and after the words trimmed. */
+async function voiceOfVideo(buf) {
+  return withFiles(async (dir) => {
+    const input = path.join(dir, "clip.mp4"), output = path.join(dir, "voice.mp3");
+    await fs.writeFile(input, buf);
+    const trim = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,afade=t=in:d=0.03";
+    const r = await wm.run(["-y", "-v", "error", "-i", input, "-vn", "-af", trim, "-ac", "1", "-ar", "44100", "-b:a", "128k", output], 60000);
+    if (r.code !== 0) throw new Error("veo: the clip has no readable sound");
+    const out = await fs.readFile(output);
+    if (out.length < 2000) throw new Error("veo: nobody spoke in the clip");
+    return out;
+  });
+}
+
+async function veoSpeak(v, { text, lang, tone }) {
+  const r = await fetch(`${FAL_RUN}/${VEO_MODEL}`, {
+    method: "POST", headers: { "Content-Type": "application/json", Authorization: `Key ${FAL_KEY}` },
+    body: JSON.stringify({ prompt: veoPrompt(v, text, lang, tone), negative_prompt: VEO_NEGATIVE, aspect_ratio: "9:16", duration: `${veoSeconds(text)}s`, resolution: "720p", generate_audio: true }),
+    signal: AbortSignal.timeout(360000), // a clip takes one to three minutes
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(`veo ${r.status} ${JSON.stringify(j.detail || j.message || "").slice(0, 160)}`);
+  const url = j.video?.url;
+  if (!url || !media.isProviderUrl(url)) throw new Error("veo: no clip returned");
+  const clip = await fetch(url, { signal: AbortSignal.timeout(120000) });
+  if (!clip.ok) throw new Error(`veo clip download ${clip.status}`);
+  return voiceOfVideo(Buffer.from(await clip.arrayBuffer()));
+}
+
 /**
  * A line spoken by a catalog voice → MP3. fal voices fall back to the same character type on OpenAI,
  * so a video never loses its voice because one provider is down.
@@ -218,6 +282,7 @@ async function speak(v, { text, lang = "ar-IQ", tone = "" }) {
   const words = clean(text);
   if (!words) throw new Error("nothing to say");
   try {
+    if (v.provider === "veo") return await veoSpeak(v, { text: words, lang, tone });
     if (v.provider === "minimax") return await falRun(MINIMAX_MODEL, { text: words, voice_setting: { voice_id: v.voice, speed: 1 }, language_boost: LANG_BOOST[lang] || "auto", output_format: "url" });
     if (v.provider === "elevenlabs") return await falRun(ELEVEN_MODEL, { text: words, voice: v.voice });
     return await openaiSpeak(v, { text: words, lang, tone });
@@ -327,5 +392,6 @@ const newClipId = () => "V" + crypto.randomBytes(12).toString("base64url");
 module.exports = {
   CATALOG, DEFAULTS, TYPE_LABEL, GENDERS, AGES, MIN_SECONDS,
   publicCatalog, pick, typeFromSpeech, typeLabel, speak, toMp3, measure, fit, fitPlan, transcribe, listen, judge, speakerOf, check, clipView, newClipId,
+  veoSeconds, veoPrompt, voiceOfVideo,
   byId: (id) => BY_ID[id] || null,
 };
