@@ -13,6 +13,7 @@
  *   FAL_IMAGE_MODEL  fal-ai/flux/schnell                      ~$0.003 per image
  *   FAL_VIDEO_MODEL  minimax/h3-max-turbo/text-to-video       ~$0.025 per second
  *   FAL_I2V_MODEL    minimax/h3-max-turbo/image-to-video      (animate an image)
+ *   FAL_VEO_MODEL    fal-ai/veo3.1/fast                       with TRIAL_VEO_VOICE=1: speaks the line itself (see VEO)
  */
 const clean = (v) => String(v || "").trim();
 const FAL_KEY = clean(process.env.FAL_KEY);
@@ -40,8 +41,42 @@ const PREMIUM = {
   i2v: clean(process.env.FAL_PREMIUM_I2V_MODEL) || "fal-ai/kling-video/v3/pro/image-to-video",
 };
 COST.premiumVideo = (Number(process.env.FAL_PREMIUM_COST_PER_SEC) || 0.168) * VIDEO_SECONDS;
-/** Cost of one video: the premium model when it is on and the video has no voice track. */
-const videoCost = (hasVoice) => (PREMIUM.on && !hasVoice ? COST.premiumVideo : COST.video);
+// Google Veo for videos WITH a spoken line (TRIAL_VEO_VOICE=1): the line goes into the prompt and Veo speaks it itself,
+// voice and lips made together – the most natural Iraqi speech we get. No audio input exists on Veo, so a customer's own
+// recording ("own") stays on MiniMax with our track; "convert" (their words, a character voice) is spoken by Veo too.
+// Clips are at most 8 s (VEO_SECONDS), at roughly FAL_VEO_COST_PER_SEC per second with audio – many times MiniMax.
+const VEO = {
+  on: clean(process.env.TRIAL_VEO_VOICE) === "1",
+  video: clean(process.env.FAL_VEO_MODEL) || "fal-ai/veo3.1/fast",
+  i2v: clean(process.env.FAL_VEO_I2V_MODEL) || "fal-ai/veo3.1/fast/image-to-video",
+  resolution: ["720p", "1080p"].includes(clean(process.env.FAL_VEO_RESOLUTION)) ? clean(process.env.FAL_VEO_RESOLUTION) : "720p",
+};
+const VEO_SECONDS = Math.min(8, Math.max(4, VIDEO_SECONDS));
+COST.veoVideo = (Number(process.env.FAL_VEO_COST_PER_SEC) || 0.4) * VEO_SECONDS;
+/** Does Veo speak this video's line? (Veo on, there is a line, and the customer did not ask for their own recording.) */
+function veoSpeaks(speech, voice = null) {
+  if (!VEO.on || !speech?.text) return false;
+  const mode = voice?.mode || "tts";
+  return mode !== "own" && mode !== "none";
+}
+/** Cost of one video: Veo when it speaks the line, the premium model when it is on and the video has no voice track. */
+const videoCost = (hasVoice, viaVeo = false) => (viaVeo ? COST.veoVideo : PREMIUM.on && !hasVoice ? COST.premiumVideo : COST.video);
+// how the spoken line is described to Veo, per language
+const VEO_LANG = {
+  "ar-IQ": "Iraqi Arabic, Baghdadi colloquial dialect (not Modern Standard Arabic, not Gulf, not Egyptian), relaxed everyday pronunciation",
+  ar: "clear Modern Standard Arabic",
+  en: "natural conversational English",
+  ku: "Kurdish (Sorani)",
+  tr: "natural Turkish",
+  fa: "natural Persian (Farsi)",
+};
+const VEO_SPEAKER = { child: "child", young: "young", adult: "", old: "elderly" };
+/** The spoken line as Veo wants it: who says it, in which dialect, the exact words in quotes. */
+function veoLine({ text, lang = "ar-IQ", gender = "", age = "", tone = "" }) {
+  const who = [VEO_SPEAKER[age] || "", gender === "female" ? "woman" : gender === "male" ? "man" : "person"].filter(Boolean).join(" ");
+  const words = String(text).replace(/["\u201c\u201d]/g, "'").trim().slice(0, 300);
+  return `The ${who} looks at the camera and says, in ${VEO_LANG[lang] || VEO_LANG["ar-IQ"]}${tone ? `, ${tone} tone` : ""}: "${words}". Lips in sync with the words, clear voice, no subtitles, no captions, no other speech.`;
+}
 const configured = Boolean(FAL_KEY);
 
 // Result links we accept from the provider: fal's CDN, and the queue's own origin (the test double).
@@ -226,9 +261,10 @@ async function fal(method, path, body) {
 }
 
 /** Starts a job; returns the provider job id and the cost estimate counted against the trial budget. */
-async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, negative = "" }) {
+async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, negative = "", speech = null }) {
   if (!configured) throw new Error("FAL_KEY is not set");
   const s = STYLE[style] || STYLE.realistic;
+  const viaVeo = kind === "video" && !audioUrl && veoSpeaks(speech);
   let model, input;
   if (kind === "image") {
     model = MODELS.image;
@@ -236,6 +272,12 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
       // Google's Nano Banana (Pro): aspect ratio + resolution instead of a pixel size
       ? { prompt: `${s.image} ${prompt}`, aspect_ratio: "4:3", resolution: IMAGE_RESOLUTION, num_images: 1, output_format: "jpeg" }
       : { prompt: `${s.image} ${prompt}`, image_size: IMAGE_SIZE, num_images: 1, enable_safety_checker: true, output_format: "jpeg" };
+  } else if (viaVeo) {
+    // Veo speaks the line itself (native audio); the spoken words come last so they are never cut by the length limit
+    model = imageUrl ? VEO.i2v : VEO.video;
+    input = { prompt: `${s.video} ${prompt}`, duration: `${VEO_SECONDS}s`, generate_audio: true, resolution: VEO.resolution, aspect_ratio: "16:9",
+      negative_prompt: [negative, "blur, distortion, low quality, warped shapes, flicker, watermark, subtitles, captions"].filter(Boolean).join(", "),
+      ...(imageUrl ? { image_url: imageUrl } : {}) };
   } else if (PREMIUM.on && !audioUrl) {
     model = imageUrl ? PREMIUM.i2v : PREMIUM.video;
     input = { prompt: `${s.video} ${prompt}`, duration: String(VIDEO_SECONDS), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
@@ -254,7 +296,9 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
   if (negative && !input.negative_prompt) input.prompt += `. Avoid: ${negative}`;
   // video models reject very long prompts: keep the description, shorten the avoid-list first
   const MAX = Number(process.env.FAL_MAX_PROMPT_CHARS) || 1900;
-  if (input.prompt.length > MAX) input.prompt = input.prompt.slice(0, MAX).replace(/[,;]s*[^,;]*$/, "");
+  const line = viaVeo ? ` ${veoLine(speech)}` : "";
+  if (input.prompt.length + line.length > MAX) input.prompt = input.prompt.slice(0, MAX - line.length).replace(/[,;]s*[^,;]*$/, "");
+  input.prompt += line;
   let r;
   try {
     r = await fal("POST", model, input);
@@ -263,7 +307,7 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, n
     throw e;
   }
   if (!r.request_id) throw new Error("fal: no request_id");
-  return { provider: "fal", model, jobId: r.request_id, cost: kind === "video" ? videoCost(Boolean(audioUrl)) : COST[kind] };
+  return { provider: "fal", model, jobId: r.request_id, cost: kind === "video" ? videoCost(Boolean(audioUrl), viaVeo) : COST[kind] };
 }
 
 // Status/result URLs use the app id – the first two parts of the model id
@@ -291,5 +335,5 @@ module.exports = {
   configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
   realism, realismOn, startFrame, startFrameOn, frameCost, REALISM_MODEL,
   resetFal: () => { falDownUntil = 0; },
-  submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE, PREMIUM, videoCost,
+  submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE, PREMIUM, videoCost, VEO, VEO_SECONDS, veoSpeaks, veoLine,
 };

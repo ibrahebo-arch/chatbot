@@ -162,11 +162,13 @@ async function remake(job, verdict) {
     // (a customer photo or an animated trial picture that was not kept) it is not remade
     const frame = job.image_first_frame && storage.ready ? await storage.getBuffer(`trial/frame/${job.ticket}.jpg`, 25 * 1048576).catch(() => null) : null;
     if (job.image_first_frame && !frame) return false;
-    const cost = media.videoCost(Boolean(audioUrl));
-    if ((await spentToday()) + cost > DAILY_BUDGET) return false;
     const plan = typeof job.plan === "string" ? JSON.parse(job.plan) : job.plan || {};
+    // a video Veo spoke (no track of ours) is remade with the same line
+    const speech = !audioUrl && job.speech_text && media.veoSpeaks({ text: job.speech_text }) ? { ...(plan.speech || {}), text: job.speech_text, lang: job.speech_lang || plan.speech?.lang || "ar-IQ" } : null;
+    const cost = media.videoCost(Boolean(audioUrl), Boolean(speech));
+    if ((await spentToday()) + cost > DAILY_BUDGET) return false;
     const prompt = `${job.model_prompt || job.prompt} Keep every object, person and building continuous and unchanged for the whole clip. Avoid especially: ${qa.retryAvoid(verdict.issues)}.`;
-    const r = await media.submit("video", { prompt, style: job.style, imageUrl: frame ? `data:image/jpeg;base64,${frame.toString("base64")}` : null, audioUrl, negative: plan.negative || "" });
+    const r = await media.submit("video", { prompt, style: job.style, imageUrl: frame ? `data:image/jpeg;base64,${frame.toString("base64")}` : null, audioUrl, negative: plan.negative || "", speech });
     const row = (await db.query(
       `UPDATE trial_jobs SET provider_job_id = $2, model = $3, cost_usd = cost_usd + $4, raw_url = NULL, checked_at = now(), qa_retries = qa_retries + 1
         WHERE id = $1 AND status IN ('queued','running') RETURNING id`, [job.id, r.jobId, r.model, r.cost]
@@ -262,6 +264,18 @@ async function startOpenAI(job, refs = []) {
 }
 
 /**
+ * The line and speaker Veo gets when it speaks the video itself: the plan's line (or, for "convert", the customer's
+ * own words) with the gender/age of the chosen character voice.
+ */
+function veoWords(voice, speech) {
+  const chosen = voice?.preset && voice.preset !== "auto" ? voices.pick({ preset: voice.preset }) : null;
+  const type = { ...voices.typeFromSpeech(speech || {}), ...(voices.GENDERS.includes(voice?.gender) ? { gender: voice.gender } : {}), ...(voices.AGES.includes(voice?.age) ? { age: voice.age } : {}) };
+  const text = voice?.mode === "convert" ? clean(voice?.clip?.transcript) : clean(speech?.text);
+  if (!text) return null;
+  return { text, lang: speech?.lang || voice?.clip?.lang || "ar-IQ", gender: chosen?.gender || type.gender, age: chosen?.age || type.age, tone: speech?.tone || "" };
+}
+
+/**
  * The video's soundtrack from the customer's voice choice (see voices.js), fitted to the video length.
  *   voice = { mode: tts|own|convert|none, preset, gender, age, clip: { mp3, transcript, lang } }
  * Returns { mp3, info } or null (no voice).
@@ -311,10 +325,12 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const framed = kind === "video" && !sourceJobId && media.startFrameOn() && storage.ready;
   const frameCost = framed ? media.frameCost(useRefs, style) : 0;
   const realismCost = kind === "image" && style === "realistic" && media.realismOn() ? media.COST.realism : 0;
-  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit + realismCost : routeOf(pl) ? media.COST.openaiImage + realismCost : kind === "video" ? media.videoCost(Boolean(sp || voice?.clip)) + frameCost : media.COST[kind]) + (sp ? media.COST.speech : 0);
+  // Veo speaks the line itself (no separate voice track) when TRIAL_VEO_VOICE=1 and the customer did not record their own voice
+  const viaVeo = (sp) => kind === "video" && media.veoSpeaks(sp || (voice?.clip?.transcript ? { text: voice.clip.transcript } : null), voice);
+  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit + realismCost : routeOf(pl) ? media.COST.openaiImage + realismCost : kind === "video" ? media.videoCost(Boolean(sp || voice?.clip), viaVeo(sp)) + frameCost : media.COST[kind]) + (sp && !viaVeo(sp) ? media.COST.speech : 0);
   // with planFn the plan is written after the visitor already has the job: reserve the highest possible cost
   const cost = planFn
-    ? (kind === "video" ? Math.max(media.COST.video + media.COST.speech, media.videoCost(false)) + frameCost : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image) + realismCost)
+    ? (kind === "video" ? Math.max(media.COST.video + media.COST.speech, media.videoCost(false), media.VEO.on && voice?.mode !== "own" && voice?.mode !== "none" ? media.COST.veoVideo : 0) + frameCost : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image) + realismCost)
     : costOf(plan, speech);
 
   // "animate this image": only one of this visitor's own finished images
@@ -363,7 +379,11 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
       // the voice track first (the customer's choice: a character voice, their own recording, or their words in a
       // character's voice – Iraqi by default), fitted to the video length, then the video with it as the soundtrack
       let audioUrl = null;
-      if (kind === "video" && (speech?.text || voice?.clip)) {
+      // the line Veo speaks: the plan's line, or (convert) the customer's own words; who speaks comes from the voice choice
+      const veoSpeech = kind === "video" && viaVeo(speech) ? veoWords(voice, speech) : null;
+      if (veoSpeech) {
+        await db.query("UPDATE trial_jobs SET voice = $2 WHERE id = $1", [job.id, JSON.stringify({ mode: "veo", label: voice?.mode === "convert" ? "كلامك بصوت طبيعي من موديل الفيديو" : "صوت طبيعي من موديل الفيديو", clip: voice?.clip?.id || null })]);
+      } else if (kind === "video" && (speech?.text || voice?.clip)) {
         try {
           const st = await soundtrack(voice, speech, media.VIDEO_SECONDS);
           if (st) {
@@ -383,7 +403,7 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
           imageUrl = `data:image/jpeg;base64,${frame.toString("base64")}`;
         } catch (e) { console.error(`trial ${job.ticket}: start frame failed (${e.message.slice(0, 120)}) – video without it`); }
       }
-      const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "" });
+      const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, negative: plan?.negative || "", speech: veoSpeech });
       const row = (await db.query(
         "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running', image_first_frame = $6 WHERE id = $1 RETURNING *",
         [job.id, r.provider, r.model, r.jobId, r.cost, Boolean(imageUrl)]
