@@ -224,5 +224,214 @@
     ],
     "priority": 66,
     "body": "REAL-LIFE COMEDY: a simple, clear setup; the joke happens fully visible in frame (the miss, the spill, the fall) with real cause and effect; timing is action – one beat of silence – realisation – the punchline line – a small reaction (eye-roll, shrug, half laugh). Performances stay natural and underplayed, nobody mugs at the camera; the funny part is the situation, not exaggerated faces."
+  },
+  {
+    "id": "style.daylight-phone-on-table",
+    "domain": "style",
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "فيديو موبايل",
+      "تصوير موبايل",
+      "ريلز",
+      "ريل",
+      "يوميات",
+      "فيديو بيت",
+      "فيديو عائلي",
+      "reel",
+      "reels",
+      "home video",
+      "phone video",
+      "couple video",
+      "home comedy"
+    ],
+    "priority": 74,
+    "body": "INDOORS AT HOME, WHAT LOOKS MOST REAL: bright soft daylight from a window (evening rooms and warm lamps look staged), a phone standing on the table or counter, slightly low, facing the people, and staying completely still for the whole take. People are big in frame, upper bodies and both faces clearly visible, with a few simple everyday objects around them. Avoid wide shots of a whole room and tidy showroom rooms. Do not ask for a slow push-in or a camera move here: it tends to turn into hard cuts."
+  },
+  {
+    "id": "action.short-clip-one-action",
+    "domain": "action",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "ريلز",
+      "ريل",
+      "ستوري",
+      "مقطع قصير",
+      "فيديو قصير",
+      "سكيتش",
+      "مقلب",
+      "reel",
+      "reels",
+      "short video",
+      "short clip",
+      "skit",
+      "sketch"
+    ],
+    "priority": 73,
+    "body": "A SHORT CLIP HOLDS ONE THING: about 12 seconds carries one main action and two or three short spoken lines, no more. Write it as 6–7 plain beats with their seconds, one clear action per beat and who does it, in simple words. Short plain beats work better than long lists of physics rules. Everything else is left out: fewer people, fewer objects, fewer moves. The scene must already be right in the first frame, so a real, sharp start picture matters more than any later wording."
+  },
+  {
+    "id": "human.keep-same-face",
+    "domain": "human",
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "وجهي",
+      "وجوهنا",
+      "صورتي",
+      "صورتنا",
+      "نفس الوجه",
+      "نفس الوجوه",
+      "من صورتي",
+      "my face",
+      "our faces",
+      "same face",
+      "same faces",
+      "my photo",
+      "our photo",
+      "reference photo",
+      "couple photo"
+    ],
+    "priority": 71,
+    "body": "KEEPING A REAL PERSON'S FACE: a face holds best looking towards the camera, big in frame, with few people around. Turned heads, profiles and group shots change the face most, so give them only short moments and return to the front. Copy the person from the reference photo, not the logos or printed words on their clothes or behind them: state that those are left out. Keep their own skin as it is in the photo – add no acne, spots, red patches or scars they do not have."
+  },
+  {
+    "id": "sound.spoken-lines-iraqi",
+    "domain": "sound",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "حوار",
+      "يكول",
+      "تكول",
+      "يقول",
+      "تقول",
+      "يحجي",
+      "تحجي",
+      "يحچي",
+      "تحچي",
+      "بالعراقي",
+      "لهجة عراقية",
+      "اللهجة العراقية",
+      "dialogue",
+      "spoken line",
+      "iraqi dialect",
+      "iraqi voice"
+    ],
+    "priority": 69,
+    "body": "IF ANYONE SPEAKS: give each line word for word, with who says it and to whom, because Iraqi words change with the person addressed (شبيك to a man, شبيچ to a woman). Only those lines are spoken: nobody repeats a line, adds a word or shouts something extra. One speaker at a time, with a short pause between turns. A laugh comes before or after a line as its own beat, never inside the same breath as the words."
+  },
+  {
+    "id": "action.quick-theft-skit",
+    "domain": "action",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "حرامي",
+      "حرامية",
+      "سارق",
+      "لص",
+      "سرقة",
+      "سطو",
+      "ملثم",
+      "مقنع",
+      "thief",
+      "robber",
+      "robbery",
+      "burglar",
+      "masked man"
+    ],
+    "priority": 67,
+    "body": "A THIEF OR MASKED MAN IN A COMEDY SKIT: he comes in, makes ONE quick grab of something already within reach (one stack of notes, one bag) and leaves. Several grabs, big piles and slow searching look staged. He moves like a nervous ordinary person, fast and a little clumsy, with no film-villain poses. The people in the room react small and slightly late. It stays a joke: nobody is hurt, no blood."
+  },
+  {
+    "id": "reality.few-items-in-hands",
+    "domain": "reality",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "فلوس",
+      "دولار",
+      "دولارات",
+      "دنانير",
+      "رزمة",
+      "رزمة فلوس",
+      "money",
+      "cash",
+      "dollars",
+      "banknotes",
+      "stack of money"
+    ],
+    "priority": 65,
+    "body": "MONEY AND OTHER SMALL THINGS IN HANDS: keep the number low and say it (\"only one stack\", \"two stacks\"). When many items are picked up or moved they float, multiply or vanish. Each item is seen being picked up, stays in the hand that took it, and the place it came from is visibly emptier afterwards."
+  },
+  {
+    "id": "reality.tv-screen-in-frame",
+    "domain": "reality",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "تلفزيون",
+      "تلفاز",
+      "شاشة تلفزيون",
+      "شاشة التلفزيون",
+      "tv",
+      "television",
+      "tv screen"
+    ],
+    "priority": 63,
+    "body": "A TV IN THE SHOT: a visible screen tends to freeze into a still picture, which gives the shot away. Unless the screen itself is the point, place the TV out of frame behind the phone, so the people look past the camera at it and its light and sound tell the story. If the screen must show, the picture on it keeps visibly moving and changing the whole time."
+  },
+  {
+    "id": "human.hands-up-reaction",
+    "domain": "human",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "ايدك فوق",
+      "ايديكم فوق",
+      "ارفع ايدك",
+      "ارفعوا ايديكم",
+      "لحد يتحرك",
+      "محد يتحرك",
+      "لا تتحرك",
+      "hands up",
+      "raises hands",
+      "raised hands",
+      "don't move"
+    ],
+    "priority": 62,
+    "body": "HANDS UP IN SHOCK: the hands go up fast and uneven, one higher than the other, never tidy and equal. Say at which second they come down and when the person turns; left unsaid, the hands stay up stiffly to the end of the clip."
+  },
+  {
+    "id": "human.whisper-close",
+    "domain": "human",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "همس",
+      "يهمس",
+      "تهمس",
+      "قرصة خد",
+      "تقرص خده",
+      "whisper",
+      "whispers",
+      "whispering",
+      "cheek pinch"
+    ],
+    "priority": 62,
+    "body": "WHISPERING OR LEANING IN CLOSE: the lips stop a clear hand's width away from the ear and the cheek, with a hand cupped beside the mouth, and the head moves back afterwards. If the lips reach the temple or cheek it reads as a kiss."
   }
 ]

@@ -50,6 +50,18 @@ test("Arabic matching is whole-word with prefixes and endings", () => {
   assert.ok(!ids("اريد نفس الشي بس الناس").some((id) => id.startsWith("sound.breath")), "everyday words are ignored");
 });
 
+test("the reel lessons reach the requests they belong to, and only those", () => {
+  const ids = (t, k = "video") => lib.select(t, k).matches.map((e) => e.id);
+  const reel = ids("ريل كوميدي حرامي ملثم يدخل يسرق رزمة فلوس والتلفزيون شغال ويكول لحد يتحرك");
+  for (const id of ["style.daylight-phone-on-table", "action.short-clip-one-action", "action.quick-theft-skit", "reality.few-items-in-hands", "reality.tv-screen-in-frame", "human.hands-up-reaction", "sound.spoken-lines-iraqi"]) {
+    assert.ok(reel.includes(id), `${id} matches the robbery reel`);
+  }
+  assert.ok(ids("تهمس بأذنه وتقرص خده").includes("human.whisper-close"));
+  assert.ok(ids("صورة من صورتي بالحديقة", "image").includes("human.keep-same-face"));
+  const other = ids("مختبر تحاليل طبية في البصرة");
+  assert.ok(!["style.daylight-phone-on-table", "action.quick-theft-skit", "reality.few-items-in-hands", "human.whisper-close"].some((id) => other.includes(id)));
+});
+
 test("the note lists core and matches and stays a reasonable size", () => {
   const n = lib.note([{ role: "user", content: "اعلان لمختبر تحاليل في البصرة" }, { role: "assistant", content: "ليل نهار" }], "video");
   assert.match(n.text, /REALITY LIBRARY/);
