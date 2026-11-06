@@ -144,7 +144,6 @@ async function deliver(requestId, media, caption = "") {
   const o = await orders.getOrder(requestId);
   if (!o) throw new Error(`الطلب ${requestId} غير موجود`);
   if (o.status === "cancelled") throw new Error(`الطلب ${o.request_id} ملغى`);
-  if (!o.telegram_chat_id) throw new Error(`الزبون @${o.telegram_username} لم يضغط Start في البوت بعد، أرسل له الرابط: ${linkFor(o.request_id)}`);
   const id = o.request_id;
   const videoKey = `videos/${id}.mp4`;
 
@@ -162,12 +161,16 @@ async function deliver(requestId, media, caption = "") {
     console.error("deliver store:", e.message);
     if (media.key) throw e; // nothing else to send in that case
   }
+  // a customer who never pressed Start still gets the video on the order page and by mail – only Telegram is skipped
+  if (!o.telegram_chat_id && !stored) throw new Error(`الزبون @${o.telegram_username} لم يضغط Start في البوت، والفيديو لم يُحفظ في التخزين: أرسل له الرابط ${linkFor(id)} أو سلّم ملفاً`);
   if (stored) await orders.setVideo(id, videoKey);
   await orders.setStatus(id, ["awaiting_admin", "prompt_ready", "generating", "failed"], "completed", { by: "admin", action: "deliver" });
 
   // 2) send it on Telegram
   const text = caption || `🎬 فيديوك جاهز – طلب ${id}\nشكراً لاختيارك VI Iraq. إذا تحتاج تعديلاً، رد هنا أو من الموقع بنفس رقم الطلب.\n\n${steps("delivered")}`;
-  if (media.copyFrom) {
+  if (!o.telegram_chat_id) {
+    // no Telegram chat: the website and the mail deliver it
+  } else if (media.copyFrom) {
     await call("copyMessage", { chat_id: o.telegram_chat_id, from_chat_id: media.copyFrom.chatId, message_id: media.copyFrom.messageId, caption: text });
   } else if (stored) {
     let buf = null;
@@ -178,7 +181,7 @@ async function deliver(requestId, media, caption = "") {
     await call("sendVideo", { chat_id: o.telegram_chat_id, video: media.url, caption: text, supports_streaming: true });
   } else throw new Error("لا يوجد فيديو للتسليم");
 
-  await orders.setStatus(id, "completed", "delivered", { by: "admin", channel: "telegram" });
+  await orders.setStatus(id, "completed", "delivered", { by: "admin", channel: o.telegram_chat_id ? "telegram" : "website" });
   const done = await orders.getOrder(id);
   mail.deliveredEmail(done, { buffer: await videoBuffer(done, mail.ATTACH_BUDGET) }).catch((e) => console.error("mail delivered:", e.message));
   return done;
