@@ -29,7 +29,7 @@ test("library files: valid JSON, unique ids, names and bodies present", () => {
 test("the core fits its budget and is the same for every request of a kind", () => {
   const v = lib.select("", "video"), i = lib.select("", "image");
   assert.ok(v.core.length >= 5 && i.core.length >= 2);
-  assert.ok(v.core.reduce((n, e) => n + e.body.length, 0) <= 9000);
+  assert.ok(v.core.reduce((n, e) => n + e.body.length, 0) <= 9600);
   assert.deepEqual(v.matches, [], "nothing matched for an empty request");
   assert.ok(v.core.every((e) => e.kinds.includes("video")) && i.core.every((e) => e.kinds.includes("image")));
 });
@@ -61,6 +61,14 @@ test("the reel lessons reach the requests they belong to, and only those", () =>
   assert.ok(ids("صورة من صورتي بالحديقة", "image").includes("human.keep-same-face"));
   const other = ids("مختبر تحاليل طبية في البصرة");
   assert.ok(!["style.daylight-phone-on-table", "action.quick-theft-skit", "reality.few-items-in-hands", "human.whisper-close"].some((id) => other.includes(id)));
+});
+
+test("the human-realism rules are always in the core and the dining lessons reach a restaurant idea", async () => {
+  const core = (await lib.select("", "video")).core.map((e) => e.id);
+  for (const id of ["core.video.identity-lock", "core.video.human-tempo", "core.video.eye-contact", "core.video.own-sounds"]) assert.ok(core.includes(id), `${id} is in the video core`);
+  assert.ok((await lib.select("", "image")).core.some((e) => e.id === "core.image.identity-lock"));
+  const ids = (await lib.select("زوجين ياكلون بمطعم فخم وهي تمد ايدها بالبطاقة لماكنة الدفع", "video")).matches.map((e) => e.id);
+  assert.ok(ids.includes("action.reach-hand-over") && ids.includes("reality.dining-at-table"));
 });
 
 test("the note lists core and matches and stays a reasonable size", async () => {

@@ -24,7 +24,7 @@ const path = require("path");
 const crypto = require("crypto");
 
 const DIR = path.join(__dirname, "prompts", "library");
-const CORE_CHARS = Number(process.env.LIBRARY_CORE_CHARS) || 9000;
+const CORE_CHARS = Number(process.env.LIBRARY_CORE_CHARS) || 9600; // room for every always-on rule (9161 chars on 2026-11-15)
 const MATCH_CHARS = Number(process.env.LIBRARY_MATCH_CHARS) || 14000;
 const MAX_MATCHES = Number(process.env.LIBRARY_MAX_MATCHES) || 16;
 const REFRESH_MS = 5 * 60 * 1000;
