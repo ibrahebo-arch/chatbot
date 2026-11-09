@@ -2,7 +2,9 @@
   {
     "id": "core.video.identity-lock",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 97,
     "body": "ONLY IF A PERSON COMES FROM A REFERENCE PHOTO: that photo defines the person's exact identity – keep the same face, facial structure, eyes, nose, lips, hairstyle, age appearance and natural skin texture in every frame of the video; never turn them into another face and no face morphing while they move or turn. Realistic anatomy and the same body proportions throughout: no extra or missing fingers, no stretched or bending limbs. Lighting stays consistent and real; no beauty filter, no plastic or waxy skin."
@@ -10,7 +12,9 @@
   {
     "id": "core.image.identity-lock",
     "domain": "human",
-    "kinds": ["image"],
+    "kinds": [
+      "image"
+    ],
     "always": true,
     "priority": 96,
     "body": "ONLY IF A PERSON COMES FROM A REFERENCE PHOTO: that photo defines the person's exact identity – the same face, facial structure, eyes, nose, lips, hairstyle, age appearance and natural skin texture; never a lookalike or another face. Realistic anatomy and body proportions, five fingers per hand, consistent real lighting; no beauty filter, no plastic or waxy skin."
@@ -18,7 +22,9 @@
   {
     "id": "core.video.human-tempo",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 93,
     "body": "ONLY IF PEOPLE ARE ON SCREEN: REAL-TIME HUMAN TEMPO: every movement happens at normal real-life speed – no slow motion and no sped-up jerks. The eyes move calmly (a glance takes about a quarter to half a second, never darting or flicking around), heads turn smoothly, hands start, move and settle like real hands. Each action has a small beginning and a settle at the end. The camera stays still or moves normally and smoothly."
@@ -26,7 +32,9 @@
   {
     "id": "core.video.eye-contact",
     "domain": "human",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 92,
     "body": "ONLY IF TWO OR MORE PEOPLE ARE ON SCREEN: they communicate with their eyes and bodies like real people – the listener watches the speaker, they share a quick look before reacting, one checks the other's face to see how they take it. A reaction starts in the eyes and face and then the body follows (a lean in, a step back, a turn of the shoulders, a hand that stops mid-air). Answers and reactions come after a short natural delay, never at the exact same instant."
@@ -34,7 +42,9 @@
   {
     "id": "core.video.own-sounds",
     "domain": "sound",
-    "kinds": ["video"],
+    "kinds": [
+      "video"
+    ],
     "always": true,
     "priority": 91,
     "body": "ONLY IF PEOPLE ARE ON SCREEN: EACH PERSON SOUNDS LIKE THEMSELVES: every character keeps one voice for the whole clip and their own non-voice sounds – breathing, a small gasp, a short laugh through the nose, a 'hmm', chewing, a sip, the rustle of their own clothes, their own footsteps – timed with what their body does at that moment. Nobody suddenly speaks with another person's voice. When there is no dialogue, these human sounds and the room are the soundtrack."
@@ -42,17 +52,127 @@
   {
     "id": "action.reach-hand-over",
     "domain": "action",
-    "kinds": ["video", "image"],
-    "names": ["يمد ايده", "تمد ايدها", "يناوله", "تناوله", "تعطيه", "بطاقة", "كارت", "فيزا", "ماكنة الدفع", "جهاز الدفع", "يدفع", "تدفع", "hand over", "hands over", "reach", "reaches", "credit card", "card payment", "pos", "pays"],
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "يمد ايده",
+      "تمد ايدها",
+      "يناوله",
+      "تناوله",
+      "تعطيه",
+      "بطاقة",
+      "كارت",
+      "فيزا",
+      "ماكنة الدفع",
+      "جهاز الدفع",
+      "يدفع",
+      "تدفع",
+      "hand over",
+      "hands over",
+      "reach",
+      "reaches",
+      "credit card",
+      "card payment",
+      "pos",
+      "pays"
+    ],
     "priority": 66,
     "body": "REACHING AND HANDING OVER (a card to a payment machine, a plate, a phone): the arm moves as one piece from the shoulder – the shoulder lifts a little, the elbow straightens, the wrist turns at the end. The hand keeps five fingers and its grip on the object the whole way; the object keeps its size and never passes through the table, a plate or the other arm. The other person's hand meets it at the right height. Someone can stop the hand by gently touching the wrist or forearm, and both arms stay solid. Then the arm comes back along a natural path."
   },
   {
     "id": "reality.dining-at-table",
     "domain": "reality",
-    "kinds": ["video", "image"],
-    "names": ["مطعم", "عشاء", "غداء", "ياكلون", "ناكل", "صحن", "شوكة", "سكينة", "restaurant", "dinner", "dining", "eating at a table", "dinner date", "fork", "knife"],
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "مطعم",
+      "عشاء",
+      "غداء",
+      "ياكلون",
+      "ناكل",
+      "صحن",
+      "شوكة",
+      "سكينة",
+      "restaurant",
+      "dinner",
+      "dining",
+      "eating at a table",
+      "dinner date",
+      "fork",
+      "knife"
+    ],
     "priority": 64,
     "body": "EATING AT A TABLE FOR REAL: cutlery held correctly (fork in one hand, knife or bread in the other), small bites, the mouth closes while chewing, jaw and cheeks move, swallowing moves the throat, a napkin touches the lips. People talk and look at each other between bites and never chew in sync. The food on the plate visibly gets less; crumbs and sauce marks stay where they fell. Glasses are lifted, sipped and set down with a soft clink."
+  },
+  {
+    "id": "reality.rain-starting",
+    "domain": "reality",
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "بدا يمطر",
+      "بدت تمطر",
+      "بدت الدنيا تمطر",
+      "رذاذ",
+      "قطرات مطر",
+      "زخة مطر",
+      "rain starts",
+      "starting to rain",
+      "drizzle",
+      "first drops",
+      "raindrops"
+    ],
+    "priority": 63,
+    "body": "RAIN THAT STARTS: first a few single drops – dark coin-sized spots appear one by one on dry pavement and on shoulders, a drop lands on hair and stays as a tiny bead; within seconds more drops fall, the spots join, the ground turns darker and starts to shine, small rings appear in the first puddles, hair gets damp strands and clothes darken where hit. People react the real way: glance up at the sky, blink at a drop, raise a hand over the head, hurry. Sound grows from soft single taps to a steady patter."
+  },
+  {
+    "id": "action.group-carry-person",
+    "domain": "action",
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "names": [
+      "يشيلونه",
+      "يحملونه",
+      "شايلينه",
+      "كفن",
+      "جنازة",
+      "نعش",
+      "على اكتافهم",
+      "carry on shoulders",
+      "pallbearers",
+      "shroud",
+      "carried by four"
+    ],
+    "priority": 65,
+    "body": "SEVERAL PEOPLE CARRYING A PERSON: the weight is shared – each carrier has one shoulder under the load and a hand holding it, knees slightly bent, steps short and in rhythm so the body on top moves only a little; the person carried keeps a real body shape and weight (head, shoulders and feet in the right places under any cloth), the cloth wraps and folds around the body and sways with the steps. Carriers glance at each other to keep pace and adjust their grip; nobody floats or slides."
+  },
+  {
+    "id": "style.one-take-camera",
+    "domain": "style",
+    "kinds": [
+      "video"
+    ],
+    "names": [
+      "لقطة وحدة",
+      "بدون قطع",
+      "بدون تقطيع",
+      "one take",
+      "one shot",
+      "single take",
+      "continuous shot",
+      "tracking shot",
+      "camera moves to",
+      "pan to"
+    ],
+    "priority": 70,
+    "body": "ONE CONTINUOUS TAKE: no cuts and no jumps – the camera moves smoothly at walking speed from one person to the next (a slow push in, a gentle pan), always staying in the same place and light. Everyone keeps the same face, clothes and position whether in or out of frame; people the camera leaves keep doing what they were doing and are still there when it comes back. Nothing appears or disappears while the camera moves."
   }
 ]
