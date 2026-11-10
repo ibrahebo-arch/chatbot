@@ -98,6 +98,9 @@ async function sync(db) {
   } finally { client.release(); }
 }
 
+/** Read-only start for tools: uses the entries and vectors of this database without writing the files into it. */
+async function attach(db) { dbRef = db; await refresh(true); return entries.length; }
+
 /** Reloads the enabled entries from the database (at most every 5 minutes unless forced). */
 async function refresh(force = false) {
   if (!dbRef?.configured || (!force && Date.now() - loadedAt < REFRESH_MS)) return;
@@ -292,4 +295,4 @@ function stats() {
   return { entries: entries.length, words, byDomain };
 }
 
-module.exports = { loadFiles, sync, refresh, select, retrieve, note, matchScore, stats, norm, prep, embed, embedMissing, embedText, semanticOn, dot, EMBED_DIM, _vectors: vectors };
+module.exports = { loadFiles, sync, attach, refresh, select, retrieve, note, matchScore, stats, norm, prep, embed, embedMissing, embedText, semanticOn, dot, EMBED_DIM, _vectors: vectors };
