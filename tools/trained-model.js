@@ -56,6 +56,7 @@ const log = (...a) => console.log(new Date().toISOString().slice(0, 19).replace(
   } else if (cmd === "approve") {
     const edits = opt("edit") ? JSON.parse(fs.readFileSync(opt("edit"), "utf8")) : {};
     console.log(JSON.stringify({ approved: await trained.approve(db, ids, { reviewer: opt("by", "claude"), edits }) }));
+    await require("../library").embedMissing(db).catch((e) => console.error("library vectors:", e.message)); // meaning vectors for the new entries
   } else if (cmd === "reject") {
     console.log(JSON.stringify({ rejected: await trained.reject(db, ids, { reviewer: opt("by", "claude"), note: opt("note", "") }) }));
   } else if (cmd === "youtube-gemini") {

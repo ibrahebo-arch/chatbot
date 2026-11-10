@@ -1061,6 +1061,9 @@ async function start() {
     console.log(`Database: ready (${m.applied.length ? "applied " + m.applied.join(", ") : "up to date"})`);
     try { const l = await library.sync(db); const s = library.stats(); console.log(`Prompt library: ${s.entries} entries, ${s.words} words (${l.files} from files)`); }
     catch (e) { console.error("prompt library sync:", e.message); }
+    // meaning vectors for new or changed entries – in the background, the site does not wait for it
+    library.embedMissing().then((n) => console.log(`Prompt library: meaning search ${library.semanticOn() ? `on (${library._vectors.size} vectors${n ? `, ${n} new` : ""})` : "off"}`))
+      .catch((e) => console.error("prompt library vectors:", e.message));
   } catch (e) {
     console.error(`FATAL: database not ready – ${e.message}`);
     process.exit(1);

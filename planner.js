@@ -190,7 +190,7 @@ async function review(plan, conversation, opts) {
  */
 async function plan(conversation, opts) {
   const o = { ...opts, voiceLang: opts.voiceLang === "none" ? "none" : normLang(opts.voiceLang) };
-  const lib = library.note(conversation, o.kind === "video" ? "video" : "image");
+  const lib = await library.note(conversation, o.kind === "video" ? "video" : "image");
   o.libraryNote = lib.text;
   const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n").slice(0, 900);
   if (!OPENAI_KEY) return { plan: applyVoice({ prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, o), by: "customer" };

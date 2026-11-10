@@ -8,12 +8,20 @@
  *   - the MATCHES: entries whose names (Arabic or English) appear in what the customer wrote,
  * within a fixed character budget, most specific and highest priority first.
  *
+ * Names alone miss a lot (measured 2026-11: they found 57 % of the entries that belong to a scene and none of the
+ * learned ones, whose names are long phrases) and sometimes fire wrongly («حية» inside «لحية»). So with an OpenAI
+ * key a request is answered in two steps (retrieve): the candidates – name matches plus the entries closest in
+ * MEANING (embeddings kept in prompt_library.embedding) – are shown as short cards to the prompt model, which marks
+ * the ones that are clearly part of the scene (MATCHED) or very likely part of it (RELATED). Any failure falls back
+ * to the names alone. LIBRARY_SEMANTIC=0 switches the second step off.
+ *
  * Source of truth: prompts/library/*.json (+ prompts/locations.json), synced into the prompt_library table at start
  * (source='file'). Rows added by hand in the database (source='db' or 'generated') are kept and used too.
  * Without a database the files are used directly.
  */
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const DIR = path.join(__dirname, "prompts", "library");
 const CORE_CHARS = Number(process.env.LIBRARY_CORE_CHARS) || 9000;
@@ -23,6 +31,13 @@ const REFRESH_MS = 5 * 60 * 1000;
 
 const KINDS = ["video", "image"];
 const clean = (v) => String(v || "").trim();
+const OPENAI_KEY = clean(process.env.OPENAI_API_KEY);
+const OPENAI_BASE = (clean(process.env.OPENAI_BASE_URL) || "https://api.openai.com").replace(/\/+$/, "");
+const EMBED_MODEL = clean(process.env.LIBRARY_EMBED_MODEL) || "text-embedding-3-large";
+const EMBED_DIM = Number(process.env.LIBRARY_EMBED_DIM) || 1024;
+const NAME_CANDIDATES = 20, MEANING_CANDIDATES = Number(process.env.LIBRARY_MEANING_CANDIDATES) || 24, MAX_RELATED = Number(process.env.LIBRARY_MAX_RELATED) || 6;
+const selectModel = () => clean(process.env.LIBRARY_SELECT_MODEL) || clean(process.env.PROMPT_MODEL) || clean(process.env.OPENAI_MODEL) || "gpt-4o-mini";
+const semanticOn = () => clean(process.env.LIBRARY_SEMANTIC) !== "0" && Boolean(OPENAI_KEY);
 /** Arabic normalisation: no diacritics/tatweel, one alef, ya and ta marbuta folded (same as the location matcher). */
 const norm = (s) => String(s || "").toLowerCase().replace(/[ً-ْـ]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
 
@@ -90,7 +105,49 @@ async function refresh(force = false) {
     const r = await dbRef.query("SELECT id, domain, names, kinds, always, priority, body, source FROM prompt_library WHERE enabled");
     if (r.rows.length) entries = r.rows.map((x) => normalise(x, x.source));
     loadedAt = Date.now();
+    await loadVectors();
   } catch (e) { console.error("library refresh:", e.message); loadedAt = Date.now(); }
+}
+
+// ---- meaning vectors: one embedding per entry (names + body), kept in the database and in memory ----------------
+const vectors = new Map(); // id → { sig, vec: Float32Array }
+const embedText = (e) => `${(e.names || []).join(" · ")}\n${e.body}`.slice(0, 1500);
+const sigOf = (e) => crypto.createHash("sha1").update(`${EMBED_MODEL}:${EMBED_DIM}:${embedText(e)}`).digest("hex").slice(0, 16);
+
+async function openai(pathname, body, ms) {
+  const r = await fetch(`${OPENAI_BASE}/v1/${pathname}`, { method: "POST", headers: { Authorization: `Bearer ${OPENAI_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(ms) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(`${pathname} ${r.status} ${String(j.error?.message || "").slice(0, 160)}`);
+  return j;
+}
+const embed = async (inputs, ms = 60000) => (await openai("embeddings", { model: EMBED_MODEL, input: inputs, dimensions: EMBED_DIM }, ms)).data.map((d) => d.embedding);
+const dot = (a, b) => { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; };
+
+/** Loads the vectors that are new or changed in the database (only those – the rest stay in memory). */
+async function loadVectors() {
+  if (!dbRef?.configured || !semanticOn()) return;
+  const sigs = (await dbRef.query("SELECT id, embed_sig FROM prompt_library WHERE enabled AND NOT always AND embedding IS NOT NULL")).rows;
+  const live = new Set(sigs.map((r) => r.id));
+  for (const id of vectors.keys()) if (!live.has(id)) vectors.delete(id);
+  const todo = sigs.filter((r) => vectors.get(r.id)?.sig !== r.embed_sig).map((r) => r.id);
+  for (let i = 0; i < todo.length; i += 500) {
+    const rows = (await dbRef.query("SELECT id, embedding, embed_sig FROM prompt_library WHERE id = ANY($1)", [todo.slice(i, i + 500)])).rows;
+    for (const r of rows) if (Array.isArray(r.embedding) && r.embedding.length === EMBED_DIM) vectors.set(r.id, { sig: r.embed_sig, vec: Float32Array.from(r.embedding) });
+  }
+}
+
+/** Makes the vectors that are missing or whose entry text changed (at start and after new entries are learned). */
+async function embedMissing(db = dbRef) {
+  if (!db?.configured || !semanticOn()) return 0;
+  const rows = (await db.query("SELECT id, names, body, embed_sig FROM prompt_library WHERE enabled AND NOT always")).rows;
+  const todo = rows.filter((e) => e.embed_sig !== sigOf(e));
+  for (let i = 0; i < todo.length; i += 100) {
+    const part = todo.slice(i, i + 100);
+    const vecs = await embed(part.map(embedText));
+    for (const [k, e] of part.entries()) await db.query("UPDATE prompt_library SET embedding=$2, embed_sig=$3 WHERE id=$1", [e.id, vecs[k], sigOf(e)]);
+  }
+  if (todo.length && db === dbRef) await loadVectors();
+  return todo.length;
 }
 
 /** How strongly an entry matches the text: length of its longest name found (0 = no match). */
@@ -131,7 +188,10 @@ function nameRe(k) {
 /** Text prepared for matching: normalised, punctuation turned into spaces, padded with spaces. */
 const prep = (text) => " " + norm(text).replace(/[^\p{L}\p{N}'&-]+/gu, " ").replace(/\s+/g, " ") + " ";
 
-/** Picks the core and the matching entries for one request (pure – tested). */
+// what a request of this kind may get besides the core: a picture has no soundtrack, so it never gets sound entries
+const usable = (e, kind) => e.enabled !== false && !e.always && e.kinds.includes(kind) && !(kind === "image" && e.domain === "sound");
+
+/** Picks the core and the entries whose names appear in the request (pure – tested). */
 function select(text, kind, list = entries, budget = {}) {
   const t = prep(text);
   const core = [], matches = [];
@@ -140,7 +200,7 @@ function select(text, kind, list = entries, budget = {}) {
     if (used + e.body.length > (budget.core || CORE_CHARS)) continue;
     core.push(e); used += e.body.length;
   }
-  const found = list.filter((x) => x.enabled !== false && !x.always && x.kinds.includes(kind))
+  const found = list.filter((x) => usable(x, kind))
     .map((e) => ({ e, s: matchScore(e, t) })).filter((x) => x.s > 0)
     .sort((a, b) => b.e.priority - a.e.priority || b.s - a.s);
   used = 0;
@@ -153,23 +213,76 @@ function select(text, kind, list = entries, budget = {}) {
 
 const TITLES = { reality: "Reality & physics", human: "Human presence", sound: "Sound & voices", place: "Places", item: "Items & objects", action: "Actions & activities", nature: "Nature & weather", animal: "Animals", style: "Look & camera" };
 
+/** Fills the budget in the given order (pure). */
+function fit(list, max, chars, used = { n: 0, c: 0 }) {
+  const out = [];
+  for (const e of list) {
+    if (used.n >= max || used.c + e.body.length > chars) continue;
+    out.push(e); used.n++; used.c += e.body.length;
+  }
+  return out;
+}
+
+/** The prompt model reads short cards of the candidates and marks which belong to the scene: 2, 1 or 0 per card. */
+async function choose(text, kind, cands) {
+  const model = selectModel();
+  const body = { model, response_format: { type: "json_object" }, messages: [
+    { role: "system", content: `You pick knowledge for an AI ${kind} studio. A customer request and numbered knowledge cards are given. For each card decide whether its knowledge would make THIS request's ${kind} more real and correct. 2 = the thing, place, action${kind === "video" ? ", sound" : ""} or look it describes is clearly part of this scene. 1 = not named, but very likely part of this scene or directly useful for it. 0 = not part of this scene, or it would pull the scene in a wrong direction. Be strict: a similar topic is not enough, and a card that only shares a word with the request is 0. Return JSON only: {"scores":{"<n>":0|1|2}} with every card number.` },
+    { role: "user", content: `REQUEST (${kind}): ${text.slice(-1800)}\n\nCARDS:\n${JSON.stringify(cands.map((e, i) => ({ n: i + 1, names: e.names.slice(0, 4), text: e.body.slice(0, 240) })))}` }] };
+  if (/^(gpt-[5-9]|o\d)/.test(model)) { body.max_completion_tokens = 2500; body.reasoning_effort = "low"; } else { body.max_tokens = 700; body.temperature = 0; }
+  const j = await openai("chat/completions", body, Number(process.env.LIBRARY_SELECT_TIMEOUT_MS) || 20000);
+  const scores = JSON.parse(j.choices?.[0]?.message?.content || "{}").scores || {};
+  return cands.map((_, i) => Number(scores[i + 1]));
+}
+
+/**
+ * The entries for one request: the core, the entries that are part of the scene (matches) and the ones very likely
+ * part of it (related). Candidates = name matches + the closest in meaning; the prompt model picks. Without a key,
+ * without vectors or on any failure: the name matches alone, exactly as select() gives them.
+ */
+async function retrieve(text, kind, budget = {}) {
+  const base = select(text, kind, entries, budget);
+  if (!semanticOn() || !vectors.size || clean(text).length < 3) return { ...base, related: [], by: "names" };
+  try {
+    const t = prep(text);
+    const pool = entries.filter((e) => usable(e, kind));
+    const named = pool.map((e) => ({ e, s: matchScore(e, t) })).filter((x) => x.s > 0).sort((a, b) => b.e.priority - a.e.priority || b.s - a.s).slice(0, NAME_CANDIDATES).map((x) => x.e);
+    const q = (await embed([text.slice(-2000)], Number(process.env.LIBRARY_EMBED_TIMEOUT_MS) || 8000))[0];
+    const seen = new Set(named.map((e) => e.id));
+    const near = pool.filter((e) => !seen.has(e.id) && vectors.has(e.id)).map((e) => ({ e, s: dot(q, vectors.get(e.id).vec) })).sort((a, b) => b.s - a.s).slice(0, MEANING_CANDIDATES).map((x) => x.e);
+    const cands = [...named, ...near];
+    if (!cands.length) return { ...base, related: [], by: "names" };
+    const scores = await choose(text, kind, cands);
+    if (!scores.some((s) => s === 0 || s === 1 || s === 2)) throw new Error("the selector returned no scores");
+    const used = { n: 0, c: 0 }, max = budget.max || MAX_MATCHES, chars = budget.match || MATCH_CHARS;
+    const matches = fit(cands.filter((_, i) => scores[i] === 2), max, chars, used);
+    const related = fit(cands.filter((_, i) => scores[i] === 1).slice(0, MAX_RELATED), max, chars, used);
+    return { core: base.core, matches, related, by: "meaning" };
+  } catch (e) {
+    console.error("library retrieve (names only):", String(e.message).slice(0, 200));
+    return { ...base, related: [], by: "names" };
+  }
+}
+
 /** The text block the planner adds to its request. */
-function note(conversation, kind) {
+async function note(conversation, kind) {
   refresh().catch(() => {});
   const own = (conversation || []).filter((m) => m.role === "user").map((m) => m.content).join("\n");
-  const { core, matches } = select(own, kind);
-  if (!core.length && !matches.length) return { text: "", ids: [] };
+  const { core, matches, related, by } = await retrieve(own, kind);
+  if (!core.length && !matches.length && !related.length) return { text: "", ids: [], by };
+  const grouped = (list) => {
+    const byDomain = {};
+    for (const e of list) (byDomain[e.domain] ||= []).push(e);
+    return Object.entries(byDomain).map(([d, l]) => `\n[${TITLES[d] || d}]\n` + l.map((e) => `- ${e.body}`).join("\n")).join("");
+  };
   let s = "\n\nREALITY LIBRARY – binding knowledge for this request. Use every point that fits the scene; write it into the prompt as concrete visible (and, for video, audible) details, never as a list of rules.";
   if (core.length) s += "\n\nCORE (always):\n" + core.map((e) => `- ${e.body}`).join("\n");
-  if (matches.length) {
-    s += "\n\nMATCHED TO THIS REQUEST (the customer named these – show them exactly like this):";
-    const byDomain = {};
-    for (const e of matches) (byDomain[e.domain] ||= []).push(e);
-    for (const [d, list] of Object.entries(byDomain)) s += `\n[${TITLES[d] || d}]\n` + list.map((e) => `- ${e.body}`).join("\n");
-  }
-  const ids = [...core, ...matches].map((e) => e.id);
-  if (dbRef?.configured && matches.length) dbRef.query("UPDATE prompt_library SET uses = uses + 1 WHERE id = ANY($1)", [matches.map((e) => e.id)]).catch(() => {});
-  return { text: s, ids };
+  if (matches.length) s += "\n\nMATCHED TO THIS REQUEST (these are part of the scene – show them exactly like this):" + grouped(matches);
+  if (related.length) s += "\n\nRELATED TO THIS SCENE (the customer did not name these – use only the points that fit what is on screen):" + grouped(related);
+  const picked = [...matches, ...related];
+  const ids = [...core, ...picked].map((e) => e.id);
+  if (dbRef?.configured && picked.length) dbRef.query("UPDATE prompt_library SET uses = uses + 1 WHERE id = ANY($1)", [picked.map((e) => e.id)]).catch(() => {});
+  return { text: s, ids, by };
 }
 
 function stats() {
@@ -179,4 +292,4 @@ function stats() {
   return { entries: entries.length, words, byDomain };
 }
 
-module.exports = { loadFiles, sync, refresh, select, note, matchScore, stats, norm, prep };
+module.exports = { loadFiles, sync, refresh, select, retrieve, note, matchScore, stats, norm, prep, embed, embedMissing, embedText, semanticOn, dot, EMBED_DIM, _vectors: vectors };

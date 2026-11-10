@@ -36,6 +36,8 @@ test("drafts: bad ones are refused with a reason", () => {
   no({ names: ["تكة", "شوي"] }, "too few names");
   no({ names: ["تكة", "شوي لحم", "مشاوي"] }, "no English name");
   no({ names: ["lamb", "grill", "kebab"] }, "no Arabic name");
+  assert.match(no({ names: ["شوي لحم خروف على الفحم", "تكة لحم على سيخ طويل", "grilling lamb skewers over charcoal", "lamb"] }, "only long Arabic phrases"), /short/, "a customer types two words, not six");
+  assert.equal(trained.validateDraft(good).entry.priority, 50, "learned entries rank like hand-written ones");
   no({ body: "too short" }, "short body");
   no({ body: good.body + " See https://example.com for more." }, "links");
   no({ slug: "" }, "no id");
@@ -95,6 +97,15 @@ test("footage search: only clips whose title fits the search, never violence or 
   assert.equal(trained.relevant({ title: "Ali Khamenei speech at the Hussainiya of Lovers of Karbala.webm" }, "karbala"), false, "politics is not studied");
   assert.equal(trained.relevant({ title: "F35 Lighting II Aerial Refuel.webm" }, "car refueling station"), false, "military");
   assert.equal(trained.relevant({ title: "Cyberpunk Rainy Street (Hailuo AI).webm" }, "rainy street"), false, "AI-made clips are not reality");
+  // the clips that slipped through in November 2026: crime, politics in other spellings, religion of other faiths, pork
+  assert.equal(trained.relevant({ title: "LAPD Cop Shoots Knife-Wielding Suspect in The Lobby.webm" }, "hotel lobby"), false, "crime and police");
+  assert.equal(trained.relevant({ title: "Presiden Jokowi dan Ibu Iriana Tiba di Arab Saudi.webm" }, "arab"), false, "politics in other languages");
+  assert.equal(trained.relevant({ title: "Rama Navami Celebration - Andul-Khatir Bazaar Road.webm" }, "bazaar"), false, "religion of any faith");
+  assert.equal(trained.relevant({ title: "Osho 1972 Birthday seek-index.ogv" }, "birthday"), false, "religious teachers");
+  assert.equal(trained.relevant({ title: "roast, pork, meat, food, roasted, dinner" }, "roast dinner"), false, "pork");
+  assert.equal(trained.relevant({ title: "wine, glass, pouring, restaurant" }, "pouring glass"), false, "alcohol");
+  assert.equal(trained.relevant({ title: "bread, knife, breakfast, bakery, baker" }, "bread knife"), true, "everyday food stays");
+  assert.equal(trained.relevant({ title: "Policeman directing traffic? no – traffic lights at a crossing.webm" }, "traffic crossing"), true, "similar letters are not enough");
   for (const t of ["Escape the Backrooms OST - Platonic Purgatory.webm", "Fortnite Treasure Hunters | Live Action Trailer", "Granny Game Challenge With Spiderman", "Rahma Riad [Official Visualizer]", "لعبة الاختباء في مدينة معلقة", "محل الايفون ضد محل سامسونك في ماين كرافت !", "دخلت القصر السري و سرقت أندر بيضة في التحديث الجديد!", "[FIL] GamerLegion vs Legion (BO3)"])
     assert.ok(trained.NOT_REAL.test(t), `not real: ${t}`);
   for (const t of ["Beautiful Views of Harem Imam Ali Najaf.webm", "فاطم تسأل | الحاج باسم الكربلائي", "دموع مصابك | لطمية", "Prayer wheels samyeling dec 09.ogv"])
