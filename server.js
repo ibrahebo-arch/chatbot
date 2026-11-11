@@ -1022,8 +1022,16 @@ app.get("/admin/trained", adminPage, async (_req, res) => {
     res.type("html").send(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VI-Iraq Trained Model</title>
 <style>body{font-family:system-ui,Segoe UI,Tahoma,sans-serif;background:#f4f1ea;margin:0}main{max-width:760px;margin:auto;padding:16px}li{background:#fff;border-radius:10px;padding:10px 14px;margin:8px 0;list-style:none}ul{padding:0}a{color:#0b6e75;font-weight:600}.muted{color:#6b6b70}</style></head>
 <body><main><h1>VI-Iraq · Trained Model</h1><p class=muted>${s.library_trained} trained entries live in the library · last study ${s.last_study ? new Date(new Date(s.last_study).getTime() + 3 * 3600e3).toISOString().slice(0, 16).replace("T", " ") + " Iraq time" : "–"}</p>
-<p><a href="/admin/trained/${trained.iraqDay()}">Open today's report →</a></p><h2>Every day</h2><ul>${days.map(row).join("") || "<li>No studies yet.</li>"}</ul></main></body></html>`);
+<p><a href="/admin/trained/map">Open the learning map →</a> (everything studied and learned, live)</p><p><a href="/admin/trained/${trained.iraqDay()}">Open today's report →</a></p><h2>Every day</h2><ul>${days.map(row).join("") || "<li>No studies yet.</li>"}</ul></main></body></html>`);
   } catch (e) { console.error("trained index:", e.message); res.status(500).type("text").send("Could not load the reports."); }
+});
+// The learning map: one live 3D picture + tables of everything studied and learned (learnmap.js, public/admin-map.js).
+const learnmap = require("./learnmap");
+const MAP_BUILD = Date.now().toString(36);
+app.get("/admin/trained/map", adminPage, (_req, res) => { res.set("Content-Security-Policy", learnmap.CSP).type("html").send(learnmap.page(MAP_BUILD)); });
+app.get("/admin/trained/map.json", adminPage, async (_req, res) => {
+  try { res.json(await learnmap.data(db)); }
+  catch (e) { console.error("learning map:", e.message); res.status(500).json({ error: "could not load" }); }
 });
 app.get("/admin/trained/:day", adminPage, async (req, res) => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(req.params.day)) return res.status(404).type("text").send("Not found.");
