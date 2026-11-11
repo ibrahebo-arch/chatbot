@@ -126,6 +126,8 @@ th{position:sticky;top:0;background:#161d29;text-align:left;padding:8px 10px;col
 td{padding:7px 10px;border-bottom:1px solid #18202c;vertical-align:top} td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap} td.f{color:#aab6c3;max-width:520px}
 tr:hover td{background:#121a26} td .ar{direction:rtl;unicode-bidi:plaintext} .pill{display:inline-block;border-radius:20px;padding:1px 8px;font-size:11px;border:1px solid #2a3a4d;color:#c9d4df}
 #count{color:#8b98a5;margin-left:8px}
+@media (max-width:820px){#wrap{height:auto;min-height:0;overflow:visible;border:0;background:none;margin:8px}canvas#c{height:62vh;border:1px solid #1f2937;border-radius:14px;background:radial-gradient(ellipse at 50% 38%,#131c2b 0%,#0d1117 62%);touch-action:none}
+.hud,#btns{position:static;max-width:none!important;margin:10px 4px;text-align:left!important;pointer-events:auto}#btns{justify-content:flex-start}#title{margin-top:0}#legend{max-width:none}}
 </style></head><body>
 <div id="wrap"><canvas id="c"></canvas>
  <div class="hud" id="title"><h1><b>VI</b>-Iraq · everything the studio has learned</h1><p>The library is the core. Inner ring: knowledge domains. Outer ring: the areas of real life it studies. Above: the sources that feed it.</p></div>

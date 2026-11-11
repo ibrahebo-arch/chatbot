@@ -173,6 +173,7 @@
     let W = 0, H = 0;
     const fit = () => { const w = wrap.clientWidth, h = wrap.clientHeight; if (w === W && h === H) return; W = w; H = h; renderer.setSize(w, h, false); camera.aspect = w / Math.max(1, h); camera.updateProjectionMatrix(); };
     setInterval(fit, 300); fit();
+    if (W < H) { HOME.r = 150; goal.r = cam.r = 150; } // a tall phone screen: start further away so both rings fit
     const calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let last = performance.now(), time = 0;
     (function frame(now) {
