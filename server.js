@@ -290,7 +290,20 @@ async function briefPictures(files) {
   return parts;
 }
 
+// The library knowledge that belongs to this order's scene (same lookup as the free plan: names + meaning), as a
+// section of the brief – so whoever makes the paid video writes its prompt with the same reality details.
+async function briefLibrary(full, messages) {
+  try {
+    const own = [full.description, ...(messages || []).filter((m) => m.role === "user").map((m) => (typeof m.content === "string" ? m.content : ""))].filter(Boolean).join("\n");
+    const r = await library.retrieve(own, "video");
+    const list = [...r.matches, ...(r.related || [])];
+    if (!list.length) return "";
+    return `## تفاصيل الواقعية (مكتبة VI Iraq)\nمعرفة من مكتبتنا تخص هذا المشهد – تُنسخ داخل وصف الفيديو (بالإنجليزية) حتى يطلع حقيقي. قواعد الأساس (ثبات الأشياء والملابس، الوجوه الحية، الفيزياء، الصوت) تُطبّق دائماً.\n\n${list.map((e) => `- **${e.names[0] || e.id}** — ${e.body}`).join("\n")}\n\n`;
+  } catch (e) { console.error("brief library:", e.message); return ""; }
+}
+
 async function buildBrief(full, messages, files) {
+  const lib = briefLibrary(full, messages); // runs beside the writing of the brief, adds no waiting time
   const head = `# طلب فيديو ${full.requestId}
 
 | الحقل | القيمة |
@@ -338,7 +351,7 @@ ${files.length ? files.map((a) => `- ${a.media_type === "video" ? "🎬" : "🖼
       ai = `## ملاحظة\nتعذّر توليد الملف الإبداعي تلقائياً (${err.message}). راجع المحادثة أدناه.`;
     }
   }
-  return `${head}\n${ai}\n\n## المحادثة الكاملة\n\n${transcript(messages)}\n`;
+  return `${head}\n${ai}\n\n${await lib}## المحادثة الكاملة\n\n${transcript(messages)}\n`;
 }
 
 // ---------- routes ----------
