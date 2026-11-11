@@ -266,7 +266,7 @@ function relevant(v, q) {
 }
 
 /** Wikimedia Commons video search → candidate clips (free licences, author + licence kept). */
-async function searchCommons(q, limit = 12, { youtube = false, offset = 0 } = {}) {
+async function searchCommons(q, limit = 30, { youtube = false, offset = 0 } = {}) {
   // youtube: only videos that were published on YouTube under Creative Commons (CC BY) and copied to Commons with that licence
   const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${encodeURIComponent(`filetype:video ${youtube ? 'hastemplate:"YouTube CC-BY" ' : ""}${q}`)}&gsrnamespace=6&gsrlimit=${limit}${offset ? `&gsroffset=${offset}` : ""}&prop=imageinfo&iiprop=url|size|mime|extmetadata&iiextmetadatafilter=LicenseShortName|Artist`;
   const d = await getJson(u);
@@ -360,7 +360,7 @@ async function searchPexels(q, limit = 4) {
 }
 
 /** Pixabay video search (only with PIXABAY_API_KEY; the Pixabay Content License allows this use) – HD files. */
-async function searchPixabay(q, limit = 4) {
+async function searchPixabay(q, limit = 40) { // 40, not 4: the first few clips of a repeating study topic are soon all studied
   const key = clean(process.env.PIXABAY_API_KEY);
   if (!key) return [];
   const d = await getJson(`https://pixabay.com/api/videos/?key=${encodeURIComponent(key)}&q=${encodeURIComponent(q)}&per_page=${Math.max(3, limit)}&safesearch=true`);
