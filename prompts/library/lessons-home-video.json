@@ -433,5 +433,64 @@
     ],
     "priority": 62,
     "body": "WHISPERING OR LEANING IN CLOSE: the lips stop a clear hand's width away from the ear and the cheek, with a hand cupped beside the mouth, and the head moves back afterwards. If the lips reach the temple or cheek it reads as a kiss."
+  },
+  {
+    "id": "core.video.wardrobe",
+    "domain": "human",
+    "kinds": [
+      "video"
+    ],
+    "always": true,
+    "priority": 94,
+    "names": [],
+    "body": "SAME PEOPLE, SAME CLOTHES IN EVERY SHOT: each person keeps exactly the same outfit, colours, shoes, hair, jewellery and accessories from the first shot to the last – in close-ups, from behind, while walking away and in the next room of the same building. Name each person's outfit once and repeat it in every shot description. Clothes change only when the customer asks for it or the story clearly moves to another day or a far-away place."
+  },
+  {
+    "id": "reality.bag-emptying",
+    "domain": "reality",
+    "kinds": [
+      "video"
+    ],
+    "priority": 72,
+    "names": [
+      "كيس",
+      "كيس نايلون",
+      "علاكة",
+      "علاگة",
+      "جنطة تسوق",
+      "تطلع من الكيس",
+      "يطلع من الكيس",
+      "اغراض من الكيس",
+      "plastic bag",
+      "shopping bag",
+      "carrier bag",
+      "unpacking",
+      "takes out of the bag"
+    ],
+    "body": "TAKING THINGS OUT OF A BAG: one hand holds the bag open by its handles, the other reaches in and lifts out ONE item at a time; the thin plastic crinkles, stretches around the item and springs back, and each item is put down and stays where it was put. The bag changes with every item: it gets lighter, its bulges disappear, the sides fall in and it hangs slack – after the last item it is a flat, limp, empty bag. It never looks full again and nothing goes back into it unless a hand is seen putting it in. Say how many items are inside and name them in order."
+  },
+  {
+    "id": "reality.raindrop-on-skin",
+    "domain": "reality",
+    "kinds": [
+      "video",
+      "image"
+    ],
+    "priority": 72,
+    "names": [
+      "قطرة مطر",
+      "قطرة ماي",
+      "نقطة ماي",
+      "قطرات مطر",
+      "مطر على الوجه",
+      "مطر على وجهها",
+      "تنزل قطرة",
+      "raindrop",
+      "raindrops",
+      "water drop",
+      "drop of water",
+      "rain on face"
+    ],
+    "body": "A DROP OF WATER HITTING SKIN: it never lands as a big round blob that sticks. On impact it flattens and bursts in an instant into a fine spray too small to follow, and what stays is a small wet patch with a soft sheen and a few tiny beads; one thin bead may run down slowly, following the curve of the forehead, nose or cheek. The person blinks or flinches a little at the touch. In steady rain the skin turns evenly damp and glistening, hair darkens and clings in strands, and fabric shows small darker spots that spread – no jelly-like drops, no stains appearing without a drop seen falling."
   }
 ]
