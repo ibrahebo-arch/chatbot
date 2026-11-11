@@ -3918,5 +3918,425 @@
    "diverse faces"
   ],
   "body": "A crowd fills the frame in staggered rows, with individual faces visible between shoulders. People have varied skin tones, face shapes, ages, hairstyles, and facial hair; some wear headscarves, glasses, or caps. Eyes track different points, brows lift or relax, and mouths briefly open for conversation or close in quiet attention. Hands adjust a sleeve, hold a phone, or gesture while speaking. Bodies shift their weight independently, creating small gaps that open and close as people walk past. Voices overlap in a low, uneven murmur, punctuated by footsteps and occasional laughter. Daylight catches different faces as heads turn."
+ },
+ {
+  "id": "human.gen.shop-owner-welcoming-customer",
+  "domain": "human",
+  "topic": "a shop owner welcoming a customer at the door: hand on chest, half bow, warm smile",
+  "names": [
+   "صاحب متجر يرحب بزبون",
+   "استقبال الزبون عند الباب",
+   "صاحب المحل يرحب بالزبون",
+   "راعي المحل يستقبل الزبون",
+   "shop owner welcoming customer",
+   "hand on chest greeting"
+  ],
+  "body": "At a small shop entrance, the owner notices the customer, turns fully toward them and pauses beside the open door. One hand rests flat on the upper chest while the other stays relaxed at the side. The head and shoulders dip in a brief half bow, then rise without exaggerated movement. The eyes meet the customer’s face; the cheeks lift and the mouth opens into a warm, natural smile. A soft “أهلاً وسهلاً” or “تفضل” comes at an easy pace, with the faint sound of the door hinge and street activity behind it. Daylight falls across the threshold and shelves."
+ },
+ {
+  "id": "human.gen.customer-comparing-two-products",
+  "domain": "human",
+  "topic": "a customer comparing two products: looks from one to the other, weighs them, small nod",
+  "names": [
+   "زبون يقارن بين منتجين",
+   "مقارنة منتجين باليد",
+   "زبون يقارن شغلتين",
+   "يقلب غرضين ويقارنهن",
+   "customer comparing two products",
+   "weighing two items by hand"
+  ],
+  "body": "At a shop counter, the customer holds one product in each hand at about waist or chest height. Their eyes shift from the first label to the second, then back again, while the head follows by a few degrees. The hands lift alternately to feel each item’s weight; fingers adjust around the packaging, making a light plastic rustle or cardboard tap. The lips press together briefly in thought, then loosen. After a pause of a second or two, the customer gives one small nod, not a broad gesture. Shoulders remain level, and any question to the seller is spoken in a quiet, ordinary voice."
+ },
+ {
+  "id": "human.gen.satisfied-customer-after-haircut-or-meal",
+  "domain": "human",
+  "topic": "a satisfied customer after a haircut or a meal: relaxed shoulders, real smile reaching the eyes",
+  "names": [
+   "زبون راض بعد الحلاقة",
+   "زبون سعيد بعد الطعام",
+   "زبون عاجبته الحلاقة",
+   "زبون عاجبه الأكل",
+   "satisfied customer after haircut",
+   "satisfied customer after meal"
+  ],
+  "body": "The customer’s shoulders settle downward and their posture becomes unguarded. After a haircut, they glance at the mirror, tilt their head slightly to inspect the sides, then look back toward the barber. After a meal, they set down the spoon or fork and lean back a little. In either setting, the eyes narrow softly at the outer corners as the cheeks rise into a genuine smile; the mouth may part for a quiet “شكراً” or “يسلم إيدك.” A small exhale or light chuckle follows. The hands rest naturally on the chair arms or table. Mirror light or warm restaurant lighting shows ordinary skin texture."
+ },
+ {
+  "id": "human.gen.nervous-before-speaking-to-camera",
+  "domain": "human",
+  "topic": "a nervous person before speaking to the camera: swallows, fixes the collar, quick breath",
+  "names": [
+   "شخص متوتر أمام الكاميرا",
+   "توتر قبل الكلام للكاميرا",
+   "متوتر قبل التصوير",
+   "مرتبك يريد يحچي للكاميرا",
+   "nervous before speaking to camera",
+   "fixing collar before recording"
+  ],
+  "body": "Standing or sitting in front of a phone or camera, the person checks the lens, then briefly looks away. The throat moves with a visible swallow. One hand pinches and straightens the collar or neckline, then drops; the other may hold still against the lap or side. The eyebrows lift for an instant, the eyes blink once or twice, and the lips close, press lightly together, then part for a quick audible breath. The shoulders rise a little with that inhale and lower before the first word. Their opening voice may sound slightly tight or quieter than expected, with a tiny pause before settling into a normal pace."
+ },
+ {
+  "id": "human.gen.seller-talking-to-camera",
+  "domain": "human",
+  "topic": "talking to the camera like a real seller: eyebrows move, hands explain, a small laugh between sentences",
+  "names": [
+   "بائع يتحدث إلى الكاميرا",
+   "بائع يعرض منتج للكاميرا",
+   "بائع يحچي للكاميرا",
+   "صاحب محل يشرح للكاميرا",
+   "seller talking to camera",
+   "seller explaining product on video"
+  ],
+  "body": "The seller faces a phone camera at roughly eye level, with the product on a counter or held where it can be seen. Their eyes return to the lens after quick glances at the item. Eyebrows rise on a useful detail and relax at the end of the phrase; the mouth shapes words clearly without a fixed grin. Open hands indicate size, point to a feature and come back toward the body. Between two sentences, a small breathy laugh escapes, then the seller continues in a conversational voice. Sleeves shift and packaging makes slight taps or rustles. Shop lights illuminate the face without hiding natural pauses or blinks."
+ },
+ {
+  "id": "human.gen.child-tasting-something-sweet",
+  "domain": "human",
+  "topic": "a child tasting something sweet: eyes widen, licks the lips, looks at the parent",
+  "names": [
+   "طفل يتذوق الحلوى",
+   "طفل يجرب طعاما حلوا",
+   "طفل يذوق حلو",
+   "طفل يجرب حلا",
+   "child tasting something sweet",
+   "child reacts to dessert"
+  ],
+  "body": "The child takes a small bite or spoonful of a sweet treat and pauses while tasting it. Their eyes widen briefly, then look down at the food; the eyebrows lift and the cheeks round as the mouth closes to chew. A quick tongue movement licks a little sweetness from the lips. The child turns toward the nearby parent, seeking their face, with a shy smile or delighted open-mouthed grin. One hand holds the spoon or treat while the other rests near the plate. A soft “ممم” or short laugh may follow the swallow. There are quiet utensil sounds and ordinary room light, not an exaggerated cartoon reaction."
+ },
+ {
+  "id": "human.gen.grandmother-watching-grandchildren-eat",
+  "domain": "human",
+  "topic": "a grandmother watching her grandchildren eat: quiet smile, pushes the plate closer",
+  "names": [
+   "جدة تراقب أحفادها يأكلون",
+   "جدة تقرب طبق الطعام",
+   "جدة تتفرج على أحفادها ياكلون",
+   "حبوبة تقرب الصحن للأحفاد",
+   "grandmother watching grandchildren eat",
+   "grandmother pushing plate closer"
+  ],
+  "body": "At a family table, the grandmother sits close enough to reach a shared plate. She watches the grandchildren’s faces and hands as they eat, her eyes moving from one child to another. The corners of her mouth lift in a quiet smile; her jaw stays relaxed and she may give a barely audible chuckle. With one hand she slides the plate a short distance nearer, while the other steadies its edge or rests on the table. The ceramic makes a soft scrape against the tabletop. She leans forward slightly, then settles back, speaking a gentle offer such as “تفضلوا” without interrupting the children’s meal."
+ },
+ {
+  "id": "human.gen.father-teaching-son-bike-or-repair",
+  "domain": "human",
+  "topic": "a father teaching his son to ride a bike or fix something: hand on the shoulder, patient look",
+  "names": [
+   "أب يعلم ابنه ركوب الدراجة",
+   "أب يعلم ابنه إصلاح شيء",
+   "أب يعلم ابنه يسوق بايسكل",
+   "أبو يعلم ابنه يصلح غرض",
+   "father teaching son to ride bike",
+   "father teaching son to fix something"
+  ],
+  "body": "The father stands beside his son rather than in front of him, with one hand resting lightly on the boy’s shoulder. While teaching him to ride, he walks alongside the bicycle, then releases his supporting hand gradually as the wheels roll and the pedals turn. At a workbench, he instead points to a part and lets the boy try the tool. His eyes stay on the boy’s hands or balance; his brows remain soft and his mouth forms short, calm instructions. He pauses to listen, nods, and answers in an even voice. Shoes scuff the ground or a tool clicks gently; neither movement is rushed."
+ },
+ {
+  "id": "human.gen.iraqi-friends-handshake-hug",
+  "domain": "human",
+  "topic": "two friends greeting Iraqi style: handshake pulled into a hug, cheek to cheek, hand on the back",
+  "names": [
+   "تحية الأصدقاء العراقية",
+   "سلام الأصدقاء العراقي",
+   "مصافحة وعناق",
+   "سلام وگعدة حضن",
+   "iraqi friend greeting",
+   "handshake into hug"
+  ],
+  "body": "Two friends spot each other and smile before closing the distance. Their eyes meet, eyebrows lift, and one calls a warm greeting in Iraqi Arabic. Right hands clasp firmly; the grip draws their shoulders together rather than ending at arm’s length. They turn their faces slightly and touch cheek to cheek, sometimes switching sides, while a free hand pats the other’s upper back once or twice. Their mouths keep smiling as they separate. Cotton shirts crease at the shoulders, shoes shift on the floor, and the greeting ends with low laughter and overlapping questions about how each is doing."
+ },
+ {
+  "id": "human.gen.bride-hair-makeup-mirror",
+  "domain": "human",
+  "topic": "a bride having her hair and make-up done: stillness, closed eyes, a nervous smile in the mirror",
+  "names": [
+   "تجهيز العروس",
+   "مكياج العروس",
+   "تسريحة العروس",
+   "تجهيز العروسة",
+   "bride getting ready",
+   "bridal hair and makeup"
+  ],
+  "body": "The bride sits upright at a dressing mirror in a pale robe, hands resting together in her lap so the stylist can work. Pinned sections of dark hair lift from her head while a comb and warm styling tool shape loose waves; fine hairs catch the vanity bulbs. She closes her eyes as a soft brush crosses her eyelid, then opens them carefully without moving her head. In the mirror her gaze flicks between her reflection and the stylist’s hands. Her lips tighten briefly before lifting into a small nervous smile. She lets out a quiet breath and answers a reassuring comment in a soft voice."
+ },
+ {
+  "id": "human.gen.groom-friends-straighten-tie",
+  "domain": "human",
+  "topic": "a groom being dressed by his friends: jokes, a straightened tie, a proud look",
+  "names": [
+   "تجهيز العريس",
+   "لبس العريس",
+   "أصدقاء العريس يجهزونه",
+   "ربع العريس يلبسونه",
+   "groom getting dressed",
+   "friends fixing groom tie"
+  ],
+  "body": "The groom stands in a pressed suit while two friends crowd close without blocking the mirror. One pinches the tie knot, slides it up to the collar, and smooths the narrow end flat; another brushes a speck from his shoulder. Their hands move quickly, but the groom holds his torso still and raises his chin to help. A friend makes a joke, and all three laugh in short bursts. The groom’s mouth opens into a grin, his eyes crease, then he studies his reflection with shoulders squared and a proud, quieter smile. Jacket fabric rustles as someone gives his back a final pat."
+ },
+ {
+  "id": "human.gen.mother-good-news-phone",
+  "domain": "human",
+  "topic": "a mother's reaction to good news on the phone: hand to the mouth, tears and laughter together",
+  "names": [
+   "فرحة الأم بالخبر",
+   "الأم تسمع خبرا سعيدا",
+   "فرحة يمه بالتلفون",
+   "يمه تسمع خبر حلو",
+   "mother hears good news",
+   "happy phone call mother"
+  ],
+  "body": "A mother holds a phone to one ear and goes still for a beat as she understands the news. Her eyes widen, then glisten; her free hand rises to cover her open mouth. She bends forward slightly, listening, before a breathy laugh escapes between tears. Her cheeks lift, her lower lip trembles, and she wipes beneath one eye with a fingertip without lowering the phone. She repeats a short question in a wavering, delighted voice, then says a warm blessing. Her shoulders loosen as she laughs again, turning toward someone nearby as if eager to share what she has heard."
+ },
+ {
+  "id": "human.gen.student-waits-exam-result",
+  "domain": "human",
+  "topic": "a student waiting for an exam result: bitten lip, refreshing the phone, sudden relief",
+  "names": [
+   "انتظار نتيجة الامتحان",
+   "ظهور نتائج الامتحانات",
+   "انتظار النتيجة",
+   "نتيجة الامتحان طلعت",
+   "waiting for exam results",
+   "student checks exam result"
+  ],
+  "body": "The student sits near a window with a phone held in both hands, shoulders drawn slightly forward. A thumb pulls the results page down to refresh, pauses, then repeats when nothing changes. Their eyes track the loading symbol; their mouth closes around the edge of the lower lip, then releases it. One foot taps lightly against the floor beneath the chair. When the result appears, they freeze for a second and read it again. Their eyes brighten, lips part into a disbelieving smile, and their shoulders drop on a long exhale. A quiet laugh becomes an excited call to someone in the next room."
+ },
+ {
+  "id": "human.gen.tired-worker-end-shift",
+  "domain": "human",
+  "topic": "a tired worker at the end of a shift: slower blink, rubbed neck, a long breath out",
+  "names": [
+   "عامل بعد الدوام",
+   "تعب نهاية الوردية",
+   "نهاية شفت العمل",
+   "تعبان بعد الشغل",
+   "tired worker after shift",
+   "end of work shift"
+  ],
+  "body": "At the end of a shift, a worker stands beside a locker or workbench under flat overhead light. Their shirt has softened creases at the elbows and waist. They blink slowly, eyes staying closed a fraction longer, and look down while putting away a badge or tool. Their mouth rests slightly open; one hand reaches behind the neck and rubs the tight muscles in small circles. The other hand steadies them against the bench. Their shoulders sag as they breathe out audibly for several seconds. They straighten with effort, answer a coworker in a low, tired voice, and walk off at an unhurried pace."
+ },
+ {
+  "id": "human.gen.doctor-calmly-explains-patient",
+  "domain": "human",
+  "topic": "a doctor explaining calmly to a worried patient: leaning in, open hands, steady eye contact",
+  "names": [
+   "طبيب يطمئن مريضا",
+   "شرح الطبيب للمريض",
+   "دكتور يطمن المريض",
+   "الطبيب يشرح بهدوء",
+   "doctor explains to patient",
+   "calm medical consultation"
+  ],
+  "body": "The doctor sits facing the patient in a bright consultation room, a chart or scan resting between them. The patient’s eyebrows draw together, lips press thin, and fingers clasp tightly in their lap. The doctor leans forward a little, keeps steady eye contact, and speaks in an even, unhurried voice. Both hands stay open and visible, palms angled upward; one points gently to a specific place on the chart. The doctor pauses so the patient can ask a question, then nods before answering. The patient’s grip eases and their shoulders lower slightly. Paper shifts softly beneath the doctor’s hand; neither person raises their voice."
+ },
+ {
+  "id": "human.gen.waiter-balances-glass-tray",
+  "domain": "human",
+  "topic": "a waiter balancing a tray: eyes on the glasses, small quick steps, a turn of the shoulder",
+  "names": [
+   "نادل يحمل صينية كاسات",
+   "جرسون يوازن الصينية",
+   "نادل بصينية مشروبات",
+   "جرسون شايل صينية",
+   "waiter balancing tray",
+   "waiter carrying glasses"
+  ],
+  "body": "A waiter carries a round tray of filled glasses at shoulder height through a busy dining room. One palm supports its center from below, fingers spread to control the weight, while the other hand stays free near the rim. The waiter’s eyes check the glasses and then the gap ahead; their mouth is set in concentration, with a brief polite smile for a passing guest. Small, quick steps keep the tray level. At a tight corner, the waiter turns one shoulder first and rotates the torso smoothly rather than swinging the arm. Liquid trembles near the glass rims without spilling; ice clicks softly above the room’s conversation."
+ },
+ {
+  "id": "human.gen.old-man-story-cafe",
+  "domain": "human",
+  "topic": "an old man telling a story in a cafe: pauses, a raised finger, listeners leaning in",
+  "names": [
+   "عجوز يحكي قصة في مقهى",
+   "رجل مسن يروي حكاية",
+   "شيبة يسولف بالكهوة",
+   "شايب يحچي بالكهوة",
+   "old man telling a story",
+   "cafe storyteller"
+  ],
+  "body": "An older man sits forward in a cafe chair, one hand around a small tea glass. Fine lines deepen around his eyes as he looks from one listener to another. He speaks in a low, textured voice, then pauses for a beat with his mouth slightly open and one finger raised. The finger stays still while two listeners lean closer, elbows near the table. He resumes with a small nod and a softer phrase; they answer with a brief murmur or chuckle. Warm overhead light catches the glass rim, and cups clink faintly beneath the conversation."
+ },
+ {
+  "id": "human.gen.trying-not-to-laugh-2",
+  "domain": "human",
+  "topic": "someone trying hard not to laugh: pressed lips, shaking shoulders, looking away",
+  "names": [
+   "يحاول ألا يضحك",
+   "يكتم ضحكته",
+   "دا يكتم الضحكة",
+   "يحاول ما يضحك",
+   "trying not to laugh",
+   "holding back laughter"
+  ],
+  "body": "The person presses their lips into a narrow line, but the corners keep lifting. Their eyes crease and flick toward the source of the joke, then quickly away. A breath escapes through the nose in a short snort; they close their mouth tighter and hold still for a moment. Small, repeated tremors pass through their shoulders while their hands cover their mouth or grip the edge of a table. When they try to speak, only a clipped syllable comes out. Their shoulders finally drop on an exhale, though another smile starts almost immediately."
+ },
+ {
+  "id": "human.gen.embarrassed-glance",
+  "domain": "human",
+  "topic": "embarrassment: a glance down, a hand to the back of the neck, a short smile",
+  "names": [
+   "إحراج ونظرة للأسفل",
+   "شعور بالإحراج",
+   "محرج ويحك رقبته",
+   "مستحي وينزل عيونه",
+   "embarrassed glance",
+   "awkward neck rub"
+  ],
+  "body": "After a minor social slip, the person’s eyes drop from the other person’s face to the floor or their own hands. Their mouth makes a brief, uneven smile that fades within a second. One hand reaches behind the neck and rubs once or twice while the shoulders draw slightly inward. They may let out a quiet breath or a soft, hesitant laugh, then say a few words in a lower voice than before. Their gaze returns briefly to check the other person’s reaction. The movement is small and quick, without hiding the face or turning the whole body away."
+ },
+ {
+  "id": "human.gen.pride-in-handmade-work",
+  "domain": "human",
+  "topic": "pride in something handmade: holding it up, turning it to the light, a quiet nod",
+  "names": [
+   "فخور بشيء صنعه بيده",
+   "يعرض عمله اليدوي بفخر",
+   "فرحان بشغله الإيدوي",
+   "فخور بشغلة مسويها بإيده",
+   "proud of handmade work",
+   "showing a handmade piece"
+  ],
+  "body": "The maker lifts a finished handmade piece with both hands, supporting its weight rather than waving it. Their eyes follow a seam, carved edge, or painted surface as they turn it slowly toward a window or lamp. Light moves across the texture, revealing small variations left by handwork. Their mouth settles into a restrained smile, and they give one quiet nod before looking toward the person beside them. They might say a short, matter-of-fact phrase in a warm voice. Fingers adjust their grip carefully; a wooden object may give a soft tap against the table when set down."
+ },
+ {
+  "id": "human.gen.impatient-in-queue",
+  "domain": "human",
+  "topic": "impatience in a queue: weight from foot to foot, a look at the watch, a sigh",
+  "names": [
+   "نفاد الصبر في الطابور",
+   "ينتظر في الطابور بقلق",
+   "مستعجل بالصف",
+   "ضايج من الانتظار بالطابور",
+   "impatient in a queue",
+   "checking watch in line"
+  ],
+  "body": "In a stationary queue, the person shifts weight from one foot to the other without leaving their place. Their eyes check the service counter, then drop to a wristwatch or phone screen for a second. The mouth tightens; a slow sigh escapes through the nose or slightly parted lips. One hand may hold a bag strap while the other rests at the hip. Their shoulders rise briefly with another breath, and a shoe makes a light scuff on the floor. If spoken to, they answer in a short, controlled voice, then look ahead again as the line inches forward."
+ },
+ {
+  "id": "human.gen.hunger-at-food-smell",
+  "domain": "human",
+  "topic": "hunger at the smell of food: head turns, a deep sniff, a swallow",
+  "names": [
+   "يجوع عند رائحة الطعام",
+   "تثيره رائحة الأكل",
+   "جاع من ريحة الأكل",
+   "يشم ريحة الطبخ ويجوع",
+   "hungry at food smell",
+   "smelling food and hungry"
+  ],
+  "body": "As a warm food aroma reaches them, the person turns their head toward the kitchen, serving tray, or nearby stall. Their nostrils widen for one deep sniff, and their eyes settle on the source. The lips part slightly, then close as they swallow; the movement shows at the throat. One hand may rest briefly on the stomach while the body angles a little closer, without reaching for the food. A quiet appreciative hum or an audible breath can accompany a small smile. Steam catches the light above a dish, while crockery or cooking sounds remain in the background."
+ },
+ {
+  "id": "human.gen.cold-hands-in-winter",
+  "domain": "human",
+  "topic": "cold hands in winter: rubbed together, breathed on, tucked under the arms",
+  "names": [
+   "يدان باردتان في الشتاء",
+   "تدفئة اليدين من البرد",
+   "إيديه باردة بالشتا",
+   "يدفي إيديه من البرد",
+   "cold hands in winter",
+   "warming cold hands"
+  ],
+  "body": "Outdoors in winter, the person holds both hands close to the chest and rubs their palms rapidly, fingers sliding past each other. Their shoulders hunch inside a coat, and their eyes narrow against the cool air. They cup their hands near the mouth, breathe warm air into them with a soft whoosh, then tuck each hand beneath the opposite upper arm. The lips close as they draw their elbows inward. Fabric rustles with the movement. In low morning light, a faint breath cloud may appear if the air is cold enough; they speak briefly, with a slightly tight voice."
+ },
+ {
+  "id": "human.gen.iraqi-summer-heat",
+  "domain": "human",
+  "topic": "heat in an Iraqi summer: squinting, fanning with a paper, a wet cloth on the neck",
+  "names": [
+   "حر الصيف في العراق",
+   "التعب من حر العراق",
+   "حر العراق بالصيف",
+   "الجو حار بالعراق",
+   "iraqi summer heat",
+   "fanning in iraqi heat"
+  ],
+  "body": "In bright Iraqi summer sun, the person squints beneath a sharp brow shadow and keeps their mouth slightly open between breaths. They fan their face and chest with a folded sheet of paper in repeated wrist strokes; the paper bends and snaps softly on each reversal. A damp cloth lies across the back of the neck, its darker wet patches visible against pale fabric. One hand adjusts the cloth while the shoulders sag and the body seeks shade beside a wall or shopfront. Their voice is brief and breathy. Hard sunlight bleaches the pavement, and distant traffic hums through the hot air."
+ },
+ {
+  "id": "human.gen.teenager-selfie-video",
+  "domain": "human",
+  "topic": "a teenager filming a selfie video: arm out, checking the own face, redoing the smile",
+  "names": [
+   "مراهق يصور سيلفي",
+   "مراهقة تصور سيلفي",
+   "تصوير سيلفي فيديو",
+   "يعيد الابتسامة",
+   "teen selfie video",
+   "redoing selfie smile"
+  ],
+  "body": "A teenager holds a phone at arm’s length, slightly above eye level, with the elbow bent enough to keep the face centered. The free hand briefly smooths hair or adjusts a sleeve. Their eyes flick between the screen preview and the tiny camera lens; the chin tilts, and a first smile forms, drops, then returns more evenly. The mouth opens for a few words, pauses, and starts again after a quiet breath or soft laugh. The phone wobbles when the wrist shifts, then steadies. Window light or room light brightens one side of the face. Faint tapping and the teenager’s close, slightly compressed phone-microphone voice accompany the take."
+ },
+ {
+  "id": "human.gen.elderly-couple-matched-steps",
+  "domain": "human",
+  "topic": "an elderly couple walking slowly: her hand on his arm, matched small steps",
+  "names": [
+   "زوجان مسنان يمشيان",
+   "زوجين كبار بالعمر يمشون",
+   "يدها على ذراعه",
+   "خطوات بطيئة متوافقة",
+   "elderly couple walking",
+   "matched small steps"
+  ],
+  "body": "An elderly couple walks side by side at an unhurried pace. Her fingers rest around his forearm, above the elbow, without pulling; his arm stays gently bent to give her a steady place to hold. Both keep their shoulders relaxed and take short, nearly matched steps, with a small adjustment whenever one falls half a step behind. Their faces are calm, their eyes alternating between the path and each other; their mouths may lift in a brief smile as one says a few quiet words. Shoes make spaced, soft taps on pavement, with a light shuffle at each turn. Daylight catches the folds of their clothes and the texture of their hands."
+ },
+ {
+  "id": "human.gen.salesman-price-hesitation",
+  "domain": "human",
+  "topic": "a salesman's honest hesitation before naming a price, and the buyer's raised eyebrow",
+  "names": [
+   "تردد البائع قبل السعر",
+   "البايع يتردد بالسعر",
+   "حاجب المشتري مرفوع",
+   "سعر مع تردد صادق",
+   "salesman hesitates on price",
+   "buyer raised eyebrow"
+  ],
+  "body": "At a shop counter, the salesman glances once at the item or its tag before answering. His lips part, close for a beat, then he names the price in an even voice, without a dramatic whisper or grin. One hand rests open beside the item; the other may lightly touch the tag. Across from him, the buyer holds still, raises one eyebrow, and looks from his face to the item. The buyer’s mouth stays closed or presses into a small, questioning line before a short reply. There is a brief pause between turns, with faint shop sounds behind them: paper rustling, a counter tap, and distant conversation under ordinary indoor light."
+ },
+ {
+  "id": "human.gen.baby-reaching-for-face",
+  "domain": "human",
+  "topic": "a baby reaching for a face: clumsy open hand, wide eyes, a sudden grin",
+  "names": [
+   "طفل رضيع يلمس الوجه",
+   "بيبي يمد إيده للوجه",
+   "رضيع يبتسم فجأة",
+   "يد رضيع مفتوحة",
+   "baby reaching for face",
+   "baby sudden grin"
+  ],
+  "body": "Held securely near an adult’s face, the baby stares with wide, steady eyes and a slightly open mouth. One small arm lifts in an uneven arc; the open hand wavers, fingers spreading and curling without precise aim. The fingertips brush a cheek or chin, and the baby pauses as if noticing the contact. Then the cheeks rise and the mouth opens into a sudden, broad grin. The adult leans close, keeping the baby supported, and smiles back. A little breathy squeal or coo breaks into the room, followed by soft fabric rustling. Gentle window light shows the round cheeks, fine hair, and shifting shadows between the two faces."
+ },
+ {
+  "id": "human.gen.shared-plates-offering-guest",
+  "domain": "human",
+  "topic": "people eating together from shared plates: hands crossing, offering the best piece to a guest",
+  "names": [
+   "الأكل من صحون مشتركة",
+   "ياكلون من صحن مشترك",
+   "تقديم أحسن قطعة للضيف",
+   "عزومة أكل جماعي",
+   "eating from shared plates",
+   "offering guest best piece"
+  ],
+  "body": "Several people sit close enough to reach shared plates set in the middle of a table or floor spread. Hands cross briefly above the dishes, then wait or shift aside to avoid bumping; sleeves brush and serving spoons touch ceramic with light clicks. One person selects an appealing piece and places it on a guest’s plate, palm turned toward the guest in a small offering gesture. The guest looks up, smiles, and gives a quiet word of thanks before eating. Faces turn between food and conversation; mouths move in short exchanges, with natural pauses for chewing. Warm household light catches the food’s texture, the plate rims, and the moving hands."
+ },
+ {
+  "id": "human.gen.careful-listening-small-nods",
+  "domain": "human",
+  "topic": "listening carefully: still head, eyes on the speaker, small nods, lips moving slightly",
+  "names": [
+   "الإنصات باهتمام",
+   "يسمع بتركيز",
+   "ينصت ويهز راسه",
+   "نظرات للمُتحدث",
+   "listening carefully",
+   "small attentive nods"
+  ],
+  "body": "The listener faces the speaker with the head mostly still and the shoulders relaxed. Their eyes stay on the speaker’s face, occasionally shifting toward a gesturing hand, then returning. The eyebrows move slightly when a point needs attention; the mouth remains soft, with the lips parting or moving faintly as if forming a thought without interrupting. After a phrase ends, the chin dips once or twice in small, spaced nods rather than continuous bobbing. A quiet “mm” or brief breath may answer a pause, while the speaking voice remains in the foreground. In a room or café, ordinary light reveals these restrained changes against low background conversation."
  }
 ]

@@ -2066,5 +2066,861 @@
    "shot lighting continuity"
   ],
   "body": "Light should retain a believable source and direction across shots of the same moment. In a room with daylight entering from a window on the left, faces, furniture, and wall textures remain brighter on that side; shadows fall consistently to the right, even when the camera reverses angle. A warm ceiling bulb adds a softer amber pool beneath it. People crossing the window briefly interrupt the light, while moving curtains make gentle changes in brightness. Room conversation, footsteps, and a faint fan hum continue naturally. Do not let daylight jump to another window, shadows flip without cause, or skin and clothing change colour between cuts."
+ },
+ {
+  "id": "reality.gen.glass-emptying-sip-by-sip",
+  "domain": "reality",
+  "topic": "a glass of tea or juice getting emptier with every sip and never refilling",
+  "names": [
+   "استكان شاي ينقص",
+   "استكان چاي يخلص",
+   "كوب عصير ينقص",
+   "قلاص عصير يخلص",
+   "tea glass emptying",
+   "juice glass emptying"
+  ],
+  "body": "A small clear tea glass or straight-sided juice glass has a visible liquid line against its rim and the fingers holding it. Each sip tilts the glass toward the mouth; the liquid surface stays level with the room, climbs the near wall, then settles lower when the glass returns upright. Repeated sips lower that line in distinct steps, never raising it again unless someone visibly pours more in. Tea leaves a faint amber film; juice may leave pulp on the inside. Set-downs make a short glass-on-table click. Keep the liquid inside the glass, without floating, sudden disappearance, or a magically refilled level."
+ },
+ {
+  "id": "reality.gen.plate-emptying-bite-by-bite",
+  "domain": "reality",
+  "topic": "a plate of food getting emptier bite by bite, crumbs and sauce marks left behind",
+  "names": [
+   "صحن طعام ينقص",
+   "طبق أكل يفرغ",
+   "صحن أكل يخلص",
+   "plate food disappearing bites",
+   "plate emptying bite by bite"
+  ],
+  "body": "A ceramic plate starts with separate, visible portions of food. A hand, spoon, or fork removes one mouthful at a time; the remaining portion becomes smaller where that mouthful was taken, rather than changing shape everywhere at once. Loose rice grains or bread crumbs scatter near the food, and dragged bites leave thin sauce streaks on the glaze. The plate itself stays the same size and position unless someone moves it. Cutlery taps ceramic softly; scraping becomes more audible as bare plate is exposed. Preserve crumbs and sauce marks between bites. Avoid food reappearing, utensils passing through it, or leftovers sliding across a still plate."
+ },
+ {
+  "id": "reality.gen.cardboard-box-being-unpacked",
+  "domain": "reality",
+  "topic": "a cardboard box being unpacked: flaps stay open, contents go down, packing paper piles up beside it",
+  "names": [
+   "فتح كرتونة وتفريغها",
+   "تفريغ صندوق كرتون",
+   "الكارتونة تنفضى",
+   "unpacking cardboard box",
+   "box packing paper pile"
+  ],
+  "body": "A brown corrugated box rests on the floor or a table, its four creased flaps folded outward after opening. Each item is lifted over the rim, briefly shifting the box under the pull; the visible contents sit progressively lower. Crumpled packing paper comes out in handfuls and forms an uneven, growing pile beside the box. The flaps stay open unless a hand brushes one, when it bends and springs partly back. Cardboard rubs with a dry rasp; paper crackles sharply. Removed objects remain outside the box. Avoid closed flaps between cuts, contents rising again, paper appearing inside and outside at once, or hands passing through cardboard."
+ },
+ {
+  "id": "reality.gen.gift-wrap-tearing-and-falling",
+  "domain": "reality",
+  "topic": "a gift being unwrapped: torn paper stays torn and lies where it fell",
+  "names": [
+   "فتح هدية وتمزيق الورق",
+   "تغليف هدية ممزق",
+   "ورق الهدية ينشال",
+   "unwrapping a gift",
+   "torn gift wrap falling"
+  ],
+  "body": "A wrapped gift has paper pulled tight around its corners, with folded seams and tape holding the ends. Fingers lift an edge; the paper resists, then tears along a jagged line with a crisp ripping sound. Pulled sections bend and crumple before dropping under gravity onto the table or floor, where they stay unless touched or moved by a breeze. Each tear exposes more of the same box beneath. Small tape pieces may cling to the paper or box. Keep earlier rips visible and fallen scraps in their settled places. Avoid paper healing, scraps hovering, or the gift changing size as its covering comes off."
+ },
+ {
+  "id": "reality.gen.candle-burning-down",
+  "domain": "reality",
+  "topic": "a candle burning down: shorter with time, wax pooling and running",
+  "names": [
+   "شمعة تذوب وتقصر",
+   "احتراق شمعة وذوبان الشمع",
+   "شمعة تسيح",
+   "candle burning down",
+   "candle wax dripping"
+  ],
+  "body": "A lit candle has a small flame above a dark wick and a glossy pool of melted wax around it. The flame leans and flickers with slight air movement, casting a warm, shifting light. Over sustained time, solid wax at the top softens and the candle becomes shorter; a drip can cross the rim, creep down the side, then cool into a raised streak. The liquid pool remains around the wick rather than moving independently of the candle. Burning is nearly silent, with an occasional faint crackle. Show gradual loss of height and accumulated drips, not a candle that grows back, wax that floats upward, or a flame detached from its wick."
+ },
+ {
+  "id": "reality.gen.ice-cube-melting-in-drink",
+  "domain": "reality",
+  "topic": "an ice cube melting in a drink: smaller, rounder, a ring of water on the table",
+  "names": [
+   "ذوبان مكعب ثلج بالعصير",
+   "ثلجة تذوب بالكلاص",
+   "مكعب ثلج بالكوب",
+   "ice cube melting in drink",
+   "condensation ring under glass"
+  ],
+  "body": "A translucent ice cube floats partly above a drink, bobbing and rotating slightly when the glass moves or liquid swirls. Its sharp corners soften first; over time it becomes smaller and rounder as meltwater mixes into the drink. Tiny bubbles may cling to its surface, and it can tap the glass with a light clink. On a humid table, condensation beads on the cold outside of the glass, runs downward, and leaves a thin wet ring beneath its base. Keep the cube inside the drink and reduce it gradually. Avoid a cube growing again, sinking like a stone, or a water ring appearing without moisture reaching the tabletop."
+ },
+ {
+  "id": "reality.gen.grill-charcoal-turning-to-ash",
+  "domain": "reality",
+  "topic": "a cigarette-free example of ash and embers: charcoal on a grill turning grey and shrinking",
+  "names": [
+   "فحم الشواية يصير رماد",
+   "جمر المنقل يرمّد",
+   "فحم المشاوي يصير رمادي",
+   "grill charcoal turning grey",
+   "charcoal embers shrinking"
+  ],
+  "body": "Irregular charcoal pieces sit on a metal grill grate or in a brazier. Dark faces develop dull red-orange glowing cracks, brightest when air reaches them; grey, powdery ash slowly forms on the outside. Over cooking time the solid pieces shrink and their edges become fragile. A small shift can break an ashy corner, dropping flakes into the tray below. The glow pulses gently with airflow rather than flashing on and off; faint crackles accompany occasional settling. Keep ash attached until it falls, and let fallen flakes remain below. Avoid cigarette imagery, hovering coals, charcoal regaining its original size, or ash passing through solid metal."
+ },
+ {
+  "id": "reality.gen.one-direction-gauge-change",
+  "domain": "reality",
+  "topic": "a phone battery, a fuel gauge or a progress bar that only moves in one direction during a scene",
+  "names": [
+   "مؤشر بطارية ينقص",
+   "عداد بنزين ينزل",
+   "شريط تقدم يتحرك للأمام",
+   "البطارية تقل",
+   "battery indicator draining",
+   "fuel gauge falling",
+   "progress bar advancing"
+  ],
+  "body": "A phone battery icon, vehicle fuel needle, or on-screen progress bar has fixed outlines and a clearly marked scale. During one continuous scene, a discharging battery loses filled segments, a fuel needle moves gradually toward empty as fuel is used, or a progress bar extends toward completion. Each change follows the same direction; the display holds its new reading between updates. A phone may give a brief low-battery tone, while a vehicle gauge itself is silent; interface progress may accompany soft notification sounds. Keep the screen, needle, and markings anchored in place. Without visible charging, refuelling, or a reset, avoid readings jumping backward, flickering between values, or filling past the scale."
+ },
+ {
+  "id": "reality.gen.broken-glass-or-plate",
+  "domain": "reality",
+  "topic": "a broken glass or plate: pieces stay broken and scattered, nobody steps through them unharmed",
+  "names": [
+   "زجاج مكسور",
+   "كاسة مكسورة",
+   "صحن مكسور",
+   "شظايا زجاج",
+   "broken glass",
+   "broken plate",
+   "glass shards"
+  ],
+  "body": "A dropped drinking glass breaks into clear, sharp fragments and tiny glittering chips; a ceramic plate leaves thicker, opaque pieces with curved edges. Pieces bounce once or twice, then settle across the floor, with small chips travelling farther than heavy pieces. A brief, bright crash is followed by several lighter ticks. The fragments remain where they landed until someone sweeps or picks them up; they do not rejoin or vanish between shots. People stop, look down and step around the debris or put on shoes before clearing it. Bare feet do not pass through sharp pieces without contact or injury."
+ },
+ {
+  "id": "reality.gen.open-door-drawer-or-car-boot",
+  "domain": "reality",
+  "topic": "an opened door, drawer or car boot staying open until a hand closes it",
+  "names": [
+   "باب مفتوح",
+   "درج مفتوح",
+   "جرار مفتوح",
+   "صندوق سيارة مفتوح",
+   "دبة السيارة مفتوحة",
+   "open door",
+   "open drawer",
+   "open car boot"
+  ],
+  "body": "An opened room door stays at its last angle unless a draught, sloped floor or person moves it. Its weight turns around the hinge, with a faint creak or latch click. An open drawer remains extended on its runners; its rectangular front does not drift through the cabinet. A raised car boot is held up by struts and may settle a few centimetres before stopping. To close any of them, a hand makes contact and pushes or pulls through the full travel; the boot needs a firmer final press to latch. Keep hinges, runners and struts aligned, and never let an opening silently reset between shots."
+ },
+ {
+  "id": "reality.gen.persistent-footprints-and-tyre-tracks",
+  "domain": "reality",
+  "topic": "footprints and tyre tracks left in sand, mud or snow that stay behind the walker or the car",
+  "names": [
+   "آثار أقدام",
+   "طبعات أقدام",
+   "آثار إطارات",
+   "آثار تايرات",
+   "دعسات بالرمل",
+   "footprints",
+   "tyre tracks",
+   "tire tracks"
+  ],
+  "body": "Each step presses a sole-shaped hollow into soft sand, mud or snow, then the foot lifts away while the hollow stays behind. Sand crumbles slightly at the rim; wet mud can hold tread lines and give a quiet suction sound; snow compresses with a dry crunch. A rolling tyre leaves two continuous, parallel tracks, with its tread pattern repeating at regular intervals. Fresh marks can be crossed or blurred by later traffic, wind, rain or melting, but they do not disappear the instant their maker leaves frame. Match each mark to the shoe or tyre that made it, without tracks appearing ahead of movement."
+ },
+ {
+  "id": "reality.gen.wet-floor-after-mopping",
+  "domain": "reality",
+  "topic": "a wet floor after mopping: the wet patch dries slowly from the edges, shoes leave marks",
+  "names": [
+   "أرضية مبللة بعد المسح",
+   "أرض ممسوحة",
+   "كاع ممسوحة",
+   "بلاط مبلل",
+   "wet mopped floor",
+   "wet floor after mopping"
+  ],
+  "body": "A freshly mopped tile floor has a thin, uneven film of water, not a deep puddle. Under a ceiling light it shows soft reflections and overlapping mop strokes, with a few darker wet lines along grout or skirting. As minutes pass, exposed edges turn matte first; thicker streaks and water caught in joints remain shiny longer. A shoe crossing the patch leaves a temporary sole print and may carry damp marks onto dry tiles. Steps make a light squeak or tacky tap rather than a splash. Keep the wet area continuous between shots; it should not dry at once or slide across the floor."
+ },
+ {
+  "id": "reality.gen.facial-sweat-in-heat",
+  "domain": "reality",
+  "topic": "sweat on a face in heat: fine beads at the hairline and upper lip, a damp shine, never big drops",
+  "names": [
+   "عرق الوجه",
+   "تعرق الوجه",
+   "عرگ الوجه",
+   "عرق الجبهة",
+   "سويت على الوجه",
+   "facial sweat",
+   "sweaty face"
+  ],
+  "body": "In strong heat, the forehead, hairline, sides of the nose and upper lip develop a faint damp shine. Look closely and there are fine, closely spaced beads, smaller than raindrops; skin texture remains visible beneath them. A few short hairs at the temples may darken and stick down. The person may blink, wipe the brow with a sleeve or breathe a little faster, while clothing and the surrounding air remain otherwise ordinary. Sweat makes no audible dripping sound. Light catches the moisture in small highlights that shift as the head turns. Avoid oversized drops, streaming water or a face that looks freshly sprayed."
+ },
+ {
+  "id": "reality.gen.tears-on-face",
+  "domain": "reality",
+  "topic": "tears: welling at the lower lid, one tear running along the nose, wet lashes, red eyes afterwards",
+  "names": [
+   "دموع",
+   "دمعة",
+   "چمعة",
+   "بكاء بدموع",
+   "tears",
+   "tearful eyes",
+   "crying tears"
+  ],
+  "body": "Moisture first gathers in a narrow line along the lower eyelid, making the eye glint. Blinking wets and groups a few eyelashes together. When the line overflows, one small tear follows the contour beside the nose or down the cheek, slowing at skin folds before it reaches the jaw. The person may blink repeatedly, sniff or take an uneven breath; crying need not be loud. Afterward, the whites of the eyes and lid rims can look pink or red, and the lashes remain damp. Keep the tear attached to the skin as it moves, rather than floating, appearing mid-cheek or becoming a constant stream."
+ },
+ {
+  "id": "reality.gen.washing-face-at-sink",
+  "domain": "reality",
+  "topic": "washing the face at a sink: water runs off the chin, drops fall, hair at the temples gets wet",
+  "names": [
+   "غسل الوجه بالمغسلة",
+   "غسل الوجه بالحوض",
+   "غسل الويه بالمغسلة",
+   "غسل الوجه بالماي",
+   "washing face at sink",
+   "face washing"
+  ],
+  "body": "A person leans over the basin, cups water in both hands and brings it to the face. Water spreads over the cheeks and nose, gathers under the jaw, then runs off the chin in short streams and separate drops. The drops fall into the basin with soft plips beneath the steady sound of the tap. A few hairs at the temples get wet, darken and cling to the skin; water may also dampen the cuffs. When the hands move away, smaller drops keep falling for a moment. Keep the water pulled downward by gravity, with no floating droplets or streams passing through the hands or sink."
+ },
+ {
+  "id": "reality.gen.wet-hair-after-shower-or-rain",
+  "domain": "reality",
+  "topic": "wet hair after a shower or rain: darker, heavier, clinging strands, drops at the tips",
+  "names": [
+   "شعر مبلل",
+   "شعر مبتل",
+   "شعر مبلول",
+   "شعر رطب بعد المطر",
+   "wet hair",
+   "rain-soaked hair",
+   "shower-wet hair"
+  ],
+  "body": "Wet hair looks darker than its dry colour and separates into heavier, narrower groups of strands. It lies closer to the scalp and clings at the forehead, temples and neck instead of holding a fluffy dry shape. Longer locks hang downward and sway with a slight delay when the head turns; they do not float outward. Small drops collect at the lowest tips, grow, then fall onto a shoulder or the floor with faint taps. A hand combing through the hair briefly parts the strands, which settle together again. In light, highlights run along the wet lengths. As it dries, volume returns gradually, not all at once."
+ },
+ {
+  "id": "reality.gen.rain-on-clothes",
+  "domain": "reality",
+  "topic": "rain on clothes: small dark spots that grow and join, shoulders and hair wet first",
+  "names": [
+   "rain on clothes",
+   "wet shoulders",
+   "rain-soaked fabric",
+   "مطر على الملابس",
+   "بلل الملابس بالمطر",
+   "الهدوم تبتل بالمطر"
+  ],
+  "body": "In light rain, separate drops mark cotton as small, irregular dark spots. New spots appear on the upward-facing shoulders and crown of the head first; hair clumps into finer, darker strands. Each fabric spot spreads slowly along the weave, then joins nearby spots into uneven wet patches. Sleeves, chest and back darken according to where drops land and water runs. Heavy wet fabric hangs closer to the body and creases more deeply; a shirt does not change colour all at once. Drops make soft ticks on a jacket and a faint patter in hair. Avoid uniform wetness, floating droplets and fabric that stays stiff."
+ },
+ {
+  "id": "reality.gen.puddle-splash",
+  "domain": "reality",
+  "topic": "water splashing from a puddle when a foot or a tyre hits it",
+  "names": [
+   "puddle splash",
+   "foot in puddle",
+   "tyre through puddle",
+   "رش الماي من بركة",
+   "رشة مي من بركة",
+   "دوسة ببركة مي"
+  ],
+  "body": "A foot entering a shallow puddle pushes water forward and sideways in a low, uneven fan. A tyre makes a longer spray along both sides of its contact patch as it rolls through. The first sheet breaks into droplets of different sizes; larger drops follow short arcs and strike the ground first, while fine spray hangs briefly in the light. Ripples spread across the remaining puddle and reflect the sky in broken shapes. The impact sounds like a short slap or rushing hiss, followed by scattered patters. Keep the foot or tyre planted against the ground: water must move outward from contact, not burst before impact or pass through solid objects."
+ },
+ {
+  "id": "reality.gen.steam-from-hot-food-and-drink",
+  "domain": "reality",
+  "topic": "steam rising from hot tea, soup or fresh bread and fading within a hand's width",
+  "names": [
+   "steam from tea",
+   "soup steam",
+   "steam from fresh bread",
+   "بخار الشاي",
+   "بخار الشوربة",
+   "بخار الخبز الحار",
+   "بخار الجاي"
+  ],
+  "body": "Above hot tea or soup, visible vapour begins as faint, translucent white wisps close to the surface. It lifts, curls with small air currents and thins into the background within roughly a hand's width; it is easiest to see against a dark backdrop or in side light. A freshly opened loaf may give off a subtler wisp from its warm interior. The rising motion is continuous but irregular, not a solid column or a repeated loop. Tea may quietly clink against a glass as it is moved; steam itself is silent. Avoid thick smoke, fixed white outlines, vapour emerging from cold surfaces, and wisps that remain equally dense as they rise."
+ },
+ {
+  "id": "reality.gen.pouring-from-a-teapot",
+  "domain": "reality",
+  "topic": "pouring from a teapot: a thin steady stream, the level rising, a last drop from the spout",
+  "names": [
+   "teapot pouring",
+   "tea from teapot",
+   "teapot spout drip",
+   "صب الشاي من الإبريق",
+   "سكب الشاي من البراد",
+   "صب الجاي من القوري"
+  ],
+  "body": "As a teapot tilts, liquid reaches the lip of the spout and becomes a narrow, continuous stream. It curves downward under gravity into the cup, making a gentle trickle and small ripples where it lands. The tea level rises visibly against the inside of a glass or cup, while the teapot’s tilt and remaining contents determine the flow. When the pot rotates upright, the stream narrows and breaks; one last bead gathers beneath the spout, stretches and drops. A ceramic pot may make a light clink when set down. Avoid a rigid stream, a cup level that never changes, liquid crossing the cup rim, or a final drop that hangs indefinitely."
+ },
+ {
+  "id": "reality.gen.oil-sizzling-in-a-pan",
+  "domain": "reality",
+  "topic": "oil sizzling in a pan: small bubbles round the food, tiny spatters, thin smoke",
+  "names": [
+   "oil sizzling",
+   "frying oil bubbles",
+   "pan oil spatter",
+   "أزيز الزيت بالمقلاة",
+   "فقاعات الزيت حول الأكل",
+   "طشّة الزيت بالمقلاة"
+  ],
+  "body": "A thin layer of hot oil glints across the pan. Where moist food touches it, many small bubbles form at the edges, swell and collapse in quick, uneven succession. The food stays supported by the pan and may tremble slightly as bubbling shifts beneath it. Tiny droplets occasionally jump a short distance and land back on the pan or nearby surface. If the pan is very hot, a faint, thin wisp of smoke rises and disperses; it should not look like a dense cloud. The sound is a continuous fine hiss with sharper little snaps. Avoid oversized identical bubbles, constant explosive splashes, oil floating around the food, or smoke pouring through the pan."
+ },
+ {
+  "id": "reality.gen.soap-foam-on-hands-and-dishes",
+  "domain": "reality",
+  "topic": "soap foam on hands or dishes: bubbles of many sizes that shrink and pop",
+  "names": [
+   "soap foam",
+   "soapy hands",
+   "dishwashing bubbles",
+   "رغوة الصابون",
+   "رغوة غسل الصحون",
+   "رغوة صابون عالإيد"
+  ],
+  "body": "Soap foam gathers in uneven white clusters between fingers, around a dish rim and in the sink. Up close it contains many bubble sizes: tiny packed cells beside larger, translucent bubbles with shifting pale reflections. Rubbing hands compresses the foam and pushes it into new folds; a rinse carries it downward in broken patches. As water drains from the bubble walls, some bubbles shrink and pop, leaving gaps and a slick wet film. The matching sound is soft squishing, light rubbing and intermittent water trickles; individual pops are usually faint. Avoid perfectly equal bubbles, foam that holds a carved shape, or bubbles passing through fingers or ceramic."
+ },
+ {
+  "id": "reality.gen.condensation-on-cold-glass",
+  "domain": "reality",
+  "topic": "condensation on a cold glass or bottle: fine mist, drops that join and run down",
+  "names": [
+   "glass condensation",
+   "cold bottle droplets",
+   "sweating glass",
+   "تكاثف على الكوب البارد",
+   "قطرات على القنينة الباردة",
+   "مي على الاستكان البارد"
+  ],
+  "body": "A cold glass or bottle in warm, humid air first develops a fine, dull mist on its outside. Pinpoint beads appear within that mist, catching bright highlights against the darker drink or label. Neighbouring beads grow and join; once a drop is heavy enough, it runs down the curved surface, leaving a briefly clearer track before collecting near the base. Drops may wet the table in a small ring. The glass remains solid and transparent beneath the moisture, and its printed label does not dissolve. Condensation itself is nearly silent; a lifted glass may leave a damp, soft contact sound. Avoid droplets forming inside a sealed glass or sliding upward."
+ },
+ {
+  "id": "reality.gen.dripping-tap-or-wet-laundry",
+  "domain": "reality",
+  "topic": "dripping tap or wet laundry: drop forms, stretches, falls, small crown splash",
+  "names": [
+   "dripping tap",
+   "wet laundry drip",
+   "water drop splash",
+   "حنفية تنقط",
+   "قطرات من الملابس المبللة",
+   "حنفية تخر مي"
+  ],
+  "body": "At a tap tip or the lowest fold of wet laundry, water gathers into a rounded bead held briefly by surface tension. The bead grows heavier, lengthens into a short neck, then separates and falls vertically, leaving a smaller bead behind. On a hard wet surface it makes a tiny crown-shaped splash that collapses into a ring ripple; on absorbent fabric it darkens a spot instead. A tap gives spaced, crisp plinks into a sink, while laundry drops make softer taps on the floor. The interval between drops can vary as the water supply changes. Avoid identical looping droplets, falls without acceleration, floating beads, or splashes that appear before contact."
+ },
+ {
+  "id": "reality.gen.hand-picking-up-small-object",
+  "domain": "reality",
+  "topic": "a hand picking up a small object: fingers close around it, the object moves with the hand, nothing passes through",
+  "names": [
+   "التقاط غرض صغير",
+   "رفع شيء صغير",
+   "يلتقط غرض",
+   "يشيل غرض صغير",
+   "pick up small object",
+   "hand picks up object"
+  ],
+  "body": "A hand approaches a coin or key resting flat on a table. The thumb and fingertip descend on opposite sides, touch the object, then press gently before lifting. The object stays on the tabletop until that grip forms; afterward it rises at the same speed as the hand, with no visible gap between fingers and object. A coin may tip slightly before leaving the surface, making a faint scrape or click. Finger pads flatten where they press against metal. In a bright Iraqi kitchen or shop, shadows separate cleanly as the hand lifts. Avoid floating objects, fingers passing through metal, and objects jumping into the palm."
+ },
+ {
+  "id": "reality.gen.handing-object-to-another-person",
+  "domain": "reality",
+  "topic": "handing an object from one person to another: both hold it for a moment, then one lets go",
+  "names": [
+   "تسليم غرض لشخص",
+   "مناولة غرض",
+   "يناول غرض",
+   "يسلم غرض",
+   "handing over an object",
+   "passing an object"
+  ],
+  "body": "One person extends a small box or cup toward another at arm’s length. The receiver reaches under or around it and closes their fingers on a free area while the giver still holds firm. For a brief beat, both sets of hands support the object; only then do the giver’s fingers open and withdraw. Its weight transfers without a jump or drop, and a liquid-filled cup may sway slightly before settling. Paper or cardboard makes a soft rustle where fingers shift. In a shop or home doorway, watch the contact points and shadows: hands must not overlap impossibly or pass through the object."
+ },
+ {
+  "id": "reality.gen.carrying-heavy-bag-or-box",
+  "domain": "reality",
+  "topic": "carrying a heavy bag or box: arm straight, shoulder lower on that side, slower steps",
+  "names": [
+   "حمل حقيبة ثقيلة",
+   "حمل صندوق ثقيل",
+   "يشيل جنطة ثقيلة",
+   "يشيل كارتون ثقيل",
+   "carrying heavy bag",
+   "carrying heavy box"
+  ],
+  "body": "A person carries a heavy shopping bag by its handles beside one leg. The loaded arm hangs nearly straight, the shoulder on that side sits lower, and the torso leans a little the other way to balance the weight. Steps shorten and slow; the bag lags behind each stride, then swings forward modestly as the foot plants. Fabric pulls taut at the handles, creases around the contents, and may brush the trouser leg with a dull rustle. With a box, both forearms brace its underside against the body. In a market walkway, keep feet grounded; avoid a weightless bounce, a perfectly rigid bag, or sliding steps."
+ },
+ {
+  "id": "reality.gen.putting-object-down-on-table",
+  "domain": "reality",
+  "topic": "putting an object down on a table: it lands, settles and stays exactly there",
+  "names": [
+   "وضع غرض على الطاولة",
+   "وضع شيء على المنضدة",
+   "يحط غرض عالطاولة",
+   "ينزل غرض عالطاولة",
+   "put object on table",
+   "set object down"
+  ],
+  "body": "A hand lowers a ceramic cup toward a level wooden table. Its base touches first with a small, sharp clink; the wrist stops descending, and the fingers loosen only after the tabletop supports the cup. The cup may rock imperceptibly once, then rests at the exact landing spot. Its shadow becomes tight against the surface, and reflections stop moving. A heavier box makes a muted thud and may compress slightly at a cardboard corner. In an Iraqi café or home, table texture remains visible around the base. Avoid hovering, sinking through the tabletop, bouncing repeatedly, or drifting after the hand lets go."
+ },
+ {
+  "id": "reality.gen.opening-bottle-jar-or-can",
+  "domain": "reality",
+  "topic": "opening a bottle, a jar or a can: the right twist or pull, the cap in the hand afterwards",
+  "names": [
+   "فتح قنينة",
+   "فتح مرطبان",
+   "فتح علبة مشروب",
+   "يفتح قنينة",
+   "يفتح علبة",
+   "open bottle",
+   "open jar",
+   "open can"
+  ],
+  "body": "For a screw-top bottle or jar, one hand grips the container while the other turns the cap counterclockwise as viewed from above. The lid rises gradually along its threads; a seal may crack softly before it comes free, and the removed cap remains between the fingers. A plastic bottle may give a brief hiss, while a tight jar lid gives a short pop. For a drink can, a fingertip lifts the ring pull until its lever pushes the scored opening inward with a metallic snap; the tab usually stays attached to the can, rather than becoming a cap in the hand. Avoid caps passing through rims or lids opening without hand contact."
+ },
+ {
+  "id": "reality.gen.counting-banknotes-or-coins",
+  "domain": "reality",
+  "topic": "counting banknotes or coins by hand: thumb sliding each note, the stack growing on the table",
+  "names": [
+   "عد الأوراق النقدية",
+   "عد النقود المعدنية",
+   "يعد فلوس",
+   "يعد ورق نقدي",
+   "counting banknotes",
+   "counting coins"
+  ],
+  "body": "A person holds a bundle of Iraqi dinar notes in one hand and uses the other thumb to slide one top note free at a time. Each flexible note bends under the thumb, separates with a dry paper flick, then lands flat on the table; the counted stack grows one note at a time as the held bundle thins. The fingers pause briefly between notes to keep the edges aligned. Coins instead move individually from palm to tabletop with small metallic ticks and short, controlled rolls before stopping. Under shop lighting, note edges cast thin shadows. Avoid duplicated notes, changing denominations mid-motion, fingers passing through paper, or stacks growing without deposits."
+ },
+ {
+  "id": "reality.gen.typing-on-phone-with-thumbs",
+  "domain": "reality",
+  "topic": "typing on a phone with thumbs: small fast movements, eyes on the screen, the screen lighting the face",
+  "names": [
+   "الكتابة على الهاتف بالإبهامين",
+   "الكتابة بالموبايل",
+   "يكتب بالتلفون بإبهامه",
+   "يدز رسالة بالموبايل",
+   "typing with thumbs",
+   "thumb typing on phone"
+  ],
+  "body": "A person holds a smartphone upright with both hands, fingers curled behind it and thumbs hovering over the lower screen. The thumbs make quick, short taps, alternating unevenly rather than striking in a perfect rhythm; each thumb lifts a few millimetres before the next touch. The phone shifts slightly in the grip but does not float or bend. Eyes stay directed at the screen, with occasional tiny downward tracking movements as text appears. In a dim room, the display casts a cool glow on the nose, cheeks and fingertips, brighter than its surroundings. Taps are nearly silent, sometimes accompanied by faint keyboard clicks if enabled. Avoid thumbs crossing through the glass."
+ },
+ {
+  "id": "reality.gen.contactless-payment-at-card-reader",
+  "domain": "reality",
+  "topic": "paying by card or phone at a card reader: tap, short wait, beep, the reader's screen changing",
+  "names": [
+   "الدفع بالبطاقة",
+   "الدفع بالموبايل",
+   "الدفع بالكي كارد",
+   "يدفع بالبطاقة",
+   "contactless card payment",
+   "phone tap payment"
+  ],
+  "body": "At a shop counter, a customer holds a bank card or unlocked phone close to the contactless symbol on a card reader. The hand pauses within a few centimetres of the reader for a moment; it need not strike the plastic. The reader responds with a brief electronic beep, and its screen changes from a payment prompt to a processing message, then to a confirmation if approved. A phone may briefly brighten as it is raised. The customer withdraws the card or phone only after the response, while the cashier looks toward the display. Keep devices separate and solid; avoid cards passing through the reader, instant confirmation before the tap, or endless hovering."
+ },
+ {
+  "id": "reality.gen.hands-fastening-clothes",
+  "domain": "reality",
+  "topic": "tying shoelaces, buttoning a shirt, zipping a jacket: both hands working, cloth following",
+  "names": [
+   "ربط الحذاء",
+   "ربط القيطان",
+   "تزرير القميص",
+   "تسكير الجاكيت",
+   "tying shoelaces",
+   "buttoning shirt",
+   "zipping jacket"
+  ],
+  "body": "For shoelaces, one hand holds tension while the other crosses the laces, feeds a loop through, then pulls both loops apart; the shoe tongue and lace ends shift with each tug. For a shirt, fingers pinch a button and guide it sideways through its hole, briefly bunching the fabric before it lies flatter. For a jacket, one hand steadies the bottom while the other joins the zipper teeth and draws the slider upward; the two sides meet progressively. Cotton rustles, a zipper rasps, and lace tips tap the shoe. Do not let hands pass through cloth or fastenings close before fingers move."
+ },
+ {
+  "id": "reality.gen.knife-cutting-on-board",
+  "domain": "reality",
+  "topic": "cutting with a knife on a board: the blade goes through, slices fall away, the pile grows",
+  "names": [
+   "تقطيع الخضار",
+   "قص الخضرة",
+   "تقطيع بالسكين",
+   "فرم على اللوح",
+   "cutting vegetables",
+   "knife on cutting board"
+  ],
+  "body": "On a kitchen board, one hand curls its fingertips back to steady a vegetable while the other lowers the knife. The edge enters at the top, travels through the flesh, then touches the board with a short, firm tap. Each separated slice tips or slides away from the remaining piece; repeated cuts leave a growing, irregular pile beside the blade. Firm vegetables make crisp chopping sounds, while juicy pieces leave a faint wet mark. The knife lifts and advances between cuts. Avoid slices appearing before contact, a blade passing through the board, or a pile that stays unchanged."
+ },
+ {
+  "id": "reality.gen.pen-writing-on-paper",
+  "domain": "reality",
+  "topic": "writing with a pen: the line appears only where the tip has passed, the hand resting on the paper",
+  "names": [
+   "الكتابة بالقلم",
+   "اكتب بالقلم",
+   "كتابة على الورق",
+   "أكتب بالورقة",
+   "writing with a pen",
+   "pen on paper"
+  ],
+  "body": "The side of the writing hand rests on the paper, with the wrist and fingers making small coordinated movements while the forearm shifts more slowly across the page. The pen tip stays in contact during each stroke; dark ink appears immediately behind it, following its exact path and stopping when the tip lifts. A second hand may hold the page flat. Thin paper can flex slightly beneath the palm, and a ballpoint makes a faint scratch or rolling sound in a quiet room. Avoid letters appearing ahead of the tip, a floating hand, or strokes continuing while the pen is raised."
+ },
+ {
+  "id": "reality.gen.holding-hot-tea-glass",
+  "domain": "reality",
+  "topic": "holding a hot glass of tea: fingertips at the rim, a careful sip, blowing on it first",
+  "names": [
+   "استكان شاي حار",
+   "شاي حار بالاستكان",
+   "شرب الشاي الحار",
+   "نفخ على الشاي",
+   "hot glass of tea",
+   "blowing on tea"
+  ],
+  "body": "A small clear tea glass shows amber liquid and bright reflections along its curved sides. The drinker grips near the upper rim with fingertips, avoiding a long, full-palm hold on the hot glass. They bring it toward the mouth, blow gently across the surface, pause, then tilt it just enough for a small sip. The liquid surface leans with the glass and settles in tiny ripples when it stops; a little steam may show against a dark background. Breath is soft, and the glass gives a light clink when set down. Avoid an unmoving liquid surface or tea passing through the rim."
+ },
+ {
+  "id": "reality.gen.sitting-on-chair-or-sofa",
+  "domain": "reality",
+  "topic": "sitting down on a chair or sofa: weight shifts back, cushion gives, clothes crease at the hips",
+  "names": [
+   "الجلوس على الكرسي",
+   "القعدة عالكرسي",
+   "الجلوس على الكنبة",
+   "القعدة عالقنفة",
+   "sitting on a chair",
+   "sitting on a sofa"
+  ],
+  "body": "The person turns toward the seat, bends at the hips and knees, and shifts their weight backward before contact. Their hands may reach for an armrest or hover for balance. On a sofa, the cushion compresses under the hips, then rebounds slightly as the torso settles; a firm chair moves much less. Shirt or trouser fabric gathers into new creases at the waist and hips, and the feet adjust on the floor. Upholstery gives a soft thump or creak, while chair legs may make a brief floor sound. Avoid the body floating above the seat, sliding through it, or cushions sinking before contact."
+ },
+ {
+  "id": "reality.gen.rising-from-floor-or-low-seat",
+  "domain": "reality",
+  "topic": "getting up from the floor or a low seat: a hand pushes, the body leans forward first",
+  "names": [
+   "النهوض من الأرض",
+   "القيام من الأرض",
+   "الوكوف من الكاع",
+   "النهوض من كرسي واطي",
+   "getting up from floor",
+   "rising from low seat"
+  ],
+  "body": "From a low seat, the torso leans forward over the feet before the hips rise. One hand presses on the seat edge or a thigh; from the floor, a palm plants firmly while a foot moves underneath the body. The supporting arm straightens, the knees extend, and the torso comes upright last. Fabric tightens across bent knees, then loosens into hanging folds. A cushion rebounds after the weight leaves it; a palm may make a soft contact sound on the floor. Avoid a straight upward lift, feet sliding without grip, or a hand pushing against empty air."
+ },
+ {
+  "id": "reality.gen.walking-through-doorway",
+  "domain": "reality",
+  "topic": "walking through a doorway: the body passes the frame, the door swings and slows",
+  "names": [
+   "المرور من الباب",
+   "الدخول من الباب",
+   "العبور من الباب",
+   "المرور من الدرفة",
+   "walking through a doorway",
+   "passing through a door"
+  ],
+  "body": "A person approaches at walking pace, opens the door far enough for their shoulders, and crosses the threshold one foot at a time. Their head and torso clear the frame before the trailing arm and foot follow. If they push the door onward, it rotates on its hinges, then slows under hinge friction or a closer; it may swing back with a soft latch click. Light can change across the face and clothes as they pass between rooms. Footsteps change tone on different flooring. Avoid shoulders clipping the frame, feet gliding over the threshold, or a door stopping instantly in mid-swing."
+ },
+ {
+  "id": "reality.gen.two-people-walking-side-by-side",
+  "domain": "reality",
+  "topic": "two people walking side by side: steps not in sync, shoulders nearly touching, glances",
+  "names": [
+   "شخصان يمشيان معا",
+   "اثنين يمشون سوه",
+   "المشي جنباً إلى جنب",
+   "يمشون يم بعض",
+   "walking side by side",
+   "two people walking together"
+  ],
+  "body": "Two people move along the same path at roughly the same speed, leaving a narrow gap between their nearly touching shoulders. Their steps do not land in perfect unison: one footfall comes a fraction before the other, and each person’s arms swing with their own stride. One turns their head for a brief glance; the other may look back while both bodies keep moving forward. Clothing hems and hair respond to each step and any breeze, settling between movements. Footsteps form an uneven paired rhythm, with quiet fabric rustle. Avoid mirrored poses, locked synchronized legs, or shoulders passing through each other."
+ },
+ {
+  "id": "reality.gen.getting-in-and-out-of-car",
+  "domain": "reality",
+  "topic": "climbing into and out of a car: head ducks, one leg first, the door shut by hand with a thud",
+  "names": [
+   "ركوب السيارة",
+   "النزول من السيارة",
+   "الصعود للسيارة",
+   "يركب بالسيارة",
+   "ينزل من السيارة",
+   "getting into a car",
+   "getting out of a car"
+  ],
+  "body": "Beside a parked car, the person pulls the door open by its handle; it swings on its hinge and stops at a fixed angle. To enter, they turn sideways, lower their head beneath the roof, place one foot inside, shift weight onto the seat, then draw the other leg in. The seat cushion compresses. To leave, one foot reaches the ground first; the torso leans forward before the person stands. A hand pulls the door through its arc until the latch catches with a solid thud and slight panel vibration. Clothes brush the seat with a soft rustle. Avoid floating feet, heads passing through the roof, or a door closing without contact."
+ },
+ {
+  "id": "reality.gen.consistent-person-front-and-back",
+  "domain": "reality",
+  "topic": "a person seen from behind keeps the same hair, build and clothes as from the front",
+  "names": [
+   "نفس الشخص من الخلف",
+   "الشخص من الأمام والخلف",
+   "ثبات شكل الشخص",
+   "نفس الشخص من ورا",
+   "front and back view",
+   "same person from behind"
+  ],
+  "body": "As the person turns away, their height, shoulder width, waist shape and posture remain unchanged. Hair keeps the same colour, length, part and texture: a short cut still exposes the neck, while long hair falls over the same garment. The back of a shirt has the same fabric, fit and sleeve length seen from the front; seams and folds wrap around the body rather than changing into a different outfit. Feet pivot on the ground and the shoulders follow the hips, with a brief sway of hair and loose cloth. Footsteps and fabric rustle continue through the turn. Avoid a new hairstyle, altered build, swapped clothes or features morphing mid-turn."
+ },
+ {
+  "id": "reality.gen.varied-natural-crowd",
+  "domain": "reality",
+  "topic": "a crowd where every person is different: heights, ages, clothes, directions, no clones",
+  "names": [
+   "حشد متنوع",
+   "جمهور مختلف",
+   "ناس مختلفين",
+   "زحمة ناس",
+   "varied crowd",
+   "no duplicate people"
+  ],
+  "body": "A crowd fills the space at uneven intervals, with visible gaps and occasional overlap. People differ in height, age, build, face, hairstyle and clothing: a child stays lower than nearby adults, and garments vary in colour, length and fit. Some walk toward the camera, others cross the frame, pause or turn to speak. Their steps have separate rhythms; bags swing after their owners move, and people slow or sidestep to avoid contact. Layered footsteps, short conversations and cloth rustles form a soft, irregular sound bed. Keep faces and outfits consistent as people pass behind one another. Avoid copied faces, identical strides, synchronized turns, sliding feet or bodies passing through neighbours."
+ },
+ {
+  "id": "reality.gen.natural-background-people",
+  "domain": "reality",
+  "topic": "people in the background: unfocused, doing their own small things, never frozen and never staring",
+  "names": [
+   "أشخاص في الخلفية",
+   "ناس بالخلفية",
+   "حركة الناس بالخلف",
+   "background people",
+   "natural background activity"
+  ],
+  "body": "Behind the main subject, people are softer in focus according to the camera lens and their distance, but retain believable silhouettes, clothing and motion. One checks a phone, another adjusts a bag, while others walk past or speak to a companion. They glance where their task takes them rather than all looking into the lens. Movements are small and unsynchronized: a head tilts, a hand rises, weight shifts from one foot to the other. Distant footsteps and indistinct voices sit below the foreground sound. They remain grounded and keep their scale as they move through the space. Avoid frozen figures, repeated gestures, sudden position jumps or faces turning toward the camera together."
+ },
+ {
+  "id": "reality.gen.consistent-person-shadows",
+  "domain": "reality",
+  "topic": "shadows that follow their owner: same direction for everyone in the scene, longer at sunset",
+  "names": [
+   "ظلال الأشخاص",
+   "ظل الشخص",
+   "الظلال وقت الغروب",
+   "الظل يتبع الشخص",
+   "consistent shadows",
+   "sunset shadows"
+  ],
+  "body": "Under one clear sun, each person’s shadow begins where their shoes meet the ground and extends away from the sun. Shadows across the same level surface point in the same direction; a taller person generally casts a longer outline than a shorter neighbour. At sunset the low sun stretches them far across pavement, with leg shapes lengthening as the person walks. Each planted foot anchors its shadow while the moving leg’s outline sweeps forward; edges soften on rough ground or under hazy light. Footsteps match the visible contacts, without a separate shadow sound. On steps and walls, the outline bends with the surface. Avoid detached, differently directed or motionless shadows, and shadows passing unchanged through obstacles."
+ },
+ {
+  "id": "reality.gen.consistent-mirror-window-reflections",
+  "domain": "reality",
+  "topic": "mirror and window reflections that show the same person, clothes and movement, left and right swapped",
+  "names": [
+   "انعكاس المرآة",
+   "انعكاس الشباك",
+   "انعكاس الزجاج",
+   "نفس الشخص بالمنظرة",
+   "mirror reflection",
+   "window reflection"
+  ],
+  "body": "A mirror shows the same person and outfit at the same instant, with movements matched precisely: when a hand rises, its reflected hand rises without delay. The image appears behind the glass at a depth corresponding to the person’s distance in front of it. To a viewer facing the mirror, left and right appear swapped, while colours, hair length and garment details remain consistent. A window gives a weaker reflection mixed with what is visible beyond it; its brightness changes with lighting on either side. Turning alters the reflected angle smoothly. Shoes and nearby objects obey the same geometry. Avoid delayed gestures, extra people, mismatched clothes, reflections floating off the glass or passing through its frame."
+ },
+ {
+  "id": "reality.gen.gold-jewellery-under-shop-lights",
+  "domain": "reality",
+  "topic": "gold jewellery under shop lights: warm small highlights, real weight on the neck and wrist",
+  "names": [
+   "مجوهرات ذهب",
+   "ذهب المحل",
+   "ذهب تحت الإضاءة",
+   "حلي ذهبية",
+   "gold jewellery",
+   "gold under shop lights"
+  ],
+  "body": "In a jewellery shop, polished gold has a rich yellow tone with small, bright highlights from overhead spotlights and darker reflections along curved edges. A necklace rests against the collarbone and hangs lower between its support points; its links settle after the wearer turns, with a brief secondary sway. A bracelet sits around the wrist rather than hovering, slipping slightly toward the hand when the arm lowers. Thick pieces look heavier and move less freely than fine chains. Links make faint metallic clicks when they touch; soft shop lighting also catches glass display cases. Avoid uniform yellow glow, starbursts on every surface, floating chains, rigid hanging jewellery or pieces sinking into skin."
+ },
+ {
+  "id": "reality.gen.satin-velvet-cotton-wool-movement",
+  "domain": "reality",
+  "topic": "satin, velvet, cotton and wool: how each folds, shines and moves when the wearer turns",
+  "names": [
+   "قماش ساتان",
+   "قماش مخمل",
+   "قماش قطن",
+   "قماش صوف",
+   "satin velvet cotton wool",
+   "fabric folds and movement"
+  ],
+  "body": "When a wearer turns, satin follows with fluid folds and moving bands of bright reflection; its light, smooth fabric continues a little after the torso stops. Velvet forms deeper, softer folds, and its short pile changes from dark to luminous as its direction catches the light. Cotton tends to make smaller, matte creases at elbows and waist, then relaxes with a modest flutter. Wool is thicker and springier, holding broad rounded folds and settling more slowly. Fabric remains attached at shoulders and seams, brushing the body with a quiet rustle; heavier wool sounds duller than crisp cotton. Avoid identical shine on all four materials, folds that change shape without motion, cloth floating away or garments passing through the wearer."
+ },
+ {
+  "id": "reality.gen.abaya-dress-walking",
+  "domain": "reality",
+  "topic": "an abaya or long dress while walking: hem swings a beat after the legs, wind lifts one side",
+  "names": [
+   "عباية تمشي",
+   "عباءة تمشي",
+   "فستان طويل يمشي",
+   "رفرفة العباية",
+   "walking abaya",
+   "long dress hem",
+   "abaya in wind"
+  ],
+  "body": "A walking abaya hangs from the shoulders in a loose, dark column; a long dress may follow the waist and flare below it. Each step pulls fabric forward around the advancing shin. The hem follows a fraction later, brushes the ankle, then swings back as weight shifts to the other foot. A gust lifts one side first, exposing a little of the lining or the shoes before the cloth settles in soft folds. The fabric makes a faint swish, louder where it brushes itself. Keep the shoulders and hem connected: cloth should not float independently, pass through legs, or change length between steps."
+ },
+ {
+  "id": "reality.gen.shemagh-hijab-scarf-folds",
+  "domain": "reality",
+  "topic": "a shemagh, a hijab or a scarf: how the folds lie, how they shift when the head turns",
+  "names": [
+   "شماغ",
+   "شماخ",
+   "حجاب",
+   "شال الرأس",
+   "لفة الحجاب",
+   "shemagh",
+   "hijab folds",
+   "headscarf"
+  ],
+  "body": "A shemagh forms broad folds over the crown and shoulders, often with its woven checks bending where the cloth creases. A hijab or scarf sits closer around the face, with pinned or tucked sections staying fixed while loose ends hang under their own weight. When the head turns, fabric at the temples moves with it; a free corner follows a moment later, swings slightly past, then settles against the shoulder. Wind lifts only unsecured edges. Cotton rustles softly, while smoother fabric makes a lighter brushing sound. Preserve the fold pattern and any pins or tucks; avoid cloth sliding across the face or passing through the neck."
+ },
+ {
+  "id": "reality.gen.shop-glass-street-reflections",
+  "domain": "reality",
+  "topic": "glass shop fronts and display cases: reflections of the street over the goods behind",
+  "names": [
+   "واجهة محل زجاج",
+   "فاترينة محل",
+   "فيترينة محل",
+   "زجاج العرض",
+   "shop window reflections",
+   "glass display case",
+   "street reflections in glass"
+  ],
+  "body": "A shop front is a large, nearly flat glass plane in a metal or aluminium frame; display cases use smaller panes with visible corners and shelves. Goods behind the glass remain visible, but reflections of parked cars, pedestrians, signs and the bright street lie across them. From a shallow viewing angle, the reflection grows stronger; stepping sideways shifts it across stationary goods. Fingerprints and fine wiping streaks catch glancing light near handles. Indoor shelves look dimmer than the sunlit pavement outside, while case lights make selected edges sparkle. A door may rattle softly when opened. Reflections belong on the glass surface, not on every object behind it."
+ },
+ {
+  "id": "reality.gen.screen-light-on-faces-2",
+  "domain": "reality",
+  "topic": "phone and TV screens in a room: their light on nearby faces, never brighter than a lamp",
+  "names": [
+   "ضوء شاشة الموبايل",
+   "نور التلفزيون على الوجه",
+   "إضاءة شاشة الهاتف",
+   "phone screen glow",
+   "tv light on face",
+   "screen light in room"
+  ],
+  "body": "A phone lights the fingers holding it and a small patch of cheeks, nose and eyes; the glow falls off quickly across the room. A television spreads a weaker, broader wash over faces turned toward it, changing gently with bright and dark scenes. Blue-white highlights may appear in the eyes, but a nearby switched-on lamp remains the stronger, steadier light on skin and furniture. Screen glass also reflects that lamp at certain angles. In a lived-in room, people blink, scroll or shift on a sofa while programme audio or a quiet tap accompanies the changing image. Avoid an isolated screen lighting every wall equally or overpowering the lamp."
+ },
+ {
+  "id": "reality.gen.night-shop-sign-light",
+  "domain": "reality",
+  "topic": "neon and LED shop signs at night: colour spilling on the pavement and on passing faces",
+  "names": [
+   "لافتة نيون محل",
+   "لوحة ليد محل",
+   "ضوء واجهة المحل ليلا",
+   "neon shop sign",
+   "led shop sign",
+   "storefront sign glow"
+  ],
+  "body": "At night, a neon tube draws a continuous coloured line inside or above a shop window; an LED sign appears sharper, sometimes revealing individual bright points at close range. Red, green or blue light catches raised lettering, nearby shutters and the upper edges of the pavement. On wet paving it stretches into broken reflections; on dry dusty concrete it makes a softer, shorter patch. A passer-by’s face takes on the sign colour briefly while crossing its light, then returns to the surrounding streetlight. Neon may give a faint electrical hum; traffic and voices usually dominate. Keep the colour anchored to the sign rather than coating the whole street uniformly."
+ },
+ {
+  "id": "reality.gen.dust-sunbeam-iraqi-afternoon",
+  "domain": "reality",
+  "topic": "dust in a sunbeam and haze in the air on a hot Iraqi afternoon",
+  "names": [
+   "غبار في شعاع الشمس",
+   "غبرة العصر",
+   "غبار الجو بالعراق",
+   "dust in sunbeam",
+   "iraqi afternoon haze",
+   "hot afternoon dust"
+  ],
+  "body": "In an Iraqi room on a hot afternoon, hard sunlight enters through a window or doorway as a bright wedge. Tiny dust motes become visible inside it: some drift slowly upward in warm air, others sink or change direction in a passing draft. They do not all travel together or sparkle outside the beam. Outdoors, pale beige haze softens distant buildings and reduces the contrast of rooflines, while nearby doors and cars remain defined. Sunlit walls look warm and shadows stay comparatively sharp near the ground. Dust itself is nearly silent; a fan, street traffic or a dry breeze supplies the sound. Avoid dense smoke-like clouds in ordinary air."
+ },
+ {
+  "id": "reality.gen.iraqi-house-aged-walls",
+  "domain": "reality",
+  "topic": "old plaster, brick and tiled walls in Iraqi houses: stains, cracks, repainted patches",
+  "names": [
+   "جدران بيت عراقي قديم",
+   "حايط بيت عراقي",
+   "قصارة قديمة",
+   "طابوق قديم",
+   "بلاط جدران قديم",
+   "old iraqi house walls",
+   "aged plaster brick tiles"
+  ],
+  "body": "An older Iraqi house may have pale plaster walls with slightly uneven surfaces, exposed reddish or sandy brick at a worn edge, and ceramic tiles around a kitchen, courtyard or wash area. Hairline cracks follow corners or doorframes; broader repairs show as flatter, differently coloured patches beneath later paint. Damp stains gather low on a wall or under a leak, with irregular soft edges rather than neat circles. Tile glaze reflects a small window highlight, while grout stays matte and sometimes darkens unevenly. Afternoon light reveals plaster bumps and chipped corners. Footsteps may echo off hard tile. Keep cracks attached to the wall surface, not floating over it."
+ },
+ {
+  "id": "reality.gen.street-tea-stall-objects",
+  "domain": "reality",
+  "topic": "plastic chairs, steel trays and tea glasses of a street tea stall: scratches, dents, uneven shine",
+  "names": [
+   "كراسي بلاستك استكانات",
+   "صينية شاي استيل",
+   "استكان شاي",
+   "قهوة شارع عراقية",
+   "street tea stall chairs",
+   "steel tea tray",
+   "iraqi tea glasses"
+  ],
+  "body": "At a street tea stall, moulded plastic chairs have curved backs, hollow undersides and scuffed legs; their colour is often faded more on sun-facing surfaces. A steel tray shows shallow dents and circular wipe marks, so reflections break into uneven bright bands instead of a perfect mirror. Small clear tea glasses hold amber tea, darker where the liquid is deeper, with highlights along their rims. A chair flexes slightly and scrapes when someone sits; a carried tray tilts a little before the server steadies it. Glasses give brief, high clinks against the tray, followed by the softer rattle of spoons. Keep every glass resting on the tray."
+ },
+ {
+  "id": "reality.gen.hand-cooked-food",
+  "domain": "reality",
+  "topic": "food that looks cooked by a person: uneven browning, a broken edge, oil shine, steam",
+  "names": [
+   "أكل مطبوخ",
+   "طبخ بيتي",
+   "أكل بيت",
+   "طعام منزلي",
+   "home cooked food",
+   "homemade meal"
+  ],
+  "body": "A serving of fried or baked food has patchy golden-brown surfaces: darker where it touched the pan, paler in folds and along thicker sections. One edge may have torn during lifting, exposing a softer, lighter interior. A thin film of oil catches small highlights rather than coating every surface evenly. Freshly served food releases faint, irregular wisps of steam that rise, curl and disappear, especially against a dark background. A spatula makes a light scrape against the pan; hot oil gives a brief, uneven sizzle. Keep the food resting on the plate, with crumbs and oil marks where it touches. Avoid identical browning, rigid steam columns or pieces that change shape between shots."
+ },
+ {
+  "id": "reality.gen.fresh-produce-stall",
+  "domain": "reality",
+  "topic": "fresh fruit and vegetables on a stall: different sizes, a bruise, leaves, water drops after spraying",
+  "names": [
+   "بسطة خضرة",
+   "بسطة فواكه",
+   "خضار وفواكه",
+   "سوق الخضرة",
+   "produce stall",
+   "fruit stall",
+   "vegetable stand"
+  ],
+  "body": "Fruit and vegetables sit in shallow crates or sloped piles, with small differences in size, colour and shape. One tomato may have a dull bruise; a bunch of radishes has leaves of unequal length, some curling at the tips. After a vendor sprays the display, clear droplets cling to waxy skins and leaf veins. Larger drops gather, run downward under gravity and collect at the lowest edge before falling onto the crate. Leaves shift slightly when handled and settle back; plastic crates knock softly and the spray makes a short hiss. Daylight picks out the wet surfaces without making every item glossy. Avoid repeated identical produce, hovering drops or leaves passing through fruit."
+ },
+ {
+  "id": "reality.gen.consistent-product-labels",
+  "domain": "reality",
+  "topic": "printed labels and packaging on products: the same label in every shot, curved with the bottle",
+  "names": [
+   "ملصق عبوة",
+   "ليبل قنينة",
+   "تغليف منتجات",
+   "ستيكر منتج",
+   "product label",
+   "bottle label",
+   "printed packaging"
+  ],
+  "body": "A printed label sits against the product’s actual surface. On a cylindrical bottle, its straight artwork wraps into a visible curve: letters narrow toward the sides, while the central text stays easiest to read. The seam or label edge remains in the same place as the bottle turns. Paper labels have a slight matte texture; glossy film catches a moving strip of light. A handled bottle gives a faint plastic creak or glass tap, and the label moves with it, not independently. Keep the brand mark, wording, colours, barcode and small design details identical in every shot. Avoid shifting text, invented letters, floating labels or artwork that stays flat while the bottle rotates."
+ },
+ {
+  "id": "reality.gen.sunlit-car-surfaces",
+  "domain": "reality",
+  "topic": "car paint, chrome and glass in sun: the sky and street reflected, dust on the lower panels",
+  "names": [
+   "صبغ سيارة",
+   "دهان سيارة",
+   "كروم السيارة",
+   "زجاج السيارة",
+   "car paint",
+   "car chrome",
+   "car glass"
+  ],
+  "body": "In strong sun, car paint carries broad, smooth reflections of the sky and nearby buildings, interrupted by sharp highlights along curved body lines. Chrome trim gives brighter, more distorted reflections; windows show a darker version of the street and sky, with the interior faintly visible through them. As the car or camera moves, each reflection slides across the surface according to its curve, while a fixed patch of dust stays attached to the lower doors, wheel arches and rear panel. Fine grit makes those areas look slightly dull, not uniformly brown. Tyres hum on pavement and a closed door lands with a solid thud. Avoid reflections that remain fixed in the frame or dust that floats off the panels."
  }
 ]

@@ -179,3 +179,9 @@ module.exports = {
   for (const [k, list] of Object.entries(more2)) if (module.exports[k]) module.exports[k].topics.push(...list.filter((t) => !module.exports[k].topics.includes(t)));
   module.exports.cities = { domain: "place", prefix: "place.city", guide: "For a city or district: the real look (skyline, landmarks, streets, buildings and materials, signage language), light and climate, traffic and street life, the sounds, how people dress, and how they greet each other (with the local words).", topics: more2.cities };
 }
+
+// expansion round 3 (tools/library-topics-more3.js): realism first – continuity, liquids, hands, materials, customers scenes
+{
+  const more3 = require("./library-topics-more3");
+  for (const [k, list] of Object.entries(more3)) if (module.exports[k]) module.exports[k].topics.push(...list.filter((t) => !module.exports[k].topics.includes(t)));
+}

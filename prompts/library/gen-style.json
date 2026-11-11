@@ -1386,5 +1386,291 @@
    "ترانزيشن بدون قطع"
   ],
   "body": "Hide an edit inside a natural moment of visual cover or matching motion. The camera might follow a person past a dark doorway, let their coat fill the lens for an instant, then emerge into a second location moving in the same direction and at the same speed. Match lens height, exposure, motion blur and the position of the person before and after the join. Footsteps and room tone should change gradually or at the point where the new space becomes visible. Avoid melting walls, duplicated hands or an unexplained jump in body position. This flowing move suits social videos, tours and ads."
+ },
+ {
+  "id": "style.gen.continuous-shot-consistency",
+  "domain": "style",
+  "topic": "one continuous shot with no cuts: how to keep people, clothes and objects identical from start to end",
+  "names": [
+   "لقطة واحدة متواصلة",
+   "لقطة بدون قطع",
+   "تصوير بدون مونتاج",
+   "ون شوت",
+   "continuous shot",
+   "one take",
+   "no-cut shot"
+  ],
+  "body": "Frame the action as one unbroken camera movement, perhaps following a person from a doorway to a table on a 24–35 mm lens. Keep the same face, hairstyle, watch, shoes and clothing throughout; folds may shift naturally as the person walks, but colours and patterns do not change. A cup stays in the same hand until visibly set down. Objects remain where they were placed, even when the camera turns away and back. Footsteps, fabric rustle and room sound continue without an audible jump. Let exposure adjust gently as the camera passes between daylight and shade."
+ },
+ {
+  "id": "style.gen.matching-shots-across-cut",
+  "domain": "style",
+  "topic": "two shots of the same scene: what must stay the same across the cut (clothes, hair, props, light, time of day)",
+  "names": [
+   "تطابق اللقطات",
+   "استمرارية المشهد",
+   "نفس الملابس بعد القطع",
+   "مطابقة اللقطات",
+   "matching shots",
+   "continuity cut",
+   "scene continuity"
+  ],
+  "body": "Show the same moment from two camera positions, such as a waist-up view followed by a closer angle. Across the cut, keep each person’s clothing, hairstyle, jewellery and held objects unchanged. A sleeve rolled to the elbow stays rolled; a phone in the right hand remains there unless its transfer is shown. Match the direction and softness of window light, the shadows on faces, and the apparent time of day. Keep furniture, cups and background people in plausible positions. Speech and ambient sound should flow through the edit, while a walking step or hand gesture continues in the same direction."
+ },
+ {
+  "id": "style.gen.close-up-wide-shot-match",
+  "domain": "style",
+  "topic": "a close-up inserted into a wide scene: same hands, sleeves, rings and objects as in the wide shot",
+  "names": [
+   "لقطة قريبة داخل مشهد واسع",
+   "تطابق اليدين والكم",
+   "تفصيل داخل لقطة واسعة",
+   "كلوز اب مطابق",
+   "matching close-up",
+   "insert shot continuity",
+   "wide to close-up"
+  ],
+  "body": "Start with a wide view that clearly establishes who is handling the object, then insert a close-up from a believable position nearby. The close-up shows the same skin tone, fingernail length, sleeve fabric, cuff position and rings visible in the wide shot. Keep the object’s colour, scratches, label and orientation consistent; fingers should grip it with ordinary pressure, not pass through it. Use a 50–85 mm lens for the detail and retain the wide shot’s light direction and colour. A tap, wrapper crackle or cup clink should align with the visible hand movement before returning to the wider view."
+ },
+ {
+  "id": "style.gen.before-after-video-continuity",
+  "domain": "style",
+  "topic": "before and after in one video: what is allowed to change and what must not",
+  "names": [
+   "قبل وبعد بنفس الفيديو",
+   "مقارنة قبل وبعد",
+   "نتيجة قبل وبعد",
+   "before and after video",
+   "before-after comparison",
+   "same-scene transformation"
+  ],
+  "body": "Use matching framing to make the change easy to judge: the same wall edges, floor lines and camera height appear before and after. Only the intended subject changes, such as a cleaned counter, arranged shelves or a freshly pressed garment. People may move naturally and tools may be removed, but permanent room features, body proportions and unrelated objects must not quietly transform. If time passes, show it with a clear transition and keep the lighting plausible for the stated time of day. Match lens perspective and avoid changing exposure or colour grade merely to make the result look stronger."
+ },
+ {
+  "id": "style.gen.honest-phone-shop-advert",
+  "domain": "style",
+  "topic": "an honest shop advert filmed on a phone: daylight from the door, real shelves, no studio gloss",
+  "names": [
+   "إعلان محل بالموبايل",
+   "تصوير متجر بالموبايل",
+   "إعلان دكان حقيقي",
+   "اعلان محل واقعي",
+   "phone shop advert",
+   "real shop ad",
+   "daylight storefront ad"
+  ],
+  "body": "Film handheld at eye level with a phone’s main lens, moving slowly from the open door toward stocked shelves. Daylight from the entrance is brighter than the back of the shop, so labels near the door catch soft highlights while deeper aisles remain slightly dimmer. Show ordinary shelf spacing, price tags, packaging edges and a little everyday wear on the counter. The shopkeeper can greet a customer or point to an item without posing stiffly. Keep phone autofocus and exposure changes subtle. Include door sounds, quiet conversation and packaging rustle; avoid spotless studio reflections or shelves that rearrange between angles."
+ },
+ {
+  "id": "style.gen.realistic-restaurant-advert",
+  "domain": "style",
+  "topic": "a restaurant advert: steam, hands and faces, no impossible food towers",
+  "names": [
+   "إعلان مطعم واقعي",
+   "تصوير أكل بالمطعم",
+   "بخار الطعام الحقيقي",
+   "اعلان مطعم",
+   "restaurant advert",
+   "realistic food ad",
+   "restaurant food video"
+  ],
+  "body": "Show a meal at a believable serving size on a stable plate or tray, with ingredients supported by the dish rather than stacked into an impossible tower. Film a medium view of a server setting it down, then a close view of a diner’s hand lifting a bite; keep the same sleeves, tableware and portion between shots. Steam should rise lightly from genuinely hot food, curling and thinning as it meets the air, not pouring out in thick clouds. Warm practical lights can mix with window daylight. Include a brief natural face reaction, plate contact, cutlery and low restaurant conversation."
+ },
+ {
+  "id": "style.gen.realistic-clinic-pharmacy-advert",
+  "domain": "style",
+  "topic": "a clinic or pharmacy advert: clean light, calm colours, real staff, no stock-photo smiles",
+  "names": [
+   "إعلان عيادة واقعي",
+   "إعلان صيدلية واقعي",
+   "تصوير عيادة",
+   "اعلان صيدلية",
+   "clinic advert",
+   "pharmacy advert",
+   "real healthcare staff"
+  ],
+  "body": "Use soft, even ceiling light with gentle daylight where windows exist. Walls may be off-white or pale blue, with practical counters, labelled storage and clean work surfaces rather than an empty showroom. Show staff in appropriate everyday work clothes checking a label, speaking with a visitor or arranging a shelf; their expressions are attentive and relaxed, not fixed stock-photo grins. Frame at eye level on a 35–50 mm lens so faces and room proportions stay natural. Hands should handle boxes and paperwork accurately. Keep background sounds restrained: footsteps, a drawer closing and quiet conversation, without implying a medical outcome."
+ },
+ {
+  "id": "style.gen.real-person-clothing-advert",
+  "domain": "style",
+  "topic": "a clothing advert on a real person: natural walk, fabric movement, one location",
+  "names": [
+   "إعلان ملابس على شخص",
+   "تصوير ملابس بواقعية",
+   "مشية طبيعية للملابس",
+   "اعلان ازياء واقعي",
+   "real-person clothing ad",
+   "natural fashion walk",
+   "fabric movement ad"
+  ],
+  "body": "Follow one person walking at an ordinary pace through a single recognisable location, such as a shaded shopfront walkway. Use a 35–50 mm lens at roughly chest height, alternating a full-body view with a closer view of seams or cuffs without changing the setting. The garment keeps the same colour, fit and details throughout. Cotton creases at the elbows and knees; lighter fabric swings with each step and settles when the person stops. Hair and accessories remain consistent. Use the location’s daylight and natural shadows, with footsteps and soft fabric rustle instead of exaggerated runway movement or wind that affects nothing else."
+ },
+ {
+  "id": "style.gen.real-estate-walkthrough-2",
+  "domain": "style",
+  "topic": "a real-estate walkthrough: slow steady forward camera at eye height, doors opening ahead",
+  "names": [
+   "جولة عقارية",
+   "جولة بالبيت",
+   "تصوير عقار",
+   "عرض شقة",
+   "real estate walkthrough",
+   "property tour"
+  ],
+  "body": "A wide but not distorted 20–24 mm lens moves slowly forward at roughly 1.6 metres above the floor. Doorframes stay straight, and rooms reveal themselves in sequence rather than appearing to stretch. A door ahead swings open at hinge speed, usually pushed by a person just outside the frame; its edge briefly blocks part of the view. Window light brightens the far wall while hallways remain a little darker. Tile or wood floors show small reflections and ordinary scuffs. Footsteps, a latch click and faint room echo accompany the movement. This steady, eye-height view suits apartment listings and keeps the space believable."
+ },
+ {
+  "id": "style.gen.window-lit-product-demo",
+  "domain": "style",
+  "topic": "a product on a table by a window: soft side light, real shadow, a hand entering to use it",
+  "names": [
+   "تصوير منتج عالطاولة",
+   "منتج جنب الشباك",
+   "إعلان منتج بضوء طبيعي",
+   "window light product",
+   "tabletop product demo"
+  ],
+  "body": "Set the product on a plain wood, stone or laminate table close to a window. Daylight falls from one side, making a bright edge and a soft shadow that runs away from the window; the shadow stays attached to the product at its base. Use a 50 mm lens or a phone’s standard lens from a modest distance, with the whole object in focus. A hand enters from the side, touches it, then lifts, turns or operates it at a natural pace. The product’s weight affects the fingers and the sound: a light tap, a lid click or a quiet scrape across the tabletop. Suitable for a practical product ad."
+ },
+ {
+  "id": "style.gen.instagram-talking-head",
+  "domain": "style",
+  "topic": "a talking-head video for Instagram: eye-level phone, chest-up, a lived-in background",
+  "names": [
+   "فيديو كلام للانستغرام",
+   "تصوير ريلز كلام",
+   "احچي للكاميرا",
+   "حديث مباشر انستغرام",
+   "instagram talking head",
+   "phone talking head"
+  ],
+  "body": "A phone stands vertically at the speaker’s eye level, about an arm’s length or slightly farther away. Frame from mid-chest to just above the head, leaving enough room for natural hand gestures without cutting off the face. Soft window light or an ordinary room light shows skin texture; avoid an unnaturally blurred face or perfectly even illumination. The background is lived-in but not staged: a sofa, books, curtains or everyday objects remain recognisable. The speaker looks into the lens, blinks, breathes and shifts weight slightly while talking. Voice is close and clear, with faint room sound. This framing fits Instagram Reels and direct-to-camera explanations."
+ },
+ {
+  "id": "style.gen.shop-customer-testimonial",
+  "domain": "style",
+  "topic": "a customer testimonial: slightly off-centre, natural pauses, the shop behind out of focus",
+  "names": [
+   "رأي زبون",
+   "تجربة عميل بالمحل",
+   "شهادة زبون",
+   "زبون يحچي عن المحل",
+   "customer testimonial",
+   "shop testimonial"
+  ],
+  "body": "Place the customer a little to one side of a horizontal frame, chest-up, with their eyes near the upper third. A 50–85 mm lens, or a phone portrait lens used carefully, softens the shop behind them without turning shelves and the counter into a featureless blur. Light from the entrance or a large window shapes the face; practical shop lights remain visible in the background. The customer speaks in their own rhythm, pausing to remember a detail, glancing briefly aside, then returning their eyes to the interviewer near the camera. Low shop chatter, footsteps or a register sound sit beneath the voice. The result suits a credible local-business testimonial."
+ },
+ {
+  "id": "style.gen.iraqi-street-golden-hour",
+  "domain": "style",
+  "topic": "golden hour on an Iraqi street: low warm sun, long shadows, dust glowing",
+  "names": [
+   "غروب شارع عراقي",
+   "الساعة الذهبية بالعراق",
+   "شمس العصر بالشارع",
+   "ضوء الغروب ببغداد",
+   "iraqi street golden hour",
+   "iraq sunset street"
+  ],
+  "body": "The sun sits low beyond the street, warming cream plaster, concrete walls and shop shutters to amber while shaded sides stay cooler. People, parked cars and utility poles cast long, sharply directed shadows across the pavement. Fine dust becomes visible where it crosses a beam of backlight, especially behind a passing car, then drifts and disperses rather than filling every part of the scene. A 35 mm lens at pedestrian height catches ordinary movement: someone walking past a storefront, traffic slowing, a plastic bag stirring near the kerb. Tyres, distant conversation and a shop door are heard under the traffic. Keep faces and signs readable despite the bright sun."
+ },
+ {
+  "id": "style.gen.shop-lit-night-street",
+  "domain": "style",
+  "topic": "a night scene lit only by shop lights and passing cars",
+  "names": [
+   "شارع ليلي بضوء المحلات",
+   "ليل واضاءة محلات",
+   "سيارات تمر بالليل",
+   "مشهد ليلي تجاري",
+   "shop-lit night street",
+   "passing headlights night"
+  ],
+  "body": "After dark, shop windows, signs and doorway bulbs provide the fixed light. Their pools fall unevenly onto the pavement, leaving gaps of real darkness between storefronts. Passing headlights sweep across parked cars, faces and walls for a second, while red tail lights recede down the street. Use a fast 35 mm lens and hold exposure for the lit faces rather than making the sky grey or every corner bright. Reflections appear on glass and polished car panels; dry pavement stays mostly matte. People cross in and out of the light at normal walking speed. Traffic hum, footsteps and faint shop conversation make the street feel active without adding daylight-like fill."
+ },
+ {
+  "id": "style.gen.family-room-lamp-tv-light",
+  "domain": "style",
+  "topic": "indoor family scene under one ceiling lamp and a TV: mixed warm and cool light",
+  "names": [
+   "لمّة عائلية بالبيت",
+   "عائلة يم التلفزيون",
+   "ضوء لمبة وتلفزيون",
+   "مشهد عائلي داخلي",
+   "family room tv light",
+   "ceiling lamp tv scene"
+  ],
+  "body": "One ceiling lamp casts a warm pool over the centre of a living room, leaving corners dimmer and making soft downward shadows under brows and chairs. A television adds changing cool blue-white light to the faces turned towards it, but does not illuminate the whole room. Frame at seated eye height with a 35–50 mm lens: relatives occupy a sofa and nearby chairs, with ordinary cushions, a side table and cups within reach. Someone leans forward, another shifts position, and a hand briefly passes in front of the screen glow. Dialogue overlaps naturally with low TV audio, fabric rustle and cup sounds. Preserve both light colours rather than correcting them into one uniform white."
+ },
+ {
+  "id": "style.gen.baghdad-erbil-overcast-winter",
+  "domain": "style",
+  "topic": "overcast winter day in Baghdad or Erbil: soft shadowless light, wet streets, muted colours",
+  "names": [
+   "شتا بغداد غيم",
+   "شتاء اربيل غائم",
+   "شوارع مبللة بغداد",
+   "يوم غائم بالعراق",
+   "baghdad overcast winter",
+   "erbil wet streets"
+  ],
+  "body": "A thick grey sky spreads daylight evenly across a Baghdad or Erbil street. Faces, building fronts and parked cars have gentle shading but almost no distinct cast shadows. Rain-darkened asphalt appears charcoal, with shallow puddles reflecting broken shapes of windows, signs and passing vehicles; the entire road is not a perfect mirror. Concrete, stone and winter clothing read as muted beige, grey, brown and dark blue, with occasional brighter shop signs. A 35 mm lens at walking height follows pedestrians stepping around puddles and cars moving cautiously through wet patches. Tyres hiss on the road, shoes make small splashes, and traffic sounds slightly subdued beneath the damp winter air."
+ },
+ {
+  "id": "style.gen.children-eye-height-filming",
+  "domain": "style",
+  "topic": "filming children at their eye height instead of from above",
+  "names": [
+   "تصوير الأطفال بمستوى عيونهم",
+   "كاميرا بمستوى عين الطفل",
+   "تصوير الجهال بمستوى عيونهم",
+   "كامرة بگد عين الطفل",
+   "child eye level",
+   "kids eye height"
+  ],
+  "body": "Place the lens near the child’s eyes, usually about 80–120 cm above the floor, rather than tilting down from adult height. Use a 35–50 mm equivalent lens for natural facial proportions. A standing adult may be partly out of frame; chairs and door handles appear taller behind the child. Follow small steps with a gentle crouched or low-mounted camera move, allowing slight, believable changes in height. Keep the eyes sharp in soft window light or open shade, with skin tones intact. Record the child’s voice, footsteps and nearby room sounds at their natural levels. This framing suits family scenes and child-focused ads without making the child look miniature."
+ },
+ {
+  "id": "style.gen.food-from-diners-seat",
+  "domain": "style",
+  "topic": "food filmed from the diner's seat: the angle a person really sees it from",
+  "names": [
+   "تصوير الطعام من مقعد الجالس",
+   "زاوية نظر المتناول للطعام",
+   "تصوير الأكل من گعدة الزبون",
+   "زاوية الصحن من الگعدة",
+   "diner seat food angle",
+   "seated food view"
+  ],
+  "body": "Set the camera where a seated diner’s eyes would be, roughly 105–125 cm above the floor, looking down toward a table about 70–80 cm high. Use a 35–50 mm equivalent lens, not a top-down view or an extreme wide angle. The near rim of the plate looks larger than the far rim; a glass, cutlery and another diner’s hands can remain at the edges. Let a hand lift bread or a spoon at ordinary speed, with small shifts in focus. Side window light shows steam and food texture without unnatural shine. Keep real sounds of cutlery, conversation and the room beneath the action."
+ },
+ {
+  "id": "style.gen.handheld-wedding-entrance-among-guests",
+  "domain": "style",
+  "topic": "a wedding entrance filmed handheld among the guests",
+  "names": [
+   "دخول العروسين بين الضيوف",
+   "تصوير الزفة وسط المعازيم",
+   "دخول العرسان بين المعازيم",
+   "كامرة الزفة ويه المعازيم",
+   "handheld wedding entrance",
+   "wedding aisle among guests"
+  ],
+  "body": "Film from within the guests at shoulder height using a 24–35 mm equivalent lens. The couple approaches through a shifting gap between people; shoulders, raised phones and clapping hands briefly cross the foreground without hiding the entrance for long. Walk backward at the couple’s pace with controlled handheld sway and small footstep bumps, rather than smooth floating motion or violent shaking. Keep faces and clothing recognisable under the venue’s warm lamps and coloured celebration lights, allowing highlights from phones to flare briefly. Music, ululation where present, applause and overlapping voices should sound louder as the camera nears the group. This view fits a lively wedding film or social clip."
+ },
+ {
+  "id": "style.gen.sentence-length-face-push-in",
+  "domain": "style",
+  "topic": "a slow push-in on a face during one sentence, ending before the next cut",
+  "names": [
+   "اقتراب بطيء من الوجه أثناء جملة",
+   "دفع الكاميرا للوجه خلال الكلام",
+   "تقريب هادي للوجه بجملة",
+   "الكامرة تدنّي للوجه بالحچي",
+   "sentence length push in",
+   "slow face push in"
+  ],
+  "body": "Begin in a loose close-up and move the camera forward about 15–30 cm over one spoken sentence, using a 50–85 mm equivalent lens. Keep the eyes near the same position in frame as the face gradually grows larger; do not substitute a sudden zoom or distort the nose with a wide lens. Move smoothly enough that breathing and small head turns remain visible, with focus following the nearer eye. Soft, consistent light preserves skin texture, while room tone stays beneath the voice. Finish the movement on the sentence’s final words, hold only briefly, then cut. It suits a quiet dramatic or interview moment."
  }
 ]

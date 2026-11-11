@@ -3940,5 +3940,283 @@
    "airport luggage wheels"
   ],
   "body": "Travellers pull upright wheeled suitcases along a polished airport floor, gripping extended telescopic handles. Hard cases have smooth coloured shells; fabric ones show seams, pockets, and flexible sides. A case tilts toward its owner and follows slightly behind, its small wheels turning continuously and briefly rattling across tile joints or floor strips. The rolling sound is a steady, low rasp punctuated by sharper ticks that match each crossing; it stops when the case is lifted or parked. Handles and wheels may click softly as people change direction. Overhead light forms long reflections beneath the luggage, among footsteps, conversations, and distant announcements."
+ },
+ {
+  "id": "sound.gen.busy-iraqi-restaurant-lunch",
+  "domain": "sound",
+  "topic": "a busy Iraqi restaurant at lunch: plates, calls to the kitchen, chairs, a TV in the corner",
+  "names": [
+   "مطعم عراقي وقت الغداء",
+   "مطعم عراقي مزدحم",
+   "مطعم عراقي وقت الغدا",
+   "مطعم عراقي بالظهر",
+   "iraqi lunch restaurant",
+   "busy iraqi restaurant"
+  ],
+  "body": "At lunchtime, closely spaced tables hold metal trays, white plates, flatbread and small tea glasses. Servers weave between diners carrying several plates at once; ceramic rims clink sharply as they set them down. A server turns toward the kitchen hatch and calls an order in a raised voice, answered a moment later from behind the counter. Chair legs scrape briefly across tile as people sit or make room. Conversation and cutlery form a steady, uneven murmur. A small television mounted in a corner shows a bright picture, its speech audible only in gaps. Strong daylight enters through the front windows, mixing with overhead fluorescent light."
+ },
+ {
+  "id": "sound.gen.quiet-clinic-waiting-room",
+  "domain": "sound",
+  "topic": "a quiet clinic waiting room: air conditioner, a page turning, a name called",
+  "names": [
+   "غرفة انتظار عيادة",
+   "صالة انتظار العيادة",
+   "انتظار بالعيادة",
+   "انتظار بالدكتور",
+   "clinic waiting room",
+   "quiet clinic waiting"
+  ],
+  "body": "A few patients sit apart on linked plastic or metal chairs beneath pale walls and bright ceiling lights. The air conditioner produces a continuous low rush, sometimes followed by a soft click as its compressor cycles. Someone lifts a paper form or magazine; one page bends, then makes a brief dry rustle as it turns and settles. Shoes shift lightly on tile. From a doorway or reception desk, a staff member calls a patient's name clearly, at ordinary speaking volume. A person looks up, gathers their belongings and walks toward the door. The room returns to its quiet air-conditioner hum."
+ },
+ {
+  "id": "sound.gen.iraqi-barber-shop",
+  "domain": "sound",
+  "topic": "a barber shop: clippers, scissors, a radio, talk and a laugh",
+  "names": [
+   "صالون حلاقة رجالي",
+   "محل حلاقة رجالي",
+   "حلاق رجالي",
+   "حلاق بالمحل",
+   "barber shop",
+   "iraqi barber shop"
+  ],
+  "body": "A customer sits under a cape facing a large mirror, with combs and bottles arranged on the counter below it. The barber guides electric clippers up the side of the head; their close, even buzz changes pitch slightly when the blades meet thicker hair. He switches them off before trimming around the top with scissors, making quick, crisp snips beside the comb. A small radio plays speech or music at modest volume beneath a conversation between barber and customer. One remark draws a short laugh, then the talk resumes. Hair falls onto the cape and tiled floor under bright mirror lights."
+ },
+ {
+  "id": "sound.gen.iraqi-mobile-phone-shop",
+  "domain": "sound",
+  "topic": "a mobile shop: phone ringtones, a glass counter, tape and boxes",
+  "names": [
+   "محل هواتف محمولة",
+   "محل موبايلات",
+   "محل موبايل",
+   "دكان موبايلات",
+   "mobile phone shop",
+   "phone shop counter"
+  ],
+  "body": "Phones and cases stand in neat rows behind a glass counter, with chargers hanging on hooks and small cardboard boxes stacked along the wall. Ceiling lights reflect as long white streaks on the glass. A customer taps a handset to test it; a ringtone sounds in a clear, repeating electronic phrase, then stops when the screen is touched. Another phone may ring briefly from behind the counter. The shopkeeper pulls transparent tape from a dispenser with a rasp, presses it across a box seam and tears it off with a sharp rip. Voices stay close and conversational, with faint traffic entering whenever the shop door opens."
+ },
+ {
+  "id": "sound.gen.gold-souk",
+  "domain": "sound",
+  "topic": "a gold souk: small scales, bracelets on glass, bargaining voices",
+  "names": [
+   "سوق الذهب",
+   "سوق ذهب",
+   "محلات الذهب",
+   "سوك الذهب",
+   "gold souk",
+   "gold market jewelry"
+  ],
+  "body": "Narrow shopfronts glow with warm display lights reflected in glass cases and polished yellow-gold bracelets. A seller lays two bracelets on the counter; they touch the glass with small hard ticks, then slide a short distance when nudged into place. Behind the case, a compact digital scale sits level on a pad. The seller places one piece on its tray, waits for the numbers to settle, and lifts it away. Customer and seller discuss the price at close range, their voices rising and falling as they bargain without shouting. Nearby voices overlap softly, while footsteps and occasional case doors clicking open carry through the covered passage."
+ },
+ {
+  "id": "sound.gen.home-kitchen-cooking",
+  "domain": "sound",
+  "topic": "a home kitchen while cooking: pressure cooker hiss, knife on board, a spoon on a pot",
+  "names": [
+   "مطبخ البيت وقت الطبخ",
+   "طبخ في المطبخ",
+   "طبخ بالبيت",
+   "مطبخ البيت والقدر",
+   "home kitchen cooking",
+   "pressure cooker kitchen"
+  ],
+  "body": "On a stove, a metal pressure cooker sits over a steady flame or lit burner. As pressure builds, its valve releases a thin hiss that swells and eases in short bursts; a little steam is visible above the lid. Beside it, a cook cuts vegetables on a board, each downward knife stroke ending in a dry, firm tap. The cook pauses, checks a second pot and stirs it with a metal spoon, making a light scrape around the sides and a brighter clink against the rim. Tile and cabinets reflect the kitchen light. Running water or distant household voices may be heard behind the cooking sounds."
+ },
+ {
+  "id": "sound.gen.family-living-room-evening",
+  "domain": "sound",
+  "topic": "a family living room in the evening: TV low, tea glasses, children in another room",
+  "names": [
+   "غرفة معيشة عائلية مساء",
+   "غرفة الجلوس بالمساء",
+   "قعدة عائلية بالليل",
+   "لمة العائلة بالصالون",
+   "family living room evening",
+   "iraqi family living room"
+  ],
+  "body": "In the evening, family members sit on sofas around a low table holding small, narrow tea glasses and a tray. Warm lamps light their faces while the window beyond them is dark. The television is on at low volume: its speech and music are present but do not cover the conversation in the room. Someone sets a tea glass onto its saucer with a delicate clink, then lifts it again after a pause. From another room, children’s voices and quick footsteps rise briefly, softened by the doorway and distance. An adult answers them without leaving the sofa. Cushions shift and conversation continues at an easy indoor volume."
+ },
+ {
+  "id": "sound.gen.iraqi-summer-street-noon",
+  "domain": "sound",
+  "topic": "an Iraqi street at noon in summer: generators, far traffic, a street seller's call",
+  "names": [
+   "شارع عراقي بالصيف",
+   "شارع عراقي بالظهر",
+   "شارع بالعراق وقت الظهر",
+   "شارع عراقي بحر الصيف",
+   "iraqi summer street",
+   "iraqi street at noon"
+  ],
+  "body": "At summer noon, hard sunlight throws short shadows beneath parked cars, shop awnings and a street seller’s cart. The road looks pale and bright; people move between patches of shade. A nearby generator makes a continuous low mechanical drone with a faint vibrating rattle, while traffic farther down the street passes as softer engine hums and occasional tire noise. Beside the cart, the seller raises his head and calls out what he is selling. The call carries above the generator for a few seconds, then fades as he pauses or turns away. Heat shimmers above the road, but the awnings and shopfronts remain sharply defined."
+ },
+ {
+  "id": "sound.gen.wet-street-at-night",
+  "domain": "sound",
+  "topic": "a street after rain at night: tyres on wet asphalt, drips, few voices",
+  "names": [
+   "شارع بعد المطر",
+   "شارع مبلل بالليل",
+   "شارع بعد المطر بالليل",
+   "wet street at night",
+   "rainy street"
+  ],
+  "body": "Streetlights stretch into broken yellow and white reflections across dark, wet asphalt. Shallow puddles collect beside the kerb, while the middle of the road has a thinner sheen. As each car passes, its tyres make a broad, soft hiss that rises and falls with its approach and fades behind it; a tyre crossing a puddle adds a brief splash. Water drips irregularly from an awning or overhead cable onto the pavement, each small tap audible between cars. Two or three people walk past in jackets, their short conversation indistinct and quieter than the traffic. Building fronts reflect the light, but the open street gives the sounds little echo."
+ },
+ {
+  "id": "sound.gen.empty-wedding-hall-sound-check",
+  "domain": "sound",
+  "topic": "a wedding hall before the guests arrive: echo, chairs, a sound check",
+  "names": [
+   "قاعة عرس قبل الضيوف",
+   "قاعة زفاف فارغة",
+   "قاعة عرس فاضية",
+   "empty wedding hall",
+   "wedding hall sound check"
+  ],
+  "body": "Rows of dressed tables and closely spaced chairs fill a brightly lit wedding hall, with polished floor visible along the aisles. A worker straightens a chair; its legs scrape briefly, then knock against the floor as it is set down. With few people present, these small sounds carry across the room and return as a short, diffuse echo. Near the stage, a technician says a few words into a microphone. The voice jumps suddenly louder through the speakers, followed by a low hum or a short music clip, then stops while the level is adjusted. Staff cross the room arranging settings and flowers; their footsteps and quiet replies remain separate and easy to hear."
+ },
+ {
+  "id": "sound.gen.school-yard-at-break",
+  "domain": "sound",
+  "topic": "a school yard at break: many children's voices, a ball, a whistle",
+  "names": [
+   "ساحة مدرسة بالفسحة",
+   "ساحة المدرسة وقت الاستراحة",
+   "حوش المدرسة بالفرصة",
+   "school yard at break",
+   "school recess yard"
+  ],
+  "body": "In daylight, groups of children spread across a paved school yard, some running between painted lines while others stand talking near the walls. Their voices overlap into a lively, high-pitched wash, with individual calls briefly rising above it. A ball strikes the ground with a hollow, regular bounce as a child moves it forward; a kick sends a sharper thump across the yard, followed by quick footsteps. A supervisor lifts a whistle to their mouth, producing one short, piercing blast that cuts through the voices. Some children turn or slow down, and the chatter swells again. The open air softens echoes, though nearby school walls reflect a little sound."
+ },
+ {
+  "id": "sound.gen.city-driving-car-interior",
+  "domain": "sound",
+  "topic": "a car interior while driving in the city: engine low, indicator, air conditioner, a horn outside",
+  "names": [
+   "داخل سيارة بالمدينة",
+   "داخل السيارة وهي تمشي",
+   "جوة السيارة بالشارع",
+   "car interior driving",
+   "city drive inside car"
+  ],
+  "body": "Seen from a passenger seat, the dashboard frames a city street through the windscreen; shopfronts, parked cars and traffic lights pass at a moderate pace. The engine is a low, steady vibration that rises slightly when the driver accelerates and settles when the car slows. Air moves continuously from the vents with a soft, even rush. As the driver signals a turn, a small indicator arrow flashes in time with a dry, repeating tick inside the cabin. A horn sounds once from another vehicle outside, sharper and louder for a moment but muffled by the closed windows. Road noise stays underneath, changing gently with speed and surface."
+ },
+ {
+  "id": "sound.gen.metal-workshop-sounds",
+  "domain": "sound",
+  "topic": "a workshop: grinder bursts, hammer on metal, a compressor starting",
+  "names": [
+   "ورشة حدادة",
+   "ورشة حديد",
+   "محل حدادة",
+   "metal workshop",
+   "grinder workshop"
+  ],
+  "body": "Metal pieces lie on a heavy workbench in a workshop lit by daylight from the entrance and bright overhead lamps. A worker holds an angle grinder against an edge: its motor whines at a high pitch, then turns into a rough, louder rasp on contact, sometimes throwing a brief fan of orange sparks. The sound comes in short bursts as the tool lifts and touches down again. Nearby, another worker strikes metal with a hammer; each blow makes a sharp clang with a thinner ringing tail. A compressor starts after a pause with a low mechanical jolt and settles into a sustained rumble. Hard walls reflect the clangs, while workers move and speak around the benches."
+ },
+ {
+  "id": "sound.gen.cafe-terrace-sounds",
+  "domain": "sound",
+  "topic": "a cafe terrace: cups on saucers, a hookah bubbling, dominoes on a table",
+  "names": [
+   "تراس مقهى",
+   "قعدة كهوة برة",
+   "جلسة مقهى خارجية",
+   "cafe terrace",
+   "outdoor cafe dominoes"
+  ],
+  "body": "Small tables and closely set chairs occupy a cafe terrace under an awning or open evening sky. A server places a glass or cup on its saucer, making a light ceramic clink; a spoon adds a few finer taps as someone stirs. At one table, a person draws on a hookah hose, and water in the glass base answers with a low, uneven bubbling that lasts for the length of the draw. Players lay dominoes on a hard tabletop in quick, distinct clicks, then pause to consider the next move. Conversation stays close and relaxed, with passing street sounds behind it. The outdoor setting gives these sounds only a slight reflection from the cafe front."
+ },
+ {
+  "id": "sound.gen.market-stall-sounds",
+  "domain": "sound",
+  "topic": "a market stall: weighing scales, plastic bags, prices called out",
+  "names": [
+   "بسطة سوق",
+   "بسطية بالسوك",
+   "كشك سوق",
+   "market stall",
+   "produce stall"
+  ],
+  "body": "Crates of produce or stacked goods crowd the front of a market stall, with handwritten price cards visible above them. A seller sets a portion on a digital scale; it lands with a soft thud, and the display settles before the seller lifts it away. Thin plastic bags crackle sharply as one is pulled open, filled and twisted at the top. The seller calls out a price in a clear, projected voice, repeating it over nearby bargaining and footsteps rather than speaking into a microphone. Another customer steps forward while coins or notes change hands. Daylight reaches the stall from the walkway, and voices from neighbouring sellers blend into a busy, open-air background."
+ },
+ {
+  "id": "sound.gen.phone-call-on-speaker-in-room",
+  "domain": "sound",
+  "topic": "a phone call heard in the room: a small thin voice from the speaker, pauses while the other talks",
+  "names": [
+   "مكالمة على السبيكر",
+   "اتصال على مكبر الصوت",
+   "صوت مكالمة بالموبايل",
+   "phone call on speaker",
+   "speakerphone in room"
+  ],
+  "body": "A phone lies face-up on a table or rests in someone’s hand, its lit screen showing an active call. The person in the room speaks at an ordinary volume, close to the phone, then stops to listen. The other caller’s voice comes from the small speaker as a narrow, slightly tinny sound with little bass; it is clearly quieter than the nearby person. Short gaps separate replies, and an occasional faint digital roughness appears at the ends of words. When the room speaker talks again, the phone voice falls silent rather than continuing underneath. Soft room tone, a chair movement or a hand touching the table remains audible around the exchange."
+ },
+ {
+  "id": "sound.gen.recording-a-voice-message",
+  "domain": "sound",
+  "topic": "a voice message being recorded: close, a little breath, the room's small echo",
+  "names": [
+   "رسالة صوتية",
+   "تسجيل رسالة صوتية",
+   "مسج صوتي",
+   "فويس",
+   "voice message",
+   "voice note"
+  ],
+  "body": "A person holds a phone 15–25 cm from their mouth, its screen showing a recording timer or moving waveform. Their voice is close and clear, with soft breaths between phrases and slight changes in loudness as the phone shifts. A thumb may touch the screen before speech starts and after it ends. In a small, furnished room, the last part of a word has a faint, short reflection; it does not sound like a hall. Quiet air conditioning or distant household activity may sit underneath. The speaker pauses naturally, without breathing directly into the microphone throughout."
+ },
+ {
+  "id": "sound.gen.footsteps-on-four-surfaces",
+  "domain": "sound",
+  "topic": "footsteps on tiles, on carpet, on gravel and on wet pavement",
+  "names": [
+   "خطوات على البلاط",
+   "مشي عالكاشي",
+   "خطوات على السجاد",
+   "خطوات على الحصى",
+   "خطوات على شارع مبلل",
+   "tile footsteps",
+   "carpet footsteps",
+   "gravel footsteps",
+   "wet pavement footsteps"
+  ],
+  "body": "Each footfall lands when the shoe visibly takes weight, with alternating beats at a walking pace. On hard tile, soles make short, distinct taps that reflect off nearby walls. Carpet dulls the impact to a low thud, with a faint brush as the foot lifts. Gravel shifts under the sole in irregular, crisp crunches, sometimes continuing for a moment after the step. Wet pavement gives a flatter slap and a light splash if there is surface water, not a deep-water slosh. Shoe type and walking speed change the volume; a quiet hallway sounds different from an open street."
+ },
+ {
+  "id": "sound.gen.clothes-jewellery-and-accessory-sounds",
+  "domain": "sound",
+  "topic": "clothes and jewellery moving: fabric rustle, bangles, a bag strap, keys",
+  "names": [
+   "حفيف الملابس",
+   "صوت الأساور",
+   "خشخشة المفاتيح",
+   "صوت حزام الشنطة",
+   "fabric rustle",
+   "bangle clink",
+   "bag strap squeak",
+   "keys jingle"
+  ],
+  "body": "As someone turns or reaches, loose fabric folds and brushes against itself in soft, uneven swishes. A sleeve sliding over the wrist may set metal bangles touching with brief, bright clinks; they fall quiet when the arm rests. A shoulder bag strap shifts against clothing with a muted scrape, or a small creak if its material is stiff. Keys hanging from the bag or held in a hand give a sharper, irregular jingle in time with steps and gestures. These sounds overlap lightly rather than forming a constant rattle. Their volume depends on how close the person is to the microphone."
+ },
+ {
+  "id": "sound.gen.polite-eating-and-drinking-sounds",
+  "domain": "sound",
+  "topic": "eating and drinking sounds kept polite: a sip, a glass set down, cutlery on a plate",
+  "names": [
+   "صوت رشفة",
+   "صوت وضع الكاسة",
+   "صوت الملعقة بالصحن",
+   "رنة الملاعق والصحون",
+   "sip sound",
+   "glass set down",
+   "cutlery on plate"
+  ],
+  "body": "A person lifts a glass to their lips and takes a small sip; the sound is brief and quiet, with little or no audible swallowing. When the glass returns to a hard tabletop, its base makes one light clink or dull tap, depending on the surface. A fork or spoon touching a ceramic plate makes a thin, short click or scrape as food is gathered, not repeated loud clanging. Movements are unhurried and match each sound precisely. Nearby conversation, a chair shifting, or low restaurant ambience may surround the moment while the eating sounds remain close and restrained."
  }
 ]
