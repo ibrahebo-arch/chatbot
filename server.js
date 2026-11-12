@@ -553,10 +553,13 @@ function orderView(o, payment = null) {
   return view;
 }
 
-// Payment confirmed by Wayl (payments.check): notify, then in the test stage run the automatic steps.
+// Payment confirmed by Wayl (payments.check): notify, then – with PAID_AUTO=1 – make the video at once (paid.js: no
+// confirmation from the studio, the video reaches the customer's order page); in the test stage the demo steps run.
+const paid = require("./paid");
 payments.setOnPaid(async (o) => {
   const p = await payments.latestPayment(o.request_id);
   if (tg.configured) await tg.announcePaid(o, p).catch((e) => console.error("telegram paid:", e.message));
+  if (!DEMO && paid.ON()) paid.start(o.request_id);
   if (DEMO) runDemo(o.request_id, Promise.resolve()).catch((e) => console.error("demo:", e.message));
 });
 
@@ -1092,6 +1095,7 @@ async function start() {
   app.listen(PORT, async () => {
     console.log(`VI Iraq running → http://localhost:${PORT}`);
     console.log(`AI: ${OPENAI_API_KEY ? `on (${OPENAI_MODEL})` : "OFF (set OPENAI_API_KEY in .env)"}`);
+    paid.resume().then((n) => console.log(`Paid orders: ${paid.ON() ? `made automatically after payment${n ? ` (${n} resumed)` : ""}` : "wait for the studio (PAID_AUTO=1 makes them automatically)"}`)).catch((e) => console.error("paid resume:", e.message));
     console.log(`Storage: ${storage.mode}${storage.mode === "off" ? " – set R2_* to accept uploads" : ""} · AUTO_GENERATE=${orders.autoGenerate()} · DEMO_DELIVERY=${DEMO}`);
     const m = await mail.check();
     console.log(`Mail: ${m.ok ? `on (${mail.PROVIDER}: ${mail.MAIL_FROM} → ${mail.MAIL_TO})` : `OFF – ${m.error}`}`);

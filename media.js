@@ -192,9 +192,9 @@ async function realism(buf, refs = []) {
 // animated from it. Steadier faces, places and objects than text-to-video.
 const startFrameOn = () => clean(process.env.VIDEO_START_FRAME) === "1" && openaiReady;
 const frameCost = (hasRefs, style) => (hasRefs ? COST.openaiEdit : COST.openaiImage) + (style === "realistic" && realismOn() ? COST.realism : 0);
-async function startFrame(prompt, style, refs = []) {
+async function startFrame(prompt, style, refs = [], { size = "1536x1024" } = {}) {
   const text = `The first frame of a video – one still photo of its opening moment: ${prompt}`;
-  const buf = refs.length ? await openaiImageEdit(text, style, refs, { size: "1536x1024" }) : await openaiImage(text, style, { size: "1536x1024" });
+  const buf = refs.length ? await openaiImageEdit(text, style, refs, { size }) : await openaiImage(text, style, { size });
   return style === "realistic" && realismOn() ? realism(buf, refs) : buf;
 }
 
@@ -287,8 +287,33 @@ async function poll({ model, provider_job_id: id, kind }) {
   return out.video?.url ? { status: "done", url: out.video.url } : { status: "failed", error: "no video returned" };
 }
 
+/**
+ * One video clip made and waited for (paid orders, paid.js): the premium model, 5 or 10 seconds, from a start
+ * picture (its shape decides the frame) or from text. Returns { url, cost }; throws when the provider refuses or
+ * does not finish in time.
+ */
+async function clip({ prompt, imageUrl = null, negative = "", seconds = 10, aspect = "16:9" }) {
+  if (!configured) throw new Error("FAL_KEY is not set");
+  const model = imageUrl ? PREMIUM.i2v : PREMIUM.video;
+  const secs = seconds <= 5 ? 5 : 10;
+  const input = { prompt: String(prompt).slice(0, Number(process.env.FAL_MAX_PROMPT_CHARS) || 1900), duration: String(secs), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
+    negative_prompt: [negative, "blur, distortion, low quality, warped shapes, flicker, watermark"].filter(Boolean).join(", ").slice(0, 900),
+    ...(imageUrl ? { start_image_url: imageUrl } : { aspect_ratio: aspect }) };
+  const r = await fal("POST", model, input);
+  if (!r.request_id) throw new Error("fal: no request_id");
+  const job = { model, provider_job_id: r.request_id, kind: "video" };
+  const until = Date.now() + (Number(process.env.PAID_CLIP_TIMEOUT_MS) || 20 * 60000);
+  while (Date.now() < until) {
+    await new Promise((s) => setTimeout(s, Number(process.env.PAID_POLL_MS) || 6000));
+    const p = await poll(job);
+    if (p.status === "done") return { url: p.url, cost: (Number(process.env.FAL_PREMIUM_COST_PER_SEC) || 0.168) * secs };
+    if (p.status === "failed") throw new Error(`clip failed: ${p.error}`);
+  }
+  throw new Error("clip not finished in time");
+}
+
 module.exports = {
-  configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
+  clip, configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
   realism, realismOn, startFrame, startFrameOn, frameCost, REALISM_MODEL,
   resetFal: () => { falDownUntil = 0; },
   submit, poll, MODELS, COST, VIDEO_SECONDS, STYLE, PREMIUM, videoCost,
