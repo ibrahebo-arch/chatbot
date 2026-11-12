@@ -193,6 +193,8 @@ async function plan(conversation, opts) {
   const lib = await library.note(conversation, o.kind === "video" ? "video" : "image");
   o.libraryNote = lib.text;
   const own = conversation.filter((m) => m.role === "user").map((m) => m.content).join("\n").slice(0, 900);
+  // a reel / TikTok / story: what holds viewers in the first seconds, from the analysed trending short videos (reels.js)
+  if (o.kind === "video") o.libraryNote = (o.libraryNote || "") + (await require("./reels").note(own)).text;
   if (!OPENAI_KEY) return { plan: applyVoice({ prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, o), by: "customer" };
   const d = await draft(conversation, o);
   if (!d) return { plan: applyVoice({ prompt: own, negative: "", speech: null, onScreenText: null, shots: [] }, o), by: "customer" };

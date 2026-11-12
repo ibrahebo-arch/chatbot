@@ -297,8 +297,10 @@ async function briefLibrary(full, messages) {
     const own = [full.description, ...(messages || []).filter((m) => m.role === "user").map((m) => (typeof m.content === "string" ? m.content : ""))].filter(Boolean).join("\n");
     const r = await library.retrieve(own, "video");
     const list = [...r.matches, ...(r.related || [])];
-    if (!list.length) return "";
-    return `## تفاصيل الواقعية (مكتبة VI Iraq)\nمعرفة من مكتبتنا تخص هذا المشهد – تُنسخ داخل وصف الفيديو (بالإنجليزية) حتى يطلع حقيقي. قواعد الأساس (ثبات الأشياء والملابس، الوجوه الحية، الفيزياء، الصوت) تُطبّق دائماً.\n\n${list.map((e) => `- **${e.names[0] || e.id}** — ${e.body}`).join("\n")}\n\n`;
+    const reel = (await require("./reels").note(own)).text.trim();
+    const social = reel ? `## توجيه الريلز (ذكاء السوشال ميديا)\nكيف نمسك المشاهد من أول ثانية – من تحليل الفيديوهات القصيرة الرائجة بالعراق والمنطقة:\n\n${reel}\n\n` : "";
+    if (!list.length) return social;
+    return social + `## تفاصيل الواقعية (مكتبة VI Iraq)\nمعرفة من مكتبتنا تخص هذا المشهد – تُنسخ داخل وصف الفيديو (بالإنجليزية) حتى يطلع حقيقي. قواعد الأساس (ثبات الأشياء والملابس، الوجوه الحية، الفيزياء، الصوت) تُطبّق دائماً.\n\n${list.map((e) => `- **${e.names[0] || e.id}** — ${e.body}`).join("\n")}\n\n`;
   } catch (e) { console.error("brief library:", e.message); return ""; }
 }
 

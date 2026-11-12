@@ -36,6 +36,7 @@ async function data(db, { fresh = false } = {}) {
     q("SELECT to_char(studied_at AT TIME ZONE 'Asia/Baghdad', 'YYYY-MM-DD') AS d, count(*)::int AS n FROM trained_videos WHERE status='studied' GROUP BY 1 ORDER BY 1"),
     q("SELECT to_char(reviewed_at AT TIME ZONE 'Asia/Baghdad', 'YYYY-MM-DD') AS d, count(*)::int AS n FROM trained_candidates WHERE status='approved' AND reviewed_at IS NOT NULL GROUP BY 1 ORDER BY 1"),
   ]);
+  const reelRows = await q("SELECT id, title, url, region, kind, duration_sec, views, likes, strength, pattern FROM reel_patterns ORDER BY strength DESC LIMIT 800").catch(() => []);
   const live = lib.filter((e) => e.enabled);
   const vById = new Map(vids.map((v) => [v.id, v]));
   const perVideo = new Map(); const clipOf = new Map();
@@ -81,6 +82,8 @@ async function data(db, { fresh = false } = {}) {
       clipsToday: days.find((x) => x.d === today)?.clips || 0, addedToday: days.find((x) => x.d === today)?.added || 0,
     },
     domains, areas, sources, days,
+    // the social intelligence layer: how trending short videos catch and keep viewers
+    reels: reelRows.map((r) => ({ title: String(r.title).slice(0, 90), url: /^https:\/\//.test(r.url || "") ? r.url : "", region: r.region || "", kind: r.kind || "", secs: Math.round(r.duration_sec), views: Number(r.views) || 0, hook: `${r.pattern.hook?.type || ""}: ${r.pattern.hook?.visual || ""}`.slice(0, 200), cuts: r.pattern.cuts || 0, pace: r.pattern.pace || "", keeps: String(r.pattern.retention || "").slice(0, 220) })),
     // every entry learned from footage, newest first
     entries: learned.sort((a, b) => b.updated_at - a.updated_at).map((e) => { const v = vById.get(clipOf.get(e.id)); return { id: e.id, domain: e.domain, names: e.names.slice(0, 4), body: e.body, uses: e.uses || 0, at: iraq(e.updated_at), clip: v ? String(v.title).slice(0, 90) : "", src: v ? v.source : "" }; }),
     // every clip the model looked at, newest first
@@ -137,7 +140,7 @@ tr:hover td{background:#121a26} td .ar{direction:rtl;unicode-bidi:plaintext} .pi
  <div id="tip"></div><div id="err">This picture needs WebGL, which this browser has switched off. The tables below still work.</div></div>
 <section><h2>Day by day</h2><p>Clips studied (teal) and entries added to the library (gold) per Iraqi day. Click a day to open its report.</p><div id="days"></div></section>
 <section id="learn"><h2>What was learned and what was studied</h2><p id="sum"></p>
- <div class="tabs"><button id="t-entries" class="on">Entries learned</button><button id="t-clips">Clips studied</button><button id="t-areas">Areas of real life</button><button id="t-sources">Sources</button></div>
+ <div class="tabs"><button id="t-entries" class="on">Entries learned</button><button id="t-clips">Clips studied</button><button id="t-areas">Areas of real life</button><button id="t-sources">Sources</button><button id="t-reels">Reel patterns</button></div>
  <input id="q" placeholder="Filter the table… (Arabic or English)"><span id="count"></span>
  <div class="scroll"><table><thead></thead><tbody></tbody></table></div></section>
 <script src="/vendor/three.min.js?v=128"></script><script src="/admin-map.js?v=${v}"></script></body></html>`;

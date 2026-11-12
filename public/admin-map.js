@@ -35,6 +35,7 @@
     entries: { head: ["Added", "Domain", "Names", "What it teaches", "Used", "Learned from"], rows: () => D.entries.map((e) => [e.at, e.domain, e.names.join(" · "), e.body, e.uses, (e.src ? e.src + ": " : "") + e.clip]), num: [4], wide: [3] },
     clips: { head: ["When", "Source", "Clip", "Search", "Value", "Added", "Refused", "Result"], rows: () => D.clips.map((c) => [c.at, c.src, c.title, c.q, c.score == null ? "" : c.score, c.added, c.rejected, c.status]), num: [4, 5, 6], wide: [2], link: (i) => D.clips[i].url },
     areas: { head: ["Area of real life", "Clips studied", "Searches covered", "Most studied searches"], rows: () => D.areas.map((a) => [a.name, a.clips, a.covered + " / " + a.searches, a.top.map((x) => x.q + " (" + x.n + ")").join(" · ")]), num: [1], wide: [3] },
+    reels: { head: ["Views", "Seconds", "Video", "Region", "Hook (first seconds)", "Cuts", "Pace", "What keeps viewers"], rows: () => (D.reels || []).map((r) => [r.views, r.secs, r.title, r.region + " · " + r.kind, r.hook, r.cuts, r.pace, r.keeps]), num: [0, 1, 5], wide: [4, 7], link: (i) => (D.reels || [])[i].url },
     sources: { head: ["Source", "Kind", "Clips studied", "Failed", "Minutes", "Value", "Entries in the library"], rows: () => D.sources.map((s) => [s.name, s.kind, s.studied || "", s.failed || "", s.minutes || "", s.avg || "", s.entries]), num: [2, 3, 4, 5, 6] },
   };
   function table() {

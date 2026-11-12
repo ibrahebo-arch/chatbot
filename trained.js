@@ -120,7 +120,7 @@ async function fetchTrends() {
             if (NOT_REAL_YT.has(String(v.snippet?.categoryId)) || NOT_REAL.test(words) || RELIGIOUS.test(words)) continue;
             const views = Number(v.statistics?.viewCount) || 0;
             all.push({ source: "youtube", region: geo, topic: clean(v.snippet?.title).slice(0, 160), traffic: views ? `${views.toLocaleString("en-US")} views` : "", news: (v.snippet?.tags || []).slice(0, 6),
-              video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, kind: YT_CATEGORIES[String(v.snippet?.categoryId)] || label,
+              video: { id: clean(v.id).slice(0, 20), channel: clean(v.snippet?.channelTitle).slice(0, 80), views, likes: Number(v.statistics?.likeCount) || 0, comments: Number(v.statistics?.commentCount) || 0, kind: YT_CATEGORIES[String(v.snippet?.categoryId)] || label,
                 secs: isoSeconds(v.contentDetails?.duration), about: clean(v.snippet?.description).replace(/https?:\/\/\S+/g, "").slice(0, 300),
                 thumb: clean(v.snippet?.thumbnails?.medium?.url || v.snippet?.thumbnails?.default?.url) } });
           }
@@ -650,7 +650,8 @@ async function geminiStudy(v, videoId) {
 4. reality: concrete reusable facts that make it real. ai_mistakes: what AI video generators usually get wrong for this kind of scene.
 5. score: 0–10, how much it teaches about real life (0 if not real life).
 6. entries: ${ENTRY_RULES}
-Return JSON only: {"real_life":true|false,"score":0-10,"timeline":[...],"sound":{...},"reality":["..."],"ai_mistakes":["..."],"entries":[...]}`;
+7. reel: how this video catches and keeps its viewers (for the studio's reel director) – ${require("./reels").REEL_SHAPE}
+Return JSON only: {"real_life":true|false,"score":0-10,"timeline":[...],"sound":{...},"reality":["..."],"ai_mistakes":["..."],"entries":[...],"reel":{...}}`;
   const d = await geminiCall({ contents: [{ parts: [{ file_data: { file_uri: `https://www.youtube.com/watch?v=${videoId}` } }, { text: prompt }] }], generationConfig: { responseMimeType: "application/json" } });
   const txt = (d.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
   const out = JSON.parse(txt.slice(txt.indexOf("{"), txt.lastIndexOf("}") + 1));
@@ -662,6 +663,7 @@ Return JSON only: {"real_life":true|false,"score":0-10,"timeline":[...],"sound":
     sound: parseSound({ has_sound: true, layers: out.sound?.layers, voices: out.sound?.voices, lesson: "" }),
     reality: list(out.reality, 12), ai_mistakes: list(out.ai_mistakes, 10),
     entries: real ? (Array.isArray(out.entries) ? out.entries : []).slice(0, 3) : [],
+    reel: real && out.reel && typeof out.reel === "object" ? out.reel : null,
   };
 }
 
@@ -692,6 +694,8 @@ async function studyYouTubeGemini(db, { videos = Number(process.env.TRAIN_YT_GEM
       await db.query("UPDATE trained_videos SET status='studied', score=$2, check_result=$3, studied_at=now(), error=NULL WHERE id=$1",
         [v.id, g.score, { reality: g.reality, ai_mistakes: g.ai_mistakes, sound: g.sound, timeline: g.timeline, thumb: x.thumb, region: x.region, kind: x.kind }]);
       report.studied++;
+      // the same watching also feeds the social intelligence layer: how the video catches and keeps viewers (reels.js)
+      if (g.reel) await require("./reels").save({ id: v.id, source: "youtube", region: x.region, kind: x.kind, title: x.title, url: v.page_url, secs: x.secs, views: x.views, likes: x.likes, comments: x.comments }, g.reel).catch((e) => log(`reel pattern ${v.id}: ${e.message}`));
       if (g.real && g.score >= 5) await saveDrafts(db, v, g.entries, known, report);
       log(`studied ${v.id} [${x.region} ${x.kind}] "${x.title.slice(0, 60)}" score ${g.score}`);
     } catch (e) {

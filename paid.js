@@ -127,6 +127,7 @@ async function make(requestId) {
   const lens = partsFor(opt.seconds);
   const lang = langOf(opt.language), withVoice = lang !== "none" && opt.voice?.mode !== "none";
   const lib = await library.note(conversation, "video").catch(() => ({ text: "", ids: [] }));
+  lib.text = (lib.text || "") + (await require("./reels").note(`${clean(opt.description)}\n${talk}`)).text; // a reel: how to hold viewers
   const plan = await storyboard(o, talk, lens, lib, safe, withVoice, lang);
   await orders.addEvent(null, id, "auto_plan", { parts: lens.parts, aspect: plan.aspect, safe: safe.risky ? safe.why : null, library: (lib.ids || []).length });
   log(id, `plan: ${lens.parts.join("+")} s, ${plan.aspect}, ${photos.length} photo(s)${safe.risky ? ", safe version" : ""}`);
