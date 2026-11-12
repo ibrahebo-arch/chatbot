@@ -102,7 +102,7 @@ async function backfill({ limit = 40, log = console.log } = {}) {
  * pattern. Numbers the owner knows can stand in a text file beside the video: "views: 120000 likes: 9000".
  * Nothing is fetched from the internet here, and the inbox deletes the video after the study.
  */
-async function fromFile(file, { id, title, secs = 0, note = "" }) {
+async function fromFile(file, { id, title, secs = 0, note = "", source = "inbox", url = null, kind = "Own reel" }) {
   const fs = require("fs"), os = require("os"), path = require("path"), watermark = require("./watermark"), voices = require("./voices");
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "reel-file-"));
   try {
@@ -126,7 +126,7 @@ async function fromFile(file, { id, title, secs = 0, note = "" }) {
       `VIDEO: "${title}" · ${Math.round(secs)} s · scene changes counted: ${cuts}\nframes at seconds: ${shots.map((s) => s.t.toFixed(1)).join(", ")}\nspoken words: ${said || "(none heard)"}`, 3000, shots.map((s) => s.buf));
     const reel = { ...(out.reel || {}), cuts: Number(out.reel?.cuts) || cuts, transcript: clean(out.reel?.transcript) || said };
     const n = (k) => Number((new RegExp(`${k}\\s*[:=]\\s*([\\d,.]+)`, "i").exec(note) || [])[1]?.replace(/[,.]/g, "")) || 0;
-    return save({ id, source: "inbox", region: "IQ", kind: "Own reel", title, secs, views: n("views") || n("مشاهدات"), likes: n("likes") || n("لايكات"), comments: n("comments") }, reel);
+    return save({ id, source, url, region: "IQ", kind, title, secs, views: n("views") || n("مشاهدات"), likes: n("likes") || n("لايكات"), comments: n("comments") }, reel);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 }
 
@@ -197,4 +197,4 @@ The shots cover 0 to ${seconds} seconds without gaps.`,
   return { ...out, patterns: near.map((p) => ({ id: p.id, title: p.title, views: Number(p.views) || 0 })) };
 }
 
-module.exports = { isReel, normalise, strength, summary, save, fromFile, backfill, all, nearest, note, direct, REEL_SHAPE, HOOKS };
+module.exports = { ask, isReel, normalise, strength, summary, save, fromFile, backfill, all, nearest, note, direct, REEL_SHAPE, HOOKS };

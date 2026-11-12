@@ -772,6 +772,10 @@ function pruneStorage({ now = Date.now() } = {}) {
   sweep(path.join(base, "reports"), Number(process.env.TRAIN_KEEP_REPORT_DAYS) || 30);
   sweep(path.join(base, "sheets"), Number(process.env.TRAIN_KEEP_SHEET_DAYS) || 90);
   if (clean(process.env.TRAIN_INBOX_KEEP) !== "1") sweep(path.join(INBOX(), "done"), 0);
+  // a downloaded or dropped-in video never stays longer than 5 days (SOCIAL_KEEP_DAYS), studied or not
+  const keepDays = Number(process.env.SOCIAL_KEEP_DAYS) || 5, isVideo = (f) => VIDEO_EXT.test(f) || /\.txt$/i.test(f);
+  sweep(INBOX(), keepDays, isVideo); sweep(path.join(INBOX(), "done"), keepDays, isVideo);
+  sweep(path.join(clean(process.env.STORAGE_DIR) || "/var/lib/vi-iraq/storage", "social"), keepDays);
   for (const f of fs.existsSync(os.tmpdir()) ? fs.readdirSync(os.tmpdir()) : []) {
     if (!/^trained-/.test(f)) continue;
     const full = path.join(os.tmpdir(), f);
