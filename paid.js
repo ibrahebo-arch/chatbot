@@ -137,6 +137,12 @@ async function make(requestId) {
     // the opening picture (from the customer's photos when given), then the parts, each from the last frame before
     let frame = await media.startFrame(`${plan.look} ${plan.first}`, plan.style, photos, { size: plan.aspect === "9:16" ? "1024x1536" : "1536x1024" });
     cost += media.frameCost(photos.length > 0, plan.style);
+    // the picture model gives 2:3 / 3:2 – cut to the real video shape (9:16 or 16:9), or the whole video keeps the wrong one
+    try {
+      const raw = path.join(dir, "frame-raw.jpg"), cut = path.join(dir, "frame.jpg"); fs.writeFileSync(raw, frame);
+      await ff(["-i", raw, "-vf", plan.aspect === "9:16" ? "crop=trunc(ih*9/32)*2:ih" : "crop=iw:trunc(iw*9/32)*2", "-q:v", "2", cut]);
+      frame = fs.readFileSync(cut);
+    } catch (e) { console.error(`paid ${id}: frame not cut (${String(e.message).slice(0, 100)})`); }
     const files = [];
     for (const [i, secs] of lens.parts.entries()) {
       const prompt = `${plan.look} ${plan.parts[i]}`;
@@ -166,7 +172,8 @@ async function make(requestId) {
     }
     // join, cut to the ordered length, scale to the ordered quality
     const q = [480, 720, 1080].includes(Number(opt.quality)) ? Number(opt.quality) : 720;
-    const scale = plan.aspect === "9:16" ? `scale=${q}:-2:flags=lanczos` : `scale=-2:${q}:flags=lanczos`;
+    const long = Math.round((q * 16) / 9 / 2) * 2, [W, H] = plan.aspect === "9:16" ? [q, long] : [long, q]; // 480/720/1080 = the short side
+    const scale = `scale=${W}:${H}:force_original_aspect_ratio=increase:flags=lanczos,crop=${W}:${H},setsar=1`;
     const joined = path.join(dir, "joined.mp4");
     const n = files.length, inputs = files.flatMap((f) => ["-i", f]);
     await ff([...inputs, "-filter_complex", `${files.map((_, i) => `[${i}:v:0][${i}:a:0]`).join("")}concat=n=${n}:v=1:a=1[v0][a];[v0]${scale}[v]`, "-map", "[v]", "-map", "[a]", "-t", String(lens.total), "-c:v", "libx264", "-crf", "19", "-preset", "slow", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", "-map_metadata", "-1", joined], 900000);
@@ -179,7 +186,7 @@ async function make(requestId) {
           const spoken = await voices.speak(voice, { text: plan.narration.text, lang, tone: plan.narration.tone });
           const fit = await voices.fit(spoken, Math.max(3, lens.total - 0.6), true).catch(() => ({ mp3: spoken }));
           const mp3 = path.join(dir, "voice.mp3"), mixed = path.join(dir, "mixed.mp4"); fs.writeFileSync(mp3, fit.mp3);
-          await ff(["-i", joined, "-i", mp3, "-filter_complex", "[0:a]volume=0.35[bg];[1:a]adelay=400|400,volume=1.15[vo];[bg][vo]amix=inputs=2:duration=first:normalize=0[a]", "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", mixed]);
+          await ff(["-i", joined, "-i", mp3, "-filter_complex", "[0:a]volume=0.4[bg];[1:a]adelay=400|400,volume=1.9[vo];[bg][vo]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.94[a]", "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", mixed]);
           final = mixed;
         }
       } catch (e) { console.error(`paid ${id}: voice-over failed (${String(e.message).slice(0, 120)}) – video with its own sound`); }
