@@ -106,7 +106,7 @@ Exactly ${lens.parts.length} part(s). Follow the customer's idea and words; writ
   return { aspect: v.aspect === "9:16" ? "9:16" : "16:9", style: v.style === "cartoon" ? "cartoon" : "realistic", look: clean(v.look), first: clean(v.first_frame), parts: parts.slice(0, lens.parts.length), narration: n, negative: clean(v.negative).slice(0, 400) };
 }
 
-const ff = async (args, ms = 300000) => { const r = await watermark.run(["-y", ...args], ms); if (r.code !== 0) throw new Error(`ffmpeg: ${r.stderr.slice(-300)}`); };
+const ff = async (args, ms = 300000) => { const r = await watermark.run(["-y", ...args], ms); if (r.code !== 0) throw new Error(`ffmpeg: ${(r.stderr.split("\n").filter((l) => /error|invalid|not match|unable|failed|no such/i.test(l)).slice(0, 4).join(" | ") || r.stderr.slice(-300)).slice(0, 600)}`); };
 
 /** Makes and delivers one paid order. Throws on failure (the caller puts the order back to review). */
 async function make(requestId) {
@@ -132,7 +132,7 @@ async function make(requestId) {
   log(id, `plan: ${lens.parts.join("+")} s, ${plan.aspect}, ${photos.length} photo(s)${safe.risky ? ", safe version" : ""}`);
 
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "paid-"));
-  let cost = 0;
+  let cost = 0, canvas = null;
   try {
     // the opening picture (from the customer's photos when given), then the parts, each from the last frame before
     let frame = await media.startFrame(`${plan.look} ${plan.first}`, plan.style, photos, { size: plan.aspect === "9:16" ? "1024x1536" : "1536x1024" });
@@ -149,9 +149,13 @@ async function make(requestId) {
       if (!media.isProviderUrl(c.url)) throw new Error("unexpected result address");
       const r = await fetch(c.url, { signal: AbortSignal.timeout(180000) }); if (!r.ok) throw new Error(`download ${r.status}`);
       const file = path.join(dir, `p${i}.mp4`); fs.writeFileSync(file, Buffer.from(await r.arrayBuffer()));
-      // every part with the same shape and a sound track, so they join cleanly
+      // every part in the same frame (the first part's size – the model may return a few pixels more or less), the
+      // same rate and a sound track, so they join cleanly
       const info = await watermark.probe(file), norm = path.join(dir, `n${i}.mp4`);
-      await ff(["-i", file, ...(info.hasAudio ? [] : ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]), "-map", "0:v:0", "-map", info.hasAudio ? "0:a:0" : "1:a:0", "-shortest", "-r", "24", "-c:v", "libx264", "-crf", "17", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "aac", "-ar", "44100", "-ac", "2", norm]);
+      if (!canvas) canvas = { w: (info.width || (plan.aspect === "9:16" ? 1080 : 1920)) & ~1, h: (info.height || (plan.aspect === "9:16" ? 1920 : 1080)) & ~1 };
+      await ff(["-i", file, ...(info.hasAudio ? [] : ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]), "-map", "0:v:0", "-map", info.hasAudio ? "0:a:0" : "1:a:0", "-shortest",
+        "-vf", `scale=${canvas.w}:${canvas.h}:force_original_aspect_ratio=increase:flags=lanczos,crop=${canvas.w}:${canvas.h},setsar=1,fps=24`, "-af", "aresample=44100:async=1",
+        "-c:v", "libx264", "-crf", "17", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "aac", "-ar", "44100", "-ac", "2", norm]);
       files.push(norm);
       if (i < lens.parts.length - 1) {
         const last = path.join(dir, `f${i}.jpg`);
@@ -186,6 +190,11 @@ async function make(requestId) {
     const done = await require("./telegram").deliver(id, { key });
     log(id, `delivered (${lens.total} s, ${n} part(s), ~$${cost.toFixed(2)})`);
     return { delivered: done.status, cost };
+  } catch (e) {
+    // PAID_DEBUG_DIR keeps the work files of a failed order, so the fault can be found without paying for it again
+    const keep = clean(process.env.PAID_DEBUG_DIR);
+    if (keep) { try { fs.cpSync(dir, path.join(keep, `${id}-${Date.now()}`), { recursive: true }); } catch {} }
+    throw e;
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 }
 
