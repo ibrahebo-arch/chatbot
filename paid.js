@@ -53,7 +53,7 @@ function langOf(text) {
 }
 
 async function ask(system, text, images = [], max = 6000) {
-  const content = [{ type: "text", text }, ...images.map((b) => ({ type: "image_url", image_url: { url: dataUri(b), detail: "low" } }))];
+  const content = [{ type: "text", text: String(text).toWellFormed() }, ...images.map((b) => ({ type: "image_url", image_url: { url: dataUri(b), detail: "low" } }))];
   const model = MODEL();
   const body = { model, response_format: { type: "json_object" }, messages: [{ role: "system", content: system }, { role: "user", content }] };
   if (/^(gpt-[5-9]|o\d)/.test(model)) body.max_completion_tokens = max; else { body.max_tokens = Math.min(max, 4000); body.temperature = 0.5; }

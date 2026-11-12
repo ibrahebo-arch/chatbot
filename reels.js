@@ -61,9 +61,11 @@ async function save(meta, raw) {
   return true;
 }
 
-async function ask(system, user, max = 8000) {
+async function ask(system, user, max = 8000, images = []) {
   const model = MODEL();
-  const body = { model, response_format: { type: "json_object" }, messages: [{ role: "system", content: system }, { role: "user", content: user }] };
+  user = String(user).toWellFormed(); system = String(system).toWellFormed(); // half an emoji (a cut title) makes the API refuse the request
+  const content = images.length ? [{ type: "text", text: user }, ...images.map((b) => ({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${b.toString("base64")}`, detail: "low" } }))] : user;
+  const body = { model, response_format: { type: "json_object" }, messages: [{ role: "system", content: system }, { role: "user", content }] };
   if (/^(gpt-[5-9]|o\d)/.test(model)) body.max_completion_tokens = max; else { body.max_tokens = Math.min(max, 4000); body.temperature = 0.6; }
   const r = await fetch(`${OPENAI_BASE}/v1/chat/completions`, { method: "POST", headers: { Authorization: `Bearer ${OPENAI_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(300000) });
   const j = await r.json().catch(() => ({}));
@@ -92,6 +94,40 @@ async function backfill({ limit = 40, log = console.log } = {}) {
     log(`reel patterns: ${done} of ${Math.min(i + 6, rows.length)}`);
   }
   return done;
+}
+
+/**
+ * A video FILE the owner put into the studio's inbox (his own reel, or one he has permission to study): frames of the
+ * first three seconds and of the rest, the number of scene changes (ffmpeg), the spoken words (Whisper) → its reel
+ * pattern. Numbers the owner knows can stand in a text file beside the video: "views: 120000 likes: 9000".
+ * Nothing is fetched from the internet here, and the inbox deletes the video after the study.
+ */
+async function fromFile(file, { id, title, secs = 0, note = "" }) {
+  const fs = require("fs"), os = require("os"), path = require("path"), watermark = require("./watermark"), voices = require("./voices");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "reel-file-"));
+  try {
+    const cutsOut = await watermark.run(["-i", file, "-vf", "select='gt(scene,0.32)',showinfo", "-an", "-f", "null", "-"], 180000);
+    const cuts = (cutsOut.stderr.match(/pts_time:/g) || []).length;
+    const times = [0.1, 0.8, 1.6, 2.4, 3.2, ...[0.3, 0.45, 0.6, 0.75, 0.92].map((f) => Math.max(3.6, secs * f))].filter((t, i) => i < 5 || t < secs);
+    const shots = [];
+    for (const [i, t] of times.entries()) {
+      const out = path.join(dir, `f${i}.jpg`);
+      const r = await watermark.run(["-y", "-ss", String(t), "-i", file, "-frames:v", "1", "-vf", "scale=-2:480", "-q:v", "4", out]);
+      if (r.code === 0 && fs.existsSync(out)) shots.push({ t, buf: fs.readFileSync(out) });
+    }
+    let said = "";
+    try {
+      const mp3 = path.join(dir, "a.mp3");
+      const r = await watermark.run(["-y", "-i", file, "-vn", "-t", "90", "-ac", "1", "-ar", "16000", "-b:a", "48k", mp3]);
+      if (r.code === 0 && fs.existsSync(mp3)) { const t = await voices.transcribe(fs.readFileSync(mp3)); said = clean(typeof t === "string" ? t : t?.text).slice(0, 900); }
+    } catch (e) { console.error("reel transcript:", e.message); }
+    if (!shots.length) return false;
+    const out = await ask(`You analyse one short social video for a studio that makes reels for Iraqi and Arab customers. You get frames (their seconds are listed – the first ones cover the opening 3 seconds), the number of scene changes a tool counted, and the spoken words. Write its REEL PATTERN – how it catches and keeps viewers – as JSON {"reel":${REEL_SHAPE}}. Describe craft, not the people.`,
+      `VIDEO: "${title}" · ${Math.round(secs)} s · scene changes counted: ${cuts}\nframes at seconds: ${shots.map((s) => s.t.toFixed(1)).join(", ")}\nspoken words: ${said || "(none heard)"}`, 3000, shots.map((s) => s.buf));
+    const reel = { ...(out.reel || {}), cuts: Number(out.reel?.cuts) || cuts, transcript: clean(out.reel?.transcript) || said };
+    const n = (k) => Number((new RegExp(`${k}\\s*[:=]\\s*([\\d,.]+)`, "i").exec(note) || [])[1]?.replace(/[,.]/g, "")) || 0;
+    return save({ id, source: "inbox", region: "IQ", kind: "Own reel", title, secs, views: n("views") || n("مشاهدات"), likes: n("likes") || n("لايكات"), comments: n("comments") }, reel);
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 }
 
 // ---- the patterns in memory (refreshed every 5 minutes) ------------------------------------------------------------
@@ -161,4 +197,4 @@ The shots cover 0 to ${seconds} seconds without gaps.`,
   return { ...out, patterns: near.map((p) => ({ id: p.id, title: p.title, views: Number(p.views) || 0 })) };
 }
 
-module.exports = { isReel, normalise, strength, summary, save, backfill, all, nearest, note, direct, REEL_SHAPE, HOOKS };
+module.exports = { isReel, normalise, strength, summary, save, fromFile, backfill, all, nearest, note, direct, REEL_SHAPE, HOOKS };

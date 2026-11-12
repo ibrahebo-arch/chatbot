@@ -213,7 +213,8 @@ Return JSON only: {"real":[numbers of the REAL-LIFE videos]}`, [], 4000);
 /** One OpenAI JSON call (text + optional images). */
 async function askJson(text, images = [], maxTokens = 2500) {
   if (!OPENAI_KEY) throw new Error("OPENAI_API_KEY is not set");
-  const content = [{ type: "text", text }, ...images.map((b) => ({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${b}`, detail: "high" } }))];
+  // a title cut in the middle of an emoji leaves half a character, and the API then refuses the whole request
+  const content = [{ type: "text", text: String(text).toWellFormed() }, ...images.map((b) => ({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${b}`, detail: "high" } }))];
   const body = { model: MODEL, messages: [{ role: "user", content }], response_format: { type: "json_object" } };
   if (/^(gpt-[5-9]|o\d)/.test(MODEL)) body.max_completion_tokens = maxTokens; else { body.max_tokens = maxTokens; body.temperature = 0.3; }
   const r = await fetch(`${OPENAI_BASE}/v1/chat/completions`, {
@@ -737,6 +738,8 @@ async function studyInbox(db, { log = console.log, limit = Number(process.env.TR
     const work = fs.mkdtempSync(path.join(os.tmpdir(), "trained-inbox-"));
     try {
       await studyFile(db, v, file, work, known, report, log);
+      // a short clip is also read as a reel: hook, scene changes, words (reels.js – social intelligence layer)
+      if (duration > 0 && duration <= 180) await require("./reels").fromFile(file, { id, title: f.slice(0, 200), secs: duration, note: credit }).then((ok) => ok && log(`reel pattern from ${f.slice(0, 60)}`)).catch((e) => log(`reel pattern ${id}: ${e.message}`));
     } catch (e) {
       report.failed++;
       await db.query("UPDATE trained_videos SET status='failed', error=$2 WHERE id=$1", [v.id, String(e.message).slice(0, 300)]);
