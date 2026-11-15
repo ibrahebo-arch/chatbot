@@ -397,3 +397,9 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 .tjob .secs { font-size: .75rem; opacity: .8; }
 .messages > * { flex-shrink: 0; } /* cards must keep their height inside the scrolling chat (they were squashed to thin strips on phones) */
+
+/* the three paid models: name + stars */
+.seg.tiers button { display: flex; flex-direction: column; align-items: center; gap: 2px; line-height: 1.1; }
+.seg.tiers button b { font-size: .82em; letter-spacing: .02em; }
+.stars { color: #e4b363; font-size: .78em; letter-spacing: 1px; }
+table.prices th .stars { display: inline-block; margin-top: 2px; }

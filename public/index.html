@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0f1114" />
   <title>VI Iraq — استوديو فيديو</title>
-  <meta name="description" content="VI Iraq — اطلب فيديوك: اكتب الفكرة، ارفع صورك، حدّد المدة والجودة، ونرسل لك العمل جاهزاً." />
+  <meta name="description" content="VI Iraq — اطلب فيديوك: اكتب الفكرة، ارفع صورك، حدّد المدة والموديل، ونرسل لك العمل جاهزاً." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -136,11 +136,11 @@
           </div>
 
           <div class="field full-only">
-            <label>الجودة</label>
-            <div class="seg" id="quality">
-              <button type="button" data-v="480">480p</button>
-              <button type="button" data-v="720">720p</button>
-              <button type="button" data-v="1080" class="on">1080p</button>
+            <label>الموديل</label>
+            <div class="seg tiers" id="quality">
+              <button type="button" data-v="480" title="480p"><b>WI_IRAQ</b><span class="stars">★★★</span></button>
+              <button type="button" data-v="720" title="720p"><b>KING_IRAQ</b><span class="stars">★★★★</span></button>
+              <button type="button" data-v="1080" class="on" title="1080p"><b>VIP_IRAQ</b><span class="stars">★★★★★</span></button>
             </div>
           </div>
 
@@ -189,7 +189,7 @@
           <div class="price full-only">
             <small>السعر التقديري</small>
             <div class="amount">$<span id="priceVal">20</span></div>
-            <span class="meta" id="priceMeta">1080p · 15 ثانية · العربية</span>
+            <span class="meta" id="priceMeta">VIP_IRAQ ★★★★★ · 15 ثانية · العربية</span>
           </div>
 
           <button class="cta full-only" id="sendOrder">إرسال الطلب <span class="cta-price">$<span id="ctaPrice">20</span></span></button>
@@ -213,10 +213,10 @@
 
     <!-- ================= PRICES ================= -->
     <section class="view" id="view-prices">
-      <div class="section-head"><h2>الأسعار</h2><p>السعر يُحسب بالثانية. غيّر الجودة في الاستوديو لترى العمود المحدد.</p></div>
+      <div class="section-head"><h2>الأسعار</h2><p>السعر يُحسب بالثانية. غيّر الموديل في الاستوديو لترى العمود المحدد.</p></div>
       <div class="card">
         <table class="prices">
-          <thead><tr><th>المدة</th><th>480p</th><th>720p</th><th>1080p</th></tr></thead>
+          <thead><tr><th>المدة</th><th>WI_IRAQ<br><span class="stars">★★★</span></th><th>KING_IRAQ<br><span class="stars">★★★★</span></th><th>VIP_IRAQ<br><span class="stars">★★★★★</span></th></tr></thead>
           <tbody id="priceTable"></tbody>
         </table>
       </div>

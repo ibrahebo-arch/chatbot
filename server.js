@@ -29,6 +29,7 @@ const payments = require("./payments");
 const media = require("./media");
 const trial = require("./trial");
 const voices = require("./voices");
+const tiers = require("./tiers");
 const library = require("./library");
 const planner = require("./planner");
 const { normalizeTelegram, normalizePhone } = require("./validate");
@@ -220,7 +221,7 @@ function orderSummary(order) {
     order.requesterId ? `معرّف الزبون (requester_id): ${order.requesterId}` : null,
     `تيليغرام: ${order.telegram ? "@" + order.telegram : "-"}`,
     `الهاتف: ${order.phone || "-"}`,
-    `الجودة: ${order.quality}p`,
+    `الموديل: ${tiers.tierTeam(order.quality)}`,
     `المدة: ${order.seconds} ثانية`,
     `اللغة: ${order.language}`,
     `عدد الشخصيات: ${order.characters}`,
@@ -323,7 +324,7 @@ async function buildBrief(full, messages, files) {
 | requester_id | \`${full.requesterId}\` |
 | تيليغرام | [@${full.telegram}](https://t.me/${full.telegram}) |
 | الهاتف | ${full.phone} |
-| الجودة | ${full.quality}p |
+| الموديل | ${tiers.tierTeam(full.quality)} |
 | المدة | ${full.seconds} ثانية |
 | اللغة | ${full.language} |
 | عدد الشخصيات | ${full.characters} |

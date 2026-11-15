@@ -20,6 +20,9 @@
     idemKey: null,       // reused on retry so a double click / timeout never creates a second order
     started: false,
   };
+  // the three paid models (tiers.js on the server): name and stars per quality
+  const TIER = { 480: "WI_IRAQ ★★★", 720: "KING_IRAQ ★★★★", 1080: "VIP_IRAQ ★★★★★" };
+  const tierLabel = (q) => TIER[q] || `${q}p`;
   const price = (q = state.quality, s = state.seconds) => Math.ceil((state.rates[q] || state.rates[1080]) * s);
 
   const toast = (msg) => {
@@ -274,7 +277,9 @@
   function applyFromText(text) {
     const changed = [];
     const q = text.match(/\b(480|720|1080)\s*(p|px|بكسل)?\b/i);
-    if (q) { setQuality(Number(q[1])); changed.push(`الجودة ${q[1]}p`); }
+    const t = text.match(/\b(wi|king|vip)[\s_-]*iraq\b|\b(vip|king)\b/i);
+    const tq = q ? Number(q[1]) : t ? { wi: 480, king: 720, vip: 1080 }[(t[1] || t[2]).toLowerCase()] : 0;
+    if (tq) { setQuality(tq); changed.push(`الموديل ${tierLabel(tq)}`); }
     const mins = text.match(/(\d+)\s*(دقيقة|دقائق|min|minute)/i);
     const secs = text.match(/(\d+)\s*(ثانية|ثواني|ث\b|s\b|sec|second)/i);
     if (mins) { setSeconds(Number(mins[1]) * 60); changed.push(`المدة ${mins[1]} دقيقة`); }
@@ -344,11 +349,11 @@
     const p = price();
     $("secVal").textContent = state.seconds;
     $("priceVal").textContent = p; $("ctaPrice").textContent = p; $("mPrice").textContent = p;
-    $("priceMeta").textContent = `${state.quality}p · ${state.seconds} ثانية · ${state.language}`;
+    $("priceMeta").textContent = `${tierLabel(state.quality)} · ${state.seconds} ثانية · ${state.language}`;
     const amt = document.querySelector(".amount"); amt.classList.add("bump"); setTimeout(() => amt.classList.remove("bump"), 150);
     slider.style.setProperty("--fill", `${((state.seconds - slider.min) / (slider.max - slider.min)) * 100}%`);
     document.querySelectorAll("#quick button").forEach((b) => b.classList.toggle("on", Number(b.dataset.s) === state.seconds));
-    $("summary").innerHTML = [`${state.quality}p`, `${state.seconds} ث`, state.language, `${state.characters} شخصية`, `$${p}`].map((s) => `<span>${s}</span>`).join("");
+    $("summary").innerHTML = [tierLabel(state.quality), `${state.seconds} ث`, state.language, `${state.characters} شخصية`, `$${p}`].map((s) => `<span>${s}</span>`).join("");
     $("priceTable").innerHTML = [[15, "15 ثانية"], [30, "30 ثانية"], [60, "دقيقة"], [120, "دقيقتان"]]
       .map(([s, label]) => `<tr><td>${label}</td>${[480, 720, 1080].map((q) => `<td class="${q === state.quality ? "hi" : ""}">$${price(q, s)}</td>`).join("")}</tr>`).join("");
   }
