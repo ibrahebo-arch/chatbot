@@ -404,3 +404,7 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
 .stars { color: #e4b363; font-size: .78em; letter-spacing: 1px; }
 table.prices th .stars { display: inline-block; margin-top: 2px; }
 .seg.tiers button.on .stars { color: #1a1408; } /* dark stars on the gold selected button */
+
+.seg.tiers button .res { font-size: .7em; opacity: .75; }
+.seg.tiers button .tier-price { font-size: .85em; font-weight: 700; margin-top: 1px; }
+table.prices th .res { font-weight: 400; opacity: .75; }

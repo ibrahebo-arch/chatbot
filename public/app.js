@@ -21,7 +21,7 @@
     started: false,
   };
   // the three paid models (tiers.js on the server): name and stars per quality
-  const TIER = { 480: "WI_IRAQ ★★★", 720: "KING_IRAQ ★★★★", 1080: "VIP_IRAQ ★★★★★" };
+  const TIER = { 480: "WI_IRAQ ★★★ · 480p", 720: "KING_IRAQ ★★★★ · 720p", 1080: "VIP_IRAQ ★★★★★ · 1080p" };
   const tierLabel = (q) => TIER[q] || `${q}p`;
   const price = (q = state.quality, s = state.seconds) => Math.ceil((state.rates[q] || state.rates[1080]) * s);
 
@@ -347,6 +347,8 @@
   function render() {
     afterRender();
     const p = price();
+    // every model button shows its own price for the length chosen now
+    document.querySelectorAll("#quality button").forEach((b) => { const t = b.querySelector(".tier-price span"); if (t) t.textContent = price(Number(b.dataset.v)); });
     $("secVal").textContent = state.seconds;
     $("priceVal").textContent = p; $("ctaPrice").textContent = p; $("mPrice").textContent = p;
     $("priceMeta").textContent = `${tierLabel(state.quality)} · ${state.seconds} ثانية · ${state.language}`;
