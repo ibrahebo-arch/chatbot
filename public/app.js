@@ -766,7 +766,6 @@
   function setVoiceMode(m) {
     voice.mode = m === "none" ? "none" : "tts";
     m = voice.mode;
-    $("voiceMode").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.v === m));
     renderVoice();
   }
   // the character type the request uses: chosen type, else the chosen voice's own type
@@ -799,7 +798,6 @@
   $("voiceType").addEventListener("change", (e) => setVoiceType(e.target.value));
   $("voicePreset").addEventListener("change", (e) => { voice.preset = e.target.value; renderVoice(); });
   $("trialVoice").addEventListener("change", renderVoice);
-  $("voiceMode").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b && !b.disabled) setVoiceMode(b.dataset.v); });
   let previewAudio = null;
   $("voicePlay").addEventListener("click", () => {
     const id = voice.preset !== "auto" ? voice.preset : voice.catalog.types.find((t) => t.key === voice.type)?.preset;
