@@ -9,7 +9,7 @@
     seconds: 15,
     language: "العربية",
     characters: "1",
-    rates: { 1080: 80 / 60, 720: 44 / 60, 480: 22 / 60 },
+    rates: { 1080: 0.79, 720: 0.59, 480: 0.39 }, // the server sends the real rates on load
     attachLimit: 200 * 1048576,
     sending: false,
     pending: [],         // files chosen but not yet sent in a message

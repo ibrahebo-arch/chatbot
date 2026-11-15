@@ -69,11 +69,20 @@ const toBytes = (s) => { const m = String(s).match(/^(\d+(?:\.\d+)?)\s*(kb|mb|gb
 const VIDEO_MAX = toBytes(ATTACH_LIMIT);
 const IMAGE_MAX = Math.min(VIDEO_MAX, 20 * 1048576);
 
-// Price per second (USD) per quality – derived from the price sheet:
-// 1080p: 15s=$20 30s=$40 60s=$80 | 720p: $11/$22/$44 | 480p: $6/$11/$22
-const RATES = { 1080: 80 / 60, 720: 44 / 60, 480: 22 / 60 };
+// Price per second (USD), owner 2026-11-15: our cost (Wan 3.0 $0.05 + Kling 3 $0.14 = $0.19 a second) + $0.20 profit
+// = $0.39 a second at 480p; each higher quality adds its extra cost + another $0.20 profit. Settings (USD a second):
+// PRICE_BASE_COST, PRICE_PROFIT, PRICE_STEP_COST_720, PRICE_STEP_COST_1080 (extra model cost of that quality), PRICE_STEP_PROFIT.
+const usd = (k, d) => { const v = Number(process.env[k]); return String(process.env[k] ?? "").trim() !== "" && Number.isFinite(v) && v >= 0 ? v : d; };
+const cents = (n) => Math.round(n * 100) / 100;
+const RATES = (() => {
+  const base = usd("PRICE_BASE_COST", 0.19) + usd("PRICE_PROFIT", 0.2), step = usd("PRICE_STEP_PROFIT", 0.2);
+  const r720 = base + usd("PRICE_STEP_COST_720", 0) + step;
+  return { 480: cents(base), 720: cents(r720), 1080: cents(r720 + usd("PRICE_STEP_COST_1080", 0) + step) };
+})();
+// the length is ordered in steps of 5 seconds: 5, 10, 15 … 120 (never 1, 2, 3 …)
+const fiveSeconds = (s) => Math.min(120, Math.max(5, Math.round((Number(s) || 15) / 5) * 5));
 const priceFor = (quality, seconds) =>
-  Math.ceil((RATES[quality] || RATES[1080]) * seconds);
+  Math.ceil((RATES[quality] || RATES[1080]) * fiveSeconds(seconds));
 
 // Visitor IP for rate limits. Both sites sit behind Cloudflare, which always overwrites CF-Connecting-IP
 // with the real client address (the VPS firewall only lets Cloudflare reach nginx). X-Forwarded-For is
@@ -416,7 +425,7 @@ app.get("/api/loops", (_req, res) => {
 
 app.get("/api/price", (req, res) => {
   const quality = Number(req.query.quality) || 1080;
-  const seconds = Math.max(1, Number(req.query.seconds) || 15);
+  const seconds = fiveSeconds(req.query.seconds);
   res.json({ quality, seconds, price: priceFor(quality, seconds) });
 });
 
@@ -582,7 +591,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
   if (!db.configured) return res.status(503).json({ ok: false, message: "الخدمة غير متاحة حالياً، حاول لاحقاً." });
 
   const quality = [480, 720, 1080].includes(Number(order.quality)) ? Number(order.quality) : 1080;
-  const seconds = Math.min(120, Math.max(5, Number(order.seconds) || 15));
+  const seconds = fiveSeconds(order.seconds);
   const attachments = Array.isArray(order.attachments) ? order.attachments : [];
   const options = {
     quality,
