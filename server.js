@@ -425,7 +425,7 @@ app.get("/api/loops", (_req, res) => {
 // Gallery videos are read-only: add/remove files in public/videos on the server only.
 
 app.get("/api/price", (req, res) => {
-  const quality = Number(req.query.quality) || 1080;
+  const quality = [480, 720, 1080].includes(Number(req.query.quality)) ? Number(req.query.quality) : 480;
   const seconds = fiveSeconds(req.query.seconds);
   res.json({ quality, seconds, price: priceFor(quality, seconds) });
 });
@@ -591,7 +591,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
   }
   if (!db.configured) return res.status(503).json({ ok: false, message: "الخدمة غير متاحة حالياً، حاول لاحقاً." });
 
-  const quality = [480, 720, 1080].includes(Number(order.quality)) ? Number(order.quality) : 1080;
+  const quality = [480, 720, 1080].includes(Number(order.quality)) ? Number(order.quality) : 480;
   const seconds = fiveSeconds(order.seconds);
   const attachments = Array.isArray(order.attachments) ? order.attachments : [];
   const options = {

@@ -5,7 +5,7 @@
 
   const state = {
     messages: [],        // { role, content, files: [{ name, stored, url, image, video, role }] }
-    quality: 1080,
+    quality: 480, // WI_IRAQ is picked when the page opens (owner, 2026-11-15)
     seconds: 15,
     language: "العربية",
     characters: "1",
