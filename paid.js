@@ -12,6 +12,8 @@
  * A failure puts the order back to «مراجعة» and mails the studio – the customer never gets a broken file.
  * No watermark (paid). One order at a time.
  */
+const tiers = require("./tiers");
+const qa = require("./qa");
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
@@ -115,6 +117,9 @@ async function make(requestId) {
   if (o.video_key || ["completed", "delivered", "cancelled"].includes(o.status)) return { skipped: o.status };
   if (orders.paymentsRequired() && !o.paid_at) throw new Error("not paid");
   const id = o.request_id, opt = o.options || {};
+  // the ordered model (tiers.js): WI_IRAQ = Wan 3.0, KING_IRAQ = Kling 3, VIP_IRAQ = Kling 3 + a check of every part;
+  // orders from before the models (no opt.model) are made the way they were sold – Kling 3
+  const tier = opt.model ? tiers.MODELS[tiers.modelOf(opt.model)] : tiers.MODELS.king;
   await orders.setStatus(id, "awaiting_admin", "prompt_ready", { by: "auto", action: "confirm" }).catch(() => {});
   await orders.setStatus(id, "prompt_ready", "generating", { by: "auto" }).catch(() => {});
 
@@ -149,13 +154,26 @@ async function make(requestId) {
       const prompt = `${plan.look} ${plan.parts[i]}`;
       let c = null, err = null;
       for (let attempt = 0; attempt < 2 && !c; attempt++) {
-        try { c = await media.clip({ prompt, imageUrl: dataUri(frame), negative: plan.negative, seconds: secs, aspect: plan.aspect }); } catch (e) { err = e; console.error(`paid ${id}: part ${i + 1} try ${attempt + 1}: ${String(e.message).slice(0, 160)}`); }
+        try { c = await media.clip({ prompt, imageUrl: dataUri(frame), negative: plan.negative, seconds: secs, aspect: plan.aspect, engine: tier.engine, quality: opt.quality }); } catch (e) { err = e; console.error(`paid ${id}: part ${i + 1} try ${attempt + 1}: ${String(e.message).slice(0, 160)}`); }
       }
       if (!c) throw err || new Error("part failed");
       cost += c.cost;
       if (!media.isProviderUrl(c.url)) throw new Error("unexpected result address");
       const r = await fetch(c.url, { signal: AbortSignal.timeout(180000) }); if (!r.ok) throw new Error(`download ${r.status}`);
-      const file = path.join(dir, `p${i}.mp4`); fs.writeFileSync(file, Buffer.from(await r.arrayBuffer()));
+      const file = path.join(dir, `p${i}.mp4`); let buf = Buffer.from(await r.arrayBuffer());
+      // VIP_IRAQ: every part is checked for realism and continuity; a weak part is made once more with its problems to avoid
+      if (tier.check && qa.ENABLED) {
+        try {
+          const verdict = await qa.check(buf, prompt);
+          if (verdict?.retry) {
+            log(id, `part ${i + 1}: quality check ${verdict.score}/10 – made again`);
+            const again = await media.clip({ prompt: `${prompt} Avoid especially: ${qa.retryAvoid(verdict.issues)}.`, imageUrl: dataUri(frame), negative: plan.negative, seconds: secs, aspect: plan.aspect, engine: tier.engine, quality: opt.quality });
+            cost += again.cost;
+            if (media.isProviderUrl(again.url)) { const r2 = await fetch(again.url, { signal: AbortSignal.timeout(180000) }); if (r2.ok) buf = Buffer.from(await r2.arrayBuffer()); }
+          }
+        } catch (e) { console.error(`paid ${id}: part ${i + 1} check: ${String(e.message).slice(0, 120)} – part kept`); }
+      }
+      fs.writeFileSync(file, buf);
       // every part in the same frame (the first part's size – the model may return a few pixels more or less), the
       // same rate and a sound track, so they join cleanly
       const info = await watermark.probe(file), norm = path.join(dir, `n${i}.mp4`);

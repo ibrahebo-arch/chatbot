@@ -71,8 +71,9 @@ const VIDEO_MAX = toBytes(ATTACH_LIMIT);
 const IMAGE_MAX = Math.min(VIDEO_MAX, 20 * 1048576);
 
 // Price per second (USD), owner 2026-11-15: our cost (Wan 3.0 $0.05 + Kling 3 $0.14 = $0.19 a second) + $0.20 profit
-// = $0.39 a second at 480p; each higher quality adds its extra cost + another $0.20 profit. Settings (USD a second):
-// PRICE_BASE_COST, PRICE_PROFIT, PRICE_STEP_COST_720, PRICE_STEP_COST_1080 (extra model cost of that quality), PRICE_STEP_PROFIT.
+// = $0.39 a second at 480p; each higher quality adds its extra cost + another $0.20 profit; each model above WI_IRAQ
+// adds $0.20 per star step (tiers.js). Settings (USD a second): PRICE_BASE_COST, PRICE_PROFIT, PRICE_STEP_COST_720,
+// PRICE_STEP_COST_1080 (extra model cost of that quality), PRICE_STEP_PROFIT, PRICE_MODEL_STEP.
 const usd = (k, d) => { const v = Number(process.env[k]); return String(process.env[k] ?? "").trim() !== "" && Number.isFinite(v) && v >= 0 ? v : d; };
 const cents = (n) => Math.round(n * 100) / 100;
 const RATES = (() => {
@@ -80,10 +81,13 @@ const RATES = (() => {
   const r720 = base + usd("PRICE_STEP_COST_720", 0) + step;
   return { 480: cents(base), 720: cents(r720), 1080: cents(r720 + usd("PRICE_STEP_COST_1080", 0) + step) };
 })();
+const MODEL_STEP = usd("PRICE_MODEL_STEP", 0.2);
 // the length is ordered in steps of 5 seconds: 5, 10, 15 … 120 (never 1, 2, 3 …)
 const fiveSeconds = (s) => Math.min(120, Math.max(5, Math.round((Number(s) || 15) / 5) * 5));
-const priceFor = (quality, seconds) =>
-  Math.ceil((RATES[quality] || RATES[1080]) * fiveSeconds(seconds));
+const qualityOf = (q) => ([480, 720, 1080].includes(Number(q)) ? Number(q) : 480);
+/** Price of an order: model (wi | king | vip) × quality × length. */
+const priceFor = (model, quality, seconds) =>
+  Math.ceil(((RATES[qualityOf(quality)] || RATES[480]) + MODEL_STEP * tiers.MODELS[tiers.modelOf(model)].step) * fiveSeconds(seconds));
 
 // Visitor IP for rate limits. Both sites sit behind Cloudflare, which always overwrites CF-Connecting-IP
 // with the real client address (the VPS firewall only lets Cloudflare reach nginx). X-Forwarded-For is
@@ -221,7 +225,7 @@ function orderSummary(order) {
     order.requesterId ? `معرّف الزبون (requester_id): ${order.requesterId}` : null,
     `تيليغرام: ${order.telegram ? "@" + order.telegram : "-"}`,
     `الهاتف: ${order.phone || "-"}`,
-    `الموديل: ${tiers.tierTeam(order.quality)}`,
+    `الموديل والجودة: ${tiers.teamLabel(order.model, order.quality)}`,
     `المدة: ${order.seconds} ثانية`,
     `اللغة: ${order.language}`,
     `عدد الشخصيات: ${order.characters}`,
@@ -324,7 +328,7 @@ async function buildBrief(full, messages, files) {
 | requester_id | \`${full.requesterId}\` |
 | تيليغرام | [@${full.telegram}](https://t.me/${full.telegram}) |
 | الهاتف | ${full.phone} |
-| الموديل | ${tiers.tierTeam(full.quality)} |
+| الموديل والجودة | ${tiers.teamLabel(full.model, full.quality)} |
 | المدة | ${full.seconds} ثانية |
 | اللغة | ${full.language} |
 | عدد الشخصيات | ${full.characters} |
@@ -380,6 +384,7 @@ app.get("/api/config", (_req, res) => {
     whatsapp: WHATSAPP,
     trial: trial.enabled(),
     rates: RATES,
+    modelStep: MODEL_STEP,
     brand: "VI Iraq",
   });
 });
@@ -425,9 +430,9 @@ app.get("/api/loops", (_req, res) => {
 // Gallery videos are read-only: add/remove files in public/videos on the server only.
 
 app.get("/api/price", (req, res) => {
-  const quality = [480, 720, 1080].includes(Number(req.query.quality)) ? Number(req.query.quality) : 480;
+  const model = tiers.modelOf(req.query.model), quality = qualityOf(req.query.quality);
   const seconds = fiveSeconds(req.query.seconds);
-  res.json({ quality, seconds, price: priceFor(quality, seconds) });
+  res.json({ model, quality, seconds, price: priceFor(model, quality, seconds) });
 });
 
 // Customer attachments from the chat: PUT /api/attach/<filename>?role=char1 (raw body, streamed to R2).
@@ -480,7 +485,7 @@ app.post("/api/chat", chatLimit, async (req, res) => {
   const telegram = normalizeTelegram(order.telegram);
   const phone = normalizePhone(order.phone);
   const ctx = order.quality
-    ? `\n\nخيارات الزبون الحالية:\n${orderSummary({ ...order, telegram, phone, price: priceFor(order.quality, order.seconds) })}` +
+    ? `\n\nخيارات الزبون الحالية:\n${orderSummary({ ...order, model: tiers.modelOf(order.model), telegram, phone, price: priceFor(order.model, order.quality, order.seconds) })}` +
       (telegram && phone ? "" : "\n(لم يكمل الزبون بعد معرّف تيليغرام ورقم الهاتف المطلوبين لإرسال الطلب.)")
     : "";
   const sent = order.requestId
@@ -591,15 +596,16 @@ app.post("/api/order", orderLimit, async (req, res) => {
   }
   if (!db.configured) return res.status(503).json({ ok: false, message: "الخدمة غير متاحة حالياً، حاول لاحقاً." });
 
-  const quality = [480, 720, 1080].includes(Number(order.quality)) ? Number(order.quality) : 480;
+  const model = tiers.modelOf(order.model), quality = qualityOf(order.quality);
   const seconds = fiveSeconds(order.seconds);
   const attachments = Array.isArray(order.attachments) ? order.attachments : [];
   const options = {
+    model,
     quality,
     seconds,
     language: String(order.language || "العربية").slice(0, 60),
     characters: String(order.characters || "1").slice(0, 10),
-    price: priceFor(quality, seconds),
+    price: priceFor(model, quality, seconds),
     description: String(order.description || "").slice(0, 5000),
     attachments: Math.min(attachments.length, 30),
     voice: orderVoice(order.voice),

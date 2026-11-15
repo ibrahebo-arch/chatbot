@@ -137,10 +137,19 @@
 
           <div class="field full-only">
             <label>الموديل</label>
+            <div class="seg tiers" id="model">
+              <button type="button" data-v="wi" class="on"><b>WI_IRAQ</b><span class="stars">★★★</span><span class="tier-price">$<span>6</span></span></button>
+              <button type="button" data-v="king"><b>KING_IRAQ</b><span class="stars">★★★★</span><span class="tier-price">$<span>9</span></span></button>
+              <button type="button" data-v="vip"><b>VIP_IRAQ</b><span class="stars">★★★★★</span><span class="tier-price">$<span>12</span></span></button>
+            </div>
+          </div>
+
+          <div class="field full-only">
+            <label>الجودة</label>
             <div class="seg tiers" id="quality">
-              <button type="button" data-v="480" class="on"><b>WI_IRAQ</b><span class="stars">★★★</span><small class="res">480p</small><span class="tier-price">$<span>6</span></span></button>
-              <button type="button" data-v="720"><b>KING_IRAQ</b><span class="stars">★★★★</span><small class="res">720p</small><span class="tier-price">$<span>9</span></span></button>
-              <button type="button" data-v="1080"><b>VIP_IRAQ</b><span class="stars">★★★★★</span><small class="res">1080p</small><span class="tier-price">$<span>12</span></span></button>
+              <button type="button" data-v="480" class="on"><b>480p</b><span class="tier-price">$<span>6</span></span></button>
+              <button type="button" data-v="720"><b>720p</b><span class="tier-price">$<span>9</span></span></button>
+              <button type="button" data-v="1080"><b>1080p</b><span class="tier-price">$<span>12</span></span></button>
             </div>
           </div>
 
@@ -189,7 +198,7 @@
           <div class="price full-only">
             <small>السعر التقديري</small>
             <div class="amount">$<span id="priceVal">6</span></div>
-            <span class="meta" id="priceMeta">WI_IRAQ ★★★ · 15 ثانية · العربية</span>
+            <span class="meta" id="priceMeta">WI_IRAQ ★★★ · 480p · 15 ثانية · العربية</span>
           </div>
 
           <button class="cta full-only" id="sendOrder">إرسال الطلب <span class="cta-price">$<span id="ctaPrice">6</span></span></button>
@@ -213,10 +222,10 @@
 
     <!-- ================= PRICES ================= -->
     <section class="view" id="view-prices">
-      <div class="section-head"><h2>الأسعار</h2><p>السعر يُحسب بالثانية. غيّر الموديل في الاستوديو لترى العمود المحدد.</p></div>
+      <div class="section-head"><h2>الأسعار</h2><p>السعر يُحسب بالثانية، حسب الموديل والجودة. الجدول لموديل <b id="priceModel">WI_IRAQ ★★★</b> – غيّر الموديل أو الجودة في الاستوديو.</p></div>
       <div class="card">
         <table class="prices">
-          <thead><tr><th>المدة</th><th>WI_IRAQ<br><span class="stars">★★★</span><br><small class="res">480p</small></th><th>KING_IRAQ<br><span class="stars">★★★★</span><br><small class="res">720p</small></th><th>VIP_IRAQ<br><span class="stars">★★★★★</span><br><small class="res">1080p</small></th></tr></thead>
+          <thead><tr><th>المدة</th><th>480p</th><th>720p</th><th>1080p</th></tr></thead>
           <tbody id="priceTable"></tbody>
         </table>
       </div>

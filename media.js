@@ -307,17 +307,25 @@ async function poll({ model, provider_job_id: id, kind }) {
 }
 
 /**
- * One video clip made and waited for (paid orders, paid.js): the premium model, 5 or 10 seconds, from a start
- * picture (its shape decides the frame) or from text. Returns { url, cost }; throws when the provider refuses or
- * does not finish in time.
+ * One video clip made and waited for (paid orders, paid.js), 5 or 10 seconds, from a start picture (its shape decides
+ * the frame) or from text. engine (the order's model, tiers.js): "kling" = Kling 3 Pro (KING_IRAQ, VIP_IRAQ, and orders
+ * from before the models), "wan" = Wan 3.0 at the ordered quality (WI_IRAQ). Returns { url, cost }; throws when the
+ * provider refuses or does not finish in time.
  */
-async function clip({ prompt, imageUrl = null, negative = "", seconds = 10, aspect = "16:9" }) {
+async function clip({ prompt, imageUrl = null, negative = "", seconds = 10, aspect = "16:9", engine = "kling", quality = 720 }) {
   if (!configured) throw new Error("FAL_KEY is not set");
-  const model = imageUrl ? PREMIUM.i2v : PREMIUM.video;
   const secs = seconds <= 5 ? 5 : 10;
-  const input = { prompt: String(prompt).slice(0, Number(process.env.FAL_MAX_PROMPT_CHARS) || 1900), duration: String(secs), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
-    negative_prompt: [negative, "blur, distortion, low quality, warped shapes, flicker, watermark"].filter(Boolean).join(", ").slice(0, 900),
-    ...(imageUrl ? { start_image_url: imageUrl } : { aspect_ratio: aspect }) };
+  const text = String(prompt).slice(0, Number(process.env.FAL_MAX_PROMPT_CHARS) || 1900);
+  const wan = engine === "wan";
+  const model = wan ? (imageUrl ? MODELS.i2v : MODELS.video) : imageUrl ? PREMIUM.i2v : PREMIUM.video;
+  const input = wan
+    // Wan has no negative field: the avoid-list goes into the prompt; our prompt is sent as written
+    ? { prompt: negative ? `${text}. Avoid: ${String(negative).slice(0, 600)}` : text, duration: secs, resolution: `${[480, 720, 1080].includes(Number(quality)) ? Number(quality) : 720}p`,
+      audio: true, enable_prompt_expansion: false, enable_safety_checker: true, ...(imageUrl ? { start_image_url: imageUrl } : { aspect_ratio: aspect }) }
+    : { prompt: text, duration: String(secs), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
+      negative_prompt: [negative, "blur, distortion, low quality, warped shapes, flicker, watermark"].filter(Boolean).join(", ").slice(0, 900),
+      ...(imageUrl ? { start_image_url: imageUrl } : { aspect_ratio: aspect }) };
+  const perSec = wan ? COST.video / VIDEO_SECONDS : Number(process.env.FAL_PREMIUM_COST_PER_SEC) || 0.168;
   const r = await fal("POST", model, input);
   if (!r.request_id) throw new Error("fal: no request_id");
   const job = { model, provider_job_id: r.request_id, kind: "video" };
@@ -325,7 +333,7 @@ async function clip({ prompt, imageUrl = null, negative = "", seconds = 10, aspe
   while (Date.now() < until) {
     await new Promise((s) => setTimeout(s, Number(process.env.PAID_POLL_MS) || 6000));
     const p = await poll(job);
-    if (p.status === "done") return { url: p.url, cost: (Number(process.env.FAL_PREMIUM_COST_PER_SEC) || 0.168) * secs };
+    if (p.status === "done") return { url: p.url, cost: perSec * secs };
     if (p.status === "failed") throw new Error(`clip failed: ${p.error}`);
   }
   throw new Error("clip not finished in time");

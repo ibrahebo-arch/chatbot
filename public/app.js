@@ -5,11 +5,13 @@
 
   const state = {
     messages: [],        // { role, content, files: [{ name, stored, url, image, video, role }] }
-    quality: 480, // WI_IRAQ is picked when the page opens (owner, 2026-11-15)
+    model: "wi",  // WI_IRAQ ★★★ is picked when the page opens (owner, 2026-11-15)
+    quality: 480,
     seconds: 15,
     language: "العربية",
     characters: "1",
-    rates: { 1080: 0.79, 720: 0.59, 480: 0.39 }, // the server sends the real rates on load
+    rates: { 1080: 0.79, 720: 0.59, 480: 0.39 }, // per quality; the server sends the real rates on load
+    modelStep: 0.2, // + per star step above WI_IRAQ
     attachLimit: 200 * 1048576,
     sending: false,
     pending: [],         // files chosen but not yet sent in a message
@@ -20,10 +22,11 @@
     idemKey: null,       // reused on retry so a double click / timeout never creates a second order
     started: false,
   };
-  // the three paid models (tiers.js on the server): name and stars per quality
-  const TIER = { 480: "WI_IRAQ ★★★ · 480p", 720: "KING_IRAQ ★★★★ · 720p", 1080: "VIP_IRAQ ★★★★★ · 1080p" };
-  const tierLabel = (q) => TIER[q] || `${q}p`;
-  const price = (q = state.quality, s = state.seconds) => Math.ceil((state.rates[q] || state.rates[1080]) * s);
+  // the three paid models (tiers.js on the server), each in 480p / 720p / 1080p
+  const MODEL = { wi: { label: "WI_IRAQ ★★★", step: 0 }, king: { label: "KING_IRAQ ★★★★", step: 1 }, vip: { label: "VIP_IRAQ ★★★★★", step: 2 } };
+  const choiceLabel = (m = state.model, q = state.quality) => `${MODEL[m].label} · ${q}p`;
+  const price = (m = state.model, q = state.quality, s = state.seconds) =>
+    Math.ceil(((state.rates[q] || state.rates[480]) + state.modelStep * MODEL[m].step) * s);
 
   const toast = (msg) => {
     const t = $("toast");
@@ -149,7 +152,7 @@
     return el;
   }
   const orderPayload = () => ({
-    quality: state.quality, seconds: state.seconds, language: state.language, characters: state.characters,
+    model: state.model, quality: state.quality, seconds: state.seconds, language: state.language, characters: state.characters,
     ...contact(),
     requestId: state.requestId, requesterId: state.requesterId, accessToken: state.accessToken,
     description: state.messages.filter((m) => m.role === "user").map((m) => m.content).filter(Boolean).join("\n"),
@@ -277,9 +280,9 @@
   function applyFromText(text) {
     const changed = [];
     const q = text.match(/\b(480|720|1080)\s*(p|px|بكسل)?\b/i);
+    if (q) { setQuality(Number(q[1])); changed.push(`الجودة ${q[1]}p`); }
     const t = text.match(/\b(wi|king|vip)[\s_-]*iraq\b|\b(vip|king)\b/i);
-    const tq = q ? Number(q[1]) : t ? { wi: 480, king: 720, vip: 1080 }[(t[1] || t[2]).toLowerCase()] : 0;
-    if (tq) { setQuality(tq); changed.push(`الموديل ${tierLabel(tq)}`); }
+    if (t) { const m = (t[1] || t[2]).toLowerCase(); setModel(m); changed.push(`الموديل ${MODEL[m].label}`); }
     const mins = text.match(/(\d+)\s*(دقيقة|دقائق|min|minute)/i);
     const secs = text.match(/(\d+)\s*(ثانية|ثواني|ث\b|s\b|sec|second)/i);
     if (mins) { setSeconds(Number(mins[1]) * 60); changed.push(`المدة ${mins[1]} دقيقة`); }
@@ -332,11 +335,13 @@
 
   // ---------- controls ----------
   const slider = $("seconds");
+  function setModel(m) { if (!MODEL[m]) return; state.model = m; document.querySelectorAll("#model button").forEach((b) => b.classList.toggle("on", b.dataset.v === m)); render(); }
   function setQuality(q) { state.quality = q; document.querySelectorAll("#quality button").forEach((b) => b.classList.toggle("on", Number(b.dataset.v) === q)); render(); }
   function setSeconds(s) { state.seconds = Math.min(Number(slider.max), Math.max(Number(slider.min), Math.round(s / 5) * 5)); slider.value = state.seconds; render(); }
   function setLanguage(v) { state.language = v; $("language").value = v; render(); }
   function setCharacters(v) { state.characters = String(v); $("characters").value = String(v); render(); }
   $("quality").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setQuality(Number(b.dataset.v)); });
+  $("model").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setModel(b.dataset.v); });
   slider.addEventListener("input", () => { state.seconds = Number(slider.value); render(); });
   $("quick").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setSeconds(Number(b.dataset.s)); });
   $("language").addEventListener("change", (e) => setLanguage(e.target.value));
@@ -347,17 +352,19 @@
   function render() {
     afterRender();
     const p = price();
-    // every model button shows its own price for the length chosen now
-    document.querySelectorAll("#quality button").forEach((b) => { const t = b.querySelector(".tier-price span"); if (t) t.textContent = price(Number(b.dataset.v)); });
+    // every button shows its own price for the other choice and the length chosen now
+    document.querySelectorAll("#model button").forEach((b) => { const t = b.querySelector(".tier-price span"); if (t) t.textContent = price(b.dataset.v); });
+    document.querySelectorAll("#quality button").forEach((b) => { const t = b.querySelector(".tier-price span"); if (t) t.textContent = price(state.model, Number(b.dataset.v)); });
+    if ($("priceModel")) $("priceModel").textContent = MODEL[state.model].label;
     $("secVal").textContent = state.seconds;
     $("priceVal").textContent = p; $("ctaPrice").textContent = p; $("mPrice").textContent = p;
-    $("priceMeta").textContent = `${tierLabel(state.quality)} · ${state.seconds} ثانية · ${state.language}`;
+    $("priceMeta").textContent = `${choiceLabel()} · ${state.seconds} ثانية · ${state.language}`;
     const amt = document.querySelector(".amount"); amt.classList.add("bump"); setTimeout(() => amt.classList.remove("bump"), 150);
     slider.style.setProperty("--fill", `${((state.seconds - slider.min) / (slider.max - slider.min)) * 100}%`);
     document.querySelectorAll("#quick button").forEach((b) => b.classList.toggle("on", Number(b.dataset.s) === state.seconds));
-    $("summary").innerHTML = [tierLabel(state.quality), `${state.seconds} ث`, state.language, `${state.characters} شخصية`, `$${p}`].map((s) => `<span>${s}</span>`).join("");
+    $("summary").innerHTML = [choiceLabel(), `${state.seconds} ث`, state.language, `${state.characters} شخصية`, `$${p}`].map((s) => `<span>${s}</span>`).join("");
     $("priceTable").innerHTML = [[15, "15 ثانية"], [30, "30 ثانية"], [60, "دقيقة"], [120, "دقيقتان"]]
-      .map(([s, label]) => `<tr><td>${label}</td>${[480, 720, 1080].map((q) => `<td class="${q === state.quality ? "hi" : ""}">$${price(q, s)}</td>`).join("")}</tr>`).join("");
+      .map(([s, label]) => `<tr><td>${label}</td>${[480, 720, 1080].map((q) => `<td class="${q === state.quality ? "hi" : ""}">$${price(state.model, q, s)}</td>`).join("")}</tr>`).join("");
   }
 
   // ---------- send order ----------
@@ -881,6 +888,7 @@
     try {
       const cfg = await (await fetch("/api/config")).json();
       if (cfg.rates) state.rates = cfg.rates;
+      if (Number.isFinite(cfg.modelStep)) state.modelStep = cfg.modelStep;
       state.demo = Boolean(cfg.demo);
       state.payments = cfg.payments || null;
       state.whatsapp = cfg.whatsapp || null;

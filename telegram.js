@@ -195,7 +195,7 @@ async function announceOrder(o, brief) {
     : o.telegram_chat_id ? "" : "\n⏳ الزبون لم يضغط Start بعد – الطلب ينتظر الربط.")
     + (opt.termsNotice ? `\n⚠️ قد يخالف شروط الاستخدام (القسم ${opt.termsNotice.sections.join(" و ")}) – عُرضت الشروط على الزبون ووافق عليها بإرسال الطلب. راجعه قبل /confirm.` : "");
   return notifyAdmins(
-    `🎬 <b>طلب جديد ${esc(o.request_id)}</b>\n@${esc(o.telegram_username)} · ${esc(o.phone)}\n${esc(tiers.tierTeam(opt.quality))} · ${opt.seconds}s · ${esc(opt.language || "")} · ${esc(opt.characters || "")} شخصية · $${opt.price}\n${opt.attachments ? `مرفقات: ${opt.attachments}` : "بدون مرفقات"}\n\n${esc((opt.description || "-").slice(0, 600))}${linked}\n\nللتأكيد: /confirm ${esc(o.request_id)}`,
+    `🎬 <b>طلب جديد ${esc(o.request_id)}</b>\n@${esc(o.telegram_username)} · ${esc(o.phone)}\n${esc(tiers.teamLabel(opt.model, opt.quality))} · ${opt.seconds}s · ${esc(opt.language || "")} · ${esc(opt.characters || "")} شخصية · $${opt.price}\n${opt.attachments ? `مرفقات: ${opt.attachments}` : "بدون مرفقات"}\n\n${esc((opt.description || "-").slice(0, 600))}${linked}\n\nللتأكيد: /confirm ${esc(o.request_id)}`,
     brief ? { buffer: Buffer.from(brief, "utf8"), name: `${o.request_id}-brief.txt`, caption: `ملف الإنتاج ${o.request_id}` } : null
   );
 }

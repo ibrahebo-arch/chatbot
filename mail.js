@@ -118,7 +118,7 @@ async function send({ subject, text, html, files = [], replyTo }) {
 
 const escHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const wrap = (title, text) => `<div dir="rtl" style="font-family:Tahoma,Arial;line-height:1.8"><h2>${escHtml(title)}</h2><pre style="white-space:pre-wrap;font-family:inherit">${escHtml(text)}</pre></div>`;
-const optLine = (o) => { const p = o.options || {}; return `${tiers.tierTeam(p.quality)} · ${p.seconds}s · ${p.language || ""} · ${p.characters || ""} شخصية · $${p.price}`; };
+const optLine = (o) => { const p = o.options || {}; return `${tiers.teamLabel(p.model, p.quality)} · ${p.seconds}s · ${p.language || ""} · ${p.characters || ""} شخصية · $${p.price}`; };
 
 /** Email 1 – a new order arrived (brief attached as .txt; Brevo rejects .md). */
 async function orderEmail(o, brief) {
