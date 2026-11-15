@@ -28,25 +28,32 @@ test("pick: explicit preset, then gender+age default, then a sensible fallback",
   assert.equal(voices.pick({}).id, voices.DEFAULTS["male.adult"]);
 });
 
-test("studio voices (Veo) are never offered to customers", () => {
+test("studio voices (Wan 3.0) are never offered to customers", () => {
   const studio = voices.CATALOG.filter((v) => v.studio);
-  assert.ok(studio.length >= 2 && studio.every((v) => v.provider === "veo"));
+  assert.ok(studio.length >= 2 && studio.every((v) => v.provider === "wan"));
   const pub = voices.publicCatalog();
-  assert.ok(!pub.voices.some((v) => v.id.startsWith("veo-")), "not on the page");
+  assert.ok(!pub.voices.some((v) => /^(wan|veo)-/.test(v.id)), "not on the page");
   assert.ok(!Object.values(voices.DEFAULTS).some((id) => voices.byId(id).studio), "never a default");
-  assert.notEqual(voices.pick({ preset: "veo-young-woman", gender: "female", age: "young" }).provider, "veo", "a request naming it gets the normal voice");
-  assert.equal(voices.byId("veo-young-woman").provider, "veo", "the studio still reaches it by id");
+  assert.notEqual(voices.pick({ preset: "wan-young-woman", gender: "female", age: "young" }).provider, "wan", "a request naming it gets the normal voice");
+  assert.equal(voices.byId("wan-young-woman").provider, "wan", "the studio still reaches it by id");
+  assert.equal(voices.byId("veo-young-woman"), voices.byId("wan-young-woman"), "the old Veo ids reach the Wan voices");
+  assert.equal(voices.STUDIO_MODEL, "alibaba/wan-3.0/text-to-video");
 });
 
-test("veoSeconds + veoPrompt: one speaker, the exact words, a clip just long enough", () => {
-  assert.equal(voices.veoSeconds("لو تطلع نخلة براسك، ما أتزوجك!"), 4);
-  assert.equal(voices.veoSeconds("كلمة ".repeat(12)), 6);
-  assert.equal(voices.veoSeconds("كلمة ".repeat(20)), 8);
-  const p = voices.veoPrompt(voices.byId("veo-young-woman"), "لو تطلع نخلة براسك، ما أتزوجك!", "ar-IQ", "slightly annoyed");
+test("studioSeconds + studioPrompt + studioInput: one speaker, the exact words, a clip just long enough, sent as written", () => {
+  assert.equal(voices.studioSeconds("لو تطلع نخلة براسك، ما أتزوجك!"), 4);
+  assert.equal(voices.studioSeconds("كلمة ".repeat(12)), 6);
+  assert.equal(voices.studioSeconds("كلمة ".repeat(20)), 8);
+  const p = voices.studioPrompt(voices.byId("wan-young-woman"), "لو تطلع نخلة براسك، ما أتزوجك!", "ar-IQ", "slightly annoyed");
   assert.ok(p.includes("\"لو تطلع نخلة براسك، ما أتزوجك!\""), "the exact words, quoted");
   assert.match(p, /25-year-old woman from Baghdad/);
   assert.match(p, /Only this one person speaks/);
   assert.match(p, /slightly annoyed/);
+  const i = voices.studioInput(voices.byId("wan-man"), "احچي على كيفك", "ar-IQ", "");
+  assert.equal(i.duration, 4);
+  assert.equal(i.resolution, "480p", "only the sound is kept – the cheapest picture");
+  assert.equal(i.audio, true);
+  assert.equal(i.enable_prompt_expansion, false, "the words are never rewritten");
 });
 
 test("typeFromSpeech: old plans (voice male|female|child) and new ones (gender, age)", () => {
@@ -96,7 +103,7 @@ test("planner.applyVoice: the customer's voice choice always wins", () => {
 test("voiceOfVideo: only the clip's sound is kept, silence before and after trimmed", { skip: !wm.ready && "ffmpeg not available" }, async () => {
   const { spawnSync } = require("child_process");
   const os = require("os"), fsSync = require("fs"), path = require("path");
-  const f = path.join(os.tmpdir(), `veo-test-${process.pid}.mp4`);
+  const f = path.join(os.tmpdir(), `studio-voice-test-${process.pid}.mp4`);
   // 4 s clip: 1 s silence, 2 s tone (the "voice"), 1 s silence
   const r = spawnSync(wm.FFMPEG, ["-hide_banner", "-v", "error", "-y", "-f", "lavfi", "-i", "color=black:s=64x112:d=4", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono:d=1",
     "-f", "lavfi", "-i", "sine=frequency=300:duration=2", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono:d=1", "-filter_complex", "[1:a][2:a][3:a]concat=n=3:v=0:a=1[a]",

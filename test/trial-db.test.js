@@ -90,6 +90,7 @@ test.before(async () => {
   base = `http://127.0.0.1:${fake.address().port}`;
   Object.assign(process.env, {
     FAL_KEY: "test-fal-key", FAL_QUEUE_URL: base,
+    FAL_VIDEO_COST_PER_SEC: "0.025", // the budget tests below count $0.25 per free video
     TRIAL_IMAGES: "3", TRIAL_VIDEOS: "1", TRIAL_DAILY_BUDGET_USD: "0.55", TRIAL_SALT: "test-salt",
     OPENAI_API_KEY: "test-openai-key", OPENAI_BASE_URL: base, OPENAI_IMAGE_COST_USD: "0.04",
     STORAGE_DIR: path.join(os.tmpdir(), `vi-trial-test-${process.pid}`),
@@ -232,23 +233,25 @@ test("fal out of credit: pictures switch to ChatGPT automatically, the free vide
   await assert.rejects(trial.start({ ip: "198.51.100.22", kind: "video", style: "realistic", prompt: "waves" }), { code: "video_off" });
 });
 
-test("video with a spoken line: Iraqi voice recorded and sent as the soundtrack; the finished video is stamped and keeps its voice", { skip }, async () => {
+test("video with a spoken line: Wan 3.0 speaks the Iraqi line itself (no recorded track); the finished video is stamped and keeps its voice", { skip }, async () => {
   await db.query("UPDATE trial_jobs SET cost_usd = 0");
   require("../media").resetFal();
   const speech = { lang: "ar-IQ", text: "هلا بيكم بمطعمنا، تعالوا جرّبوا المشاوي", voice: "male", tone: "warm" };
   const plan = { prompt: "A man speaks to the camera", negative: "blurry", speech, onScreenText: null, shots: [] };
   const { job, token } = await trial.start({ ip: "198.51.100.30", kind: "video", style: "realistic", prompt: "اعلان مطعم", modelPrompt: plan.prompt, plan, speech });
   const sent = jobs.get(job.provider_job_id);
+  assert.equal(sent.model.startsWith("alibaba/wan-3.0/"), true, `Wan 3.0 makes the free video: ${sent.model}`);
   assert.equal(sent.input.duration, 10);
-  assert.ok(sent.input.target_audio_url.startsWith("data:audio/mpeg;base64,"), "voice track sent as a data URI");
-  assert.equal(sent.input.prompt_expansion_mode, "disabled", "our own prompt is sent as written");
-  assert.match(ttsCalls.at(-1).instructions, /Iraqi/);
-  assert.equal(ttsCalls.at(-1).input, speech.text);
-  const row = (await db.query("SELECT speech_text, speech_lang, audio_key, plan FROM trial_jobs WHERE id = $1", [job.id])).rows[0];
+  assert.equal(sent.input.target_audio_url, undefined, "no recorded track – Wan speaks the line");
+  assert.ok(sent.input.prompt.includes(`"${speech.text}"`), "the exact words in the prompt");
+  assert.match(sent.input.prompt, /Iraqi/);
+  assert.equal(sent.input.audio, true);
+  assert.equal(sent.input.enable_prompt_expansion, false, "our own prompt is sent as written");
+  const row = (await db.query("SELECT speech_text, speech_lang, audio_key, plan, voice FROM trial_jobs WHERE id = $1", [job.id])).rows[0];
   assert.equal(row.speech_text, speech.text);
   assert.equal(row.speech_lang, "ar-IQ");
-  assert.equal(row.audio_key, `trial/${job.ticket}.mp3`);
-  assert.equal((await storage.getBuffer(row.audio_key)).length, 4000);
+  assert.equal(row.audio_key, null, "no voice file – the voice is in the video");
+  assert.equal(row.voice.say.text, speech.text, "kept for a quality-check remake");
   assert.equal(row.plan.negative, "blurry");
   assert.equal(trial.view(await trial.get(job.id, token), token).speech.text, speech.text);
 
