@@ -151,24 +151,22 @@ async function finalize(job, original = null) {
 }
 
 /**
- * Makes a video again after a failed quality check: same prompt and voice track, plus the problems the check found
+ * Makes a video again after a failed quality check: same prompt and spoken line, plus the problems the check found
  * as things to avoid. Only within the daily budget; the job stays "running" and is picked up by the normal polling.
  */
 async function remake(job, verdict) {
   try {
-    const audio = job.audio_key && storage.ready ? await storage.getBuffer(job.audio_key, 15 * 1048576).catch(() => null) : null;
-    const audioUrl = audio ? media.audioDataUri(audio) : null;
     // a video that started from a picture is made again from the same picture (our start frame); without it
     // (a customer photo or an animated trial picture that was not kept) it is not remade
     const frame = job.image_first_frame && storage.ready ? await storage.getBuffer(`trial/frame/${job.ticket}.jpg`, 25 * 1048576).catch(() => null) : null;
     if (job.image_first_frame && !frame) return false;
     const v = typeof job.voice === "string" ? JSON.parse(job.voice) : job.voice || {};
-    const say = audioUrl ? null : v.say || (job.speech_text ? { text: job.speech_text, lang: job.speech_lang || "ar-IQ" } : null);
-    const cost = media.videoCost(Boolean(audioUrl), Boolean(say));
+    const say = v.say || (job.speech_text ? { text: job.speech_text, lang: job.speech_lang || "ar-IQ" } : null);
+    const cost = media.videoCost(Boolean(say));
     if ((await spentToday()) + cost > DAILY_BUDGET) return false;
     const plan = typeof job.plan === "string" ? JSON.parse(job.plan) : job.plan || {};
     const prompt = `${job.model_prompt || job.prompt} Keep every object, person and building continuous and unchanged for the whole clip. Avoid especially: ${qa.retryAvoid(verdict.issues)}.`;
-    const r = await media.submit("video", { prompt, style: job.style, imageUrl: frame ? `data:image/jpeg;base64,${frame.toString("base64")}` : null, audioUrl, speech: say, negative: plan.negative || "" });
+    const r = await media.submit("video", { prompt, style: job.style, imageUrl: frame ? `data:image/jpeg;base64,${frame.toString("base64")}` : null, speech: say, negative: plan.negative || "" });
     const row = (await db.query(
       `UPDATE trial_jobs SET provider_job_id = $2, model = $3, cost_usd = cost_usd + $4, raw_url = NULL, checked_at = now(), qa_retries = qa_retries + 1
         WHERE id = $1 AND status IN ('queued','running') RETURNING id`, [job.id, r.jobId, r.model, r.cost]
@@ -264,46 +262,19 @@ async function startOpenAI(job, refs = []) {
 }
 
 /**
- * The video's soundtrack from the customer's voice choice (see voices.js), fitted to the video length.
- *   voice = { mode: tts|own|convert|none, preset, gender, age, clip: { mp3, transcript, lang } }
- * Returns { mp3, info } or null (no voice).
- */
-async function soundtrack(voice, speech, seconds) {
-  const mode = voice?.mode || "tts";
-  if (mode === "none") return null;
-  const note = (f) => (f.cut ? "قُصّ ليناسب طول الفيديو" : f.tempo > 1 ? "سُرّع قليلاً ليناسب طول الفيديو" : "");
-  // fitting is an improvement, never a reason to lose the voice: if ffmpeg cannot fit it, the track is used as it is
-  const fitOr = (mp3, allowSpeedUp) => voices.fit(mp3, seconds, allowSpeedUp).catch((e) => {
-    console.error(`voice fit: ${String(e.message).slice(0, 100)} – track used as it is`);
-    return { mp3, tempo: 1, cut: false };
-  });
-  if (mode === "own" && voice.clip?.mp3) {
-    const f = await fitOr(voice.clip.mp3, false); // the customer's own voice: cut if needed, never sped up
-    return { mp3: f.mp3, info: { mode, label: "صوتك كما سجّلته", clip: voice.clip.id, fitted: note(f) } };
-  }
-  const chosen = voice?.preset && voice.preset !== "auto" ? { preset: voice.preset } : null;
-  const type = { ...voices.typeFromSpeech(speech || {}), ...(voices.GENDERS.includes(voice?.gender) ? { gender: voice.gender } : {}), ...(voices.AGES.includes(voice?.age) ? { age: voice.age } : {}) };
-  const v = voices.pick(chosen || type);
-  const text = mode === "convert" ? clean(voice?.clip?.transcript) : clean(speech?.text);
-  if (!v || !text) return null;
-  const f = await fitOr(await voices.speak(v, { text, lang: speech?.lang || voice?.clip?.lang || "ar-IQ", tone: speech?.tone || "" }), true);
-  return { mp3: f.mp3, info: { mode, preset: v.id, label: mode === "convert" ? `كلامك بصوت: ${v.label}` : v.label, clip: voice?.clip?.id || null, fitted: note(f) } };
-}
-
-/**
- * The spoken line for Wan 3.0, which speaks it itself in the video (owner, 2026-11-15) – everything except the
- * customer's own recording, which still goes in as a sound track. Returns { say, info } or null (nobody speaks).
+ * The spoken line for Wan 3.0, which speaks it itself in the video (owner, 2026-11-15; customer recordings were
+ * removed the same day). Returns { say, info } or null (nobody speaks).
  *   say = { text, lang, gender, age, tone } for media.submit; info = what the job page shows.
  */
 function spokenBy(voice, speech) {
-  const mode = voice?.mode || "tts";
-  if (mode === "none" || (mode === "own" && voice?.clip?.mp3)) return null;
-  const text = mode === "convert" ? clean(voice?.clip?.transcript) : clean(speech?.text);
+  const mode = voice?.mode === "none" ? "none" : "tts";
+  if (mode === "none") return null;
+  const text = clean(speech?.text);
   if (!text) return null;
   const type = { ...voices.typeFromSpeech(speech || {}), ...(voices.GENDERS.includes(voice?.gender) ? { gender: voice.gender } : {}), ...(voices.AGES.includes(voice?.age) ? { age: voice.age } : {}) };
-  const say = { text, lang: speech?.lang || voice?.clip?.lang || "ar-IQ", tone: speech?.tone || "", ...type };
+  const say = { text, lang: speech?.lang || "ar-IQ", tone: speech?.tone || "", ...type };
   const label = `${voices.typeLabel(type.gender, type.age) || "صوت"} – عراقي طبيعي`;
-  return { say, info: { mode, label: mode === "convert" ? `كلامك بصوت: ${label}` : label, clip: voice?.clip?.id || null, fitted: "", say } };
+  return { say, info: { mode, label, fitted: "", say } };
 }
 
 /**
@@ -329,12 +300,10 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const framed = kind === "video" && !sourceJobId && media.startFrameOn() && storage.ready;
   const frameCost = framed ? media.frameCost(useRefs, style) : 0;
   const realismCost = kind === "image" && style === "realistic" && media.realismOn() ? media.COST.realism : 0;
-  // a video follows a recording (MiniMax) only for the customer's own voice; any other spoken line Wan says itself
-  const recorded = kind === "video" && voice?.mode === "own" && Boolean(voice?.clip);
-  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit + realismCost : routeOf(pl) ? media.COST.openaiImage + realismCost : kind === "video" ? media.videoCost(recorded, Boolean(sp || voice?.clip)) + frameCost : media.COST[kind]);
+  const costOf = (pl, sp) => (editImage ? media.COST.openaiEdit + realismCost : routeOf(pl) ? media.COST.openaiImage + realismCost : kind === "video" ? media.videoCost(Boolean(sp)) + frameCost : media.COST[kind]);
   // with planFn the plan is written after the visitor already has the job: reserve the highest possible cost
   const cost = planFn
-    ? (kind === "video" ? Math.max(media.COST.video, media.COST.lipsync, media.videoCost(false)) + frameCost : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image) + realismCost)
+    ? (kind === "video" ? Math.max(media.COST.video, media.videoCost(false)) + frameCost : Math.max(editImage ? media.COST.openaiEdit : 0, media.COST.openaiImage, media.COST.image) + realismCost)
     : costOf(plan, speech);
 
   // "animate this image": only one of this visitor's own finished images
@@ -380,23 +349,12 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
   const launch = async (job, plan, speech, modelPrompt) => {
     if (routeOf(plan)) return { job: await startOpenAI(job, editImage ? refs : []), token: job.token };
     try {
-      // the voice: the customer's own recording goes in as the sound track (fitted to the video length); any other
-      // spoken line (a character voice, or their words in a character's voice – Iraqi by default) Wan says itself
-      let audioUrl = null, say = null;
+      // the spoken line (Iraqi by default): Wan says it itself in the video – no separate voice track
+      let say = null;
       const spoken = kind === "video" ? spokenBy(voice, speech) : null;
       if (spoken) {
         say = spoken.say;
         await db.query("UPDATE trial_jobs SET voice = $2 WHERE id = $1", [job.id, JSON.stringify(spoken.info)]);
-      } else if (kind === "video" && voice?.mode === "own" && voice?.clip) {
-        try {
-          const st = await soundtrack(voice, speech, media.VIDEO_SECONDS);
-          if (st) {
-            audioUrl = media.audioDataUri(st.mp3);
-            const akey = `trial/${job.ticket}.mp3`;
-            if (storage.ready) await storage.put(akey, st.mp3, { contentType: "audio/mpeg" });
-            await db.query("UPDATE trial_jobs SET audio_key = $2, voice = $3 WHERE id = $1", [job.id, storage.ready ? akey : null, JSON.stringify(st.info)]);
-          }
-        } catch (e) { console.error(`trial ${job.ticket}: voice failed (${e.message.slice(0, 120)}) – video without voice`); }
       }
       // the opening moment as a picture first (ChatGPT image + realism pass, from the customer's photos when given);
       // kept for a quality-check remake. If it fails the video is made the way it was before.
@@ -407,7 +365,7 @@ async function start({ ip, kind, style, prompt, modelPrompt, plan = null, speech
           imageUrl = `data:image/jpeg;base64,${frame.toString("base64")}`;
         } catch (e) { console.error(`trial ${job.ticket}: start frame failed (${e.message.slice(0, 120)}) – video without it`); }
       }
-      const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, audioUrl, speech: say, negative: plan?.negative || "" });
+      const r = await media.submit(kind, { prompt: modelPrompt || text, style, imageUrl, speech: say, negative: plan?.negative || "" });
       const row = (await db.query(
         "UPDATE trial_jobs SET provider = $2, model = $3, provider_job_id = $4, cost_usd = $5, status = 'running', image_first_frame = $6 WHERE id = $1 RETURNING *",
         [job.id, r.provider, r.model, r.jobId, r.cost, Boolean(imageUrl)]

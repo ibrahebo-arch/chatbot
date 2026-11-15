@@ -244,10 +244,10 @@
   $("attachBtn").addEventListener("click", () => $("fileInput").click());
   $("fileInput").addEventListener("change", () => {
     [...$("fileInput").files].forEach((file) => {
-      if (file.type.startsWith("audio/") || /.(mp3|m4a|wav|ogg|aac|opus)$/i.test(file.name)) { uploadVoice(file, file.name); return; }
+      if (file.type.startsWith("audio/") || /.(mp3|m4a|wav|ogg|aac|opus)$/i.test(file.name)) { toast("لا نستخدم التسجيلات الصوتية – اختر صوتاً جاهزاً للشخصية 🎙️"); return; }
       const isVideo = file.type.startsWith("video/") || /\.(mp4|webm|mov|m4v)$/i.test(file.name);
       const isImage = file.type.startsWith("image/") || /\.(png|jpe?g|webp|gif|heic)$/i.test(file.name);
-      if (!isImage && !isVideo) { toast(`الملف ${file.name} غير مدعوم – ارفع صورة أو فيديو أو تسجيلاً صوتياً`); return; }
+      if (!isImage && !isVideo) { toast(`الملف ${file.name} غير مدعوم – ارفع صورة أو فيديو`); return; }
       if (file.size > state.attachLimit) { toast(`الملف ${file.name} أكبر من الحد المسموح (${Math.round(state.attachLimit / 1048576)} MB)`); return; }
       const item = { name: file.name, size: file.size, image: isImage, video: isVideo, role: isImage ? "char1" : "ref", preview: null, done: false, progress: 0, url: null, stored: null };
       // first picture defaults to character 1, next ones to 2, 3, then reference
@@ -589,7 +589,7 @@
     const box = el("div", "media");
     if (busy) {
       const w = el("div", "wait"); const secs = Math.max(0, Math.round((Date.now() - new Date(j.createdAt || Date.now()).getTime()) / 1000));
-      w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ تسجيل الصوت وإنشاء الفيديو… عادةً 1–3 دقائق" : "جارٍ إنشاء الصورة…"), el("span", "secs", `⏱️ ${secs} ث – تظهر هنا تلقائياً عند الانتهاء`)); box.append(w);
+      w.append(el("span", "spin"), el("span", "", j.kind === "video" ? "جارٍ إنشاء الفيديو بصوته… عادةً 1–3 دقائق" : "جارٍ إنشاء الصورة…"), el("span", "secs", `⏱️ ${secs} ث – تظهر هنا تلقائياً عند الانتهاء`)); box.append(w);
     } else if (j.status === "done" && j.url) {
       const m = el(j.kind === "video" ? "video" : "img");
       if (j.kind === "video") {
@@ -723,7 +723,7 @@
   $("trialGo").addEventListener("click", () => startTrial({ kind: trial.kind, style: trial.style }));
 
   // ---------- voice: who speaks in the video, with which voice (ready-made, the customer's own, or their words in a character's voice) ----------
-  const voice = { catalog: { voices: [], types: [] }, videoSeconds: 10, type: "auto", preset: "auto", mode: "tts", clip: null, rec: null };
+  const voice = { catalog: { voices: [], types: [] }, videoSeconds: 10, type: "auto", preset: "auto", mode: "tts" };
   const TYPE_OF_AGE = (n) => (n < 14 ? "child" : n <= 25 ? "young" : n <= 55 ? "adult" : "old");
   const typeLabel = (key) => voice.catalog.types.find((t) => t.key === key)?.label || "";
   const presetLabel = (id) => voice.catalog.voices.find((v) => v.id === id)?.label || "";
@@ -733,7 +733,6 @@
       if (!d.ok) return;
       voice.catalog = d; voice.videoSeconds = d.videoSeconds || 10;
       $("voiceType").append(...d.types.map((t) => { const o = el("option", "", t.label); o.value = t.key; return o; }));
-      $("micBtn").hidden = !d.recording;
       fillPresets();
     } catch {}
   }
@@ -751,10 +750,9 @@
     $("voiceType").value = voice.type; voice.preset = "auto"; fillPresets();
   }
   function setVoiceMode(m) {
-    if ((m === "own" || m === "convert") && !voice.clip?.ok) m = "tts";
-    voice.mode = m;
+    voice.mode = m === "none" ? "none" : "tts";
+    m = voice.mode;
     $("voiceMode").querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.v === m));
-    document.querySelectorAll(".vcheck .acts [data-use]").forEach((b) => b.classList.toggle("on", b.dataset.use === m));
     renderVoice();
   }
   // the character type the request uses: chosen type, else the chosen voice's own type
@@ -768,30 +766,19 @@
   const isMute = () => (trial.mode === "free" ? $("trialVoice").value === "none" : state.language === "بدون كلام");
   function voiceSpec(forOrder = false) {
     const t = chosenType(); const [gender, age] = t === "auto" ? [null, null] : t.split(".");
-    const spec = { mode: isMute() ? "none" : voice.mode, preset: voice.preset, gender, age, clip: voice.clip?.ok ? voice.clip.id : null };
-    if (forOrder) spec.transcript = voice.clip?.transcript || "";
-    return spec;
+    return { mode: isMute() ? "none" : "tts", preset: voice.preset, gender, age };
   }
   function voiceChoiceText() {
     if (isMute()) return "بدون صوت";
     const who = voice.preset !== "auto" ? presetLabel(voice.preset) : voice.type !== "auto" ? typeLabel(voice.type) : "صوت مناسب للشخصية";
-    if (voice.mode === "own") return "صوتك كما سجّلته";
-    if (voice.mode === "convert") return `كلامك بصوت: ${who}`;
     return who;
   }
   function renderVoice() {
     const s = $("voiceSummary"); if (!s) return;
-    const own = voice.clip?.ok;
-    $("voiceMode").querySelectorAll('[data-v="own"],[data-v="convert"]').forEach((b) => { b.disabled = !own; b.title = own ? "" : "سجّل صوتك أولاً بزر المايك 🎙️"; });
     $("voicePlay").disabled = voice.preset === "auto" && voice.type === "auto";
     if (isMute()) { s.textContent = "الفيديو بدون كلام – أصوات المكان فقط."; return; }
-    const secs = curSeconds();
     let t = `سيتكلم في الفيديو: ${voiceChoiceText()}`;
     if (voice.mode === "tts") t += voice.type === "auto" ? " – نختار الشخصية والصوت من فكرتك." : " – والشخصية في الفيديو بنفس العمر والجنس.";
-    if (own && voice.mode !== "tts") {
-      const d = voice.clip.duration;
-      t += ` · «${voice.clip.transcript.slice(0, 60)}${voice.clip.transcript.length > 60 ? "…" : ""}» · ${d.toFixed(1)} ث من ${secs} ث ${d > secs ? (voice.mode === "own" ? "– سيُقصّ الزائد" : "– سيُسرّع قليلاً") : "✔"}`;
-    }
     s.textContent = t;
   }
   afterRender = renderVoice; // order length / language changed
@@ -821,8 +808,6 @@
     const sp = spoken.find(([re]) => re.test(t));
     if (sp && $("trialVoice").value !== sp[1]) { $("trialVoice").value = sp[1]; renderVoice(); changed.push(`لغة الكلام: ${sp[2]}`); }
     if (/بدون صوت|بلا صوت|بدون كلام/.test(t)) { if (trial.mode === "free") $("trialVoice").value = "none"; else setLanguage("بدون كلام"); renderVoice(); changed.push("بدون صوت"); return changed; }
-    if (voice.clip?.ok && /(حول|حوّل|غير|غيّر|بدل|بدّل)\s*صوتي|كلامي بصوت/.test(t)) { setVoiceMode("convert"); changed.push("كلامك بصوت الشخصية"); }
-    else if (voice.clip?.ok && /بصوتي|صوتي آني|نفس صوتي|صوتي كما/.test(t)) { setVoiceMode("own"); changed.push("صوتك كما هو"); }
     if (!about) return changed;
     const rules = [
       [/حجية|عجوز|جدة|بيبي/, "female.old"], [/حجي|شايب|جدو|كبير بالعمر|كبير بالسن/, "male.old"],
@@ -840,121 +825,6 @@
     return changed;
   }
 
-  // ---------- recording in the chat ----------
-  const micBtn = $("micBtn");
-  function stopRec() { if (voice.rec?.mr?.state === "recording") voice.rec.mr.stop(); }
-  micBtn.addEventListener("click", async () => {
-    if (voice.rec) return stopRec();
-    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) { toast("المتصفح لا يدعم التسجيل – ارفع ملفاً صوتياً بزر المشبك."); return; }
-    let stream;
-    try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }); }
-    catch { toast("اسمح للموقع باستخدام المايك ثم حاول مرة ثانية."); return; }
-    const type = ["audio/webm;codecs=opus", "audio/mp4", "audio/webm", "audio/ogg"].find((m) => MediaRecorder.isTypeSupported?.(m)) || "";
-    const mr = new MediaRecorder(stream, type ? { mimeType: type } : undefined);
-    const chunks = [];
-    const started = Date.now();
-    voice.rec = { mr, timer: setInterval(() => {
-      const s = Math.floor((Date.now() - started) / 1000);
-      $("micTime").textContent = `${s}ث`;
-      if (s >= 30) stopRec(); // a video holds at most ~10 s of speech; 30 s is the hard stop
-    }, 250) };
-    micBtn.classList.add("rec"); micBtn.title = "اضغط لإيقاف التسجيل";
-    mr.ondataavailable = (e) => e.data.size && chunks.push(e.data);
-    mr.onstop = () => {
-      clearInterval(voice.rec.timer); voice.rec = null;
-      stream.getTracks().forEach((t) => t.stop());
-      micBtn.classList.remove("rec"); micBtn.title = "سجّل صوتك – يُفحص ثم يُستخدم في الفيديو"; $("micTime").textContent = "";
-      const blob = new Blob(chunks, { type: (mr.mimeType || type || "audio/webm").split(";")[0] });
-      if (Date.now() - started < 800 || blob.size < 1500) { toast("التسجيل قصير جداً – اضغط وتكلّم ثم اضغط للإيقاف."); return; }
-      uploadVoice(blob, "تسجيلك");
-    };
-    mr.start(250);
-    toast("🎙️ يسجّل الآن… تكلّم ثم اضغط المايك للإيقاف");
-  });
-
-  // ---------- the check card: what we heard, and whether the recording can be used ----------
-  const ICON = { ok: "✅", warn: "⚠️", bad: "❌" };
-  const AGE_AR = { child: "طفل", young: "شاب", adult: "بالغ", old: "كبير بالعمر" };
-  const GENDER_AR = { female: "أنثى", male: "ذكر" };
-  function matchNote(clip) {
-    const sp = clip.speaker || {}; const t = chosenType();
-    if (!sp.gender || !sp.age || t === "auto") return "";
-    const [g, a] = t.split(".");
-    if (sp.gender === g && sp.age === a) return `✅ التسجيل يناسب الشخصية المختارة (${typeLabel(t)}).`;
-    return `ℹ️ المتكلم في التسجيل: ${typeLabel(`${sp.gender}.${sp.age}`)}، والشخصية المختارة «${typeLabel(t)}»: مع «صوتي كما هو» نجعل الشخص في الفيديو يطابق صوتك، ومع «كلامي بصوت الشخصية» يقول ${typeLabel(t)} نفس كلامك.`;
-  }
-  function voiceCard(card, clip) {
-    card.replaceChildren();
-    card.append(el("h4", "", clip.ok ? "🎙️ فحص صوتك: صالح للاستخدام" : "🎙️ فحص صوتك: يحتاج تسجيلاً جديداً"));
-    const a = el("audio"); a.controls = true; a.preload = "metadata"; a.src = clip.url; card.append(a);
-    const ul = el("ul"); clip.items.forEach((i) => ul.append(el("li", i.level, `${ICON[i.level] || "•"} ${i.text}`))); card.append(ul);
-    // who is speaking – the customer says it (used to match the person in the video to the recording)
-    if (clip.ok) {
-      const sp = clip.speaker || {};
-      const who = el("label", "who", "🧑 صوت مَن في هذا التسجيل؟ ");
-      const sel = el("select");
-      const none = el("option", "", "اختر…"); none.value = ""; sel.append(none);
-      voice.catalog.types.forEach((t) => { const o = el("option", "", t.label); o.value = t.key; sel.append(o); });
-      sel.value = sp.gender && sp.age ? `${sp.gender}.${sp.age}` : "";
-      sel.onchange = async () => {
-        if (!sel.value) return;
-        const [gender, age] = sel.value.split(".");
-        try {
-          const d = await (await fetch(`/api/voice/clips/${encodeURIComponent(clip.id)}/speaker`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ gender, age }) })).json();
-          if (d.ok) { setClip(d.clip); voiceCard(card, d.clip); } else toast(d.message || "تعذّر الحفظ");
-        } catch { toast("تعذّر الاتصال بالخادم"); }
-      };
-      who.append(sel); card.append(who);
-    }
-    const m = matchNote(clip); if (m && clip.ok) card.append(el("span", "match", m));
-    const acts = el("div", "acts");
-    if (clip.ok) {
-      [["own", "🎙️ استخدم صوتي كما هو"], ["convert", "🔁 كلامي بصوت الشخصية"]].forEach(([v, label]) => {
-        const b = el("button", voice.mode === v ? "on" : "", label); b.type = "button"; b.dataset.use = v;
-        b.onclick = () => { useVideoForVoice(); setVoiceMode(v); };
-        acts.append(b);
-      });
-    }
-    const again = el("button", "", "🔍 افحص مرة ثانية"); again.type = "button";
-    again.onclick = async () => {
-      again.disabled = true; again.textContent = "⏳ يفحص…";
-      try { const d = await (await fetch(`/api/voice/clips/${encodeURIComponent(clip.id)}/check?seconds=${curSeconds()}`, { method: "POST" })).json(); if (d.ok) { setClip(d.clip); voiceCard(card, d.clip); return; } toast(d.message || "تعذّر الفحص"); }
-      catch { toast("تعذّر الاتصال بالخادم"); }
-      again.disabled = false; again.textContent = "🔍 افحص مرة ثانية";
-    };
-    const rec = el("button", "", "🎙️ سجّل من جديد"); rec.type = "button"; rec.onclick = () => micBtn.click();
-    acts.append(again, rec); card.append(acts);
-    list.scrollTop = list.scrollHeight;
-  }
-  function setClip(clip) {
-    voice.clip = clip;
-    if (clip.ok && voice.mode === "tts") setVoiceMode("own"); else setVoiceMode(voice.mode);
-  }
-  // a recording only makes sense in a video: the paid order keeps it (with speech), the free trial switches to video
-  function useVideoForVoice() {
-    if (trial.mode !== "free") { if (state.language === "بدون كلام") setLanguage("عراقي (لهجة)"); return; }
-    if (!trial.on) return;
-    const vb = $("trialKind").querySelector('[data-v="video"]');
-    if (vb && !vb.disabled && trial.kind !== "video") vb.click();
-    if ($("trialVoice").value === "none") $("trialVoice").value = "ar-IQ";
-  }
-  async function uploadVoice(blob, name) {
-    startChat();
-    const local = URL.createObjectURL(blob);
-    const um = addMsg("user", `🎙️ ${name}`); const pa = el("audio"); pa.controls = true; pa.src = local; um.append(pa);
-    const card = addMsg("sys", "", [], "vcheck"); card.append(el("h4", "", "🔍 نفحص صوتك… (المدة، مستوى الصوت، الوضوح، الضجيج، الكلام واللهجة)"));
-    try {
-      const r = await fetch(`/api/voice/clip?seconds=${curSeconds()}`, { method: "PUT", headers: { "Content-Type": blob.type || "application/octet-stream" }, body: blob });
-      const d = await r.json().catch(() => ({}));
-      if (!d.ok) { card.replaceChildren(el("h4", "", `❌ ${d.message || "تعذّر فحص التسجيل"}`)); return; }
-      setClip(d.clip); voiceCard(card, d.clip);
-      if (d.clip.ok) {
-        useVideoForVoice();
-        // the assistant and the plan know what was said
-        state.messages.push({ role: "user", content: `🎙️ (تسجيل صوتي لي): «${d.clip.transcript}»` });
-      }
-    } catch { card.replaceChildren(el("h4", "", "❌ تعذّر الاتصال بالخادم، حاول مرة ثانية.")); }
-  }
   function initTrial() {
     trial.on = true;
     $("modeSeg").hidden = false;

@@ -159,7 +159,7 @@ const SYSTEM_PROMPT = `أنت "مساعد VI Iraq"، مستشار إبداعي �
 - السعر التقديري معروض للزبون في اللوحة؛ إذا سأل عنه أعطِ الرقم الموجود في "خيارات الزبون الحالية" فقط، ولا تخترع أسعاراً أخرى.
 - أنت لا تُنتج الفيديو بنفسك ولا تدّعي ذلك؛ فريق VI Iraq ينتجه بعد إرسال الطلب ويتواصل مع الزبون عبر تيليغرام أو الهاتف.
 - لإرسال الطلب يجب أن يملأ الزبون معرّف تيليغرام ورقم هاتفه العراقي في اللوحة؛ ذكّره بذلك بلطف عندما تكتمل الفكرة.
-- الصوت في الفيديو: يختار الزبون الشخصية المتكلمة (بنت/ولد/شابة/شاب/امرأة/رجل/كبير بالعمر) وصوتها من اللوحة، أو يكتبها لك ("خلي الصوت بنت صغيرة"). ويستطيع تسجيل صوته بزر المايك 🎙️ في الدردشة أو رفع ملف صوتي: نفحصه أولاً (المدة، الوضوح، الضجيج، الكلام واللهجة) ويحدد هو صوت مَن في التسجيل، ثم يختار: صوته كما هو داخل الفيديو، أو نفس كلامه بصوت الشخصية. إذا كتب الكلمات التي يريدها حرفياً تُقال كما هي. اشرح له هذا باختصار إذا سأل عن الصوت.
+- الصوت في الفيديو: يختار الزبون الشخصية المتكلمة (بنت/ولد/شابة/شاب/امرأة/رجل/كبير بالعمر) وصوتها من اللوحة، أو يكتبها لك ("خلي الصوت بنت صغيرة"). لا نستخدم تسجيلات الزبون الصوتية (لا مايك ولا ملفات صوتية) – الشخص في الفيديو يحچي بنفسه بلهجة عراقية طبيعية. إذا كتب الكلمات التي يريدها حرفياً تُقال كما هي. اشرح له هذا باختصار إذا سأل عن الصوت.
 الطول: 2–6 أسطر عادةً؛ أطول فقط عند كتابة سيناريو أو نص مطلوب. لا تكرر ما قاله الزبون حرفياً.
 LANGUAGE RULE (highest priority): always reply in the language of the customer's LAST message – Arabic (Iraqi touch welcome) if it is Arabic, English if it is English.`;
 
@@ -595,18 +595,7 @@ app.post("/api/order", orderLimit, async (req, res) => {
     voice: orderVoice(order.voice),
   };
   if (options.voice) {
-    if (options.language === "بدون كلام") options.voice = { ...options.voice, mode: "none", clip: null };
-    if (options.voice.clip) {
-      const row = await clipOf(options.voice.clip, req).catch(() => null);
-      if (!row || !row.analysis?.ok) options.voice.clip = null;
-      else {
-        options.voice.transcript = row.transcript || "";
-        options.voice.duration = Number(row.duration_sec);
-        const sp = row.analysis?.speaker;
-        if (sp?.gender && sp?.age) options.voice.speaker = voices.typeLabel(sp.gender, sp.age);
-      }
-    }
-    if ((options.voice.mode === "own" || options.voice.mode === "convert") && !options.voice.clip) options.voice.mode = "tts";
+    if (options.language === "بدون كلام") options.voice = { ...options.voice, mode: "none" };
   }
   const idempotencyKey = clean(req.get("idempotency-key") || order.idempotencyKey) || null;
 
@@ -646,10 +635,6 @@ app.post("/api/order", orderLimit, async (req, res) => {
         if (tg.configured) {
           await tg.announceOrder(fresh, brief).catch((e) => console.error("telegram notify:", e.message));
           await tg.sendAssets(fresh, files).catch((e) => console.error("telegram assets:", e.message)); // the customer's pictures, by role
-          if (options.voice?.clip) { // the customer's voice recording, ready to use in production
-            const row = (await db.query("SELECT r2_key FROM voice_clips WHERE id = $1", [options.voice.clip])).rows[0];
-            if (row) await tg.sendAudio(fresh, await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), `${o.request_id} · 🎙️ ${voiceText(options.voice)}`.slice(0, 1000)).catch((e) => console.error("telegram voice:", e.message));
-          }
         }
         await mail.orderEmail(fresh, brief).catch((e) => console.error("mail order:", e.message)); // email 1
       } catch (e) {
@@ -680,8 +665,8 @@ app.post("/api/order", orderLimit, async (req, res) => {
   });
 });
 
-// ---------- voices (voices.js): character voices, the customer's own recordings, checked before use ----------
-const voiceLimit = rateLimit(15, 10 * 60 * 1000, "تسجيلات كثيرة، انتظر قليلاً ثم حاول مرة ثانية.");
+// ---------- voices (voices.js): ready character voices. Customer recordings were removed (owner, 2026-11-15):
+// every spoken line is said by the video model itself (Wan 3.0) or a ready voice; old recordings stay readable below.
 const previewLimit = rateLimit(60, 10 * 60 * 1000, "طلبات كثيرة، انتظر قليلاً.");
 const VOICE_MAX_BYTES = 12 * 1048576;
 const PREVIEW_LINE = "هلا بيكم! آني راح أحچي بالفيديو مالتكم، شلون صوتي؟";
@@ -689,26 +674,19 @@ const PREVIEW_LINE = "هلا بيكم! آني راح أحچي بالفيديو �
 /** The voice part of a paid order (what the customer chose in the panel), cleaned. */
 function orderVoice(v) {
   if (!v || typeof v !== "object") return null;
-  const mode = ["tts", "own", "convert", "none"].includes(v.mode) ? v.mode : "tts";
+  const mode = v.mode === "none" ? "none" : "tts";
   const preset = voices.byId(clean(v.preset));
   const type = voices.typeLabel(clean(v.gender), clean(v.age));
-  return {
-    mode, preset: preset?.id || null, label: preset?.label || type || "", clip: /^V[\w-]{8,40}$/.test(clean(v.clip)) ? clean(v.clip) : null,
-    transcript: clean(v.transcript).slice(0, 600),
-  };
+  return { mode, preset: preset && !preset.studio ? preset.id : null, label: (preset && !preset.studio && preset.label) || type || "" };
 }
 function voiceText(v) {
   if (!v) return "-";
-  const link = v.clip ? ` – التسجيل: ${PUBLIC_URL || ""}/api/voice/clips/${v.clip}/audio` : "";
   if (v.mode === "none") return "بدون صوت";
-  const about = [v.speaker ? `المتكلم في التسجيل: ${v.speaker}` : "", v.duration ? `المدة ${Number(v.duration).toFixed(1)} ث` : ""].filter(Boolean).join("، ");
-  if (v.mode === "own") return `صوت الزبون كما سجّله${v.transcript ? `: «${v.transcript}»` : ""}${about ? ` (${about})` : ""}${link}`;
-  if (v.mode === "convert") return `كلام الزبون بصوت ${v.label || "الشخصية"}${v.transcript ? `: «${v.transcript}»` : ""}${about ? ` (${about})` : ""}${link}`;
   return v.label ? `صوت جاهز: ${v.label}` : "صوت جاهز يختاره الفريق";
 }
 
 app.get("/api/voices", previewLimit, (_req, res) => {
-  res.set("Cache-Control", "public, max-age=600").json({ ok: true, ...voices.publicCatalog(), videoSeconds: media.VIDEO_SECONDS, recording: storage.ready && require("./watermark").ready });
+  res.set("Cache-Control", "public, max-age=600").json({ ok: true, ...voices.publicCatalog(), videoSeconds: media.VIDEO_SECONDS, recording: false });
 });
 
 // a short sample of each voice, made once and kept on our storage
@@ -736,75 +714,7 @@ app.get("/api/voices/:id/preview", previewLimit, async (req, res) => {
   }
 });
 
-const checkSeconds = (req) => Math.min(120, Math.max(2, Math.round(Number(req.query.seconds)) || media.VIDEO_SECONDS));
-const clipOf = async (id, req) => {
-  const row = (await db.query("SELECT * FROM voice_clips WHERE id = $1", [String(id || "")])).rows[0];
-  return row && row.ip_hash === trial.ipHash(clientIp(req)) ? row : null;
-};
-
-// The customer's voice (recorded in the chat or uploaded): converted, checked (length, loudness, noise, words,
-// speaker gender/age), kept 7 days. PUT raw audio; answers with the check the chat shows.
-app.put("/api/voice/clip", voiceLimit, express.raw({ type: () => true, limit: VOICE_MAX_BYTES }), async (req, res) => {
-  const type = String(req.get("content-type") || "").split(";")[0].trim().toLowerCase();
-  if (!/^(audio\/|video\/(webm|mp4|quicktime)$|application\/octet-stream$)/.test(type)) return res.status(415).json({ ok: false, message: "ارفع ملفاً صوتياً (mp3, m4a, wav, ogg) أو سجّل بزر المايك." });
-  if (!req.body?.length) return res.status(400).json({ ok: false, message: "التسجيل فارغ." });
-  if (!storage.ready || !db.configured) return res.status(503).json({ ok: false, message: "تسجيل الصوت غير متاح حالياً." });
-  try {
-    const { mp3 } = await voices.toMp3(req.body);
-    const report = await voices.check(mp3, checkSeconds(req));
-    const id = voices.newClipId();
-    const key = `voices/clips/${id}.mp3`;
-    await storage.put(key, mp3, { contentType: "audio/mpeg" });
-    const row = (await db.query(
-      "INSERT INTO voice_clips (id, ip_hash, r2_key, duration_sec, transcript, lang, analysis) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *",
-      [id, trial.ipHash(clientIp(req)), key, report.duration, report.heard.text, report.heard.lang,
-       JSON.stringify({ ok: report.ok, items: report.items, speaker: report.speaker, metrics: report.metrics, ai: report.ai })]
-    )).rows[0];
-    console.log(`voice clip ${id}: ${report.duration}s · ${report.ok ? "ok" : "rejected"} · speaker ${report.speaker.gender || "?"}/${report.speaker.age || "?"}`);
-    res.json({ ok: true, clip: voices.clipView(row) });
-  } catch (e) {
-    console.error("voice clip:", e.message);
-    res.status(400).json({ ok: false, message: /readable|empty/.test(e.message) ? "تعذّرت قراءة التسجيل – جرّب تسجيلاً آخر أو ملف mp3." : "تعذّر فحص التسجيل، حاول مرة ثانية." });
-  }
-});
-
-// "check again": runs the full check once more on the stored recording
-app.post("/api/voice/clips/:id/check", voiceLimit, async (req, res) => {
-  try {
-    const row = await clipOf(req.params.id, req);
-    if (!row) return res.status(404).json({ ok: false, message: "التسجيل غير موجود." });
-    const report = await voices.check(await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES), checkSeconds(req));
-    const upd = (await db.query(
-      "UPDATE voice_clips SET duration_sec = $2, transcript = $3, lang = $4, analysis = $5 WHERE id = $1 RETURNING *",
-      [row.id, report.duration, report.heard.text, report.heard.lang, JSON.stringify({ ok: report.ok, items: report.items, speaker: row.analysis?.speaker?.declared ? row.analysis.speaker : report.speaker, metrics: report.metrics, ai: report.ai })]
-    )).rows[0];
-    res.json({ ok: true, clip: voices.clipView(upd) });
-  } catch (e) {
-    console.error("voice recheck:", e.message);
-    res.status(500).json({ ok: false, message: "تعذّر الفحص، حاول مرة ثانية." });
-  }
-});
-
-// who is speaking in the recording, as the customer says it (girl, boy, young woman … old man): the video
-// matches the person on screen to it when the recording is used as it is
-app.post("/api/voice/clips/:id/speaker", voiceLimit, async (req, res) => {
-  const { gender, age } = req.body || {};
-  if (!voices.GENDERS.includes(gender) || !voices.AGES.includes(age)) return res.status(400).json({ ok: false, message: "اختر من القائمة." });
-  try {
-    const row = await clipOf(req.params.id, req);
-    if (!row) return res.status(404).json({ ok: false, message: "التسجيل غير موجود." });
-    const upd = (await db.query(
-      "UPDATE voice_clips SET analysis = jsonb_set(coalesce(analysis, '{}'::jsonb), '{speaker}', $2::jsonb) WHERE id = $1 RETURNING *",
-      [row.id, JSON.stringify({ gender, age, ageEstimate: null, declared: true })]
-    )).rows[0];
-    res.json({ ok: true, clip: voices.clipView(upd) });
-  } catch (e) {
-    console.error("voice speaker:", e.message);
-    res.status(500).json({ ok: false, message: "تعذّر الحفظ، حاول مرة ثانية." });
-  }
-});
-
-// the recording itself (its id is a random value known only to the browser that made it, and the team's brief)
+// an old recording (before 2026-11-15) itself – its id is a random value known only to the browser that made it and the team's brief
 app.get("/api/voice/clips/:id/audio", statusLimit, async (req, res) => {
   const row = (await db.query("SELECT r2_key FROM voice_clips WHERE id = $1", [String(req.params.id || "")]).catch(() => ({ rows: [] }))).rows[0];
   if (!row) return res.sendStatus(404);
@@ -848,21 +758,13 @@ app.post("/api/trial/jobs", trialLimit, async (req, res) => {
   // what the visitor sees on the card: their own newest message (or the animate instruction)
   const text = clean(body.prompt) || clean(conversation.filter((m) => m.role === "user").at(-1)?.content) || (refs.length ? "من صوري المرفقة" : "");
   if (text.length < 3) return res.status(400).json({ ok: false, code: "invalid", message: "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً»." });
-  // the voice the customer chose (videos only): a character voice, their own recording, or their words in a character's voice
+  // the voice the customer chose (videos only): a character type / ready voice, or none
   const vs = body.voiceSpec && typeof body.voiceSpec === "object" ? body.voiceSpec : {};
-  let voice = { mode: voiceLang === "none" ? "none" : ["tts", "own", "convert", "none"].includes(vs.mode) ? vs.mode : "tts",
-    preset: voices.byId(clean(vs.preset)) ? clean(vs.preset) : "auto",
-    gender: voices.GENDERS.includes(vs.gender) ? vs.gender : null, age: voices.AGES.includes(vs.age) ? vs.age : null, clip: null };
-  if (kind === "video" && (voice.mode === "own" || voice.mode === "convert")) {
-    const row = await clipOf(vs.clip, req).catch(() => null);
-    if (!row) return res.status(400).json({ ok: false, code: "invalid", message: "سجّل صوتك أولاً بزر المايك 🎙️ في الدردشة، ثم اختر طريقة استخدامه." });
-    if (!row.analysis?.ok) return res.status(400).json({ ok: false, code: "invalid", message: "تسجيلك لم ينجح في الفحص – سجّل مرة ثانية (التفاصيل في بطاقة الفحص)." });
-    voice.clip = { id: row.id, transcript: row.transcript || "", lang: voiceLang !== "none" ? voiceLang : "ar-IQ", duration: Number(row.duration_sec), mp3: await storage.getBuffer(row.r2_key, VOICE_MAX_BYTES) };
-    // "own": the character on screen must match the real speaker; "convert": the chosen character
-    if (voice.mode === "own") { voice.gender = row.analysis?.speaker?.gender || voice.gender; voice.age = row.analysis?.speaker?.age || voice.age; }
-    else if (!voice.gender && voice.preset !== "auto") { const p = voices.byId(voice.preset); voice.gender = p.gender; voice.age = p.age; }
-  } else if (voice.preset !== "auto" && !voice.gender) { const p = voices.byId(voice.preset); voice.gender = p.gender; voice.age = p.age; }
-  const voicePlan = kind === "video" ? { mode: voice.mode, gender: voice.gender, age: voice.age, fixedText: voice.clip?.transcript || null, audioSeconds: voice.clip?.duration || null } : null;
+  const voice = { mode: voiceLang === "none" || vs.mode === "none" ? "none" : "tts",
+    preset: voices.byId(clean(vs.preset)) && !voices.byId(clean(vs.preset)).studio ? clean(vs.preset) : "auto",
+    gender: voices.GENDERS.includes(vs.gender) ? vs.gender : null, age: voices.AGES.includes(vs.age) ? vs.age : null };
+  if (voice.preset !== "auto" && !voice.gender) { const p = voices.byId(voice.preset); voice.gender = p.gender; voice.age = p.age; }
+  const voicePlan = kind === "video" ? { mode: voice.mode, gender: voice.gender, age: voice.age, fixedText: null, audioSeconds: null } : null;
   try {
     // the visitor gets the card at once; the plan is written from the chat and the pictures in the background.
     // Terms are shown (never blocking) like in the chat.

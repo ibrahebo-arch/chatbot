@@ -3,13 +3,11 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const media = require("../media");
 
-test("free videos are made by Wan 3.0; MiniMax only follows a customer's own recording", () => {
+test("free videos are made by Wan 3.0 – no recorded sound track any more", () => {
   assert.equal(media.MODELS.video, "alibaba/wan-3.0/text-to-video");
   assert.equal(media.MODELS.i2v, "alibaba/wan-3.0/image-to-video");
-  assert.match(media.MODELS.lipsync, /minimax/);
-  assert.equal(media.videoCost(true), media.COST.lipsync, "a recording → MiniMax price");
-  assert.equal(media.videoCost(false, true), media.COST.video, "a spoken line → Wan price");
-  assert.ok(media.COST.video >= media.COST.lipsync);
+  assert.equal(media.MODELS.lipsync, undefined, "the MiniMax recording path is gone");
+  assert.equal(media.videoCost(true), media.COST.video, "a spoken line → Wan price");
 });
 
 test("spokenLine: who speaks, the Iraqi accent, the exact words once", () => {

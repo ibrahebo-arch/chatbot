@@ -14,8 +14,7 @@
  *   FAL_VIDEO_MODEL  alibaba/wan-3.0/text-to-video            ~$0.05 per second (free trial videos, owner 2026-11-15)
  *   FAL_I2V_MODEL    alibaba/wan-3.0/image-to-video           (animate an image)
  *                    Wan makes its own sound and speaks the spoken line itself (Iraqi), from the prompt.
- *   FAL_LIPSYNC_VIDEO_MODEL / FAL_LIPSYNC_I2V_MODEL  minimax/h3-max-turbo/…   ~$0.025 per second – only for a
- *                    video that must follow the customer's own recording (Wan cannot take a sound track).
+ *                    (Customer recordings were removed 2026-11-15, so no video follows a sound track any more.)
  */
 const clean = (v) => String(v || "").trim();
 const FAL_KEY = clean(process.env.FAL_KEY);
@@ -24,14 +23,9 @@ const MODELS = {
   image: clean(process.env.FAL_IMAGE_MODEL) || "fal-ai/flux/schnell",
   video: clean(process.env.FAL_VIDEO_MODEL) || "alibaba/wan-3.0/text-to-video",
   i2v: clean(process.env.FAL_I2V_MODEL) || "alibaba/wan-3.0/image-to-video",
-  // a video whose mouth must follow a recorded voice (the customer's own recording): MiniMax takes the track
-  lipsync: clean(process.env.FAL_LIPSYNC_VIDEO_MODEL) || "minimax/h3-max-turbo/text-to-video",
-  lipsyncI2v: clean(process.env.FAL_LIPSYNC_I2V_MODEL) || "minimax/h3-max-turbo/image-to-video",
 };
 // Wan 3.0 video resolution (480p / 720p / 1080p)
 const WAN_RESOLUTION = ["480p", "720p", "1080p"].includes(clean(process.env.FAL_WAN_RESOLUTION)) ? clean(process.env.FAL_WAN_RESOLUTION) : "720p";
-// MiniMax video resolution (h3-max: 480P / 768P / 1080P)
-const VIDEO_RESOLUTION = ["480P", "768P", "1080P"].includes(clean(process.env.FAL_VIDEO_RESOLUTION)) ? clean(process.env.FAL_VIDEO_RESOLUTION) : "768P";
 // picture size for the fal picture model: a preset name or WIDTHxHEIGHT (FAL_IMAGE_SIZE, e.g. 1536x1152)
 const IMAGE_SIZE = (() => { const v = clean(process.env.FAL_IMAGE_SIZE); const m = v.match(/^(\d{3,4})x(\d{3,4})$/); return m ? { width: Number(m[1]), height: Number(m[2]) } : v || "landscape_4_3"; })();
 const IMAGE_RESOLUTION = ["1K", "2K", "4K"].includes(clean(process.env.FAL_IMAGE_RESOLUTION)) ? clean(process.env.FAL_IMAGE_RESOLUTION) : "2K";
@@ -39,7 +33,6 @@ const VIDEO_SECONDS = Math.min(10, Math.max(2, Number(process.env.TRIAL_VIDEO_SE
 const COST = {
   image: Number(process.env.TRIAL_IMAGE_COST_USD) || 0.003,
   video: (Number(process.env.FAL_VIDEO_COST_PER_SEC) || 0.05) * VIDEO_SECONDS,
-  lipsync: (Number(process.env.FAL_LIPSYNC_COST_PER_SEC) || 0.025) * VIDEO_SECONDS,
 };
 // Premium model for videos WITHOUT a spoken line (TRIAL_PREMIUM_VIDEO=1): Kling 3 Pro – sharper picture, its own
 // synced sound, a real negative prompt. Videos with a spoken line stay on Wan, which speaks the line itself.
@@ -49,9 +42,8 @@ const PREMIUM = {
   i2v: clean(process.env.FAL_PREMIUM_I2V_MODEL) || "fal-ai/kling-video/v3/pro/image-to-video",
 };
 COST.premiumVideo = (Number(process.env.FAL_PREMIUM_COST_PER_SEC) || 0.168) * VIDEO_SECONDS;
-/** Cost of one video: MiniMax when it follows a recording, the premium model when it is on and nobody speaks, else Wan. */
-const videoCost = (hasRecording, hasSpeech = false) =>
-  (hasRecording ? COST.lipsync : PREMIUM.on && !hasSpeech ? COST.premiumVideo : COST.video);
+/** Cost of one video: the premium model when it is on and nobody speaks, else Wan. */
+const videoCost = (hasSpeech = false) => (PREMIUM.on && !hasSpeech ? COST.premiumVideo : COST.video);
 const configured = Boolean(FAL_KEY);
 
 // Result links we accept from the provider: fal's CDN, and the queue's own origin (the test double).
@@ -254,8 +246,8 @@ function spokenLine({ text, lang = "ar-IQ", gender, age, tone } = {}) {
 }
 
 /** Starts a job; returns the provider job id and the cost estimate counted against the trial budget.
- *  speech = { text, lang, gender, age, tone } – a line Wan speaks itself; audioUrl – a recording the lips must follow. */
-async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, speech = null, negative = "" }) {
+ *  speech = { text, lang, gender, age, tone } – a line Wan speaks itself in the video. */
+async function submit(kind, { prompt, style, imageUrl = null, speech = null, negative = "" }) {
   if (!configured) throw new Error("FAL_KEY is not set");
   const s = STYLE[style] || STYLE.realistic;
   let model, input;
@@ -265,11 +257,6 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, s
       // Google's Nano Banana (Pro): aspect ratio + resolution instead of a pixel size
       ? { prompt: `${s.image} ${prompt}`, aspect_ratio: "4:3", resolution: IMAGE_RESOLUTION, num_images: 1, output_format: "jpeg" }
       : { prompt: `${s.image} ${prompt}`, image_size: IMAGE_SIZE, num_images: 1, enable_safety_checker: true, output_format: "jpeg" };
-  } else if (audioUrl) {
-    // the customer's own recording: MiniMax animates the mouth to it (target_audio_url, ≥ 2 s, ≤ 15 MB)
-    model = imageUrl ? MODELS.lipsyncI2v : MODELS.lipsync;
-    input = { prompt: `${s.video} ${prompt}`, duration: VIDEO_SECONDS, resolution: VIDEO_RESOLUTION, enable_safety_checker: true, prompt_expansion_mode: "disabled",
-      target_audio_url: audioUrl, ...(imageUrl ? { image_url: imageUrl } : { aspect_ratio: "16:9" }) };
   } else if (PREMIUM.on && !speech?.text) {
     model = imageUrl ? PREMIUM.i2v : PREMIUM.video;
     input = { prompt: `${s.video} ${prompt}`, duration: String(VIDEO_SECONDS), generate_audio: true, cfg_scale: 0.5, enable_safety_checker: true,
@@ -295,7 +282,7 @@ async function submit(kind, { prompt, style, imageUrl = null, audioUrl = null, s
     throw e;
   }
   if (!r.request_id) throw new Error("fal: no request_id");
-  return { provider: "fal", model, jobId: r.request_id, cost: kind === "video" ? videoCost(Boolean(audioUrl), Boolean(speech?.text)) : COST[kind] };
+  return { provider: "fal", model, jobId: r.request_id, cost: kind === "video" ? videoCost(Boolean(speech?.text)) : COST[kind] };
 }
 
 // Status/result URLs use the app id – the first two parts of the model id

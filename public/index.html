@@ -59,12 +59,8 @@
           <div class="tray" id="tray" hidden></div>
           <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="vgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3cf8a"/><stop offset=".55" stop-color="#e4b363"/><stop offset="1" stop-color="#4fd1c5"/></linearGradient></defs></svg>
           <form class="composer" id="composer">
-            <input type="file" id="fileInput" multiple accept="image/*,video/*,audio/*,.mp4,.mov,.webm,.heic,.mp3,.m4a,.wav,.ogg" hidden />
-            <button type="button" class="icon mic" id="micBtn" title="سجّل صوتك – يُفحص ثم يُستخدم في الفيديو" aria-label="تسجيل صوت">
-              <svg class="vmark" viewBox="0 0 32 32" aria-hidden="true"><rect class="vm-cap" x="12" y="4" width="8" height="14" rx="4"/><path class="vm-arm" d="M8.5 15a7.5 7.5 0 0 0 15 0M16 22.5V27M12.5 27h7"/><path class="vm-w w1" d="M4.5 13v4"/><path class="vm-w w2" d="M1.5 14.2v1.6"/><path class="vm-w w1" d="M27.5 13v4"/><path class="vm-w w2" d="M30.5 14.2v1.6"/></svg>
-              <span class="rec-time" id="micTime"></span>
-            </button>
-            <button type="button" class="icon" id="attachBtn" title="إرفاق صورة أو فيديو أو تسجيل صوتي" aria-label="إرفاق">
+            <input type="file" id="fileInput" multiple accept="image/*,video/*,.mp4,.mov,.webm,.heic" hidden />
+            <button type="button" class="icon" id="attachBtn" title="إرفاق صورة أو فيديو" aria-label="إرفاق">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5 12.6 21a5.5 5.5 0 0 1-7.8-7.8l9-9a3.5 3.5 0 0 1 5 5l-9 9a1.5 1.5 0 0 1-2.1-2.1L16 7.8"/></svg>
             </button>
             <textarea id="input" rows="1" placeholder="اكتب فكرتك هنا…" autocomplete="off"></textarea>
@@ -123,17 +119,13 @@
               <label>مصدر الصوت</label>
               <div class="seg" id="voiceMode">
                 <button type="button" data-v="tts" class="on"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg><span>صوت جاهز</span></button>
-                <button type="button" data-v="own" disabled><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span>صوتي كما هو</span></button>
-                <button type="button" data-v="convert" disabled><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span>كلامي بصوت الشخصية</span></button>
               </div>
               <details class="voice-how">
-                <summary><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg> كيف أستخدم صوتي؟</summary>
+                <summary><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg> كيف أختار الصوت؟</summary>
                 <p class="voice-summary" id="voiceSummary"></p>
                 <ol>
-                  <li>اضغط زر المايك 🎙️ في الدردشة وقل جملتك (2–10 ثوانٍ)، أو ارفع ملفاً صوتياً بزر المشبك.</li>
-                  <li>نفحص التسجيل فوراً: المدة، مستوى الصوت، الوضوح، الضجيج، الكلام المسموع واللهجة – ونخبرك إذا كان صالحاً. ثم اختر «صوت مَن» (بنت، ولد، رجل…) لنجعل الشخص في الفيديو بنفس العمر والجنس.</li>
-                  <li>اختر: <b>صوتي كما هو</b> (صوتك نفسه داخل الفيديو) أو <b>كلامي بصوت الشخصية</b> (نفس كلامك بصوت البنت أو الولد أو الشخصية التي اخترتها).</li>
-                  <li>أو اكتب في الدردشة ما تريد: «خلي الصوت بنت صغيرة»، «عمرها 10 سنين»، «خليه يكول: …».</li>
+                  <li>اختر «صوت مَن» (بنت، ولد، شابة، رجل…) – الشخص في الفيديو يكون بنفس العمر والجنس ويحچي بلهجة عراقية طبيعية.</li>
+                  <li>أو اكتب في الدردشة ما تريد: «خلي الصوت بنت صغيرة»، «عمرها 10 سنين»، «خليه يكول: …» – الكلام يُقال كما كتبته.</li>
                 </ol>
               </details>
             </div>
