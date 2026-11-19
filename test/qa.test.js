@@ -19,3 +19,13 @@ test("parseVerdict: score, issues and the retry decision", () => {
 test("retryAvoid joins the problems for the second try", () => {
   assert.equal(qa.retryAvoid(["the cup disappears.", "warped tower;"]), "the cup disappears; warped tower");
 });
+
+test("a long prompt is shortened without ever cutting the spoken line", () => {
+  const media = require("../media");
+  const line = 'A young Iraqi boy speaks to the camera. The words, said exactly once and nothing else: "مرحبا شلونك".';
+  const long = `${"A boy in a courtyard, ".repeat(80)}${line} Avoid especially: ${"cartoon eyes, ".repeat(40)}`;
+  const out = media.fitPrompt(long, 1900, line);
+  assert.ok(out.length <= 1900, "fits");
+  assert.ok(out.includes(line), "the spoken line survives whole");
+  assert.equal(media.fitPrompt("short", 1900, line), "short");
+});

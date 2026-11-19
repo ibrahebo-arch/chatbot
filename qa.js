@@ -50,19 +50,22 @@ function parseVerdict(text) {
 }
 
 /** Checks the video against the idea; returns { score, issues, retry } or null when no verdict could be made. */
-async function check(buf, idea) {
+async function check(buf, idea, { style = "realistic" } = {}) {
   if (!ENABLED) return null;
   try {
     const imgs = await frames(buf);
     if (imgs.length < 3) return null;
+    // a cartoon is judged as a cartoon: its drawn look (big eyes, smooth faces, rendered places) is what was ordered –
+    // FT-261119-YW5U was failed for "cartoon-like eyes" and made again for nothing
+    const cartoon = style === "cartoon";
     const content = [{ type: "text", text: `These are ${imgs.length} frames, in order, from one AI-generated video (about 10 s). The video was meant to show: "${String(idea || "").slice(0, 600)}".
-Act as a strict continuity and realism supervisor. Compare the frames with each other and list every problem that a viewer would notice as NOT REAL:
+${cartoon ? `It is a 3D CARTOON on purpose: a stylised, animated look (big expressive eyes, smooth faces, rendered places) is CORRECT and never a problem. Judge only whether it is a well-made, consistent cartoon. Act as a strict continuity supervisor and list every problem a viewer would notice:` : `Act as a strict continuity and realism supervisor. Compare the frames with each other and list every problem that a viewer would notice as NOT REAL:`}
 - an object, person, animal or vehicle that disappears, appears from nowhere, or changes number, shape, size, colour or position without a reason
 - morphing or melting objects, faces or bodies; extra or missing limbs, fingers, wheels, legs
 - buildings, roads or landmarks that bend, warp, change or duplicate
 - impossible physics (floating, sliding without stepping, passing through things, wrong direction of travel)
 - the scene not matching the idea
-Return JSON only: {"score": 0-10 (10 = indistinguishable from real footage and fully consistent), "issues": ["short concrete problem", ...] (empty if none)}` }];
+Return JSON only: {"score": 0-10 (10 = ${cartoon ? "a flawless, fully consistent animated film shot" : "indistinguishable from real footage and fully consistent"}), "issues": ["short concrete problem", ...] (empty if none)}` }];
     for (const b of imgs) content.push({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${b}`, detail: "low" } });
     const body = { model: MODEL, messages: [{ role: "user", content }], response_format: { type: "json_object" } };
     if (/^(gpt-[5-9]|o\d)/.test(MODEL)) body.max_completion_tokens = 1500; else { body.max_tokens = 500; body.temperature = 0; }

@@ -245,6 +245,20 @@ function spokenLine({ text, lang = "ar-IQ", gender, age, tone } = {}) {
   ].filter(Boolean).join(" ");
 }
 
+/**
+ * A prompt cut to max characters without losing the protected part (the spoken line): the rest of the text is
+ * shortened at a sentence or comma boundary, then the line is put back where it was (pure – tested).
+ */
+function fitPrompt(text, max, keep = "") {
+  if (text.length <= max) return text;
+  const k = keep && text.includes(keep) ? keep : "";
+  const [before, after = ""] = k ? text.split(k) : [text, ""];
+  const room = Math.max(0, max - k.length - 1);
+  const cut = (s, n) => (s.length <= n ? s : s.slice(0, n).replace(/[,;.][^,;.]*$/, "") || s.slice(0, n));
+  const head = cut(before, room), tail = k ? cut(after, Math.max(0, room - head.length)) : "";
+  return k ? `${head.trimEnd()} ${k}${tail ? ` ${tail.trim()}` : ""}`.slice(0, max) : head;
+}
+
 /** Starts a job; returns the provider job id and the cost estimate counted against the trial budget.
  *  speech = { text, lang, gender, age, tone } – a line Wan speaks itself in the video. */
 async function submit(kind, { prompt, style, imageUrl = null, speech = null, negative = "" }) {
@@ -271,9 +285,10 @@ async function submit(kind, { prompt, style, imageUrl = null, speech = null, neg
   }
   // the avoid-list: MiniMax has no negative field, so it goes into the prompt (pictures and videos); Kling has its own field
   if (negative && !input.negative_prompt) input.prompt += `. Avoid: ${negative}`;
-  // video models reject very long prompts: keep the description, shorten the avoid-list first
+  // video models reject very long prompts. The spoken line must survive whole (FT-261119-YW5U: the cut fell on it and
+  // the remake spoke invented words): the description is shortened, the avoid-list next, the line never.
   const MAX = Number(process.env.FAL_MAX_PROMPT_CHARS) || 1900;
-  if (input.prompt.length > MAX) input.prompt = input.prompt.slice(0, MAX).replace(/[,;]s*[^,;]*$/, "");
+  if (input.prompt.length > MAX) input.prompt = fitPrompt(input.prompt, MAX, spokenLine(speech || {}));
   let r;
   try {
     r = await fal("POST", model, input);
@@ -340,6 +355,7 @@ async function clip({ prompt, imageUrl = null, negative = "", seconds = 10, aspe
 }
 
 module.exports = {
+  fitPrompt,
   clip, configured, openaiReady, falUp, useOpenAIImage, openaiImage, openaiImageEdit, OPENAI_IMAGE_MODEL, speak, audioDataUri, TTS_MODEL, isProviderUrl, ACCENT,
   realism, realismOn, startFrame, startFrameOn, frameCost, REALISM_MODEL,
   resetFal: () => { falDownUntil = 0; },

@@ -115,18 +115,31 @@ async function stampAndStore(job, original) {
  */
 async function finalize(job, original = null) {
   let lastError, raw = original;
-  // videos: the realism/continuity check is kept as a record only. One request = one generation (owner, 2026-11-19):
-  // nothing is ever made again automatically. A cartoon is not checked – the check judges realism and failed every
-  // cartoon for looking animated. TRIAL_QA_REMAKE=1 brings the old single remake back.
-  if (job.kind === "video" && !original && qa.ENABLED && job.style !== "cartoon") {
+  // videos: the realism/continuity check (a cartoon is judged as a cartoon). A clear failure is made once more
+  // (TRIAL_QA_REMAKE=0 turns that off) – and the customer always gets the BETTER of the two: the first video is kept
+  // aside (trial/alt/) and the remake replaces it only when it scores higher (owner, 2026-11-19: FT-261119-YW5U got
+  // the worse remake).
+  if (job.kind === "video" && !original && qa.ENABLED) {
     try {
       raw = await download(job.raw_url);
-      const verdict = await qa.check(raw, job.model_prompt || job.prompt);
+      const verdict = await qa.check(raw, job.model_prompt || job.prompt, { style: job.style });
       if (verdict) {
+        const earlier = (Array.isArray(job.qa) ? job.qa : []).filter((x) => Number.isFinite(Number(x?.score)));
         await db.query("UPDATE trial_jobs SET qa = coalesce(qa, '[]'::jsonb) || $2::jsonb WHERE id = $1",
           [job.id, JSON.stringify([{ ...verdict, model: job.model, at: new Date().toISOString() }])]);
         console.log(`free ticket ${job.ticket}: qa ${verdict.score}/10${verdict.issues.length ? " – " + verdict.issues.join("; ") : ""}`);
-        if (process.env.TRIAL_QA_REMAKE === "1" && verdict.retry && (job.qa_retries || 0) < 1 && (await remake(job, verdict))) return;
+        if ((job.qa_retries || 0) >= 1 && earlier.length) {
+          // this is the remake: keep it only when it is really better than the first video
+          const first = Number(earlier[0].score);
+          if (verdict.score <= first) {
+            const kept = await storage.getBuffer(`trial/alt/${job.ticket}.mp4`, 150 * 1048576).catch(() => null);
+            if (kept) { raw = kept; console.log(`free ticket ${job.ticket}: the first video (${first}/10) is kept – the remake (${verdict.score}/10) is not better`); }
+          } else console.log(`free ticket ${job.ticket}: the remake (${verdict.score}/10) replaces the first video (${first}/10)`);
+        } else if (process.env.TRIAL_QA_REMAKE !== "0" && verdict.retry && (job.qa_retries || 0) < 1) {
+          // the first video is kept aside before the second try, so the better one can be chosen
+          const saved = await storage.put(`trial/alt/${job.ticket}.mp4`, raw, { contentType: "video/mp4" }).then(() => true).catch(() => false);
+          if (saved && (await remake(job, verdict))) return;
+        }
       }
     } catch (e) { console.error(`trial qa ${job.ticket}:`, e.message); }
   }
@@ -141,6 +154,7 @@ async function finalize(job, original = null) {
         [job.id, `store:${key}`, key]
       )).rows[0];
       if (done) await archive(done);
+      if (job.kind === "video") storage.remove(`trial/alt/${job.ticket}.mp4`).catch(() => {}); // the set-aside first video is no longer needed
       return;
     } catch (e) {
       lastError = e;
@@ -167,7 +181,7 @@ async function remake(job, verdict) {
     const cost = media.videoCost(Boolean(say));
     if ((await spentToday()) + cost > DAILY_BUDGET) return false;
     const plan = typeof job.plan === "string" ? JSON.parse(job.plan) : job.plan || {};
-    const prompt = `${job.model_prompt || job.prompt} Keep every object, person and building continuous and unchanged for the whole clip. Avoid especially: ${qa.retryAvoid(verdict.issues)}.`;
+    const prompt = `${job.model_prompt || job.prompt} Keep every object, person and building continuous and unchanged for the whole clip. Avoid especially: ${qa.retryAvoid(verdict.issues).slice(0, 350)}.`; // short, so the description and the spoken line keep their room
     const r = await media.submit("video", { prompt, style: job.style, imageUrl: frame ? `data:image/jpeg;base64,${frame.toString("base64")}` : null, speech: say, negative: plan.negative || "" });
     const row = (await db.query(
       `UPDATE trial_jobs SET provider_job_id = $2, model = $3, cost_usd = cost_usd + $4, raw_url = NULL, checked_at = now(), qa_retries = qa_retries + 1
