@@ -115,8 +115,10 @@ async function stampAndStore(job, original) {
  */
 async function finalize(job, original = null) {
   let lastError, raw = original;
-  // videos: the realism/continuity check first; a clear failure is made once more with the problems to avoid
-  if (job.kind === "video" && !original && qa.ENABLED) {
+  // videos: the realism/continuity check is kept as a record only. One request = one generation (owner, 2026-11-19):
+  // nothing is ever made again automatically. A cartoon is not checked – the check judges realism and failed every
+  // cartoon for looking animated. TRIAL_QA_REMAKE=1 brings the old single remake back.
+  if (job.kind === "video" && !original && qa.ENABLED && job.style !== "cartoon") {
     try {
       raw = await download(job.raw_url);
       const verdict = await qa.check(raw, job.model_prompt || job.prompt);
@@ -124,7 +126,7 @@ async function finalize(job, original = null) {
         await db.query("UPDATE trial_jobs SET qa = coalesce(qa, '[]'::jsonb) || $2::jsonb WHERE id = $1",
           [job.id, JSON.stringify([{ ...verdict, model: job.model, at: new Date().toISOString() }])]);
         console.log(`free ticket ${job.ticket}: qa ${verdict.score}/10${verdict.issues.length ? " – " + verdict.issues.join("; ") : ""}`);
-        if (verdict.retry && (job.qa_retries || 0) < 1 && (await remake(job, verdict))) return;
+        if (process.env.TRIAL_QA_REMAKE === "1" && verdict.retry && (job.qa_retries || 0) < 1 && (await remake(job, verdict))) return;
       }
     } catch (e) { console.error(`trial qa ${job.ticket}:`, e.message); }
   }
