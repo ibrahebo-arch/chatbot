@@ -371,12 +371,12 @@
     if (!dlg.open) dlg.showModal();
     let rows = [];
     try { rows = (await (await fetch("/api/chats", { headers: chatHeaders, cache: "no-store" })).json()).chats || []; } catch {}
-    if (!rows.length) { box.replaceChildren(el("div", "cd-empty", "ما عندك محادثات محفوظة بعد.")); return; }
+    if (!rows.length) { box.replaceChildren(el("div", "cd-empty", "ما عندك محادثات قديمة بعد.")); return; }
     box.replaceChildren(...rows.map((c) => {
       const b = el("button", "cd-item" + (c.id === chat.id ? " on" : "")); b.type = "button";
       const when = new Date(c.updatedAt).toLocaleString("ar", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", numberingSystem: "latn" });
       const meta = [when, c.mode === "order" ? "طلب فيديو كامل" : "🎁 مجاني", c.results ? `${c.results} نتيجة` : "", c.ordered ? "تم الطلب" : "", c.id === chat.id ? "المفتوحة الآن" : ""].filter(Boolean).join(" · ");
-      b.append(el("b", "", c.title || "محادثة"), el("small", "", meta));
+      b.append(el("b", "", c.title || "محادثة قديمة"), el("small", "", meta));
       b.onclick = () => (c.id === chat.id ? dlg.close() : openChat(c.id));
       return b;
     }));

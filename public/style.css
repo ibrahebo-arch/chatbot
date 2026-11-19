@@ -425,4 +425,9 @@ table.prices th .res { font-weight: 400; opacity: .75; }
 .msg .gen button:disabled { opacity: .55; cursor: default; }
 .msg.sys.newhint { display: grid; gap: 8px; justify-items: center; color: var(--text); }
 .msg.sys.newhint button { border: 1px solid var(--sand); background: transparent; color: var(--sand2); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: .84rem; cursor: pointer; }
-@media (max-width: 820px) { .ct-btn span { display: none; } .ct-btn { padding: 7px; } }
+.ct-btn.ct-old { border-color: rgba(228,179,99,.55); color: var(--sand2); background: rgba(228,179,99,.08); }
+.ct-btn.ct-old:hover { background: rgba(228,179,99,.16); }
+.chatsdlg h3 { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.chatsdlg .cd-ico { width: 22px; height: 22px; fill: none; stroke: var(--sand2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ct-btn svg { stroke-linejoin: round; }
+@media (max-width: 820px) { .ct-btn span { display: none; } .ct-btn { padding: 7px; } .ct-btn.ct-old span { display: inline; } .ct-btn.ct-old { padding: 6px 11px; } }
