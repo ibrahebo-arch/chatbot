@@ -30,6 +30,7 @@ const media = require("./media");
 const trial = require("./trial");
 const voices = require("./voices");
 const tiers = require("./tiers");
+const chats = require("./chats");
 const library = require("./library");
 const planner = require("./planner");
 const { normalizeTelegram, normalizePhone } = require("./validate");
@@ -472,6 +473,40 @@ app.get("/api/uploads/:id", async (req, res) => {
 });
 
 if (storage.mode === "local-dev") app.get("/api/dev-storage/*key", storage.devHandler);
+
+// Saved chats (chats.js): the page saves each chat under its own random device id (header x-device), lists them for
+// the «المحادثات» menu and opens one again with its free results and order. Another device never sees them.
+const chatOwner = (req, res) => {
+  const device = chats.deviceOf(req);
+  if (!device || !db.configured) { res.status(device ? 503 : 400).json({ ok: false }); return null; }
+  return device;
+};
+app.get("/api/chats", statusLimit, async (req, res) => {
+  const device = chatOwner(req, res); if (!device) return;
+  try { res.set("Cache-Control", "no-store").json({ ok: true, chats: await chats.list(device) }); }
+  catch (e) { console.error("chats list:", e.message); res.status(500).json({ ok: false }); }
+});
+app.get("/api/chats/:id", statusLimit, async (req, res) => {
+  const device = chatOwner(req, res); if (!device) return;
+  if (!chats.validId(req.params.id)) return res.status(404).json({ ok: false });
+  try {
+    const c = await chats.get(device, req.params.id);
+    if (!c) return res.status(404).json({ ok: false });
+    res.set("Cache-Control", "no-store").json({ ok: true, chat: c });
+  } catch (e) { console.error("chat get:", e.message); res.status(500).json({ ok: false }); }
+});
+app.put("/api/chats/:id", statusLimit, async (req, res) => {
+  const device = chatOwner(req, res); if (!device) return;
+  if (!chats.validId(req.params.id)) return res.status(400).json({ ok: false });
+  try { res.json({ ok: true, saved: Boolean(await chats.save(device, req.params.id, req.body || {}, trial.ipHash(clientIp(req)))) }); }
+  catch (e) { console.error("chat save:", e.message); res.status(500).json({ ok: false }); }
+});
+app.delete("/api/chats/:id", statusLimit, async (req, res) => {
+  const device = chatOwner(req, res); if (!device) return;
+  if (!chats.validId(req.params.id)) return res.status(404).json({ ok: false });
+  try { res.json({ ok: await chats.remove(device, req.params.id) }); }
+  catch (e) { console.error("chat delete:", e.message); res.status(500).json({ ok: false }); }
+});
 
 app.post("/api/chat", chatLimit, async (req, res) => {
   const { messages = [], order = {} } = req.body || {};
@@ -1031,6 +1066,8 @@ async function start() {
       for (const c of (await db.query("SELECT id, r2_key FROM voice_clips c WHERE created_at < now() - interval '7 days' AND NOT EXISTS (SELECT 1 FROM orders o WHERE o.options->'voice'->>'clip' = c.id) LIMIT 200")).rows) {
         try { await storage.remove(c.r2_key); await db.query("DELETE FROM voice_clips WHERE id = $1", [c.id]); } catch (e) { console.error("voice cleanup:", e.message); }
       }
+      // saved chats are kept CHAT_KEEP_DAYS (90) after their last message
+      if (db.configured) await chats.sweep().catch((e) => console.error("chat cleanup:", e.message));
     };
     sweepUploads().catch((e) => console.error("upload cleanup:", e.message));
     setInterval(() => sweepUploads().catch((e) => console.error("upload cleanup:", e.message)), 3600e3).unref();

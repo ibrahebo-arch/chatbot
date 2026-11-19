@@ -37,6 +37,10 @@
               <div><strong>مساعد الاستوديو</strong><small>يساعدك تصيغ فكرتك ويقترح عليك</small></div>
             </div>
             <div class="summary" id="summary"></div>
+            <div class="chat-tools">
+              <button type="button" class="ct-btn" id="chatNew" title="محادثة جديدة"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>محادثة جديدة</span></button>
+              <button type="button" class="ct-btn" id="chatList" title="محادثاتي"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>محادثاتي</span></button>
+            </div>
           </div>
 
           <div class="stage" id="stage">
@@ -265,6 +269,14 @@
     <span>VI Iraq © <span id="year"></span></span>
     <span><a href="#" id="footTerms">الشروط وإخلاء المسؤولية</a> · <a href="/loops/CREDITS.md" target="_blank" rel="noopener">مصادر المقاطع</a></span>
   </footer>
+
+  <dialog class="botdlg chatsdlg" id="chatsDialog" aria-labelledby="chatsDlgTitle">
+    <h3 id="chatsDlgTitle">محادثاتي</h3>
+    <p class="cd-sub">محادثاتك محفوظة على هذا الجهاز مع نتائجها – اضغط على أي محادثة لترجع لها.</p>
+    <div class="cd-list" id="chatsDlgList"></div>
+    <button type="button" class="paybtn" id="chatsDlgNew">+ محادثة جديدة</button>
+    <button type="button" class="bd-later" id="chatsDlgClose">إغلاق</button>
+  </dialog>
 
   <dialog class="botdlg" id="botDialog" aria-labelledby="botDlgTitle">
     <div class="bd-icon" aria-hidden="true">✈️</div>

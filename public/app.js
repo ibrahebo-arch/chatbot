@@ -317,6 +317,7 @@
     state.attachments.push(...sent);
     updateTrialRefs();
     state.messages.push({ role: "user", content: text, files: sent });
+    saveChat();
     addMsg("user", text, sent);
     if (text) applyFromText(text);
     const t = typing();
@@ -325,13 +326,98 @@
       const r = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: state.messages, order: orderPayload() }) });
       const data = await r.json();
       t.remove();
-      addMsg("bot", data.reply || "…");
-      if (data.reply) state.messages.push({ role: "assistant", content: data.reply });
+      const botEl = addMsg("bot", data.reply || "…");
+      if (data.reply) { state.messages.push({ role: "assistant", content: data.reply }); saveChat(); addGenerate(botEl); }
       if (data.policy?.sections?.length) policyCard(data.policy.sections, isArabic(text) || !text ? "ar" : "en");
     } catch {
       t.remove(); addMsg("bot", "تعذّر الاتصال بالخادم، حاول مرة ثانية.");
     } finally { state.sending = false; }
   });
+
+  // ---------- saved chats (server: chats.js) ----------
+  // Every chat is saved under a random device id kept in this browser (it stays when the IP changes). A refresh or a
+  // later visit opens the last chat again with its results; «محادثاتي» lists the older ones; «محادثة جديدة» starts fresh.
+  const rid = (n) => Array.from(crypto.getRandomValues(new Uint8Array(n)), (b) => b.toString(16).padStart(2, "0")).join("");
+  const keep = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
+  const DEVICE = (() => { let d = keep.get("vi-device"); if (!/^[a-f0-9]{32}$/.test(d || "")) { d = rid(16); keep.set("vi-device", d); } return d; })();
+  const chat = { id: null, restored: false, hinted: false, timer: null, order: null, savedJobs: [], lastBot: null };
+  const chatHeaders = { "Content-Type": "application/json", "x-device": DEVICE };
+  function chatBody() {
+    const mine = trial.jobs.filter((j) => j.chatId === chat.id).map((j) => ({ id: j.id, token: j.token, at: j.at || 0, ticket: j.ticket || "" }));
+    // results that could not be loaded this time stay in the chat
+    const jobs = [...chat.savedJobs.filter((s) => !mine.some((j) => j.id === s.id)), ...mine].sort((a, b) => a.at - b.at);
+    return { mode: trial.mode, messages: state.messages, order: chat.order, jobs };
+  }
+  function saveChat(now = false) {
+    if (!chat.id || !state.messages.some((m) => m.role === "user")) return;
+    keep.set("vi-chat", chat.id);
+    clearTimeout(chat.timer);
+    const send = () => { chat.timer = null; return fetch(`/api/chats/${chat.id}`, { method: "PUT", headers: chatHeaders, body: JSON.stringify(chatBody()), keepalive: true }).catch(() => {}); };
+    if (now) send(); else chat.timer = setTimeout(send, 400);
+  }
+  window.addEventListener("pagehide", () => { if (chat.timer) saveChat(true); });
+  function openChat(id) {
+    saveChat(true);
+    keep.set("vi-chat", id || "new");
+    location.reload();
+  }
+  function newChat() {
+    if (!state.messages.some((m) => m.role === "user")) { if ($("chatsDialog").open) $("chatsDialog").close(); toast("هذي محادثة جديدة – اكتب فكرتك"); input.focus(); return; }
+    openChat(null);
+  }
+  async function showChats() {
+    const dlg = $("chatsDialog"), box = $("chatsDlgList");
+    box.replaceChildren(el("div", "cd-empty", "جارٍ التحميل…"));
+    if (!dlg.open) dlg.showModal();
+    let rows = [];
+    try { rows = (await (await fetch("/api/chats", { headers: chatHeaders, cache: "no-store" })).json()).chats || []; } catch {}
+    if (!rows.length) { box.replaceChildren(el("div", "cd-empty", "ما عندك محادثات محفوظة بعد.")); return; }
+    box.replaceChildren(...rows.map((c) => {
+      const b = el("button", "cd-item" + (c.id === chat.id ? " on" : "")); b.type = "button";
+      const when = new Date(c.updatedAt).toLocaleString("ar", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", numberingSystem: "latn" });
+      const meta = [when, c.mode === "order" ? "طلب فيديو كامل" : "🎁 مجاني", c.results ? `${c.results} نتيجة` : "", c.ordered ? "تم الطلب" : "", c.id === chat.id ? "المفتوحة الآن" : ""].filter(Boolean).join(" · ");
+      b.append(el("b", "", c.title || "محادثة"), el("small", "", meta));
+      b.onclick = () => (c.id === chat.id ? dlg.close() : openChat(c.id));
+      return b;
+    }));
+  }
+  $("chatList").addEventListener("click", showChats);
+  $("chatNew").addEventListener("click", newChat);
+  $("chatsDlgNew").addEventListener("click", newChat);
+  $("chatsDlgClose").addEventListener("click", () => $("chatsDialog").close());
+  // back in an old chat: when the visitor starts writing, suggest a new chat (once)
+  input.addEventListener("input", () => {
+    if (!chat.restored || chat.hinted || !input.value.trim()) return;
+    chat.hinted = true;
+    const m = addMsg("sys", "هذي محادثتك السابقة 👆 إذا عندك فكرة جديدة، الأفضل تبدأ محادثة جديدة حتى ما تختلط مع الفكرة القديمة.", [], "newhint");
+    const b = el("button", "", "+ محادثة جديدة"); b.type = "button"; b.onclick = () => openChat(null); m.append(b);
+  });
+
+  // ---------- «ابدأ بتوليد الصورة / الفيديو» under the assistant's reply ----------
+  const GREET = new Set("مرحبا مرحبه مرحباً هلا هلو اهلا أهلا اهلين هاي السلام سلام عليكم وعليكم شلونك شلونكم شلونج اخبارك أخبارك شخبارك صباح مساء الخير النور شكرا شكراً تسلم مشكور hi hello hey thanks ok okay اوكي تمام".split(" "));
+  const asked = () => state.messages.some((m) => m.role === "user" && (m.files?.length || String(m.content || "").split(/[\s،,.!؟?]+/).filter((w) => w && !GREET.has(w.toLowerCase())).length >= 2));
+  const pickKind = (k) => { const b = $("trialKind").querySelector(`button[data-v="${k}"]`); if (b && !b.classList.contains("on")) b.click(); };
+  function addGenerate(msgEl) {
+    if (!msgEl) return;
+    chat.lastBot = msgEl;
+    list.querySelectorAll(".msg .gen").forEach((g) => g.remove()); // only the newest reply carries the buttons
+    if (!asked()) return;
+    const box = el("div", "gen");
+    const mk = (text, fn, alt) => {
+      const b = el("button", alt ? "alt" : "", text); b.type = "button";
+      b.onclick = async () => { box.querySelectorAll("button").forEach((x) => (x.disabled = true)); try { await fn(); } finally { box.querySelectorAll("button").forEach((x) => (x.disabled = false)); } };
+      box.append(b);
+    };
+    if (trial.on && trial.mode === "free") {
+      (trial.kind === "video" ? ["video", "image"] : ["image", "video"]).forEach((k, i) => {
+        if (k === "video" && trial.info && !trial.info.videoAvailable) return;
+        mk(k === "video" ? "🎬 ابدأ بتوليد الفيديو" : "🖼️ ابدأ بتوليد الصورة", () => { pickKind(k); return startTrial({ kind: k, style: trial.style, fromChat: true }); }, i > 0);
+      });
+    } else if (!state.requestId) {
+      mk(`🎬 ابدأ بتوليد الفيديو · $${price()}`, () => $("sendOrder").click());
+    }
+    if (box.children.length) msgEl.append(box);
+  }
 
   // ---------- controls ----------
   const slider = $("seconds");
@@ -396,6 +482,8 @@
         addMsg("sys", `تم إرسال الطلب ✔<br>رقم الطلب <code>${data.requestId}</code> معرّفك <code>${data.requesterId}</code>${bot}<br><small>أي رسالة ترسلها الآن تُضاف إلى هذا الطلب.</small>`, [], "ids ok");
         if (data.botLink) note.innerHTML = `${note.textContent}<br><a href="${data.botLink}" target="_blank" rel="noopener">👉 افتح بوت التسليم واضغط Start</a>`;
         state.messages.push({ role: "assistant", content: `تم إرسال الطلب. رقم الطلب ${data.requestId}، معرّف الزبون ${data.requesterId}.` });
+        chat.order = { requestId: data.requestId, requesterId: data.requesterId, accessToken: data.accessToken, at: state.messages.length };
+        saveChat(); addGenerate(chat.lastBot);
         btn.innerHTML = `إرسال طلب جديد <span class="cta-price">$<span id="ctaPrice">${price()}</span></span>`;
         
         if (data.policy?.sections?.length) policyCard(data.policy.sections);
@@ -523,7 +611,14 @@
   const trial = { on: false, mode: "order", style: "realistic", kind: "image", info: null, jobs: [], timers: {} };
   // results survive a reload (iPhone Safari often reloads a tab after switching apps): kept for 24 h
   const TRIAL_KEY = "vi-trial-jobs";
-  const saveTrialJobs = () => { try { localStorage.setItem(TRIAL_KEY, JSON.stringify(trial.jobs.filter((j) => Date.now() - new Date(j.createdAt).getTime() < 86400e3).slice(-8))); } catch {} };
+  function localJobs() { try { return JSON.parse(localStorage.getItem(TRIAL_KEY) || "[]").filter((j) => j && j.id && j.token); } catch { return []; } }
+  const saveTrialJobs = () => {
+    try {
+      const ids = new Set(trial.jobs.map((j) => j.id));
+      const all = [...localJobs().filter((j) => !ids.has(j.id)), ...trial.jobs].filter((j) => Date.now() - new Date(j.createdAt).getTime() < 86400e3);
+      localStorage.setItem(TRIAL_KEY, JSON.stringify(all.slice(-8)));
+    } catch {}
+  };
   ["trialStyle", "trialKind"].forEach((id) => $(id).addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b || b.disabled) return;
     trial[id === "trialStyle" ? "style" : "kind"] = b.dataset.v;
@@ -558,6 +653,7 @@
     $("mGo").textContent = m === "free" ? "🎁 أنشئ مجاناً" : "تفاصيل الطلب وإرساله";
     placeVoice(); renderVoice();
     if (m === "free") loadTrial();
+    if (chat.lastBot) addGenerate(chat.lastBot);
   }
   $("modeSeg").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setMode(b.dataset.m); });
   function renderTrialLeft(s) {
@@ -676,7 +772,7 @@
       const d = await r.json();
       if (d.ok) {
         Object.assign(j, d.job); saveTrialJobs(); trialCard(j);
-        if (!pending(j)) loadTrial(); // a failed job gives the slot back
+        if (!pending(j)) { loadTrial(); saveChat(); } // a failed job gives the slot back; a finished one has its ticket
       }
     } catch {} finally { clearTimeout(stop); }
   }
@@ -702,14 +798,16 @@
   }, 1000);
   window.addEventListener("pageshow", () => trial.jobs.filter(pending).forEach((j) => pollTrial(j, 0)));
 
-  async function startTrial({ kind, style, prompt = null, sourceJob = null, sourceToken = null }) {
+  async function startTrial({ kind, style, prompt = null, sourceJob = null, sourceToken = null, fromChat = false }) {
     const note = $("trialNote"), btn = $("trialGo");
+    // pressed under a chat reply: the reason shows in the chat too (the panel may be out of sight on a phone)
+    const trialFail = (msg) => { trialFail(msg); if (fromChat) addMsg("sys", msg); };
     if (!sourceJob && state.pending.length) { // a picture waiting in the tray is not part of the chat yet
-      note.className = "note err"; note.textContent = "أرسل الصورة أولاً بزر الإرسال في الدردشة (يمكنك كتابة فكرتك معها)، ثم اضغط «أنشئ مجاناً».";
+      trialFail("أرسل الصورة أولاً بزر الإرسال في الدردشة (يمكنك كتابة فكرتك معها)، ثم اضغط «أنشئ مجاناً».");
       input.focus(); return;
     }
     if (!sourceJob && !state.messages.some((m) => m.role === "user" && String(m.content || "").trim())) {
-      note.className = "note err"; note.textContent = "اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً».";
+      trialFail("اكتب فكرتك في الدردشة أولاً، ثم اضغط «أنشئ مجاناً».");
       input.focus(); return;
     }
     startChat();
@@ -722,16 +820,16 @@
       const r = await fetch("/api/trial/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind, style, prompt, sourceJob, sourceToken, voice: $("trialVoice").value, voiceSpec: kind === "video" ? voiceSpec() : null, messages: state.messages }) });
       const d = await r.json();
       temp.remove();
-      if (!d.ok) { note.className = "note err"; note.textContent = d.message || "حدثت مشكلة، حاول مرة ثانية."; return; }
+      if (!d.ok) { trialFail(d.message || "حدثت مشكلة، حاول مرة ثانية."); return; }
       note.textContent = "";
       if (d.policy?.sections?.length) policyCard(d.policy.sections);
-      const j = { ...d.job, token: d.token, voiceChoice: kind === "video" ? voiceChoiceText() : "" };
+      const j = { ...d.job, token: d.token, chatId: chat.id, at: state.messages.length, voiceChoice: kind === "video" ? voiceChoiceText() : "" };
       trial.jobs.push(j); saveTrialJobs();
-      trialCard(j); renderTrialLeft(d); pollTrial(j);
+      trialCard(j); renderTrialLeft(d); pollTrial(j); saveChat();
       
     } catch {
       temp.remove();
-      note.className = "note err"; note.textContent = "تعذّر الاتصال بالخادم، حاول مرة ثانية.";
+      trialFail("تعذّر الاتصال بالخادم، حاول مرة ثانية.");
     } finally { btn.disabled = Boolean(trial.info?.paused); }
   }
   $("trialGo").addEventListener("click", () => startTrial({ kind: trial.kind, style: trial.style }));
@@ -842,18 +940,59 @@
     $("modeSeg").hidden = false;
     loadTrial();
   }
-  // free results from before a reload come back into the chat (after the welcome message) and keep updating
+  // a new chat: an unfinished result from an older page (before saved chats) still comes back and is delivered
   function restoreTrial() {
-    try { trial.jobs = JSON.parse(localStorage.getItem(TRIAL_KEY) || "[]").filter((j) => j && j.id && j.token); } catch { trial.jobs = []; }
-    // a refresh renews the chat: finished results are not brought back (the limits per visitor stay on the server);
-    // only a result still being made returns, so a reload during the wait still delivers it
-    trial.jobs = trial.jobs.filter(pending);
-    saveTrialJobs();
+    trial.jobs = localJobs().filter((j) => pending(j) && !j.chatId);
+    trial.jobs.forEach((j) => { j.chatId = chat.id; j.at = 1; });
     if (!trial.jobs.length) return;
-    // the welcome page with the showcase loops stays as before; the chat opens only when something is still being made
-    // (or when the visitor sends something – the finished results are already waiting in the list)
-    if (trial.jobs.some(pending)) { startChat(); setMode("free"); }
+    saveTrialJobs();
+    startChat(); setMode("free");
     trial.jobs.forEach((j) => { trialCard(j); pollTrial(j, 0); });
+  }
+  // the saved chat this browser had open (refresh, a later visit, or picked from «محادثاتي»)
+  async function loadSavedChat() {
+    const id = keep.get("vi-chat");
+    if (!/^C[a-f0-9]{20}$/.test(id || "")) return null;
+    try { const r = await fetch(`/api/chats/${id}`, { headers: chatHeaders, cache: "no-store" }); return r.ok ? (await r.json()).chat : null; } catch { return null; }
+  }
+  // the chat comes back as it was: messages, free results where they were made (finished ones too), the order and its status
+  async function restoreChat(c, skipOrder) {
+    chat.id = c.id; chat.savedJobs = c.jobs || []; chat.restored = true;
+    state.attachments = c.messages.flatMap((m) => m.files || []);
+    if (trial.on) setMode(c.mode === "free" ? "free" : "order");
+    const fetched = await Promise.all(chat.savedJobs.map(async (sv) => {
+      try {
+        const r = await fetch(`/api/trial/jobs/${encodeURIComponent(sv.id)}`, { headers: { "x-trial-token": sv.token }, cache: "no-store" });
+        const d = await r.json().catch(() => ({}));
+        return d.ok ? { ...d.job, token: sv.token, chatId: c.id, at: sv.at } : null;
+      } catch { return null; }
+    }));
+    const jobs = fetched.filter(Boolean);
+    localJobs().filter((j) => j.chatId === c.id && !jobs.some((x) => x.id === j.id)).forEach((j) => jobs.push(j));
+    trial.jobs = jobs;
+    startChat();
+    const n = c.messages.length, pos = (x) => Math.min(Number(x.at) || 0, n);
+    const place = (i) => {
+      jobs.filter((j) => pos(j) === i).forEach((j) => trialCard(j));
+      if (c.order?.requestId && pos(c.order) === i) {
+        Object.assign(state, { requestId: c.order.requestId, requesterId: c.order.requesterId, accessToken: c.order.accessToken });
+        chat.order = c.order;
+        if (!skipOrder) trackOrder(null);
+      }
+    };
+    let lastBot = null;
+    c.messages.forEach((m, i) => {
+      place(i);
+      const e = addMsg(m.role === "user" ? "user" : "bot", m.content, m.files || []);
+      state.messages.push(m);
+      if (m.role !== "user") lastBot = e;
+    });
+    place(n);
+    updateTrialRefs();
+    jobs.filter(pending).forEach((j) => pollTrial(j, 0));
+    saveTrialJobs();
+    if (c.messages.at(-1)?.role === "assistant") addGenerate(lastBot); else chat.lastBot = lastBot;
+    list.scrollTop = list.scrollHeight;
   }
 
   // ---------- works ----------
@@ -900,20 +1039,27 @@
     render();
     showcase();
     loadVideos();
-    const hello = "هلا بيك 👋 احجيلي عن الفيديو اللي تريده: شنو الفكرة، ولمن موجّه؟ وإذا عندك صور للشخصيات أو مقطع مرجعي ارفعه من زر المشبك.";
-    addMsg("bot", hello);
-    state.messages.push({ role: "assistant", content: hello });
-    if (trial.on) restoreTrial();
-    // a refresh always opens the welcome page with the showcase loops (no previous order restored)
+    // the chat this browser had open comes back (saved on the server); otherwise a new chat with the welcome page
+    const paidBack = location.pathname.startsWith("/paid");
+    const saved = await loadSavedChat();
+    if (saved?.messages?.length) await restoreChat(saved, paidBack);
+    else {
+      chat.id = "C" + rid(10);
+      const hello = "هلا بيك 👋 احجيلي عن الفيديو اللي تريده: شنو الفكرة، ولمن موجّه؟ وإذا عندك صور للشخصيات أو مقطع مرجعي ارفعه من زر المشبك.";
+      addMsg("bot", hello);
+      state.messages.push({ role: "assistant", content: hello });
+      if (trial.on) restoreTrial();
+    }
     try { localStorage.removeItem("vi-order"); } catch {}
     // …except the return from the payment page: Wayl sends the customer to /paid/?referenceId=<order>-P1&orderid=…
-    if (location.pathname.startsWith("/paid")) {
+    if (paidBack) {
       const ref = new URLSearchParams(location.search).get("referenceId") || "";
       let back = null;
       try { back = JSON.parse(localStorage.getItem("vi-pay") || "null"); } catch {}
       history.replaceState(null, "", "/");
       if (back?.requestId && Date.now() - back.at < 3 * 86400e3 && (!ref || ref.startsWith(back.requestId))) {
         Object.assign(state, { requestId: back.requestId, requesterId: back.requesterId, accessToken: back.accessToken });
+        if (chat.order?.requestId !== back.requestId) { chat.order = { requestId: back.requestId, requesterId: back.requesterId, accessToken: back.accessToken, at: state.messages.length }; saveChat(); }
         startChat();
         addMsg("sys", `رجعت من صفحة الدفع – نتحقق من دفع الطلب ${back.requestId}…`);
         trackOrder(null);

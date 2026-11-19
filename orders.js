@@ -249,7 +249,8 @@ async function setAssetKey(id, key) {
 /** Uploads never attached to an order (chat abandoned) older than `hours`. */
 const staleDraftAssets = async (hours = 24, limit = 200) =>
   (await db.query(
-    "SELECT id, r2_key FROM assets WHERE request_id IS NULL AND created_at < now() - make_interval(hours => $1) ORDER BY id LIMIT $2",
+    // pictures of a saved chat stay while the chat is kept (chats.js), so an old chat still shows them
+    "SELECT id, r2_key FROM assets a WHERE request_id IS NULL AND created_at < now() - make_interval(hours => $1) AND NOT EXISTS (SELECT 1 FROM chats c WHERE a.upload_id = ANY(c.uploads)) ORDER BY id LIMIT $2",
     [hours, limit]
   )).rows;
 const deleteAsset = async (id) => db.query("DELETE FROM assets WHERE id = $1 AND request_id IS NULL", [id]);
